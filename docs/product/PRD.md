@@ -23,7 +23,7 @@ Update the PRD whenever LitRev's product direction changes, including adding, re
 
 LitRev is a local-first scientific workspace where researchers, collaborators, and AI agents run an entire research project together, from early project formation through publication-ready outputs. Each project brings research materials, sources, data, analysis work, writing, citations, decisions, memory, collaboration, and outputs into one durable workspace.
 
-The agent is a real project worker inside LitRev's workspace, not a chatbot beside the app. Agents can help perform bounded project work, but their results should land as inspectable project changes that researchers can review, correct, and recover.
+The agent is a real project worker inside LitRev's workspace. Chat is a primary way researchers work with the agent: asking questions, planning, delegating tasks, discussing project context, and turning conversation into durable project changes. Chat should be project-native and connected to the workspace, while the project record, evidence, files, data, draft, artifacts, and review surfaces remain the product center.
 
 The goal of LitRev is to make scientific work faster without making it opaque. Researchers should be able to work manually, delegate safely, collaborate, preserve project history, and keep ownership of the work.
 
@@ -39,11 +39,11 @@ LitRev should organize work around the research project, not around one fixed us
 
 LitRev should organize scientific work around the research project as the durable center of work. Sources, notes, protocols, evidence, data, analysis, figures, manuscripts, memory, agent actions, and collaboration should belong to one connected project record instead of being scattered across tools, files, notebooks, and chat threads.
 
-### Agentic-First, Researcher-Owned
+### Agentic-First, Workspace-Native, Researcher-Owned
 
-LitRev is agentic-first. Agents should be able to do real project work inside the project context, including work on sources, evidence, files, code, analyses, figures, drafts, citations, scientific methods, and artifacts.
+LitRev is agentic-first and workspace-native. Researchers should be able to work conversationally with the project agent, delegate from project objects, and continue the same work through high-quality manual surfaces. The agent does real project work inside the project context: sources, evidence, files, code, analyses, figures, drafts, citations, scientific methods, and artifacts.
 
-Agentic-first does not mean agent-only. Important work must remain inspectable, editable, correctable, and recoverable through high-quality product surfaces. Manual interaction is a reliability requirement: it lets researchers understand, verify, continue, and own the work agents help produce.
+Agentic-first does not mean chat-only or agent-only. Important work must remain inspectable, editable, correctable, and recoverable through high-quality product surfaces. Manual interaction is a reliability requirement: it lets researchers understand, verify, continue, and own the work agents help produce.
 
 ### Traceable Scientific Work
 
@@ -205,36 +205,53 @@ The workspace should remain useful outside a single cloud service, model provide
 
 Researchers should be able to bring materials in, send outputs out, preserve project records, and continue the research through external tools, repositories, publication systems, or archives when needed.
 
-## Project Workspace Areas
+## Core Product Surfaces
 
-LitRev should make the project understandable through clear workspace surfaces. These surfaces are product responsibilities, not mandatory app pages, database objects, or fixed implementation boundaries. A surface may appear as a page, panel, mode, sidebar, command target, or agent task context, but the responsibility must remain visible and inspectable.
+LitRev should have a recognizable product shape. These are the main product surfaces a researcher should be able to recognize in LitRev, even if the final UI combines, splits, or rearranges them. They are product surfaces, not mandatory routes, tabs, database tables, or implementation boundaries.
 
-| Workspace surface | Product responsibility |
+| Surface | Product responsibility |
 |---|---|
-| Project home | Show project status, recent changes, open tasks, blocked or uncertain work, collaborator activity, agent activity, outputs needing review, and useful next actions. |
-| Project direction and protocol | Capture the topic, goals, question, hypotheses, scope, collaborators, constraints, protocol, eligibility criteria, extraction plan, analysis plan, reporting plan, milestones, and decision history. Support guided bootstrap from loose starting material into a reviewed project scaffold. |
-| Source library and reader | Manage references, PDFs, imported documents, metadata, deduplication, annotations, source chunks, parser confidence, failure states, and source or study detail views with backlinks to notes, evidence, citations, drafts, figures, analysis, and unresolved issues. |
-| Notes and decisions | Preserve interpretations, assumptions, methodological choices, unresolved questions, meeting or advisor feedback, and project decisions as durable material linked to the work they affect. |
-| Evidence and claims | Support screening decisions, inclusion and exclusion reasons, extraction schemas, extraction tables, extracted values, evidence links, quality appraisal, uncertainty, contradiction tracking, and claim support. |
-| Data, code, and analysis | Organize datasets, scripts, notebooks or notebook-compatible work, analysis runs, parameters, environment or dependency records where needed, run history, reproducible outputs, and stale-output warnings. |
-| Figures, tables, and artifacts | Manage generated tables, editable figures, charts, diagrams, reports, extraction tables, visual plans, and other artifacts with links back to their sources, data, code, evidence, decisions, and manuscript usage. |
-| Manuscript and research outputs | Support section-level and full-document drafting, citations, bibliographies, evidence rails, comments, suggestions, journal adaptation, reports, thesis sections, grant or proposal sections, publication artifacts, import, export, and reconciliation with external documents. |
-| Agent work and review | Show delegated tasks, captured context, task status, proposed changes, generated artifacts, logs, approvals, rejections, retries, cancellations, failures, and recovery paths. |
-| Project memory, history, and recovery | Make project memory, prior agent work, decisions, version history, diffs, snapshots, rollback, provenance, and audit trails inspectable, correctable, and useful for continuation. |
-| Collaboration and sharing | Support project membership, roles, permissions, invitations, comments, suggestions, assignments, attribution, synchronized co-editing where useful, conflict states, notifications, cloud mirroring, and mobile continuation. |
-| Settings and interoperability | Manage project-level configuration, import and export paths, citation formats, external connections, repository or archive destinations, cloud mirror state, account/device concerns where needed, and portability controls. |
+| Project Home | Orient the researcher to project status, recent changes, open tasks, blocked work, stale outputs, collaborator activity, agent activity, review needs, and next actions. |
+| Project Agent And Chat | Provide the primary conversational surface for asking questions, planning work, delegating tasks, discussing project context, and turning conversation into durable project changes. Chat should be project-native, context-receipted, task-aware, and connected to project records rather than detached conversation. |
+| Project Direction And Protocol | Capture the topic, question, goals, hypotheses, scope, criteria, methods, analysis plan, reporting plan, milestones, and decision history. Support guided bootstrap from loose starting material into a reviewed project scaffold. |
+| Source Library And Reader | Manage sources, PDFs, references, metadata, duplicate-safe import, reading, annotations, parser state, source detail, and backlinks. |
+| Evidence Ledger And Claims | Support screening, extraction, evidence tables, evidence records, quality and risk judgments, claim support, contradictions, uncertainty, and unsupported-claim diagnostics. |
+| Synthesis Surface | Support project-grounded Q&A, comparisons, gaps, conflicts, uncertainty, and saving useful synthesis into notes, evidence, claims, decisions, or draft material. |
+| Draft And Manuscript Workspace | Support manual and agent-assisted writing, section and full-draft work, citations, bibliography, evidence rail, comments, suggestions, metadata, import, export, and reconciliation. |
+| Data And Analysis Workbench | Support datasets, scripts, notebook-compatible work, runs, parameters, methods, outputs, reproducibility context, and stale-output signals. |
+| Figures, Tables, And Artifacts | Manage generated and editable tables, figures, charts, diagrams, visual plans, captions, artifact review, manuscript usage, and export readiness. |
+| Agent Runs And Review | Show delegated tasks, context receipts, proposed changes, generated artifacts, logs, approvals, rejections, failures, retries, diffs, checkpoints, and recovery paths. |
+| Memory, History, And Decisions | Make notes, interpretations, decisions, unresolved questions, project memory, prior agent work, provenance, version history, snapshots, rollback, and audit trails inspectable and correctable. |
+| Collaboration And Mobile Continuation | Support members, roles, permissions, comments, suggestions, assignments, attribution, shared review, notifications, and mobile reading, capture, approval, and task status. |
+| Settings, Integrations, And Export | Manage project configuration, citation formats, import and export paths, external connections, repositories, archives, cloud mirror state, and portability controls. |
 
 Every important project object or change should have an obvious place to inspect it. Researchers should be able to find where a change landed and what related project material it affects.
 
-Workspace surfaces should remain connected by project-wide search, navigation, backlinks, status indicators, and object-aware actions. A researcher should be able to move from an output to the material that produced it, from a claim to its support, from agent work to the affected artifacts, and from a changed source or analysis to the project areas that may need review.
+Core product surfaces should remain connected by project-wide search, navigation, backlinks, status indicators, object-aware actions, and project agent chat. A researcher should be able to move from an output to the material that produced it, from a claim to its support, from agent work to the affected artifacts, and from a changed source or analysis to the project areas that may need review.
 
 LitRev should maintain stable product vocabulary for durable project records and relationships without turning the PRD into a database schema. Important records include the project, protocol, source, file, source region or chunk, screening decision, extraction, claim, evidence link, dataset, analysis run, figure, table, manuscript, citation, note, agent run, proposed artifact, memory, collaborator, and export or deposit record.
+
+## Primary Product Journeys
+
+These journeys are not roadmap phases or implementation slices. They describe the core flows LitRev must make coherent across product surfaces.
+
+- Start a project from a question, files, sources, dataset, protocol, or draft.
+- Use project agent chat to ask questions, plan work, delegate tasks, and create reviewable project changes.
+- Import sources, preserve source identity, and read or annotate source material.
+- Screen, extract, evaluate evidence, and connect evidence to claims.
+- Ask grounded questions and save synthesis into project records.
+- Write a cited section with visible evidence support.
+- Run analysis and connect results to figures, tables, claims, and manuscript sections.
+- Review agent-proposed changes, accept or reject them, and recover from mistakes.
+- Collaborate, export, archive, or continue the project externally.
 
 ## Source, Evidence, Claims, And Scientific Trust
 
 LitRev should make scientific support inspectable. Sources, extracted evidence, claims, citations, analysis outputs, figures, tables, and agent-generated material should remain connected so researchers can understand why a statement exists, what supports it, what weakens it, and what still needs review.
 
 This trust layer is not only for formal systematic reviews. It should support ordinary research reading, exploratory synthesis, clinical or applied reports, computational projects, thesis work, manuscripts, and grant or proposal arguments whenever the project depends on sources, evidence, or claims.
+
+LitRev should support literature review and evidence synthesis workflows, including source discovery, screening, extraction into the evidence ledger, evidence-strength or quality appraisal, methodological review where relevant, and synthesis of supported, conflicting, weak, or uncertain findings.
 
 ### Source Records And Reading
 

@@ -2,7 +2,7 @@
 
 Status: Draft
 Owner: Yaacov
-Last updated: 2026-06-27
+Last updated: 2026-06-28
 Purpose: Synthesizes what the new LitRev repo should learn from LitRev_2026 and vNext planning without copying the old product shape.
 Doc type: Research evidence
 
@@ -10,7 +10,7 @@ Doc type: Research evidence
 
 This report is research evidence and planning input. It is not canonical product truth, architecture direction, or an implementation plan.
 
-Use it to decide what to refine in `docs/product/PRD.md`, `docs/planning/prd-plan.md`, architecture placeholders, quality doctrine, and future design documents. Promote only the stable product requirements, architecture decisions, or policies into their owning documents.
+Use it to decide what to refine in `docs/product/PRD.md`, `docs/planning/product-planning.md`, architecture placeholders, quality doctrine, and future design documents. Promote only the stable product requirements, architecture decisions, or policies into their owning documents.
 
 This report is grounded in inspected local repo files from:
 
@@ -38,7 +38,7 @@ The main next move is not to add more broad PRD sections. The PRD now has the ri
 Current LitRev docs reviewed:
 
 - `docs/product/PRD.md`
-- `docs/planning/prd-plan.md`
+- `docs/planning/product-planning.md`
 - `docs/research/source-evaluations/open-source-adaptation-map.md`
 - `docs/architecture/technology-stack.md`
 - `docs/architecture/security-and-permissions.md`
@@ -169,7 +169,7 @@ The current PRD already does several important things correctly:
 - It makes local ownership, optional cloud mirroring, collaboration, mobile continuation, provenance, versioning, and recovery part of the product contract.
 - It avoids naming specific runtimes, databases, notebook engines, sync engines, or editor engines as product truth.
 
-The current PRD plan already contains a broad feature inventory and a useful placement map. Its main risk is duplication: several promoted ideas still remain as active-looking planning scaffolding. During this transfer pass, the old early-validation bundle was widened so it no longer leans only toward a single literature-review path.
+The planning file at the time contained a broad feature inventory and a useful placement map. Its main risk was duplication: several promoted ideas still remained as active-looking planning scaffolding. During this transfer pass, the old early-validation bundle was widened so it no longer leaned only toward a single literature-review path.
 
 ## Core Difference: Old App Versus New App
 
@@ -193,7 +193,7 @@ LitRev_2026 already proved that project, protocol, study/source, draft, note, me
 
 The new repo should not promote that list as a database schema. The better transfer is product-level: every important project material, decision, artifact, claim, and agent change needs a stable home, links to related material, provenance, review, and export/continuation path.
 
-Current coverage: strong in the PRD. The current `Core Project Workspace Requirements` and `Project Workspace Areas` sections are the right abstraction.
+Current coverage: strong in the PRD. The current `Core Project Workspace Requirements` and `Core Product Surfaces` sections are the right abstraction.
 
 Follow-up: the plan should keep the old object list only as a traceability aid, not as a future schema or page list.
 
@@ -203,7 +203,7 @@ The old app's artifact system is one of the most important patterns to preserve.
 
 The new PRD already says agent outputs should land as reviewable project changes. That is correct but still abstract.
 
-Follow-up: the PRD plan should explicitly carry "proposed artifact lifecycle" as a product pattern: propose, inspect, edit when appropriate, accept, reject, apply, checkpoint, compare, recover. This belongs mostly in `Agent Delegation, Review, And Safe Automation` and `Provenance, Versioning, Recovery, And Auditability`, not as a standalone PRD section.
+Follow-up: product planning should explicitly carry "proposed artifact lifecycle" as a product pattern: propose, inspect, edit when appropriate, accept, reject, apply, checkpoint, compare, recover. This belongs mostly in `Agent Delegation, Review, And Safe Automation` and `Provenance, Versioning, Recovery, And Auditability`, not as a standalone PRD section.
 
 ### 3. Durable Agent Runs, Decisions, And Recovery
 
@@ -221,7 +221,7 @@ The most transferable product idea is "context receipts": when a researcher send
 
 Current coverage: the PRD mentions object-scoped delegation and captured context. The plan mentions context capture. The explicit receipt/history idea is not yet strong enough.
 
-Follow-up: add to the PRD plan, not necessarily the PRD yet: context targets, visible context receipts, recent-context reuse, and no invisible context injection.
+Follow-up: add to product planning, not necessarily the PRD yet: context targets, visible context receipts, recent-context reuse, and no invisible context injection.
 
 ### 5. Citation Architecture
 
@@ -238,7 +238,7 @@ Important transfer points:
 
 Current coverage: the PRD has citations, bibliography, citation diagnostics, and interoperability. The plan has CSL JSON, BibTeX, RIS, and reference-manager import/export. The evidence-vs-auxiliary citation distinction is not yet visible enough.
 
-Follow-up: promote this carefully, probably into the PRD plan first. The PRD may later need one concise paragraph in `Manuscript, Publishing, And Research Outputs` or `Source, Evidence, Claims, And Scientific Trust` explaining that citation handling must distinguish evidence support from general bibliography management.
+Follow-up: promote this carefully, probably into product planning first. The PRD may later need one concise paragraph in `Manuscript, Publishing, And Research Outputs` or `Source, Evidence, Claims, And Scientific Trust` explaining that citation handling must distinguish evidence support from general bibliography management.
 
 ### 6. Duplicate-Safe Source And Study Ingestion
 
@@ -253,7 +253,7 @@ The old ledger plan has a sharper ingestion contract than the current PRD. The k
 
 Current coverage: the PRD and plan mention deduplication and metadata normalization. They do not yet name duplicate-safe ingestion, identity confidence, or post-import receipts.
 
-Follow-up: add this to the PRD plan under source discovery/import. The PRD itself may only need a compact product-level addition later if source identity becomes a core early validation requirement.
+Follow-up: add this to product planning under source discovery/import. The PRD itself may only need a compact product-level addition later if source identity becomes a core early validation requirement.
 
 ### 7. Manuscript Quality Beyond "Draft Area"
 
@@ -276,7 +276,7 @@ The old repo has stronger memory semantics than the current PRD. Its plans and s
 
 The new PRD correctly says memory should be inspectable, editable, challengeable, and not opaque authority. The plan already mentions memory health, freshness, confidence, conflicts, inspect/edit/forget, and pinned context.
 
-Follow-up: preserve the old-app distinction that summaries are not canonical memory, and memory should expose enough authority, source, freshness, confidence, and conflict metadata for researchers to challenge it. This probably belongs in `docs/planning/prd-plan.md` and later `docs/architecture/agent-runtime.md` or a memory-specific architecture note.
+Follow-up: preserve the old-app distinction that summaries are not canonical memory, and memory should expose enough authority, source, freshness, confidence, and conflict metadata for researchers to challenge it. This probably belongs in `docs/planning/product-planning.md` and later `docs/architecture/agent-runtime.md` or a memory-specific architecture note.
 
 ### 9. Security And Permission Boundaries
 
@@ -316,7 +316,7 @@ vNext and old product ideas repeatedly mention benchmark categories:
 - long-manuscript performance,
 - stale output detection.
 
-Current coverage: the testing philosophy already names local-first behavior, sync conflicts, fixture projects, permission checks, audit checks, rollback/checkpoints, and scientific integrity. The PRD plan includes benchmark/prototype reminders. The specific benchmark categories are not gathered in one current place.
+Current coverage: the testing philosophy already names local-first behavior, sync conflicts, fixture projects, permission checks, audit checks, rollback/checkpoints, and scientific integrity. Product planning includes benchmark/prototype reminders. The specific benchmark categories are not gathered in one current place.
 
 Follow-up: add a future "scientific quality/evaluation harness" planning note when implementation planning begins. Do not promote numeric gates before the product has measurable workflows.
 
@@ -349,7 +349,7 @@ LitRev_2026 has both global AI chat and project copilot/popup chat. The importan
 
 The new app should not simply copy these surfaces. It should use the distinction to design agent work around project objects, context, task status, review, and recovery.
 
-Current coverage: the PRD correctly says the agent is not a chatbot beside the app. The plan captures context capture and agent work surfaces.
+Current coverage: the PRD correctly keeps the agent inside the project workspace rather than making chat the product center. The plan captures context capture and agent work surfaces.
 
 Follow-up: future UI/design work should avoid a single generic chat pane as the main product surface. Agent panels, task queues, context receipts, and review surfaces should exist only where they strengthen the project workspace.
 
@@ -402,24 +402,24 @@ The highest-value minimal PRD refinements to consider later are:
 
 I would not add all five directly to the PRD today. They should first be refined in the plan so the PRD stays readable.
 
-## Current PRD Plan Review
+## Former PRD Plan Review
 
-The current PRD plan is valuable but starting to carry three jobs at once:
+The former PRD plan was valuable but had started to carry three jobs at once:
 
 1. section planning for the PRD,
 2. traceability from source research into promoted PRD sections,
 3. raw feature backlog.
 
-Because the PRD sections are now promoted, the plan should stop acting like an active table of contents. It should become a traceability and feature-refinement document.
+Because the PRD sections are now promoted, planning should stop acting like an active PRD table of contents. It should remain a compact planning and feature-refinement document.
 
-Plan changes applied in this pass:
+Planning cleanup direction:
 
-- Added a section for "LitRev_2026 And vNext Transfer Items" with the high-value carry-forward patterns above.
-- Marked which items are already covered by the PRD, which need plan refinement, which belong in architecture/policy, and which should stay deferred.
-- Widened the early validation bundle so it includes at least a thin analysis/figure/artifact path and no longer over-centers only one literature-review path.
-- Added or expanded feature-list entries for sample/demo project, project summary/orientation, context receipts, duplicate-safe import identity, citation contract, manuscript import reports, and proposed artifact lifecycle.
-- Keep the old object list as planning vocabulary, not product truth or schema.
-- Keep design/security/policy lessons in their owning docs now that draft doctrine exists.
+- Keep high-value carry-forward patterns in product planning only when they are still useful for roadmap, feature, or handoff decisions.
+- Mark which items are already covered by the PRD, which need later refinement, which belong in architecture or policy, and which should stay deferred.
+- Keep early roadmap seeds broad enough to include analysis, figures, artifacts, and agent safety, without over-centering only one literature-review path.
+- Preserve sample/demo projects, project orientation, context receipts, duplicate-safe import identity, citation contracts, manuscript import reports, and proposed artifact lifecycle as planning vocabulary where useful.
+- Keep old object lists as planning vocabulary, not product truth or schema.
+- Keep design, security, and policy lessons in their owning docs once real doctrine exists.
 
 ## Policy And Doctrine Transfer
 
