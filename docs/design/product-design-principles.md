@@ -3,23 +3,13 @@
 Status: Placeholder
 Owner: Yaacov
 Last updated: 2026-06-27
-Purpose: Defines what should be documented about LitRev's product design principles once agreed.
+Purpose: Future home for LitRev product design principles once there are real design decisions or prototypes to document.
 Doc type: Future home
 
-This page will document LitRev's product design principles when they are discussed and accepted.
+## Document Rules
 
-Potential topics to decide later:
+This document has not been written yet.
 
-- scientist-first workflows
-- evidence-forward interfaces
-- working workspace over generic AI chat
-- reviewable and reversible changes
-- serious desktop ergonomics
-- accessibility
-- clear boundaries around AI assistance
+Do not use this file as current design doctrine, UI direction, product truth, or implementation guidance.
 
-Do not use as:
-
-- accepted design policy
-- implemented UI specification
-- broad design moodboard
+When LitRev has real product design principles to preserve, this file should define them concisely and link to the product, planning, or design evidence they came from.

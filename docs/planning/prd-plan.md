@@ -104,6 +104,155 @@ These sections have already been drafted in `docs/product/PRD.md`. Their detaile
 
 The full promotion-map section set has been drafted in `docs/product/PRD.md`. Future work here should refine, split, or prune promoted sections rather than treating the old promotion map as unpromoted backlog.
 
+## Current Planning Decisions
+
+These decisions are working planning guidance. They should shape the next PRD-plan edits, but they are not product truth until promoted into `docs/product/PRD.md` or another accepted document.
+
+### PRD v1 Means The First Stable PRD
+
+When this plan refers to PRD v1, it means the first stable version of the product requirements document, not the first app release.
+
+PRD v1 should settle:
+
+- what LitRev is
+- which product principles are durable
+- which workspace responsibilities are core
+- which capability areas belong in the product
+- which requirements are product truth rather than architecture, implementation, research, or roadmap
+- which product questions remain intentionally open
+
+PRD v1 should not try to settle:
+
+- the full build sequence
+- the first app slice in detail
+- architecture, framework, runtime, parser, sync, or database decisions
+- every external integration implementation
+- every later workflow expansion
+
+The PRD may eventually mention that roadmap planning exists, but the first app slice should be planned in the roadmap, not embedded as a large PRD section.
+
+### Roadmap Belongs In A Separate Planning File
+
+The product roadmap should be created later as `docs/planning/product-roadmap.md`.
+
+The roadmap should own sequencing, phases, validation slices, first app slice, expansion order, and milestone tradeoffs. The PRD should own durable product direction and product constraints.
+
+Until the roadmap exists, keep first-slice and validation-scope ideas in this plan only. Do not promote them into the PRD just because they are useful for sequencing.
+
+Candidate roadmap phases to carry forward later:
+
+- PRD v1 and product contract cleanup
+- first app slice
+- early validation
+- cloud mirror and collaboration foundations
+- publishing, export, and deposit expansion
+- analysis, figures, and workflow expansion
+- mobile continuation
+
+### Feature-Level Acceptance Criteria
+
+LitRev should not have one global acceptance criterion that implies the product is ever "finished." The product will keep improving.
+
+Use feature-level acceptance criteria instead. Each feature or capability should eventually define what makes its current version acceptable for its intended maturity level.
+
+A feature-level acceptance note should answer:
+
+- What researcher workflow must this support?
+- What must the researcher be able to do manually without chat?
+- What can an agent do, and where does the result land?
+- What project object, relationship, artifact, or record is created or changed?
+- What provenance, evidence, citation, memory, or review state must be visible?
+- What can the researcher inspect, edit, accept, reject, retry, compare, or recover?
+- What is the mobile role, if any?
+- What remains intentionally deferred?
+
+Example acceptance seeds:
+
+| Capability | Acceptance direction |
+|---|---|
+| Source import | A researcher can import or attach a source, inspect metadata, repair metadata, identify duplicate state, preserve import/search provenance, and open the source from the project library. |
+| Source parsing | A researcher can see extracted text or regions, source-location provenance, parser confidence or failure state, and can avoid treating uncertain parsed material as settled fact. |
+| Evidence record | A researcher can create, edit, validate, reject, and trace an evidence record back to source support. |
+| Drafting | A researcher can write and edit manually, work at section and full-draft levels, insert citations, see evidence support, and continue without going through chat. |
+| Agent proposal | An agent-created change lands as a proposed or inspectable project change that can be accepted, rejected, edited, compared, retried, or recovered. |
+| Citation handling | A researcher can distinguish evidence-supporting citations from general bibliography references, repair metadata, render through standard citation styles, and diagnose missing or weak citation state. |
+| Analysis output | A researcher can see which data, code, parameters, methods, and run produced a table, figure, result, or manuscript-linked artifact. |
+| Memory | A researcher can inspect, correct, pin, forget, distrust, or update remembered context when it is stale, wrong, incomplete, or no longer relevant. |
+
+### External Integration Planning Recommendations
+
+External integrations should strengthen the LitRev project record. They should not define the product core, fragment project truth, or turn LitRev into a clone of an adjacent tool.
+
+The current integration recommendation is:
+
+| Timing | Integration area | Candidates | Product reason | Guardrail |
+|---|---|---|---|---|
+| Core | Reference and citation interoperability | Zotero Web API, CSL, BibTeX/BibLaTeX, RIS, JabRef compatibility | Researchers already trust existing reference workflows; LitRev needs reliable import/export, citation rendering, bibliography generation, and metadata repair. | Do not rebuild a full reference manager first. Keep citations as LitRev project objects while preserving standard import/export paths. |
+| Core | Scholarly discovery and metadata | PubMed/NCBI E-utilities, OpenAlex, Crossref DOI lookup | PubMed is essential for biomedical seriousness; OpenAlex gives broad open scholarly coverage; Crossref supports DOI metadata repair and source identity. | Start with a small connector set. Preserve search/import provenance and duplicate-safe source identity. |
+| Early expansion | Additional discovery coverage | Semantic Scholar, arXiv, Europe PMC, Unpaywall, OpenCitations | These improve citation context, preprints, biomedical full-text metadata, open-access status, and source-neighborhood discovery. | Add after core intake works. Do not overbuild literature-map UI before source identity and evidence capture are reliable. |
+| Core evaluation | Scholarly PDF/document parsing | GROBID, Docling, Marker or similar parser candidates | Source chunks, table/figure extraction, citation contexts, coordinates, confidence, and parser failure states are necessary for evidence-grounded work. | Do not make a parser's output the canonical product model. LitRev should own source and evidence objects. |
+| Core or early | Manuscript import/export and publishing pipeline | DOCX, Markdown, PDF, CSL JSON, BibTeX/BibLaTeX, Pandoc, Quarto, later MyST/LaTeX/Typst | Researchers need usable output and external continuation. Publishing paths should carry citations, figures, tables, crossrefs, diagnostics, and export provenance. | Do not make raw technical authoring the required UX. Keep the manual draft workspace first-class. |
+| Early expansion | Open science export and deposit | OSF, Dataverse, Figshare, DataCite metadata | Finished projects need archive, deposit, dataset, figure, manuscript, and project-record export paths. | These are export/deposit destinations, not the LitRev source of truth. |
+| Later or power-user | Versioning and developer/research remotes | GitHub, GitLab, Git-like artifact history | Useful for readable artifacts, review, recovery, and power users. | Normal collaboration should not require researchers to manage Git. |
+| Later | Computational research continuity | Jupyter nbformat, DVC, DataLad, workflow/pipeline tools | Useful for notebook import/export, dataset/artifact versioning, reproducible data work, and computational research. | Hide raw technical complexity behind LitRev workflow. Do not become a notebook or workflow platform first. |
+| Later | Research identity and institutional metadata | ORCID, ROR, DataCite, ClinicalTrials.gov where relevant | Helpful for authors, institutions, datasets, deposits, clinical studies, and publication/deposit metadata. | Add when publication/deposit or clinical workflows require it. |
+
+Official sources inspected for these recommendations include:
+
+- [NCBI APIs](https://www.ncbi.nlm.nih.gov/home/develop/api/)
+- [OpenAlex documentation](https://docs.openalex.org/)
+- [Crossref REST API](https://www.crossref.org/documentation/retrieve-metadata/rest-api/)
+- [Semantic Scholar API](https://api.semanticscholar.org/api-docs/)
+- [arXiv API access](https://info.arxiv.org/help/api/index.html)
+- [Zotero Web API](https://www.zotero.org/support/dev/web_api/v3/start)
+- [Citation Style Language](https://citationstyles.org/)
+- [GROBID documentation](https://grobid.readthedocs.io/en/latest/)
+- [Pandoc](https://pandoc.org/)
+- [Quarto manuscripts](https://quarto.org/docs/manuscripts/)
+- [OSF API](https://developer.osf.io/)
+- [Dataverse API Guide](https://guides.dataverse.org/en/latest/api/)
+- [Figshare API](https://docs.figshare.com/)
+- [DataCite REST API](https://support.datacite.org/docs/api)
+- [ORCID documentation](https://info.orcid.org/documentation/)
+- [ROR API documentation](https://ror.readme.io/)
+- [ClinicalTrials.gov API](https://clinicaltrials.gov/data-api/api)
+- [Jupyter nbformat](https://nbformat.readthedocs.io/en/latest/)
+- [DVC documentation](https://dvc.org/doc)
+- [DataLad documentation](https://docs.datalad.org/en/stable/)
+
+### Risks And Open Questions To Carry
+
+These risks and questions should be kept visible while refining the PRD and later roadmap.
+
+Product risks:
+
+- The PRD becomes too broad to guide design and implementation.
+- The first app slice tries to prove too many workflows at once.
+- The manual workspace becomes weaker than the agent workflow.
+- Agent work is impressive but not inspectable, editable, or recoverable.
+- Citation and evidence support become unreliable or too opaque.
+- PDF parsing creates false confidence in extracted source material.
+- External integrations sprawl before the project kernel is stable.
+- Local-first and cloud-mirror boundaries stay vague.
+- Data, code, analysis, and workflow scope expands too early.
+- Mobile accidentally becomes a full-parity expectation instead of a continuation surface.
+- Roadmap sequencing gets promoted into product truth too early.
+
+Open product questions:
+
+- What should PRD v1 explicitly settle, and what should remain open?
+- Which product truths from this plan should be promoted into the PRD next?
+- Which questions belong in the future roadmap instead of the PRD?
+- What is the first app slice, once roadmap work begins?
+- Which first workflow should the roadmap validate: literature-to-draft, data-plus-literature, PhD/project guidance, or another mixed project workflow?
+- Which source connector comes first: PubMed, OpenAlex, or both?
+- Which citation import/export path is first: Zotero, BibTeX/BibLaTeX, CSL JSON, RIS, or DOI lookup?
+- Which parser path should be evaluated first, and what parser failure states must be product-visible?
+- What must be reviewable before agents can write into project objects?
+- How much citation detail belongs in PRD v1 versus manuscript/editor architecture?
+- Which collaboration and cloud-mirror semantics must be designed before implementation begins?
+- What mobile actions are read-only, queued, lightweight edits, approvals, or out of scope?
+
 ## PRD Section Placement Stress Test
 
 Use this mapping to test whether features belong cleanly in the PRD structure. Each product item should have one primary home. It may be referenced elsewhere, but the PRD should define it only once. If a feature fits in multiple places, choose the section that owns the user-facing product promise and cross-reference the supporting section only when needed.
@@ -139,9 +288,55 @@ Do not promote those older drafts directly. Reuse their useful ideas only after 
 - PhD student or broad academic author needing project guidance and drafting support
 - local project bootstrap with source import, evidence extraction, draft support, agent review, and recovery
 
-## PRD Success Criteria
+## LitRev_2026 And vNext Transfer Items
 
-The PRD is ready to guide design and implementation when it can answer these product questions clearly:
+Use this section to preserve what the old LitRev app and vNext planning taught us without turning the new app into a local clone of LitRev_2026.
+
+Source synthesis lives in `docs/research/spike-reports/litrev-2026-vnext-transfer-report-2026-06-27.md`. Items below are planning inputs, not automatically accepted PRD truth.
+
+| Transfer item | What to carry forward | Primary home | Current decision |
+|---|---|---|---|
+| Scientific project kernel | Keep the old app's proven project, protocol, source/study, draft, note, memory, file, run, and artifact boundaries as product vocabulary. Expand them for the new app with data, code, analysis, figures, collaboration, and local project ownership. | PRD plan; `Core Project Workspace Requirements`; future project-format architecture | Covered in PRD at workspace level. Keep as traceability, not schema. |
+| Reviewable proposed artifacts | Preserve propose, inspect, edit when appropriate, accept, reject, apply, checkpoint, compare, and recover flows for agent-generated evidence, draft, citation, memory, analysis, figure, and source changes. | `Agent Delegation, Review, And Safe Automation`; `Provenance, Versioning, Recovery, And Auditability` | Add as feature-list refinement; PRD already covers the high-level contract. |
+| Durable agent runs and decisions | Preserve durable task state, run events, checkpoints, decisions, user input requests, retries, cancellations, failures, and recovery. Agent work should never live only in chat transcripts. | Agent planning; future `agent-runtime.md`; quality/testing docs | Foundation for first agent prototype. Architecture details stay out of PRD. |
+| Context capture and receipts | Keep typed context targets from sources, protocol fields, draft selections, notes, study sets, artifacts, analysis outputs, and agent messages. Add visible context receipts and recent-context reuse where safe; avoid invisible prompt injection. | `Agent Delegation, Review, And Safe Automation`; feature inventory | Needs feature-list entry or expansion under context capture. |
+| Citation contract | Treat citations as app-owned structured references. Distinguish evidence-linked citations from auxiliary bibliography citations. Support citation intent, CSL-compatible rendering, locators, prefixes/suffixes, multi-item citations, style refresh, and metadata repair. | `Manuscript, Publishing, And Research Outputs`; `Source, Evidence, Claims, And Scientific Trust`; feature inventory | Needs planning refinement before concise PRD promotion. |
+| Duplicate-safe source identity | Import should classify new source, strong duplicate, and possible duplicate; strong duplicates require stable identifiers; possible duplicates require user confirmation; import receipts should say what happened. | `Source, Evidence, Claims, And Scientific Trust`; source import feature entries | Needs feature-list expansion. |
+| Manuscript quality bar | Preserve the old draft plan's seriousness: manual editor quality, comments, suggestions, crossrefs, equations, figures, tables, metadata, honest import reports, and no AI-first writing flow that compensates for weak editing. | Manuscript feature inventory; future editor architecture/design docs | PRD covers high level; plan needs more detail around metadata and import reports. |
+| Memory trust metadata | Preserve inspectable memory with source, authority, confidence, freshness, conflict/staleness handling, pin/archive/forget, and the rule that summaries are not canonical memory. | `Project Memory And Continuity`; future memory/agent architecture | PRD covers the contract; plan should retain trust/health details. |
+| Project start and orientation | Preserve blank, guided, and sample/demo project entry paths, plus project summary/orientation actions. The sample should eventually demonstrate source, evidence, analysis, figure, manuscript, agent run, provenance, and recovery together. | Project workspace feature inventory; design docs | Add explicit sample/demo and project-orientation feature entries. |
+| Command palette and object-aware actions | Preserve fast object-scoped actions from sources, claims, draft selections, protocol fields, tables, figures, datasets, notes, and agent runs. | `Project Workspace Areas`; feature inventory | Existing feature entry is good; keep it early once objects exist. |
+| Copilot surface distinction | Preserve the distinction between global AI, project copilot, focused context chat, task queue, and artifact review, but redesign around the new research workspace rather than old web tabs. | Design docs; agent feature inventory | Avoid generic chat-first UI. |
+| Security and permission invariants | Carry forward: AI tools do not widen authority, model/tool requests are untrusted, LitRev enforces scope, unknown data stays unknown, client IDs/paths/URLs are not authority, adversarial tests for security fixes. | `docs/architecture/security-and-permissions.md`; testing docs | Promoted into draft architecture/security direction, adapted to local-first. |
+| Future product design principles | Preserve the need for later design guidance without promoting design doctrine before real UI decisions or prototypes exist. | `docs/design/product-design-principles.md` | Placeholder only. Revisit after design exploration; do not treat as current product truth. |
+| Evaluation harness categories | Preserve benchmark categories for PDF extraction, evidence retrieval, screening assistance, draft verification, citation formatting, code execution, agent recovery, import/export fidelity, long-manuscript performance, stale-output detection. | Quality/testing planning | Add later implementation-specific evaluation docs once workflows exist. |
+| External product and business signals | Use Overleaf, Zotero, Consensus, Elicit, scite, SciSpace, ResearchRabbit, Connected Papers, Semantic Scholar, Rayyan, Covidence, BioRender, GraphPad Prism, Paperpile, and ReadCube/Papers as evidence for user pain: source/citation trust, collaborative writing, discovery, answer-to-project synthesis, screening/extraction labor, publication-quality outputs, team sharing, and continuation. | PRD plan; feature inventory; future go-to-market research | Do not copy adjacent products wholesale or let their business model define LitRev's product core. |
+
+### Transfer Rules
+
+- Treat LitRev_2026 as evidence and pattern donor, not product destiny.
+- Do not copy hosted web persistence, tab layout, admin surfaces, old onboarding rigidity, or medical-review-only scope into the new product.
+- Promote only product truths into the PRD; route architecture, security, design, and testing lessons to their owning docs.
+- When an old feature is useful, translate it into the new local-first scientific project model before adding it to the feature list.
+
+### External Tool Lessons To Preserve
+
+These lessons come from the external product/business pass in `docs/research/spike-reports/litrev-2026-vnext-transfer-report-2026-06-27.md`. They are planning input, not pricing strategy or accepted product truth.
+
+| External pattern | What it teaches | Planning implication |
+|---|---|---|
+| Overleaf | Researchers value collaborative manuscript preparation, comments, review/history, templates, Git/export paths, and publication workflow reliability. | Strengthen manuscript collaboration, version history, export/build diagnostics, and journal/template workflows without becoming LaTeX-first or a full Overleaf replacement. |
+| Zotero | Researchers trust local/open reference libraries, citation plugins, PDF reading/annotations, groups, sync/storage, and portable metadata. | Treat Zotero/JabRef/CSL/BibTeX/RIS interoperability, duplicate-safe identity, citation metadata repair, and citation round-tripping as core infrastructure. |
+| Consensus / Elicit / scite | Users want fast paper discovery, source-grounded answers, structured extraction, citation context, and clear support/conflict semantics. | Build grounded synthesis as answer-to-project capture: useful answers should become evidence links, claims, notes, extraction rows, draft material, or review tasks. |
+| SciSpace / ResearchRabbit / Connected Papers / Semantic Scholar | Literature discovery is exploratory and ongoing: researchers use paper maps, citation networks, recommendations, alerts, and large scholarly graphs to find related work. | Preserve search/discovery provenance and plan later source-neighborhood exploration, but do not overbuild literature-map UI before source intake, source identity, and evidence capture work. |
+| Rayyan / Covidence | Screening and extraction value comes from queues, criteria, exclusion reasons, reviewer attribution, conflicts, quality/risk judgments, and reporting counts. | Keep screening/extraction as review workflows with human control and auditability, even when AI assists. |
+| BioRender / GraphPad Prism | Publication-quality figures, guided analysis, templates, high-resolution export, and collaboration are paid pain points. | Keep table/figure quality in the early coherence test: editable outputs linked to data, code, method notes, captions, claims, and manuscript usage. |
+| Team and institution plans | Adjacent products sell group libraries, institutional storage, shared projects, admin controls, and collaboration. | Design roles, permissions, cloud mirror, attribution, and shared review foundations early, but defer admin dashboards, billing, compliance suites, and enterprise workflow depth. |
+| Mobile companion apps | Mobile succeeds when it supports reading, capture, annotation, screening/review, approvals, notifications, and continuation. | Keep mobile as continuation-first rather than full desktop parity. |
+
+## PRD v1 Readiness Questions
+
+PRD v1 is ready to guide design and later roadmap work when it can answer these product questions clearly. These are PRD-readiness questions, not global product acceptance criteria.
 
 - Which researchers and workflows does the PRD explicitly serve?
 - Which project materials, records, relationships, and workspace responsibilities are durable product truth, and which are implementation details?
@@ -149,7 +344,7 @@ The PRD is ready to guide design and implementation when it can answer these pro
 - Can a researcher do the same work manually without depending on chat?
 - Can an agent work on the same project materials and surfaces the researcher sees and edits?
 - Can the researcher inspect, approve, reject, compare, and recover high-impact agent changes?
-- Does any proposed early validation scope have a concrete pass/fail scenario rather than a broad list of desirable features?
+- Are first-slice and validation-scope details kept in this plan or the future roadmap instead of being over-promoted into the PRD?
 - Which items are core to LitRev's product identity, and which are early, later, or deferred validation work?
 - What is the mobile role for each product area, even if mobile is not in the early validation scope?
 - Which requirements belong in the PRD, and which belong in architecture, research, implementation, or planning documents?
@@ -222,17 +417,19 @@ These categories come from OSS and source-evaluation research and should stay vi
 | Category | PRD reason |
 |---|---|
 | Reference manager interoperability | LitRev should treat Zotero, JabRef, BibTeX/BibLaTeX, and CSL import/export as core scholarly workflow infrastructure, not as plugin afterthoughts. |
+| Literature discovery and source-neighborhood exploration | LitRev should eventually support source-neighborhood context, citation maps, recommendations, alerts, and discovery provenance, but only after reliable project intake and source identity work. |
 | Scholarly document parsing and source-chunk provenance | PDF parsing, structured text, tables, figures, citation contexts, coordinates, confidence, and parser failure states are the base layer for evidence-grounded work. |
 | Screening queue and active-learning prioritization | Study triage should support researcher-controlled screening while allowing ASReview-style prioritization or similar assistive methods when useful. |
 | Review frameworks, risk of bias, and reporting counts | Protocol-driven reviews need inclusion/exclusion reasons, PRISMA-style accounting, quality frameworks, and risk-of-bias judgments. |
-| Scientific QA context engine | Grounded question-answering should land against LitRev evidence, source, and claim objects, not remain trapped in chat. |
-| Publishing build and export artifact graph | Manuscripts should export through publication-ready paths with diagnostics, references, crossrefs, build logs, and journal/template adaptation. |
+| Grounded synthesis and answer-to-project capture | Grounded question-answering should land against LitRev evidence, source, claim, note, decision, and draft objects, not remain trapped in chat. |
+| Collaborative manuscript review, history, and publishing diagnostics | Manuscripts should support serious coauthor review and export through publication-ready paths with comments/suggestions, diagnostics, references, crossrefs, build logs, and journal/template adaptation. |
 | Reactive analysis graph and stale output detection | When data, code, methods, or evidence change, LitRev should know which tables, figures, claims, and manuscript sections may be stale. |
 | Notebook compatibility | LitRev should support Jupyter-compatible scientific work without becoming only a notebook application. |
 | Dataset and large artifact versioning | Research projects need durable handling for datasets, figures, reports, intermediate outputs, and large artifacts, with DVC/DataLad-inspired ideas considered. |
-| Editable scientific figures and visual planning | Figures should be editable scientific objects linked to data, code, evidence, and manuscript claims, not static images detached from provenance. |
+| Publication-quality tables, figures, and visual planning | Figures and tables should be editable scientific outputs linked to data, code, evidence, captions, claims, and manuscript usage, not static images detached from provenance. |
 | Scientific workflow and pipeline execution | Workflow and pipeline concepts from tools like Snakemake, Nextflow, and Galaxy may be needed for computational projects, likely later unless computational research becomes the early validation scenario. |
 | Open science deposit and external project integrations | LitRev should plan for export, deposit, archive, and project integration paths such as OSF, Dataverse, Figshare, GitHub/GitLab, Google Drive, institutional repositories, and Zotero groups. |
+| Team and institution readiness | Roles, permissions, shared projects, attribution, cloud mirror, and review foundations should be designed early enough that later group or institution workflows do not require a product rewrite. |
 
 ## Candidate PRD Thesis
 
@@ -358,13 +555,19 @@ Likely needs representation in an early validation scenario, even if thin:
 
 - Local project workspace.
 - Stable local project files and project state.
-- Research question and minimal protocol workspace.
+- Flexible project direction and minimal protocol or project plan workspace.
 - Source import or PDF attachment with source metadata.
+- Duplicate-safe source identity handling, even if only through a simple preflight state.
 - Source chunks with provenance.
 - Evidence ledger with one structured record.
 - Context capture from selected project objects into agent work.
-- Project-aware agent tools for the paper-to-evidence-to-draft workflow.
+- Visible context receipts for attached project context.
+- Project-aware agent tools for source, evidence, draft, file, and analysis/artifact work.
 - Draft workspace with one evidence-linked cited section.
+- Structured citation handling that distinguishes evidence support from general bibliography metadata at least conceptually.
+- One small data/code/analysis run that produces a table or figure artifact.
+- Links from that table or figure back to the analysis inputs and any manuscript use.
+- Reviewable proposed artifact lifecycle for at least one agent-generated change.
 - Review/history surface for agent changes.
 - Durable agent run record with basic recovery path.
 
@@ -372,11 +575,14 @@ Should be designed early, but does not need full early-validation depth:
 
 - Cloud-mirror-ready project identity.
 - Guided project bootstrap.
+- Sample/demo project that demonstrates the connected project model.
+- Project summary or orientation action.
 - Real research library beyond the imported first paper.
 - Full PDF/file reader and annotation workflow.
 - Full citation style and bibliography management.
 - Complete snapshots, rollback, and recovery.
 - Complete code execution and analysis workspace.
+- Manuscript metadata and honest import/reconciliation reports.
 - Mobile continuation surface.
 
 ## Project Kernel And Local Workspace
@@ -460,6 +666,17 @@ Current-step decision: Useful in early validation because it creates the first c
 Mobile role: Later; likely continue setup, answer clarifying questions, review scaffold, or capture project ideas rather than full setup first.
 Open questions: What is the smallest bootstrap flow that creates real project objects without becoming a generic onboarding wizard?
 
+### Sample Project And Project Orientation
+
+Status: Candidate
+Why it matters: Researchers need to understand what a complete LitRev project can become without building one from scratch first.
+Researcher workflow need: Researchers need blank, guided, and sample/demo entry paths, plus an orientation surface that explains project state, recent work, open reviews, agent activity, outputs, and next actions.
+Agent role: Generate or refresh project summaries from current project material, highlight gaps or blocked work, and help users orient without turning the summary into canonical truth.
+Manual role: Open a sample project, inspect how sources/evidence/analysis/figures/manuscript/agent work connect, and use project summaries as orientation rather than as hidden state.
+Current-step decision: A sample/demo project is useful once the first connected project scenario exists; project orientation should be designed early with the project home.
+Mobile role: Later; project status, summary review, and next-action triage are strong mobile-continuation uses.
+Open questions: What should the first sample demonstrate: evidence-to-draft, data-to-figure-to-manuscript, or a mixed project that proves the broader product identity?
+
 ### Project Notes Linked To Sources, Evidence, Drafts, And Decisions
 
 Status: Candidate
@@ -516,6 +733,17 @@ Manual role: Review metadata, merge duplicates, attach PDFs, and correct citatio
 Current-step decision: Needed for evidence and citation reliability.
 Mobile role: Later; likely quick review and triage.
 Open questions: What is the minimum metadata model for the first source record?
+
+### Duplicate-Safe Source Identity And Import Receipts
+
+Status: Early validation
+Why it matters: Source identity errors poison evidence, citations, screening decisions, analysis inputs, and draft support.
+Researcher workflow need: Researchers need LitRev to distinguish new sources, strong duplicates, and possible duplicates before attaching files, merging records, or reusing source identities.
+Agent role: Match identifiers and metadata, classify source identity confidence, explain uncertainty, and preserve the same identity rules across search, PDF import, reference import, and agent-added sources.
+Manual role: Review ambiguous matches, choose whether to attach to an existing source, create a new source anyway, merge records, or cancel the import.
+Current-step decision: Needed early in thin form because source identity underpins evidence and citation reliability.
+Mobile role: Later; likely quick review of possible duplicates and import receipts.
+Open questions: Which identifiers count as strong identity evidence first, and how should post-import receipts describe what happened?
 
 ### Reference Manager Interoperability
 
@@ -681,12 +909,23 @@ Open questions: What evidence-support states are needed first: supported, weakly
 
 Status: Early validation
 Why it matters: Scientific drafting depends on reliable citation insertion, formatting, and bibliography generation.
-Researcher workflow need: Researchers need inline citation nodes, auto-generated references, citation diagnostics, and reliable citation formatting while writing.
-Agent role: Suggest citations, detect citation gaps, update citation links, and flag citation/reference problems.
-Manual role: Manage references, choose citations, correct metadata, inspect citation diagnostics, and format bibliography output.
+Researcher workflow need: Researchers need inline citation nodes, app-owned reference metadata, auto-generated references, citation diagnostics, and reliable citation formatting while writing.
+Agent role: Suggest citation intent, detect citation gaps, update citation links, and flag citation/reference problems without free-writing canonical references.
+Manual role: Search for citations, choose references, correct metadata, inspect citation diagnostics, and format bibliography output.
 Current-step decision: Needed with the first real draft workflow.
 Mobile role: Later; likely citation review and lightweight correction.
 Open questions: What citation style and bibliography export should be supported first?
+
+### Evidence-Linked And Auxiliary Citation Contract
+
+Status: Candidate
+Why it matters: A citation that supports a claim in the evidence ledger is not the same thing as a background, methods, guideline, or contextual bibliography citation.
+Researcher workflow need: Researchers need evidence-linked citations for claim support and auxiliary bibliography citations for legitimate non-evidence references, without letting auxiliary references satisfy evidence-support diagnostics.
+Agent role: Propose the right citation type, preserve citation intent, add locators or source-region links where possible, and flag when a citation does not actually support the claim it is attached to.
+Manual role: Insert multi-item citations, choose citation mode, add locators, prefixes, and suffixes, convert or relabel citation type when needed, and repair metadata.
+Current-step decision: The distinction should be designed early, even if the first UI exposes only a thin version.
+Mobile role: Later; likely citation issue review and metadata correction.
+Open questions: How visible should the evidence-linked versus auxiliary distinction be in the editor, evidence rail, and export diagnostics?
 
 ### Journal-Specific Draft Adaptation
 
@@ -703,9 +942,9 @@ Open questions: How should journal instructions be stored and cited?
 
 Status: Candidate
 Why it matters: LitRev should produce usable final outputs and reconcile external manuscript edits when needed.
-Researcher workflow need: Researchers need DOCX, PDF, Markdown, LaTeX, references, figures, tables, submission-ready packages, and a way to reconcile imported edits back into the project draft.
-Agent role: Prepare exports, check completeness, flag missing citations/artifacts, and help reconcile imported manuscript changes.
-Manual role: Configure export, inspect output, import revised drafts, review reconciliation, and correct issues.
+Researcher workflow need: Researchers need DOCX, PDF, Markdown, LaTeX, references, figures, tables, submission-ready packages, and a way to reconcile imported edits back into the project draft without silent loss.
+Agent role: Prepare exports, check completeness, flag missing citations/artifacts, identify preserved/downgraded/unresolved import content, and help reconcile imported manuscript changes.
+Manual role: Configure export, inspect output, import revised drafts, review import reports and reconciliation, and correct issues.
 Current-step decision: Candidate after draft/citation foundations exist.
 Mobile role: Later; likely preview and share/export status.
 Open questions: Which export format should be first, and how much import/reconciliation is required before publication workflows feel trustworthy?
@@ -789,17 +1028,6 @@ Current-step decision: Candidate after basic analysis and draft workflows.
 Mobile role: Later; likely preview, comment, and approve.
 Open questions: What artifact types should be first: static images, tables, charts, reports, or datasets?
 
-### Reviewable Proposed Artifacts
-
-Status: Candidate
-Why it matters: Agent-created or tool-created outputs should not silently become accepted project truth.
-Researcher workflow need: Researchers need proposed evidence records, draft edits, figures, tables, analyses, notes, citations, exports, and source changes to be reviewable before they affect trusted project state.
-Agent role: Produce proposed artifacts with provenance, diffs, confidence, dependencies, and suggested next actions.
-Manual role: Preview, compare, accept, reject, edit, save as draft, or attach proposed artifacts to the right project object.
-Current-step decision: Needed early for any high-impact agent output; the first version can focus on evidence and draft proposals.
-Mobile role: Later; approval, rejection, comment, and lightweight preview are strong mobile uses.
-Open questions: Which artifact types must be proposed by default, and which can be applied immediately with history?
-
 ### Editable Scientific Figures And Visual Planning
 
 Status: Candidate
@@ -863,10 +1091,21 @@ Status: Early validation
 Why it matters: LitRev agents need precise project context from the object or workspace the researcher is using, not vague chat prompts.
 Researcher workflow need: Researchers need to send a selected object, claim, source chunk, paper, evidence record, note, draft section, analysis, figure, or current workspace context to an agent.
 Agent role: Receive a durable context target, rehydrate the relevant project context locally or through the cloud with access checks, and produce work scoped back to the originating object.
-Manual role: Select context from protocol, paper, evidence, note, manuscript, analysis, and figure surfaces; inspect what context was sent; and adjust or remove context before running the task.
+Manual role: Select context from protocol, paper, evidence, note, manuscript, analysis, and figure surfaces; inspect visible context receipts; and adjust, remove, or reuse context before running the task.
 Current-step decision: Core early-validation behavior because it defines how agent work stays grounded in LitRev project context.
 Mobile role: Later; likely send-to-agent from reading, review, notification, or approval surfaces.
-Open questions: What context target types are required first, and what access checks must run before the agent receives rehydrated context?
+Open questions: What context target types are required first, what should receipts show, and what access checks must run before the agent receives rehydrated context?
+
+### Context Receipts And Recent Context Reuse
+
+Status: Candidate
+Why it matters: Hidden agent context makes outputs hard to trust and hard to correct.
+Researcher workflow need: Researchers need to see which sources, selections, notes, artifacts, or workspace states are attached to an agent task before work begins.
+Agent role: Use only attached and permitted context, preserve context references in the run record, and explain when requested context is missing, stale, deleted, or out of scope.
+Manual role: Review context chips or receipts, remove irrelevant context, reorder or add context where useful, and reuse recent context safely.
+Current-step decision: A thin version should accompany the first object-scoped agent workflow.
+Mobile role: Later; explicit buttons, drawers, or sheets are preferable to hover-based context capture.
+Open questions: How much recent context should be remembered, and which previews are safe to persist locally or across sessions?
 
 ### Project-Aware Agent Tools
 
@@ -877,7 +1116,18 @@ Agent role: Read source, search databases, create evidence, update draft section
 Manual role: Inspect and edit every agent-created object.
 Current-step decision: Needed for agent work to stay product-shaped.
 Mobile role: Later; likely approve, reject, or review tool actions.
-Open questions: What is the minimum tool set for the first paper-to-evidence-to-draft workflow?
+Open questions: What is the minimum tool set for the first connected project workflow across sources, evidence, drafting, files, and analysis artifacts?
+
+### Proposed Artifact Lifecycle
+
+Status: Early validation
+Why it matters: High-impact agent work should become reviewable project progress, not silent mutation or disposable chat output.
+Researcher workflow need: Researchers need agent-created evidence records, draft edits, source updates, memory changes, citation repairs, analysis outputs, figures, tables, and export artifacts to have a clear lifecycle.
+Agent role: Produce proposed artifacts with affected-object links, provenance, confidence or uncertainty where useful, diffs or previews where possible, and suggested next actions.
+Manual role: Inspect, edit where appropriate, compare, accept, reject, apply, checkpoint, attach, archive, or recover proposed artifacts.
+Current-step decision: Needed early for any agent task that can change trusted project material.
+Mobile role: Later; review and approval are strong mobile use cases, but complex diff resolution should start on desktop.
+Open questions: Which proposed artifact types are required first, and which require checkpoint or rollback before apply?
 
 ### Agent Task Inbox And Status Queue
 
@@ -947,7 +1197,7 @@ Agent role: Attribute cloud-side and shared-project actions to the correct user/
 Manual role: Sign in, manage sessions, recover access, and understand account state.
 Current-step decision: Not required for a local-only first proof, but required before serious cloud mirroring and collaboration.
 Mobile role: Yes; mobile requires account/session continuity.
-Open questions: Should early auth use Supabase Auth, Better Auth, or another provider-portable layer?
+Open questions: What is the minimum identity model for cloud mirroring and collaboration without coupling the product direction to one auth provider too early?
 
 ### Profiles, Roles, And Multi-User Projects
 

@@ -15,5 +15,5 @@ Current documents:
 - `local-first-sync.md` - future home for local-first and sync architecture.
 - `collaboration-model.md` - future home for collaboration architecture.
 - `agent-runtime.md` - future home for agent runtime architecture.
-- `security-and-permissions.md` - future home for trust boundaries and permission design.
+- `security-and-permissions.md` - early security, trust-boundary, and permission principles.
 - `decisions/` - accepted architecture decision records.

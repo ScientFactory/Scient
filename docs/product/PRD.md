@@ -156,9 +156,9 @@ When an agent extracts evidence, edits text, runs analysis, creates a figure, up
 
 ### Researcher Ownership And Control
 
-Researcher control is the reliability layer for agentic work. Researchers must be able to inspect, understand, correct, continue, and recover the work agents help produce.
+Researcher control is the reliability layer for agentic work. Researchers must be able to inspect agent-assisted work, understand how it affects the project, correct it directly, continue from it, or restore earlier states when needed.
 
-Manual work is not a fallback for failed automation. It is a first-class reliability surface: researchers must be able to verify, correct, continue, and own scientific work directly, even when agents do much of the work.
+Manual work is not a fallback for failed automation. It is a first-class reliability surface for reading, organizing, writing, evidence review, analysis review, citation editing, figure correction, and final ownership of scientific outputs.
 
 ### Connected Research Material
 
@@ -184,7 +184,7 @@ The workspace should support research projects involving advisors, coauthors, as
 
 LitRev should support comments, suggestions, assignments, approvals, attribution, shared review, synchronized co-editing, and real-time collaboration where useful. Collaboration should strengthen the project record instead of scattering decisions across email, chat, duplicated documents, and disconnected files.
 
-Concurrent edits and contributions should remain understandable, attributable, and recoverable.
+Concurrent edits and contributions should produce understandable attribution, conflict, review, and recovery states.
 
 ### History, Review, And Recovery
 
@@ -217,7 +217,7 @@ LitRev should make the project understandable through clear workspace surfaces. 
 | Collaboration and sharing | Support project membership, roles, permissions, invitations, comments, suggestions, assignments, attribution, synchronized co-editing where useful, conflict states, notifications, cloud mirroring, and mobile continuation. |
 | Settings and interoperability | Manage project-level configuration, import and export paths, citation formats, external connections, repository or archive destinations, cloud mirror state, account/device concerns where needed, and portability controls. |
 
-Every durable project change should have an owning surface. Researchers should be able to find where a change landed and what related project material it affects.
+Every important project object or change should have an obvious place to inspect it. Researchers should be able to find where a change landed and what related project material it affects.
 
 Workspace surfaces should remain connected by project-wide search, navigation, backlinks, status indicators, and object-aware actions. A researcher should be able to move from an output to the material that produced it, from a claim to its support, from agent work to the affected artifacts, and from a changed source or analysis to the project areas that may need review.
 
@@ -301,7 +301,7 @@ Researchers should be able to inspect how a figure or table was produced, distin
 
 Agents may help clean data, write or revise code, run approved analyses, summarize results, generate tables, create figures, flag stale outputs, suggest methods, and propose artifact updates.
 
-Agent-assisted analysis work should be bounded, logged, reviewable, and recoverable. High-impact changes to data, code, results, tables, figures, captions, or manuscript-linked outputs should land as proposed or inspectable project changes, not as unreviewed chat output.
+Agent-assisted analysis work should leave bounded tasks, logs, outputs, and recovery points. High-impact changes to data, code, results, tables, figures, captions, or manuscript-linked outputs should land as proposed or inspectable project changes, not as unreviewed chat output.
 
 ## Manuscript, Publishing, And Research Outputs
 
@@ -337,7 +337,7 @@ LitRev projects should be locally owned and durable, with cloud mirroring used w
 
 LitRev should support multi-user project work through project membership, roles, permissions, invitations, access revocation, comments, suggestions, assignments, attribution, shared review, notifications, and synchronized co-editing where real-time collaboration is useful.
 
-Collaboration should preserve project history. Concurrent work by researchers, collaborators, assistants, analysts, reviewers, and agents should remain understandable, attributable, reviewable, and recoverable.
+Collaboration should preserve project history. Researchers should be able to see who contributed what, review major changes, resolve conflicts, and recover earlier states.
 
 Mobile should be a continuation surface, not full desktop parity by default. Its likely first role is reading, capture, quick notes, comments, task status, lightweight review, approvals, notifications, and continuation.
 
@@ -365,4 +365,4 @@ LitRev should not try to fully replace every adjacent research tool in its first
 
 Deferred does not mean irrelevant. These areas should remain compatible paths, integration targets, or later product expansions when they strengthen the core project workflow.
 
-LitRev should protect its center: one durable, agentic, researcher-owned project workspace where sources, evidence, data, analysis, writing, outputs, memory, collaboration, provenance, and recovery stay connected.
+LitRev should protect its center: the durable research project itself. Adjacent tools should extend that workspace, not pull sources, evidence, data, analysis, writing, memory, or collaboration back into disconnected systems.

@@ -1,19 +1,18 @@
 # Design
 
-Status: Placeholder
+Status: Active
 Owner: Yaacov
 Last updated: 2026-06-27
 Purpose: Defines where LitRev product design documentation should live.
-Doc type: Future home
+Doc type: Repo orientation
 
-Use this folder for product design principles, interaction guidance, accessibility expectations, and UI direction once those policies are discussed and accepted.
+Use this folder for product design principles, interaction guidance, accessibility expectations, and UI direction once those documents have real content.
 
 Current files:
 
-- `product-design-principles.md` - future home for LitRev's product design principles.
+- `product-design-principles.md` - placeholder for future product design principles.
 
 Do not use this folder as:
 
-- accepted design policy
 - implemented UI behavior
 - generic visual inspiration storage
