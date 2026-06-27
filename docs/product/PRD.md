@@ -1,8 +1,9 @@
 # LitRev Product Requirements Document
 
-Status: Draft
+Status: Accepted
+Version: v1
 Owner: Yaacov
-Last updated: 2026-06-27
+Last updated: 2026-06-28
 Purpose: Defines LitRev's product direction, core capabilities, user experience principles, and product constraints.
 Doc type: Product truth
 
@@ -50,6 +51,8 @@ LitRev should preserve the relationships that make research trustworthy. Claims,
 
 When support is missing, weak, uncertain, conflicting, or agent-generated, LitRev should make that visible instead of hiding uncertainty behind polished output.
 
+Unknown data should stay unknown. Missing metadata, uncertain source identity, parser failures, low-confidence extraction, ambiguous duplicate matches, stale analysis outputs, and incomplete citation data should remain visible instead of being silently converted into authoritative-looking values.
+
 ### Local-First, Collaborative, And Versioned
 
 LitRev projects should be locally owned, cloud-mirrored when useful, and designed for collaborative and versioned research work. Cloud mirroring should support backup, cross-device continuation, sharing, teamwork, and collaboration without becoming the only source of truth.
@@ -64,9 +67,11 @@ LitRev should connect research inputs to research outputs. Manuscripts, reports,
 
 ### Open Research Ecosystem
 
-LitRev should connect deliberately with useful external research tools, formats, databases, and services while keeping the LitRev project model at the center.
+LitRev should connect deliberately with useful external research tools, formats, databases, and services while keeping the LitRev-owned project model at the center.
 
 Researchers should be able to bring work in and send work out through reference managers, citation formats, scholarly databases, document formats, data files, code environments, publishing systems, repositories, cloud drives, and open-science platforms. External integrations should extend the project workspace without defining its core shape or fragmenting the project record.
+
+External tools should act as adapters, engines, projections, import sources, export targets, or continuation paths. They should not become the source of truth for LitRev's scientific project model.
 
 ## Research Project Lifecycle
 
@@ -148,6 +153,8 @@ Researchers should be able to understand the state of the project without recons
 
 The workspace should make it clear what exists, what changed, what needs attention, what is uncertain, what is blocked, what the agent is doing, and what outputs or decisions may need review.
 
+Project state should be explicit where it affects trust or continuation, including local-only, syncing, conflicted, failed, stale, waiting for approval, blocked, and recoverable states.
+
 ### Agentic Project Work
 
 Agents should work inside the same project workspace the researcher uses, with access to the project's materials, history, decisions, current state, and goals.
@@ -221,6 +228,8 @@ Every important project object or change should have an obvious place to inspect
 
 Workspace surfaces should remain connected by project-wide search, navigation, backlinks, status indicators, and object-aware actions. A researcher should be able to move from an output to the material that produced it, from a claim to its support, from agent work to the affected artifacts, and from a changed source or analysis to the project areas that may need review.
 
+LitRev should maintain stable product vocabulary for durable project records and relationships without turning the PRD into a database schema. Important records include the project, protocol, source, file, source region or chunk, screening decision, extraction, claim, evidence link, dataset, analysis run, figure, table, manuscript, citation, note, agent run, proposed artifact, memory, collaborator, and export or deposit record.
+
 ## Source, Evidence, Claims, And Scientific Trust
 
 LitRev should make scientific support inspectable. Sources, extracted evidence, claims, citations, analysis outputs, figures, tables, and agent-generated material should remain connected so researchers can understand why a statement exists, what supports it, what weakens it, and what still needs review.
@@ -230,6 +239,8 @@ This trust layer is not only for formal systematic reviews. It should support or
 ### Source Records And Reading
 
 Researchers should be able to discover, import, deduplicate, normalize, read, annotate, and organize scholarly and project sources. Source records should preserve enough metadata and provenance to support citation, later review, export, and recovery.
+
+Source import should be duplicate-safe. LitRev should distinguish new sources, strong duplicates, and possible duplicates; preserve identity confidence where useful; require researcher review for ambiguous matches; and provide import receipts explaining what was added, merged, skipped, repaired, or left unresolved.
 
 When sources are found through database search, API search, imported query results, or external search strategies, LitRev should preserve enough search provenance for researchers to understand where the source set came from and how it could be reviewed or reproduced.
 
@@ -311,7 +322,15 @@ The writing surface should support focused section-level work and whole-document
 
 Citations, bibliographies, evidence rails, claim-support diagnostics, comments, suggestions, cross-references, figures, tables, and publication requirements should remain part of the same project record. Exported documents should be outputs of the project, not detached files that sever provenance.
 
+LitRev should distinguish evidence-linked citations from auxiliary citations. Evidence-linked citations support, weaken, contradict, or contextualize claims through source and evidence links. Auxiliary citations are legitimate for background, methods, guidelines, definitions, or context, but they should not silently satisfy evidence-support diagnostics.
+
+LitRev should own structured references, citation rendering, bibliography generation, metadata repair, style validation, locators, citation diagnostics, and cited-versus-uncited visibility. Models may propose citation intent, but model-written reference text should not become canonical citation state.
+
+Manuscripts should preserve meaningful publication metadata, including title, authors, affiliations, funding, conflicts, ethics, registration, data and code availability, journal profile, and reporting profile where relevant.
+
 LitRev should support import, export, and reconciliation with external writing and publishing tools where researchers already work. The PRD should not require one editor engine, export format, typesetting system, or submission workflow as the product core.
+
+Manuscript import and reconciliation should be honest about fidelity. LitRev should report which content, citations, cross-references, figures, tables, metadata, comments, or formatting were preserved, downgraded, unresolved, or lost.
 
 ## Agent Delegation, Review, And Safe Automation
 
@@ -319,7 +338,13 @@ LitRev agents should perform bounded project work inside the same project worksp
 
 Agent work should be object-scoped and context-aware. A researcher should be able to delegate from a source, evidence table, manuscript section, dataset, analysis run, figure, citation, note, or project task, and LitRev should capture the relevant project context for that work.
 
-Agent outputs should land as reviewable project changes: proposed edits, artifacts, evidence records, run results, comments, task updates, logs, or diffs. High-impact agent actions should support approval, rejection, correction, cancellation, retry, failure inspection, and recovery.
+Context capture should be visible. When a researcher sends project material to an agent, LitRev should show a context receipt describing which sources, selections, notes, figures, draft sections, analyses, tasks, or workspace state are attached. LitRev should avoid invisible prompt stuffing that affects agent behavior without giving the researcher a way to inspect what context was used.
+
+Agent outputs should land as reviewable project changes: proposed edits, artifacts, evidence records, run results, comments, task updates, logs, or diffs. Proposed changes should support a clear lifecycle: propose, inspect, edit where appropriate, accept, reject, apply, checkpoint, compare, and recover.
+
+Durable agent runs should preserve what was asked, what context was used, what actions were taken, what changed, what failed, what is waiting for approval, and what can resume or roll back.
+
+Agents, integrations, collaborators, and local tools should not widen their own authority. High-impact actions need permission scope, review state, provenance, and recovery paths before they affect trusted project work.
 
 The PRD should define the user/product contract for safe automation, not runtime architecture, model routing internals, executor storage, or external connector design.
 
@@ -328,6 +353,8 @@ The PRD should define the user/product contract for safe automation, not runtime
 LitRev should maintain inspectable project memory so work can continue across sessions, collaborators, and agent runs. Project memory should include project direction, protocol decisions, source judgments, extraction choices, writing preferences, analysis decisions, unresolved questions, collaborator decisions, and prior agent work.
 
 Memory should be useful, editable, and challengeable. Researchers should be able to inspect, correct, pin, forget, distrust, or update remembered context when it is stale, wrong, incomplete, or no longer relevant.
+
+Memory should carry enough trust metadata to be evaluated, including source, authority, confidence, freshness, conflict or staleness state, and whether it was pinned, archived, forgotten, or superseded. Summaries may help navigation and continuation, but summaries are not canonical memory when they obscure the underlying project record.
 
 Project memory should strengthen continuity without becoming opaque authority. Agents may use memory to work more effectively, but memory-driven behavior should remain understandable and recoverable when it affects project work.
 
@@ -366,3 +393,28 @@ LitRev should not try to fully replace every adjacent research tool in its first
 Deferred does not mean irrelevant. These areas should remain compatible paths, integration targets, or later product expansions when they strengthen the core project workflow.
 
 LitRev should protect its center: the durable research project itself. Adjacent tools should extend that workspace, not pull sources, evidence, data, analysis, writing, memory, or collaboration back into disconnected systems.
+
+## Product Readiness Criteria
+
+Use these criteria to evaluate future product, design, architecture, and implementation decisions against this PRD:
+
+- LitRev's product center is clearly the durable research project, not chat, a reference manager, a notebook, a manuscript editor, or an external service.
+- Important project work has an owning workspace area, visible state, provenance, and recovery path.
+- Researchers can trace claims, citations, figures, tables, and outputs back to supporting sources, evidence, data, analysis, and decisions where relevant.
+- Agent work is object-scoped, context-receipted, reviewable, permissioned, attributable, and recoverable.
+- Unknown, weak, stale, conflicting, imported, or agent-generated material remains visible instead of being silently normalized into false certainty.
+- External tools, formats, and services extend the LitRev project without defining its core model or becoming its only source of truth.
+- Deferred areas are clearly compatible paths or later expansions, not hidden requirements for the first product shape.
+
+## Open Product Questions
+
+These questions are intentionally left open by this PRD and should be resolved in planning, architecture, design, or implementation documents when the product direction requires it:
+
+- What is the first coherent roadmap slice through the project workspace?
+- Which source connector or import path should be first?
+- Which citation import, export, and rendering paths are required first?
+- What parser strategy should support source-region provenance without making parser output the canonical product model?
+- What are the first cloud mirroring and collaboration semantics, including offline behavior, conflicts, revocation, and restore?
+- What exact mobile actions are allowed first, and which remain desktop-only?
+- Which high-impact actions require approval in the first implementation, and how should that approval be expressed in the product?
+- Which sensitive data classes are supported, unsupported, or institution-gated at each product maturity level?
