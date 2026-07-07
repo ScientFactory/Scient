@@ -2,7 +2,7 @@
 
 Status: Proposed
 Owner: Yaacov
-Last updated: 2026-06-27
+Last updated: 2026-07-07
 Purpose: Maps which open-source systems LitRev should study, prototype, adapt, or integrate, and which product boundaries LitRev must keep owned.
 Doc type: Research evidence
 
@@ -36,9 +36,15 @@ Current inputs:
 
 - Yaacov's product notes and collected model-answer research.
 - LitRev's documentation policy, product documents, and proposed architecture
-  direction as of 2026-06-27.
+  direction as of 2026-07-07.
 - Related scientific-tool landscape and architecture-scorecard research.
 - Focused data-analysis and figure-tool source scan on 2026-06-27.
+- Current planning discussion that a forked workbench may be useful if LitRev's
+  scientific kernel, agent gateway, provenance, and review model remain owned by
+  LitRev.
+- Current planning discussion that upstream-trackable tools, thin forks,
+  divergent forks, reference sources, projections, adapters, and export targets
+  need different update strategies.
 
 Remaining evidence gaps before architecture promotion:
 
@@ -64,13 +70,78 @@ links, inspected revisions, licenses, and prototype results exist.
   in their matching `docs/architecture/*.md` documents
 - serious hard-to-reverse choices get an ADR under `docs/architecture/decisions/`
 
-Open-source adaptation here means study, prototype, adapt, or integrate an idea.
-It does not mean fork a product wholesale or copy code without a license review.
+Open-source adaptation here means study, prototype, adapt, fork narrowly,
+integrate, or use as a reference. It does not mean adopting another product's
+domain model as LitRev's core, or copying code without a license review.
 
 The main rule is:
 
 > LitRev owns the scientific product core. Open-source projects provide proven
 > mechanisms around that core.
+
+## Adaptation Modes
+
+Use these labels when mapping external sources to LitRev work. They are planning
+and research labels, not accepted architecture.
+
+| Mode | Meaning | Guardrail |
+|---|---|---|
+| LitRev-owned core | LitRev defines the durable product object, permission boundary, or scientific truth. | This cannot be delegated to an external app, engine, database, editor, or agent. |
+| Upstream-trackable integration | LitRev keeps the upstream tool mostly intact and integrates through configuration, SDK, CLI, plugin, API, sidecar, wrapper, or adapter. | Upstream updates should usually be possible through version bumps plus adapter fixes. |
+| Add-on layer | LitRev builds prompts, plugins, wrappers, adapters, UI panels, metadata capture, or commands around a tool without changing its core. | The upstream tool should remain recognizable and updateable. |
+| Forked workbench prototype | LitRev uses a fork of an existing app to move faster on shell, UI, orchestration, terminals, diffs, provider sessions, or local process management. | This is a workbench-specific use of thin fork or divergent fork. It must not own the LitRev scientific model. |
+| Embedded engine | LitRev calls an external tool through a CLI, SDK, local service, or sidecar. | Raw engine state is preserved for inspection, but accepted changes write back through LitRev-owned objects and permissions. |
+| Adapter | LitRev imports, exports, syncs, or reconciles with another tool or format. | The adapter translates between systems; it does not make the external format canonical. |
+| Projection | LitRev renders or edits a LitRev object through an editor, notebook, chart, CRDT, export AST, or runtime-specific representation. | The projection can be regenerated or reconciled from LitRev state. |
+| Thin fork | LitRev changes a small, isolated integration seam in an upstream project. | The fork should stay close enough to upstream that merging updates remains realistic. |
+| Divergent fork | LitRev materially changes the upstream project's product assumptions, architecture, data model, or UX. | Upstream updates are no longer directly mergeable; future upstream work becomes cherry-pick material. |
+| Reference / cherry-pick source | LitRev studies workflows, UX, architecture patterns, or code and manually adapts selected ideas. | No dependency or clean update path is expected. |
+| Export target | LitRev generates files, packages, deposits, or publication artifacts from LitRev state. | Exported output is not project truth. |
+| Compatibility target | LitRev must cooperate with this tool or format because researchers already use it. | Compatibility does not mean adopting the external tool's product model. |
+| Deferred shelf | A source is valuable but not needed for the first coherent product slice. | Keep it visible without expanding the first build. |
+| Avoid / do not adopt | A source or pattern is worth knowing about but should not shape LitRev's architecture. | Usually because it would pull LitRev away from the scientific project center. |
+
+### Update Strategy Labels
+
+Use these labels with source rows when the update path matters:
+
+| Update strategy | Meaning |
+|---|---|
+| `no-upstream` | LitRev owns this part. There is no external project to update from. |
+| `version-bump` | The source can usually be updated directly, with normal dependency testing. |
+| `adapter-maintained` | Update upstream, then repair or validate the LitRev adapter. |
+| `thin-fork-merge` | Keep the fork close enough to upstream that regular merges remain plausible. |
+| `divergent-cherry-pick` | Upstream updates cannot be merged directly; inspect and adapt useful changes manually. |
+| `reference-only` | No dependency or fork; watch for ideas and patterns. |
+| `deferred` | No active update work now. |
+
+## Global Fork And Borrow Strategy
+
+The current proposed strategy is more aggressive than "study only", but still
+kernel-first:
+
+1. Use a forked workbench prototype if it materially accelerates the desktop
+   shell, chat, terminal, diff, provider-session, and local-process surfaces.
+2. Treat Synara as the current best forked-workbench candidate, pending license,
+   source-depth, and prototype review.
+3. Keep OpenCode and Goose as embedded or upstream-trackable agent engines inside
+   LitRev's agent layer, not as replacements for LitRev's agent contract.
+4. Prefer upstream binaries, SDKs, CLIs, configuration, or sidecars over forks.
+   Use a thin fork only when the integration seam is missing and the change can
+   be isolated. Use a divergent fork only when LitRev intentionally takes
+   ownership of a modified product surface and accepts cherry-pick updates.
+5. Normalize every engine through a LitRev-owned Agent Gateway: scoped context,
+   permissions, approvals, file actions, tool calls, diffs, artifacts, errors,
+   checkpoints, and final write-back.
+6. Preserve raw upstream logs as runtime evidence, but store accepted scientific
+   work as LitRev project objects.
+7. Re-evaluate any fork once the first vertical scientific workflow works. If the
+   fork's product assumptions fight LitRev's project model, keep only the useful
+   parts and move toward a more LitRev-owned shell.
+
+The matching build strategy is started in
+`docs/planning/open-source-adaptation-build-strategy.md`. This source map remains
+the research trail, not the build plan or final architecture decision.
 
 ## Truth Boundary
 
@@ -101,6 +172,97 @@ itself.
 | Agent work contract | Every meaningful agent change has permissions, logs, diffs, provenance, rollback, and an explanation tied to project evidence. | Coding agents have useful mechanics, but they do not understand scientific accountability by default. |
 | Scientific memory | Project memory remembers protocol decisions, evidence judgments, extraction choices, writing preferences, analysis decisions, collaborator choices, and prior agent work. | Memory needs scientific semantics, not only conversation recall. |
 | Research cockpit UI | The UI exposes the project graph through workspaces: library, protocol, evidence, draft, analysis, figures, memory, runs, and sharing. | A generic chat app, IDE, ELN, notebook, or paper library would make the product center wrong. |
+
+## PRD Surface Adaptation Map
+
+This map connects the accepted PRD surfaces to the strongest source candidates
+identified so far. It is a working recommendation, not a final dependency list.
+
+| PRD surface | Best source candidates so far | Current borrow mode | LitRev-owned boundary |
+|---|---|---|---|
+| Project Home | Synara and T3 Code for workbench status, sessions, terminals, branches, diffs, previews, and provider activity; Vercel AI Elements for inspectable agent UI patterns. | Forked workbench prototype and reference. | Project status, stale-output signals, review needs, blocked work, collaborator activity, and next actions belong to LitRev project state. |
+| Project Agent And Chat | Synara for multi-agent workspace shell; OpenCode for local file/shell/edit execution; Goose for broader local automation and MCP-style agent substrate; Codex for safety and approval reference; Vercel AI SDK for typed model/tool streams. | Forked workbench prototype plus embedded engines. | Context receipts, permissions, tool scope, proposed changes, durable AgentRun records, checkpoints, and accepted write-back belong to LitRev. |
+| Project Direction And Protocol | protocols.io, SciNote, RSpace, and eLabFTW as protocol/workflow references. | Reference and later adapter candidates. | The project direction, protocol fields, eligibility criteria, analysis plan, and decision log are LitRev objects. |
+| Source Library And Reader | Zotero, JabRef, CSL, GROBID, Docling, and PDF reader components where needed. | Adapter, embedded parser, and reference. | Source identity, duplicate confidence, source-region links, parser state, annotations, backlinks, and citation intent belong to LitRev. |
+| Evidence Ledger And Claims | ASReview for screening mechanics; GROBID and Docling for extraction; PaperQA for cited scientific QA; Elicit, Rayyan, Covidence, scite, Consensus, and SciSpace as workflow references. | Embedded engines, adapters, and references. | Evidence records, claims, support links, extraction review state, uncertainty, contradictions, and unsupported-claim diagnostics belong to LitRev. |
+| Synthesis Surface | PaperQA for grounded answer mechanics; Elicit, Consensus, SciSpace, and scite for answer and evidence UX references. | Embedded engine and reference. | Synthesis becomes durable only when saved into LitRev notes, evidence, claims, decisions, or draft material. |
+| Draft And Manuscript Workspace | Tiptap/ProseMirror first; Plate and Lexical as challengers; Overleaf, Word, and Google Docs as academic writing and collaboration references; Quarto/Pandoc/MyST for export paths. | Projection, challenger prototype, reference, and export adapter. | Manuscript structure, citations, evidence links, comments, suggestions, reconciliation state, and publication metadata belong to LitRev. |
+| Data And Analysis Workbench | Python through uv; marimo as reactive-notebook reference; DuckDB, pandas, Polars, Arrow/Parquet, SciPy, statsmodels, scikit-learn, and later R/tidyverse. | Embedded runtime, projection, and reference. | Dataset, Analysis, AnalysisRun, parameters, method notes, outputs, dependency state, staleness, and provenance belong to LitRev. |
+| Figures, Tables, And Artifacts | Matplotlib/seaborn, Plotly, Altair/Vega-Lite, Great Tables/gt, Mermaid, Graphviz, Cytoscape.js, tldraw, Excalidraw, xyflow, Inkscape, diagrams.net, and BioIcons. | Runtime projection, artifact generator, and reference. | Figure, Table, Artifact, caption, data/code linkage, manuscript usage, review state, and stale-output state belong to LitRev. |
+| Agent Runs And Review | OpenCode, Goose, Codex, Synara, T3 Code, and Vercel AI SDK/Elements. | Embedded engines, forked workbench prototype, and reference. | AgentRun lifecycle, approvals, diffs, logs, artifacts, failures, retries, cancellation, checkpoints, and recovery belong to LitRev. |
+| Memory, History, And Decisions | Earlier LitRev prototype patterns, Stencila provenance ideas, Goose/Codex/OpenCode runtime logs, and targeted Hermes ideas. | Reference and normalized runtime evidence. | Scientific memory, decision history, trust metadata, provenance, snapshots, rollback, and auditability belong to LitRev. |
+| Collaboration And Mobile Continuation | Yjs/Hocuspocus for document collaboration; Yorkie as challenger; PowerSync/Electric for structured sync candidates; TinyBase, RxDB, and cr-sqlite as secondary references; OSF, Dataverse, GitHub, and GitLab for sharing/deposit expectations. | Candidate engine, adapter, and reference. | Membership, roles, permissions, attribution, conflict state, cloud mirror authority, mobile action scope, and recovery belong to LitRev. |
+| Settings, Integrations, And Export | Zotero/JabRef/CSL, Quarto/Pandoc/MyST, Typst/LaTeX/Overleaf, OSF, Dataverse, GitHub, GitLab, object storage, and cloud-drive style integrations. | Adapter and export target. | Project configuration, integration state, export/deposit records, portability receipts, and fidelity reports belong to LitRev. |
+
+## Source Relationship Classification
+
+This table applies the current adaptation vocabulary to the source set. It is a
+planning map, not an accepted dependency list.
+
+| Source / thing | What LitRev takes | Relationship mode | Update strategy |
+|---|---|---|---|
+| LitRev scientific project graph | Projects, sources, evidence, claims, datasets, runs, figures, manuscripts, memory, provenance. | LitRev-owned core | `no-upstream` |
+| LitRev agent contract | Permissions, context receipts, proposed changes, review, recovery. | LitRev-owned core | `no-upstream` |
+| Synara | Desktop workbench, chat shell, terminals, diffs, sessions, provider/workflow UI. | Forked workbench prototype, add-on layer, likely thin fork first. May become divergent fork if deeply reshaped. | `thin-fork-merge`; if deeply reshaped, `divergent-cherry-pick` |
+| OpenCode | Local file read/write, shell, code edits, patches, sessions, possibly subagents. | Upstream-trackable integration, embedded engine, adapter. | `adapter-maintained`; avoid core fork |
+| Goose | Broader local automation, daemon/sidecar posture, recipes, MCP/provider ideas. | Upstream-trackable integration, embedded engine, add-on layer. | `adapter-maintained`; avoid core fork |
+| Codex app-server | Sandbox, approvals, diffs, rollback, interrupt/resume ideas. | Reference / cherry-pick source. | `reference-only` |
+| T3 Code | Backend lifecycle, provider-instance separation, preview/process patterns. | Reference / cherry-pick source. | `reference-only` |
+| Aider | Git/edit discipline, repo-map and patch workflow lessons. | Reference benchmark. | `reference-only` |
+| Vercel AI SDK | Typed model/tool streams and model/tool UI event flow. | Upstream-trackable integration, adapter. | `version-bump` or `adapter-maintained` |
+| Vercel AI Elements | Agent UI cards and inspection patterns. | Add-on layer or reference. | `version-bump` if used |
+| Tiptap / ProseMirror | Main manuscript editor substrate, custom nodes, evidence/citation nodes. | Upstream-trackable integration, projection, add-on layer. | `adapter-maintained`; thin fork only if forced |
+| Plate | Editor challenger, comments/suggestions/docx/AI UX. | Projection and reference. | `reference-only` unless it wins |
+| Lexical | Editor challenger for performance and accessibility. | Projection and reference. | `reference-only` unless it wins |
+| Overleaf | LaTeX academic workflow, compile logs, collaboration expectations. | Reference, compatibility target, export target. | `reference-only`; no fork |
+| Word / Google Docs | Comments, track changes, manuscript exchange expectations. | Compatibility target. | `adapter-maintained`; export/import only |
+| Zotero | Import/export, translators, collections, PDF/annotation expectations. | Adapter and compatibility target. | `adapter-maintained`; do not fork product |
+| JabRef | BibTeX/BibLaTeX correctness and local citation-key discipline. | Reference and compatibility target. | `reference-only` first |
+| CSL | Citation rendering and styles. | Upstream-trackable integration, embedded library, adapter. | `version-bump` |
+| GROBID | Scholarly PDF structure, citations, coordinates. | Embedded engine and adapter. | `adapter-maintained` |
+| Docling | General document conversion and provenance. | Embedded engine and adapter. | `adapter-maintained` |
+| Marker | PDF-to-Markdown benchmark or fallback. | Deferred shelf and reference. | `reference-only` |
+| PaperQA | Grounded scientific QA over sources. | Embedded engine and adapter. | `adapter-maintained` |
+| ASReview | Screening engine and active-learning workflow. | Embedded engine and adapter. | `adapter-maintained` |
+| Elicit / Rayyan / Covidence / scite / Consensus / SciSpace | Evidence UX and workflow patterns. | Reference, with possible compatibility targets later. | `reference-only` |
+| protocols.io / SciNote / RSpace / eLabFTW | Protocol and lab workflow patterns. | Reference, with possible later adapters. | `deferred` |
+| Quarto / Pandoc | Export pipeline, citations, crossrefs, Word/PDF/HTML/LaTeX paths. | Embedded export engine and adapter. | `adapter-maintained` |
+| MyST | Challenger scientific publishing/export path. | Export target and adapter. | challenger; `adapter-maintained` if selected |
+| Typst / LaTeX | Final typesetting outputs. | Export target. | `adapter-maintained`; export only |
+| Manubot | Git-backed manuscript automation ideas. | Reference / cherry-pick source. | `reference-only` |
+| Stencila | Semantic scientific document and provenance ideas. | Reference / cherry-pick source. | `reference-only`; no adoption unless later ADR |
+| Python / uv | Scientific runtime. | Embedded runtime. | `version-bump` |
+| marimo | Reactive analysis UX, dependency DAG, stale-state ideas. | Reference and projection candidate. | `reference-only`; no fork first |
+| Jupyter / `.ipynb` | Notebook compatibility, import, export. | Compatibility target, adapter, projection. | `adapter-maintained` |
+| DuckDB | Local analytical SQL engine. | Embedded engine. | `version-bump` or `adapter-maintained` |
+| pandas / Polars | Dataframe execution. | Embedded runtime libraries. | `version-bump` |
+| Arrow / Parquet | Tabular artifact and interchange formats. | Compatibility target and artifact target. | `adapter-maintained`; stable format |
+| SciPy / statsmodels / scikit-learn | Scientific and statistical methods. | Embedded runtime libraries. | `version-bump` |
+| R / tidyverse / ggplot2 | Collaborator/runtime compatibility and figure grammar reference. | Deferred compatibility target. | `deferred` |
+| Ibis / DVC / DataLad | Portability and data versioning. | Deferred adapter and reference. | `deferred` |
+| Snakemake / Nextflow / Galaxy / Renku | Pipeline workflow expansion. | Deferred shelf. | `deferred` |
+| jamovi / JASP / PSPP / Orange | Statistics and no-code UX lessons. | Reference and deferred shelf. | `reference-only`; no fork |
+| Matplotlib / seaborn | Static publication figures. | Embedded figure engine and projection. | `version-bump` |
+| Plotly | Interactive charts. | Projection and embedded chart runtime. | `version-bump` |
+| Altair / Vega-Lite | Editable declarative chart specs. | Projection and spec target. | `version-bump` |
+| Great Tables / gt | Publication tables. | Embedded output engine and projection. | `version-bump` |
+| Mermaid / Graphviz / Cytoscape.js | Diagrams and graphs. | Embedded output engine and projection. | `version-bump` |
+| tldraw / Excalidraw / xyflow | Canvas and flow UI components. | Add-on layer and projection; possible thin fork if needed. | `version-bump` first; `thin-fork-merge` only if needed |
+| Inkscape / diagrams.net / BioIcons | Figure polish and scientific icons. | Compatibility target, reference, export target. | `reference-only`; no fork |
+| napari / Fiji / ImageJ / CellProfiler / QuPath | Bioimage workflows. | Deferred domain adapters. | `deferred` |
+| RDKit / Mol* / 3Dmol.js / Biopython | Chemistry and bio domain tools. | Deferred embedded engines. | `deferred` |
+| Streamlit / Dash / Shiny / Gradio | Shareable analysis app patterns. | Reference and export inspiration. | `reference-only`; no fork |
+| BioRender / GraphPad Prism / OriginPro | Commercial UX expectations. | Reference only. | `reference-only`; no code |
+| Yjs / Hocuspocus | Realtime document collaboration. | Upstream-trackable integration, projection, collaboration engine. | `adapter-maintained` |
+| Yorkie | CRDT challenger. | Deferred challenger. | `deferred`; prototype only |
+| PowerSync / Electric | Structured local-first sync candidates. | Embedded sync engine and adapter. | `adapter-maintained` if selected; prototype, then ADR |
+| TinyBase / RxDB / cr-sqlite | Sync fallback/reference set. | Deferred challenger. | `deferred` |
+| OSF / Dataverse | Sharing and deposit. | Adapter, export target, compatibility target. | `adapter-maintained` |
+| GitHub / GitLab | Optional remote, versioning, review path. | Adapter and compatibility target. | `adapter-maintained` |
+| OpenAlex / Semantic Scholar / Crossref / PubMed / arXiv / Unpaywall / OpenCitations | Scholarly discovery and source metadata. | Adapter and search connectors. | `adapter-maintained` |
+| Benchling / LabArchives / Labfolder / Labguru | Lab and ELN expectations. | Deferred reference. | `deferred`; avoid first core |
+| LangGraph | Long-running workflow ideas. | Deferred reference. | `deferred`; no core adoption |
+| Tauri / Rust shell | Possible future shell or native services. | Deferred platform candidate. | `deferred`; revisit only after a real blocker |
 
 ## Primary Sources For Prototypes
 
@@ -414,20 +576,24 @@ Do these in order because each one reduces a major architecture risk.
 Current research points toward LitRev as a local-first, cloud-mirrored scientific
 workspace with a LitRev-owned project graph; TypeScript/React product logic;
 Electron-first desktop delivery unless a real limitation appears; SQLite local
-project state mirrored to Postgres/object storage; OpenCode as the first
-executor spike; Codex as the safety/sandboxing reference; Goose as a broader
-local-agent architecture reference; Tiptap/ProseMirror-family writing;
-GROBID/Docling/PaperQA/ASReview-powered evidence workflows; Quarto/Pandoc-first
-export with MyST as challenger; Stencila as a scientific schema/provenance
-reference; marimo-inspired analysis with Jupyter compatibility; DuckDB,
-pandas/Polars, and Arrow/Parquet for local tabular work; Matplotlib, Plotly,
-Altair/Vega-Lite, and table-generation tools for figures and scientific
-artifacts; and CRDTs only for collaborative document-like surfaces where
-simultaneous editing matters.
+project state mirrored to Postgres/object storage; a possible Synara-derived
+forked workbench prototype; OpenCode as the first embedded executor spike; Codex
+as the safety/sandboxing reference; Goose as a broader local-agent architecture
+reference; Tiptap/ProseMirror-family writing;
+GROBID/Docling/PaperQA/ASReview-powered evidence workflows;
+Quarto/Pandoc-first export with MyST as challenger;
+Stencila as a scientific schema/provenance reference; marimo-inspired analysis
+with Jupyter compatibility; DuckDB, pandas/Polars, and Arrow/Parquet for local
+tabular work; Matplotlib, Plotly, Altair/Vega-Lite, and table-generation tools
+for figures and scientific artifacts; and CRDTs only for collaborative
+document-like surfaces where simultaneous editing matters.
 
 ## Non-Negotiables
 
-- Do not fork a whole product as the base.
+- Do not let a whole-product fork become LitRev's source of truth. A temporary
+  Synara-style forked workbench prototype is acceptable only if LitRev's
+  scientific kernel, agent gateway, provenance, and review model stay outside
+  the fork's product assumptions.
 - Do not let any source define the scientific object model.
 - Do not hide scientific work inside chat messages.
 - Do not accept agent changes without inspectable diffs and provenance.

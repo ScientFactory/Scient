@@ -3,7 +3,7 @@
 Status: Accepted
 Version: v1
 Owner: Yaacov
-Last updated: 2026-06-28
+Last updated: 2026-07-06
 Purpose: Defines LitRev's product direction, core capabilities, user experience principles, and product constraints.
 Doc type: Product truth
 
@@ -12,6 +12,8 @@ Doc type: Product truth
 The PRD defines what LitRev should be and why it matters. It should not define how the product is implemented.
 
 Implementation plans, package structure, task sequencing, and framework-specific code patterns do not belong in the PRD. Those belong in planning, architecture, development, or quality docs.
+
+Open-source adaptation strategy and implementation source choices live outside the PRD. Current source research belongs in `docs/research/source-evaluations/open-source-adaptation-map.md`; build sequencing and fork/adapter strategy belong in `docs/planning/open-source-adaptation-build-strategy.md` until promoted into architecture documents or ADRs.
 
 ### Update Policy
 

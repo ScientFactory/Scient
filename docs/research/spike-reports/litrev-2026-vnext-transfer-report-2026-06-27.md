@@ -12,6 +12,10 @@ This report is research evidence and planning input. It is not canonical product
 
 Use it to decide what to refine in `docs/product/PRD.md`, `docs/planning/product-planning.md`, architecture placeholders, quality doctrine, and future design documents. Promote only the stable product requirements, architecture decisions, or policies into their owning documents.
 
+### Freshness (2026-06-28)
+
+This report predates the acceptance of PRD v1 on 2026-06-28. Most of the product refinements it recommends have since landed in the PRD. Per-item status is marked inline below (look for "→ Landed in PRD v1") and summarized in "Current PRD Review Against Transfer Findings." Only the blank/guided/sample project-start path remains outstanding. The report's external market analysis, the carry-forward and what-not-to-carry-forward synthesis, and the old-app lineage remain current and useful.
+
 This report is grounded in inspected local repo files from:
 
 - current repo: `/Users/yaacov/REPOs/LitRev`
@@ -201,7 +205,7 @@ Follow-up: the plan should keep the old object list only as a traceability aid, 
 
 The old app's artifact system is one of the most important patterns to preserve. Agent work can produce proposals such as protocol suggestions, study proposals, study updates, draft diffs, screening batches, evidence tables, plans, memory proposals, and memory-forget proposals. The implementation includes artifact status, review, apply, undo/checkpoint behavior, and conflict checks for stale draft edits.
 
-The new PRD already says agent outputs should land as reviewable project changes. That is correct but still abstract.
+The new PRD already says agent outputs should land as reviewable project changes. That is correct but still abstract. → Landed in PRD v1: the proposed-change lifecycle (propose, inspect, edit, accept, reject, apply, checkpoint, compare, recover) is now stated in `PRD.md` 360.
 
 Follow-up: product planning should explicitly carry "proposed artifact lifecycle" as a product pattern: propose, inspect, edit when appropriate, accept, reject, apply, checkpoint, compare, recover. This belongs mostly in `Agent Delegation, Review, And Safe Automation` and `Provenance, Versioning, Recovery, And Auditability`, not as a standalone PRD section.
 
@@ -219,7 +223,7 @@ The old context-capture plan is especially relevant. It treats selected protocol
 
 The most transferable product idea is "context receipts": when a researcher sends something to the agent, LitRev should show what context is attached, allow removal/reordering when relevant, preserve recent context where safe, and avoid hidden context injection.
 
-Current coverage: the PRD mentions object-scoped delegation and captured context. The plan mentions context capture. The explicit receipt/history idea is not yet strong enough.
+Current coverage: the PRD mentions object-scoped delegation and captured context. The plan mentions context capture. The explicit receipt/history idea is not yet strong enough. → Landed in PRD v1: visible context receipts are now a stated product expectation in `PRD.md` 358.
 
 Follow-up: add to product planning, not necessarily the PRD yet: context targets, visible context receipts, recent-context reuse, and no invisible context injection.
 
@@ -236,7 +240,7 @@ Important transfer points:
 - Auxiliary citations are legitimate for methods, background, guidelines, and context, but they should not silently satisfy evidence-support diagnostics.
 - Scholarly writing needs locators, prefix/suffix, multi-item citations, citation modes, bibliography refresh, missing metadata repair, cited-vs-uncited visibility, and CSL-compatible style boundaries.
 
-Current coverage: the PRD has citations, bibliography, citation diagnostics, and interoperability. The plan has CSL JSON, BibTeX, RIS, and reference-manager import/export. The evidence-vs-auxiliary citation distinction is not yet visible enough.
+Current coverage: the PRD has citations, bibliography, citation diagnostics, and interoperability. The plan has CSL JSON, BibTeX, RIS, and reference-manager import/export. The evidence-vs-auxiliary citation distinction is not yet visible enough. → Landed in PRD v1: the evidence-linked vs auxiliary citation distinction is now stated in `PRD.md` 342.
 
 Follow-up: promote this carefully, probably into product planning first. The PRD may later need one concise paragraph in `Manuscript, Publishing, And Research Outputs` or `Source, Evidence, Claims, And Scientific Trust` explaining that citation handling must distinguish evidence support from general bibliography management.
 
@@ -251,7 +255,7 @@ The old ledger plan has a sharper ingestion contract than the current PRD. The k
 - produce receipts explaining what happened,
 - keep AI/search import paths aligned with the same identity rules.
 
-Current coverage: the PRD and plan mention deduplication and metadata normalization. They do not yet name duplicate-safe ingestion, identity confidence, or post-import receipts.
+Current coverage: the PRD and plan mention deduplication and metadata normalization. They do not yet name duplicate-safe ingestion, identity confidence, or post-import receipts. → Landed in PRD v1: duplicate-safe import with identity confidence and import receipts is now stated in `PRD.md` 260.
 
 Follow-up: add this to product planning under source discovery/import. The PRD itself may only need a compact product-level addition later if source identity becomes a core early validation requirement.
 
@@ -266,7 +270,7 @@ The old draft-authoring plan is much stronger than the current PRD on scholarly 
 - manuscript metadata matters: title, abstract, authors, affiliations, funding, conflicts, ethics, registration, data/code availability, journal profile, and reporting profile,
 - page/web/focus/review/submission modes may be useful workflow views, but should not fork the document truth.
 
-Current coverage: the PRD covers serious scholarly writing, citations, evidence rails, comments, crossrefs, figures, tables, import/export, and reconciliation. It does not yet capture manuscript metadata, import downgrade reports, auxiliary citations, or the full scholarly citation ergonomics.
+Current coverage: the PRD covers serious scholarly writing, citations, evidence rails, comments, crossrefs, figures, tables, import/export, and reconciliation. It does not yet capture manuscript metadata, import downgrade reports, auxiliary citations, or the full scholarly citation ergonomics. → Largely landed in PRD v1: publication metadata (`PRD.md` 346), import downgrade reports (`PRD.md` 350), and auxiliary citations (`PRD.md` 342) are now stated. Still open: the full scholarly citation ergonomics (locators, prefix/suffix, multi-item citations, citation modes) belong to manuscript/editor architecture, not the PRD.
 
 Follow-up: keep detailed editor-object decisions out of the PRD for now, but add manuscript quality-bar items to the plan and later design/architecture docs.
 
@@ -276,7 +280,7 @@ The old repo has stronger memory semantics than the current PRD. Its plans and s
 
 The new PRD correctly says memory should be inspectable, editable, challengeable, and not opaque authority. The plan already mentions memory health, freshness, confidence, conflicts, inspect/edit/forget, and pinned context.
 
-Follow-up: preserve the old-app distinction that summaries are not canonical memory, and memory should expose enough authority, source, freshness, confidence, and conflict metadata for researchers to challenge it. This probably belongs in `docs/planning/product-planning.md` and later `docs/architecture/agent-runtime.md` or a memory-specific architecture note.
+Follow-up: preserve the old-app distinction that summaries are not canonical memory, and memory should expose enough authority, source, freshness, confidence, and conflict metadata for researchers to challenge it. This probably belongs in `docs/planning/product-planning.md` and later `docs/architecture/agent-runtime.md` or a memory-specific architecture note. → Landed in PRD v1: the summaries-are-not-canonical-memory distinction and the trust metadata (source, authority, confidence, freshness, conflict/staleness) are now stated in `PRD.md` 374. Deeper memory architecture remains for `agent-runtime.md`.
 
 ### 9. Security And Permission Boundaries
 
@@ -326,7 +330,7 @@ The old app has more than a create-project button. It supports blank projects, g
 
 The new app should preserve the product lesson, not the old web flow: researchers need low-friction ways to enter a project, understand what exists, and see a complete example of the product's value. This matters even more in a local-first desktop app because a blank project folder can feel inert until it has visible structure.
 
-Current coverage: the PRD mentions project orientation, useful next actions, guided bootstrap, project status, and recent changes. The plan mentions guided bootstrap but does not yet emphasize sample/demo projects or project summary/orientation as carry-forward lessons.
+Current coverage: the PRD mentions project orientation, useful next actions, guided bootstrap, project status, and recent changes. The plan mentions guided bootstrap but does not yet emphasize sample/demo projects or project summary/orientation as carry-forward lessons. → Outstanding (the one PRD refinement from this report not yet landed): blank/guided/sample project-start paths and a worked sample/demo project are not yet in PRD v1.
 
 Follow-up: keep "blank / guided / sample" as a planning pattern. A sample project should eventually demonstrate sources, evidence, analysis, figure, manuscript, agent run, provenance, and recovery together, not only a literature review.
 
@@ -391,16 +395,16 @@ The PRD already covers:
 - interoperability,
 - non-goals.
 
-The highest-value minimal PRD refinements to consider later are:
+The highest-value minimal PRD refinements identified by this report, with status updated 2026-06-28 after PRD v1 acceptance:
 
-1. Citation handling should distinguish evidence-linked citations from auxiliary bibliography citations.
-2. Source import should express duplicate-safe identity handling, not only deduplication.
-3. Agent context capture should make visible context receipts a product expectation, not invisible prompt state.
-4. Manuscript import should mention honest import/reconciliation reports for preserved, downgraded, and unresolved content.
-5. Project memory should distinguish authoritative memory from summaries or stale recalled context.
-6. Project start/orientation should preserve blank, guided, and sample/demo paths without forcing a rigid setup wizard.
+1. Citation handling should distinguish evidence-linked citations from auxiliary bibliography citations. → Landed in PRD v1 (`PRD.md` 342).
+2. Source import should express duplicate-safe identity handling, not only deduplication. → Landed in PRD v1 (`PRD.md` 260).
+3. Agent context capture should make visible context receipts a product expectation, not invisible prompt state. → Landed in PRD v1 (`PRD.md` 358).
+4. Manuscript import should mention honest import/reconciliation reports for preserved, downgraded, and unresolved content. → Landed in PRD v1 (`PRD.md` 350).
+5. Project memory should distinguish authoritative memory from summaries or stale recalled context. → Landed in PRD v1 (`PRD.md` 374).
+6. Project start/orientation should preserve blank, guided, and sample/demo paths without forcing a rigid setup wizard. → Outstanding: not yet in PRD v1. Tracked in `docs/planning/product-planning.md`.
 
-I would not add all five directly to the PRD today. They should first be refined in the plan so the PRD stays readable.
+Status note (2026-06-28): five of these six refinements were absorbed into PRD v1 on the same day this report was written, so the original "refine in the plan first" guidance is superseded. Only item 6 remains open.
 
 ## Former PRD Plan Review
 
