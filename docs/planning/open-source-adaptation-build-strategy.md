@@ -32,6 +32,12 @@ infrastructure while keeping LitRev's scientific project model owned:
 
 - use a Synara-derived or Synara-inspired workbench prototype if it accelerates
   desktop shell, chat, terminal, diff, provider-session, and local-process work;
+- treat that Synara-derived workbench as a prototype to stabilize, not as the
+  LitRev product core;
+- use science apps from the 2026-07-07 scan as specialized sources around the
+  shell: Zotero-family components for source/PDF work, Zettlr/Overleaf/Quarto
+  for writing/export expectations, Jupyter-style tools for analysis
+  compatibility, and ELN/RDM tools for protocol/lab/repository references;
 - embed OpenCode first as the local file/shell/edit executor candidate;
 - evaluate Goose as a broader local-agent and automation engine;
 - keep all agents behind a LitRev-owned gateway for context, permissions,
@@ -50,8 +56,13 @@ The first pass should prove the boundary, not the whole product.
    workflow: project home, project chat, file/activity view, terminal/log view,
    diff/review view, and artifact output.
 4. Run one vertical scientific workflow through the boundary: project context,
-   one source or fixture, one draft/evidence/analysis artifact, one agent task,
-   one review step, and one recovery or rollback path.
+   one imported source or fixture, one readable/annotatable source surface, one
+   evidence-linked note or draft paragraph, one analysis or artifact output if
+   needed, one agent task, one review step, and one recovery or rollback path.
+5. Pressure-test the Synara fork with that scientific workflow before deepening
+   the fork. If the shell forces LitRev to model research as coding sessions,
+   Git worktrees, provider chats, or engine-owned artifacts, stop treating the
+   fork as the base and keep only useful parts as reference/cherry-pick source.
 
 Names such as `ProjectKernel`, `AgentGateway`, `ProvenanceLog`, and
 `ReviewableArtifact` are planning placeholders until architecture documents or
@@ -103,6 +114,10 @@ as coding sessions, Git worktrees, provider chats, or engine-owned artifacts.
 - License and attribution review for any copied code, fork, embedded engine, or
   bundled dependency.
 - Source-depth review of Synara, OpenCode, and Goose integration seams.
+- Source-depth and license review of the science-app components that may become
+  more than references, especially Zotero Reader, Zotero Document Worker,
+  Paperlib, Tropy, Zettlr, Overleaf, JupyterLab Desktop, Stencila, and the ELN
+  or RDM candidates.
 - Security review of local file access, command execution, prompt injection,
   secrets, logs, and agent-readable context.
 - Data-boundary review proving that external engine state does not become
@@ -114,6 +129,11 @@ as coding sessions, Git worktrees, provider chats, or engine-owned artifacts.
 
 - Does the first prototype actually need a Synara fork, or can Synara remain a
   reference while LitRev starts from a smaller shell?
+- Can a stabilized Synara fork host the first science-facing slice without
+  leaking coding-product assumptions into the LitRev project kernel?
+- Should Zotero Reader or Zotero Document Worker be embedded as components, or
+  should LitRev build/choose simpler PDF and extraction components while using
+  Zotero as a reference and compatibility target?
 - What is the exact minimal agent gateway event model?
 - Which agent actions can be pre-approved, and which require explicit review?
 - What source fixture best tests evidence, drafting, analysis, and recovery

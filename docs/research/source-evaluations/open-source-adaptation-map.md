@@ -39,6 +39,10 @@ Current inputs:
   direction as of 2026-07-07.
 - Related scientific-tool landscape and architecture-scorecard research.
 - Focused data-analysis and figure-tool source scan on 2026-06-27.
+- Focused desktop-base and science-app source scan on 2026-07-07, covering
+  Synara, Zotero-family components, Paperlib, Tropy, Zettlr, Overleaf,
+  JupyterLab Desktop, Stencila, ELN/RDM tools, local-first knowledge apps, and
+  CoCalc.
 - Current planning discussion that a forked workbench may be useful if LitRev's
   scientific kernel, agent gateway, provenance, and review model remain owned by
   LitRev.
@@ -48,7 +52,8 @@ Current inputs:
 
 Remaining evidence gaps before architecture promotion:
 
-- source links for each evaluated project
+- complete source links for each evaluated project where not already listed
+  below
 - inspected repository paths or commit SHAs where claims depend on code
 - license notes, especially for AGPL or source-available projects
 - source-specific inspection dates
@@ -124,18 +129,26 @@ kernel-first:
    shell, chat, terminal, diff, provider-session, and local-process surfaces.
 2. Treat Synara as the current best forked-workbench candidate, pending license,
    source-depth, and prototype review.
-3. Keep OpenCode and Goose as embedded or upstream-trackable agent engines inside
+3. Start the first desktop pass by stabilizing a Synara fork only if the first
+   science-facing validation slice can keep LitRev's project kernel, agent
+   gateway, source/evidence state, and review model outside Synara's coding
+   assumptions.
+4. Treat science apps as specialized sources, not desktop bases: Zotero-family
+   tools for sources and PDFs, Zettlr/Overleaf/Quarto/MyST for writing/export
+   expectations, Jupyter-style tools for analysis compatibility, and ELN/RDM
+   tools for protocol/lab/repository references.
+5. Keep OpenCode and Goose as embedded or upstream-trackable agent engines inside
    LitRev's agent layer, not as replacements for LitRev's agent contract.
-4. Prefer upstream binaries, SDKs, CLIs, configuration, or sidecars over forks.
+6. Prefer upstream binaries, SDKs, CLIs, configuration, or sidecars over forks.
    Use a thin fork only when the integration seam is missing and the change can
    be isolated. Use a divergent fork only when LitRev intentionally takes
    ownership of a modified product surface and accepts cherry-pick updates.
-5. Normalize every engine through a LitRev-owned Agent Gateway: scoped context,
+7. Normalize every engine through a LitRev-owned Agent Gateway: scoped context,
    permissions, approvals, file actions, tool calls, diffs, artifacts, errors,
    checkpoints, and final write-back.
-6. Preserve raw upstream logs as runtime evidence, but store accepted scientific
+8. Preserve raw upstream logs as runtime evidence, but store accepted scientific
    work as LitRev project objects.
-7. Re-evaluate any fork once the first vertical scientific workflow works. If the
+9. Re-evaluate any fork once the first vertical scientific workflow works. If the
    fork's product assumptions fight LitRev's project model, keep only the useful
    parts and move toward a more LitRev-owned shell.
 
@@ -182,15 +195,15 @@ identified so far. It is a working recommendation, not a final dependency list.
 |---|---|---|---|
 | Project Home | Synara and T3 Code for workbench status, sessions, terminals, branches, diffs, previews, and provider activity; Vercel AI Elements for inspectable agent UI patterns. | Forked workbench prototype and reference. | Project status, stale-output signals, review needs, blocked work, collaborator activity, and next actions belong to LitRev project state. |
 | Project Agent And Chat | Synara for multi-agent workspace shell; OpenCode for local file/shell/edit execution; Goose for broader local automation and MCP-style agent substrate; Codex for safety and approval reference; Vercel AI SDK for typed model/tool streams. | Forked workbench prototype plus embedded engines. | Context receipts, permissions, tool scope, proposed changes, durable AgentRun records, checkpoints, and accepted write-back belong to LitRev. |
-| Project Direction And Protocol | protocols.io, SciNote, RSpace, and eLabFTW as protocol/workflow references. | Reference and later adapter candidates. | The project direction, protocol fields, eligibility criteria, analysis plan, and decision log are LitRev objects. |
-| Source Library And Reader | Zotero, JabRef, CSL, GROBID, Docling, and PDF reader components where needed. | Adapter, embedded parser, and reference. | Source identity, duplicate confidence, source-region links, parser state, annotations, backlinks, and citation intent belong to LitRev. |
+| Project Direction And Protocol | protocols.io, SciNote, RSpace, eLabFTW, Chemotion, Kadi4Mat, and openBIS as protocol, ELN, lab workflow, and research-data-management references. | Reference and later adapter candidates. | The project direction, protocol fields, eligibility criteria, analysis plan, and decision log are LitRev objects. |
+| Source Library And Reader | Zotero, Zotero Reader, Zotero Document Worker, Paperlib, Tropy, JabRef, CSL, GROBID, Docling, and local-first note/PDF references such as Logseq and SiYuan. | Adapter, component spike, embedded parser, compatibility target, and reference. | Source identity, duplicate confidence, source-region links, parser state, annotations, backlinks, and citation intent belong to LitRev. |
 | Evidence Ledger And Claims | ASReview for screening mechanics; GROBID and Docling for extraction; PaperQA for cited scientific QA; Elicit, Rayyan, Covidence, scite, Consensus, and SciSpace as workflow references. | Embedded engines, adapters, and references. | Evidence records, claims, support links, extraction review state, uncertainty, contradictions, and unsupported-claim diagnostics belong to LitRev. |
 | Synthesis Surface | PaperQA for grounded answer mechanics; Elicit, Consensus, SciSpace, and scite for answer and evidence UX references. | Embedded engine and reference. | Synthesis becomes durable only when saved into LitRev notes, evidence, claims, decisions, or draft material. |
-| Draft And Manuscript Workspace | Tiptap/ProseMirror first; Plate and Lexical as challengers; Overleaf, Word, and Google Docs as academic writing and collaboration references; Quarto/Pandoc/MyST for export paths. | Projection, challenger prototype, reference, and export adapter. | Manuscript structure, citations, evidence links, comments, suggestions, reconciliation state, and publication metadata belong to LitRev. |
-| Data And Analysis Workbench | Python through uv; marimo as reactive-notebook reference; DuckDB, pandas, Polars, Arrow/Parquet, SciPy, statsmodels, scikit-learn, and later R/tidyverse. | Embedded runtime, projection, and reference. | Dataset, Analysis, AnalysisRun, parameters, method notes, outputs, dependency state, staleness, and provenance belong to LitRev. |
+| Draft And Manuscript Workspace | Tiptap/ProseMirror first; Plate and Lexical as challengers; Zettlr, Overleaf, Word, and Google Docs as academic writing and collaboration references; Quarto/Pandoc/MyST/Manubot for export and publishing paths. | Projection, challenger prototype, reference, and export adapter. | Manuscript structure, citations, evidence links, comments, suggestions, reconciliation state, and publication metadata belong to LitRev. |
+| Data And Analysis Workbench | Python through uv; marimo as reactive-notebook reference; Jupyter/JupyterLab Desktop, RStudio/Positron, and CoCalc as analysis-workbench references; DuckDB, pandas, Polars, Arrow/Parquet, SciPy, statsmodels, scikit-learn, and later R/tidyverse. | Embedded runtime, projection, compatibility target, and reference. | Dataset, Analysis, AnalysisRun, parameters, method notes, outputs, dependency state, staleness, and provenance belong to LitRev. |
 | Figures, Tables, And Artifacts | Matplotlib/seaborn, Plotly, Altair/Vega-Lite, Great Tables/gt, Mermaid, Graphviz, Cytoscape.js, tldraw, Excalidraw, xyflow, Inkscape, diagrams.net, and BioIcons. | Runtime projection, artifact generator, and reference. | Figure, Table, Artifact, caption, data/code linkage, manuscript usage, review state, and stale-output state belong to LitRev. |
 | Agent Runs And Review | OpenCode, Goose, Codex, Synara, T3 Code, and Vercel AI SDK/Elements. | Embedded engines, forked workbench prototype, and reference. | AgentRun lifecycle, approvals, diffs, logs, artifacts, failures, retries, cancellation, checkpoints, and recovery belong to LitRev. |
-| Memory, History, And Decisions | Earlier LitRev prototype patterns, Stencila provenance ideas, Goose/Codex/OpenCode runtime logs, and targeted Hermes ideas. | Reference and normalized runtime evidence. | Scientific memory, decision history, trust metadata, provenance, snapshots, rollback, and auditability belong to LitRev. |
+| Memory, History, And Decisions | Earlier LitRev prototype patterns, Stencila provenance ideas, Goose/Codex/OpenCode runtime logs, AFFiNE/Logseq/SiYuan knowledge-workspace patterns, and targeted Hermes ideas. | Reference and normalized runtime evidence. | Scientific memory, decision history, trust metadata, provenance, snapshots, rollback, and auditability belong to LitRev. |
 | Collaboration And Mobile Continuation | Yjs/Hocuspocus for document collaboration; Yorkie as challenger; PowerSync/Electric for structured sync candidates; TinyBase, RxDB, and cr-sqlite as secondary references; OSF, Dataverse, GitHub, and GitLab for sharing/deposit expectations. | Candidate engine, adapter, and reference. | Membership, roles, permissions, attribution, conflict state, cloud mirror authority, mobile action scope, and recovery belong to LitRev. |
 | Settings, Integrations, And Export | Zotero/JabRef/CSL, Quarto/Pandoc/MyST, Typst/LaTeX/Overleaf, OSF, Dataverse, GitHub, GitLab, object storage, and cloud-drive style integrations. | Adapter and export target. | Project configuration, integration state, export/deposit records, portability receipts, and fidelity reports belong to LitRev. |
 
@@ -215,8 +228,13 @@ planning map, not an accepted dependency list.
 | Plate | Editor challenger, comments/suggestions/docx/AI UX. | Projection and reference. | `reference-only` unless it wins |
 | Lexical | Editor challenger for performance and accessibility. | Projection and reference. | `reference-only` unless it wins |
 | Overleaf | LaTeX academic workflow, compile logs, collaboration expectations. | Reference, compatibility target, export target. | `reference-only`; no fork |
+| Zettlr | Academic Markdown writing, citation workflow, Pandoc-based export, local-file writing UX. | Reference, export-path inspiration, compatibility expectation. | `reference-only`; no fork |
 | Word / Google Docs | Comments, track changes, manuscript exchange expectations. | Compatibility target. | `adapter-maintained`; export/import only |
 | Zotero | Import/export, translators, collections, PDF/annotation expectations. | Adapter and compatibility target. | `adapter-maintained`; do not fork product |
+| Zotero Reader | PDF/EPUB/HTML reading and annotation UX, source-region navigation, annotation-to-note behavior. | Component spike, reference, possible upstream-trackable integration after license/source review. | `adapter-maintained` if embedded; otherwise `reference-only` |
+| Zotero Document Worker | PDF annotation processing, PDF text extraction/rendering, structured extraction from PDFs/EPUBs/HTML snapshots. | Component spike, embedded worker candidate, parser reference. | `adapter-maintained` if embedded; otherwise `reference-only` |
+| Paperlib | Modern academic paper manager UX, metadata scraping, full-text search, paper notes, LLM paper features, writing integration. | Reference and possible adapter ideas; no base fork. | `reference-only` first; license review before copying code |
+| Tropy | Research-source/photo item modeling, metadata templates, annotation/transcription UX, SQLite/plugin/export patterns. | Reference, source-detail UX inspiration, possible later adapter. | `reference-only`; no fork first |
 | JabRef | BibTeX/BibLaTeX correctness and local citation-key discipline. | Reference and compatibility target. | `reference-only` first |
 | CSL | Citation rendering and styles. | Upstream-trackable integration, embedded library, adapter. | `version-bump` |
 | GROBID | Scholarly PDF structure, citations, coordinates. | Embedded engine and adapter. | `adapter-maintained` |
@@ -225,17 +243,27 @@ planning map, not an accepted dependency list.
 | PaperQA | Grounded scientific QA over sources. | Embedded engine and adapter. | `adapter-maintained` |
 | ASReview | Screening engine and active-learning workflow. | Embedded engine and adapter. | `adapter-maintained` |
 | Elicit / Rayyan / Covidence / scite / Consensus / SciSpace | Evidence UX and workflow patterns. | Reference, with possible compatibility targets later. | `reference-only` |
-| protocols.io / SciNote / RSpace / eLabFTW | Protocol and lab workflow patterns. | Reference, with possible later adapters. | `deferred` |
+| protocols.io | Protocol authoring, versionable methods, public protocol/deposit expectations. | Reference and later compatibility target. | `deferred` |
+| eLabFTW | ELN experiments, protocols, inventory/resources, audit/signature expectations, permissions, API and `.eln` ecosystem awareness. | Reference and possible later adapter. | `deferred`; no core fork |
+| SciNote | Life-science ELN workflow, experimental-data organization, Docker/Rails deployment lessons. | Reference and possible later adapter. | `deferred`; no core fork |
+| RSpace | Research orchestrator/ELN/sample-management patterns, FAIR workflow and PID/repository integration expectations. | Reference and possible later adapter. | `deferred`; no core fork |
+| Chemotion / Kadi4Mat / openBIS | Domain ELN/RDM workflows for chemistry, materials science, FAIR data, repository and instrument/workflow linkage. | Deferred reference and future domain adapters. | `deferred`; no first-core adoption |
 | Quarto / Pandoc | Export pipeline, citations, crossrefs, Word/PDF/HTML/LaTeX paths. | Embedded export engine and adapter. | `adapter-maintained` |
 | MyST | Challenger scientific publishing/export path. | Export target and adapter. | challenger; `adapter-maintained` if selected |
 | Typst / LaTeX | Final typesetting outputs. | Export target. | `adapter-maintained`; export only |
 | Manubot | Git-backed manuscript automation ideas. | Reference / cherry-pick source. | `reference-only` |
 | Stencila | Semantic scientific document and provenance ideas. | Reference / cherry-pick source. | `reference-only`; no adoption unless later ADR |
+| AFFiNE | Local-first docs, canvas, tables, whiteboard/document fusion, collaboration and block-workspace ideas. | Reference for workspace/canvas UX; no desktop base. | `reference-only` |
+| Logseq | Local-first knowledge graph, Markdown/Org notes, backlinks, PDF annotation, task/knowledge workflows. | Reference for notes, backlinks, and annotation-to-knowledge flows. | `reference-only`; no fork |
+| SiYuan | Block-level references, Markdown WYSIWYG, PDF annotation links, export formats, local/self-hosted knowledge base patterns. | Reference for block references, notes, and local-first knowledge UX. | `reference-only`; no fork |
 | Python / uv | Scientific runtime. | Embedded runtime. | `version-bump` |
 | marimo | Reactive analysis UX, dependency DAG, stale-state ideas. | Reference and projection candidate. | `reference-only`; no fork first |
 | Jupyter / `.ipynb` | Notebook compatibility, import, export. | Compatibility target, adapter, projection. | `adapter-maintained` |
+| JupyterLab Desktop | Notebook/file/session desktop UX and compatibility expectations. | Reference only; not a base. | `reference-only`; avoid dependency until maintenance/security posture is re-evaluated |
+| RStudio / Positron | Data-science IDE layout, variable/data viewers, Quarto/R Markdown expectations, AI/data-assistant patterns. | Reference and compatibility expectation. | `reference-only`; no fork |
+| CoCalc | Scientific collaboration mix: Jupyter, LaTeX, terminal, whiteboard, time travel, chatrooms. | Reference only because its source is under MS-RSL, not a normal open-source reuse license. | `reference-only`; no fork |
 | DuckDB | Local analytical SQL engine. | Embedded engine. | `version-bump` or `adapter-maintained` |
-| pandas / Polars | Dataframe execution. | Embedded runtime libraries. | `version-bump` |
+| pandas / Polars | DataFrame execution. | Embedded runtime libraries. | `version-bump` |
 | Arrow / Parquet | Tabular artifact and interchange formats. | Compatibility target and artifact target. | `adapter-maintained`; stable format |
 | SciPy / statsmodels / scikit-learn | Scientific and statistical methods. | Embedded runtime libraries. | `version-bump` |
 | R / tidyverse / ggplot2 | Collaborator/runtime compatibility and figure grammar reference. | Deferred compatibility target. | `deferred` |
@@ -295,6 +323,74 @@ everything on one executor too early.
 Recommendation: adapt shell/process/provider ideas from T3 Code and Synara, but
 keep the scientific navigation and object model LitRev-owned.
 
+### Desktop Base And Science-App Candidates
+
+The 2026-07-07 desktop/science-app scan did not find a better first desktop
+base than Synara. The science apps are still valuable, but mostly as specialized
+source-library, reader, writing, analysis, protocol, and research-object
+references around a LitRev-owned project kernel.
+
+| Source | Adaptation target | Why it matters | Do not adopt | Current use |
+|---|---|---|---|---|
+| Synara | First desktop shell candidate: chat, provider sessions, terminals, previews, diffs, local process/workspace flow. | It already concentrates the workbench machinery LitRev would otherwise have to build before testing the scientific workflow. | Do not let Synara's coding sessions, Git worktrees, or provider chats become the LitRev project model. | Candidate forked workbench prototype to stabilize; thin fork first, with a decision gate after the science-facing slice. |
+| Zotero | Reference manager compatibility, library import/export, source identity, citations, PDF/annotation expectations. | Researchers already trust Zotero, and LitRev cannot treat source/citation work as an afterthought. | Do not fork the full Zotero desktop app or rebuild Zotero first. | Adapter and compatibility target. |
+| Zotero Reader / Zotero Document Worker | PDF/EPUB/HTML reading, annotations, source-region navigation, annotation processing, text extraction and rendering. | Source-region fidelity is central to LitRev's evidence model; these components are closer to the needed reader/parser behavior than generic PDF viewers. | Do not make Zotero's reader or worker state canonical LitRev state. | Component spike and reference after source-depth/license review. |
+| Paperlib | Modern paper-library UI, metadata scraping, full-text search, paper notes, LLM paper features, writing integration. | It is a good challenge to older reference-manager UX and is close to "paper library for active writing." | Do not make LitRev only a paper manager or copy GPL code without review. | Reference and possible adapter ideas. |
+| Tropy | Research-source object modeling, custom metadata templates, annotation/transcription UX, SQLite, plugins, export. | It thinks in research objects rather than only files, which is useful for source detail surfaces. | Do not turn LitRev into a photo/archive manager. | Reference for source/detail metadata UX. |
+| Zettlr | Local academic writing, citation workflows, Pandoc export, Markdown/math/Mermaid rendering, journal submission profiles. | It shows how a local-first academic writing surface can stay file-oriented and export-friendly. | Do not make raw Markdown the only authoring UX. | Reference and export/workflow benchmark. |
+| Overleaf | Collaborative LaTeX, templates, compile logs, academic expectations. | It remains the academic writing benchmark for LaTeX-heavy users. | Do not fork it as the desktop base; it is server/web-shaped and LaTeX-first. | Reference, compatibility target, export target. |
+| JupyterLab Desktop | Notebook opening, file/session behavior, notebook compatibility. | Useful for analysis compatibility and desktop analysis expectations. | Do not base LitRev on it; maintenance/security posture must be rechecked before any dependency. | Reference only. |
+| Stencila | Scientific document schemas, executable-document and provenance ideas, LLM-aware document direction. | It is one of the few science-native systems thinking seriously about semantic documents plus agent/LLM authorship. | Do not adopt its schema as LitRev truth without an ADR. | Deep reference. |
+| eLabFTW / SciNote / RSpace / Chemotion / Kadi4Mat / openBIS | ELN, protocol, inventory, FAIR/RDM, repository, audit, and lab workflow expectations. | These show what scientific-traceability and institutional research-data workflows require outside pure literature review. | Do not become a wet-lab ELN or RDM platform before proving the project graph. | Deferred reference and later adapters. |
+| AFFiNE / Logseq / SiYuan | Local-first docs, canvas, backlinks, block references, PDF annotation links, knowledge graph and note workflows. | Useful for manual researcher workspace behavior: notes, backlinks, object links, canvas/planning, and local ownership. | Do not make LitRev a generic PKM or Notion clone. | Reference only. |
+| CoCalc | Jupyter, LaTeX, terminal, whiteboard, chat, real-time collaboration, scientific teaching/research workspace. | It proves the value of combining computation, writing, terminal, and collaboration in one scientific environment. | Do not fork or run from source as a base; MS-RSL source licensing makes it reference-only for LitRev. | Reference only. |
+
+Recommendation: begin by stabilizing a Synara fork as the workbench shell, then
+immediately pressure-test it with science surfaces: import a paper, view and
+annotate source material, create an evidence-linked note or draft paragraph,
+delegate one agent task, and review the resulting project change. If Synara
+cannot host that without forcing coding-product assumptions into LitRev's
+kernel, keep its useful pieces as cherry-pick/reference material and move toward
+a more LitRev-owned shell.
+
+Source and reference links checked for this scan:
+
+- Desktop/agent shell: [Synara](https://github.com/Emanuele-web04/synara),
+  [T3 Code](https://github.com/pingdotgg/t3code),
+  [Goose](https://github.com/aaif-goose/goose),
+  [OpenCode](https://opencode.ai/),
+  [OpenCode source](https://github.com/anomalyco/opencode).
+- Source library and reader: [Zotero](https://github.com/zotero/zotero),
+  [Zotero Reader](https://github.com/zotero/reader),
+  [Zotero Document Worker](https://github.com/zotero/document-worker),
+  [Paperlib](https://github.com/Future-Scholars/paperlib),
+  [Tropy](https://tropy.org/),
+  [Tropy GitHub](https://github.com/tropy),
+  [JabRef](https://github.com/JabRef/jabref).
+- Writing and publishing: [Zettlr](https://github.com/Zettlr/Zettlr),
+  [Overleaf](https://github.com/overleaf/overleaf),
+  [Quarto](https://quarto.org/),
+  [MyST](https://mystmd.org/),
+  [Manubot rootstock](https://github.com/manubot/rootstock).
+- Analysis and computation workbench: [JupyterLab Desktop](https://github.com/jupyterlab/jupyterlab-desktop),
+  [JupyterLab](https://jupyterlab.readthedocs.io/en/stable/),
+  [RStudio](https://posit.co/products/open-source/rstudio),
+  [Positron](https://github.com/posit-dev/positron),
+  [CoCalc](https://github.com/sagemathinc/cocalc).
+- Science-native provenance and lab/RDM references:
+  [Stencila](https://github.com/stencila/stencila),
+  [eLabFTW](https://github.com/elabftw/elabftw),
+  [SciNote](https://github.com/scinote-eln/scinote-web),
+  [RSpace](https://github.com/rspace-os/rspace-web),
+  [Chemotion ELN](https://github.com/ComPlat/chemotion_ELN),
+  [Kadi4Mat](https://gitlab.com/iam-cms/kadi),
+  [openBIS](https://openbis.ch/),
+  [openBIS GitHub](https://github.com/openbis).
+- Local-first workspace and knowledge references:
+  [AFFiNE](https://github.com/toeverything/affine),
+  [Logseq](https://github.com/logseq/logseq),
+  [SiYuan](https://github.com/siyuan-note/siyuan).
+
 ### Memory, Provenance, Permissions, And Safety
 
 | Source | Adaptation target | Why it matters | Do not adopt | Depth status |
@@ -302,6 +398,9 @@ keep the scientific navigation and object model LitRev-owned.
 | Hermes | Checkpointing ideas, relay-auth patterns to verify, slash-command authorization ideas, and context-compression patterns. | Useful as a side-bench for selected safety and continuity mechanics. | Do not let Hermes materially shape the scientific memory/provenance architecture, and do not use it as the primary file-writing executor. | Targeted side review only. |
 | Goose | Safety inspectors, provider registry, recipe/session boundaries. | Useful for local agent safety and repeatable task recipes. | Do not make recipes replace scientific skills/protocols. | Needs deeper review. |
 | OpenClaw | Gateway, channels, diagnostics, onboarding, app/device continuation, plugin distribution, safe media store ideas, SSRF guards, prompt-injection-safe file context. | Useful when LitRev grows beyond desktop into cloud/mobile/channel continuity and needs hardened external input handling. | Do not make LitRev a personal messaging assistant or center the product on chat/voice sessions. | Side-to-core later; security-specific ideas deserve targeted review. |
+| AFFiNE | Local-first docs/canvas/table workspace, block composition, whiteboard/document fusion, collaboration posture. | Useful as a reference for manual planning, visual thinking, and mixed document/canvas work inside a project. | Do not make LitRev a generic Notion/Miro alternative. | Reference only. |
+| Logseq | Local-first knowledge graph, Markdown/Org storage, backlinks, PDF annotation, task and note workflows. | Useful for backlinking, annotation-to-note behavior, and researcher-owned local knowledge. | Do not make LitRev a generic PKM graph. | Reference only. |
+| SiYuan | Block-level references, Markdown WYSIWYG, PDF annotation links, export formats, local/self-hosted architecture. | Useful for block references, local note UX, and fine-grained object linking. | Do not adopt its block model as LitRev's scientific object model. | Reference only. |
 | Earlier LitRev prototype | Memory trust metadata, memory UI, durable agent runs, checkpoints, autonomy controls, idempotency records. | Earlier product work has valuable reliability patterns that should not be discarded. | Do not copy an older hosted persistence shape if the next product is local-first. | High value; already inventoried. |
 
 Recommendation: build a LitRev memory/provenance layer using earlier prototype
@@ -327,13 +426,18 @@ benchmarks.
 
 | Source | Adaptation target | Why it matters | Do not adopt | Depth status |
 |---|---|---|---|---|
-| Zotero | Import/export, translators, PDF reader/annotations, collections, tags, citation insertion, CSL, group-library expectations. | Zotero is the reference manager scientists already trust. LitRev must cooperate with it. | Do not rebuild Zotero first. | Core integration target. |
+| Zotero | Import/export, translators, PDF reader/annotations, collections, tags, citation insertion, CSL, group-library expectations. | Zotero is the reference manager scientists already trust. LitRev must cooperate with it. | Do not rebuild Zotero first or fork the full Zotero product. | Core integration and compatibility target. |
+| Zotero Reader / Zotero Document Worker | PDF/EPUB/HTML reader and annotator; annotation processing; PDF text extraction and rendering; structured extraction from PDFs, EPUBs, and HTML snapshots. | This is the strongest current component/reference candidate for LitRev's source reader and source-region workflows. | Do not make the reader's annotation state or worker output the canonical evidence model. | Component spike; source-depth and license review needed. |
+| Paperlib | Modern paper-library UI, metadata scraping, full-text search, notes, RSS discovery, writing integration, LLM paper features. | Useful pressure test against older reference-manager UX, especially for active paper writing. | Do not use it as the base product or copy GPL code without review. | Reference and possible adapter ideas. |
+| Tropy | Research-source item modeling, custom metadata templates, annotation/transcription, SQLite persistence, plugins, JSON-LD/CSV export. | Useful for source-detail UX and the idea that research materials are objects with researcher-defined metadata, not just files. | Do not make LitRev an archive-photo manager. | Reference for source/detail surfaces. |
 | JabRef | BibTeX/BibLaTeX correctness, citation keys, local `.bib` durability, PDF metadata writing, citation relation views. | Important candidate for open local citation correctness. | Do not inherit Java desktop product shape. | Candidate citation reference; needs source evaluation. |
 | CSL ecosystem | Citation styles, bibliography generation conventions. | Required for real manuscript output. | Do not invent a private citation style system. | Required integration. |
 | Paperpile / Mendeley / EndNote / ReadCube | User expectations for reference workflows, institutional habits, Google Docs/Word integration patterns. | Scientists will import from or compare to these. | Do not build around proprietary assumptions. | Side reference. |
 
 Recommendation: make Zotero/JabRef/CSL compatibility a first-class kernel
-requirement, not a plugin afterthought.
+requirement, not a plugin afterthought. Evaluate Zotero Reader and Document
+Worker as focused components for source viewing and extraction, and use Paperlib
+and Tropy as pressure tests for modern source-library and source-detail UX.
 
 ### Document Ingestion And Evidence Extraction
 
@@ -366,7 +470,11 @@ answer land in project evidence objects, not just chat text.
 | ASReview | Project directory persistence, screening decision DB, active-learning loop, project schema, simulation, model components, screening queues. | Leading open-source screening engine candidate, with useful boundaries between review data, decisions, and model-driven prioritization. | Do not let the model silently decide inclusion/exclusion. Do not use ASReview's DB/web stack as canonical LitRev state. | Source candidate. |
 | Rayyan | Screening UX, collaboration, inclusion/exclusion reasons, PRISMA-like review operations. | Strong product benchmark for systematic review teams. | Do not copy SaaS-only workflow assumptions. | Product reference. |
 | Covidence / DistillerSR / EPPI-Reviewer / RevMan / JBI SUMARI | Institutional review workflows, risk of bias, extraction, compliance expectations. | These define what evidence teams expect. | Do not treat enterprise workflows as day-one scope. | Side reference. |
-| protocols.io / SciNote / RSpace / eLabFTW | Protocol authoring/execution, lab procedures, experiment records. | Useful for protocol objects beyond literature reviews. | Do not become a wet-lab ELN before the literature core works. | Side-to-core later. |
+| protocols.io | Protocol authoring/execution, versionable methods, public method-sharing expectations. | Useful for protocol objects beyond literature reviews. | Do not make external protocol repositories the LitRev project record. | Reference and later compatibility target. |
+| eLabFTW | Experiments, protocols, inventories/resources, advanced permissions, audit/signature expectations, REST API, `.eln` ecosystem awareness. | Useful for lab and institutional traceability expectations. | Do not become a full ELN or inventory/LIMS product before the project graph works. | Deferred reference and later adapter. |
+| SciNote | Life-science ELN workflows and experimental data organization. | Useful for understanding life-science user expectations and ELN workflow vocabulary. | Do not inherit Rails/Docker/web-server product shape. | Deferred reference. |
+| RSpace | Research orchestrator/ELN/sample management, FAIR workflow, PIDs, repository and tool integrations. | Useful for how research infrastructure connects notebooks, samples, repositories, and institutional workflows. | Do not make LitRev an institutional RDM suite first. | Deferred reference and later adapter. |
+| Chemotion / Kadi4Mat / openBIS | Domain-specific ELN/RDM workflows for chemistry, materials science, FAIR data, instrument/workflow linkage, repositories. | Useful when LitRev needs domain-aware protocol/data extensions. | Do not pull domain-specific ELN complexity into the first product core. | Deferred domain reference. |
 
 Recommendation: build protocol and screening as first-class objects early.
 ASReview is the main open-source source; Rayyan/Covidence/etc. are UX and
@@ -376,6 +484,7 @@ workflow references.
 
 | Source | Adaptation target | Why it matters | Do not adopt | Depth status |
 |---|---|---|---|---|
+| Zettlr | Local academic writing, citation integration, Markdown/math/Mermaid rendering, Pandoc export profiles, journal/conference submission workflows. | Useful as a local-first academic writing benchmark that is closer to researchers than a generic Markdown app. | Do not make LitRev a Markdown-only writing tool or treat file text as the only manuscript truth. | Reference and export workflow benchmark. |
 | Quarto / Pandoc | Multi-format scientific publishing, citations, crossrefs, executable docs, Word/PDF/HTML/Typst/LaTeX paths, document schemas, defaults/templates/filters, export artifact DAG ideas. | Primary pragmatic export lane to test first. | Do not force users to author raw Quarto if the UX should be Google Docs-like. Do not make Quarto internals or Pandoc AST the LitRev core. | Primary export prototype. |
 | MyST | Scientific Markdown, JATS, citations, crossrefs, TeX/Typst export, notebook publishing. | Credible source-format and publishing challenger to Quarto/Pandoc. | Do not make source Markdown the only UX. Do not promote it before export needs are benchmarked. | Challenger export/source-format prototype. |
 | Manubot | Git-backed automated manuscript pipeline. | Useful for reproducible manuscript build ideas. | Not a live scientific editor. | Side reference. |
@@ -402,6 +511,9 @@ LitRev-owned objects before it can become project truth.
 |---|---|---|---|---|
 | marimo | Reactive Python analysis objects, dependency DAG, stale propagation, SQL cells, app/script duality, Git-friendly notebooks, AI-native data work. | Best current analysis-workbench inspiration for LitRev because an agent can write real Python while the UI can expose dependency state and stale outputs. | Do not make LitRev a notebook app. Do not let marimo runtime state become the canonical `Analysis` object. | Primary analysis-workbench prototype candidate; official-doc scan done, code/license/prototype still needed. |
 | JupyterLab / `.ipynb` | Kernel ecosystem, notebook import/export, notebook compatibility, scientist familiarity, extension expectations. | Researchers already have notebook projects, and many collaborators will expect notebook continuation. | Do not embed the whole JupyterLab UI as the LitRev workspace, and do not make hidden notebook state the analysis truth. | Compatibility target, not product core. |
+| JupyterLab Desktop | Notebook/file/session desktop behavior and one-click notebook opening expectations. | Useful for understanding scientist expectations around local notebook workflows in a desktop shell. | Do not use it as LitRev's base desktop app; maintenance/security status must be rechecked before any dependency. | Reference only. |
+| RStudio / Positron | Data-science IDE layout, variables/data viewers, plots, Quarto/R Markdown workflows, AI/data assistant expectations. | Useful for researchers who think in R/Python analysis workspaces rather than coding-agent workspaces. | Do not fork a data-science IDE as the first shell. | Reference and compatibility expectation. |
+| CoCalc | Combined Jupyter, LaTeX, terminal, chat, whiteboard, time-travel, and scientific collaboration. | It demonstrates the value of a multi-surface scientific workbench. | Do not fork or run its source as a base; treat it as reference-only because of MS-RSL source licensing. | Reference only. |
 | DuckDB | Embedded analytical SQL over local files and local project data. | Strong fit for local-first analysis: agents can query CSV/Parquet/Arrow-style data without requiring a cloud warehouse or server database. | Do not make DuckDB the project database or provenance model. It is an execution/query engine under LitRev objects. | Add as primary local analysis engine candidate. |
 | pandas / Polars | DataFrame manipulation, cleaning, joins, reshaping, exploration, lazy/eager tabular pipelines. | pandas is still the compatibility language of scientific Python; Polars is attractive for performant, lazy, agent-written pipelines over larger local data. | Do not expose library choice as the user-facing model. LitRev should record datasets, transforms, runs, tables, and figures above the DataFrame library. | Add as initial Python data runtime set: pandas for compatibility, Polars for performance. |
 | Apache Arrow / Parquet | Columnar interchange and artifact formats between Python, SQL engines, cloud, and exported datasets. | LitRev needs durable, efficient data artifacts that can move between analysis engines and remain inspectable outside the app. | Do not make low-level columnar formats visible as the product model for normal users. | Add as preferred data interchange/artifact direction. |
