@@ -1,0 +1,9 @@
+# Upstream source checkouts are intentionally not committed to the parent LitRev repo.
+/agent-forks/opencode/
+/agent-forks/goose/
+/desktop-app-forks/synara/
+/desktop-app-forks/t3code/
+
+# Local clone scratch files.
+*.log
+.DS_Store

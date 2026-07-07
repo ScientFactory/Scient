@@ -1,0 +1,6 @@
+# Generated app state and run artifacts for local lab experiments.
+/runtime/
+
+# Local scratch output.
+*.log
+.DS_Store
