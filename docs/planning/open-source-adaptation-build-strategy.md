@@ -126,9 +126,10 @@ Keep change lanes separable where practical:
 - unavoidable upstream-core patches; and
 - release or updater configuration.
 
-Synara is expected to carry visible LitRev identity and domain UI. OpenCode and
-Goose should initially be embedded engines, so their desktop branding does not
-need to be changed unless LitRev later distributes their standalone apps.
+Synara is expected to carry visible LitRev identity and domain UI. OpenCode is
+an embedded engine, so its standalone desktop branding does not need to change.
+If Gate 1.6 later accepts Goose, apply the same principle unless LitRev decides
+to distribute a standalone Goose-derived application.
 
 An upstream sync should be a deliberate operation: fetch `upstream`, create a
 sync branch from the LitRev-maintained branch, merge the selected upstream
@@ -156,20 +157,27 @@ remote topology above.
 The executable plan, evidence requirements, and pass/fail criteria live in
 [`gate-1-5-execution-plan.md`](gate-1-5-execution-plan.md).
 
-Complete this short preparation pass before the LitRev-owned Gate 2 bridge:
+**2026-07-11 result: passed.** LitRev now owns public, upstream-connected
+Synara and OpenCode forks; Synara has an isolated LitRev development identity;
+and the owned OpenCode build passed the constrained Synara smoke. The exact
+history, checks, and documented execution-order correction are in the
+[`Gate 1.5 report`](../../lab/notes/gate-1-5-execution-report-2026-07-11.md).
 
-1. Create owned forks for Synara and OpenCode and attach them as `origin`; keep
-   official repositories as fetch-only `upstream`.
-2. Establish a repeatable upstream-sync branch procedure and one baseline smoke
-   check per fork.
-3. Make one narrow Synara identity/namespace patch and prove it survives an
-   upstream sync without mixing identity with runtime changes.
-4. Prove the owned OpenCode build remains compatible with Synara's existing
+This preparation pass established:
+
+1. Created owned forks for Synara and OpenCode and attached them as `origin`;
+   kept official repositories as fetch-only `upstream`.
+2. Established repeatable upstream verification and a baseline check per fork.
+3. Applied a narrow Synara identity/namespace layer on auditable current-
+   upstream ancestry without mixing identity with the upstream merge.
+4. Proved the owned OpenCode build remains compatible with Synara's existing
    adapter and constrained approval/transcript behavior.
 
-Gate 1.5 is preparation for implementation, not a new product-planning phase.
-Its output is maintained Synara/OpenCode fork topology, an upstream-safe Synara
-identity layer, and an owned OpenCode compatibility result.
+Gate 1.5 was preparation for implementation, not a new product-planning phase.
+Its durable output is the maintained Synara/OpenCode fork topology, an
+upstream-safe Synara identity layer, the owned OpenCode compatibility result,
+and repeatable upstream verifiers. Runtime homes and smoke artifacts are
+evidence, not product architecture.
 
 ## Gate 1.6: Goose Fork And ACP Boundary
 
@@ -193,7 +201,8 @@ as coding sessions, Git worktrees, provider chats, or engine-owned artifacts.
 
 - License and attribution review for any copied code, fork, embedded engine, or
   bundled dependency.
-- Source-depth review of Synara, OpenCode, and Goose integration seams.
+- Source-depth review of Synara and OpenCode integration seams. Goose
+  integration review belongs only to Gate 1.6.
 - Source-depth and license review of the science-app components that may become
   more than references, especially Zotero Reader, Zotero Document Worker,
   Paperlib, Tropy, Zettlr, Overleaf, JupyterLab Desktop, Stencila, and the ELN

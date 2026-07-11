@@ -51,7 +51,7 @@ The core architectural rule is:
 | Large file storage | Object storage | Proposed; not scaffolded |
 | Sync | Local-first SQLite-to-cloud sync | Under evaluation; not scaffolded |
 | Agent provider layer | Synara provider contracts and service | Inherited scaffold candidate; needs boundary validation |
-| Agent executor | OpenCode | Existing inherited adapter; first verification spike |
+| Agent executor | OpenCode | Owned upstream-aligned fork verified through the inherited adapter in Gate 1.5 |
 | Agent substrate | Goose | Deferred to Gate 1.6; source-depth candidate, not adopted |
 | Executor safety reference | Codex | Evaluation/reference |
 | Scientific runtime | Python via uv | Proposed |
@@ -62,11 +62,15 @@ The core architectural rule is:
 
 ## Actual Scaffold State
 
-As of 2026-07-10, the only executable application scaffold inside this repo is
-the ignored Synara checkout at
-`lab/external/desktop-app-forks/synara/`, pinned to commit
-`03d8b2c2eafa1c5e5158dcd2706053e73cbeaa9f` in
-`lab/external/sources.lock.md`.
+As of 2026-07-11, the executable application scaffold is the ignored checkout
+of LitRev's owned Synara fork at
+`lab/external/desktop-app-forks/synara/`. The review branch
+`codex/gate-1-5` is at
+`f3a235f45ad027b7436d3339a336e96ca22074a0`, based on tested official upstream
+`c865c5e8246c6f7f38dcd8f560546cba68e6a075`. The owned OpenCode fork and exact
+tested commit are recorded in `lab/external/sources.lock.md`; its Gate 1.5
+source/build worktree remains under ignored runtime evidence rather than parent
+Git history.
 
 The scaffold currently provides:
 
@@ -77,7 +81,7 @@ The scaffold currently provides:
 | Local coordinator | Bun during development, Node-compatible build, WebSocket RPC, provider routing, terminal/filesystem/Git/browser services under `apps/server` | Runtime machinery LitRev may wrap or borrow; not the scientific project kernel |
 | Local state | SQLite through Effect SQL | Synara session/orchestration projection state; not canonical LitRev scientific state |
 | Shared contracts | Effect schemas in `packages/contracts` plus runtime helpers in `packages/shared` | Candidate provider/runtime boundary; LitRev domain contracts do not exist yet |
-| Agent integration | Existing provider adapters, including an OpenCode SDK path | Verification and hardening target; no LitRev agent gateway or run ledger exists yet |
+| Agent integration | Existing provider adapters, including the OpenCode SDK path verified with the owned OpenCode binary | Reusable execution machinery; no LitRev agent gateway or run ledger exists yet |
 | Tooling | Bun workspaces, Turborepo, Vite, Vitest, TypeScript 5.7 | Inherited compatibility baseline, not an automatic long-term commitment |
 
 `lab/litrev-bridge/` currently contains planning documentation only. There are
@@ -86,11 +90,12 @@ agent gateway, cloud client, sync implementation, or production build pipeline.
 
 ### Scaffold Use Rule
 
-The first scaffold pass should install and boot the pinned Synara checkout with
-its own versions and isolated state before rebranding, upgrading TypeScript,
-restructuring packages, or adding scientific features. Record what works and
-what fails. Promote only the parts that prove useful behind a LitRev-owned
-project and agent boundary.
+The inherited scaffold pass and owned-fork identity pass are complete. Continue
+to sync the owned Synara fork deliberately, preserve the isolated LitRev state
+and updater boundary, and promote only the parts that prove useful behind a
+LitRev-owned project and agent contract. Do not restructure inherited packages
+or add scientific truth to Synara state merely because the shell now carries
+LitRev identity.
 
 ### TypeScript Version Baseline
 
@@ -427,7 +432,25 @@ copied credential, and a fixture incorrectly placed inside the parent Git
 repository. External Browser DNS and interrupted-runner marker cleanup remain
 non-blocking scaffold follow-ups. See the corrected evidence in
 [`lab/notes/synara-gate-1-baseline-2026-07-11.md`](../../lab/notes/synara-gate-1-baseline-2026-07-11.md)
-and proceed to Gate 2.
+and proceed through Gate 1.5 before Gate 2.
+
+### Gate 1.5: Owned Fork And Identity Baseline
+
+**2026-07-11 result: passed.** LitRev owns public Synara and OpenCode forks
+under `yaacovcorcos`, with writable owned `origin` remotes and fetch-only
+official `upstream` remotes. The maintained Synara branch is based on current
+official upstream and carries isolated LitRev display, bundle, state, browser,
+storage, branch-prefix, and updater identity in reviewable commits. Automatic
+desktop updates remain disabled unless a LitRev-owned release repository is
+explicitly configured.
+
+An OpenCode `1.17.18` binary built from the owned fork completed the constrained
+non-Git `pwd` smoke through Synara while preserving the exact project root,
+transcript, and approval-required runtime record. Synara/OpenCode runtime and
+session databases remain non-canonical integration state. Goose repository,
+build, adapter, runtime, and adoption work remain entirely deferred to Gate
+1.6. See
+[`lab/notes/gate-1-5-execution-report-2026-07-11.md`](../../lab/notes/gate-1-5-execution-report-2026-07-11.md).
 
 ### Gate 2: LitRev-Owned Local Boundary
 

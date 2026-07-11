@@ -1,6 +1,6 @@
 # Gate 1.5 Execution Plan
 
-Status: Draft
+Status: Complete
 Owner: Yaacov
 Last updated: 2026-07-11
 Purpose: Defines the end-to-end preparation gate for owned Synara and OpenCode repositories, upstream updates, and Synara identity isolation.
@@ -29,21 +29,45 @@ object contract, or start Gate 2. Every Goose action is deferred to Gate 1.6,
 including its owned repository, build, ACP adapter, runtime proof, and adoption
 decision.
 
-## Current Starting Point
+## Execution Result
+
+**2026-07-11 result: passed with one documented execution-order correction.**
+LitRev now owns public Synara and OpenCode forks under `yaacovcorcos`, each has
+a writable `origin` and a fetch-only official `upstream`, Synara carries an
+isolated LitRev development identity, and an owned OpenCode build passed the
+constrained Synara compatibility smoke. Goose remained outside the execution
+scope and is assigned in full to Gate 1.6.
+
+The original drill proposed applying LitRev identity to the historical Synara
+baseline and then merging current upstream. Source inspection showed that
+current upstream had introduced the centralized branding, state, and updater
+seams needed to make the patch narrow. Execution therefore preserved and
+tagged the historical baseline, merged current official upstream as an
+auditable merge commit, repaired the unchanged upstream checks separately, and
+then layered the LitRev identity in isolated commits. This is the maintained
+history. It avoids a throwaway identity implementation against obsolete seams.
+The repeatable upstream verifier now enforces remotes, divergence, identity,
+updater safety, source cleanliness, and the source check suite for the next
+real upstream sync.
+
+See
+[`lab/notes/gate-1-5-execution-report-2026-07-11.md`](../../lab/notes/gate-1-5-execution-report-2026-07-11.md)
+for exact repositories, commits, checks, runtime evidence, and residual risks.
+
+## Recorded Starting Point
 
 | Source | Local baseline | Current upstream | Drift | Intended role |
 |---|---|---|---:|---|
 | Synara | `03d8b2c2eafa1c5e5158dcd2706053e73cbeaa9f` | `c865c5e8246c6f7f38dcd8f560546cba68e6a075` on `main` | 63 commits behind | Visible LitRev workbench fork; thin and upstream-mergeable first. |
 | OpenCode | `14a5529793a91001ca81c80e96f39533eab79127` | `9976269ab1accfc9f9dc98a4a688c516934de422` on `dev` | 68 commits behind | Embedded file/shell/edit executor through an adapter. |
 
-The Synara and OpenCode official repositories are currently configured locally
-as fetch-only `upstream` remotes with push disabled. No owned writable `origin`
-is attached. Goose has the same local remote safety posture, but it is outside
-this gate and must not be changed during Gate 1.5.
+At the start of the gate, the Synara and OpenCode official repositories were
+configured locally as fetch-only `upstream` remotes with push disabled, and no
+owned writable `origin` was attached. The pre-existing Goose research checkout
+was outside this gate and was not changed during execution.
 
-The GitHub CLI currently has `yaacovc-D` active, while the LitRev Git remote is
-under `yaacovcorcos`. Do not create repositories until the intended owner is
-confirmed and the corresponding GitHub account is active.
+Execution confirmed `yaacovcorcos` as owner, activated that GitHub account, and
+selected public GitHub forks for Synara and OpenCode.
 
 ## Blocking Decisions Before Execution
 
@@ -90,11 +114,10 @@ origin   -> LitRev-owned repository; writable
 upstream -> official project; fetch-only; push disabled
 ```
 
-Preserve each official default branch name:
+Preserve each actively adapted source's official default branch name:
 
 - Synara: `main`
 - OpenCode: `dev`
-- Goose: `main`
 
 The owned default branch is the LitRev-maintained integration branch. Use short
 feature branches for isolated changes and `sync-upstream-YYYY-MM-DD` branches
@@ -273,16 +296,21 @@ install from Synara's official release feed under LitRev identity.
 
 ### Real Upstream-Sync Drill
 
-Use the existing 63-commit gap as the updateability proof:
+Execution used the existing upstream gap as the updateability proof, with the
+order corrected after inspecting the current source:
 
-1. preserve the historical Gate 1 baseline;
-2. apply the narrow identity/state commits on a dedicated branch;
-3. create `sync-upstream-2026-07-11` from that LitRev branch;
-4. merge current `upstream/main` without flattening the identity commits;
-5. resolve conflicts by preserving upstream runtime improvements and LitRev
-   identity/state ownership;
-6. rerun the unchanged-baseline checks and isolated smoke; and
-7. review the resulting diff by commit lane and touched-file concentration.
+1. preserve and tag the historical Gate 1 baseline;
+2. merge current `upstream/main` into the owned maintained history without
+   flattening upstream ancestry;
+3. repair current-upstream check failures in their own commit;
+4. apply the narrow identity, state, updater, and verification commits on the
+   current centralized seams;
+5. rerun the source checks and isolated smoke; and
+6. review the resulting diff by commit lane and touched-file concentration.
+
+The merge itself had no content conflicts. The only execution correction was
+ordering the identity layer after the upstream merge so the permanent patch
+uses current, centralized seams instead of obsolete historical ones.
 
 Pass conditions:
 
@@ -291,7 +319,7 @@ Pass conditions:
 - the LitRev app does not read or modify Synara production state;
 - the current upstream runtime improvements remain present;
 - branding/state patches remain understandable as isolated commits; and
-- the approved OpenCode smoke still passes after the merge.
+- the approved OpenCode smoke passes on the resulting maintained history.
 
 Stop if identity requires a broad package-wide rename, updater isolation cannot
 be proven, or merging upstream forces LitRev scientific concepts into Synara's
@@ -372,23 +400,28 @@ Do not commit upstream checkouts, caches, credentials, or unrelated outputs.
 
 Gate 1.5 passes only when all are true:
 
-- [ ] Repository owner and public-fork/private-mirror model are recorded.
-- [ ] Synara and OpenCode have owned writable repositories.
-- [ ] Official remotes are fetch-only `upstream` with push disabled.
-- [ ] Exact commits, URLs, licenses, and update modes are recorded.
-- [ ] Current unchanged upstream baselines pass their scoped checks.
-- [ ] Synara has isolated LitRev development identity, state, browser data, and
+- [x] Repository owner and public-fork/private-mirror model are recorded.
+- [x] Synara and OpenCode have owned writable repositories.
+- [x] Official remotes are fetch-only `upstream` with push disabled.
+- [x] Exact commits, URLs, licenses, and update modes are recorded.
+- [x] Current upstream baselines were characterized before adaptation:
+      OpenCode passed; Synara's build and lint passed while inherited formatting
+      and type errors were recorded, repaired in a separate commit, and then
+      all scoped checks passed before the LitRev identity patch.
+- [x] Synara has isolated LitRev development identity, state, browser data, and
       updater behavior.
-- [ ] The Synara identity patch survives the real historical-to-current upstream
-      merge drill.
-- [ ] The owned OpenCode binary passes the constrained Synara compatibility
+- [x] Synara's historical baseline, current-upstream merge, and LitRev identity
+      patches remain separate and auditable; the execution-order correction is
+      recorded above and in the dated report.
+- [x] The owned OpenCode binary passes the constrained Synara compatibility
       smoke.
-- [ ] No engine session/database is treated as canonical LitRev project truth.
-- [ ] Goose source, remotes, builds, adapters, runtime state, and adoption remain
+- [x] No engine session/database is treated as canonical LitRev project truth.
+- [x] Goose source, remotes, builds, adapters, runtime state, and adoption remain
       untouched and explicitly assigned to Gate 1.6.
-- [ ] Runtime evidence is inventoried and retained, archived, or deleted only
+- [x] Runtime evidence is inventoried and retained pending explicit user
+      direction; it will be archived or deleted only
       with explicit user direction.
-- [ ] A dated report gives a clear go/no-go for Gate 2.
+- [x] A dated report gives a clear go/no-go for the next implementation gate.
 
 ## Gate 1.5 Stop Conditions
 
@@ -409,17 +442,16 @@ Stop and report rather than widening scope if:
 ## Recommended Execution Order
 
 ```text
-decide owner and visibility
-  -> commit this planning baseline
-  -> create owned repositories and remotes
-  -> verify current unchanged upstream builds
-  -> patch Synara identity/state on the historical baseline
-  -> merge current Synara upstream and rerun smoke
-  -> prove the owned OpenCode binary through Synara
-  -> add repeatable update checks
-  -> inventory evidence and publish the Gate 1.5 verdict
+confirmed owner and public visibility
+  -> committed the planning baseline
+  -> created owned repositories and remotes
+  -> merged and verified current upstream baselines
+  -> layered isolated Synara identity/state/updater patches
+  -> proved the owned OpenCode binary through Synara
+  -> added repeatable update checks
+  -> inventoried evidence and published the Gate 1.5 verdict
 ```
 
-Do not begin Gate 2 until the report shows that LitRev can update its borrowed
-shell and engines without losing identity isolation, project scope, or runtime
-provenance.
+Gate 1.5 is complete. Gate 1.6 remains the separate Goose gate; neither gate
+defines the LitRev-owned scientific object contract that the next product
+implementation slice will require.
