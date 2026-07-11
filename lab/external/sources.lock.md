@@ -19,9 +19,9 @@ moved to a new commit.
 
 | Source | Local path | Official upstream | Owned repository | Tested upstream | Maintained/tested commit | Role and update mode |
 |---|---|---|---|---|---|---|
-| OpenCode | `agent-forks/opencode/`; Gate 1.5 worktree under ignored `lab/runtime/gate-1-5/` | `https://github.com/anomalyco/opencode.git`, `dev` | `https://github.com/yaacovcorcos/opencode`, public fork | `9976269ab1accfc5f9dc98a4a688c516934de422` | `0be0c5aa1df6cc2874b23aa2bd76fc5d5b6f98d4` on `gate-1-5` | First file/shell/edit executor; owned, upstream-aligned, `adapter-maintained`; no core divergence in Gate 1.5. |
+| OpenCode | `agent-forks/opencode/`; Gate 1.5 worktree under ignored `lab/runtime/gate-1-5/` | `https://github.com/anomalyco/opencode.git`, `dev` | `https://github.com/yaacovcorcos/opencode`, public fork | `9976269ab1accfc5f9dc98a4a688c516934de422` | `65cfb2df90495f70a24d00ea80f959c48016c636` on `gate-1-5` | First file/shell/edit executor; owned, upstream-aligned, `adapter-maintained`; no core divergence in Gate 1.5. |
 | Goose | `agent-forks/goose/` | `https://github.com/aaif-goose/goose.git`, `main` | None; owned repository deferred | Not tested in Gate 1.5 | Inspection checkout remains `3c1fdd692cc8aaa5f09b9175410c09a09d4dfe49` | Gate 1.6 research input only. Repository, build, ACP adapter, runtime, credentials, and adoption are all deferred. |
-| Synara | `desktop-app-forks/synara/` | `https://github.com/Emanuele-web04/synara.git`, `main` | `https://github.com/yaacovcorcos/synara`, public fork | `c865c5e8246c6f7f38dcd8f560546cba68e6a075` | `f3a235f45ad027b7436d3339a336e96ca22074a0` on `codex/gate-1-5` | Visible LitRev workbench; owned `thin-fork-merge`; must not own scientific project truth. |
+| Synara | `desktop-app-forks/synara/` | `https://github.com/Emanuele-web04/synara.git`, `main` | `https://github.com/yaacovcorcos/synara`, public fork | `c865c5e8246c6f7f38dcd8f560546cba68e6a075` | `db1aca27296bbb647db2a4bd2eafba4d3a0a8ef7` on `codex/gate-1-5` | Visible LitRev workbench; owned `thin-fork-merge`; must not own scientific project truth. |
 | T3 Code | `desktop-app-forks/t3code/` | `https://github.com/pingdotgg/t3code.git`, `main` | None | Not tested in Gate 1.5 | Reference checkout `b9cc8d6ef17ca9f45bec621bef71ad3f706b9276` | Desktop/runtime/provider/process reference only. |
 
 Gate 1.5 immutable tags in both owned repositories:
@@ -50,7 +50,10 @@ Repository ownership and adaptation depth are separate decisions:
 
 Current Gate 1.5 state: Synara and OpenCode have writable owned `origin`
 remotes. Their official remotes are named `upstream`, retain their official
-fetch URLs, and use the literal disabled push URL `DISABLED`.
+fetch URLs, and use the literal disabled push URL `DISABLED`. The owned default
+branches are protected against direct unreviewed changes, force-push, and
+deletion; Synara requires its maintained quality and release-smoke checks, and
+OpenCode requires the owned LitRev source-quality check.
 
 Goose was not added to this ownership model during Gate 1.5. Its inspection
 checkout still has only the official fetch-only `upstream`; the owned Goose

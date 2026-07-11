@@ -20,6 +20,8 @@ architecture.
 - `external/` holds local checkouts of upstream projects.
 - `litrev-bridge/` holds LitRev-owned adapter and integration experiments.
 - `notes/` holds lab inspection notes and temporary decisions.
+- `scripts/` holds repeatable lab-level verification that coordinates more than
+  one owned source repository without making either engine canonical.
 
 ## Current Inspection Notes
 

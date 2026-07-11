@@ -1,10 +1,10 @@
 # Gate 1.5 Execution Plan
 
-Status: Complete
+Status: Historical
 Owner: Yaacov
 Last updated: 2026-07-11
 Purpose: Defines the end-to-end preparation gate for owned Synara and OpenCode repositories, upstream updates, and Synara identity isolation.
-Doc type: Implementation plan
+Doc type: Planning note
 
 ## Document Rules
 
@@ -48,7 +48,9 @@ then layered the LitRev identity in isolated commits. This is the maintained
 history. It avoids a throwaway identity implementation against obsolete seams.
 The repeatable upstream verifier now enforces remotes, divergence, identity,
 updater safety, source cleanliness, and the source check suite for the next
-real upstream sync.
+real upstream sync. The cross-repository compatibility and retained-evidence
+checks live in `lab/scripts/verify-gate-1-5.sh`, keeping Synara and OpenCode
+source verifiers honest about their repository-local scope.
 
 See
 [`lab/notes/gate-1-5-execution-report-2026-07-11.md`](../../lab/notes/gate-1-5-execution-report-2026-07-11.md)
@@ -357,7 +359,8 @@ Add the smallest repeatable checks to each owned repository:
 - verify `upstream` fetch URL and disabled push URL;
 - report current divergence from the official default branch;
 - run the source's baseline build/check suite;
-- run the relevant LitRev adapter or identity smoke;
+- run the relevant repository-local identity checks and invoke the
+  cross-repository adapter smoke from the parent LitRev verifier;
 - detect unexpected generated or lockfile changes; and
 - record the exact upstream commit tested.
 

@@ -1,6 +1,6 @@
 # Gate 1.5 Execution Report
 
-Status: Complete
+Status: Active
 Owner: Yaacov
 Last updated: 2026-07-11
 Purpose: Records the executed Synara and OpenCode ownership, updateability, identity-isolation, and compatibility gate.
@@ -27,8 +27,8 @@ boundary remain a later LitRev-owned implementation decision.
 
 | Source | Ownership | Official upstream | Review branch and pull request | Tested upstream | Final reviewed commit |
 |---|---|---|---|---|---|
-| Synara | Public GitHub fork, `yaacovcorcos/synara` | `Emanuele-web04/synara`, `main` | `codex/gate-1-5`; [draft PR #1](https://github.com/yaacovcorcos/synara/pull/1) | `c865c5e8246c6f7f38dcd8f560546cba68e6a075` | `f3a235f45ad027b7436d3339a336e96ca22074a0` |
-| OpenCode | Public GitHub fork, `yaacovcorcos/opencode` | `anomalyco/opencode`, `dev` | `gate-1-5`; [draft PR #1](https://github.com/yaacovcorcos/opencode/pull/1) | `9976269ab1accfc5f9dc98a4a688c516934de422` | `0be0c5aa1df6cc2874b23aa2bd76fc5d5b6f98d4` |
+| Synara | Public GitHub fork, `yaacovcorcos/synara` | `Emanuele-web04/synara`, `main` | `codex/gate-1-5`; [PR #1](https://github.com/yaacovcorcos/synara/pull/1), ready for review | `c865c5e8246c6f7f38dcd8f560546cba68e6a075` | `db1aca27296bbb647db2a4bd2eafba4d3a0a8ef7` |
+| OpenCode | Public GitHub fork, `yaacovcorcos/opencode` | `anomalyco/opencode`, `dev` | `gate-1-5`; [PR #1](https://github.com/yaacovcorcos/opencode/pull/1), ready for review | `9976269ab1accfc5f9dc98a4a688c516934de422` | `65cfb2df90495f70a24d00ea80f959c48016c636` |
 
 Both checkouts use this topology:
 
@@ -40,7 +40,9 @@ upstream -> official repository; fetch only; push URL is DISABLED
 Both owned forks carry immutable `litrev-gate-1-baseline` and
 `litrev-gate-1-5-upstream-baseline` tags. At closeout, both review branches are
 pushed, clean, zero commits behind their tested upstream, and represented by
-open draft pull requests. Nothing has been merged for the user.
+open pull requests ready for review. The Gate source branches have not been
+merged; only the separate OpenCode CI-bootstrap PR was merged so PR #1 could
+receive an owned hosted check.
 
 ## Synara Maintained History
 
@@ -55,7 +57,10 @@ The owned Synara review branch preserves these lanes:
 4. `42e2a3974cb01470815d425665c025fc435c3518` — repeatable upstream verifier;
    and
 5. `f3a235f45ad027b7436d3339a336e96ca22074a0` — two remaining user-visible
-   Synara identity leaks found during the real UI smoke.
+   Synara identity leaks found during the real UI smoke; and
+6. `db1aca27296bbb647db2a4bd2eafba4d3a0a8ef7` — review closeout: stale
+   cutover fixtures, full-suite verification, release gating, remote freshness,
+   and diagnostics cleanup.
 
 The original plan proposed applying identity to the historical Gate 1 source
 and then merging current upstream. Current source inspection showed that the
@@ -90,7 +95,8 @@ The maintained Synara fork now uses:
 - LitRev-owned icons and logo assets derived from the existing LitRev symbol;
 - no automatic import of an installed Synara profile at startup; and
 - update channel `litrev`, with desktop updates disabled unless
-  `LITREV_DESKTOP_UPDATE_REPOSITORY` is explicitly configured.
+  `LITREV_DESKTOP_RELEASES_ENABLED=true` and
+  `LITREV_DESKTOP_UPDATE_REPOSITORY` names the owned release repository.
 
 The internal `@synara/*` package namespace remains unchanged on purpose. It is
 an implementation namespace, not user-visible identity, and retaining it
@@ -111,29 +117,76 @@ than hidden inside the LitRev identity patch.
 
 The resulting maintained branch passed:
 
-- `bun run fmt:check`: all 1,590 matched files formatted;
+- `bun run brand:check`: LitRev identity invariants passed;
+- `bun run fmt:check`: all 1,591 matched files formatted;
 - `bun run lint`: 178 inherited warnings, zero errors;
 - `bun run typecheck`: eight of eight tasks successful;
+- `bun run test`: all ten package tasks successful, including 2,425 web
+  tests and 1,690 server tests; six server tests remained intentionally
+  skipped;
 - `bun run build:desktop`: five of five tasks successful;
-- targeted Claude adapter verification: 80 of 80 tests passed; and
+- `bun run release:smoke`: release gating and updater configuration passed;
+  and
 - `bun run litrev:upstream-check --checks`: remote topology, zero-behind
   divergence, identity, updater disablement, clean-source enforcement, and the
-  full configured check suite.
+  complete deterministic source suite above.
 
 ### OpenCode
 
 OpenCode used its own pinned Bun toolchain and repository rules. The exact
 official baseline `9976269a` passed package type-check, all-platform build, and
-source/dev version checks. The source package version is `1.17.18`; the final
-Darwin arm64 candidate reported the preview build identifier
-`0.0.0-gate-1-5-202607111555`. Build metadata was attached to the local binary
+source/dev version checks. The source package version is `1.17.18`; the binary
+used by the retained compatibility smoke reported
+`0.0.0-gate-1-5-202607111555`, and the final source-verification build reported
+`0.0.0-gate-1-5-202607111732`. Build metadata was attached to local binaries
 rather than changing OpenCode core.
 
-The owned branch changes only the root verification command and
-`script/litrev-upstream-check.ts`. Its complete verifier passed package
-type-check, all-platform build, source version, executable version, remote
-topology, zero-behind divergence, and clean-source checks. The push hook also
-completed all 30 Turbo type-check tasks.
+The owned branch changes only the root verification command, its verifier,
+verifier tests, and the owned CI workflow. Its complete verifier runs package
+type-check, every package test, all-platform build, source and executable
+version checks, remote topology, current upstream divergence, and clean-source
+checks. Two inherited integration files are resource-sensitive: one PTY file is
+order-sensitive after the rest of the suite, and a subprocess file can starve
+its own timing oracle on a two-core runner. The verifier gives both controlled
+fresh processes, preserving complete coverage without accepting false timing
+failures. The push hook also completed all 30 Turbo type-check tasks. Hosted
+verification recorded 3,097 passing tests in the 244-file main partition, four
+passing PTY tests, and 13 passing CLI subprocess tests; 22 inherited tests were
+skipped and one remained marked todo.
+
+### Review Closeout
+
+Review found that the first report overstated verification while Synara CI was
+red. The four failures were stale `synara-codex-workspaces` fixtures after the
+runtime moved to `litrev-opencode-workspaces`; the runtime behavior itself was
+not regressed. The fixtures now consume the shared LitRev constants and the
+complete source suite is part of the repeatable verifier.
+
+The closeout also:
+
+- gates tag publication behind an explicit owned release switch and repository,
+  so release jobs cannot request updater manifests that the build did not
+  generate;
+- fetches official upstream by default, validates both fetch and push ownership,
+  accepts equivalent GitHub SSH/HTTPS forms, and preserves command diagnostics;
+- adds unit coverage for both source verifiers;
+- adds `lab/scripts/verify-gate-1-5.sh` as the cross-repository gate command,
+  combining both source suites with the retained transcript, approval,
+  fixture-integrity, credential-cleanup, and port-cleanup evidence; and
+- establishes an owned GitHub-hosted OpenCode quality workflow. Inherited
+  upstream workflows are disabled in the fork because they depend on upstream
+  infrastructure; LitRev's workflow is the maintained fork check; and
+- protects the owned Synara `main` and OpenCode `dev` branches: changes require
+  pull requests, resolved review conversations, and their maintained quality
+  checks; force-push and deletion are disabled.
+
+Hosted verification is recorded in the
+[Synara quality run](https://github.com/yaacovcorcos/synara/actions/runs/29161245556)
+and the
+[OpenCode LitRev quality run](https://github.com/yaacovcorcos/opencode/actions/runs/29161981336).
+The OpenCode workflow was bootstrapped through the separate, merged
+[CI PR #2](https://github.com/yaacovcorcos/opencode/pull/2) before it was made a
+required check on the protected `dev` branch.
 
 ## Owned-Binary Compatibility Smoke
 
@@ -226,9 +279,9 @@ review is still required. Automatic LitRev desktop updates remain disabled.
 
 ## Recommendation
 
-Accept Gate 1.5 after reviewing the three draft pull requests. The fork and
-identity work is real maintained infrastructure, not a disposable spike. Keep
-the Synara/OpenCode PRs separate from the parent documentation PR so each
+Gate 1.5 is accepted and its three pull requests are ready for review. The fork
+and identity work is real maintained infrastructure, not a disposable spike.
+Keep the Synara/OpenCode PRs separate from the parent documentation PR so each
 source history can be reviewed and merged deliberately.
 
 After acceptance, handle Goose only in Gate 1.6. Do not let that gate redesign
