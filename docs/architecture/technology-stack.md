@@ -52,7 +52,7 @@ The core architectural rule is:
 | Sync | Local-first SQLite-to-cloud sync | Under evaluation; not scaffolded |
 | Agent provider layer | Synara provider contracts and service | Inherited scaffold candidate; needs boundary validation |
 | Agent executor | OpenCode | Existing inherited adapter; first verification spike |
-| Agent substrate | Goose | Later evaluation/reference |
+| Agent substrate | Goose | Deferred to Gate 1.6; source-depth candidate, not adopted |
 | Executor safety reference | Codex | Evaluation/reference |
 | Scientific runtime | Python via uv | Proposed |
 | Native services | Rust selectively | Deferred until needed |
@@ -291,8 +291,13 @@ Initial posture:
 
 - Verify Synara's existing OpenCode adapter as the first executor spike.
 - Codex is the execution-safety and sandboxing reference.
-- Evaluate Goose later as a broader local-agent substrate or provider/sidecar,
-  not as an interchangeable executor label.
+- Evaluate Goose in Gate 1.6 as a broader local-agent engine through `goose acp`
+  over stdio, behind the future LitRev gateway. Keep authenticated `goose serve`
+  as a later process-separated option; do not use the removed `goosed` REST
+  surface.
+- Treat Goose permissions, sessions, recipes, and tool events as runtime inputs
+  to normalize. They do not provide the LitRev project boundary or canonical
+  run ledger by themselves.
 
 LitRev should not commit to any agent's internal data model as the canonical project model.
 

@@ -2,7 +2,7 @@
 
 Status: Proposed
 Owner: Yaacov
-Last updated: 2026-07-09
+Last updated: 2026-07-11
 Purpose: Maps which open-source systems LitRev should study, prototype, adapt, or integrate, and which product boundaries LitRev must keep owned.
 Doc type: Research evidence
 
@@ -141,11 +141,12 @@ kernel-first:
    tools for sources and PDFs, Zettlr/Overleaf/Quarto/MyST for writing/export
    expectations, Jupyter-style tools for analysis compatibility, and ELN/RDM
    tools for protocol/lab/repository references.
-5. Keep OpenCode and Goose as embedded or upstream-trackable agent engines inside
+5. Keep OpenCode and Goose as embedded, owned-fork, upstream-trackable agent engines inside
    LitRev's agent layer, not as replacements for LitRev's agent contract.
-6. Prefer upstream binaries, SDKs, CLIs, configuration, or sidecars over forks.
-   Use a thin fork only when the integration seam is missing and the change can
-   be isolated. Use a divergent fork only when LitRev intentionally takes
+6. Use LitRev-owned forks as the writable source remotes, while preferring
+   upstream binaries, SDKs, CLIs, configuration, sidecars, adapters, and
+   extensions over core modifications. An owned fork may remain upstream
+   aligned. Use divergent core changes only when LitRev intentionally takes
    ownership of a modified product surface and accepts cherry-pick updates.
 7. Normalize every engine through a LitRev-owned Agent Gateway: scoped context,
    permissions, approvals, file actions, tool calls, diffs, artifacts, errors,
@@ -221,8 +222,8 @@ planning map, not an accepted dependency list.
 | LitRev scientific project graph | Projects, sources, evidence, claims, datasets, runs, figures, manuscripts, memory, provenance. | LitRev-owned core | `no-upstream` |
 | LitRev agent contract | Permissions, context receipts, proposed changes, review, recovery. | LitRev-owned core | `no-upstream` |
 | Synara | Desktop workbench, chat shell, terminals, diffs, sessions, provider/workflow UI. | Forked workbench prototype, add-on layer, likely thin fork first. May become divergent fork if deeply reshaped. | `thin-fork-merge`; if deeply reshaped, `divergent-cherry-pick` |
-| OpenCode | Local file read/write, shell, code edits, patches, sessions, possibly subagents. | Upstream-trackable integration, embedded engine, adapter. | `adapter-maintained`; avoid core fork |
-| Goose | Broader local automation, daemon/sidecar posture, recipes, MCP/provider ideas. | Upstream-trackable integration, embedded engine, add-on layer. | `adapter-maintained`; avoid core fork |
+| OpenCode | Local file read/write, shell, code edits, patches, sessions, possibly subagents. | LitRev-owned, upstream-aligned fork used as an embedded engine through an adapter. | `adapter-maintained`; isolate changes and avoid unnecessary core divergence |
+| Goose | Broader local automation, ACP agent/server, recipes, MCP extensions, scheduling, and subagents. | LitRev-owned, upstream-aligned fork used as an embedded engine through an ACP adapter. | `adapter-maintained`; isolate changes and avoid unnecessary core divergence |
 | Codex app-server | Sandbox, approvals, diffs, rollback, interrupt/resume ideas. | Reference / cherry-pick source. | `reference-only` |
 | T3 Code | Backend lifecycle, provider-instance separation, preview/process patterns. | Reference / cherry-pick source. | `reference-only` |
 | Aider | Git/edit discipline, repo-map and patch workflow lessons. | Reference benchmark. | `reference-only` |
@@ -306,15 +307,18 @@ the canonical LitRev schema and event contract exist.
 
 | Source | Adaptation target | Why it matters | Do not adopt | Depth status |
 |---|---|---|---|---|
-| Goose | Local daemon/sidecar posture, sessions, recipes, scheduler ideas, MCP extensions, provider registry, safety inspectors, desktop sidecar patterns, repeatable task workflows. | Goose seems closest to the local agent platform layer: something that can live beside the app and coordinate tools/providers safely. | Do not make Goose the product center. LitRev is a scientific workspace containing an agent platform, not an agent platform with science tools bolted on. | Needs deeper code-level review focused on daemon/session/provider/safety/recipe architecture. |
+| Goose | ACP over stdio or authenticated HTTP/WebSocket, persistent sessions, recipes, scheduling, MCP extensions, provider registry, safety inspectors, hooks, and subagents. | Goose is a strong broader-agent engine behind LitRev. Current ACP supports streaming, permission requests, cancellation, client-provided file/terminal capabilities, and session lifecycle. | Do not make Goose the product center or its session database canonical. Do not rely on its working directory as a filesystem sandbox: built-in developer tools accept absolute paths, and autonomous mode is the default. | Source-depth review completed at `3c1fdd692`; all fork and adapter work is deferred to Gate 1.6. |
 | OpenCode | File/shell/edit executor, LSP/code-project operations, snapshots, session protocol, CLI/TUI/server/client split, plugin/tool architecture. | LitRev needs the power to read/write files, run commands, create artifacts, and show diffs like a serious coding agent. | Do not turn LitRev into "OpenCode for science." The scientific object graph must remain above the executor. | Candidate executor reference; needs source-backed harness prototype. |
 | Codex app-server | Approval protocol, sandbox model, diff flow, interrupt/rollback/session protocol, file API, skills/MCP, Rust daemon boundary. | Useful comparator for what a trusted local executor and approval model can feel like. | Do not depend on Codex-specific assumptions as the only runtime path. | Needs direct harness comparison against OpenCode. |
 | Aider | Git-centered edit discipline, repo maps, patch workflow, simple terminal ergonomics. | Useful as a benchmark for file changes and rollback, even if not the main architecture. | Do not make the app Python-first or terminal-first because Aider is good. | Side benchmark, not primary source. |
 
-Recommendation: treat Goose as the current leading reference for the local agent
-substrate, and OpenCode/Codex as the current leading executor references. LitRev
-should put a thin, testable adapter over executor candidates instead of betting
-everything on one executor too early.
+Recommendation: treat Goose as the current leading broader-agent engine
+candidate, and OpenCode/Codex as the current leading executor references. Delay
+the first Goose spike to Gate 1.6, using `goose acp` over stdio when that gate
+begins. The old `goosed` REST surface was removed upstream; authenticated
+`goose serve` is a later process-separated option. LitRev should put thin,
+testable adapters over engine candidates instead of betting everything on one
+runtime too early.
 
 ### Desktop Shell, Backend Lifecycle, And Provider Abstraction
 

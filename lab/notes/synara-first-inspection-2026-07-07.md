@@ -2,7 +2,7 @@
 
 Status: Draft
 Owner: Yaacov
-Last updated: 2026-07-07
+Last updated: 2026-07-11
 Purpose: Records the first technical inspection of Synara as LitRev's desktop base and defines how LitRev should own the product boundary while connecting OpenCode, Goose, and later agents.
 Doc type: Research evidence / planning note
 
@@ -70,7 +70,7 @@ These parts should not be inherited as Synara's product assumptions:
 | OpenCode repo fork | Upstream-trackable agent fork | Keep mostly intact. Pull upstream updates. Add LitRev-specific behavior through config, adapter prompts, skills, or small patches only after proving need. |
 | Goose core | Upstream-trackable embedded agent / adapter target | Treat as a powerful internal agent platform and future provider adapter. Keep Goose itself intact where possible. |
 | Goose desktop app | Reference and cherry-pick shelf | Do not use as the first desktop base. Borrow patterns for provider setup, recipes, MCP apps, ACP client handling, remote server settings, and extension management. |
-| Goose `goosed` server and SDK | Adapter target | A future Synara/LitRev provider adapter can talk to `goosed` or Goose ACP instead of embedding Goose UI. |
+| Goose ACP and SDK surfaces | Gate 1.6 adapter target | A future Synara/LitRev provider adapter should start with `goose acp` over stdio. Authenticated `goose serve` is a later process-separated option; the old `goosed` REST server was removed upstream. |
 | Goose recipes | Reference, possible import/export target | Map to LitRev scientific task templates later, but LitRev recipes/runs must have their own provenance schema. |
 | T3 Code | Reference and cherry-pick shelf | Use only to understand Synara lineage and recover simpler patterns if Synara has over-complicated areas. |
 | Synara SQLite projections | Projection, not source of truth | Useful for app/session state. LitRev scientific state should live in a LitRev-owned project record. |
@@ -131,7 +131,7 @@ Useful Goose surfaces:
 - Core agent loop with interface/agent/extensions split.
 - MCP extension management and allowlist concepts.
 - ACP providers for Claude Code, Codex, Amp, Pi, and similar subscription-backed agents.
-- `goosed` remote/local server mode.
+- `goose acp` over stdio and authenticated `goose serve` over HTTP/WebSocket.
 - `@aaif/goose-sdk` and ACP client surfaces.
 - Recipes, subrecipes, frontend tools, MCP apps, and provider setup flows.
 - Session import/export and foreign agent transcript import.
@@ -140,7 +140,7 @@ Likely first Goose integration:
 
 | Synara adapter method | Goose-backed behavior |
 | --- | --- |
-| `startSession` | Create or resume a Goose session via `goosed` or ACP SDK. |
+| `startSession` | Create or resume a Goose session through ACP. |
 | `sendTurn` | Send prompt/input to Goose session. |
 | `streamEvents` | Convert Goose/ACP session notifications into Synara `ProviderRuntimeEvent` values. |
 | `respondToRequest` | Map approvals or elicitation responses. |
@@ -274,7 +274,7 @@ The temptation will be to start with visible UI rebranding. Do not make that the
 - Should `.litrev/` live inside the user project by default, or should there be an app-managed mirror for folders the user does not want modified?
 - Should LitRev call Synara services in-process, through WebSocket, or through a small extracted package?
 - Does the current OpenCode adapter work with the pinned OpenCode commit and the locally installed `opencode` binary?
-- Should Goose enter first through `goosed`, ACP, CLI, or session import/export?
+- Goose is deferred to Gate 1.6. It should enter first through `goose acp` over stdio; validate this in an isolated adapter spike before considering authenticated `goose serve`.
 - Which first scientific slice should be used to validate the gateway: project setup, source capture, or data analysis?
 
 ## Recommendation

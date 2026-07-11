@@ -25,6 +25,7 @@ architecture.
 
 - `notes/synara-gate-1-baseline-2026-07-11.md` - executed Gate 1 baseline, correction run with the official OpenCode CLI, and pass-to-Gate-2 verdict.
 - `notes/synara-first-inspection-2026-07-07.md` - first Synara desktop-base inspection, OpenCode connection path, Goose integration path, and LitRev ownership boundary.
+- `notes/goose-source-depth-inspection-2026-07-11.md` - Gate 1.6 research input covering current Goose architecture, ACP integration seam, safety gaps, and owned-fork recommendation.
 
 The upstream source trees under `external/` are intentionally ignored by the
 parent LitRev repository. Track their URLs, commits, roles, and update strategy
