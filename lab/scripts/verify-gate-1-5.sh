@@ -55,6 +55,10 @@ verify_post_smoke_synara_changes() {
       apps/web/src/*/*/*.test.ts | \
       apps/web/src/*/*/*.test.tsx | \
       packages/shared/src/git.test.ts | \
+      apps/desktop/src/main.ts | \
+      scripts/build-desktop-artifact.ts | \
+      scripts/check-brand-identity.ts | \
+      scripts/check-brand-identity.test.ts | \
       scripts/litrev-upstream-check.ts | \
       scripts/litrev-upstream-check.test.ts | \
       scripts/release-smoke.ts)
@@ -70,6 +74,7 @@ verify_post_smoke_opencode_changes() {
     [[ -z "$path" ]] && continue
     case "$path" in
       .github/workflows/litrev-quality.yml | \
+      packages/core/src/filesystem/search.ts | \
       script/litrev-upstream-check.ts | \
       packages/opencode/test/litrev/upstream-check.test.ts)
         ;;
@@ -88,6 +93,7 @@ run_source_verifier() {
 }
 
 require_command git
+require_command node
 require_command sqlite3
 require_command shasum
 require_file "$synara_bun"
@@ -98,6 +104,11 @@ require_file "$owned_opencode_binary"
 
 assert_equal "Synara worktree status" "$(git -C "$synara_repo" status --porcelain)" ""
 assert_equal "OpenCode worktree status" "$(git -C "$opencode_repo" status --porcelain)" ""
+
+node "$repo_root/lab/scripts/verify-gate-1-5-manifest.mjs" \
+  --local-evidence \
+  --synara-head "$(git -C "$synara_repo" rev-parse HEAD)" \
+  --opencode-head "$(git -C "$opencode_repo" rev-parse HEAD)"
 
 if [[ "$skip_source_checks" == "true" ]]; then
   echo "Skipping source suites because LITREV_GATE_1_5_SKIP_SOURCE_CHECKS=true."
@@ -146,4 +157,4 @@ echo "Gate 1.5 verification passed."
 echo "Synara head: $(git -C "$synara_repo" rev-parse HEAD)"
 echo "OpenCode head: $(git -C "$opencode_repo" rev-parse HEAD)"
 echo "Owned OpenCode binary: $($owned_opencode_binary --version)"
-echo "Live smoke evidence remains valid because post-smoke changes are restricted to tests, release gating, diagnostics cleanup, and verifier code."
+echo "The committed manifest distinguishes the live-smoke commits from reviewed post-smoke source changes and authenticates the retained evidence."

@@ -66,7 +66,7 @@ As of 2026-07-11, the executable application scaffold is the ignored checkout
 of LitRev's owned Synara fork at
 `lab/external/desktop-app-forks/synara/`. The review branch
 `codex/gate-1-5` is at
-`db1aca27296bbb647db2a4bd2eafba4d3a0a8ef7`, based on tested official upstream
+`0dd63e2b10f3869a3c322e27be2d379f5e369492`, based on tested official upstream
 `c865c5e8246c6f7f38dcd8f560546cba68e6a075`. The owned OpenCode fork and exact
 tested commit are recorded in `lab/external/sources.lock.md`; its Gate 1.5
 source/build worktree remains under ignored runtime evidence rather than parent
@@ -440,9 +440,11 @@ and proceed through Gate 1.5 before Gate 2.
 under `yaacovcorcos`, with writable owned `origin` remotes and fetch-only
 official `upstream` remotes. The maintained Synara branch is based on current
 official upstream and carries isolated LitRev display, bundle, state, browser,
-storage, branch-prefix, and updater identity in reviewable commits. Automatic
-desktop updates remain disabled unless a LitRev-owned release repository is
-explicitly configured.
+storage, branch-prefix, and updater identity in reviewable commits. Release
+publication requires an explicitly configured LitRev-owned repository.
+Installed clients remain independently hard-disabled from automatic updates;
+enabling them additionally requires a reviewed code change and a
+feed-consumption test.
 
 An OpenCode `1.17.18` binary built from the owned fork completed the constrained
 non-Git `pwd` smoke through Synara while preserving the exact project root,

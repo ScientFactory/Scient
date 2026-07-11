@@ -27,8 +27,8 @@ boundary remain a later LitRev-owned implementation decision.
 
 | Source | Ownership | Official upstream | Review branch and pull request | Tested upstream | Final reviewed commit |
 |---|---|---|---|---|---|
-| Synara | Public GitHub fork, `yaacovcorcos/synara` | `Emanuele-web04/synara`, `main` | `codex/gate-1-5`; [PR #1](https://github.com/yaacovcorcos/synara/pull/1), ready for review | `c865c5e8246c6f7f38dcd8f560546cba68e6a075` | `db1aca27296bbb647db2a4bd2eafba4d3a0a8ef7` |
-| OpenCode | Public GitHub fork, `yaacovcorcos/opencode` | `anomalyco/opencode`, `dev` | `gate-1-5`; [PR #1](https://github.com/yaacovcorcos/opencode/pull/1), ready for review | `9976269ab1accfc5f9dc98a4a688c516934de422` | `65cfb2df90495f70a24d00ea80f959c48016c636` |
+| Synara | Public GitHub fork, `yaacovcorcos/synara` | `Emanuele-web04/synara`, `main` | `codex/gate-1-5`; [PR #1](https://github.com/yaacovcorcos/synara/pull/1), ready for review | `c865c5e8246c6f7f38dcd8f560546cba68e6a075` | `0dd63e2b10f3869a3c322e27be2d379f5e369492` |
+| OpenCode | Public GitHub fork, `yaacovcorcos/opencode` | `anomalyco/opencode`, `dev` | `gate-1-5`; [PR #1](https://github.com/yaacovcorcos/opencode/pull/1), ready for review | `2db96c9b7e064c936836599a5c208f14dfa47ac0` | `6b252af6f5324e11b72cf721a8278a345a730c40` |
 
 Both checkouts use this topology:
 
@@ -60,7 +60,10 @@ The owned Synara review branch preserves these lanes:
    Synara identity leaks found during the real UI smoke; and
 6. `db1aca27296bbb647db2a4bd2eafba4d3a0a8ef7` — review closeout: stale
    cutover fixtures, full-suite verification, release gating, remote freshness,
-   and diagnostics cleanup.
+   and diagnostics cleanup; and
+7. `0dd63e2b10f3869a3c322e27be2d379f5e369492` — enforced zero-behind
+   acceptance, explicit dual-lock updater policy, and distributable LitRev
+   package metadata checks.
 
 The original plan proposed applying identity to the historical Gate 1 source
 and then merging current upstream. Current source inspection showed that the
@@ -94,9 +97,10 @@ The maintained Synara fork now uses:
   workspaces;
 - LitRev-owned icons and logo assets derived from the existing LitRev symbol;
 - no automatic import of an installed Synara profile at startup; and
-- update channel `litrev`, with desktop updates disabled unless
-  `LITREV_DESKTOP_RELEASES_ENABLED=true` and
-  `LITREV_DESKTOP_UPDATE_REPOSITORY` names the owned release repository.
+- update channel `litrev`, with publication separately gated by
+  `LITREV_DESKTOP_RELEASES_ENABLED=true` and an owned
+  `LITREV_DESKTOP_UPDATE_REPOSITORY`; installed clients remain hard-disabled
+  until a reviewed code change explicitly enables update consumption.
 
 The internal `@synara/*` package namespace remains unchanged on purpose. It is
 an implementation namespace, not user-visible identity, and retaining it
@@ -133,16 +137,20 @@ The resulting maintained branch passed:
 
 ### OpenCode
 
-OpenCode used its own pinned Bun toolchain and repository rules. The exact
-official baseline `9976269a` passed package type-check, all-platform build, and
-source/dev version checks. The source package version is `1.17.18`; the binary
+OpenCode used its own pinned Bun toolchain and repository rules. The initially
+tested official baseline `9976269a` passed package type-check, all-platform
+build, and source/dev version checks. During closeout official `dev` advanced
+to `2db96c9b7`; its single filesystem-search cache change was reviewed, merged,
+and put through the complete verifier before acceptance. The source package
+version is `1.17.18`; the binary
 used by the retained compatibility smoke reported
 `0.0.0-gate-1-5-202607111555`, and the final source-verification build reported
-`0.0.0-gate-1-5-202607111732`. Build metadata was attached to local binaries
+`0.0.0-gate-1-5-202607111944`. Build metadata was attached to local binaries
 rather than changing OpenCode core.
 
-The owned branch changes only the root verification command, its verifier,
-verifier tests, and the owned CI workflow. Its complete verifier runs package
+LitRev-authored changes touch only the root verification command, its verifier,
+verifier tests, and the owned CI workflow; the additional core change is the
+unmodified official upstream commit. The complete verifier runs package
 type-check, every package test, all-platform build, source and executable
 version checks, remote topology, current upstream divergence, and clean-source
 checks. Two inherited integration files are resource-sensitive: one PTY file is
@@ -168,11 +176,18 @@ The closeout also:
   so release jobs cannot request updater manifests that the build did not
   generate;
 - fetches official upstream by default, validates both fetch and push ownership,
-  accepts equivalent GitHub SSH/HTTPS forms, and preserves command diagnostics;
+  accepts equivalent GitHub SSH/HTTPS forms, preserves command diagnostics,
+  and rejects any nonzero behind count unless diagnostic mode is explicit;
+- keeps release publication and client update consumption as separate safety
+  locks, with source checks proving that client updates remain disabled;
+- checks LitRev product name, staged package name, description, author, bundle
+  identity, and reviewed visual-asset digests while explicitly retaining
+  internal `@synara/*` compatibility namespaces;
 - adds unit coverage for both source verifiers;
 - adds `lab/scripts/verify-gate-1-5.sh` as the cross-repository gate command,
   combining both source suites with the retained transcript, approval,
-  fixture-integrity, credential-cleanup, and port-cleanup evidence; and
+  fixture-integrity, credential-cleanup, port-cleanup, and evidence-digest
+  checks; and
 - establishes an owned GitHub-hosted OpenCode quality workflow. Inherited
   upstream workflows are disabled in the fork because they depend on upstream
   infrastructure; LitRev's workflow is the maintained fork check; and
@@ -243,6 +258,16 @@ contains **470,290 files**. It includes:
 - the owned OpenCode Darwin arm64 build;
 - browser/Playwright accessibility snapshots and console log; and
 - local UI smoke state.
+
+A compact committed smoke extract and SHA-256 manifest record the source
+heads, SQLite database, retained executable, selected source logs, UI snapshot,
+console log, fixture, and pinned Bun executables. CI verifies the committed
+extract and manifest structure; the full parent verifier additionally hashes
+the locally retained artifacts. This makes the durable claims independently
+reviewable without pretending that a fresh clone contains the approximately
+18 GB live-smoke environment. The manifest also states that the final retained
+OpenCode executable is not the byte-identical binary used during the earlier
+live UI smoke.
 
 The evidence has forensic value if the pull requests need review or a failure
 must be reproduced, but the dependency caches account for most of its size.

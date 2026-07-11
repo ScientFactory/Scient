@@ -19,9 +19,9 @@ moved to a new commit.
 
 | Source | Local path | Official upstream | Owned repository | Tested upstream | Maintained/tested commit | Role and update mode |
 |---|---|---|---|---|---|---|
-| OpenCode | `agent-forks/opencode/`; Gate 1.5 worktree under ignored `lab/runtime/gate-1-5/` | `https://github.com/anomalyco/opencode.git`, `dev` | `https://github.com/yaacovcorcos/opencode`, public fork | `9976269ab1accfc5f9dc98a4a688c516934de422` | `65cfb2df90495f70a24d00ea80f959c48016c636` on `gate-1-5` | First file/shell/edit executor; owned, upstream-aligned, `adapter-maintained`; no core divergence in Gate 1.5. |
+| OpenCode | `agent-forks/opencode/`; Gate 1.5 worktree under ignored `lab/runtime/gate-1-5/` | `https://github.com/anomalyco/opencode.git`, `dev` | `https://github.com/yaacovcorcos/opencode`, public fork | `2db96c9b7e064c936836599a5c208f14dfa47ac0` | `6b252af6f5324e11b72cf721a8278a345a730c40` on `gate-1-5` | First file/shell/edit executor; owned, upstream-aligned, `adapter-maintained`; no LitRev core divergence in Gate 1.5. |
 | Goose | `agent-forks/goose/` | `https://github.com/aaif-goose/goose.git`, `main` | None; owned repository deferred | Not tested in Gate 1.5 | Inspection checkout remains `3c1fdd692cc8aaa5f09b9175410c09a09d4dfe49` | Gate 1.6 research input only. Repository, build, ACP adapter, runtime, credentials, and adoption are all deferred. |
-| Synara | `desktop-app-forks/synara/` | `https://github.com/Emanuele-web04/synara.git`, `main` | `https://github.com/yaacovcorcos/synara`, public fork | `c865c5e8246c6f7f38dcd8f560546cba68e6a075` | `db1aca27296bbb647db2a4bd2eafba4d3a0a8ef7` on `codex/gate-1-5` | Visible LitRev workbench; owned `thin-fork-merge`; must not own scientific project truth. |
+| Synara | `desktop-app-forks/synara/` | `https://github.com/Emanuele-web04/synara.git`, `main` | `https://github.com/yaacovcorcos/synara`, public fork | `c865c5e8246c6f7f38dcd8f560546cba68e6a075` | `0dd63e2b10f3869a3c322e27be2d379f5e369492` on `codex/gate-1-5` | Visible LitRev workbench; owned `thin-fork-merge`; must not own scientific project truth. |
 | T3 Code | `desktop-app-forks/t3code/` | `https://github.com/pingdotgg/t3code.git`, `main` | None | Not tested in Gate 1.5 | Reference checkout `b9cc8d6ef17ca9f45bec621bef71ad3f706b9276` | Desktop/runtime/provider/process reference only. |
 
 Gate 1.5 immutable tags in both owned repositories:
@@ -30,7 +30,7 @@ Gate 1.5 immutable tags in both owned repositories:
 - `litrev-gate-1-5-upstream-baseline` identifies the exact official upstream
   commit tested in Gate 1.5.
 
-The source-review branches are available as draft pull requests:
+The source-review branches are available as open pull requests ready for review:
 
 - Synara: <https://github.com/yaacovcorcos/synara/pull/1>
 - OpenCode: <https://github.com/yaacovcorcos/opencode/pull/1>

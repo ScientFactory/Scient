@@ -1,0 +1,21 @@
+name: Gate 1.5 evidence
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  evidence-manifest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Verify committed Gate 1.5 evidence
+        run: node lab/scripts/verify-gate-1-5-manifest.mjs

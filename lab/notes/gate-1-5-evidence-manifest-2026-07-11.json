@@ -1,0 +1,123 @@
+{
+  "schema": "litrev.gate-evidence-manifest/v1",
+  "gate": "1.5",
+  "recordedAt": "2026-07-11T22:46:00+03:00",
+  "sourceHeads": {
+    "synara": "0dd63e2b10f3869a3c322e27be2d379f5e369492",
+    "synaraUpstream": "c865c5e8246c6f7f38dcd8f560546cba68e6a075",
+    "opencode": "6b252af6f5324e11b72cf721a8278a345a730c40",
+    "opencodeUpstream": "2db96c9b7e064c936836599a5c208f14dfa47ac0"
+  },
+  "pullRequests": {
+    "synara": "https://github.com/yaacovcorcos/synara/pull/1",
+    "opencode": "https://github.com/yaacovcorcos/opencode/pull/1",
+    "litrev": "https://github.com/yaacovcorcos/LitRev/pull/1"
+  },
+  "verificationCommands": [
+    "bun run litrev:upstream-check --checks (in the owned Synara fork with pinned Bun 1.3.12)",
+    "bun run litrev:upstream-check --checks (in the owned OpenCode fork with pinned Bun 1.3.14)",
+    "lab/scripts/verify-gate-1-5.sh"
+  ],
+  "committedArtifacts": [
+    {
+      "path": "lab/notes/gate-1-5-smoke-evidence-2026-07-11.json",
+      "size": 2133,
+      "sha256": "c46d3585d5cb12300339af3959cd975dd17e9f229148512a7406e27bfdce3541",
+      "purpose": "Compact reviewable extract of the live compatibility result"
+    }
+  ],
+  "localArtifacts": [
+    {
+      "path": "lab/runtime/gate-1-5/homes/synara-branch/state/dev/state.sqlite",
+      "size": 565248,
+      "sha256": "cdfa3c3a8bcaae5bb3f1dbe04bf619ead62ba61fbbf42f6aabed3e02ab12fe1f",
+      "purpose": "Synara smoke projection database",
+      "exactSmokeArtifact": true
+    },
+    {
+      "path": "lab/runtime/gate-1-5/worktrees/opencode-upstream/packages/opencode/dist/opencode-darwin-arm64/bin/opencode",
+      "size": 148681058,
+      "sha256": "573b7a7d65d225ef9449309e31ae9b6b135a4d49dbd110b1211bc80f430ae1ed",
+      "purpose": "Final verified owned OpenCode Darwin arm64 build, version 0.0.0-gate-1-5-202607111944",
+      "exactSmokeArtifact": false
+    },
+    {
+      "path": "lab/runtime/gate-1-5/playwright/session/page-2026-07-11T15-46-14-381Z.yml",
+      "size": 7608,
+      "sha256": "5daf5f666ed96d3adcfa6ce9ac2d23aa9050c0a4c462363685dcaea270b8a065",
+      "purpose": "Accessibility snapshot containing the resolved approval and first exact transcript",
+      "exactSmokeArtifact": true
+    },
+    {
+      "path": "lab/runtime/gate-1-5/playwright/session/console-2026-07-11T15-44-24-073Z.log",
+      "size": 525,
+      "sha256": "3bac845cdb4a2a7cdaa0dc222508f31d17861502cf7a22b03bc190c07d3ecbc8",
+      "purpose": "Browser console captured during the live smoke",
+      "exactSmokeArtifact": true
+    },
+    {
+      "path": "/private/tmp/litrev-gate-1-5-fixture/README.md",
+      "size": 107,
+      "sha256": "054d15459112497cdeb08b5632d02202b72e06180e94bf21eb95b6f529ecbdc0",
+      "purpose": "Unmodified synthetic fixture",
+      "exactSmokeArtifact": true
+    },
+    {
+      "path": "lab/runtime/gate-1-5/logs/opencode-build.log",
+      "size": 83102,
+      "sha256": "466dd28aaa107453235b1826455c9b2785cbd56a96978ae97eded18e5824c49b",
+      "purpose": "Initial OpenCode all-platform build log",
+      "exactSmokeArtifact": true
+    },
+    {
+      "path": "lab/runtime/gate-1-5/logs/opencode-typecheck.log",
+      "size": 16,
+      "sha256": "ae47736bb2a9401aa9743893f2f64b9a605e65a99d78cd991a8021e0f7722d87",
+      "purpose": "Initial OpenCode type-check log",
+      "exactSmokeArtifact": true
+    },
+    {
+      "path": "lab/runtime/gate-1-5/logs/opencode-version.log",
+      "size": 62,
+      "sha256": "eef10b8d624892f7c8ca7dbb313bc42bf99a82299128213d471bda0dc38dc4cd",
+      "purpose": "Initial OpenCode source and executable version log",
+      "exactSmokeArtifact": true
+    },
+    {
+      "path": "lab/runtime/gate-1-5/logs/synara-fmt.log",
+      "size": 581,
+      "sha256": "ec58dc38c2e39eec485b7ff31c3b9e8656d80c1b0b710c15be7d97fc63d177d8",
+      "purpose": "Synara formatting log",
+      "exactSmokeArtifact": true
+    },
+    {
+      "path": "lab/runtime/gate-1-5/logs/synara-lint.log",
+      "size": 117629,
+      "sha256": "4ae255fd8bed65daad34849e1fba65516efdd6703a590642d24af046a72e1f19",
+      "purpose": "Synara lint log",
+      "exactSmokeArtifact": true
+    },
+    {
+      "path": "lab/runtime/gate-1-5/logs/synara-typecheck.log",
+      "size": 14606,
+      "sha256": "bb2539135849652c4d51ce7aafdeecb4872b2ab19db73f2b36bb513694731a39",
+      "purpose": "Synara type-check log",
+      "exactSmokeArtifact": true
+    },
+    {
+      "path": "lab/runtime/gate-1-5/tools/bun-1.3.12/bun-darwin-aarch64/bun",
+      "size": 61405888,
+      "sha256": "39e644cea4e6db24a3af36013695655d6f789b4b98f1f13bacb882ac6e5c3c18",
+      "purpose": "Pinned Synara verification runtime",
+      "exactSmokeArtifact": true
+    },
+    {
+      "path": "lab/runtime/gate-1-5/tools/bun-1.3.14/bun-darwin-aarch64/bun",
+      "size": 63096576,
+      "sha256": "e0c90ec15d33363e6b70713d56bc3b2c7585c17f40a0fe0f8fd9305901d4e233",
+      "purpose": "Pinned OpenCode verification runtime",
+      "exactSmokeArtifact": true
+    }
+  ],
+  "reproducibilityBoundary": "CI verifies the committed extract and manifest. The full local verifier additionally authenticates retained local evidence; a fresh clone does not reproduce the live UI smoke without regenerating its isolated runtime."
+}
