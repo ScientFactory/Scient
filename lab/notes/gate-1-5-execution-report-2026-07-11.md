@@ -27,7 +27,7 @@ boundary remain a later LitRev-owned implementation decision.
 
 | Source | Ownership | Official upstream | Review branch and pull request | Tested upstream | Final reviewed commit |
 |---|---|---|---|---|---|
-| Synara | Public GitHub fork, `yaacovcorcos/synara` | `Emanuele-web04/synara`, `main` | `codex/gate-1-5`; [PR #1](https://github.com/yaacovcorcos/synara/pull/1), ready for review | `1f81baf13b5ad9821cf32936768aa2918edb9fd3` | `a0fd3063dbc6d737d9fe6be9d2d231a65249fa3f` |
+| Synara | Public GitHub fork, `yaacovcorcos/synara` | `Emanuele-web04/synara`, `main` | `codex/gate-1-5`; [PR #1](https://github.com/yaacovcorcos/synara/pull/1), ready for review | `3267a2fbf430b733a6d7ff1759f6689023d85689` | `77d0854c3cbfdf579e90ed61577a70553f5c3fa6` |
 | OpenCode | Public GitHub fork, `yaacovcorcos/opencode` | `anomalyco/opencode`, `dev` | `gate-1-5`; [PR #1](https://github.com/yaacovcorcos/opencode/pull/1), ready for review | `2db96c9b7e064c936836599a5c208f14dfa47ac0` | `6b252af6f5324e11b72cf721a8278a345a730c40` |
 
 Both checkouts use this topology:
@@ -72,7 +72,12 @@ The owned Synara review branch preserves these lanes:
 10. `729a21fd610bb5b622960d8cabf57ebe66626a3e` — corrected the remaining
     user-facing LitRev worktree-prefix expectation in browser coverage; and
 11. `a0fd3063dbc6d737d9fe6be9d2d231a65249fa3f` — merged the official follow-up
-    formatting-only CI repair found by the final freshness check.
+    formatting-only CI repair found by the final freshness check;
+12. `b601413a51eb27ac949d7e057da9384701b5c293` — merged the official Synara
+    0.5.0 release commit; and
+13. `77d0854c3cbfdf579e90ed61577a70553f5c3fa6` — prevented upstream Synara
+    release marketing from rendering as LitRev release history and added a
+    regression guard for that user-facing boundary.
 
 The original plan proposed applying identity to the historical Gate 1 source
 and then merging current upstream. Current source inspection showed that the
@@ -197,8 +202,9 @@ The closeout also:
 - keeps release publication and client update consumption as separate safety
   locks, with source checks proving that client updates remain disabled;
 - checks LitRev product name, staged package name, description, author, bundle
-  identity, and reviewed visual-asset digests while explicitly retaining
-  internal `@synara/*` compatibility namespaces;
+  identity, LitRev-owned release-note surface, and reviewed visual-asset
+  digests while explicitly retaining internal `@synara/*` compatibility
+  namespaces;
 - adds unit coverage for both source verifiers;
 - adds `lab/scripts/verify-gate-1-5.sh` as the cross-repository gate command,
   combining both source suites with the retained transcript, approval,

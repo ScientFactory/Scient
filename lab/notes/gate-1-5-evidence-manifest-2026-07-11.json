@@ -1,10 +1,10 @@
 {
   "schema": "litrev.gate-evidence-manifest/v1",
   "gate": "1.5",
-  "recordedAt": "2026-07-11T23:26:00+03:00",
+  "recordedAt": "2026-07-11T23:38:00+03:00",
   "sourceHeads": {
-    "synara": "a0fd3063dbc6d737d9fe6be9d2d231a65249fa3f",
-    "synaraUpstream": "1f81baf13b5ad9821cf32936768aa2918edb9fd3",
+    "synara": "77d0854c3cbfdf579e90ed61577a70553f5c3fa6",
+    "synaraUpstream": "3267a2fbf430b733a6d7ff1759f6689023d85689",
     "opencode": "6b252af6f5324e11b72cf721a8278a345a730c40",
     "opencodeUpstream": "2db96c9b7e064c936836599a5c208f14dfa47ac0"
   },
