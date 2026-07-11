@@ -8,6 +8,10 @@
     "opencode": "6b252af6f5324e11b72cf721a8278a345a730c40",
     "opencodeUpstream": "2db96c9b7e064c936836599a5c208f14dfa47ac0"
   },
+  "mergeCommits": {
+    "synara": "536064b23d4211f33a812a1d6303c7029b9ed146",
+    "opencode": "f338a9c3478940925cc6cb799f5b7cb807f3a16d"
+  },
   "pullRequests": {
     "synara": "https://github.com/yaacovcorcos/synara/pull/1",
     "opencode": "https://github.com/yaacovcorcos/opencode/pull/1",

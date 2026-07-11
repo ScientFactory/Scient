@@ -27,8 +27,8 @@ boundary remain a later LitRev-owned implementation decision.
 
 | Source | Ownership | Official upstream | Review branch and pull request | Tested upstream | Final reviewed commit |
 |---|---|---|---|---|---|
-| Synara | Public GitHub fork, `yaacovcorcos/synara` | `Emanuele-web04/synara`, `main` | `codex/gate-1-5`; [PR #1](https://github.com/yaacovcorcos/synara/pull/1), ready for review | `3267a2fbf430b733a6d7ff1759f6689023d85689` | `77d0854c3cbfdf579e90ed61577a70553f5c3fa6` |
-| OpenCode | Public GitHub fork, `yaacovcorcos/opencode` | `anomalyco/opencode`, `dev` | `gate-1-5`; [PR #1](https://github.com/yaacovcorcos/opencode/pull/1), ready for review | `2db96c9b7e064c936836599a5c208f14dfa47ac0` | `6b252af6f5324e11b72cf721a8278a345a730c40` |
+| Synara | Public GitHub fork, `yaacovcorcos/synara` | `Emanuele-web04/synara`, `main` | `codex/gate-1-5`; [PR #1](https://github.com/yaacovcorcos/synara/pull/1), merged as `536064b23d4211f33a812a1d6303c7029b9ed146` | `3267a2fbf430b733a6d7ff1759f6689023d85689` | `77d0854c3cbfdf579e90ed61577a70553f5c3fa6` |
+| OpenCode | Public GitHub fork, `yaacovcorcos/opencode` | `anomalyco/opencode`, `dev` | `gate-1-5`; [PR #1](https://github.com/yaacovcorcos/opencode/pull/1), merged as `f338a9c3478940925cc6cb799f5b7cb807f3a16d` | `2db96c9b7e064c936836599a5c208f14dfa47ac0` | `6b252af6f5324e11b72cf721a8278a345a730c40` |
 
 Both checkouts use this topology:
 
@@ -39,10 +39,9 @@ upstream -> official repository; fetch only; push URL is DISABLED
 
 Both owned forks carry immutable `litrev-gate-1-baseline` and
 `litrev-gate-1-5-upstream-baseline` tags. At closeout, both review branches are
-pushed, clean, zero commits behind their tested upstream, and represented by
-open pull requests ready for review. The Gate source branches have not been
-merged; only the separate OpenCode CI-bootstrap PR was merged so PR #1 could
-receive an owned hosted check.
+pushed, clean, zero commits behind their tested upstream, and merged through
+protected pull requests. OpenCode PR #1 merged as `f338a9c3`; Synara PR #1
+merged as `536064b2`.
 
 ## Synara Maintained History
 
@@ -218,9 +217,9 @@ The closeout also:
   checks; force-push and deletion are disabled.
 
 Hosted verification is recorded in the
-[Synara quality run](https://github.com/yaacovcorcos/synara/actions/runs/29161245556)
+[Synara quality run](https://github.com/yaacovcorcos/synara/actions/runs/29167351567)
 and the
-[OpenCode LitRev quality run](https://github.com/yaacovcorcos/opencode/actions/runs/29161981336).
+[OpenCode LitRev quality run](https://github.com/yaacovcorcos/opencode/actions/runs/29165886544).
 The OpenCode workflow was bootstrapped through the separate, merged
 [CI PR #2](https://github.com/yaacovcorcos/opencode/pull/2) before it was made a
 required check on the protected `dev` branch.
@@ -317,10 +316,10 @@ review is still required. Automatic LitRev desktop updates remain disabled.
 
 ## Residual Risks And Deferred Work
 
-- No new official Synara commit arrived after the LitRev identity layer, so the
-  first post-fork update will be the first live repair of that layer. The
-  auditable history and verifier are ready for that review; unattended merges
-  remain forbidden.
+- Three official Synara updates arrived during closeout and were reconciled:
+  provider task tracking, its formatting repair, and the 0.5.0 release. This
+  proved the update path and exposed the upstream release-note identity leak;
+  unattended merges remain forbidden.
 - Synara retains 178 upstream lint warnings. They are not Gate 1.5 regressions,
   but they should not be described as a warning-free baseline.
 - The missing Cursor icon endpoint remains a non-blocking inherited UI issue.
@@ -333,10 +332,10 @@ review is still required. Automatic LitRev desktop updates remain disabled.
 
 ## Recommendation
 
-Gate 1.5 is accepted and its three pull requests are ready for review. The fork
-and identity work is real maintained infrastructure, not a disposable spike.
-Keep the Synara/OpenCode PRs separate from the parent documentation PR so each
-source history can be reviewed and merged deliberately.
+Gate 1.5 is accepted. The OpenCode and Synara source pull requests are merged;
+the parent LitRev record is ready to merge after its final evidence check. The
+fork and identity work is real maintained infrastructure, not a disposable
+spike.
 
 After acceptance, handle Goose only in Gate 1.6. Do not let that gate redesign
 the LitRev scientific truth boundary; Goose, like OpenCode, must remain a

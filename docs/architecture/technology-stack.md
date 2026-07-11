@@ -67,7 +67,8 @@ of LitRev's owned Synara fork at
 `lab/external/desktop-app-forks/synara/`. The review branch
 `codex/gate-1-5` is at
 `77d0854c3cbfdf579e90ed61577a70553f5c3fa6`, based on tested official upstream
-`3267a2fbf430b733a6d7ff1759f6689023d85689`. The owned OpenCode fork and exact
+`3267a2fbf430b733a6d7ff1759f6689023d85689`, and is merged into owned `main` at
+`536064b23d4211f33a812a1d6303c7029b9ed146`. The owned OpenCode fork and exact
 tested commit are recorded in `lab/external/sources.lock.md`; its Gate 1.5
 source/build worktree remains under ignored runtime evidence rather than parent
 Git history.
