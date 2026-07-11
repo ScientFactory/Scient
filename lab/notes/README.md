@@ -2,7 +2,7 @@
 
 Status: Draft
 Owner: Yaacov
-Last updated: 2026-07-07
+Last updated: 2026-07-11
 Purpose: Holds temporary inspection notes and lab decisions before promotion into durable docs.
 Doc type: Planning note
 
@@ -13,6 +13,7 @@ integration observations, and temporary lab decisions.
 
 ## Current Notes
 
+- `synara-gate-1-baseline-2026-07-11.md` - end-to-end inherited-scaffold baseline, official-CLI correction run, and Gate 1 pass result.
 - `synara-first-inspection-2026-07-07.md` - first source inspection of Synara as desktop base, OpenCode first-agent path, Goose integration path, and LitRev ownership boundary.
 
 Keep notes clear about whether they are:

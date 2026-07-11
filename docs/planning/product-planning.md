@@ -2,7 +2,7 @@
 
 Status: Draft
 Owner: Yaacov
-Last updated: 2026-06-28
+Last updated: 2026-07-10
 Purpose: Tracks current product planning after the accepted PRD, including roadmap seeds, candidate features, open product questions, and cross-document handoffs.
 Doc type: Planning note
 
@@ -15,6 +15,10 @@ Use this file to plan what may become product work later: candidate capabilities
 Do not duplicate PRD prose here. If a requirement is already accepted, link to the PRD instead of restating it. If a planning item becomes accepted product truth, promote the stable wording into the PRD and leave only a short trace here if useful.
 
 Do not use this file for implementation architecture, package boundaries, runtime choices, parser choices, sync-engine decisions, database schemas, source-code tasks, or test plans. Move those to the owning architecture, development, or quality document when they become real decisions.
+
+Raw or unprocessed ideas belong in `idea-inbox.md`. Move them here only after
+they have been evaluated enough to become a candidate feature, roadmap seed, or
+open product question.
 
 ## Current Planning Role
 
@@ -138,4 +142,6 @@ Create `docs/planning/product-roadmap.md` when the first coherent product slice 
 
 Create narrower planning docs only when a topic becomes too large for this file and is still not ready for product truth, architecture direction, design direction, quality doctrine, or implementation planning.
 
-Do not create duplicate idea files. If an idea belongs here, add or update one compact row in the feature inventory or open questions table.
+Do not create duplicate idea files. Capture raw ideas in `idea-inbox.md`; after
+triage, remove the inbox entry and add or update one compact row here only when
+the idea belongs in product planning.

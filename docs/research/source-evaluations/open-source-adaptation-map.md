@@ -2,7 +2,7 @@
 
 Status: Proposed
 Owner: Yaacov
-Last updated: 2026-07-07
+Last updated: 2026-07-09
 Purpose: Maps which open-source systems LitRev should study, prototype, adapt, or integrate, and which product boundaries LitRev must keep owned.
 Doc type: Research evidence
 
@@ -49,6 +49,10 @@ Current inputs:
 - Current planning discussion that upstream-trackable tools, thin forks,
   divergent forks, reference sources, projections, adapters, and export targets
   need different update strategies.
+- Focused Lacuna scan on 2026-07-09, using the arXiv paper
+  [Lacuna: A Research Map for Machine Learning](https://arxiv.org/html/2606.26246v1)
+  and live site as a research-map reference for literature search, synthesis, and
+  agent-readable paper-grounded intermediate objects.
 
 Remaining evidence gaps before architecture promotion:
 
@@ -197,8 +201,8 @@ identified so far. It is a working recommendation, not a final dependency list.
 | Project Agent And Chat | Synara for multi-agent workspace shell; OpenCode for local file/shell/edit execution; Goose for broader local automation and MCP-style agent substrate; Codex for safety and approval reference; Vercel AI SDK for typed model/tool streams. | Forked workbench prototype plus embedded engines. | Context receipts, permissions, tool scope, proposed changes, durable AgentRun records, checkpoints, and accepted write-back belong to LitRev. |
 | Project Direction And Protocol | protocols.io, SciNote, RSpace, eLabFTW, Chemotion, Kadi4Mat, and openBIS as protocol, ELN, lab workflow, and research-data-management references. | Reference and later adapter candidates. | The project direction, protocol fields, eligibility criteria, analysis plan, and decision log are LitRev objects. |
 | Source Library And Reader | Zotero, Zotero Reader, Zotero Document Worker, Paperlib, Tropy, JabRef, CSL, GROBID, Docling, and local-first note/PDF references such as Logseq and SiYuan. | Adapter, component spike, embedded parser, compatibility target, and reference. | Source identity, duplicate confidence, source-region links, parser state, annotations, backlinks, and citation intent belong to LitRev. |
-| Evidence Ledger And Claims | ASReview for screening mechanics; GROBID and Docling for extraction; PaperQA for cited scientific QA; Elicit, Rayyan, Covidence, scite, Consensus, and SciSpace as workflow references. | Embedded engines, adapters, and references. | Evidence records, claims, support links, extraction review state, uncertainty, contradictions, and unsupported-claim diagnostics belong to LitRev. |
-| Synthesis Surface | PaperQA for grounded answer mechanics; Elicit, Consensus, SciSpace, and scite for answer and evidence UX references. | Embedded engine and reference. | Synthesis becomes durable only when saved into LitRev notes, evidence, claims, decisions, or draft material. |
+| Evidence Ledger And Claims | ASReview for screening mechanics; GROBID and Docling for extraction; PaperQA for cited scientific QA; Lacuna for paper-grounded research-map patterns; Elicit, Rayyan, Covidence, scite, Consensus, and SciSpace as workflow references. | Embedded engines, adapters, and references. | Evidence records, claims, support links, extraction review state, uncertainty, contradictions, and unsupported-claim diagnostics belong to LitRev. |
+| Synthesis Surface | PaperQA for grounded answer mechanics; Lacuna for map-grounded literature search and survey synthesis; Elicit, Consensus, SciSpace, and scite for answer and evidence UX references. | Embedded engine and reference. | Synthesis becomes durable only when saved into LitRev notes, evidence, claims, decisions, or draft material. |
 | Draft And Manuscript Workspace | Tiptap/ProseMirror first; Plate and Lexical as challengers; Zettlr, Overleaf, Word, and Google Docs as academic writing and collaboration references; Quarto/Pandoc/MyST/Manubot for export and publishing paths. | Projection, challenger prototype, reference, and export adapter. | Manuscript structure, citations, evidence links, comments, suggestions, reconciliation state, and publication metadata belong to LitRev. |
 | Data And Analysis Workbench | Python through uv; marimo as reactive-notebook reference; Jupyter/JupyterLab Desktop, RStudio/Positron, and CoCalc as analysis-workbench references; DuckDB, pandas, Polars, Arrow/Parquet, SciPy, statsmodels, scikit-learn, and later R/tidyverse. | Embedded runtime, projection, compatibility target, and reference. | Dataset, Analysis, AnalysisRun, parameters, method notes, outputs, dependency state, staleness, and provenance belong to LitRev. |
 | Figures, Tables, And Artifacts | Matplotlib/seaborn, Plotly, Altair/Vega-Lite, Great Tables/gt, Mermaid, Graphviz, Cytoscape.js, tldraw, Excalidraw, xyflow, Inkscape, diagrams.net, and BioIcons. | Runtime projection, artifact generator, and reference. | Figure, Table, Artifact, caption, data/code linkage, manuscript usage, review state, and stale-output state belong to LitRev. |
@@ -241,6 +245,7 @@ planning map, not an accepted dependency list.
 | Docling | General document conversion and provenance. | Embedded engine and adapter. | `adapter-maintained` |
 | Marker | PDF-to-Markdown benchmark or fallback. | Deferred shelf and reference. | `reference-only` |
 | PaperQA | Grounded scientific QA over sources. | Embedded engine and adapter. | `adapter-maintained` |
+| Lacuna | Paper-grounded research map, concept elements, research directions, cleaned `/md` pages, MCP-facing schema, and evaluated literature-search/deep-research workflow. | Reference / cherry-pick source; possible search-map prototype input. | `reference-only` first |
 | ASReview | Screening engine and active-learning workflow. | Embedded engine and adapter. | `adapter-maintained` |
 | Elicit / Rayyan / Covidence / scite / Consensus / SciSpace | Evidence UX and workflow patterns. | Reference, with possible compatibility targets later. | `reference-only` |
 | protocols.io | Protocol authoring, versionable methods, public protocol/deposit expectations. | Reference and later compatibility target. | `deferred` |
@@ -457,11 +462,15 @@ above both.
 | Source | Adaptation target | Why it matters | Do not adopt | Depth status |
 |---|---|---|---|---|
 | PaperQA | `Doc` / `Text` / `Context` split, citation-grounded scientific QA, cited context provenance, paper-directory indexing, clients for Crossref/OpenAlex/Semantic Scholar/Unpaywall/retractions. | Important open-source scientific RAG candidate, and its source/context split is useful for LitRev evidence linking. | Do not treat RAG output as truth without evidence objects and review. Do not use PaperQA persistence as canonical project state. | Sidecar/reference candidate. |
+| Lacuna | Research-map substrate for paper search, source-linked concept elements, research directions, cleaned markdown pages, and multi-stage deep-research synthesis. | Strong reference for search and synthesis over durable intermediate objects rather than raw PDFs or one-off chat. | Do not make Lacuna's generated map, directions, or proposals the LitRev project graph. Do not treat generated directions as truth without source review. | Research-map reference; inspected arXiv and live site on 2026-07-09. |
 | Elicit | Evidence tables, structured reports, extraction and screening UX, sentence-level citations. | Best commercial benchmark for AI literature workflows. | Do not become a cloud-only Elicit clone. | Product reference. |
 | Consensus / SciSpace / scite | Claim synthesis, paper Q&A, citation context, support/contrast/mention framing. | Useful for answer UX and evidence relationship semantics. | Do not accept black-box synthesis without inspectable sources. | Side reference. |
 
-Recommendation: PaperQA can inspire the engine, but LitRev must make every
-answer land in project evidence objects, not just chat text.
+Recommendation: PaperQA can inspire the local answer engine, while Lacuna is a
+strong reference for the research-map layer that makes literature search and
+survey synthesis navigable for agents. LitRev must still make every accepted
+answer, direction, or synthesis land in project evidence objects, not just chat
+text or generated map pages.
 
 ### Screening, Review, Protocols, And PRISMA
 
@@ -692,7 +701,8 @@ project state mirrored to Postgres/object storage; a possible Synara-derived
 forked workbench prototype; OpenCode as the first embedded executor spike; Codex
 as the safety/sandboxing reference; Goose as a broader local-agent architecture
 reference; Tiptap/ProseMirror-family writing;
-GROBID/Docling/PaperQA/ASReview-powered evidence workflows;
+GROBID/Docling/PaperQA/ASReview-powered evidence workflows; Lacuna-inspired
+research-map patterns for paper-grounded search and synthesis;
 Quarto/Pandoc-first export with MyST as challenger;
 Stencila as a scientific schema/provenance reference; marimo-inspired analysis
 with Jupyter compatibility; DuckDB, pandas/Polars, and Arrow/Parquet for local

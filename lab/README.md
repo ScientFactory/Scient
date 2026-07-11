@@ -2,7 +2,7 @@
 
 Status: Draft
 Owner: Yaacov
-Last updated: 2026-07-07
+Last updated: 2026-07-11
 Purpose: Defines the experimental lab area for early LitRev source forks, adapters, and integration spikes.
 Doc type: Planning note
 
@@ -23,6 +23,7 @@ architecture.
 
 ## Current Inspection Notes
 
+- `notes/synara-gate-1-baseline-2026-07-11.md` - executed Gate 1 baseline, correction run with the official OpenCode CLI, and pass-to-Gate-2 verdict.
 - `notes/synara-first-inspection-2026-07-07.md` - first Synara desktop-base inspection, OpenCode connection path, Goose integration path, and LitRev ownership boundary.
 
 The upstream source trees under `external/` are intentionally ignored by the
@@ -44,5 +45,8 @@ home, such as `docs/architecture/`, `docs/research/spike-reports/`, `apps/`, or
 - Do not put LitRev-owned adapter code inside upstream forks unless the change is
   truly fork-specific.
 - Do not duplicate large upstream repositories in multiple lab folders.
+- Treat `runtime/` as disposable generated state. Extract durable findings into
+  a note, then remove runtime homes, caches, fixtures, and credentials after the
+  experiment closes.
 - Do not treat the lab layout as final product architecture.
 - Preserve source provenance before copying, adapting, or modifying code.
