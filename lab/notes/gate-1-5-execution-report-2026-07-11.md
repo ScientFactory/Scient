@@ -27,7 +27,7 @@ boundary remain a later LitRev-owned implementation decision.
 
 | Source | Ownership | Official upstream | Review branch and pull request | Tested upstream | Final reviewed commit |
 |---|---|---|---|---|---|
-| Synara | Public GitHub fork, `yaacovcorcos/synara` | `Emanuele-web04/synara`, `main` | `codex/gate-1-5`; [PR #1](https://github.com/yaacovcorcos/synara/pull/1), ready for review | `c865c5e8246c6f7f38dcd8f560546cba68e6a075` | `0dd63e2b10f3869a3c322e27be2d379f5e369492` |
+| Synara | Public GitHub fork, `yaacovcorcos/synara` | `Emanuele-web04/synara`, `main` | `codex/gate-1-5`; [PR #1](https://github.com/yaacovcorcos/synara/pull/1), ready for review | `7c32e8805f9925aa5d852fdace4b985fee073ae9` | `280292ab2d92a84bee69c98d26de7c99c4605af6` |
 | OpenCode | Public GitHub fork, `yaacovcorcos/opencode` | `anomalyco/opencode`, `dev` | `gate-1-5`; [PR #1](https://github.com/yaacovcorcos/opencode/pull/1), ready for review | `2db96c9b7e064c936836599a5c208f14dfa47ac0` | `6b252af6f5324e11b72cf721a8278a345a730c40` |
 
 Both checkouts use this topology:
@@ -63,7 +63,12 @@ The owned Synara review branch preserves these lanes:
    and diagnostics cleanup; and
 7. `0dd63e2b10f3869a3c322e27be2d379f5e369492` — enforced zero-behind
    acceptance, explicit dual-lock updater policy, and distributable LitRev
-   package metadata checks.
+   package metadata checks;
+8. `6ad31ce77ecf74f2d50ded20e8bca6958978ca5d` — merged the next official
+   upstream provider task-tracking and resume update after a final freshness
+   check; and
+9. `280292ab2d92a84bee69c98d26de7c99c4605af6` — applied the repository formatter
+   to three files affected by the upstream merge and conflict resolution.
 
 The original plan proposed applying identity to the historical Gate 1 source
 and then merging current upstream. Current source inspection showed that the
@@ -122,11 +127,11 @@ than hidden inside the LitRev identity patch.
 The resulting maintained branch passed:
 
 - `bun run brand:check`: LitRev identity invariants passed;
-- `bun run fmt:check`: all 1,591 matched files formatted;
+- `bun run fmt:check`: all 1,594 matched files formatted;
 - `bun run lint`: 178 inherited warnings, zero errors;
 - `bun run typecheck`: eight of eight tasks successful;
-- `bun run test`: all ten package tasks successful, including 2,425 web
-  tests and 1,690 server tests; six server tests remained intentionally
+- `bun run test`: all ten package tasks successful, including 2,426 web
+  tests and 1,698 server tests; six server tests remained intentionally
   skipped;
 - `bun run build:desktop`: five of five tasks successful;
 - `bun run release:smoke`: release gating and updater configuration passed;
@@ -134,6 +139,13 @@ The resulting maintained branch passed:
 - `bun run litrev:upstream-check --checks`: remote topology, zero-behind
   divergence, identity, updater disablement, clean-source enforcement, and the
   complete deterministic source suite above.
+
+The final pre-merge freshness check found official commit `7c32e880`, which
+adds provider task tracking and resume coverage across Claude, Codex, Gemini,
+and OpenCode adapters. It was reviewed and merged before acceptance. The full
+provider and source suites above passed at the new zero-behind head. Because it
+arrived after the retained live UI run, the evidence manifest does not claim
+that this official adapter-event update was exercised by that earlier smoke.
 
 ### OpenCode
 

@@ -66,8 +66,8 @@ As of 2026-07-11, the executable application scaffold is the ignored checkout
 of LitRev's owned Synara fork at
 `lab/external/desktop-app-forks/synara/`. The review branch
 `codex/gate-1-5` is at
-`0dd63e2b10f3869a3c322e27be2d379f5e369492`, based on tested official upstream
-`c865c5e8246c6f7f38dcd8f560546cba68e6a075`. The owned OpenCode fork and exact
+`280292ab2d92a84bee69c98d26de7c99c4605af6`, based on tested official upstream
+`7c32e8805f9925aa5d852fdace4b985fee073ae9`. The owned OpenCode fork and exact
 tested commit are recorded in `lab/external/sources.lock.md`; its Gate 1.5
 source/build worktree remains under ignored runtime evidence rather than parent
 Git history.

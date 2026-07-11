@@ -40,6 +40,9 @@ verify_post_smoke_synara_changes() {
   local path
   while IFS= read -r path; do
     [[ -z "$path" ]] && continue
+    if git -C "$synara_repo" diff --quiet upstream/main -- "$path"; then
+      continue
+    fi
     case "$path" in
       .github/workflows/release.yml | \
       .plans/profile-data-source-audit.md | \
@@ -48,6 +51,9 @@ verify_post_smoke_synara_changes() {
       apps/server/src/*/*/*.test.ts | \
       apps/server/src/*/*/*/*.test.ts | \
       apps/server/src/memoryDiagnostics.ts | \
+      apps/server/src/provider/Layers/ClaudeAdapter.test.ts | \
+      apps/server/src/provider/Layers/ProviderService.test.ts | \
+      apps/server/src/provider/attachmentProjection.ts | \
       apps/web/src/*.test.ts | \
       apps/web/src/*.test.tsx | \
       apps/web/src/*/*.test.ts | \
@@ -72,9 +78,11 @@ verify_post_smoke_opencode_changes() {
   local path
   while IFS= read -r path; do
     [[ -z "$path" ]] && continue
+    if git -C "$opencode_repo" diff --quiet upstream/dev -- "$path"; then
+      continue
+    fi
     case "$path" in
       .github/workflows/litrev-quality.yml | \
-      packages/core/src/filesystem/search.ts | \
       script/litrev-upstream-check.ts | \
       packages/opencode/test/litrev/upstream-check.test.ts)
         ;;

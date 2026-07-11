@@ -46,6 +46,7 @@
   },
   "limitations": [
     "This committed extract makes the asserted results reviewable; it does not replace the retained local SQLite database, UI snapshot, logs, or executable.",
-    "The retained executable was rebuilt after the live smoke and includes a later reviewed official filesystem-search cache change plus verifier-only LitRev changes, so it is not claimed to be the byte-identical executable used during the smoke."
+    "The retained executable was rebuilt after the live smoke and includes a later reviewed official filesystem-search cache change plus verifier-only LitRev changes, so it is not claimed to be the byte-identical executable used during the smoke.",
+    "Final Synara source also includes a later reviewed official provider task-tracking update that touches OpenCode adapter event handling. The complete source and provider-adapter suites passed, but this update is not claimed to have been part of the earlier live UI smoke."
   ]
 }
