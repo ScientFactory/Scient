@@ -32,8 +32,8 @@ decision.
 ## Execution Result
 
 **2026-07-11 result: passed with one documented execution-order correction.**
-LitRev now owns public Synara and OpenCode forks under `yaacovcorcos`, each has
-a writable `origin` and a fetch-only official `upstream`, Synara carries an
+LitRev now owns public Synara and OpenCode forks under `yaacovcorcos`, each with
+a writable `origin` and a fetch-only official `upstream`. Synara carries an
 isolated LitRev development identity, and an owned OpenCode build passed the
 constrained Synara compatibility smoke. Goose remained outside the execution
 scope and is assigned in full to Gate 1.6.

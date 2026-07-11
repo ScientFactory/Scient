@@ -145,7 +145,7 @@ kernel-first:
    LitRev's agent layer, not as replacements for LitRev's agent contract.
 6. Use LitRev-owned forks as the writable source remotes, while preferring
    upstream binaries, SDKs, CLIs, configuration, sidecars, adapters, and
-   extensions over core modifications. An owned fork may remain upstream
+   extensions over core modifications. An owned fork may remain upstream-
    aligned. Use divergent core changes only when LitRev intentionally takes
    ownership of a modified product surface and accepts cherry-pick updates.
 7. Normalize every engine through a LitRev-owned Agent Gateway: scoped context,
