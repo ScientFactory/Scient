@@ -2,7 +2,7 @@
 
 Status: Draft
 Owner: Yaacov
-Last updated: 2026-07-07
+Last updated: 2026-07-11
 Purpose: Starts the intentionally unfinished build strategy for adapting open-source systems into LitRev without making them product truth.
 Doc type: Planning note
 
@@ -94,6 +94,49 @@ labels must match the research map in
    changes into LitRev-owned records.
 10. Track each source's update strategy before depending on it.
 
+### Owned-Fork Remote Topology
+
+LitRev will own the writable fork of every source it may adapt directly,
+including Synara, OpenCode, and Goose. This is an ownership and safety rule; it
+does not mean every fork should immediately diverge from upstream.
+
+Each active source checkout should use:
+
+```text
+origin   -> LitRev-owned fork; writable
+upstream -> official project; fetch-only, push disabled
+```
+
+Before the first LitRev source change:
+
+1. create the owned fork;
+2. attach it as `origin`;
+3. preserve the official repository as fetch-only `upstream`;
+4. record the baseline upstream commit;
+5. prove the unchanged fork builds or passes its smallest relevant smoke check;
+6. make LitRev changes in narrow, reviewable commits; and
+7. test upstream updates on a temporary sync branch before merging them into the
+   LitRev-maintained branch.
+
+Keep change lanes separable where practical:
+
+- identity and packaging;
+- LitRev adapters and extension seams;
+- LitRev-owned domain UI;
+- unavoidable upstream-core patches; and
+- release or updater configuration.
+
+Synara is expected to carry visible LitRev identity and domain UI. OpenCode is
+an embedded engine, so its standalone desktop branding does not need to change.
+If Gate 1.6 later accepts Goose, apply the same principle unless LitRev decides
+to distribute a standalone Goose-derived application.
+
+An upstream sync should be a deliberate operation: fetch `upstream`, create a
+sync branch from the LitRev-maintained branch, merge the selected upstream
+revision, resolve conflicts without flattening LitRev patches, run the agreed
+smoke suite, review release/security changes, then merge through normal review.
+Do not update production integration directly from an unreviewed upstream head.
+
 Update strategy values:
 
 - `no-upstream` - LitRev owns this part.
@@ -106,6 +149,51 @@ Update strategy values:
 - `reference-only` - no dependency or fork.
 - `deferred` - no active update work now.
 
+These values describe adaptation depth. They do not replace the owned-fork
+remote topology above.
+
+## Gate 1.5: Synara And OpenCode Fork Preparation
+
+The executable plan, evidence requirements, and pass/fail criteria live in
+[`gate-1-5-execution-plan.md`](gate-1-5-execution-plan.md).
+
+**2026-07-11 result: passed.** LitRev now owns public, upstream-connected
+Synara and OpenCode forks; Synara has an isolated LitRev development identity;
+and the owned OpenCode build passed the constrained Synara smoke. The exact
+history, checks, and documented execution-order correction are in the
+[`Gate 1.5 report`](../../lab/notes/gate-1-5-execution-report-2026-07-11.md).
+
+This preparation pass established:
+
+1. Created owned forks for Synara and OpenCode and attached them as `origin`;
+   kept official repositories as fetch-only `upstream`.
+2. Established repeatable upstream verification and a baseline check per fork.
+3. Applied a narrow Synara identity/namespace layer on auditable current-
+   upstream ancestry without mixing identity with the upstream merge.
+4. Proved the owned OpenCode build remains compatible with Synara's existing
+   adapter and constrained approval/transcript behavior.
+
+Gate 1.5 was preparation for implementation, not a new product-planning phase.
+Its durable output is the maintained Synara/OpenCode fork topology, an
+upstream-safe Synara identity layer, the owned OpenCode compatibility result,
+and repeatable upstream verifiers. Runtime homes and smoke artifacts are
+evidence, not product architecture.
+
+## Gate 1.6: Goose Fork And ACP Boundary
+
+All Goose execution work is deferred to Gate 1.6, including:
+
+- creating and attaching the owned Goose repository;
+- building and releasing the owned-fork Goose binary;
+- implementing the ACP-over-stdio adapter spike;
+- testing approval, cancellation, tool-event, and session behavior;
+- enforcing and proving outside-project path denial;
+- deciding Goose runtime-state and credential isolation; and
+- deciding whether Goose is accepted as a LitRev engine.
+
+The completed source-depth inspection is research input for Gate 1.6, not a
+Gate 1.5 deliverable or acceptance condition.
+
 Stop relying on a forked workbench if it forces LitRev to model research projects
 as coding sessions, Git worktrees, provider chats, or engine-owned artifacts.
 
@@ -113,7 +201,8 @@ as coding sessions, Git worktrees, provider chats, or engine-owned artifacts.
 
 - License and attribution review for any copied code, fork, embedded engine, or
   bundled dependency.
-- Source-depth review of Synara, OpenCode, and Goose integration seams.
+- Source-depth review of Synara and OpenCode integration seams. Goose
+  integration review belongs only to Gate 1.6.
 - Source-depth and license review of the science-app components that may become
   more than references, especially Zotero Reader, Zotero Document Worker,
   Paperlib, Tropy, Zettlr, Overleaf, JupyterLab Desktop, Stencila, and the ELN

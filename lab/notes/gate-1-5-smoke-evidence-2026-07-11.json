@@ -1,0 +1,52 @@
+{
+  "schema": "litrev.gate-smoke-evidence/v1",
+  "gate": "1.5",
+  "recordedAt": "2026-07-11T18:52:00+03:00",
+  "scope": "Owned OpenCode binary through the maintained Synara fork against a synthetic non-Git fixture",
+  "smokeSourceCommits": {
+    "synara": "f3a235f45ad027b7436d3339a336e96ca22074a0",
+    "opencode": "0be0c5aa1df6cc2874b23aa2bd76fc5d5b6f98d4"
+  },
+  "fixture": {
+    "path": "/private/tmp/litrev-gate-1-5-fixture",
+    "files": ["README.md"],
+    "readmeSha256": "054d15459112497cdeb08b5632d02202b72e06180e94bf21eb95b6f529ecbdc0"
+  },
+  "transcripts": [
+    "LITREV_OPENCODE_OWNED_OK /private/tmp/litrev-gate-1-5-fixture",
+    "LITREV_OPENCODE_APPROVAL_OK /private/tmp/litrev-gate-1-5-fixture"
+  ],
+  "runtimeProjection": {
+    "provider": "opencode",
+    "adapter": "opencode",
+    "mode": "approval-required",
+    "stoppedSessions": 2,
+    "resolvedApproval": {
+      "decision": "acceptForSession",
+      "count": 1
+    }
+  },
+  "uiObservation": {
+    "displayName": "LitRev (Dev)",
+    "providerLabel": "OpenCode Custom Current v1.17.18",
+    "approvalStatus": "Approval resolved",
+    "snapshotPath": "lab/runtime/gate-1-5/playwright/session/page-2026-07-11T15-46-14-381Z.yml",
+    "snapshotSha256": "5daf5f666ed96d3adcfa6ce9ac2d23aa9050c0a4c462363685dcaea270b8a065"
+  },
+  "browserConsole": {
+    "path": "lab/runtime/gate-1-5/playwright/session/console-2026-07-11T15-44-24-073Z.log",
+    "sha256": "3bac845cdb4a2a7cdaa0dc222508f31d17861502cf7a22b03bc190c07d3ecbc8",
+    "nonBlockingErrors": [
+      "Two 404 responses for the inherited missing Cursor editor icon endpoint"
+    ]
+  },
+  "cleanup": {
+    "credentialCopyAbsent": true,
+    "managedPortsClosed": [58091, 8943]
+  },
+  "limitations": [
+    "This committed extract makes the asserted results reviewable; it does not replace the retained local SQLite database, UI snapshot, logs, or executable.",
+    "The retained executable was rebuilt after the live smoke and includes a later reviewed official filesystem-search cache change plus verifier-only LitRev changes, so it is not claimed to be the byte-identical executable used during the smoke.",
+    "Final Synara source also includes a later reviewed official provider task-tracking update that touches OpenCode adapter event handling. The complete source and provider-adapter suites passed, but this update is not claimed to have been part of the earlier live UI smoke."
+  ]
+}
