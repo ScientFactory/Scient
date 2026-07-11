@@ -60,6 +60,7 @@ verify_post_smoke_synara_changes() {
       apps/web/src/*/*.test.tsx | \
       apps/web/src/*/*/*.test.ts | \
       apps/web/src/*/*/*.test.tsx | \
+      apps/web/src/components/ChatView.browser.tsx | \
       packages/shared/src/git.test.ts | \
       apps/desktop/src/main.ts | \
       scripts/build-desktop-artifact.ts | \
