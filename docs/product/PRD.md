@@ -3,7 +3,7 @@
 Status: Accepted
 Version: v1
 Owner: Yaacov
-Last updated: 2026-07-06
+Last updated: 2026-07-12
 Purpose: Defines LitRev's product direction, core capabilities, user experience principles, and product constraints.
 Doc type: Product truth
 
@@ -366,6 +366,20 @@ Durable agent runs should preserve what was asked, what context was used, what a
 Agents, integrations, collaborators, and local tools should not widen their own authority. High-impact actions need permission scope, review state, provenance, and recovery paths before they affect trusted project work.
 
 The PRD should define the user/product contract for safe automation, not runtime architecture, model routing internals, executor storage, or external connector design.
+
+## Model Access, Choice, And Routing
+
+LitRev should initially support three ways to access models:
+
+- connect a supported official provider account or subscription where the provider permits that use;
+- bring a user-owned provider API key, with provider usage billed directly to the user; and
+- use a LitRev-managed model plan, with LitRev providing and billing for access.
+
+Researchers should be able to see which access source, provider, and model a task will use. Provider-connected and bring-your-own-key access should expose the models LitRev can support through that provider, while LitRev-managed access should use a smaller evaluated portfolio in which each model has a clear role.
+
+Manual model choice should remain available. LitRev should later offer automatic task routing that selects the most cost-efficient eligible model expected to meet the task's scientific-quality, capability, privacy, tool, reliability, and latency requirements. Automatic choices and fallbacks must remain visible, explainable, and subject to researcher or project controls.
+
+Commercial options, rollout order, model selection, provider contracts, and routing architecture belong in planning, research, and architecture documents rather than this PRD.
 
 ## Project Memory And Continuity
 
