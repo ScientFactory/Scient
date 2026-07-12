@@ -2,7 +2,7 @@
 
 Status: Active
 Owner: Yaacov
-Last updated: 2026-06-27
+Last updated: 2026-07-11
 Purpose: Maps where LitRev external research, source evaluations, and spike reports live.
 Doc type: Repo orientation
 
@@ -14,3 +14,4 @@ Current subfolders:
 
 - `source-evaluations/` - evaluations of external tools, systems, libraries, or papers.
 - `spike-reports/` - reports from implementation or architecture spikes.
+- `visual-references/` - indexed screenshots and visual UI ideas kept as raw design research.
