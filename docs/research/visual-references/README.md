@@ -8,16 +8,20 @@ Doc type: Repo orientation
 
 Visual references are grouped by the product surface or interaction they illustrate. Each category owns its own index, descriptive filenames, source context, observations, and retrieval terms. Historical LitRev material must be labeled clearly so it cannot be mistaken for current product direction.
 
-These references are research evidence. They are not accepted LitRev design direction and do not imply permission to copy another product.
+These references are research evidence kept for later comparison and inspiration. They are not accepted LitRev design direction, selected colors, design tokens, or implementation requirements, and they do not imply permission to copy another product.
 
 ## Categories
 
 | Category | Contents | Index |
 | --- | --- | --- |
 | Authentication | Login, sign-up, account-entry routing, identity-provider, consent, and account-continuation patterns | [Browse authentication references](authentication/README.md) |
+| Agent workflows | Agent task plans, step trackers, progress states, and composer-adjacent workflow surfaces | [Browse agent workflow references](agent-workflows/README.md) |
+| Dashboards and settings | Administrative dashboards, configuration views, status communication, hierarchy, spacing, surfaces, and visual tone | [Browse dashboard and settings references](dashboard-and-settings/README.md) |
+| Dialogs and overlays | Important prompts, blocking modals, confirmations, warnings, interruptions, and other layered interactions | [Browse dialog and overlay references](dialogs-and-overlays/README.md) |
 | Identity | LitRev symbol sources, adopted scaffold identity, and unselected visual alternatives | [Browse identity references](identity/README.md) |
+| Motion and interaction | Hover responses, transitions, animated previews, state changes, and other time-dependent interface behavior | [Browse motion and interaction references](motion-and-interaction/README.md) |
 
-Future references about unrelated surfaces should receive their own descriptive category rather than being added to `authentication/`.
+Future references should be indexed by the product surface or interaction they primarily illustrate. Visual qualities such as color may be noted inside a reference without making that image a selected LitRev palette.
 
 ## Adding A Reference
 

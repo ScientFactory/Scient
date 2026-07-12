@@ -2,7 +2,7 @@
 
 Status: Draft
 Owner: Yaacov
-Last updated: 2026-06-27
+Last updated: 2026-07-12
 Purpose: Defines LitRev's testing philosophy before implementation-specific commands, lanes, and CI gates exist.
 Doc type: Testing doctrine
 
@@ -89,6 +89,14 @@ Scientific integrity needs dedicated coverage. Claims, citations, source records
 Scientific runtime execution must be reproducible where possible. Tests and verification should preserve pinned environments, captured inputs, deterministic outputs where practical, and artifact provenance.
 
 Performance is part of correctness for core workflows. A feature that only works on toy projects is not done.
+
+## Model Evaluation
+
+External benchmarks are comparative research, not release proof. Before LitRev assigns final production model roles or enables automatic routing, it must run a replayable internal evaluation suite on representative LitRev workflows.
+
+That later suite should cover scientific faithfulness, citations and evidence, mathematics, data analysis, coding, tools and agents, conversation and writing, long context, and vision or document work. Runs should preserve the model and provider version, reasoning settings, prompts and fixtures, tools, attempts, scoring method, latency, and cost.
+
+Define the detailed methodology in `docs/quality/model-evaluation-methodology.md` when real LitRev workflows and fixtures exist. Until then, external benchmark analysis belongs in `docs/research/source-evaluations/model-benchmark-map.md`.
 
 ## Architecture Feedback
 

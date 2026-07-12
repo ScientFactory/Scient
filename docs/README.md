@@ -6,7 +6,7 @@ Last updated: 2026-07-12
 Purpose: Maps the LitRev documentation structure and where each kind of information belongs.
 Doc type: Repo orientation
 
-LitRev is currently documentation-first. This structure gives product, architecture, planning, research, development, and operations material clear homes without pretending the implementation already exists.
+LitRev is currently documentation-first. This structure gives LitRev product, architecture, planning, research, development, and operations material clear homes without pretending the implementation already exists. It is not currently the unrestricted memory of the whole company; the proposed connected-company boundary lives in [Repository Scope And Company Memory](planning/repository-scope-and-company-memory.md).
 
 Start here:
 

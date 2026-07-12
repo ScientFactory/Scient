@@ -28,6 +28,12 @@ Optimize for long-term quality. Prefer the correct, maintainable solution even w
 
 Place documentation deliberately. Before creating a new document, decide where the information belongs in the existing documentation structure. Prefer updating the canonical existing document over creating a duplicate. If a new document is needed, give it the required metadata and link it from the relevant index.
 
+Capture durable future context, not documentation volume. Preserve consequential decisions, constraints, interfaces, evidence, hard-won lessons, and repeated explanations. Do not promote every chat, meeting, transcript, or generated summary into repository knowledge.
+
+AI may draft documentation, but it is not the accountable owner and cannot confer acceptance. Preserve uncertainty and specific reasoning for human review. When authoritative sources conflict, surface the contradiction and route it to the owning person or document instead of smoothing it into false agreement.
+
+Keep this repository within its LitRev product and project boundary. Do not add company-wide finance, legal, people, customer-record, or cross-product authority here without an accepted repository-scope decision. Do not commit secrets or sensitive personal, customer, employee, or regulated data.
+
 ## Source Documents
 
 Current important documents:
