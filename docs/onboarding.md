@@ -24,6 +24,8 @@ LitRev is a local-first, cloud-mirrored scientific workspace where researchers, 
 
 This repository is still documentation-first. It contains accepted product direction, evolving architecture and planning, source-backed research, quality principles, and controlled lab experiments. It does not yet contain the complete LitRev application or all of the development and operational workflows that the documents anticipate.
 
+The repository currently owns LitRev product and project knowledge. It is not yet the general memory for company strategy, finance, legal, people, customer records, or cross-product authority. A proposed connected-company model is documented in [Repository Scope And Company Memory](planning/repository-scope-and-company-memory.md), but it does not change the current boundary.
+
 Keep that maturity boundary in mind throughout onboarding:
 
 - accepted product direction describes what LitRev should become;
@@ -149,6 +151,8 @@ The shared journey already includes the [Documentation index](README.md) and [Do
 3. Read the target document in full, including its metadata and document rules.
 4. Decide whether the material is product truth, architecture direction, an architecture decision, planning, research evidence, current implementation, or a future home.
 5. Update the existing canonical document when it has a proper home; create a new document only when it does not.
+
+If the material concerns company-wide strategy, finance, legal, people, customer records, or cross-product authority, read [Repository Scope And Company Memory](planning/repository-scope-and-company-memory.md) and do not create a new LitRev folder until that broader repository scope is accepted.
 
 ## How To Reorient Before New Work
 

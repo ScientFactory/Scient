@@ -22,6 +22,14 @@ Repo-local `SKILL.md` files are exempt from this metadata block. They must use p
 
 Use a real owner when possible. For now, use `Yaacov` unless a real person or team is responsible for the document.
 
+## Human Accountability And AI Assistance
+
+AI may help interview, draft, organize, compare, and reconcile documentation. It is never the accountable owner and cannot make material accepted merely by writing it confidently.
+
+The named owner is responsible for the document's direction and maintenance. Before material becomes `Accepted` or `Active`, a responsible human must review it closely enough to stand behind its claims, boundaries, status, and placement.
+
+Preserve specific reasoning, exceptions, uncertainty, and hard-won context. Do not let AI smooth useful detail into generic prose or hide missing evidence behind polished language.
+
 ## Status Values
 
 - `Placeholder` - future home; not an accepted decision or implemented behavior.
@@ -79,6 +87,24 @@ Keep root files special and minimal:
 
 Do not turn root files into broad planning or architecture documents.
 
+## Repository Scope And Connected Knowledge
+
+This policy governs durable documentation in the LitRev repository. The repository currently owns LitRev product and project knowledge; it is not the unrestricted memory of the whole company.
+
+Company, commercial, market, or customer material may live here when it directly informs LitRev and is placed as product truth, planning, research, architecture, or another existing type. Company-wide strategy, finance, legal, people, customer records, and cross-product authority require a separately accepted home and authority model.
+
+A broader company memory may connect to LitRev through links and shared conventions without living in the same repository. Connected context does not override the nearest authoritative source.
+
+The current scope recommendation and unresolved structural choices live in `docs/planning/repository-scope-and-company-memory.md`.
+
+## Knowledge Selection Rules
+
+Create durable documentation when it will provide future context: an important decision and its reasoning, a durable principle or constraint, an owned interface or process, source-backed research, a hard-won lesson, a repeated explanation, or knowledge at real risk of disappearing.
+
+Do not preserve every meeting, chat, transcript, task trace, or generated summary by default. Treat those as inputs. Promote only the parts that have a durable owner, purpose, evidence boundary, and correct home.
+
+Documentation volume is not a quality measure. Prefer a small coherent knowledge system over a large archive that obscures authority.
+
 ## Evidence Rules
 
 Durable factual claims should be grounded in one of:
@@ -92,6 +118,16 @@ Durable factual claims should be grounded in one of:
 If a claim is inferred, speculative, unverified, or an open question, label it clearly.
 
 Claims about current code must cite repo paths or verified commands. External tool evaluations should preserve source links, inspection date, and license when relevant. Model answers are research evidence unless promoted into product truth, architecture direction, or an accepted decision.
+
+Do not add one document-level confidence field when claims inside the document have different evidence. Label uncertainty where it occurs and preserve the evidence or verification method needed to evaluate it.
+
+## Context And Navigation Rules
+
+Every durable document must have an understandable owning area. Area indexes should make durable documents discoverable, and documents whose authority could be confused should link to the governing source rather than copy its content.
+
+Context should inherit through placement, indexes, and links: specific work should be traceable to the system, project, product requirement, decision, evidence, or policy that gives it meaning. Do not force every document to repeat the entire hierarchy.
+
+Keep durable knowledge readable by humans. Machine-readable metadata and automation may support navigation, but they must not replace a human-auditable document.
 
 ## Placeholder Rules
 
@@ -114,6 +150,8 @@ Change document status deliberately:
 - `Historical` is for preserved context that is no longer current guidance.
 
 When a document's meaning changes, update `Last updated`.
+
+Recheck a document when the decision, implementation, external source, provider, metric, process, or evidence it depends on materially changes. Update, deprecate, supersede, or mark it historical according to its real role. Do not change dates merely to simulate freshness.
 
 Planning notes, research evidence, and implementation candidates are not canonical by themselves. They become canonical only when promoted into product truth, architecture direction, current implementation docs, or accepted decision records.
 
@@ -138,6 +176,12 @@ An `Update Policy` should define:
 - what kinds of changes require updates to this document
 
 Do not add boilerplate `Document Rules` sections to small indexes, placeholders, or templates unless the boundary needs clarification.
+
+## Conflict Rules
+
+When governing or factual sources disagree, do not choose silently and do not write a smooth synthesis that hides the disagreement.
+
+Identify the conflicting sources, state the contradiction precisely, preserve the relevant evidence, and route the unresolved question to the person or document that owns the decision. Dependent material should not present either side as settled until the conflict is resolved.
 
 ## Architecture Decision Rules
 
@@ -183,6 +227,10 @@ When the user says "remember this" or repeats an instruction, classify it before
 Put the information in the correct durable document. If it is not yet accepted project truth, label it as a candidate, draft, placeholder, or planning note.
 
 Do not create tool-specific memory folders such as `.factory/` for project authority. If local or private preference files are used later, they must remain advisory and must not override repo documentation.
+
+## Sensitive Information Rules
+
+Do not commit secrets or sensitive personal, customer, employee, or regulated data. Keep restricted material in an appropriate controlled system and link to it when useful.
 
 ## Truth Rules
 

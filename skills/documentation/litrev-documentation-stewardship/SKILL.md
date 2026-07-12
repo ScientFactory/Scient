@@ -1,6 +1,6 @@
 ---
 name: litrev-documentation-stewardship
-description: Apply LitRev's documentation policy to create, update, review, move, promote, retire, and reconcile repository documentation and progress records. Use for documentation audits, placement, metadata or status changes, placeholder activation, index maintenance, durable decision capture, and documentation resulting from product, architecture, research, implementation, or operations. Do not use for product analysis alone, code changes without documentation impact, or read-only status lookup.
+description: Apply LitRev's documentation policy to create, update, review, move, promote, retire, and reconcile repository documentation and progress records. Use for documentation audits, repository-scope and placement questions, AI-assisted durable knowledge capture, metadata or status changes, placeholder activation, index maintenance, conflict or drift reconciliation, and documentation resulting from product, architecture, research, implementation, or operations. Do not use for product analysis alone, code changes without documentation impact, or read-only status lookup.
 
 ---
 
@@ -9,6 +9,8 @@ description: Apply LitRev's documentation policy to create, update, review, move
 ## Core Judgment
 
 Preserve one coherent, truthful project knowledge system. Update the existing owner before creating a new document, and keep accepted truth distinct from proposals, planning, research, placeholders, experiments, and implementation.
+
+Capture only knowledge that creates durable future context. AI may draft and organize it, but a real human owns accepted or active material.
 
 In the current documentation-first phase, repository documents are the main durable record of project direction and state.
 
@@ -35,8 +37,9 @@ Do not edit in `review` or `plan` mode unless the user explicitly expands the re
 Always:
 
 1. Inspect the worktree and preserve unrelated changes.
-2. Read the complete target document, including metadata, document rules, and any update policy.
-3. Read the owning area index and any canonical source the target depends on.
+2. Confirm that the material belongs inside the current LitRev repository.
+3. Read the complete target document, including metadata, document rules, and any update policy.
+4. Read the owning area index and any canonical source the target depends on.
 
 Then load only what the task requires:
 
@@ -52,14 +55,15 @@ Ask only when a missing answer changes authority, placement, privacy, or permiss
 
 ## Apply The Workflow
 
-1. Classify the material using the narrowest accurate type in the documentation policy. Split it only when different authorities should own different parts.
-2. Find the current owner. Prefer updating it and linking from dependent documents.
-3. Choose a truthful status and update `Last updated` when the document's meaning changes. Never mark material `Accepted` without explicit acceptance or existing evidence of acceptance.
-4. Preserve uncertainty. Label drafts, proposals, assumptions, open questions, and unverified findings.
-5. Make the narrowest coherent edit. Use clear current-state language and repository-relative links.
-6. Update the owning index when adding, moving, renaming, superseding, or deprecating a durable document.
-7. Search for directly affected references and stale claims. Reconcile only those surfaces.
-8. If governing sources conflict, do not choose silently. Report the contradiction and route it to the owning document or open-question surface.
+1. Decide whether the material creates durable future context. Do not promote raw chat, meeting, transcript, or task output by default.
+2. Classify it using the narrowest accurate type in the documentation policy. Split it only when different authorities should own different parts.
+3. Find the current owner. Prefer updating it and linking from dependent documents. AI is not the accountable owner.
+4. Choose a truthful status and update `Last updated` when the document's meaning changes. Never mark material `Accepted` or `Active` without human authority or existing evidence of it.
+5. Preserve uncertainty, exact reasoning, exceptions, and source context. Label drafts, proposals, assumptions, open questions, and unverified findings.
+6. Make the narrowest coherent edit. Use clear current-state language and repository-relative links.
+7. Update the owning index when adding, moving, renaming, superseding, or deprecating a durable document.
+8. Search for directly affected references, changed dependencies, and stale claims. Reconcile only those surfaces.
+9. If governing sources conflict, do not choose silently or synthesize false agreement. State the contradiction and route it to the owning person, document, or open-question surface.
 
 Keep raw ideas in `docs/planning/idea-inbox.md` until evaluated. Keep temporary experiment evidence under `lab/` until promoted. Keep repeated repository-wide agent behavior in `AGENTS.md`; use a project skill for a repeated task-specific workflow.
 
@@ -92,13 +96,15 @@ Distinguish planned, in-progress, completed, verified, deferred, blocked, reject
 Before finishing, check:
 
 1. Metadata, status, purpose, document type, content, and authority agree.
-2. Placement follows the documentation policy and canonical truth is not duplicated.
-3. Planned, proposed, experimental, implemented, and historical material remain distinct.
-4. New or changed links resolve and affected indexes are current.
-5. Renamed, moved, or retired paths have no stale references.
-6. Implementation claims are source-backed, verified, or explicitly labeled inferred.
-7. The final diff contains only intended changes and leaves unrelated work untouched.
-8. `git diff --check` passes and the changed documents read coherently in their real order.
+2. The material belongs in the LitRev repository and has a real accountable owner where required.
+3. Placement follows the documentation policy, context is navigable, and canonical truth is not duplicated.
+4. Planned, proposed, experimental, implemented, and historical material remain distinct.
+5. Contradictions and uncertainty remain visible instead of being smoothed away.
+6. New or changed links resolve and affected indexes are current.
+7. Renamed, moved, retired, or dependency-changed paths have no stale references or claims.
+8. Implementation claims are source-backed, verified, or explicitly labeled inferred.
+9. The final diff contains only intended changes and leaves unrelated work untouched.
+10. `git diff --check` passes and the changed documents read coherently in their real order.
 
 Use `rg`, scoped diffs, and `git status --short` for targeted verification. Do not invent repository-specific validation commands.
 

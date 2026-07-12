@@ -2,9 +2,9 @@
 
 Status: Draft
 Owner: Yaacov
-Last updated: 2026-07-11
+Last updated: 2026-07-12
 Purpose: Records the first technical inspection of Synara as LitRev's desktop base and defines how LitRev should own the product boundary while connecting OpenCode, Goose, and later agents.
-Doc type: Research evidence / planning note
+Doc type: Research evidence
 
 ## Source Snapshot
 

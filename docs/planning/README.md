@@ -19,3 +19,4 @@ Current planning docs:
 - `model-access-and-routing-evolution.md` - priorities and open choices for provider-connected, bring-your-own-key, LitRev-managed, and automatically routed model access.
 - `open-source-adaptation-build-strategy.md` - unfinished planning note for the fork/adapter/upstream strategy that turns source evaluations into a first build path.
 - `product-planning.md` - active product planning after PRD acceptance, including roadmap seeds, candidate features, open product questions, and cross-document handoffs.
+- `repository-scope-and-company-memory.md` - proposed boundary between this LitRev product repository and a future connected company memory.
