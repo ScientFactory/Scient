@@ -1,8 +1,8 @@
 # Gate 1.5 Execution Report
 
-Status: Active
+Status: Historical
 Owner: Yaacov
-Last updated: 2026-07-11
+Last updated: 2026-07-12
 Purpose: Records the executed Synara and OpenCode ownership, updateability, identity-isolation, and compatibility gate.
 Doc type: Research evidence
 
@@ -12,7 +12,8 @@ Doc type: Research evidence
 Synara and OpenCode forks, auditable official-upstream ancestry, an isolated
 LitRev desktop identity, an owned OpenCode binary contract, and repeatable
 upstream verifiers. The generated runtime homes, build caches, fixture, logs,
-and browser snapshots are retained evidence, not product architecture.
+and browser snapshots were retained through review, then deleted after explicit
+user approval on 2026-07-12; they were evidence, not product architecture.
 
 Goose was not implemented, built, connected, assigned credentials, given an
 owned remote, or adopted in this gate. The pre-existing read-only inspection
@@ -29,6 +30,11 @@ boundary remain a later LitRev-owned implementation decision.
 |---|---|---|---|---|---|
 | Synara | Public GitHub fork, `yaacovcorcos/synara` | `Emanuele-web04/synara`, `main` | `codex/gate-1-5`; [PR #1](https://github.com/yaacovcorcos/synara/pull/1), merged as `536064b23d4211f33a812a1d6303c7029b9ed146` | `3267a2fbf430b733a6d7ff1759f6689023d85689` | `77d0854c3cbfdf579e90ed61577a70553f5c3fa6` |
 | OpenCode | Public GitHub fork, `yaacovcorcos/opencode` | `anomalyco/opencode`, `dev` | `gate-1-5`; [PR #1](https://github.com/yaacovcorcos/opencode/pull/1), merged as `f338a9c3478940925cc6cb799f5b7cb807f3a16d` | `2db96c9b7e064c936836599a5c208f14dfa47ac0` | `6b252af6f5324e11b72cf721a8278a345a730c40` |
+
+After Gate acceptance, [Synara PR #2](https://github.com/yaacovcorcos/synara/pull/2)
+removed remaining LitRev-owned developer and dormant updater copy, broadened
+the identity regression guard, passed the complete maintained Synara checks,
+and merged as `baa7b3d8d604a72467f2a1f575af7c7d85daf94d`.
 
 Both checkouts use this topology:
 
@@ -275,9 +281,8 @@ canonical LitRev object model or scientific kernel.
 
 ## Runtime Evidence Inventory
 
-The ignored evidence tree is retained at `lab/runtime/gate-1-5/` pending the
-user's explicit decision. At closeout it occupies approximately **18 GB** and
-contains **470,290 files**. It includes:
+The ignored evidence tree at `lab/runtime/gate-1-5/` occupied approximately
+**18 GB** and contained **470,290 files** at closeout. It included:
 
 - exact Bun 1.3.12 and 1.3.14 toolchains;
 - current-upstream Synara and OpenCode worktrees and dependency/build caches;
@@ -288,19 +293,21 @@ contains **470,290 files**. It includes:
 - local UI smoke state.
 
 A compact committed smoke extract and SHA-256 manifest record the source
-heads, SQLite database, retained executable, selected source logs, UI snapshot,
+heads, SQLite database, historical executable, selected source logs, UI snapshot,
 console log, fixture, and pinned Bun executables. CI verifies the committed
-extract and manifest structure; the full parent verifier additionally hashes
-the locally retained artifacts. This makes the durable claims independently
-reviewable without pretending that a fresh clone contains the approximately
-18 GB live-smoke environment. The manifest also states that the final retained
-OpenCode executable is not the byte-identical binary used during the earlier
-live UI smoke.
+extract and manifest structure. Before deletion, the full parent verifier also
+authenticated the local artifacts against that inventory. The local files,
+temporary fixture, registered OpenCode worktree, caches, and toolchains were
+deleted on 2026-07-12 after all Gate pull requests and the post-closeout Synara
+copy fix were merged. The manifest retains their historical paths, sizes, and
+digests without implying that a fresh clone or the current workstation still
+contains the live-smoke environment.
 
-The evidence has forensic value if the pull requests need review or a failure
-must be reproduced, but the dependency caches account for most of its size.
-It has not been deleted or moved outside the lab because the execution plan
-requires explicit user direction to retain, archive, or delete it.
+The dependency caches and generated worktrees accounted for nearly all of the
+space and were reproducible from the recorded source history. Deletion gives up
+inspection of the exact historical local SQLite and UI artifacts, but does not
+remove source history, hosted checks, the committed smoke extract, or the Gate
+decision.
 
 ## License, Attribution, And Release Boundaries
 
@@ -325,17 +332,18 @@ review is still required. Automatic LitRev desktop updates remain disabled.
 - The missing Cursor icon endpoint remains a non-blocking inherited UI issue.
 - Production release identity, signing, updater repository, and migration from
   any existing user data are deliberately unimplemented.
-- The large retained runtime evidence needs an explicit retain/archive/delete
-  decision after pull-request review.
+- Exact local SQLite, UI, log, toolchain, and executable artifacts are no longer
+  retained after the explicit 2026-07-12 cleanup; future live reproduction must
+  regenerate an isolated runtime from the recorded source history.
 - Goose owned repository, build, ACP integration, permissions, credentials,
   runtime isolation, and adoption decision are all Gate 1.6 work.
 
 ## Recommendation
 
-Gate 1.5 is accepted. The OpenCode and Synara source pull requests are merged;
-the parent LitRev record is ready to merge after its final evidence check. The
-fork and identity work is real maintained infrastructure, not a disposable
-spike.
+Gate 1.5 is accepted. The OpenCode, Synara, and parent LitRev Gate pull requests
+are merged, as is the post-closeout Synara identity-copy maintenance. The fork
+and identity work is real maintained infrastructure, not a disposable spike;
+only its generated local runtime evidence was deleted.
 
 After acceptance, handle Goose only in Gate 1.6. Do not let that gate redesign
 the LitRev scientific truth boundary; Goose, like OpenCode, must remain a

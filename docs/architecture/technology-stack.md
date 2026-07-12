@@ -2,7 +2,7 @@
 
 Status: Proposed
 Owner: Yaacov
-Last updated: 2026-07-11
+Last updated: 2026-07-12
 Purpose: Records LitRev's current technology stack direction and open implementation decisions.
 Doc type: Architecture direction
 
@@ -68,10 +68,12 @@ of LitRev's owned Synara fork at
 `codex/gate-1-5` is at
 `77d0854c3cbfdf579e90ed61577a70553f5c3fa6`, based on tested official upstream
 `3267a2fbf430b733a6d7ff1759f6689023d85689`, and is merged into owned `main` at
-`536064b23d4211f33a812a1d6303c7029b9ed146`. The owned OpenCode fork and exact
+`536064b23d4211f33a812a1d6303c7029b9ed146`. Post-closeout LitRev copy and
+identity-guard maintenance is merged into owned `main` at
+`baa7b3d8d604a72467f2a1f575af7c7d85daf94d`. The owned OpenCode fork and exact
 tested commit are recorded in `lab/external/sources.lock.md`; its Gate 1.5
-source/build worktree remains under ignored runtime evidence rather than parent
-Git history.
+source/build worktree and other ignored runtime evidence were deleted after
+accepted closeout rather than retained as parent Git history.
 
 The scaffold currently provides:
 

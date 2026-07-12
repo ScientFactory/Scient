@@ -2,7 +2,7 @@
 
 Status: Active
 Owner: Yaacov
-Last updated: 2026-07-11
+Last updated: 2026-07-12
 Purpose: Maps external and historical internal UI screenshots into retrieval-friendly categories for later product-design research.
 Doc type: Repo orientation
 
@@ -15,6 +15,7 @@ These references are research evidence. They are not accepted LitRev design dire
 | Category | Contents | Index |
 | --- | --- | --- |
 | Authentication | Login, sign-up, account-entry routing, identity-provider, consent, and account-continuation patterns | [Browse authentication references](authentication/README.md) |
+| Identity | LitRev symbol sources, adopted scaffold identity, and unselected visual alternatives | [Browse identity references](identity/README.md) |
 
 Future references about unrelated surfaces should receive their own descriptive category rather than being added to `authentication/`.
 

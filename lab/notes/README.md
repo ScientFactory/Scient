@@ -2,7 +2,7 @@
 
 Status: Draft
 Owner: Yaacov
-Last updated: 2026-07-11
+Last updated: 2026-07-12
 Purpose: Holds temporary inspection notes and lab decisions before promotion into durable docs.
 Doc type: Planning note
 
@@ -14,7 +14,7 @@ integration observations, and temporary lab decisions.
 ## Current Notes
 
 - `gate-1-5-execution-report-2026-07-11.md` - executed owned-fork, Synara identity-isolation, owned OpenCode compatibility, updateability, cleanup, and Gate 1.5 pass evidence; Goose remains Gate 1.6 work.
-- `gate-1-5-evidence-manifest-2026-07-11.json` - machine-verifiable source heads and SHA-256 inventory for committed and locally retained Gate 1.5 evidence.
+- `gate-1-5-evidence-manifest-2026-07-11.json` - machine-verifiable source heads, retained committed evidence, and the historical SHA-256 inventory of local evidence deleted after accepted closeout.
 - `gate-1-5-smoke-evidence-2026-07-11.json` - compact, committed extract of the live owned-binary compatibility result and its limitations.
 - `synara-gate-1-baseline-2026-07-11.md` - end-to-end inherited-scaffold baseline, official-CLI correction run, and Gate 1 pass result.
 - `synara-first-inspection-2026-07-07.md` - first source inspection of Synara as desktop base, OpenCode first-agent path, Goose integration path, and LitRev ownership boundary.

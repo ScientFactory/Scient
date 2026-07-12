@@ -48,9 +48,12 @@ then layered the LitRev identity in isolated commits. This is the maintained
 history. It avoids a throwaway identity implementation against obsolete seams.
 The repeatable upstream verifier now enforces remotes, divergence, identity,
 updater safety, source cleanliness, and the source check suite for the next
-real upstream sync. The cross-repository compatibility and retained-evidence
-checks live in `lab/scripts/verify-gate-1-5.sh`, keeping Synara and OpenCode
-source verifiers honest about their repository-local scope.
+real upstream sync. The cross-repository compatibility and local-evidence
+checks used `lab/scripts/verify-gate-1-5.sh`, keeping Synara and OpenCode source
+verifiers honest about their repository-local scope. After the user-approved
+runtime deletion on 2026-07-12, that command verifies the committed evidence
+record and explains that full local reproduction requires regenerating the
+isolated runtime.
 
 See
 [`lab/notes/gate-1-5-execution-report-2026-07-11.md`](../../lab/notes/gate-1-5-execution-report-2026-07-11.md)
@@ -421,9 +424,9 @@ Gate 1.5 passes only when all are true:
 - [x] No engine session/database is treated as canonical LitRev project truth.
 - [x] Goose source, remotes, builds, adapters, runtime state, and adoption remain
       untouched and explicitly assigned to Gate 1.6.
-- [x] Runtime evidence is inventoried and retained pending explicit user
-      direction; it will be archived or deleted only
-      with explicit user direction.
+- [x] Runtime evidence was inventoried, retained through review, and deleted on
+      2026-07-12 after explicit user direction; the committed extract and
+      historical SHA-256 inventory remain.
 - [x] A dated report gives a clear go/no-go for the next implementation gate.
 
 ## Gate 1.5 Stop Conditions
