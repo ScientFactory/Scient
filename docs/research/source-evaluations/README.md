@@ -10,6 +10,7 @@ Use this folder for structured evaluations of external products, repositories, p
 
 Current files:
 
+- `competitive-landscape.md` - current direct competitors, substitute workflows, specialized alternatives, and integration candidates.
 - `model-benchmark-map.md` - external benchmark coverage, meaning, limitations, and relevance across the candidate model portfolio.
 - `model-portfolio-and-provider-routing.md` - current candidate model portfolio, distinct model roles, and the evidence needed before selection.
 - `open-source-adaptation-map.md` - cross-source synthesis of open-source systems LitRev should study, prototype, adapt, or avoid.
