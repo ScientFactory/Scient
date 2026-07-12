@@ -2,7 +2,7 @@
 
 Status: Active
 Owner: Yaacov
-Last updated: 2026-06-27
+Last updated: 2026-07-12
 Purpose: Defines how LitRev documentation should be created, classified, updated, and trusted.
 Doc type: Documentation policy
 
@@ -17,6 +17,8 @@ Last updated: YYYY-MM-DD
 Purpose: ...
 Doc type: ...
 ```
+
+Repo-local `SKILL.md` files are exempt from this metadata block. They must use portable YAML frontmatter with `name` and `description`, live under `skills/`, and be indexed in `skills/README.md`. Skills are workflow helpers and must not become project authority.
 
 Use a real owner when possible. For now, use `Yaacov` unless a real person or team is responsible for the document.
 

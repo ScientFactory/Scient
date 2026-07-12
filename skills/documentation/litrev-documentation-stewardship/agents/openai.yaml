@@ -1,0 +1,4 @@
+interface:
+  display_name: "LitRev Documentation Stewardship"
+  short_description: "Govern and maintain LitRev project documentation"
+  default_prompt: "Use $litrev-documentation-stewardship to handle this LitRev documentation request in the correct canonical home."

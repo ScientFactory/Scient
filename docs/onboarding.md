@@ -144,10 +144,11 @@ An agent's memory, chat history, or generated summary is not project authority. 
 
 The shared journey already includes the [Documentation index](README.md) and [Documentation Policy](documentation-policy.md). Before changing a durable document:
 
-1. Open the index for the area that should own the information.
-2. Read the target document in full, including its metadata and document rules.
-3. Decide whether the material is product truth, architecture direction, an architecture decision, planning, research evidence, current implementation, or a future home.
-4. Update the existing canonical document when it has a proper home; create a new document only when it does not.
+1. When an agent will manage the documentation, have it read the [LitRev Documentation Stewardship skill](../skills/documentation/litrev-documentation-stewardship/SKILL.md).
+2. Open the index for the area that should own the information.
+3. Read the target document in full, including its metadata and document rules.
+4. Decide whether the material is product truth, architecture direction, an architecture decision, planning, research evidence, current implementation, or a future home.
+5. Update the existing canonical document when it has a proper home; create a new document only when it does not.
 
 ## How To Reorient Before New Work
 
