@@ -15,6 +15,7 @@ These references are research evidence kept for later comparison and inspiration
 | Category | Contents | Index |
 | --- | --- | --- |
 | Authentication | Login, sign-up, account-entry routing, identity-provider, consent, and account-continuation patterns | [Browse authentication references](authentication/README.md) |
+| Agent workflows | Agent task plans, step trackers, progress states, and composer-adjacent workflow surfaces | [Browse agent workflow references](agent-workflows/README.md) |
 | Dashboards and settings | Administrative dashboards, configuration views, status communication, hierarchy, spacing, surfaces, and visual tone | [Browse dashboard and settings references](dashboard-and-settings/README.md) |
 | Dialogs and overlays | Important prompts, blocking modals, confirmations, warnings, interruptions, and other layered interactions | [Browse dialog and overlay references](dialogs-and-overlays/README.md) |
 | Identity | LitRev symbol sources, adopted scaffold identity, and unselected visual alternatives | [Browse identity references](identity/README.md) |
