@@ -2,6 +2,11 @@
   "schema": "litrev.gate-smoke-evidence/v1",
   "gate": "1.5",
   "recordedAt": "2026-07-11T18:52:00+03:00",
+  "retention": {
+    "localRuntimeStatus": "deleted-after-accepted-closeout",
+    "deletedAt": "2026-07-12",
+    "committedExtractStatus": "retained"
+  },
   "scope": "Owned OpenCode binary through the maintained Synara fork against a synthetic non-Git fixture",
   "smokeSourceCommits": {
     "synara": "f3a235f45ad027b7436d3339a336e96ca22074a0",
@@ -45,8 +50,8 @@
     "managedPortsClosed": [58091, 8943]
   },
   "limitations": [
-    "This committed extract makes the asserted results reviewable; it does not replace the retained local SQLite database, UI snapshot, logs, or executable.",
-    "The retained executable was rebuilt after the live smoke and includes a later reviewed official filesystem-search cache change plus verifier-only LitRev changes, so it is not claimed to be the byte-identical executable used during the smoke.",
+    "This committed extract makes the asserted results reviewable; the local SQLite database, UI snapshot, logs, and executable were deleted after accepted closeout on 2026-07-12.",
+    "The historical executable inventory describes a build made after the live smoke with a later reviewed official filesystem-search cache change plus verifier-only LitRev changes. It was never claimed to be the byte-identical executable used during the smoke and is no longer retained.",
     "Final Synara source also includes a later reviewed official provider task-tracking update that touches OpenCode adapter event handling. The complete source and provider-adapter suites passed, but this update is not claimed to have been part of the earlier live UI smoke."
   ]
 }

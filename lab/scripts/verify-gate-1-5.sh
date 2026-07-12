@@ -25,6 +25,14 @@ require_command() {
   command -v "$1" >/dev/null 2>&1 || fail "required command not found: $1"
 }
 
+if [[ ! -d "$repo_root/lab/runtime/gate-1-5" ]]; then
+  require_command node
+  node "$repo_root/lab/scripts/verify-gate-1-5-manifest.mjs"
+  echo "Gate 1.5 committed evidence passed."
+  echo "The user-approved local runtime evidence was deleted after accepted closeout on 2026-07-12."
+  exit 0
+fi
+
 require_file() {
   [[ -f "$1" ]] || fail "required file not found: $1"
 }
@@ -167,4 +175,4 @@ echo "Gate 1.5 verification passed."
 echo "Synara head: $(git -C "$synara_repo" rev-parse HEAD)"
 echo "OpenCode head: $(git -C "$opencode_repo" rev-parse HEAD)"
 echo "Owned OpenCode binary: $($owned_opencode_binary --version)"
-echo "The committed manifest distinguishes the live-smoke commits from reviewed post-smoke source changes and authenticates the retained evidence."
+echo "The committed manifest distinguishes the live-smoke commits from reviewed post-smoke source changes and records the authenticated historical evidence inventory."

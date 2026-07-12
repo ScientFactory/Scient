@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="LitRev symbol">
+  <rect width="512" height="512" fill="#fff"/>
+  <g fill="#fff" stroke="#000" stroke-width="12" stroke-linejoin="miter">
+    <rect x="36" y="36" width="300" height="300"/>
+    <rect x="176" y="176" width="300" height="300"/>
+  </g>
+</svg>

@@ -2,7 +2,7 @@
 
 Status: Active
 Owner: Yaacov
-Last updated: 2026-06-27
+Last updated: 2026-07-12
 Purpose: Defines how agents should work in this early LitRev repository.
 Doc type: Agent protocol
 
@@ -67,7 +67,12 @@ Project-specific skills live under `skills/`.
 
 Use `skills/product/litrev-product-stewardship/SKILL.md` for product management work, including PRD changes, feature analysis, roadmap notes, product decisions, and product research synthesis.
 
-The current Codex runtime install is available at `/Users/yaacov/.codex/skills/litrev-product-stewardship/SKILL.md`.
+Use `skills/documentation/litrev-documentation-stewardship/SKILL.md` when creating, reviewing, moving, promoting, retiring, or reconciling durable documentation and project progress records.
+
+The current Codex runtime installs are available at:
+
+- `/Users/yaacov/.codex/skills/litrev-product-stewardship/SKILL.md`
+- `/Users/yaacov/.codex/skills/litrev-documentation-stewardship/SKILL.md`
 
 Project skills are workflow helpers. They should point agents back to the canonical repo documents and must not override `docs/product/`, `docs/architecture/`, `docs/documentation-policy.md`, or this `AGENTS.md` file.
 

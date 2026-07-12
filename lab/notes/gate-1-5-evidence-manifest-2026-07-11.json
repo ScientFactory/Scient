@@ -2,6 +2,12 @@
   "schema": "litrev.gate-evidence-manifest/v1",
   "gate": "1.5",
   "recordedAt": "2026-07-11T23:38:00+03:00",
+  "retention": {
+    "localArtifactsStatus": "deleted-after-accepted-closeout",
+    "deletedAt": "2026-07-12",
+    "reason": "User-approved post-merge cleanup after committed evidence and source histories were verified",
+    "committedArtifactsStatus": "retained"
+  },
   "sourceHeads": {
     "synara": "77d0854c3cbfdf579e90ed61577a70553f5c3fa6",
     "synaraUpstream": "3267a2fbf430b733a6d7ff1759f6689023d85689",
@@ -25,8 +31,8 @@
   "committedArtifacts": [
     {
       "path": "lab/notes/gate-1-5-smoke-evidence-2026-07-11.json",
-      "size": 2411,
-      "sha256": "f21b438467ff1f691869cdf3de67dcd2642666ba0f450c74d2930ccc086eb127",
+      "size": 2630,
+      "sha256": "e6cd37da7a6beac8fd21499fb8cc89ac1f2caadfea38a920ab8df0b52906f8eb",
       "purpose": "Compact reviewable extract of the live compatibility result"
     }
   ],
@@ -123,5 +129,5 @@
       "exactSmokeArtifact": true
     }
   ],
-  "reproducibilityBoundary": "CI verifies the committed extract and manifest. The full local verifier additionally authenticates retained local evidence; a fresh clone does not reproduce the live UI smoke without regenerating its isolated runtime."
+  "reproducibilityBoundary": "CI verifies the committed extract and manifest. The localArtifacts array is a historical SHA-256 inventory of evidence authenticated before deletion on 2026-07-12; those files are no longer retained. Reproducing the live UI smoke requires regenerating an isolated runtime."
 }

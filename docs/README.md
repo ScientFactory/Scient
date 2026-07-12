@@ -19,6 +19,6 @@ Start here:
 - [Design](design/README.md) - future home for product design principles and UI guidance.
 - [Quality](quality/README.md) - quality principles and testing philosophy.
 - [Planning](planning/README.md) - plans that guide upcoming work.
-- [Research](research/README.md) - external source evaluations, spikes, and raw or synthesized research.
+- [Research](research/README.md) - external source evaluations, spikes, visual references, and raw or synthesized research.
 - [Development](development/README.md) - development documentation once code exists.
 - [Operations](operations/README.md) - operations documentation once operational surfaces exist.
