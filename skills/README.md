@@ -3,17 +3,17 @@
 Status: Active
 Owner: Yaacov
 Last updated: 2026-07-16
-Purpose: Indexes local workflow skills that help agents work on LitRev without becoming project authority.
+Purpose: Indexes local workflow skills that help agents work on PapiLab without becoming project authority.
 Doc type: Repo orientation
 
-This folder keeps LitRev-specific agent skills together so they are easy to find when working on this project.
+This folder keeps PapiLab-specific agent skills together so they are easy to find when working on this project.
 
 Project skills are workflow helpers. They should point agents back to the canonical repo documents and must not override `AGENTS.md`, `docs/product/`, `docs/architecture/`, or `docs/documentation-policy.md`.
 
 ## Skills
 
-- [`documentation/litrev-documentation-stewardship/SKILL.md`](documentation/litrev-documentation-stewardship/SKILL.md) - governed documentation creation, review, placement, promotion, progress routing, reconciliation, and validation.
-- [`product/litrev-product-stewardship/SKILL.md`](product/litrev-product-stewardship/SKILL.md) - product management, PRD, feature analysis, roadmap, and product decision support.
+- [`documentation/papilab-documentation-stewardship/SKILL.md`](documentation/papilab-documentation-stewardship/SKILL.md) - governed documentation creation, review, placement, promotion, progress routing, reconciliation, and validation.
+- [`product/papilab-product-stewardship/SKILL.md`](product/papilab-product-stewardship/SKILL.md) - product management, PRD, feature analysis, roadmap, and product decision support.
 
 ## Adding Skills
 

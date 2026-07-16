@@ -6,7 +6,7 @@ Last updated: 2026-06-27
 Purpose: Defines what should be documented about sharing and collaboration once the model is designed.
 Doc type: Future home
 
-This page will document LitRev's collaboration model when it exists.
+This page will document PapiLab's collaboration model when it exists.
 
 Document here:
 

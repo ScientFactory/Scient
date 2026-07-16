@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Last updated: 2026-07-16
-Purpose: Gives new LitRev collaborators a deliberate reading journey through the project, its repository, and its sources of truth before task-specific work begins.
+Purpose: Gives new PapiLab collaborators a deliberate reading journey through the project, its repository, and its sources of truth before task-specific work begins.
 Doc type: Repo orientation
 
 ## Document Rules
@@ -14,21 +14,21 @@ Use the linked source documents as authority. Do not copy their detailed content
 
 ## Who This Is For
 
-This guide is for anyone joining LitRev work: product collaborators, researchers, designers, engineers, reviewers, and people working through AI agents.
+This guide is for anyone joining PapiLab work: product collaborators, researchers, designers, engineers, reviewers, and people working through AI agents.
 
 Complete the shared reading journey before starting the contribution-area route that matches your work. The task itself should arrive separately, with its own objective, scope, authority, expected output, and validation requirements.
 
 ## Current Project State
 
-LitRev is a local-first, cloud-mirrored scientific workspace where researchers, collaborators, and AI agents should be able to carry a research project from its initial question to publication-ready outputs.
+PapiLab is a local-first, cloud-mirrored scientific workspace where researchers, collaborators, and AI agents should be able to carry a research project from its initial question to publication-ready outputs.
 
-This repository is still documentation-first. It contains accepted product direction, evolving architecture and planning, source-backed research, quality principles, and controlled lab experiments. It does not yet contain the complete LitRev application or all of the development and operational workflows that the documents anticipate.
+This repository is still documentation-first. It contains accepted product direction, evolving architecture and planning, source-backed research, quality principles, and controlled lab experiments. It does not yet contain the complete PapiLab application or all of the development and operational workflows that the documents anticipate.
 
-The repository currently owns LitRev product and project knowledge. It is not yet the general memory for company strategy, finance, legal, people, customer records, or cross-product authority. A proposed connected-company model is documented in [Repository Scope And Company Memory](planning/repository-scope-and-company-memory.md), but it does not change the current boundary.
+The repository currently owns PapiLab product and project knowledge. It is not yet the general memory for company strategy, finance, legal, people, customer records, or cross-product authority. A proposed connected-company model is documented in [Repository Scope And Company Memory](planning/repository-scope-and-company-memory.md), but it does not change the current boundary.
 
 Keep that maturity boundary in mind throughout onboarding:
 
-- accepted product direction describes what LitRev should become;
+- accepted product direction describes what PapiLab should become;
 - proposed or draft architecture describes direction that may still change;
 - planning documents organize possible or upcoming work without becoming product truth;
 - research and lab evidence can inform decisions without becoming accepted architecture or current implementation;
@@ -36,11 +36,11 @@ Keep that maturity boundary in mind throughout onboarding:
 
 ## Documentation Foundation And Placeholders
 
-The repository's documentation structure is an intentional foundation for the project, not a claim that every part of LitRev has already been designed or built. The [Documentation index](README.md) establishes the main knowledge areas, and the [Documentation Policy](documentation-policy.md) defines how material enters those areas and becomes trustworthy. Product, architecture, planning, research, design, quality, development, and operations work should grow on top of this base instead of creating disconnected documents or competing sources of truth.
+The repository's documentation structure is an intentional foundation for the project, not a claim that every part of PapiLab has already been designed or built. The [Documentation index](README.md) establishes the main knowledge areas, and the [Documentation Policy](documentation-policy.md) defines how material enters those areas and becomes trustworthy. Product, architecture, planning, research, design, quality, development, and operations work should grow on top of this base instead of creating disconnected documents or competing sources of truth.
 
 Many files are deliberately marked `Placeholder`. For example, the [Development](development/README.md) and [Operations](operations/README.md) documents reserve homes for workflows that do not exist yet. Other placeholder files reserve future homes within their own areas. A placeholder should explain what will belong there, why the home exists, and what it must not be used as today. It is not an accepted decision, current guidance, an implementation specification, or evidence that the described system exists.
 
-As LitRev matures, collaborators should build on this documentation base deliberately:
+As PapiLab matures, collaborators should build on this documentation base deliberately:
 
 1. Put new knowledge in the existing area or placeholder that was created to own it.
 2. Add real content only when there is a decision, evidence, implementation, or operating practice to document.
@@ -54,8 +54,8 @@ Do not fill placeholders merely to make the repository look complete. Their purp
 
 Read these documents in order. The order is intentional: understand the accepted product first, then its evolving principles, then learn how project knowledge is organized and governed, and finally understand how agents are expected to work inside the repository.
 
-1. **Enter through the repository.** Read the [LitRev repository README](../README.md) for the shortest current-state statement and the official starting links.
-2. **Understand the product.** Read the [LitRev Product Requirements Document](product/PRD.md) in full. It is the accepted product truth. Pay particular attention to its document rules, product overview, principles, research lifecycle, workspace requirements, primary journeys, non-goals, readiness criteria, and open questions.
+1. **Enter through the repository.** Read the [PapiLab repository README](../README.md) for the shortest current-state statement and the official starting links.
+2. **Understand the product.** Read the [PapiLab Product Requirements Document](product/PRD.md) in full. It is the accepted product truth. Pay particular attention to its document rules, product overview, principles, research lifecycle, workspace requirements, primary journeys, non-goals, readiness criteria, and open questions.
 3. **Understand the principles behind the product.** Read the [Product Philosophy](product/product-philosophy.md). It explains the long-term ownership and first-principles posture behind the work. Its status is `Draft`, so use it as evolving product guidance and do not let it override the accepted PRD.
 4. **Learn the repository map.** Read the [Documentation index](README.md) to understand where product, architecture, planning, research, design, quality, development, and operations knowledge belongs.
 5. **Learn how to judge what you read.** Read the [Documentation Policy](documentation-policy.md), especially its status values, placement rules, evidence rules, promotion rules, and truth rules. This is what lets you distinguish accepted direction from proposals, plans, evidence, placeholders, and implemented behavior.
@@ -69,7 +69,7 @@ After the shared journey, use this map to know where to look. You do not need to
 
 | Area | Start with | What it contains and how to treat it |
 | --- | --- | --- |
-| Product | [Product Documentation](product/README.md) | Product truth and durable product principles. This is the first place to check what LitRev should be and why. |
+| Product | [Product Documentation](product/README.md) | Product truth and durable product principles. This is the first place to check what PapiLab should be and why. |
 | Architecture | [Architecture Documentation](architecture/README.md) | Architecture direction, proposed decisions, future architecture homes, and accepted decision records. Check each document's status before relying on it. |
 | Planning | [Planning](planning/README.md) | Active product roadmap, implementation plans, candidate features, open product questions, and related build sequencing. Planning is not product truth or current implementation. |
 | Research | [Research](research/README.md) | External-source evaluations, spike reports, visual references, and research evidence. Research must be promoted before it becomes product or architecture authority. |
@@ -77,7 +77,7 @@ After the shared journey, use this map to know where to look. You do not need to
 | Quality | [Quality](quality/README.md) | Testing, engineering, and quality doctrine. These documents define principles, not yet-complete command or CI references. |
 | Development | [Development](development/README.md) | A placeholder for setup, commands, package structure, APIs, and development workflows once real implementation surfaces exist. |
 | Operations | [Operations](operations/README.md) | A placeholder for deployment, monitoring, support, backup, release, and maintenance workflows once they exist. |
-| Experimental work | [LitRev Lab](../lab/README.md) | Controlled source inspection, forks, adapters, prototypes, and verification evidence. Nothing here is accepted architecture or current product implementation unless it has been promoted. |
+| Experimental work | [PapiLab Lab](../lab/README.md) | Controlled source inspection, forks, adapters, prototypes, and verification evidence. Nothing here is accepted architecture or current product implementation unless it has been promoted. |
 | Agent workflows | [Project Skills](../skills/README.md) | Workflow helpers for agents. Skills route agents back to project authority; they do not become authority themselves. |
 
 ## Contribution-Area Reading Routes
@@ -86,7 +86,7 @@ After completing the shared journey, follow every route relevant to your contrib
 
 ### Product And Product Planning
 
-The accepted [LitRev Product Requirements Document](product/PRD.md) and draft [Product Philosophy](product/product-philosophy.md) from the shared journey come first. Then read:
+The accepted [PapiLab Product Requirements Document](product/PRD.md) and draft [Product Philosophy](product/product-philosophy.md) from the shared journey come first. Then read:
 
 1. [Planning](planning/README.md) to understand what planning documents may and may not own.
 2. [Product Roadmap](planning/product-roadmap.md) for the active sequence of coherent product outcomes.
@@ -107,7 +107,7 @@ Do not infer implemented interfaces from design notes, screenshots, or placehold
 ### Architecture And Engineering Direction
 
 1. [Architecture Documentation](architecture/README.md) to learn the architecture area's authority and current map.
-2. [ADR-0001](architecture/decisions/ADR-0001-synara-opencode-foundation-and-litrev-ownership-boundary.md) for the accepted Synara, OpenCode, and LitRev ownership boundary.
+2. [ADR-0001](architecture/decisions/ADR-0001-synara-opencode-foundation-and-papilab-ownership-boundary.md) for the accepted Synara, OpenCode, and PapiLab ownership boundary.
 3. [Technology Stack](architecture/technology-stack.md) for the proposed stack direction, actual scaffold state, validation status, explicit non-decisions, and deferred choices.
 4. [Security And Permissions](architecture/security-and-permissions.md) for the draft trust-boundary and permission principles that architecture and agent-tool proposals must respect.
 5. Continue only into the task-relevant architecture documents identified by the [architecture index](architecture/README.md) or the task handoff.
@@ -120,10 +120,10 @@ Complete the architecture route first when the work may influence implementation
 
 1. [Research](research/README.md) for the research area's evidence and promotion boundaries.
 2. [Source Evaluations](research/source-evaluations/README.md) for the rules governing evaluations of external systems.
-3. [LitRev Open-Source Adaptation Map](research/source-evaluations/open-source-adaptation-map.md) for the current cross-source synthesis, candidate roles, LitRev-owned boundaries, and research prototype backlog.
+3. [PapiLab Open-Source Adaptation Map](research/source-evaluations/open-source-adaptation-map.md) for the current cross-source synthesis, candidate roles, PapiLab-owned boundaries, and research prototype backlog.
 4. [Open-Source Adaptation Build Strategy](planning/open-source-adaptation-build-strategy.md) for the draft path from research candidates toward controlled build experiments.
-5. [First Vertical-Slice Implementation Plan](planning/first-litrev-vertical-slice-implementation-plan.md) when the work touches the active Synara/OpenCode implementation slice.
-6. [LitRev Lab](../lab/README.md) for the experimental layout, promotion rule, current evidence map, and lab guardrails.
+5. [First Vertical-Slice Implementation Plan](planning/first-papilab-vertical-slice-implementation-plan.md) when the work touches the active Synara/OpenCode implementation slice.
+6. [PapiLab Lab](../lab/README.md) for the experimental layout, promotion rule, current evidence map, and lab guardrails.
 7. Read only the spike report, lab note, or source material named by the task handoff; do not read raw research chronologically and assume the newest or most detailed file is authoritative.
 
 ### Quality And Implementation Review
@@ -131,7 +131,7 @@ Complete the architecture route first when the work may influence implementation
 Complete the architecture route first when reviewing or writing implementation. Then read:
 
 1. [Quality](quality/README.md) for the boundary between quality doctrine and future execution documentation.
-2. [Testing Philosophy](quality/testing-philosophy.md) for LitRev's risk-based testing posture and scientific-workflow proof obligations.
+2. [Testing Philosophy](quality/testing-philosophy.md) for PapiLab's risk-based testing posture and scientific-workflow proof obligations.
 3. [Code Quality Principles](quality/code-quality-principles.md) for the engineering review bar, truth ownership, boundary quality, and root-cause expectations.
 
 These documents define the intended quality bar before complete project-specific commands, test lanes, and CI procedures exist.
@@ -141,7 +141,7 @@ These documents define the intended quality bar before complete project-specific
 The shared journey already requires [AGENTS.md](../AGENTS.md). Then read:
 
 1. [Project Skills](../skills/README.md) to see which repository-specific workflows exist and how they relate to project authority.
-2. For product management, PRD changes, feature analysis, roadmap work, or product research synthesis, read the [LitRev Product Stewardship skill](../skills/product/litrev-product-stewardship/SKILL.md) before acting.
+2. For product management, PRD changes, feature analysis, roadmap work, or product research synthesis, read the [PapiLab Product Stewardship skill](../skills/product/papilab-product-stewardship/SKILL.md) before acting.
 
 An agent's memory, chat history, or generated summary is not project authority. Agents and collaborators must return to the linked repository sources when making or reviewing durable claims.
 
@@ -149,13 +149,13 @@ An agent's memory, chat history, or generated summary is not project authority. 
 
 The shared journey already includes the [Documentation index](README.md) and [Documentation Policy](documentation-policy.md). Before changing a durable document:
 
-1. When an agent will manage the documentation, have it read the [LitRev Documentation Stewardship skill](../skills/documentation/litrev-documentation-stewardship/SKILL.md).
+1. When an agent will manage the documentation, have it read the [PapiLab Documentation Stewardship skill](../skills/documentation/papilab-documentation-stewardship/SKILL.md).
 2. Open the index for the area that should own the information.
 3. Read the target document in full, including its metadata and document rules.
 4. Decide whether the material is product truth, architecture direction, an architecture decision, planning, research evidence, current implementation, or a future home.
 5. Update the existing canonical document when it has a proper home; create a new document only when it does not.
 
-If the material concerns company-wide strategy, finance, legal, people, customer records, or cross-product authority, read [Repository Scope And Company Memory](planning/repository-scope-and-company-memory.md) and do not create a new LitRev folder until that broader repository scope is accepted.
+If the material concerns company-wide strategy, finance, legal, people, customer records, or cross-product authority, read [Repository Scope And Company Memory](planning/repository-scope-and-company-memory.md) and do not create a new PapiLab folder until that broader repository scope is accepted.
 
 ## How To Reorient Before New Work
 
@@ -171,7 +171,7 @@ Onboarding creates a shared baseline, but the repository will continue to change
 
 A collaborator is oriented when they can:
 
-- explain what LitRev is, who it is for, and the research lifecycle it aims to support;
+- explain what PapiLab is, who it is for, and the research lifecycle it aims to support;
 - state honestly that the repository is documentation-first and distinguish planned or experimental work from implemented product behavior;
 - identify where product truth, architecture direction, planning, research evidence, quality doctrine, lab evidence, and agent guidance live;
 - interpret `Accepted`, `Active`, `Draft`, `Proposed`, `Placeholder`, `Deprecated`, `Superseded`, and `Historical` correctly;

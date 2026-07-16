@@ -3,14 +3,14 @@
 Status: Draft
 Owner: Yaacov
 Last updated: 2026-07-12
-Purpose: Maps what external model benchmarks measure, how trustworthy they are, and how much weight LitRev should give them.
+Purpose: Maps what external model benchmarks measure, how trustworthy they are, and how much weight PapiLab should give them.
 Doc type: Research evidence
 
 ## Document Rules
 
-This document owns external benchmark research across the candidate portfolio. It does not approve models or define LitRev's internal evaluation methodology.
+This document owns external benchmark research across the candidate portfolio. It does not approve models or define PapiLab's internal evaluation methodology.
 
-Portfolio decisions live in `model-portfolio-and-provider-routing.md`. The later LitRev-owned methodology will live in `../../quality/model-evaluation-methodology.md` when representative workflows and fixtures exist.
+Portfolio decisions live in `model-portfolio-and-provider-routing.md`. The later PapiLab-owned methodology will live in `../../quality/model-evaluation-methodology.md` when representative workflows and fixtures exist.
 
 ## Portfolio Coverage
 
@@ -28,7 +28,7 @@ Record missing or non-comparable results instead of treating absence as failure 
 
 ## Required Capability Coverage
 
-| Capability | Initial benchmarks or evidence to inspect | Why LitRev needs it |
+| Capability | Initial benchmarks or evidence to inspect | Why PapiLab needs it |
 | --- | --- | --- |
 | Science and health | GeneBench Pro, LifeSciBench, MedChemBench, HealthBench Professional | Scientific and biomedical reasoning. |
 | Citations and evidence | Identify suitable external benchmarks; do not rely on generic factuality scores | Claim support, source fidelity, and citation integrity. |
@@ -53,7 +53,7 @@ For each benchmark, record:
 - whether results are independent, vendor-published, private, public, or contamination-prone;
 - known limitations and criticism;
 - which portfolio models have genuinely comparable results;
-- relevance to concrete LitRev use cases; and
+- relevance to concrete PapiLab use cases; and
 - decision weight: `Primary`, `Supporting`, `Context only`, or `Exclude`.
 
 ## Trust Rules
@@ -62,11 +62,11 @@ For each benchmark, record:
 - Compare several benchmarks that measure the same capability differently.
 - Do not combine scores from different versions or test conditions as if they were equivalent.
 - Treat vendor-published results as useful but lower-confidence until independently reproduced or supported.
-- Prefer benchmarks that resemble real LitRev work, expose their method, and resist contamination.
+- Prefer benchmarks that resemble real PapiLab work, expose their method, and resist contamination.
 - Keep benchmark capability separate from cost, privacy, provider reliability, and product fit.
 
 ## Later Internal Evaluation
 
 External benchmarks will shortlist models and expose likely strengths. They will not determine final production roles or automatic routing.
 
-In a later phase, LitRev will build its own replayable evaluation suite around representative scientific projects, evidence and citation work, mathematics, data analysis, coding, tools, conversation, writing, long context, and visual documents. That suite will become the stronger release and routing evidence.
+In a later phase, PapiLab will build its own replayable evaluation suite around representative scientific projects, evidence and citation work, mathematics, data analysis, coding, tools, conversation, writing, long context, and visual documents. That suite will become the stronger release and routing evidence.

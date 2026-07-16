@@ -3,14 +3,14 @@
 Status: Draft
 Owner: Yaacov
 Last updated: 2026-06-27
-Purpose: Defines LitRev's code quality principles before implementation-specific standards and gates exist.
+Purpose: Defines PapiLab's code quality principles before implementation-specific standards and gates exist.
 Doc type: Engineering doctrine
 
-This document defines the engineering quality bar LitRev should use when code exists. It is not a command reference, style guide, lint policy, or CI plan.
+This document defines the engineering quality bar PapiLab should use when code exists. It is not a command reference, style guide, lint policy, or CI plan.
 
 ## Core Position
 
-LitRev should optimize for long-term correctness, explainable ownership, and recoverable scientific work over quick local fixes.
+PapiLab should optimize for long-term correctness, explainable ownership, and recoverable scientific work over quick local fixes.
 
 A small change is good only if it solves the real problem without making the system harder to reason about.
 
@@ -26,7 +26,7 @@ Temporary stopgaps are allowed only when explicitly marked with scope, risk, and
 
 Do not introduce new state ownership without naming who owns truth.
 
-For LitRev, ambiguous truth ownership is a critical failure mode. Project files, local databases, cloud mirrors, agent logs, evidence records, manuscript state, and snapshots must not become competing sources of truth.
+For PapiLab, ambiguous truth ownership is a critical failure mode. Project files, local databases, cloud mirrors, agent logs, evidence records, manuscript state, and snapshots must not become competing sources of truth.
 
 New code should make ownership, mutation authority, and recovery behavior explicit.
 
@@ -100,7 +100,7 @@ Repeated issues should become infrastructure.
 - One-off issue: fix it locally.
 - Repeated issue: document the rule.
 - Repeated rule violation: make it executable if practical.
-- Repeated agent mistake: add it to `AGENTS.md` or a future LitRev skill.
+- Repeated agent mistake: add it to `AGENTS.md` or a future PapiLab skill.
 
 Do not let review comments become permanent folklore.
 

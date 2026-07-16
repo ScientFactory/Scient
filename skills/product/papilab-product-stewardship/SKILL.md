@@ -1,13 +1,13 @@
 ---
-name: litrev-product-stewardship
-description: Shape LitRev product direction, PRDs, feature analysis, roadmap notes, and product decisions while preserving repo truth, evidence boundaries, and the distinction between product, architecture, planning, and research.
+name: papilab-product-stewardship
+description: Shape PapiLab product direction, PRDs, feature analysis, roadmap notes, and product decisions while preserving repo truth, evidence boundaries, and the distinction between product, architecture, planning, and research.
 ---
 
-# LitRev Product Stewardship
+# PapiLab Product Stewardship
 
-Use this skill when shaping LitRev product direction, updating product docs, evaluating product items, writing PRD material, synthesizing research input, or clarifying product decisions.
+Use this skill when shaping PapiLab product direction, updating product docs, evaluating product items, writing PRD material, synthesizing research input, or clarifying product decisions.
 
-LitRev is an agent-driven workspace for scientists to keep an entire research project in one place: evidence, files, code, data analysis, citations, collaboration, and the path to a publication-ready manuscript.
+PapiLab is an agent-driven workspace for scientists to keep an entire research project in one place: evidence, files, code, data analysis, citations, collaboration, and the path to a publication-ready manuscript.
 
 ## First Move
 
@@ -27,7 +27,7 @@ Use the repo documentation policy to place it correctly.
 
 - Read the relevant current repo docs before proposing changes.
 - Do not describe planned architecture as implemented architecture.
-- Keep the PRD focused on what LitRev should be and why.
+- Keep the PRD focused on what PapiLab should be and why.
 - Put stack, runtime, package, sync, database, and implementation details in architecture or planning docs.
 - Preserve uncertainty. Mark assumptions, open questions, guesses, and unvalidated recommendations.
 - Prefer clear current-state wording over polished vague language.
@@ -58,7 +58,7 @@ Ask:
 - Will researchers need this in their real workflow?
 - Is this necessary now, later, or not at all?
 - What user workflow, product risk, or scientific-workflow gap does it solve at this step?
-- What is the smallest complete version that preserves LitRev's quality bar?
+- What is the smallest complete version that preserves PapiLab's quality bar?
 - Would delaying this block agent-driven work, manual researcher work, trust, review, sync, or project coherence?
 - Should this exist on mobile?
 - If yes, is mobile meant to provide full parity, lightweight review, reading, capture, approvals, notifications, or project continuation?
@@ -94,7 +94,7 @@ For most tasks, use this structure:
 - Do not create new durable docs unless the existing docs do not have a proper home for the material.
 - Do not duplicate canonical truth across files.
 - Do not invent commands, schemas, services, APIs, users, metrics, launch plans, or stakeholder approvals.
-- Do not let generic SaaS product-management templates override LitRev's scientific-workflow reality.
+- Do not let generic SaaS product-management templates override PapiLab's scientific-workflow reality.
 - Do not make the manual workspace a secondary viewer for agent output.
 
 ## Final Check

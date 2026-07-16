@@ -1,15 +1,15 @@
-# LitRev Bridge
+# PapiLab Bridge
 
 Status: Draft
 Owner: Yaacov
 Last updated: 2026-07-07
-Purpose: Holds LitRev-owned adapter and integration experiments connecting lab source checkouts.
+Purpose: Holds PapiLab-owned adapter and integration experiments connecting lab source checkouts.
 Doc type: Planning note
 
 ## Purpose
 
-This folder is for LitRev-owned bridge code and contracts that connect upstream
-tools without letting any upstream project define LitRev's product model.
+This folder is for PapiLab-owned bridge code and contracts that connect upstream
+tools without letting any upstream project define PapiLab's product model.
 
 Early bridge work may include:
 
@@ -21,7 +21,7 @@ Early bridge work may include:
 
 ## Rules
 
-- Keep bridge code LitRev-owned.
+- Keep bridge code PapiLab-owned.
 - Prefer small, inspectable contracts over broad hidden coupling.
 - Record assumptions in `../notes/` when they are not ready for durable docs.
 - Promote stable architecture into `docs/architecture/` or ADRs later.

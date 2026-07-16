@@ -3,7 +3,7 @@
 Status: Draft
 Owner: Yaacov
 Last updated: 2026-07-16
-Purpose: Defines the current fork, adaptation, upstream-update, and divergence strategy for open-source foundations used by LitRev.
+Purpose: Defines the current fork, adaptation, upstream-update, and divergence strategy for open-source foundations used by PapiLab.
 Doc type: Planning note
 
 ## Document Rules
@@ -24,12 +24,12 @@ validated.
 
 ## Current State
 
-LitRev is still documentation-first. There is no implemented app, project
+PapiLab is still documentation-first. There is no implemented app, project
 kernel, agent gateway, sync layer, editor, analysis runtime, or build pipeline in
 this repo.
 
 The current practical direction is to build on owned, working foundations while
-keeping LitRev's scientific project meaning owned:
+keeping PapiLab's scientific project meaning owned:
 
 - use the owned Synara fork as the initial application foundation for desktop,
   workspace, UI, provider-session, and local-process work;
@@ -39,19 +39,19 @@ keeping LitRev's scientific project meaning owned:
   compatibility, and ELN/RDM tools for protocol/lab/repository references;
 - use the owned OpenCode fork as the initial agent-runtime foundation;
 - evaluate Goose later as a broader local-agent and automation engine;
-- keep all agents behind a LitRev-owned gateway for context, permissions,
+- keep all agents behind a PapiLab-owned gateway for context, permissions,
   proposed changes, provenance, review, checkpoints, and write-back.
 
 ## First-Slice Constraints
 
 The active product sequence lives in `product-roadmap.md`, and its concrete
 implementation is planned in
-`first-litrev-vertical-slice-implementation-plan.md`. This strategy constrains
+`first-papilab-vertical-slice-implementation-plan.md`. This strategy constrains
 that work without duplicating it:
 
 1. Use one vertical scientific workflow to pressure-test both foundations.
 2. Keep scientific operations available to manual UI and agents through a
-   LitRev-owned layer where practical.
+   PapiLab-owned layer where practical.
 3. Preserve project meaning independently of Synara/OpenCode session state.
 4. Prefer extension seams first, but make isolated core changes when a proven
    requirement cannot be met cleanly otherwise.
@@ -70,70 +70,70 @@ labels must match the research map in
 
 1. Prefer upstream-trackable integration through configuration, plugins, CLI,
    SDK, API, sidecar, wrapper, or adapter.
-2. Put LitRev-specific behavior in an add-on layer when possible, so the
+2. Put PapiLab-specific behavior in an add-on layer when possible, so the
    upstream tool core remains intact.
 3. Use embedded engines for bounded execution tasks, but keep accepted project
-   state in LitRev-owned objects.
+   state in PapiLab-owned objects.
 4. Use adapters for import, export, sync, search, or reconciliation, and keep the
    external format from becoming canonical.
 5. Treat editor, chart, notebook, CRDT, or export-runtime state as a projection
    unless an architecture decision says otherwise.
 6. Use a thin fork while missing integration seams can stay isolated and regular
    upstream merges remain valuable.
-7. Move deliberately to selective divergence when LitRev owns a changed product
+7. Move deliberately to selective divergence when PapiLab owns a changed product
    surface and accepts that updates may become manual cherry-picks.
 8. Treat divergent upstream updates as reference/cherry-pick source: inspect,
    select, and adapt useful changes manually.
 9. Preserve raw upstream runtime logs when useful, but normalize accepted project
-   changes into LitRev-owned records.
+   changes into PapiLab-owned records.
 10. Track each source's update strategy before depending on it.
 
 ### Owned-Fork Remote Topology
 
-LitRev will own the writable fork of every source it may adapt directly,
+PapiLab will own the writable fork of every source it may adapt directly,
 including Synara, OpenCode, and Goose. This is an ownership and safety rule; it
 does not mean every fork should immediately diverge from upstream.
 
 Each active source checkout should use:
 
 ```text
-origin   -> LitRev-owned fork; writable
+origin   -> PapiLab-owned fork; writable
 upstream -> official project; fetch-only, push disabled
 ```
 
-Before the first LitRev source change:
+Before the first PapiLab source change:
 
 1. create the owned fork;
 2. attach it as `origin`;
 3. preserve the official repository as fetch-only `upstream`;
 4. record the baseline upstream commit;
 5. prove the unchanged fork builds or passes its smallest relevant smoke check;
-6. make LitRev changes in narrow, reviewable commits; and
+6. make PapiLab changes in narrow, reviewable commits; and
 7. test upstream updates on a temporary sync branch before merging them into the
-   LitRev-maintained branch.
+   PapiLab-maintained branch.
 
 Keep change lanes separable where practical:
 
 - identity and packaging;
-- LitRev adapters and extension seams;
-- LitRev-owned domain UI;
+- PapiLab adapters and extension seams;
+- PapiLab-owned domain UI;
 - unavoidable upstream-core patches; and
 - release or updater configuration.
 
-Synara is expected to carry visible LitRev identity and domain UI. OpenCode is
+Synara is expected to carry visible PapiLab identity and domain UI. OpenCode is
 an embedded engine, so its standalone desktop branding does not need to change.
-If LitRev later adopts Goose, apply the same principle unless it decides to
+If PapiLab later adopts Goose, apply the same principle unless it decides to
 distribute a standalone Goose-derived application.
 
 An upstream sync should be a deliberate operation: fetch `upstream`, create a
-sync branch from the LitRev-maintained branch, merge the selected upstream
-revision, resolve conflicts without flattening LitRev patches, run the agreed
+sync branch from the PapiLab-maintained branch, merge the selected upstream
+revision, resolve conflicts without flattening PapiLab patches, run the agreed
 smoke suite, review release/security changes, then merge through normal review.
 Do not update production integration directly from an unreviewed upstream head.
 
 Update strategy values:
 
-- `no-upstream` - LitRev owns this part.
+- `no-upstream` - PapiLab owns this part.
 - `version-bump` - update directly with normal dependency testing.
 - `adapter-maintained` - update upstream, then repair or validate the adapter.
 - `thin-fork-merge` - keep the fork close enough that upstream merges remain
@@ -151,8 +151,8 @@ remote topology above.
 The executable plan, evidence requirements, and pass/fail criteria live in
 [`gate-1-5-execution-plan.md`](gate-1-5-execution-plan.md).
 
-**2026-07-11 result: passed.** LitRev now owns public, upstream-connected
-Synara and OpenCode forks; Synara has an isolated LitRev development identity;
+**2026-07-11 result: passed.** PapiLab now owns public, upstream-connected
+Synara and OpenCode forks; Synara has an isolated PapiLab development identity;
 and the owned OpenCode build passed the constrained Synara smoke. The exact
 history, checks, and documented execution-order correction are in the
 [`Gate 1.5 report`](../../lab/notes/gate-1-5-execution-report-2026-07-11.md).
@@ -175,7 +175,7 @@ evidence, not product architecture.
 
 ## Deferred Goose Evaluation
 
-All Goose execution work is deferred until after the first LitRev gateway works
+All Goose execution work is deferred until after the first PapiLab gateway works
 through OpenCode, including:
 
 - creating and attaching the owned Goose repository;
@@ -184,12 +184,12 @@ through OpenCode, including:
 - testing approval, cancellation, tool-event, and session behavior;
 - enforcing and proving outside-project path denial;
 - deciding Goose runtime-state and credential isolation; and
-- deciding whether Goose is accepted as a LitRev engine.
+- deciding whether Goose is accepted as a PapiLab engine.
 
 The completed source-depth inspection remains research input, not a current
 implementation commitment.
 
-Stop relying on a forked workbench if it forces LitRev to model research projects
+Stop relying on a forked workbench if it forces PapiLab to model research projects
 as coding sessions, Git worktrees, provider chats, or engine-owned artifacts.
 
 ## Required Reviews Before Deeper Commitment
@@ -205,18 +205,18 @@ as coding sessions, Git worktrees, provider chats, or engine-owned artifacts.
 - Security review of local file access, command execution, prompt injection,
   secrets, logs, and agent-readable context.
 - Data-boundary review proving that external engine state does not become
-  canonical LitRev project state.
+  canonical PapiLab project state.
 - Upgrade-path review showing how upstream updates can be pulled without
-  rewriting LitRev's project model.
+  rewriting PapiLab's project model.
 
 ## Open Questions
 
 - Which Synara seams should remain upstream-aligned and which should become
-  deliberately LitRev-owned?
+  deliberately PapiLab-owned?
 - Can a stabilized Synara fork host the first science-facing slice without
-  leaking coding-product assumptions into the LitRev project kernel?
+  leaking coding-product assumptions into the PapiLab project kernel?
 - Should Zotero Reader or Zotero Document Worker be embedded as components, or
-  should LitRev build/choose simpler PDF and extraction components while using
+  should PapiLab build/choose simpler PDF and extraction components while using
   Zotero as a reference and compatibility target?
 - What is the exact minimal agent gateway event model?
 - Which agent actions can be pre-approved, and which require explicit review?

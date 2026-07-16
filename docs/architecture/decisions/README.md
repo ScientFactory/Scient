@@ -3,14 +3,14 @@
 Status: Active
 Owner: Yaacov
 Last updated: 2026-07-16
-Purpose: Indexes LitRev's accepted architecture decision records and the rules for using them.
+Purpose: Indexes PapiLab's accepted architecture decision records and the rules for using them.
 Doc type: Repo orientation
 
 Accepted architecture decisions should live here when decisions are made.
 
 Current decisions:
 
-- `ADR-0001-synara-opencode-foundation-and-litrev-ownership-boundary.md` - accepts the owned Synara fork as the initial application foundation, the owned OpenCode fork as the initial runtime foundation, and the LitRev-owned scientific boundary between them.
+- `ADR-0001-synara-opencode-foundation-and-papilab-ownership-boundary.md` - accepts the owned Synara fork as the initial application foundation, the owned OpenCode fork as the initial runtime foundation, and the PapiLab-owned scientific boundary between them.
 
 Supporting file:
 
