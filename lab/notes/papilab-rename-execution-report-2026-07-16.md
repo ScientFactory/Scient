@@ -37,7 +37,7 @@ remain unchanged where they are source or immutable historical truth.
 
 | Checkout | Branch | Commit | Remote |
 |---|---|---|---|
-| Synara-derived desktop | `codex/project-init-kernel` | `fb3b53a4c` | `yaacovcorcos/papilab-desktop` |
+| Synara-derived desktop | `codex/project-init-kernel` | `544f75b6` | `yaacovcorcos/papilab-desktop` |
 | OpenCode | `dev` | `f85656c01` | `yaacovcorcos/opencode` |
 
 ## Verification
@@ -66,6 +66,8 @@ serves a page titled `LitRev Dashboard`. No DNS or deployment change was made
 from this repository. The owning deployment must update its application copy,
 authentication callbacks, downloads, and any release/update endpoints before
 the public rename can be declared complete.
+
+The GitHub repository descriptions and topics now use the PapiLab identity.
 
 ## Historical Allowances
 
