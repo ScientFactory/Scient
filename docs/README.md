@@ -2,7 +2,7 @@
 
 Status: Active
 Owner: Yaacov
-Last updated: 2026-07-12
+Last updated: 2026-07-16
 Purpose: Maps the LitRev documentation structure and where each kind of information belongs.
 Doc type: Repo orientation
 
@@ -15,6 +15,8 @@ Start here:
 - [Product requirements](product/PRD.md) - canonical product direction.
 - [Product philosophy](product/product-philosophy.md) - durable product principles.
 - [Technology stack](architecture/technology-stack.md) - current proposed stack direction.
+- [Product roadmap](planning/product-roadmap.md) - current sequence of coherent product outcomes.
+- [First vertical-slice implementation plan](planning/first-litrev-vertical-slice-implementation-plan.md) - bounded plan for the active product slice.
 - [Architecture](architecture/README.md) - architecture direction, future architecture homes, and decisions.
 - [Design](design/README.md) - future home for product design principles and UI guidance.
 - [Quality](quality/README.md) - quality principles and testing philosophy.

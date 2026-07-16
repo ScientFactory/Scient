@@ -2,23 +2,25 @@
 
 Status: Draft
 Owner: Yaacov
-Last updated: 2026-07-12
-Purpose: Tracks current product planning after the accepted PRD, including roadmap seeds, candidate features, open product questions, and cross-document handoffs.
+Last updated: 2026-07-16
+Purpose: Tracks current product planning after the accepted PRD, including candidate features, open product questions, and cross-document handoffs.
 Doc type: Planning note
 
 ## Document Rules
 
-This file is not product truth. The accepted product direction lives in `docs/product/PRD.md` and `docs/product/product-philosophy.md`.
+This file is not product truth. The accepted product direction lives in
+`docs/product/PRD.md`; evolving product principles live in the draft
+`docs/product/product-philosophy.md`.
 
-Use this file to plan what may become product work later: candidate capabilities, roadmap seeds, unresolved product questions, feature-level tradeoffs, and handoffs to architecture, design, quality, research, or implementation docs.
+Use this file to plan what may become product work later: candidate capabilities, unresolved product questions, feature-level tradeoffs, and handoffs to architecture, design, quality, research, or implementation docs. Active product sequencing lives in `product-roadmap.md`.
 
 Do not duplicate PRD prose here. If a requirement is already accepted, link to the PRD instead of restating it. If a planning item becomes accepted product truth, promote the stable wording into the PRD and leave only a short trace here if useful.
 
 Do not use this file for implementation architecture, package boundaries, runtime choices, parser choices, sync-engine decisions, database schemas, source-code tasks, or test plans. Move those to the owning architecture, development, or quality document when they become real decisions.
 
 Raw or unprocessed ideas belong in `idea-inbox.md`. Move them here only after
-they have been evaluated enough to become a candidate feature, roadmap seed, or
-open product question.
+they have been evaluated enough to become a candidate feature or open product
+question.
 
 ## Current Planning Role
 
@@ -26,7 +28,7 @@ The PRD is now accepted as the product truth for LitRev's identity, principles, 
 
 This file now has four jobs:
 
-1. Track candidate roadmap slices before a separate roadmap exists.
+1. Preserve candidate capabilities and questions that may affect the active roadmap.
 2. Preserve feature candidates and deferred ideas without making them accepted requirements.
 3. Capture product questions that still need decisions.
 4. Route architecture, design, quality, and research follow-ups to the right documents.
@@ -71,17 +73,16 @@ Mobile role values:
 - `Light edit` - safe for small edits or comments.
 - `Desktop first` - too complex or risky for early mobile use.
 
-## Roadmap Seeds
+## Current Roadmap
 
-These are candidate coherent product slices, not a committed roadmap. A future `docs/planning/product-roadmap.md` should replace this section once sequencing is decided.
+The active product sequence now lives in
+[`product-roadmap.md`](product-roadmap.md). Its current slice combines a local
+project, manual source capture, bounded agent work, visible context, a
+reviewable proposal, a researcher decision, reopening, and recovery.
 
-| Seed | Product question it tests | Likely included capabilities | Current status |
-|---|---|---|---|
-| Connected project kernel | Can LitRev keep a real research project durable, local-first, inspectable, and agent-addressable? | Local project, project home, project direction, file/source intake, project state, object-aware navigation, basic history. | Foundation candidate. |
-| Evidence-to-writing trust path | Can a researcher move from sources to evidence to claim-supported writing without losing provenance? | Source import, duplicate-safe identity, source chunks, evidence records, claim links, draft section, citation handling, evidence rail, reviewable agent help. | Strong early validation candidate. |
-| Data-to-figure-to-manuscript path | Can LitRev support computation as first-class project work rather than an external island? | Dataset, script or notebook-compatible run, run record, output table or figure, stale-output signal, manuscript usage, recovery. | Strong early validation candidate if analysis is central to first users. |
-| Agent-reviewed project work | Can agents modify project material safely enough for researchers to trust them? | Context receipts, project-aware tools, proposed artifact lifecycle, durable agent runs, approvals, diffs, checkpoints, recovery. | Foundation candidate for agentic-first product. |
-| Collaboration and continuation | Can LitRev remain local-first while supporting shared project work and mobile continuation? | Cloud-mirror-ready identity, roles, attribution, comments, review, sync/conflict states, mobile reading/capture/approval. | Design early; deeper implementation later. |
+This file retains the compact capability inventory and unresolved product
+questions. It does not duplicate roadmap sequencing or implementation
+architecture.
 
 ## Feature Inventory
 
@@ -89,7 +90,7 @@ This is the active feature inventory. It should stay compact. Add detail only wh
 
 | Product area | Candidate capabilities | Centrality | Validation timing | Mobile role | Notes and handoffs |
 |---|---|---|---|---|---|
-| Project kernel and workspace | Local project, stable project identity, local files, project home, project-wide search, object-aware quick actions, readable project status. | Core | Foundation | Read/review later | Architecture handoff: `docs/architecture/project-format.md`. |
+| Project and workspace | Local project, stable project identity, local files, project home, project-wide search, object-aware quick actions, readable project status. | Core | Foundation | Read/review later | Architecture handoff: `docs/architecture/project-format.md`. |
 | Project direction, protocol, notes, and decisions | Flexible project direction, protocol fields, guided bootstrap, sample project, notes linked to project objects, decision log. | Core | Early validation | Capture and approval later | Keep flexible; do not force a rigid `ResearchQuestion` object model into product truth. |
 | Source discovery, import, and reading | Database/API connectors, real project library, duplicate-safe source identity, metadata repair, reference-manager import/export, PDF/document parsing, reader and annotations. | Core | Early validation | Read/review later | Architecture handoffs: project format, source parsing, external adapters. |
 | Screening, extraction, and evidence | Screening decisions, evidence records, extraction schemas, extraction tables, claim links, quality/risk judgments, PRISMA-style accounting where needed, study detail backlinks. | Core | Early validation to early expansion | Approval later | Depth depends on first workflow; do not become an enterprise review platform first. |
@@ -111,7 +112,6 @@ The PRD intentionally leaves these open. Resolve them in the right document when
 
 | Question | Why it matters | Likely owner |
 |---|---|---|
-| What is the first coherent roadmap slice? | Determines the first end-to-end build and validation scenario. | Future roadmap. |
 | Which source connector or import path is first? | Source intake must be real enough to prove evidence and citation workflows. | Product planning plus architecture. |
 | Which citation import/export/rendering paths are required first? | Citation quality is core infrastructure, but targets should not sprawl. | Product planning plus manuscript/citation architecture. |
 | What parser strategy supports source-region provenance without owning parser output as the product model? | Evidence traceability depends on parsing, but parser data should not define LitRev's canonical model. | Architecture and research. |
@@ -140,7 +140,7 @@ Use this section to route work out of product planning. Do not let this file bec
 
 ## When To Create New Planning Docs
 
-Create `docs/planning/product-roadmap.md` when the first coherent product slice is chosen.
+The first coherent product slice is now owned by `product-roadmap.md`.
 
 Create narrower planning docs only when a topic becomes too large for this file and is still not ready for product truth, architecture direction, design direction, quality doctrine, or implementation planning.
 

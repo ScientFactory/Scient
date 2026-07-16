@@ -2,7 +2,7 @@
 
 Status: Historical
 Owner: Yaacov
-Last updated: 2026-07-11
+Last updated: 2026-07-16
 Purpose: Defines the end-to-end preparation gate for owned Synara and OpenCode repositories, upstream updates, and Synara identity isolation.
 Doc type: Planning note
 
@@ -13,9 +13,9 @@ architecture. It operationalizes the fork and agent-seam direction in
 `open-source-adaptation-build-strategy.md` and uses the source evidence under
 `lab/`.
 
-Update this plan when a phase is completed, a decision changes, or current
-upstream evidence invalidates a command or acceptance criterion. Record actual
-run evidence in dated lab notes rather than turning this file into a log.
+This plan is historical. Preserve its executed scope and contemporary gate
+names. Do not revise it to match the current roadmap. Current sequencing lives
+in `product-roadmap.md`; actual run evidence lives in the dated lab report.
 
 ## Goal
 
@@ -27,7 +27,8 @@ accept reviewed upstream changes.
 Gate 1.5 does not build the LitRev scientific kernel, define the canonical
 object contract, or start Gate 2. Every Goose action is deferred to Gate 1.6,
 including its owned repository, build, ACP adapter, runtime proof, and adoption
-decision.
+decision. These future-gate references record the plan at execution time; they
+do not define the current roadmap.
 
 ## Execution Result
 
@@ -458,6 +459,6 @@ confirmed owner and public visibility
   -> inventoried evidence and published the Gate 1.5 verdict
 ```
 
-Gate 1.5 is complete. Gate 1.6 remains the separate Goose gate; neither gate
-defines the LitRev-owned scientific object contract that the next product
-implementation slice will require.
+Gate 1.5 is complete. At the time of execution, Gate 1.6 remained the separate
+Goose gate; neither gate defined the LitRev-owned scientific object contract.
+Current sequencing is owned by `product-roadmap.md`.

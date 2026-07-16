@@ -2,7 +2,7 @@
 
 Status: Proposed
 Owner: Yaacov
-Last updated: 2026-07-11
+Last updated: 2026-07-16
 Purpose: Maps which open-source systems LitRev should study, prototype, adapt, or integrate, and which product boundaries LitRev must keep owned.
 Doc type: Research evidence
 
@@ -43,9 +43,10 @@ Current inputs:
   Synara, Zotero-family components, Paperlib, Tropy, Zettlr, Overleaf,
   JupyterLab Desktop, Stencila, ELN/RDM tools, local-first knowledge apps, and
   CoCalc.
-- Current planning discussion that a forked workbench may be useful if LitRev's
-  scientific kernel, agent gateway, provenance, and review model remain owned by
-  LitRev.
+- The accepted foundation decision in
+  `../../architecture/decisions/ADR-0001-synara-opencode-foundation-and-litrev-ownership-boundary.md`:
+  use the owned Synara and OpenCode forks initially while LitRev keeps its
+  scientific meaning, agent boundary, provenance, and review model owned.
 - Current planning discussion that upstream-trackable tools, thin forks,
   divergent forks, reference sources, projections, adapters, and export targets
   need different update strategies.
@@ -126,34 +127,33 @@ Use these labels with source rows when the update path matters:
 
 ## Global Fork And Borrow Strategy
 
-The current proposed strategy is more aggressive than "study only", but still
-kernel-first:
+The accepted foundation direction is more aggressive than "study only", but
+still LitRev-boundary-first:
 
-1. Use a forked workbench prototype if it materially accelerates the desktop
-   shell, chat, terminal, diff, provider-session, and local-process surfaces.
-2. Treat Synara as the current best forked-workbench candidate, pending license,
-   source-depth, and prototype review.
-3. Start the first desktop pass by stabilizing a Synara fork only if the first
-   science-facing validation slice can keep LitRev's project kernel, agent
-   gateway, source/evidence state, and review model outside Synara's coding
-   assumptions.
-4. Treat science apps as specialized sources, not desktop bases: Zotero-family
+1. Use the owned Synara fork as the initial application foundation because it
+   materially accelerates the desktop shell, chat, terminal, diff,
+   provider-session, and local-process surfaces.
+2. Pressure-test that foundation through the first science-facing slice while
+   keeping LitRev's project state, agent gateway, source/evidence meaning, and
+   review model outside Synara's coding assumptions.
+3. Treat science apps as specialized sources, not desktop bases: Zotero-family
    tools for sources and PDFs, Zettlr/Overleaf/Quarto/MyST for writing/export
    expectations, Jupyter-style tools for analysis compatibility, and ELN/RDM
    tools for protocol/lab/repository references.
-5. Keep OpenCode and Goose as embedded, owned-fork, upstream-trackable agent engines inside
-   LitRev's agent layer, not as replacements for LitRev's agent contract.
-6. Use LitRev-owned forks as the writable source remotes, while preferring
+4. Use the owned OpenCode fork as the initial runtime foundation. Keep Goose as
+   a deferred broader-engine comparison after the first LitRev gateway exists.
+   Neither engine replaces LitRev's agent contract.
+5. Use LitRev-owned forks as the writable source remotes, while preferring
    upstream binaries, SDKs, CLIs, configuration, sidecars, adapters, and
    extensions over core modifications. An owned fork may remain upstream-
    aligned. Use divergent core changes only when LitRev intentionally takes
    ownership of a modified product surface and accepts cherry-pick updates.
-7. Normalize every engine through a LitRev-owned Agent Gateway: scoped context,
+6. Normalize every engine through a LitRev-owned Agent Gateway: scoped context,
    permissions, approvals, file actions, tool calls, diffs, artifacts, errors,
    checkpoints, and final write-back.
-8. Preserve raw upstream logs as runtime evidence, but store accepted scientific
+7. Preserve raw upstream logs as runtime evidence, but store accepted scientific
    work as LitRev project objects.
-9. Re-evaluate any fork once the first vertical scientific workflow works. If the
+8. Re-evaluate any fork once the first vertical scientific workflow works. If the
    fork's product assumptions fight LitRev's project model, keep only the useful
    parts and move toward a more LitRev-owned shell.
 
@@ -215,15 +215,16 @@ identified so far. It is a working recommendation, not a final dependency list.
 ## Source Relationship Classification
 
 This table applies the current adaptation vocabulary to the source set. It is a
-planning map, not an accepted dependency list.
+planning map, not an accepted dependency list by itself. Where a row reflects
+ADR-0001, that ADR remains the decision authority.
 
 | Source / thing | What LitRev takes | Relationship mode | Update strategy |
 |---|---|---|---|
 | LitRev scientific project graph | Projects, sources, evidence, claims, datasets, runs, figures, manuscripts, memory, provenance. | LitRev-owned core | `no-upstream` |
 | LitRev agent contract | Permissions, context receipts, proposed changes, review, recovery. | LitRev-owned core | `no-upstream` |
-| Synara | Desktop workbench, chat shell, terminals, diffs, sessions, provider/workflow UI. | Forked workbench prototype, add-on layer, likely thin fork first. May become divergent fork if deeply reshaped. | `thin-fork-merge`; if deeply reshaped, `divergent-cherry-pick` |
-| OpenCode | Local file read/write, shell, code edits, patches, sessions, possibly subagents. | LitRev-owned, upstream-aligned fork used as an embedded engine through an adapter. | `adapter-maintained`; isolate changes and avoid unnecessary core divergence |
-| Goose | Broader local automation, ACP agent/server, recipes, MCP extensions, scheduling, and subagents. | LitRev-owned, upstream-aligned fork used as an embedded engine through an ACP adapter. | `adapter-maintained`; isolate changes and avoid unnecessary core divergence |
+| Synara | Desktop workbench, chat shell, terminals, diffs, sessions, provider/workflow UI. | Accepted initial application foundation through ADR-0001. Keep changes isolated where useful; allow deliberate divergence when LitRev owns the surface. | `thin-fork-merge`; move deliberately to `divergent-cherry-pick` if deeply reshaped |
+| OpenCode | Local file read/write, shell, code edits, patches, sessions, possibly subagents. | Accepted initial runtime foundation through ADR-0001, used through a LitRev-owned boundary. | `adapter-maintained`; allow narrow, identifiable core changes for proven needs |
+| Goose | Broader local automation, ACP agent/server, recipes, MCP extensions, scheduling, and subagents. | Deferred broader-engine comparison after the first LitRev gateway; owned fork only when implementation begins. | `deferred`; then `adapter-maintained` if adopted |
 | Codex app-server | Sandbox, approvals, diffs, rollback, interrupt/resume ideas. | Reference / cherry-pick source. | `reference-only` |
 | T3 Code | Backend lifecycle, provider-instance separation, preview/process patterns. | Reference / cherry-pick source. | `reference-only` |
 | Aider | Git/edit discipline, repo-map and patch workflow lessons. | Reference benchmark. | `reference-only` |
@@ -300,22 +301,23 @@ planning map, not an accepted dependency list.
 
 ## Primary Sources For Prototypes
 
-These are the sources most likely to shape early architecture prototypes after
-the canonical LitRev schema and event contract exist.
+These are sources likely to shape architecture prototypes. This research map
+does not set their implementation order; the active sequence lives in
+`../../planning/product-roadmap.md` and its linked implementation plan.
 
 ### Local Agent Platform
 
 | Source | Adaptation target | Why it matters | Do not adopt | Depth status |
 |---|---|---|---|---|
-| Goose | ACP over stdio or authenticated HTTP/WebSocket, persistent sessions, recipes, scheduling, MCP extensions, provider registry, safety inspectors, hooks, and subagents. | Goose is a strong broader-agent engine behind LitRev. Current ACP supports streaming, permission requests, cancellation, client-provided file/terminal capabilities, and session lifecycle. | Do not make Goose the product center or its session database canonical. Do not rely on its working directory as a filesystem sandbox: built-in developer tools accept absolute paths, and autonomous mode is the default. | Source-depth review completed at `3c1fdd692`; all fork and adapter work is deferred to Gate 1.6. |
-| OpenCode | File/shell/edit executor, LSP/code-project operations, snapshots, session protocol, CLI/TUI/server/client split, plugin/tool architecture. | LitRev needs the power to read/write files, run commands, create artifacts, and show diffs like a serious coding agent. | Do not turn LitRev into "OpenCode for science." The scientific object graph must remain above the executor. | Gate 1.5 owned-fork build and Synara compatibility smoke completed; the LitRev-owned gateway and object-contract prototype remain Gate 2 work. |
+| Goose | ACP over stdio or authenticated HTTP/WebSocket, persistent sessions, recipes, scheduling, MCP extensions, provider registry, safety inspectors, hooks, and subagents. | Goose is a strong broader-agent engine behind LitRev. Current ACP supports streaming, permission requests, cancellation, client-provided file/terminal capabilities, and session lifecycle. | Do not make Goose the product center or its session database canonical. Do not rely on its working directory as a filesystem sandbox: built-in developer tools accept absolute paths, and autonomous mode is the default. | Source-depth review completed at `3c1fdd692`; fork and adapter work is deferred until after the first LitRev gateway. |
+| OpenCode | File/shell/edit executor, LSP/code-project operations, snapshots, session protocol, CLI/TUI/server/client split, plugin/tool architecture. | LitRev needs the power to read/write files, run commands, create artifacts, and show diffs like a serious coding agent. | Do not turn LitRev into "OpenCode for science." The scientific object graph must remain above the executor. | Owned-fork build and Synara compatibility smoke completed in historical Gate 1.5 work. ADR-0001 accepts the fork as the initial runtime foundation; the first vertical slice must validate the LitRev-owned boundary. |
 | Codex app-server | Approval protocol, sandbox model, diff flow, interrupt/rollback/session protocol, file API, skills/MCP, Rust daemon boundary. | Useful comparator for what a trusted local executor and approval model can feel like. | Do not depend on Codex-specific assumptions as the only runtime path. | Needs direct harness comparison against OpenCode. |
 | Aider | Git-centered edit discipline, repo maps, patch workflow, simple terminal ergonomics. | Useful as a benchmark for file changes and rollback, even if not the main architecture. | Do not make the app Python-first or terminal-first because Aider is good. | Side benchmark, not primary source. |
 
 Recommendation: treat Goose as the current leading broader-agent engine
-candidate, and OpenCode/Codex as the current leading executor references. Delay
-the first Goose spike to Gate 1.6, using `goose acp` over stdio when that gate
-begins. The old `goosed` REST surface was removed upstream; authenticated
+candidate and defer its first spike until the LitRev gateway works through the
+owned OpenCode foundation. Use `goose acp` over stdio for that later spike. The
+old `goosed` REST surface was removed upstream; authenticated
 `goose serve` is a later process-separated option. LitRev should put thin,
 testable adapters over engine candidates instead of betting everything on one
 runtime too early.
@@ -325,7 +327,7 @@ runtime too early.
 | Source | Adaptation target | Why it matters | Do not adopt | Depth status |
 |---|---|---|---|---|
 | T3 Code | Desktop/backend process lifecycle, provider-instance patterns, remote/SSH/Tailscale ideas if needed, multi-surface product structure. | Gives practical patterns for a desktop agent app that coordinates backends and providers. | Do not inherit coding-product assumptions. | Needs targeted review of provider-instance and process lifecycle code. |
-| Synara | Orchestration, UI/provider adapters, Effect server ideas, event-sourced orchestration, desktop/web split, worktree/Git flows. | Useful for building a reliable agent workspace that can explain what happened. | Do not copy its UI shape blindly; LitRev needs a research cockpit. | Candidate reference; needs prototype pressure test. |
+| Synara | Orchestration, UI/provider adapters, Effect server ideas, event-sourced orchestration, desktop/web split, worktree/Git flows. | Useful for building a reliable agent workspace that can explain what happened. | Do not copy its UI shape blindly; LitRev needs a research cockpit. | Accepted initial application foundation through ADR-0001; scientific-product fit still needs pressure testing. |
 | Vercel AI SDK | Model/provider abstraction, typed stream parts, tool-call state, approval status, UI message events, mock providers, and model I/O tests. | Useful for model plumbing and chat/event surfaces around LitRev-owned actions. | Do not use it as the abstraction over local executors like OpenCode or Codex. Executor actions need a LitRev-owned contract. | Candidate model I/O layer; needs a narrow harness prototype. |
 | Vercel AI Elements | Tool cards, source citations, confirmations, terminal output, file trees, artifacts, plans, queue state. | Useful UI pieces for agent work inspection. | Do not let it make LitRev a generic chat surface. | Side UI pattern source. |
 
@@ -341,7 +343,7 @@ references around a LitRev-owned project kernel.
 
 | Source | Adaptation target | Why it matters | Do not adopt | Current use |
 |---|---|---|---|---|
-| Synara | First desktop shell candidate: chat, provider sessions, terminals, previews, diffs, local process/workspace flow. | It already concentrates the workbench machinery LitRev would otherwise have to build before testing the scientific workflow. | Do not let Synara's coding sessions, Git worktrees, or provider chats become the LitRev project model. | Candidate forked workbench prototype to stabilize; thin fork first, with a decision gate after the science-facing slice. |
+| Synara | Initial desktop application foundation: chat, provider sessions, terminals, previews, diffs, local process/workspace flow. | It already concentrates the workbench machinery LitRev would otherwise have to build before testing the scientific workflow. | Do not let Synara's coding sessions, Git worktrees, or provider chats become the LitRev project model. | Accepted through ADR-0001; the first scientific slice must validate product fit and identify justified divergence. |
 | Zotero | Reference manager compatibility, library import/export, source identity, citations, PDF/annotation expectations. | Researchers already trust Zotero, and LitRev cannot treat source/citation work as an afterthought. | Do not fork the full Zotero desktop app or rebuild Zotero first. | Adapter and compatibility target. |
 | Zotero Reader / Zotero Document Worker | PDF/EPUB/HTML reading, annotations, source-region navigation, annotation processing, text extraction and rendering. | Source-region fidelity is central to LitRev's evidence model; these components are closer to the needed reader/parser behavior than generic PDF viewers. | Do not make Zotero's reader or worker state canonical LitRev state. | Component spike and reference after source-depth/license review. |
 | Paperlib | Modern paper-library UI, metadata scraping, full-text search, paper notes, LLM paper features, writing integration. | It is a good challenge to older reference-manager UX and is close to "paper library for active writing." | Do not make LitRev only a paper manager or copy GPL code without review. | Reference and possible adapter ideas. |
@@ -638,9 +640,12 @@ These are not first-core sources, but each has something worth returning to.
 | LangGraph | Useful for explicit long-running scientific workflows. Do not make it the whole agent architecture. |
 | Tauri/Rust shell | Revisit after Electron/React prototypes expose a real limitation. Rust remains excellent for sidecars. |
 
-## Prototype Sequence
+## Prototype Backlog
 
-Do these in order because each one reduces a major architecture risk.
+These are research prototype candidates, not the current product or
+implementation sequence. Their numbering is retained only as a stable reference
+to the earlier synthesis. The active sequence lives in
+`../../planning/product-roadmap.md`.
 
 0. Canonical LitRev schema and event contract.
    Define the first version of LitRev-owned project objects before any tool
@@ -701,10 +706,10 @@ Do these in order because each one reduces a major architecture risk.
 Current research points toward LitRev as a local-first, cloud-mirrored scientific
 workspace with a LitRev-owned project graph; TypeScript/React product logic;
 Electron-first desktop delivery unless a real limitation appears; SQLite local
-project state mirrored to Postgres/object storage; a possible Synara-derived
-forked workbench prototype; OpenCode as the first embedded executor spike; Codex
-as the safety/sandboxing reference; Goose as a broader local-agent architecture
-reference; Tiptap/ProseMirror-family writing;
+project state mirrored to Postgres/object storage; the owned Synara fork as the
+accepted initial application foundation; the owned OpenCode fork as the
+accepted initial runtime foundation; Codex as the safety/sandboxing reference;
+Goose as a later broader local-agent comparison; Tiptap/ProseMirror-family writing;
 GROBID/Docling/PaperQA/ASReview-powered evidence workflows; Lacuna-inspired
 research-map patterns for paper-grounded search and synthesis;
 Quarto/Pandoc-first export with MyST as challenger;
@@ -716,10 +721,10 @@ document-like surfaces where simultaneous editing matters.
 
 ## Non-Negotiables
 
-- Do not let a whole-product fork become LitRev's source of truth. A temporary
-  Synara-style forked workbench prototype is acceptable only if LitRev's
-  scientific kernel, agent gateway, provenance, and review model stay outside
-  the fork's product assumptions.
+- Do not let a whole-product foundation become LitRev's source of truth. The
+  owned Synara fork is acceptable only while LitRev's scientific project state,
+  agent gateway, provenance, and review model stay outside inherited coding-
+  product assumptions.
 - Do not let any source define the scientific object model.
 - Do not hide scientific work inside chat messages.
 - Do not accept agent changes without inspectable diffs and provenance.
