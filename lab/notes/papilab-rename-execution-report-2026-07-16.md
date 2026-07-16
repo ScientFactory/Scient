@@ -37,7 +37,7 @@ remain unchanged where they are source or immutable historical truth.
 
 | Checkout | Branch | Commit | Remote |
 |---|---|---|---|
-| Synara-derived desktop | `codex/project-init-kernel` | `9390d2ef` | `yaacovcorcos/papilab-desktop` |
+| Synara-derived desktop | `codex/project-init-kernel` | `beb118a0` | `yaacovcorcos/papilab-desktop` |
 | OpenCode | `dev` | `f85656c01` | `yaacovcorcos/opencode` |
 
 ## Verification
@@ -49,10 +49,13 @@ remain unchanged where they are source or immutable historical truth.
 - PapiLab project-init focused tests: 4 files, 37 tests passed.
 - Synara-derived desktop brand check: passed (`PapiLab identity check passed`).
 - Targeted renamed-surface tests: 4 files, 19 tests passed; the project-init
-  package remains at 4 files, 31 tests passed.
-- Synara-derived desktop release smoke and both full upstream source suites
-  were not run locally because Bun is not installed in this environment. The
-  hosted source checks remain the authoritative follow-up.
+  package remains at 4 files, 37 tests passed.
+- The desktop fork was reconciled with official upstream `3603a00e` and is
+  currently zero commits behind it. The preceding hosted run `29511161617`
+  passed identity, formatting, lint, release smoke, and local TypeScript
+  checks. Current head `beb118a0` is being verified by hosted run
+  `29511612418`; its typecheck, test, browser, build, and Windows results are
+  the authoritative completion checks at the time of this report update.
 - OpenCode push protection still names the old required status
   `LitRev source quality`; updating that GitHub protection rule returned HTTP
   404 with the current token. The renamed workflow now reports

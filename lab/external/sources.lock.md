@@ -19,9 +19,9 @@ moved to a new commit.
 
 | Source | Local path | Official upstream | Owned repository | Tested upstream | Maintained/tested commit | Role and update mode |
 |---|---|---|---|---|---|---|
-| OpenCode | `agent-forks/opencode/`; clean canonical checkout present on `dev` | `https://github.com/anomalyco/opencode.git`, `dev` | `https://github.com/yaacovcorcos/opencode`, public fork | `c69abee0c73253aebae65e87e4e1b9bfa8c38021` | `bcaef9349e6c238b4f739c441d42c64e207b3f55` on `dev`; source-suite head `2bcbe3a818f35cf80406fd73a03370fdaf1467d1` | First file/shell/edit executor; owned, upstream-aligned, `adapter-maintained`; PapiLab changes remain outside OpenCode core until a demonstrated gap requires otherwise. |
+| OpenCode | `agent-forks/opencode/`; clean canonical checkout present on `dev` | `https://github.com/anomalyco/opencode.git`, `dev` | `https://github.com/yaacovcorcos/opencode`, public fork | `c69abee0c73253aebae65e87e4e1b9bfa8c38021` | `f85656c0185904bb2b7624ae0b49ea79957efb2f` on `dev`; hosted PapiLab quality run `29509883409` | First file/shell/edit executor; owned, upstream-aligned, `adapter-maintained`; PapiLab changes remain outside OpenCode core until a demonstrated gap requires otherwise. |
 | Goose | `agent-forks/goose/` is the canonical restore path; no checkout is currently present after cleanup | `https://github.com/aaif-goose/goose.git`, `main` | None; owned repository deferred | Not tested in Gate 1.5 | Last inspected commit `3c1fdd692cc8aaa5f09b9175410c09a09d4dfe49`; checkout removed | Deferred broader-agent research input. Repository, build, ACP adapter, runtime, credentials, and adoption wait until after the first PapiLab gateway. |
-| Synara | `desktop-app-forks/synara/`; clean canonical checkout present on `main` | `https://github.com/Emanuele-web04/synara.git`, `main` | `https://github.com/yaacovcorcos/papilab-desktop`, public fork | `a4dae80d74107c41ac5b3226316b5049c01dc958` | `f2e8029cce55e3fbac5142bf9eb79752d23950de` on `main`; source-suite head `76324a0c85e67c931d0ddae6882d6e013882a0aa` | Accepted initial application foundation; owned `thin-fork-merge`, with deliberate divergence allowed; must not own scientific project truth. |
+| Synara-derived desktop | `desktop-app-forks/synara/`; clean canonical checkout present on `codex/project-init-kernel` | `https://github.com/Emanuele-web04/synara.git`, `main` | `https://github.com/yaacovcorcos/papilab-desktop`, public fork | `3603a00e9f57aacf73ebaef8296eee8e4f55dd20` | `beb118a000399ec1d0770883acac2393de847034` on `codex/project-init-kernel`; hosted CI run `29511612418` in progress | Accepted initial application foundation; owned `thin-fork-merge`, with deliberate divergence allowed; must not own scientific project truth. |
 | T3 Code | `desktop-app-forks/t3code/` is the canonical restore path; no checkout is currently present after cleanup | `https://github.com/pingdotgg/t3code.git`, `main` | None | Not tested in Gate 1.5 | Last inspected commit `b9cc8d6ef17ca9f45bec621bef71ad3f706b9276`; checkout removed | Desktop/runtime/provider/process reference only. |
 
 Gate 1.5 immutable tags in both owned repositories:
@@ -30,28 +30,27 @@ Gate 1.5 immutable tags in both owned repositories:
 - `litrev-gate-1-5-upstream-baseline` identifies the exact official upstream
   commit tested in Gate 1.5.
 
-The source-review branches were merged through these pull requests:
+The historical source-review branches were merged through these pull requests
+(the repository rename may redirect these links):
 
-- Synara: <https://github.com/yaacovcorcos/synara/pull/1>
+- Synara: <https://github.com/yaacovcorcos/papilab-desktop/pull/1>
 - OpenCode: <https://github.com/yaacovcorcos/opencode/pull/1>
 
 Post-closeout Synara identity-copy maintenance was merged through
-<https://github.com/yaacovcorcos/synara/pull/2> at
+<https://github.com/yaacovcorcos/papilab-desktop/pull/2> at
 `baa7b3d8d604a72467f2a1f575af7c7d85daf94d`.
 
-The 2026-07-16 upstream refresh was merged through:
+The current 2026-07-16 OpenCode upstream refresh was merged through:
 
-- Synara: <https://github.com/yaacovcorcos/synara/pull/3>
 - OpenCode: <https://github.com/yaacovcorcos/opencode/pull/3>
 
-Both source-suite heads were zero commits behind the tested official upstream
-heads. Synara passed identity, formatting, lint, typecheck, full tests, browser
-tests, desktop build, release smoke, and Windows process regression checks on
-its pinned Bun 1.3.12 toolchain. OpenCode passed its workspace typecheck, 3,175
-tests, platform builds, and CLI smoke on its pinned Bun 1.3.14 toolchain. A live
-compatibility smoke also connected Synara's pinned OpenCode SDK to the built
-owned OpenCode 1.18.2 server, verified server health, resolved an isolated
-non-Git fixture project, and listed sessions.
+OpenCode passed its workspace typecheck, 3,175 tests, platform builds, and CLI
+smoke on its pinned Bun 1.3.14 toolchain. The desktop fork's current upstream
+reconciliation is tracked by open PR
+<https://github.com/yaacovcorcos/papilab-desktop/pull/4>; its hosted CI is the
+acceptance evidence for the new `f58f8730` source pin. The earlier Gate 1.5
+suite and compatibility smoke remain historical evidence for their recorded
+source pins.
 
 ## Remote Ownership State
 

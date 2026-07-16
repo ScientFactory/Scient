@@ -76,7 +76,7 @@ The core architectural rule is:
 
 As of 2026-07-16, the executable application scaffold is the owned Synara
 checkout at `desktop-app-forks/synara/`. Its current rename and project-init
-work is on `codex/project-init-kernel` at `9390d2ef`, based on the maintained
+work is on `codex/project-init-kernel` at `beb118a0`, based on the maintained
 owned baseline recorded in `lab/external/sources.lock.md`; the branch is pushed
 to `yaacovcorcos/papilab-desktop`. The owned OpenCode fork is at
 `agent-forks/opencode/` on `dev` at `f85656c01`, pushed to
