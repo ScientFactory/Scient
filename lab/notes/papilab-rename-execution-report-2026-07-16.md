@@ -37,7 +37,7 @@ remain unchanged where they are source or immutable historical truth.
 
 | Checkout | Branch | Commit | Remote |
 |---|---|---|---|
-| Synara-derived desktop | `codex/project-init-kernel` | `544f75b6` | `yaacovcorcos/papilab-desktop` |
+| Synara-derived desktop | `codex/project-init-kernel` | `9390d2ef` | `yaacovcorcos/papilab-desktop` |
 | OpenCode | `dev` | `f85656c01` | `yaacovcorcos/opencode` |
 
 ## Verification
@@ -46,7 +46,7 @@ remain unchanged where they are source or immutable historical truth.
 - Parent Markdown relative-link check: passed with zero broken links under
   `docs/`.
 - PapiLab project-init package TypeScript check: passed.
-- PapiLab project-init focused tests: 4 files, 31 tests passed.
+- PapiLab project-init focused tests: 4 files, 37 tests passed.
 - Synara-derived desktop brand check: passed (`PapiLab identity check passed`).
 - Targeted renamed-surface tests: 4 files, 19 tests passed; the project-init
   package remains at 4 files, 31 tests passed.
