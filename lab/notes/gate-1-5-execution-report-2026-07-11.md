@@ -2,9 +2,17 @@
 
 Status: Historical
 Owner: Yaacov
-Last updated: 2026-07-12
+Last updated: 2026-07-16
 Purpose: Records the executed Synara and OpenCode ownership, updateability, identity-isolation, and compatibility gate.
 Doc type: Research evidence
+
+## Historical Scope
+
+This report preserves the Gate 1.5 result and the next-step language used when
+it was executed, including contemporary Gate 1.6 references. Do not rewrite
+those body references to match later sequencing. Current product sequencing
+lives in `../../docs/planning/product-roadmap.md` and its linked implementation
+plan.
 
 ## Verdict
 

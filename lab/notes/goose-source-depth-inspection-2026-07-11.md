@@ -2,8 +2,8 @@
 
 Status: Draft
 Owner: Yaacov
-Last updated: 2026-07-11
-Purpose: Records Gate 1.6 research input on Goose integration seams, runtime boundaries, safety gaps, and its possible role in LitRev.
+Last updated: 2026-07-16
+Purpose: Records research evidence on Goose integration seams, runtime boundaries, safety gaps, and its possible later role in LitRev.
 Doc type: Research evidence
 
 ## Outcome
@@ -173,9 +173,8 @@ canonical.
 
 ## Recommendation
 
-Proceed with an owned, upstream-aligned Goose fork and an ACP-over-stdio adapter
-spike during Gate 1.6. Gate 1.5 remains limited to Synara and OpenCode. Keep
-OpenCode as the already-verified first executor and use Goose later to test the
-broader agent/automation role. Do not add Goose directly to Synara as an
-unrestricted provider and do not begin from Goose desktop or the removed REST
-server.
+Defer the owned Goose fork and ACP-over-stdio adapter spike until after the first
+LitRev gateway works through the owned OpenCode runtime. Use Goose later to test
+the broader agent and automation role through that established boundary. Do not
+add Goose directly to Synara as an unrestricted provider and do not begin from
+Goose desktop or the removed REST server.

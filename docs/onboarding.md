@@ -2,7 +2,7 @@
 
 Status: Active
 Owner: Yaacov
-Last updated: 2026-07-12
+Last updated: 2026-07-16
 Purpose: Gives new LitRev collaborators a deliberate reading journey through the project, its repository, and its sources of truth before task-specific work begins.
 Doc type: Repo orientation
 
@@ -71,7 +71,7 @@ After the shared journey, use this map to know where to look. You do not need to
 | --- | --- | --- |
 | Product | [Product Documentation](product/README.md) | Product truth and durable product principles. This is the first place to check what LitRev should be and why. |
 | Architecture | [Architecture Documentation](architecture/README.md) | Architecture direction, proposed decisions, future architecture homes, and accepted decision records. Check each document's status before relying on it. |
-| Planning | [Planning](planning/README.md) | Roadmap seeds, candidate work, open questions, and build sequencing. Planning is not product truth or current implementation. |
+| Planning | [Planning](planning/README.md) | Active product roadmap, implementation plans, candidate features, open product questions, and related build sequencing. Planning is not product truth or current implementation. |
 | Research | [Research](research/README.md) | External-source evaluations, spike reports, visual references, and research evidence. Research must be promoted before it becomes product or architecture authority. |
 | Design | [Design](design/README.md) | Early design notes, future design homes, and surface-specific guidance. Much of this area is still draft or placeholder material. |
 | Quality | [Quality](quality/README.md) | Testing, engineering, and quality doctrine. These documents define principles, not yet-complete command or CI references. |
@@ -89,7 +89,8 @@ After completing the shared journey, follow every route relevant to your contrib
 The accepted [LitRev Product Requirements Document](product/PRD.md) and draft [Product Philosophy](product/product-philosophy.md) from the shared journey come first. Then read:
 
 1. [Planning](planning/README.md) to understand what planning documents may and may not own.
-2. [Product Planning](planning/product-planning.md) for current roadmap seeds, candidate features, open product questions, and cross-document handoffs.
+2. [Product Roadmap](planning/product-roadmap.md) for the active sequence of coherent product outcomes.
+3. [Product Planning](planning/product-planning.md) for candidate features, open product questions, and cross-document handoffs.
 
 Treat product-planning material as draft planning until stable decisions are promoted into the accepted product or architecture documents.
 
@@ -106,9 +107,10 @@ Do not infer implemented interfaces from design notes, screenshots, or placehold
 ### Architecture And Engineering Direction
 
 1. [Architecture Documentation](architecture/README.md) to learn the architecture area's authority and current map.
-2. [Technology Stack](architecture/technology-stack.md) for the proposed stack direction, actual scaffold state, explicit non-decisions, deferred choices, and validation gates.
-3. [Security And Permissions](architecture/security-and-permissions.md) for the draft trust-boundary and permission principles that architecture and agent-tool proposals must respect.
-4. Continue only into the task-relevant architecture documents identified by the [architecture index](architecture/README.md) or the task handoff.
+2. [ADR-0001](architecture/decisions/ADR-0001-synara-opencode-foundation-and-litrev-ownership-boundary.md) for the accepted Synara, OpenCode, and LitRev ownership boundary.
+3. [Technology Stack](architecture/technology-stack.md) for the proposed stack direction, actual scaffold state, validation status, explicit non-decisions, and deferred choices.
+4. [Security And Permissions](architecture/security-and-permissions.md) for the draft trust-boundary and permission principles that architecture and agent-tool proposals must respect.
+5. Continue only into the task-relevant architecture documents identified by the [architecture index](architecture/README.md) or the task handoff.
 
 The stack is proposed, security guidance is draft, and several architecture files are future homes. None of them should be described as implemented unless current repository evidence proves it.
 
@@ -118,10 +120,11 @@ Complete the architecture route first when the work may influence implementation
 
 1. [Research](research/README.md) for the research area's evidence and promotion boundaries.
 2. [Source Evaluations](research/source-evaluations/README.md) for the rules governing evaluations of external systems.
-3. [LitRev Open-Source Adaptation Map](research/source-evaluations/open-source-adaptation-map.md) for the current cross-source synthesis, candidate roles, LitRev-owned boundaries, and prototype sequence.
+3. [LitRev Open-Source Adaptation Map](research/source-evaluations/open-source-adaptation-map.md) for the current cross-source synthesis, candidate roles, LitRev-owned boundaries, and research prototype backlog.
 4. [Open-Source Adaptation Build Strategy](planning/open-source-adaptation-build-strategy.md) for the draft path from research candidates toward controlled build experiments.
-5. [LitRev Lab](../lab/README.md) for the experimental layout, promotion rule, current evidence map, and lab guardrails.
-6. Read only the spike report, lab note, or source material named by the task handoff; do not read raw research chronologically and assume the newest or most detailed file is authoritative.
+5. [First Vertical-Slice Implementation Plan](planning/first-litrev-vertical-slice-implementation-plan.md) when the work touches the active Synara/OpenCode implementation slice.
+6. [LitRev Lab](../lab/README.md) for the experimental layout, promotion rule, current evidence map, and lab guardrails.
+7. Read only the spike report, lab note, or source material named by the task handoff; do not read raw research chronologically and assume the newest or most detailed file is authoritative.
 
 ### Quality And Implementation Review
 

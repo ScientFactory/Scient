@@ -2,7 +2,7 @@
 
 Status: Proposed
 Owner: Yaacov
-Last updated: 2026-07-12
+Last updated: 2026-07-16
 Purpose: Records LitRev's current technology stack direction and open implementation decisions.
 Doc type: Architecture direction
 
@@ -11,6 +11,17 @@ distinguishes that direction from the inherited scaffold currently available in
 the lab.
 
 It is intentionally limited to stack decisions: what we plan to use, what role each technology plays, what remains under evaluation, and what is explicitly deferred. Detailed designs for sync, security, project format, and agent runtime should live in separate architecture documents.
+
+## Document Rules
+
+This document owns technology roles, adoption status, verified evidence, and
+remaining technology risks. It does not own the product roadmap, implementation
+sequence, detailed runtime contract, or executed experiment records.
+
+Update it when a technology role, adoption decision, verified result, or
+material unresolved risk changes. Put product sequencing in
+`../planning/product-roadmap.md`, implementation work in the relevant planning
+document, and exact run evidence under `lab/`.
 
 The Synara checkout under `lab/external/` is an ignored, pinned upstream source
 tree used for experiments. It is not current LitRev implementation and does not
@@ -50,9 +61,10 @@ The core architectural rule is:
 | Cloud platform | Supabase | Initial default candidate; not scaffolded |
 | Large file storage | Object storage | Proposed; not scaffolded |
 | Sync | Local-first SQLite-to-cloud sync | Under evaluation; not scaffolded |
-| Agent provider layer | Synara provider contracts and service | Inherited scaffold candidate; needs boundary validation |
-| Agent executor | OpenCode | Owned upstream-aligned fork verified through the inherited adapter in Gate 1.5 |
-| Agent substrate | Goose | Deferred to Gate 1.6; source-depth candidate, not adopted |
+| Application foundation | Owned Synara fork | Accepted initial foundation through ADR-0001; scientific product fit remains unproven |
+| Agent provider layer | Synara provider contracts and service | Inherited runtime machinery to pressure-test behind a LitRev-owned boundary |
+| Agent runtime foundation | Owned OpenCode fork | Accepted initial foundation through ADR-0001; build and adapter compatibility verified |
+| Later agent candidate | Goose | Source-depth candidate; integration deferred until after the first LitRev gateway |
 | Executor safety reference | Codex | Evaluation/reference |
 | Scientific runtime | Python via uv | Proposed |
 | Native services | Rust selectively | Deferred until needed |
@@ -139,8 +151,10 @@ lab/external/desktop-app-forks/synara/
 ```
 
 That tree remains foreign source and should not become the LitRev package map by
-accident. The first LitRev-owned contracts and adapter experiments belong in
-`lab/litrev-bridge/` until their boundary is proven.
+accident. Source-tracing notes and disposable adapter experiments may use
+`lab/litrev-bridge/`. The first vertical-slice implementation belongs in the
+permanent location selected from source evidence during the implementation
+plan; do not treat the lab as its default code home.
 
 Possible later LitRev-owned package areas include:
 
@@ -295,14 +309,14 @@ runtime candidates. LitRev does not yet have its own agent gateway, scientific
 task contract, context receipt, run ledger, proposed-change lifecycle, or
 accepted write-back path.
 
-Initial posture:
+Current posture:
 
-- Verify Synara's existing OpenCode adapter as the first executor spike.
+- Build the first LitRev workflow on the owned OpenCode runtime through the
+  existing verified Synara integration.
 - Codex is the execution-safety and sandboxing reference.
-- Evaluate Goose in Gate 1.6 as a broader local-agent engine through `goose acp`
-  over stdio, behind the future LitRev gateway. Keep authenticated `goose serve`
-  as a later process-separated option; do not use the removed `goosed` REST
-  surface.
+- Evaluate Goose later as a broader local-agent engine through `goose acp` over
+  stdio, behind the LitRev gateway. Keep authenticated `goose serve` as a later
+  process-separated option; do not use the removed `goosed` REST surface.
 - Treat Goose permissions, sessions, recipes, and tool events as runtime inputs
   to normalize. They do not provide the LitRev project boundary or canonical
   run ledger by themselves.
@@ -410,103 +424,26 @@ Do not choose these by default on day one:
 - CRDTs as the entire app data model
 - an agent's internal session database as LitRev's source of truth
 
-## Initial Validation Gates
+## Validation Status And Remaining Unknowns
 
-Validate the stack in ordered gates so scaffold compatibility, LitRev product
-ownership, scientific workflow quality, and sync risk do not fail as one opaque
-experiment.
+Completed historical experiments remain evidence, not the roadmap.
 
-### Gate 1: Inherited Scaffold Baseline
+| Area | Proven | Not Yet Proven | Evidence Or Owner |
+|---|---|---|---|
+| Synara-derived application | Owned fork, build, isolated LitRev identity and state, reviewed upstream process | Scientific-product fit, sustainable domain UI divergence, and long-term maintenance cost | Gate 1 and Gate 1.5 lab reports; ADR-0001 owns adoption |
+| OpenCode-derived runtime | Owned build, Synara compatibility, project-root fidelity, transcript fidelity, and approval flow for a constrained action | LitRev scientific tools, durable task behavior, recovery semantics, and justified core changes | Gate 1.5 report; ADR-0001 owns adoption |
+| LitRev project state | Product responsibilities and trust boundary are documented | Persistence, portable local record, recovery, and first real scientific object relationship | First vertical-slice plan |
+| LitRev agent boundary | Context, proposal, review, provenance, and permission responsibilities are documented | Actual contract, code placement, event mapping, and accepted write-back path | First vertical-slice plan; `agent-runtime.md` remains a future home |
+| Goose | Source seams, ACP path, and safety risks inspected | Owned fork, adapter, isolation, and incremental value after the LitRev gateway | Goose source-depth inspection |
+| Cloud sync | Postgres, object storage, and local-first sync are proposed directions | Authority, offline behavior, conflicts, revocation, and recovery | Later roadmap and focused architecture work |
 
-- Install and boot the pinned Synara checkout with its existing versions and
-  isolated state.
-- Verify desktop, local web UI, server, SQLite state, project/folder opening,
-  file preview, terminal, browser, provider status, and clean shutdown.
-- Verify OpenCode discovery and one harmless turn.
-- Record exact commands, ports, state paths, failures, and unsupported behavior
-  in the lab.
+Gate 1 and Gate 1.5 are retained only as historical names for completed work.
+Future product and implementation sequencing lives in
+`../planning/product-roadmap.md` and the linked implementation plan.
 
-**2026-07-11 result: passed on the supported baseline.** The scaffold booted,
-and the official Homebrew OpenCode CLI `1.17.18` completed one approved,
-OpenAI-backed `pwd` in a standalone non-Git fixture. The Synara UI and SQLite
-stored the exact expected response, and no checkpoint warning occurred. The
-earlier failures belonged to an experimental pinned-source launcher, an expired
-copied credential, and a fixture incorrectly placed inside the parent Git
-repository. External Browser DNS and interrupted-runner marker cleanup remain
-non-blocking scaffold follow-ups. See the corrected evidence in
-[`lab/notes/synara-gate-1-baseline-2026-07-11.md`](../../lab/notes/synara-gate-1-baseline-2026-07-11.md)
-and proceed through Gate 1.5 before Gate 2.
+## Current Stack Direction
 
-### Gate 1.5: Owned Fork And Identity Baseline
-
-**2026-07-11 result: passed.** LitRev owns public Synara and OpenCode forks
-under `yaacovcorcos`, with writable owned `origin` remotes and fetch-only
-official `upstream` remotes. The maintained Synara branch is based on current
-official upstream and carries isolated LitRev display, bundle, state, browser,
-storage, branch-prefix, and updater identity in reviewable commits. Release
-publication requires an explicitly configured LitRev-owned repository.
-Installed clients remain independently hard-disabled from automatic updates;
-enabling them additionally requires a reviewed code change and a
-feed-consumption test.
-
-An OpenCode `1.17.18` binary built from the owned fork completed the constrained
-non-Git `pwd` smoke through Synara while preserving the exact project root,
-transcript, and approval-required runtime record. Synara/OpenCode runtime and
-session databases remain non-canonical integration state. Goose repository,
-build, adapter, runtime, and adoption work remain entirely deferred to Gate
-1.6. See
-[`lab/notes/gate-1-5-execution-report-2026-07-11.md`](../../lab/notes/gate-1-5-execution-report-2026-07-11.md).
-
-### Gate 2: LitRev-Owned Local Boundary
-
-- Add the smallest LitRev-owned project reference, task intent, context receipt,
-  run receipt, and artifact/proposed-change reference in `lab/litrev-bridge/`.
-- Open one local fixture project without requiring Git.
-- Let one executor act inside the approved project boundary.
-- Capture what context was used, what actions ran, what files or artifacts
-  changed, what failed, and what requires review.
-- Keep Synara session and projection state outside canonical LitRev project
-  truth.
-
-### Gate 3: Scientific Workflow Proof
-
-- Import one public or synthetic source fixture.
-- Preserve one exact source region and one evidence-linked note or draft passage.
-- Run one agent task that produces a reviewable project change.
-- Prove manual continuation, accept/reject behavior, checkpointing, and recovery.
-
-### Gate 4: Cloud And Sync Risk Spike
-
-Run this only after the local proof is coherent:
-
-- mirror one representative structured record and one asset to Postgres/object
-  storage;
-- work offline, reconnect, and verify conflict/recovery behavior;
-- decide whether the web client is read/review continuation or may author
-  canonical project changes;
-- avoid building a broad cloud web product before this authority boundary is
-  understood.
-
-## Current Recommendation
-
-Use the pinned Synara checkout only as the immediate lab scaffold:
-
-```text
-Electron desktop shell
-React/Vite local workbench UI
-Bun/Node.js local coordinator
-WebSocket RPC
-SQLite projection state
-Effect contracts and runtime helpers
-existing OpenCode adapter for first verification
-TypeScript 5.7 inherited compatibility baseline
-```
-
-Build LitRev-owned project and agent contracts outside Synara's canonical state.
-Do not treat the scaffold's coding-project model, package names, provider
-sessions, SQLite schema, or TypeScript version as LitRev commitments.
-
-The proposed target direction remains:
+The proposed and accepted-by-ADR foundation direction is:
 
 ```text
 TypeScript
@@ -517,7 +454,7 @@ Postgres
 Supabase as initial cloud platform candidate
 object storage
 local-first sync under evaluation
-OpenCode first executor spike
+owned OpenCode fork as the initial agent-runtime foundation
 Codex safety reference
 Goose later substrate/provider evaluation
 Python via uv for scientific computation
@@ -527,7 +464,7 @@ CRDTs only for collaborative text
 Git for human-readable artifacts, not required sharing
 ```
 
-Update this document after each validation gate with what was proven,
-invalidated, retained only for compatibility, or deferred. The target stack
-remains a proposal until LitRev-owned local project and agent boundaries work;
-cloud and web choices remain later proposals until the sync/authority spike.
+Update this document when a technology role or its validation status changes.
+The overall target stack remains proposed until the first LitRev-owned local
+project and agent boundaries work. Cloud and web choices remain later proposals
+until their authority and sync risks are tested.

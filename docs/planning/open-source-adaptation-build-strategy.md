@@ -2,14 +2,15 @@
 
 Status: Draft
 Owner: Yaacov
-Last updated: 2026-07-11
-Purpose: Starts the intentionally unfinished build strategy for adapting open-source systems into LitRev without making them product truth.
+Last updated: 2026-07-16
+Purpose: Defines the current fork, adaptation, upstream-update, and divergence strategy for open-source foundations used by LitRev.
 Doc type: Planning note
 
 ## Document Rules
 
-This file is unfinished. It is a planning note for the next build strategy, not
-accepted architecture, current implementation, or a full roadmap.
+This file owns the practical fork, adaptation, upstream-update, and divergence
+strategy. It is not product truth, accepted architecture, current
+implementation, or the product roadmap.
 
 The accepted product contract lives in `docs/product/PRD.md`. Source evaluation
 and candidate mapping live in
@@ -27,42 +28,35 @@ LitRev is still documentation-first. There is no implemented app, project
 kernel, agent gateway, sync layer, editor, analysis runtime, or build pipeline in
 this repo.
 
-The current practical direction is to move faster by borrowing working
-infrastructure while keeping LitRev's scientific project model owned:
+The current practical direction is to build on owned, working foundations while
+keeping LitRev's scientific project meaning owned:
 
-- use a Synara-derived or Synara-inspired workbench prototype if it accelerates
-  desktop shell, chat, terminal, diff, provider-session, and local-process work;
-- treat that Synara-derived workbench as a prototype to stabilize, not as the
-  LitRev product core;
+- use the owned Synara fork as the initial application foundation for desktop,
+  workspace, UI, provider-session, and local-process work;
 - use science apps from the 2026-07-07 scan as specialized sources around the
   shell: Zotero-family components for source/PDF work, Zettlr/Overleaf/Quarto
   for writing/export expectations, Jupyter-style tools for analysis
   compatibility, and ELN/RDM tools for protocol/lab/repository references;
-- embed OpenCode first as the local file/shell/edit executor candidate;
-- evaluate Goose as a broader local-agent and automation engine;
+- use the owned OpenCode fork as the initial agent-runtime foundation;
+- evaluate Goose later as a broader local-agent and automation engine;
 - keep all agents behind a LitRev-owned gateway for context, permissions,
   proposed changes, provenance, review, checkpoints, and write-back.
 
-## Minimal Strategy For The Next Build Pass
+## First-Slice Constraints
 
-The first pass should prove the boundary, not the whole product.
+The active product sequence lives in `product-roadmap.md`, and its concrete
+implementation is planned in
+`first-litrev-vertical-slice-implementation-plan.md`. This strategy constrains
+that work without duplicating it:
 
-1. Define the smallest LitRev-owned project kernel needed for one local project
-   scenario.
-2. Define a minimal agent gateway contract that can call one embedded executor
-   and record context, approvals, actions, diffs, artifacts, errors, and final
-   proposed changes.
-3. Put a workbench shell around that boundary only where it helps show the real
-   workflow: project home, project chat, file/activity view, terminal/log view,
-   diff/review view, and artifact output.
-4. Run one vertical scientific workflow through the boundary: project context,
-   one imported source or fixture, one readable/annotatable source surface, one
-   evidence-linked note or draft paragraph, one analysis or artifact output if
-   needed, one agent task, one review step, and one recovery or rollback path.
-5. Pressure-test the Synara fork with that scientific workflow before deepening
-   the fork. If the shell forces LitRev to model research as coding sessions,
-   Git worktrees, provider chats, or engine-owned artifacts, stop treating the
-   fork as the base and keep only useful parts as reference/cherry-pick source.
+1. Use one vertical scientific workflow to pressure-test both foundations.
+2. Keep scientific operations available to manual UI and agents through a
+   LitRev-owned layer where practical.
+3. Preserve project meaning independently of Synara/OpenCode session state.
+4. Prefer extension seams first, but make isolated core changes when a proven
+   requirement cannot be met cleanly otherwise.
+5. Reconsider the foundation if inherited coding assumptions prevent the
+   accepted product workflow.
 
 Names such as `ProjectKernel`, `AgentGateway`, `ProvenanceLog`, and
 `ReviewableArtifact` are planning placeholders until architecture documents or
@@ -84,10 +78,10 @@ labels must match the research map in
    external format from becoming canonical.
 5. Treat editor, chart, notebook, CRDT, or export-runtime state as a projection
    unless an architecture decision says otherwise.
-6. Use a thin fork only for missing integration seams that can stay isolated and
-   remain mergeable from upstream.
-7. Use a divergent fork only after license review, source-depth review, and an
-   explicit decision that direct upstream updates are no longer expected.
+6. Use a thin fork while missing integration seams can stay isolated and regular
+   upstream merges remain valuable.
+7. Move deliberately to selective divergence when LitRev owns a changed product
+   surface and accepts that updates may become manual cherry-picks.
 8. Treat divergent upstream updates as reference/cherry-pick source: inspect,
    select, and adapt useful changes manually.
 9. Preserve raw upstream runtime logs when useful, but normalize accepted project
@@ -128,8 +122,8 @@ Keep change lanes separable where practical:
 
 Synara is expected to carry visible LitRev identity and domain UI. OpenCode is
 an embedded engine, so its standalone desktop branding does not need to change.
-If Gate 1.6 later accepts Goose, apply the same principle unless LitRev decides
-to distribute a standalone Goose-derived application.
+If LitRev later adopts Goose, apply the same principle unless it decides to
+distribute a standalone Goose-derived application.
 
 An upstream sync should be a deliberate operation: fetch `upstream`, create a
 sync branch from the LitRev-maintained branch, merge the selected upstream
@@ -152,7 +146,7 @@ Update strategy values:
 These values describe adaptation depth. They do not replace the owned-fork
 remote topology above.
 
-## Gate 1.5: Synara And OpenCode Fork Preparation
+## Completed Preparation Evidence
 
 The executable plan, evidence requirements, and pass/fail criteria live in
 [`gate-1-5-execution-plan.md`](gate-1-5-execution-plan.md).
@@ -179,9 +173,10 @@ upstream-safe Synara identity layer, the owned OpenCode compatibility result,
 and repeatable upstream verifiers. Runtime homes and smoke artifacts are
 evidence, not product architecture.
 
-## Gate 1.6: Goose Fork And ACP Boundary
+## Deferred Goose Evaluation
 
-All Goose execution work is deferred to Gate 1.6, including:
+All Goose execution work is deferred until after the first LitRev gateway works
+through OpenCode, including:
 
 - creating and attaching the owned Goose repository;
 - building and releasing the owned-fork Goose binary;
@@ -191,8 +186,8 @@ All Goose execution work is deferred to Gate 1.6, including:
 - deciding Goose runtime-state and credential isolation; and
 - deciding whether Goose is accepted as a LitRev engine.
 
-The completed source-depth inspection is research input for Gate 1.6, not a
-Gate 1.5 deliverable or acceptance condition.
+The completed source-depth inspection remains research input, not a current
+implementation commitment.
 
 Stop relying on a forked workbench if it forces LitRev to model research projects
 as coding sessions, Git worktrees, provider chats, or engine-owned artifacts.
@@ -201,8 +196,8 @@ as coding sessions, Git worktrees, provider chats, or engine-owned artifacts.
 
 - License and attribution review for any copied code, fork, embedded engine, or
   bundled dependency.
-- Source-depth review of Synara and OpenCode integration seams. Goose
-  integration review belongs only to Gate 1.6.
+- Source-depth review of Synara and OpenCode integration seams. Goose integration
+  review belongs to its later evaluation.
 - Source-depth and license review of the science-app components that may become
   more than references, especially Zotero Reader, Zotero Document Worker,
   Paperlib, Tropy, Zettlr, Overleaf, JupyterLab Desktop, Stencila, and the ELN
@@ -216,8 +211,8 @@ as coding sessions, Git worktrees, provider chats, or engine-owned artifacts.
 
 ## Open Questions
 
-- Does the first prototype actually need a Synara fork, or can Synara remain a
-  reference while LitRev starts from a smaller shell?
+- Which Synara seams should remain upstream-aligned and which should become
+  deliberately LitRev-owned?
 - Can a stabilized Synara fork host the first science-facing slice without
   leaking coding-product assumptions into the LitRev project kernel?
 - Should Zotero Reader or Zotero Document Worker be embedded as components, or
@@ -227,4 +222,5 @@ as coding sessions, Git worktrees, provider chats, or engine-owned artifacts.
 - Which agent actions can be pre-approved, and which require explicit review?
 - What source fixture best tests evidence, drafting, analysis, and recovery
   without expanding the first build too much?
-- When should the build strategy graduate into architecture documents or ADRs?
+- Which additional decisions from this strategy are hard enough to reverse that
+  they should be promoted into focused ADRs?

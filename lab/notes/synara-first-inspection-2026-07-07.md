@@ -1,10 +1,19 @@
 # Synara First Inspection And Ownership Plan
 
-Status: Draft
+Status: Historical
 Owner: Yaacov
-Last updated: 2026-07-12
-Purpose: Records the first technical inspection of Synara as LitRev's desktop base and defines how LitRev should own the product boundary while connecting OpenCode, Goose, and later agents.
+Last updated: 2026-07-16
+Purpose: Preserves the first technical inspection of Synara and the initial ownership plan that preceded the accepted foundation decision.
 Doc type: Research evidence
+
+## Historical Scope
+
+The inspected source findings remain useful evidence. Body text may retain
+contemporary planning and Gate 1.6 language as point-in-time wording. Current
+foundation and sequencing decisions live in
+`../../docs/architecture/decisions/ADR-0001-synara-opencode-foundation-and-litrev-ownership-boundary.md`,
+`../../docs/planning/product-roadmap.md`, and the first-slice implementation
+plan.
 
 ## Source Snapshot
 
@@ -274,7 +283,7 @@ The temptation will be to start with visible UI rebranding. Do not make that the
 - Should `.litrev/` live inside the user project by default, or should there be an app-managed mirror for folders the user does not want modified?
 - Should LitRev call Synara services in-process, through WebSocket, or through a small extracted package?
 - Does the current OpenCode adapter work with the pinned OpenCode commit and the locally installed `opencode` binary?
-- Goose is deferred to Gate 1.6. It should enter first through `goose acp` over stdio; validate this in an isolated adapter spike before considering authenticated `goose serve`.
+- Goose was assigned to the former Gate 1.6 plan. Current sequencing is owned by the product roadmap; the inspected `goose acp` recommendation remains research evidence.
 - Which first scientific slice should be used to validate the gateway: project setup, source capture, or data analysis?
 
 ## Recommendation

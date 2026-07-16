@@ -2,7 +2,7 @@
 
 Status: Active
 Owner: Yaacov
-Last updated: 2026-06-27
+Last updated: 2026-07-16
 Purpose: Defines where LitRev architecture direction, future architecture homes, and decisions belong.
 Doc type: Repo orientation
 
@@ -14,6 +14,6 @@ Current documents:
 - `project-format.md` - future home for the LitRev project format.
 - `local-first-sync.md` - future home for local-first and sync architecture.
 - `collaboration-model.md` - future home for collaboration architecture.
-- `agent-runtime.md` - future home for agent runtime architecture.
+- `agent-runtime.md` - future home for detailed agent runtime architecture; the accepted high-level ownership boundary currently lives in ADR-0001.
 - `security-and-permissions.md` - early security, trust-boundary, and permission principles.
-- `decisions/` - accepted architecture decision records.
+- `decisions/` - accepted architecture decision records, beginning with the Synara/OpenCode/LitRev ownership boundary.

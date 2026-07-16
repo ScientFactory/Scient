@@ -1,10 +1,10 @@
 # LitRev Lab
 
-Status: Draft
+Status: Active
 Owner: Yaacov
-Last updated: 2026-07-11
+Last updated: 2026-07-16
 Purpose: Defines the experimental lab area for early LitRev source forks, adapters, and integration spikes.
-Doc type: Planning note
+Doc type: Repo orientation
 
 ## Purpose
 
@@ -25,10 +25,10 @@ architecture.
 
 ## Current Inspection Notes
 
-- `notes/gate-1-5-execution-report-2026-07-11.md` - completed Synara/OpenCode ownership, identity isolation, updateability, owned-binary compatibility, and Gate 1.5 verdict; Goose remains entirely deferred to Gate 1.6.
-- `notes/synara-gate-1-baseline-2026-07-11.md` - executed Gate 1 baseline, correction run with the official OpenCode CLI, and pass-to-Gate-2 verdict.
-- `notes/synara-first-inspection-2026-07-07.md` - first Synara desktop-base inspection, OpenCode connection path, Goose integration path, and LitRev ownership boundary.
-- `notes/goose-source-depth-inspection-2026-07-11.md` - Gate 1.6 research input covering current Goose architecture, ACP integration seam, safety gaps, and owned-fork recommendation.
+- `notes/gate-1-5-execution-report-2026-07-11.md` - historical Synara/OpenCode ownership, identity isolation, updateability, owned-binary compatibility, and Gate 1.5 verdict. Body text may retain contemporary Gate 1.6 next-step language.
+- `notes/synara-gate-1-baseline-2026-07-11.md` - historical Gate 1 baseline, correction run with the official OpenCode CLI, and contemporary Gate 2 next-step verdict preserved as point-in-time wording.
+- `notes/synara-first-inspection-2026-07-07.md` - first Synara desktop-base inspection, OpenCode connection path, Goose integration path, and LitRev ownership boundary; planning language is superseded by ADR-0001 and the product roadmap.
+- `notes/goose-source-depth-inspection-2026-07-11.md` - research input covering Goose architecture, ACP integration seam, safety gaps, and owned-fork recommendation; implementation is deferred until after the first LitRev gateway.
 
 The upstream source trees under `external/` are intentionally ignored by the
 parent LitRev repository. Track their URLs, commits, roles, and update strategy
