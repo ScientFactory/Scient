@@ -3,18 +3,18 @@
 Status: Draft
 Owner: Yaacov
 Last updated: 2026-07-12
-Purpose: Tracks LitRev's candidate model portfolio and the distinct value each model must prove before selection.
+Purpose: Tracks PapiLab's candidate model portfolio and the distinct value each model must prove before selection.
 Doc type: Research evidence
 
 ## Document Rules
 
-This is a candidate portfolio, not an accepted model registry or implemented routing policy. It is adapted from a dated LitRev_2026 review. Model names, capabilities, prices, availability, and provider terms must be rechecked before a decision.
+This is a candidate portfolio, not an accepted model registry or implemented routing policy. It is adapted from a dated PapiLab_2026 review. Model names, capabilities, prices, availability, and provider terms must be rechecked before a decision.
 
 Access priorities live in `../../planning/model-access-and-routing-evolution.md`. External benchmark analysis lives in `model-benchmark-map.md`. Future routing architecture belongs in `../../architecture/agent-runtime.md`.
 
 ## Access Boundary
 
-This curated portfolio applies primarily to LitRev-managed access. Provider-connected and bring-your-own-key users may choose from the broader set of models LitRev can support through their provider.
+This curated portfolio applies primarily to PapiLab-managed access. Provider-connected and bring-your-own-key users may choose from the broader set of models PapiLab can support through their provider.
 
 ## Current Candidate Portfolio
 
@@ -32,7 +32,7 @@ Keep all seven in consideration until the broader review is complete. Refine, re
 
 ## Selection Standard
 
-Every LitRev-managed model should add a real role. Compare candidates on:
+Every PapiLab-managed model should add a real role. Compare candidates on:
 
 - scientific faithfulness and citation integrity;
 - mathematical and quantitative reasoning;
@@ -44,7 +44,7 @@ Every LitRev-managed model should add a real role. Compare candidates on:
 - latency and operational reliability; and
 - effective cost per successful task.
 
-Vendor claims, single benchmark scores, and headline token prices are not enough. Use the benchmark map to understand external evidence, then select exact models and routes from LitRev-specific use cases and later internal evaluations.
+Vendor claims, single benchmark scores, and headline token prices are not enough. Use the benchmark map to understand external evidence, then select exact models and routes from PapiLab-specific use cases and later internal evaluations.
 
 ## Routing Direction
 
@@ -55,5 +55,5 @@ Begin with manual choice. Later, evaluate recommendations and automatic routing 
 1. Recheck the seven candidates against primary sources.
 2. Map relevant external benchmarks across every candidate.
 3. Look for missing roles before adding more models.
-4. Define the later LitRev-owned evaluation suite.
+4. Define the later PapiLab-owned evaluation suite.
 5. Compare alternatives, then retain only models with distinct value.

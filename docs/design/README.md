@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Last updated: 2026-06-28
-Purpose: Defines where LitRev product design documentation should live.
+Purpose: Defines where PapiLab product design documentation should live.
 Doc type: Repo orientation
 
 Use this folder for product design principles, interaction guidance, accessibility expectations, and UI direction once those documents have real content.

@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Last updated: 2026-07-12
-Purpose: Defines how LitRev documentation should be created, classified, updated, and trusted.
+Purpose: Defines how PapiLab documentation should be created, classified, updated, and trusted.
 Doc type: Documentation policy
 
 ## Required Metadata
@@ -89,11 +89,11 @@ Do not turn root files into broad planning or architecture documents.
 
 ## Repository Scope And Connected Knowledge
 
-This policy governs durable documentation in the LitRev repository. The repository currently owns LitRev product and project knowledge; it is not the unrestricted memory of the whole company.
+This policy governs durable documentation in the PapiLab repository. The repository currently owns PapiLab product and project knowledge; it is not the unrestricted memory of the whole company.
 
-Company, commercial, market, or customer material may live here when it directly informs LitRev and is placed as product truth, planning, research, architecture, or another existing type. Company-wide strategy, finance, legal, people, customer records, and cross-product authority require a separately accepted home and authority model.
+Company, commercial, market, or customer material may live here when it directly informs PapiLab and is placed as product truth, planning, research, architecture, or another existing type. Company-wide strategy, finance, legal, people, customer records, and cross-product authority require a separately accepted home and authority model.
 
-A broader company memory may connect to LitRev through links and shared conventions without living in the same repository. Connected context does not override the nearest authoritative source.
+A broader company memory may connect to PapiLab through links and shared conventions without living in the same repository. Connected context does not override the nearest authoritative source.
 
 The current scope recommendation and unresolved structural choices live in `docs/planning/repository-scope-and-company-memory.md`.
 

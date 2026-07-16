@@ -24,7 +24,7 @@ question.
 
 ## Current Planning Role
 
-The PRD is now accepted as the product truth for LitRev's identity, principles, workspace responsibilities, major capability areas, non-goals, readiness criteria, and open product questions.
+The PRD is now accepted as the product truth for PapiLab's identity, principles, workspace responsibilities, major capability areas, non-goals, readiness criteria, and open product questions.
 
 This file now has four jobs:
 
@@ -49,7 +49,7 @@ Keep product centrality separate from validation timing.
 
 Product centrality values:
 
-- `Core` - central to LitRev's product identity.
+- `Core` - central to PapiLab's product identity.
 - `Important` - important to a strong product but not defining for the first coherent product shape.
 - `Later` - likely valuable after foundational workflows are proven.
 - `Idea` - captured for later thinking.
@@ -98,7 +98,7 @@ This is the active feature inventory. It should stay compact. Add detail only wh
 | Manuscript, citations, and publishing | Section/full-draft writing, evidence rail, citation diagnostics, evidence-linked vs auxiliary citations, metadata, journal adaptation, import/export/reconciliation, publication artifacts. | Core | Early validation to early expansion | Read/review and light edit later | Design handoff: serious editor UX. Architecture handoff: citation/export model. |
 | Data, code, analysis, figures, and artifacts | Script or notebook-compatible work, approved execution, run records, datasets, outputs, stale-output detection, tables, figures, visual planning, artifact manager. | Core | Early validation to early expansion | Desktop first; review later | Architecture handoffs: execution, artifacts, reproducibility, project format. |
 | Agent delegation and safe automation | Object-scoped tasks, context receipts, project-aware tools, proposed artifacts, task queue, durable runs, approvals, retries, cancellation, recovery. | Core | Foundation to early validation | Approval later | Architecture handoffs: `docs/architecture/agent-runtime.md` and `docs/architecture/security-and-permissions.md`. |
-| Model access and routing | Provider-connected subscriptions, bring-your-own API keys, LitRev-managed access, manual model choice, and later task-aware routing. | Core | Foundation to early expansion | None first | Sequencing and commercial options: `model-access-and-routing-evolution.md`. Candidate portfolio: `../research/source-evaluations/model-portfolio-and-provider-routing.md`. |
+| Model access and routing | Provider-connected subscriptions, bring-your-own API keys, PapiLab-managed access, manual model choice, and later task-aware routing. | Core | Foundation to early expansion | None first | Sequencing and commercial options: `model-access-and-routing-evolution.md`. Candidate portfolio: `../research/source-evaluations/model-portfolio-and-provider-routing.md`. |
 | Scientific skills | Built-in bounded skills for evidence extraction, drafting, citation checking, data analysis, figure creation, method guidance, journal adaptation, project mentoring. | Important | Early expansion | Approval later | Start with a tiny skill set; defer marketplace/registry mechanics. |
 | Project memory | Inspectable memory, source/authority/confidence/freshness metadata, pin/archive/forget, conflict/staleness handling, project continuity summaries. | Core | Foundation to early expansion | Capture and review later | Architecture handoff: memory may need its own doc after agent runtime pressure clarifies boundaries. |
 | Identity, sharing, collaboration, and mobile | Account/device identity, roles, permissions, invitations, shared review, comments, assignments, attribution, cloud mirror, sync/conflict states, mobile continuation. | Core | Design early, implement in phases | Read/review/capture/approval | Architecture handoffs: collaboration model, local-first sync, security. |
@@ -114,9 +114,9 @@ The PRD intentionally leaves these open. Resolve them in the right document when
 |---|---|---|
 | Which source connector or import path is first? | Source intake must be real enough to prove evidence and citation workflows. | Product planning plus architecture. |
 | Which citation import/export/rendering paths are required first? | Citation quality is core infrastructure, but targets should not sprawl. | Product planning plus manuscript/citation architecture. |
-| What parser strategy supports source-region provenance without owning parser output as the product model? | Evidence traceability depends on parsing, but parser data should not define LitRev's canonical model. | Architecture and research. |
+| What parser strategy supports source-region provenance without owning parser output as the product model? | Evidence traceability depends on parsing, but parser data should not define PapiLab's canonical model. | Architecture and research. |
 | What is the first data/code execution path? | Analysis continuity is core, but execution boundaries affect safety and product complexity. | Architecture and security. |
-| How should LitRev-managed model access be priced? | Subscription, included usage, credits, pay-as-you-go, or a hybrid create different user and cost risks. | `model-access-and-routing-evolution.md`. |
+| How should PapiLab-managed model access be priced? | Subscription, included usage, credits, pay-as-you-go, or a hybrid create different user and cost risks. | `model-access-and-routing-evolution.md`. |
 | Which high-impact actions require approval first? | Agentic work needs trust without blocking all useful automation. | Product planning plus security/agent architecture. |
 | What cloud mirroring and collaboration semantics come first? | Local-first ownership, backup, sharing, conflicts, revocation, and restore must be coherent. | Collaboration, sync, and security architecture. |
 | What mobile actions are allowed first? | Mobile should continue project work without becoming a second source of truth. | Product planning and design. |

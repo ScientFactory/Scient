@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Last updated: 2026-07-16
-Purpose: Defines where LitRev product documentation lives.
+Purpose: Defines where PapiLab product documentation lives.
 Doc type: Repo orientation
 
 Product truth belongs here.

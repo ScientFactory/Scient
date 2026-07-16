@@ -3,10 +3,10 @@
 Status: Active
 Owner: Yaacov
 Last updated: 2026-07-16
-Purpose: Maps the LitRev documentation structure and where each kind of information belongs.
+Purpose: Maps the PapiLab documentation structure and where each kind of information belongs.
 Doc type: Repo orientation
 
-LitRev is currently documentation-first. This structure gives LitRev product, architecture, planning, research, development, and operations material clear homes without pretending the implementation already exists. It is not currently the unrestricted memory of the whole company; the proposed connected-company boundary lives in [Repository Scope And Company Memory](planning/repository-scope-and-company-memory.md).
+PapiLab is currently documentation-first. This structure gives PapiLab product, architecture, planning, research, development, and operations material clear homes without pretending the implementation already exists. It is not currently the unrestricted memory of the whole company; the proposed connected-company boundary lives in [Repository Scope And Company Memory](planning/repository-scope-and-company-memory.md).
 
 Start here:
 
@@ -16,7 +16,8 @@ Start here:
 - [Product philosophy](product/product-philosophy.md) - draft durable product principles; the accepted PRD governs conflicts.
 - [Technology stack](architecture/technology-stack.md) - current proposed stack direction.
 - [Product roadmap](planning/product-roadmap.md) - current sequence of coherent product outcomes.
-- [First vertical-slice implementation plan](planning/first-litrev-vertical-slice-implementation-plan.md) - bounded plan for the active product slice.
+- [First vertical-slice implementation plan](planning/first-papilab-vertical-slice-implementation-plan.md) - bounded plan for the active product slice.
+- [LitRev-to-PapiLab rename execution plan](planning/litrev-to-papilab-rename-execution-plan.md) - executed identity migration, remaining public cutover, verification, and rollback record.
 - [Architecture](architecture/README.md) - architecture direction, future architecture homes, and decisions.
 - [Design](design/README.md) - future home for product design principles and UI guidance.
 - [Quality](quality/README.md) - quality principles and testing philosophy.

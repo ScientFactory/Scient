@@ -3,10 +3,10 @@
 Status: Proposed
 Owner: Yaacov
 Last updated: 2026-07-16
-Purpose: Records LitRev's current technology stack direction and open implementation decisions.
+Purpose: Records PapiLab's current technology stack direction and open implementation decisions.
 Doc type: Architecture direction
 
-This document records the current technology stack direction for LitRev and
+This document records the current technology stack direction for PapiLab and
 distinguishes that direction from the inherited scaffold currently available in
 the lab.
 
@@ -23,14 +23,14 @@ material unresolved risk changes. Put product sequencing in
 `../planning/product-roadmap.md`, implementation work in the relevant planning
 document, and exact run evidence under `lab/`.
 
-The Synara checkout under `lab/external/` is an ignored, pinned upstream source
-tree used for experiments. It is not current LitRev implementation and does not
-make its package layout, dependencies, state model, or provider model accepted
-LitRev architecture.
+The owned Synara checkout under `desktop-app-forks/synara/` is the maintained
+application foundation. Its inherited package layout, dependencies, state model,
+and provider model remain implementation evidence, not automatically accepted
+PapiLab architecture.
 
 ## Product Constraints
 
-LitRev is a local-first, cloud-mirrored scientific workspace. Local work must remain usable offline, while cloud mirroring supports backup, cross-device access, sharing, and collaboration.
+PapiLab is a local-first, cloud-mirrored scientific workspace. Local work must remain usable offline, while cloud mirroring supports backup, cross-device access, sharing, and collaboration.
 
 The stack must support:
 
@@ -44,7 +44,7 @@ The stack must support:
 
 The core architectural rule is:
 
-> LitRev owns scientific truth. Agents and infrastructure serve that truth.
+> PapiLab owns scientific truth. Agents and infrastructure serve that truth.
 
 ## Stack Summary
 
@@ -53,18 +53,18 @@ The core architectural rule is:
 | Product language | TypeScript | Proposed; inherited scaffold currently uses TypeScript 5.7 |
 | UI framework | React | Proposed; inherited scaffold uses React with Vite |
 | Desktop shell | Electron | Proposed first choice; present in inherited scaffold |
-| Local coordinator | Bun/Node.js WebSocket server | Inherited scaffold candidate; not yet a LitRev decision |
-| Workspace tooling | Bun workspaces, Turborepo, Vite | Inherited scaffold candidate; not yet a LitRev decision |
+| Local coordinator | Bun/Node.js WebSocket server | Inherited scaffold candidate; not yet a PapiLab decision |
+| Workspace tooling | Bun workspaces, Turborepo, Vite | Inherited scaffold candidate; not yet a PapiLab decision |
 | Cloud web app | React, with Next.js as a later candidate | Not scaffolded |
-| Local database | SQLite | Proposed; inherited scaffold uses it for app/session projections, not LitRev project truth |
+| Local database | SQLite | Proposed; inherited scaffold uses it for app/session projections, not PapiLab project truth |
 | Cloud database | Postgres | Proposed; not scaffolded |
 | Cloud platform | Supabase | Initial default candidate; not scaffolded |
 | Large file storage | Object storage | Proposed; not scaffolded |
 | Sync | Local-first SQLite-to-cloud sync | Under evaluation; not scaffolded |
 | Application foundation | Owned Synara fork | Accepted initial foundation through ADR-0001; scientific product fit remains unproven |
-| Agent provider layer | Synara provider contracts and service | Inherited runtime machinery to pressure-test behind a LitRev-owned boundary |
+| Agent provider layer | Synara provider contracts and service | Inherited runtime machinery to pressure-test behind a PapiLab-owned boundary |
 | Agent runtime foundation | Owned OpenCode fork | Accepted initial foundation through ADR-0001; build and adapter compatibility verified |
-| Later agent candidate | Goose | Source-depth candidate; integration deferred until after the first LitRev gateway |
+| Later agent candidate | Goose | Source-depth candidate; integration deferred until after the first PapiLab gateway |
 | Executor safety reference | Codex | Evaluation/reference |
 | Scientific runtime | Python via uv | Proposed |
 | Native services | Rust selectively | Deferred until needed |
@@ -74,47 +74,44 @@ The core architectural rule is:
 
 ## Actual Scaffold State
 
-As of 2026-07-11, the executable application scaffold is the ignored checkout
-of LitRev's owned Synara fork at
-`lab/external/desktop-app-forks/synara/`. The review branch
-`codex/gate-1-5` is at
-`77d0854c3cbfdf579e90ed61577a70553f5c3fa6`, based on tested official upstream
-`3267a2fbf430b733a6d7ff1759f6689023d85689`, and is merged into owned `main` at
-`536064b23d4211f33a812a1d6303c7029b9ed146`. Post-closeout LitRev copy and
-identity-guard maintenance is merged into owned `main` at
-`baa7b3d8d604a72467f2a1f575af7c7d85daf94d`. The owned OpenCode fork and exact
-tested commit are recorded in `lab/external/sources.lock.md`; its Gate 1.5
-source/build worktree and other ignored runtime evidence were deleted after
-accepted closeout rather than retained as parent Git history.
+As of 2026-07-16, the executable application scaffold is the owned Synara
+checkout at `desktop-app-forks/synara/`. Its PapiLab identity and project-init
+work passed hosted CI at `2ecdbb5e` and was merged to owned `main` as
+`50294e64`; exact provenance is recorded in `lab/external/sources.lock.md`.
+The owned OpenCode fork is at `agent-forks/opencode/` on `dev` at `f85656c01`,
+pushed to `yaacovcorcos/opencode`. Historical Gate 1 and Gate 1.5 commits,
+tags, and ignored runtime evidence remain historical records; they are not the
+active PapiLab implementation baseline.
 
 The scaffold currently provides:
 
-| Scaffold area | Inspected reality | LitRev boundary |
+| Scaffold area | Inspected reality | PapiLab boundary |
 |---|---|---|
-| Desktop | Electron app under `apps/desktop` | Candidate shell machinery, not accepted LitRev product architecture |
+| Desktop | Electron app under `apps/desktop` | Candidate shell machinery, not accepted PapiLab product architecture |
 | Local UI | React 19 and Vite under `apps/web` | Local workbench UI; not the future cloud web client |
-| Local coordinator | Bun during development, Node-compatible build, WebSocket RPC, provider routing, terminal/filesystem/Git/browser services under `apps/server` | Runtime machinery LitRev may wrap or borrow; not the scientific project kernel |
-| Local state | SQLite through Effect SQL | Synara session/orchestration projection state; not canonical LitRev scientific state |
-| Shared contracts | Effect schemas in `packages/contracts` plus runtime helpers in `packages/shared` | Candidate provider/runtime boundary; LitRev domain contracts do not exist yet |
-| Agent integration | Existing provider adapters, including the OpenCode SDK path verified with the owned OpenCode binary | Reusable execution machinery; no LitRev agent gateway or run ledger exists yet |
+| Local coordinator | Bun during development, Node-compatible build, WebSocket RPC, provider routing, terminal/filesystem/Git/browser services under `apps/server` | Runtime machinery PapiLab may wrap or borrow; not the scientific project kernel |
+| Local state | SQLite through Effect SQL | Synara session/orchestration projection state; not canonical PapiLab scientific state |
+| Shared contracts | Effect schemas in `packages/contracts` plus runtime helpers in `packages/shared` | Candidate provider/runtime boundary; PapiLab domain contracts do not exist yet |
+| Agent integration | Existing provider adapters, including the OpenCode SDK path verified with the owned OpenCode binary | Reusable execution machinery; no PapiLab agent gateway or run ledger exists yet |
 | Tooling | Bun workspaces, Turborepo, Vite, Vitest, TypeScript 5.7 | Inherited compatibility baseline, not an automatic long-term commitment |
 
-`lab/litrev-bridge/` currently contains planning documentation only. There are
-no LitRev-owned app packages, project database, scientific domain contracts,
+`lab/papilab-bridge/` currently contains planning documentation only. The owned
+Synara checkout now contains the dependency-light `@papilab/project-init`
+package, but there are still no PapiLab-owned scientific domain contracts,
 agent gateway, cloud client, sync implementation, or production build pipeline.
 
 ### Scaffold Use Rule
 
 The inherited scaffold pass and owned-fork identity pass are complete. Continue
-to sync the owned Synara fork deliberately, preserve the isolated LitRev state
+to sync the owned Synara fork deliberately, preserve the isolated PapiLab state
 and updater boundary, and promote only the parts that prove useful behind a
-LitRev-owned project and agent contract. Do not restructure inherited packages
+PapiLab-owned project and agent contract. Do not restructure inherited packages
 or add scientific truth to Synara state merely because the shell now carries
-LitRev identity.
+PapiLab identity.
 
 ### TypeScript Version Baseline
 
-Use the current stable TypeScript release for new LitRev-owned packages when
+Use the current stable TypeScript release for new PapiLab-owned packages when
 their selected dependencies support it. As of 2026-07-09, that means TypeScript
 7.x, the native TypeScript compiler line announced by the TypeScript team on
 2026-07-08
@@ -126,22 +123,22 @@ without a compiler upgrade first. A later TypeScript 7 compatibility spike must
 check the actual Effect language service, Electron, React, Vite, test, lint, and
 build paths before changing the inherited baseline.
 
-TypeScript 5.7 is therefore a scaffold compatibility fact, not a LitRev product
-commitment. TypeScript 7 is a target baseline for new LitRev-owned code, not a
+TypeScript 5.7 is therefore a scaffold compatibility fact, not a PapiLab product
+commitment. TypeScript 7 is a target baseline for new PapiLab-owned code, not a
 prerequisite for the first Synara health check. Record any durable exception in
 `docs/development/typescript.md` or the relevant implementation document once
-LitRev-owned code exists.
+PapiLab-owned code exists.
 
 ## Application Architecture
 
-LitRev should be built as a desktop-first product with a cloud collaboration plane.
+PapiLab should be built as a desktop-first product with a cloud collaboration plane.
 
 The local app must remain useful without network access. The cloud layer provides account identity, backup, cross-device access, project sharing, collaboration, background jobs, and web access.
 
 The current lab scaffold has this upstream shape:
 
 ```text
-lab/external/desktop-app-forks/synara/
+desktop-app-forks/synara/
   apps/desktop
   apps/server
   apps/web
@@ -150,13 +147,13 @@ lab/external/desktop-app-forks/synara/
   packages/shared
 ```
 
-That tree remains foreign source and should not become the LitRev package map by
+That tree remains foreign source and should not become the PapiLab package map by
 accident. Source-tracing notes and disposable adapter experiments may use
-`lab/litrev-bridge/`. The first vertical-slice implementation belongs in the
+`lab/papilab-bridge/`. The first vertical-slice implementation belongs in the
 permanent location selected from source evidence during the implementation
 plan; do not treat the lab as its default code home.
 
-Possible later LitRev-owned package areas include:
+Possible later PapiLab-owned package areas include:
 
 ```text
 apps/desktop
@@ -183,13 +180,13 @@ where practical.
 Use Electron for the first desktop experiment. The inherited Synara scaffold
 already provides the Electron shell.
 
-Electron is the pragmatic first choice because LitRev needs React, local files, SQLite, subprocesses, agent CLIs, and local background services. These are all easier to integrate in Electron than in a stricter native shell during the first product build.
+Electron is the pragmatic first choice because PapiLab needs React, local files, SQLite, subprocesses, agent CLIs, and local background services. These are all easier to integrate in Electron than in a stricter native shell during the first product build.
 
 The immediate validation question is whether the Synara-derived shell can host
-a LitRev-owned project mode without forcing scientific work into coding
+a PapiLab-owned project mode without forcing scientific work into coding
 projects, Git worktrees, provider threads, or engine-owned artifacts. If it
 cannot, keep useful runtime components as references or donors and build a
-smaller LitRev-owned shell instead of deepening the fork.
+smaller PapiLab-owned shell instead of deepening the fork.
 
 Tauri is not rejected. It is deferred.
 
@@ -198,13 +195,13 @@ Tauri should be reconsidered if Electron becomes a proven blocker for memory use
 ## Web
 
 The scaffold's `apps/web` is a React/Vite local workbench UI used by the local
-server and Electron app. It is not a scaffold for LitRev's future cloud web
+server and Electron app. It is not a scaffold for PapiLab's future cloud web
 client.
 
 Use React for the future cloud web app. Next.js remains a default candidate, but
 no cloud web app exists yet and it is not part of the first local scaffold pass.
-LitRev's core product model should not depend on Next.js-specific server
-behavior. The eventual web app should be a continuation client of the LitRev
+PapiLab's core product model should not depend on Next.js-specific server
+behavior. The eventual web app should be a continuation client of the PapiLab
 cloud/project model, not a separate product with separate semantics.
 
 ## Local Data
@@ -213,10 +210,10 @@ Use SQLite locally.
 
 The inherited scaffold already uses SQLite for Synara app, session,
 orchestration, and projection state. That database must not be relabeled as the
-LitRev scientific project database. LitRev-owned project persistence has not
+PapiLab scientific project database. PapiLab-owned project persistence has not
 been designed or implemented.
 
-LitRev should distinguish:
+PapiLab should distinguish:
 
 - global app state, such as recent projects, local settings, device identity, and local caches
 - per-project scientific state, such as papers, protocol records, evidence records, extraction records, manuscript state, agent runs, and sync metadata
@@ -225,7 +222,7 @@ The per-project database is the more important architectural object because proj
 
 The inherited scaffold uses Effect SQL with SQLite through Bun. Do not replace
 that layer merely to satisfy the target stack before the scaffold baseline is
-known. For LitRev-owned project persistence, evaluate Effect SQL, Drizzle,
+known. For PapiLab-owned project persistence, evaluate Effect SQL, Drizzle,
 Kysely, or a narrower owned layer after the first project-state contract exists.
 
 ## Cloud Data
@@ -234,7 +231,7 @@ Use Postgres as the cloud database.
 
 Use Supabase as the initial default cloud platform candidate because it provides hosted Postgres, object storage, auth options, realtime primitives, row-level security, and local development tooling.
 
-The architectural commitment is to Postgres and object storage, not to Supabase-specific behavior. LitRev should avoid unnecessary dependence on Supabase-only features where standard Postgres, portable SQL, or provider-neutral object storage is sufficient.
+The architectural commitment is to Postgres and object storage, not to Supabase-specific behavior. PapiLab should avoid unnecessary dependence on Supabase-only features where standard Postgres, portable SQL, or provider-neutral object storage is sufficient.
 
 ## File Storage
 
@@ -264,11 +261,11 @@ Current candidates:
 
 - PowerSync for SQLite-to-Postgres local-first sync
 - Electric for Postgres-backed read sync and live web/cloud views
-- a LitRev-owned sync layer if vendor tools do not fit the required project model
+- a PapiLab-owned sync layer if vendor tools do not fit the required project model
 
 Convex is not selected as the primary database or local-first sync foundation. It may be evaluated for collaboration features or realtime cloud workflows, but the current stack direction requires portable local project state backed by SQLite.
 
-LitRev should maintain domain-level mutation and audit semantics so the product is not locked to one sync vendor.
+PapiLab should maintain domain-level mutation and audit semantics so the product is not locked to one sync vendor.
 
 ## Collaboration
 
@@ -288,7 +285,7 @@ Do not use CRDTs as the whole application database.
 
 ## Versioning
 
-LitRev should use layered versioning.
+PapiLab should use layered versioning.
 
 Current direction:
 
@@ -305,25 +302,25 @@ The agent runtime is an execution layer, not the product kernel.
 
 The inherited scaffold already contains provider contracts, a provider service,
 session/event projections, and adapters for several coding agents. These are
-runtime candidates. LitRev does not yet have its own agent gateway, scientific
+runtime candidates. PapiLab does not yet have its own agent gateway, scientific
 task contract, context receipt, run ledger, proposed-change lifecycle, or
 accepted write-back path.
 
 Current posture:
 
-- Build the first LitRev workflow on the owned OpenCode runtime through the
+- Build the first PapiLab workflow on the owned OpenCode runtime through the
   existing verified Synara integration.
 - Codex is the execution-safety and sandboxing reference.
 - Evaluate Goose later as a broader local-agent engine through `goose acp` over
-  stdio, behind the LitRev gateway. Keep authenticated `goose serve` as a later
+  stdio, behind the PapiLab gateway. Keep authenticated `goose serve` as a later
   process-separated option; do not use the removed `goosed` REST surface.
 - Treat Goose permissions, sessions, recipes, and tool events as runtime inputs
-  to normalize. They do not provide the LitRev project boundary or canonical
+  to normalize. They do not provide the PapiLab project boundary or canonical
   run ledger by themselves.
 
-LitRev should not commit to any agent's internal data model as the canonical project model.
+PapiLab should not commit to any agent's internal data model as the canonical project model.
 
-Agents should act through LitRev-owned tools and permission policies, especially for high-impact scientific changes.
+Agents should act through PapiLab-owned tools and permission policies, especially for high-impact scientific changes.
 
 ## Scientific Runtime
 
@@ -386,7 +383,7 @@ The chosen auth layer must support project membership, invitations, roles, devic
 
 Open-source systems may be used as references, engines, adapters, or fork candidates.
 
-They must not replace the LitRev scientific kernel.
+They must not replace the PapiLab scientific kernel.
 
 Preferred licenses:
 
@@ -422,7 +419,7 @@ Do not choose these by default on day one:
 - Convex as the primary database
 - Git as the required sharing system
 - CRDTs as the entire app data model
-- an agent's internal session database as LitRev's source of truth
+- an agent's internal session database as PapiLab's source of truth
 
 ## Validation Status And Remaining Unknowns
 
@@ -430,11 +427,11 @@ Completed historical experiments remain evidence, not the roadmap.
 
 | Area | Proven | Not Yet Proven | Evidence Or Owner |
 |---|---|---|---|
-| Synara-derived application | Owned fork, build, isolated LitRev identity and state, reviewed upstream process | Scientific-product fit, sustainable domain UI divergence, and long-term maintenance cost | Gate 1 and Gate 1.5 lab reports; ADR-0001 owns adoption |
-| OpenCode-derived runtime | Owned build, Synara compatibility, project-root fidelity, transcript fidelity, and approval flow for a constrained action | LitRev scientific tools, durable task behavior, recovery semantics, and justified core changes | Gate 1.5 report; ADR-0001 owns adoption |
-| LitRev project state | Product responsibilities and trust boundary are documented | Persistence, portable local record, recovery, and first real scientific object relationship | First vertical-slice plan |
-| LitRev agent boundary | Context, proposal, review, provenance, and permission responsibilities are documented | Actual contract, code placement, event mapping, and accepted write-back path | First vertical-slice plan; `agent-runtime.md` remains a future home |
-| Goose | Source seams, ACP path, and safety risks inspected | Owned fork, adapter, isolation, and incremental value after the LitRev gateway | Goose source-depth inspection |
+| Synara-derived application | Owned fork, build, isolated PapiLab identity and state, reviewed upstream process | Scientific-product fit, sustainable domain UI divergence, and long-term maintenance cost | Gate 1 and Gate 1.5 lab reports; ADR-0001 owns adoption |
+| OpenCode-derived runtime | Owned build, Synara compatibility, project-root fidelity, transcript fidelity, and approval flow for a constrained action | PapiLab scientific tools, durable task behavior, recovery semantics, and justified core changes | Gate 1.5 report; ADR-0001 owns adoption |
+| PapiLab project state | Product responsibilities and trust boundary are documented | Persistence, portable local record, recovery, and first real scientific object relationship | First vertical-slice plan |
+| PapiLab agent boundary | Context, proposal, review, provenance, and permission responsibilities are documented | Actual contract, code placement, event mapping, and accepted write-back path | First vertical-slice plan; `agent-runtime.md` remains a future home |
+| Goose | Source seams, ACP path, and safety risks inspected | Owned fork, adapter, isolation, and incremental value after the PapiLab gateway | Goose source-depth inspection |
 | Cloud sync | Postgres, object storage, and local-first sync are proposed directions | Authority, offline behavior, conflicts, revocation, and recovery | Later roadmap and focused architecture work |
 
 Gate 1 and Gate 1.5 are retained only as historical names for completed work.
@@ -465,6 +462,6 @@ Git for human-readable artifacts, not required sharing
 ```
 
 Update this document when a technology role or its validation status changes.
-The overall target stack remains proposed until the first LitRev-owned local
+The overall target stack remains proposed until the first PapiLab-owned local
 project and agent boundaries work. Cloud and web choices remain later proposals
 until their authority and sync risks are tested.

@@ -3,10 +3,10 @@
 Status: Placeholder
 Owner: Yaacov
 Last updated: 2026-06-27
-Purpose: Defines what should be documented about LitRev local-first storage and cloud sync once the design is validated.
+Purpose: Defines what should be documented about PapiLab local-first storage and cloud sync once the design is validated.
 Doc type: Future home
 
-This page will document LitRev's local-first and sync architecture when it exists.
+This page will document PapiLab's local-first and sync architecture when it exists.
 
 Document here:
 

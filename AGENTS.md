@@ -3,14 +3,14 @@
 Status: Active
 Owner: Yaacov
 Last updated: 2026-07-16
-Purpose: Defines how agents should work in this early LitRev repository.
+Purpose: Defines how agents should work in this early PapiLab repository.
 Doc type: Agent protocol
 
 ## What This Repo Is
 
-This repo is the early planning and documentation workspace for LitRev.
+This repo is the early planning and documentation workspace for PapiLab.
 
-LitRev is a local-first, cloud-mirrored scientific workspace where researchers and AI agents run an entire research project together, from research question to publication-ready manuscript. The product direction is still being shaped.
+PapiLab is a local-first, cloud-mirrored scientific workspace where researchers and AI agents run an entire research project together, from research question to publication-ready manuscript. The product direction is still being shaped.
 
 ## Current State
 
@@ -32,7 +32,7 @@ Capture durable future context, not documentation volume. Preserve consequential
 
 AI may draft documentation, but it is not the accountable owner and cannot confer acceptance. Preserve uncertainty and specific reasoning for human review. When authoritative sources conflict, surface the contradiction and route it to the owning person or document instead of smoothing it into false agreement.
 
-Keep this repository within its LitRev product and project boundary. Do not add company-wide finance, legal, people, customer-record, or cross-product authority here without an accepted repository-scope decision. Do not commit secrets or sensitive personal, customer, employee, or regulated data.
+Keep this repository within its PapiLab product and project boundary. Do not add company-wide finance, legal, people, customer-record, or cross-product authority here without an accepted repository-scope decision. Do not commit secrets or sensitive personal, customer, employee, or regulated data.
 
 ## Source Documents
 
@@ -43,9 +43,9 @@ Current important documents:
 - `docs/product/PRD.md` - product direction, core capabilities, user experience principles, and technical requirements.
 - `docs/product/product-philosophy.md` - durable product principles that guide product, architecture, design, quality, and implementation.
 - `docs/architecture/technology-stack.md` - current technology stack direction and open implementation decisions.
-- `docs/architecture/decisions/ADR-0001-synara-opencode-foundation-and-litrev-ownership-boundary.md` - accepted initial application/runtime foundations and the LitRev-owned scientific boundary.
+- `docs/architecture/decisions/ADR-0001-synara-opencode-foundation-and-papilab-ownership-boundary.md` - accepted initial application/runtime foundations and the PapiLab-owned scientific boundary.
 - `docs/planning/product-roadmap.md` - active sequence of coherent product outcomes.
-- `docs/planning/first-litrev-vertical-slice-implementation-plan.md` - concrete plan and acceptance criteria for the current implementation slice.
+- `docs/planning/first-papilab-vertical-slice-implementation-plan.md` - concrete plan and acceptance criteria for the current implementation slice.
 
 Use each document according to its metadata. The PRD and ADR-0001 are accepted
 direction; the roadmap is active planning; the product philosophy, technology
@@ -76,9 +76,9 @@ The PRD should stay focused on product truth. Stack choices and implementation d
 
 Project-specific skills live under `skills/`.
 
-Use `skills/product/litrev-product-stewardship/SKILL.md` for product management work, including PRD changes, feature analysis, roadmap notes, product decisions, and product research synthesis.
+Use `skills/product/papilab-product-stewardship/SKILL.md` for product management work, including PRD changes, feature analysis, roadmap notes, product decisions, and product research synthesis.
 
-Use `skills/documentation/litrev-documentation-stewardship/SKILL.md` when creating, reviewing, moving, promoting, retiring, or reconciling durable documentation and project progress records.
+Use `skills/documentation/papilab-documentation-stewardship/SKILL.md` when creating, reviewing, moving, promoting, retiring, or reconciling durable documentation and project progress records.
 
 Project skills are workflow helpers. They should point agents back to the canonical repo documents and must not override `docs/product/`, `docs/architecture/`, `docs/documentation-policy.md`, or this `AGENTS.md` file.
 

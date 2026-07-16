@@ -14,8 +14,8 @@ Potential sections to decide later:
 - inspection date
 - license
 - what was inspected
-- what LitRev can learn
-- what LitRev should avoid
+- what PapiLab can learn
+- what PapiLab should avoid
 - uncertainties
 - recommendation
 

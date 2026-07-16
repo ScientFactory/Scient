@@ -3,10 +3,10 @@
 Status: Placeholder
 Owner: Yaacov
 Last updated: 2026-06-27
-Purpose: Defines what should be documented about LitRev project structure once the format is designed.
+Purpose: Defines what should be documented about PapiLab project structure once the format is designed.
 Doc type: Future home
 
-This page will document the LitRev project format when it exists.
+This page will document the PapiLab project format when it exists.
 
 Document here:
 

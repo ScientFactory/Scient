@@ -3,10 +3,10 @@
 Status: Placeholder
 Owner: Yaacov
 Last updated: 2026-06-27
-Purpose: Future home for LitRev TypeScript conventions once implementation begins.
+Purpose: Future home for PapiLab TypeScript conventions once implementation begins.
 Doc type: Future home
 
-This file will define LitRev's TypeScript conventions when the repo has TypeScript code.
+This file will define PapiLab's TypeScript conventions when the repo has TypeScript code.
 
 The conventions below are candidates to revisit before implementation. They are not yet active coding standards because no TypeScript project structure exists in this repo.
 

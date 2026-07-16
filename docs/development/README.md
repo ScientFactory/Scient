@@ -6,7 +6,7 @@ Last updated: 2026-06-27
 Purpose: Defines where development documentation should live once implementation exists.
 Doc type: Future home
 
-Use this folder once LitRev has code, commands, packages, tests, APIs, configuration, or local development workflows to document.
+Use this folder once PapiLab has code, commands, packages, tests, APIs, configuration, or local development workflows to document.
 
 Document here when relevant:
 

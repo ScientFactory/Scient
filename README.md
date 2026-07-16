@@ -1,12 +1,12 @@
-# LitRev
+# PapiLab
 
 Status: Active
 Owner: Yaacov
 Last updated: 2026-07-12
-Purpose: Entry point for the LitRev planning repository.
+Purpose: Entry point for the PapiLab planning repository.
 Doc type: Repo orientation
 
-LitRev is currently in product and architecture planning.
+PapiLab is currently in product and architecture planning.
 
 Start here:
 

@@ -3,15 +3,15 @@
 Status: Active
 Owner: Yaacov
 Last updated: 2026-06-27
-Purpose: Defines where LitRev quality, testing, and engineering-standard documentation lives.
+Purpose: Defines where PapiLab quality, testing, and engineering-standard documentation lives.
 Doc type: Repo orientation
 
 Use this folder for quality principles and testing philosophy. Verification strategy belongs here when it is discussed and accepted; execution commands and CI operations belong later under `docs/development/` or `docs/operations/`.
 
 Current files:
 
-- `testing-philosophy.md` - draft testing doctrine for LitRev.
-- `code-quality-principles.md` - draft code quality doctrine for LitRev.
+- `testing-philosophy.md` - draft testing doctrine for PapiLab.
+- `code-quality-principles.md` - draft code quality doctrine for PapiLab.
 
 Do not use this folder as:
 
