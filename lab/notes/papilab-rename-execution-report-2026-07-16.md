@@ -37,7 +37,7 @@ remain unchanged where they are source or immutable historical truth.
 
 | Checkout | Branch | Commit | Remote |
 |---|---|---|---|
-| Synara-derived desktop | `codex/project-init-kernel` | `beb118a0` | `yaacovcorcos/papilab-desktop` |
+| Synara-derived desktop | `main` | `50294e64` | `yaacovcorcos/papilab-desktop` |
 | OpenCode | `dev` | `f85656c01` | `yaacovcorcos/opencode` |
 
 ## Verification
@@ -46,21 +46,18 @@ remain unchanged where they are source or immutable historical truth.
 - Parent Markdown relative-link check: passed with zero broken links under
   `docs/`.
 - PapiLab project-init package TypeScript check: passed.
-- PapiLab project-init focused tests: 4 files, 37 tests passed.
+- PapiLab project-init focused tests: 4 files, 43 tests passed.
 - Synara-derived desktop brand check: passed (`PapiLab identity check passed`).
 - Targeted renamed-surface tests: 4 files, 19 tests passed; the project-init
-  package remains at 4 files, 37 tests passed.
-- The desktop fork was reconciled with official upstream `3603a00e` and is
-  currently zero commits behind it. The preceding hosted run `29511161617`
-  passed identity, formatting, lint, release smoke, and local TypeScript
-  checks. Current head `beb118a0` is being verified by hosted run
-  `29511612418`; its typecheck, test, browser, build, and Windows results are
-  the authoritative completion checks at the time of this report update.
-- OpenCode push protection still names the old required status
-  `LitRev source quality`; updating that GitHub protection rule returned HTTP
-  404 with the current token. The renamed workflow now reports
-  `PapiLab source quality`, so branch protection must be reconciled before the
-  next protected merge.
+  package now passes 4 files and 43 tests.
+- The desktop fork was reconciled with official upstream `3603a00e` and was
+  zero commits behind it at exact tested head `2ecdbb5e`. Hosted run
+  `29514254313` passed formatting, lint, typecheck, the full test suite, browser
+  tests, the desktop build, preload verification, Windows process regression,
+  and release smoke. PR #4 merged that tested head to owned `main` as
+  `50294e6400737e28753d995f1252025f6c76e901`.
+- OpenCode branch protection now requires the renamed `PapiLab quality` check;
+  the former `LitRev source quality` requirement has been removed.
 
 ## Public Surface Status
 

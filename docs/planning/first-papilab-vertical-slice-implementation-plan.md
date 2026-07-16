@@ -197,7 +197,7 @@ archive before product implementation exists.
 Trace the existing package boundaries, folder picker, project-create path,
 server filesystem services, path-containment helpers, and project persistence.
 Record the evidence and decision in
-`../../lab/notes/project-initiation-placement-trace-YYYY-MM-DD.md` before adding
+`../../lab/notes/project-initiation-placement-trace-2026-07-16.md` before adding
 the permanent package.
 
 The trace must decide:

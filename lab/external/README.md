@@ -2,30 +2,35 @@
 
 Status: Draft
 Owner: Yaacov
-Last updated: 2026-07-07
-Purpose: Explains how upstream source checkouts are organized inside the PapiLab lab.
+Last updated: 2026-07-16
+Purpose: Explains how external source provenance and ignored local checkouts are organized for the PapiLab lab.
 Doc type: Planning note
 
 ## Purpose
 
-This folder contains local checkouts of upstream projects used for early PapiLab
-fork, integration, and source-reading experiments.
+This folder owns provenance metadata for upstream projects used in PapiLab fork,
+integration, and source-reading work. Active owned checkouts live in ignored
+root-level folders so they can be maintained as independent repositories without
+being mistaken for tracked parent-repository content.
 
 The local source trees are ignored by the parent repository. Keep the parent repo
-clean by tracking only source metadata and lab notes.
+clean by tracking only source metadata and lab notes. Legacy duplicate checkouts
+under this directory are not canonical and should be removed after their useful
+branches or evidence have been reconciled.
 
 ## Layout
 
-- `agent-forks/` - agent engines or local automation systems that may become
+- `../../agent-forks/` - canonical owned agent-engine checkouts that may become
   embedded engines, sidecars, adapters, or references.
-- `desktop-app-forks/` - desktop apps and workbench products used as shell,
+- `../../desktop-app-forks/` - canonical owned desktop/workbench checkouts used as shell,
   runtime, UI, and feature-reference sources.
 - `sources.lock.md` - current local source inventory with URL, branch, commit,
   role, and update strategy.
 
 ## Rules
 
-- Clone upstream projects into the correct category folder.
+- Restore or clone an active source into the root-level category recorded in
+  `sources.lock.md`.
 - Record exact source commits in `sources.lock.md`.
 - Prefer one physical checkout per upstream repository.
 - Use pointer notes when one repository spans multiple roles.
