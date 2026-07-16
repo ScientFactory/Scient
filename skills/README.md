@@ -2,7 +2,7 @@
 
 Status: Active
 Owner: Yaacov
-Last updated: 2026-07-12
+Last updated: 2026-07-16
 Purpose: Indexes local workflow skills that help agents work on LitRev without becoming project authority.
 Doc type: Repo orientation
 
@@ -25,4 +25,6 @@ skills/<domain>/<skill-name>/SKILL.md
 
 Use the narrowest useful domain, such as `product`, `documentation`, `research`, `engineering`, `quality`, or `design`.
 
-If a skill should be available to Codex globally, link or install it under `/Users/yaacov/.codex/skills/`. Keep this repo folder as the easy-to-find project collection.
+If a skill should be available to a runtime globally, link or install it through
+that runtime's user-level skills directory. Keep this repository folder as the
+canonical, portable source.

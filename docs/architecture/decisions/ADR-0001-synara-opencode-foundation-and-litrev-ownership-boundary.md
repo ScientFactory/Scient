@@ -88,6 +88,12 @@ engine state define the scientific product accidentally.
 
 ## Revisit Triggers
 
+The LitRev ownership boundary in Decisions 3 and 8 implements the accepted
+product requirement that external tools must not become canonical scientific
+project truth. The triggers below apply to the selection and use of Synara and
+OpenCode, not to that ownership boundary. Changing the boundary would require
+an explicit product decision and a superseding architecture decision.
+
 Revisit this decision if:
 
 - Synara's architecture prevents a coherent scientific project experience;
