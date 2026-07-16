@@ -60,7 +60,12 @@ not a frozen general schema.
   surfaces without inventorying the whole Synara or OpenCode codebase.
 - Treat the owned Synara monorepo as the expected application-code home, while
   earning the exact permanent package or module placement through source
-  evidence.
+  evidence. Code location does not make Synara session, projection, or provider
+  state canonical LitRev state.
+- If no clean Synara-hosted seam can preserve the accepted ownership boundary,
+  the trace may recommend a separate repository or process topology. That is an
+  escape route requiring explicit review and any necessary ADR change, not a
+  fourth default architecture to build speculatively.
 - Use `lab/litrev-bridge/` only for disposable experiments or trace material; it
   is not the default home for the permanent slice.
 - Prefer existing provider, extension, configuration, tool, and adapter seams.
@@ -85,7 +90,8 @@ The fixture must use:
 - one short synthetic study excerpt;
 - one bounded task, such as summarizing the excerpt into a two-sentence
   evidence-linked note using only supplied material;
-- one expected source-to-note relationship;
+- one expected structured source-to-note relationship that identifies the
+  exact supporting excerpt and remains inspectable after reopening;
 - no cloud service, sensitive data, PDF parser, citation manager, or external
   scientific API; and
 - deterministic expected system behavior independent of live model wording.
@@ -158,7 +164,9 @@ Trace provider discovery, session creation, working-directory selection,
 prompt/context assembly, permissions, approvals, tool and file events,
 cancellation, errors, final result, and runtime projection. Determine which
 existing provider/runtime events are reusable execution evidence and where the
-LitRev gateway must add scientific context and proposal semantics.
+LitRev gateway must add scientific context and proposal semantics. Identify
+where LitRev can enforce project filesystem scope independently of generated
+paths, shell commands, or model requests.
 
 #### D. Persistence And State Ownership
 
@@ -226,6 +234,11 @@ option by:
 - clarity for future maintainers; and
 - reversibility if Synara later becomes unsuitable.
 
+If all three Synara-hosted options fail to preserve a clear LitRev-owned state
+and capability boundary, record that result instead of selecting the least-bad
+option. The trace may then recommend external composition and identify which
+parts of ADR-0001, if any, must be revisited before implementation.
+
 Do not design the full project graph or package map. Decide only the first home
 for project identity, source excerpt, evidence note, task/context, run/proposal/
 decision, and recovery responsibilities.
@@ -244,12 +257,13 @@ It must record:
 4. the five path maps with exact files and symbols;
 5. the completed state-ownership table;
 6. non-Git behavior and recovery findings;
-7. candidate seam comparison and selected permanent placement;
-8. existing machinery to reuse unchanged;
-9. surfaces LitRev must not couple to;
-10. any required Synara change and any proven OpenCode gap;
-11. the exact first coding backlog; and
-12. a go/no-go verdict for implementation.
+7. the proposed filesystem-scope enforcement boundary;
+8. candidate seam comparison and selected permanent placement;
+9. existing machinery to reuse unchanged;
+10. surfaces LitRev must not couple to;
+11. any required Synara change and any proven OpenCode gap;
+12. the exact first coding backlog; and
+13. a go/no-go verdict for implementation.
 
 Update this plan only where the trace resolves an open boundary. Update
 `../../lab/external/sources.lock.md` if checkout pins change. Do not update the
@@ -260,8 +274,8 @@ roadmap or ADR unless the trace invalidates them.
 Stop for Yaacov's review before product code begins. The review should decide
 only whether the selected permanent boundary is understandable, serves both
 manual and agent work, keeps scientific state outside inherited sessions,
-supports credible non-Git recovery, and produces a sufficiently narrow coding
-backlog.
+supports credible non-Git recovery, defines enforceable project filesystem
+scope, and produces a sufficiently narrow coding backlog.
 
 Once accepted, begin implementation. Do not add another exploratory phase
 unless the trace identifies a real blocker.
@@ -273,24 +287,41 @@ Implement in this order:
 1. **Manual project lifecycle.** Create, open, close, and reopen a non-Git
    project with durable LitRev-owned identity.
 2. **Manual scientific operations.** Add and edit the source excerpt and
-   evidence note through LitRev-owned operations.
+   evidence note through LitRev-owned operations. Persist a structured,
+   inspectable relationship from the note to the exact supporting excerpt.
 3. **Minimal persistence and recovery.** Persist only the fixture's project,
    source, note, task, context, proposal, decision, and recovery
-   responsibilities. Do not freeze a complete schema.
-4. **Deterministic executor.** Prove context, proposal, accept/edit/reject,
-   failure, cancellation, and reopening without relying on model wording.
-5. **Owned OpenCode integration.** Put the real owned runtime behind the same
+   responsibilities. Make proposal application atomic or equivalently
+   recoverable, including a deterministic crash or failure during apply. Do not
+   freeze a complete schema.
+4. **Deterministic executor.** Implement a fake at the LitRev-owned gateway's
+   executor port. Use it to prove context, proposal, accept/edit/reject,
+   failure, cancellation, crash-mid-apply recovery, and reopening without
+   relying on model wording or provider state.
+5. **Filesystem-scope enforcement.** Prove that permitted reads and proposed
+   writes inside the fixture project succeed, while attempts to read or write
+   outside the authorized project scope are rejected. Generated paths, shell
+   commands, and model requests must not widen that scope.
+6. **Integration review checkpoint.** Stop for Yaacov's review after the
+   deterministic boundary, recovery, and confinement tests pass. Confirm that
+   the gateway is genuinely LitRev-owned before wiring in a live provider or
+   changing inherited core.
+7. **Owned OpenCode integration.** Put the real owned runtime behind the same
    LitRev gateway and project operations. Change OpenCode core only for a
    demonstrated gap that existing SDK, adapter, configuration, tool, skill, or
-   permission seams cannot satisfy cleanly.
-6. **Minimal review UI.** Show exact context, proposal contents, affected
+   permission seams cannot satisfy cleanly. Re-run filesystem-scope tests
+   through the real adapter path.
+8. **Minimal review UI.** Show exact context, proposal contents, affected
    project material, edit/accept/reject controls, and understandable failure or
    cancellation state.
-7. **Non-Git recovery proof.** Prove accepted state can be protected and
-   understood without Git refs, an active executor session, or reconstructing
-   chat history.
-8. **Live end-to-end smoke.** Run the controlled fixture through owned OpenCode,
-   review the proposal, close the app, reopen it, and verify LitRev-owned state.
+9. **Non-Git recovery proof.** Prove accepted state can be protected and
+   understood after ordinary failure and crash-mid-apply without Git refs, an
+   active executor session, or reconstructing chat history.
+10. **Live end-to-end smoke.** Run the controlled fixture through owned
+   OpenCode, review the proposal, close the app, reopen it, and verify
+   LitRev-owned state. If the normalized runtime event sequence adds adapter
+   coverage beyond the gateway fake, sanitize it into a stable replay fixture;
+   do not commit raw provider transcripts, secrets, or machine-specific paths.
 
 ## Repository And Change Lanes
 
@@ -298,7 +329,8 @@ Implement in this order:
   source-trace evidence, and cross-repository source pins.
 - The owned Synara repository hosts the real application implementation,
   including permanent LitRev-owned packages or modules, UI integration,
-  canonical project persistence, gateway, review, and recovery workflow.
+  canonical project persistence, gateway, review, and recovery workflow, unless
+  the accepted trace decision invokes the external-topology escape route.
 - The owned OpenCode fork remains unchanged until the trace or implementation
   proves a runtime gap. Any change uses its own narrow branch and review.
 - Upstream synchronization uses separate maintenance branches and pull requests;
@@ -311,9 +343,17 @@ Implement in this order:
   dependencies.
 - Manual and agent-assisted work use the same LitRev-owned project operations.
 - The researcher can inspect the exact project material supplied to the agent.
+- The reopened evidence note retains a structured LitRev-owned link to the exact
+  supporting source excerpt, and the researcher can inspect that support
+  without reconstructing agent prose or chat history.
 - Agent output remains proposed until the researcher accepts it.
 - Accept, edit, reject, failure, and cancellation do not create unexplained
   partial accepted state.
+- A deterministic crash or failure during proposal application leaves either
+  the prior accepted state or a complete recoverable change, never a silently
+  partial accepted result.
+- Reads and proposed writes outside the authorized project scope are rejected
+  through both the deterministic executor and owned OpenCode adapter paths.
 - Accepted project state and recovery remain independent of Synara/OpenCode
   session and projection databases.
 - The project reopens with its accepted note, source relationship, task,
@@ -363,8 +403,10 @@ Stop and report before widening scope if:
 - state, snapshot, and artifact locations;
 - context supplied to the agent;
 - approvals, runtime events, proposals, and decisions;
+- allowed and denied filesystem-scope cases and their enforcement boundary;
 - failure, cancellation, reopening, and recovery behavior;
-- live smoke inputs, outputs, limitations, and cleanup; and
+- live smoke inputs, outputs, limitations, cleanup, and any sanitized normalized
+  replay fixture; and
 - the resulting decision about deeper Synara/OpenCode ownership.
 
 ## Definitions Of Done
@@ -379,6 +421,7 @@ Stop and report before widening scope if:
 - selected permanent code location;
 - reuse-versus-change list;
 - OpenCode-change verdict;
+- Synara-hosted versus external-topology verdict;
 - narrow first coding backlog; and
 - Yaacov's approval to implement.
 
@@ -386,6 +429,24 @@ Stop and report before widening scope if:
 
 A researcher can open a non-Git LitRev project, add one source excerpt, edit the
 same project manually, delegate one bounded task, inspect the exact context,
-receive a proposal, edit/accept/reject it, recover safely from failure, close and
-reopen the project, and understand its scientific state from LitRev-owned
-records alone.
+receive a proposal, inspect its structured link to the exact supporting excerpt,
+edit/accept/reject it, remain confined to the authorized project scope, recover
+safely from failure or crash-mid-apply, close and reopen the project, and
+understand its scientific state from LitRev-owned records alone.
+
+After implementation evidence and Yaacov's review, promote only the architecture
+that the slice actually proves:
+
+- promote the validated project, persistence, portability, and recovery
+  contract into `../architecture/project-format.md`, activating that placeholder
+  only if the evidence makes the contract defensible;
+- promote the validated gateway, executor, context, proposal, approval, event,
+  and confinement contract into `../architecture/agent-runtime.md`, activating
+  that placeholder only if the evidence makes the contract defensible;
+- update `../architecture/security-and-permissions.md` with proven enforcement
+  behavior and clearly retained open risks; and
+- create or amend an ADR only when the accepted topology, recovery mechanism, or
+  inherited-core boundary is a durable architecture decision.
+
+Leave a placeholder unchanged when the slice has not produced enough evidence
+to make its future contract defensible.
