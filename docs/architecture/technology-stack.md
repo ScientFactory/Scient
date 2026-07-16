@@ -79,7 +79,7 @@ checkout at `desktop-app-forks/synara/`. Its current rename and project-init
 work is on `codex/project-init-kernel` at `dce39373`, based on the maintained
 owned baseline recorded in `lab/external/sources.lock.md`; the branch is pushed
 to `yaacovcorcos/papilab-desktop`. The owned OpenCode fork is at
-`agent-forks/opencode/` on `dev` at `c6e85778d`, pushed to
+`agent-forks/opencode/` on `dev` at `f85656c01`, pushed to
 `yaacovcorcos/opencode`. Historical Gate 1 and Gate 1.5 commits, tags, and
 ignored runtime evidence remain historical records; they are not the active
 PapiLab implementation baseline.
