@@ -23,7 +23,7 @@ Local paths in the table are relative to the parent repository root.
 |---|---|---|---|---|---|---|
 | OpenCode | `agent-forks/opencode/`; clean canonical checkout present on `dev` | `https://github.com/anomalyco/opencode.git`, `dev` | `https://github.com/yaacovcorcos/opencode`, public fork | `c69abee0c73253aebae65e87e4e1b9bfa8c38021` | `f85656c0185904bb2b7624ae0b49ea79957efb2f` on `dev`; hosted PapiLab quality run `29509883409` | First file/shell/edit executor; owned, upstream-aligned, `adapter-maintained`; PapiLab changes remain outside OpenCode core until a demonstrated gap requires otherwise. |
 | Goose | `agent-forks/goose/` is the canonical restore path; no canonical root checkout is present. A clean legacy duplicate remains at `lab/external/agent-forks/goose/` pending cleanup. | `https://github.com/aaif-goose/goose.git`, `main` | None; owned repository deferred | Not tested in Gate 1.5 | Last inspected commit `3c1fdd692cc8aaa5f09b9175410c09a09d4dfe49` | Deferred broader-agent research input. Repository, build, ACP adapter, runtime, credentials, and adoption wait until after the first PapiLab gateway. |
-| Synara-derived desktop | `desktop-app-forks/synara/`; clean canonical checkout present at the tested PR head | `https://github.com/Emanuele-web04/synara.git`, `main` | `https://github.com/yaacovcorcos/papilab-desktop`, public fork | `3603a00e9f57aacf73ebaef8296eee8e4f55dd20` | Tested head `2ecdbb5e6f41248200b75bf61a0e6c3dacab7364`; hosted CI run `29514254313`; merged to owned `main` as `50294e6400737e28753d995f1252025f6c76e901` | Accepted initial application foundation; owned `thin-fork-merge`, with deliberate divergence allowed; must not own scientific project truth. |
+| Synara-derived desktop | `desktop-app-forks/synara/`; clean canonical checkout present on the separate one-commit cosmetic branch `codex/smaller-papilab-icon` at `7df1fbbd9dee42fec8f53cdff4cad46ff908fc62` | `https://github.com/Emanuele-web04/synara.git`, `main` | `https://github.com/yaacovcorcos/papilab-desktop`, public fork | `3603a00e9f57aacf73ebaef8296eee8e4f55dd20` | Tested head `f7760e9757e9df286c37317d1a3f2052d2e5949b`; hosted CI run `29515163695`; merged to owned `main` as `bb7ee10afa2b6a462d8e13204261fb355503036b` | Accepted initial application foundation; owned `thin-fork-merge`, with deliberate divergence allowed; must not own scientific project truth. |
 | T3 Code | `desktop-app-forks/t3code/` is the canonical restore path; no canonical root checkout is present. A clean legacy duplicate remains at `lab/external/desktop-app-forks/t3code/` pending cleanup. | `https://github.com/pingdotgg/t3code.git`, `main` | None | Not tested in Gate 1.5 | Last inspected commit `b9cc8d6ef17ca9f45bec621bef71ad3f706b9276` | Desktop/runtime/provider/process reference only. |
 
 Gate 1.5 immutable tags in both owned repositories:
@@ -56,7 +56,12 @@ upstream reconciliation and PapiLab cutover were merged through:
   <https://github.com/yaacovcorcos/papilab-desktop/pull/4>, tested at
   `2ecdbb5e6f41248200b75bf61a0e6c3dacab7364` by hosted CI run
   `29514254313` and merged as
-  `50294e6400737e28753d995f1252025f6c76e901`.
+  `50294e6400737e28753d995f1252025f6c76e901`;
+- application-foundation follow-up:
+  <https://github.com/yaacovcorcos/papilab-desktop/pull/5>, tested at
+  `f7760e9757e9df286c37317d1a3f2052d2e5949b` by hosted CI run
+  `29515163695` and merged as
+  `bb7ee10afa2b6a462d8e13204261fb355503036b`.
 
 The earlier Gate 1.5 suite and compatibility smoke remain historical evidence
 for their recorded source pins.
