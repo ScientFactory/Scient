@@ -76,8 +76,10 @@ The core architectural rule is:
 
 As of 2026-07-16, the executable application scaffold is the owned Synara
 checkout at `desktop-app-forks/synara/`. Its PapiLab identity and project-init
-work passed hosted CI at `2ecdbb5e` and was merged to owned `main` as
-`50294e64`; exact provenance is recorded in `lab/external/sources.lock.md`.
+lane passed hosted CI at `2ecdbb5e` and was merged as `50294e64`. The subsequent
+application-foundation follow-up passed hosted CI at `f7760e97` and advanced
+owned `main` to `bb7ee10a`; exact provenance is recorded in
+`lab/external/sources.lock.md`.
 The owned OpenCode fork is at `agent-forks/opencode/` on `dev` at `f85656c01`,
 pushed to `yaacovcorcos/opencode`. Historical Gate 1 and Gate 1.5 commits,
 tags, and ignored runtime evidence remain historical records; they are not the
