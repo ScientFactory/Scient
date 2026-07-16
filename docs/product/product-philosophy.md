@@ -2,9 +2,17 @@
 
 Status: Draft
 Owner: Yaacov
-Last updated: 2026-06-27
+Last updated: 2026-07-16
 Purpose: Defines LitRev's durable product principles across product, architecture, design, quality, and implementation.
 Doc type: Product truth
+
+## Document Rules
+
+This document is the draft home for durable product principles. Its `Draft`
+status means the wording remains open to revision and does not carry the same
+authority as the accepted PRD. When the documents conflict, the PRD governs.
+Promote this document only after explicit review and acceptance of the
+principles as a whole.
 
 ## Long-Term Product Ownership
 

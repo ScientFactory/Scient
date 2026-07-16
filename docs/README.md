@@ -13,7 +13,7 @@ Start here:
 - [Collaborator onboarding](onboarding.md) - ordered project journey, repository tour, and contribution-area reading routes.
 - [Documentation policy](documentation-policy.md) - documentation rules, metadata, statuses, and placement policy.
 - [Product requirements](product/PRD.md) - canonical product direction.
-- [Product philosophy](product/product-philosophy.md) - durable product principles.
+- [Product philosophy](product/product-philosophy.md) - draft durable product principles; the accepted PRD governs conflicts.
 - [Technology stack](architecture/technology-stack.md) - current proposed stack direction.
 - [Product roadmap](planning/product-roadmap.md) - current sequence of coherent product outcomes.
 - [First vertical-slice implementation plan](planning/first-litrev-vertical-slice-implementation-plan.md) - bounded plan for the active product slice.

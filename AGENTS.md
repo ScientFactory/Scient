@@ -2,7 +2,7 @@
 
 Status: Active
 Owner: Yaacov
-Last updated: 2026-07-12
+Last updated: 2026-07-16
 Purpose: Defines how agents should work in this early LitRev repository.
 Doc type: Agent protocol
 
@@ -43,8 +43,13 @@ Current important documents:
 - `docs/product/PRD.md` - product direction, core capabilities, user experience principles, and technical requirements.
 - `docs/product/product-philosophy.md` - durable product principles that guide product, architecture, design, quality, and implementation.
 - `docs/architecture/technology-stack.md` - current technology stack direction and open implementation decisions.
+- `docs/architecture/decisions/ADR-0001-synara-opencode-foundation-and-litrev-ownership-boundary.md` - accepted initial application/runtime foundations and the LitRev-owned scientific boundary.
+- `docs/planning/product-roadmap.md` - active sequence of coherent product outcomes.
+- `docs/planning/first-litrev-vertical-slice-implementation-plan.md` - concrete plan and acceptance criteria for the current implementation slice.
 
-These documents are living drafts. Treat them as the best available source of truth, but do not treat every detail as final unless the document explicitly says so.
+Use each document according to its metadata. The PRD and ADR-0001 are accepted
+direction; the roadmap is active planning; the product philosophy, technology
+stack, and implementation plan retain their stated draft or proposed limits.
 
 Follow `docs/documentation-policy.md` when adding or changing durable documentation.
 
@@ -74,11 +79,6 @@ Project-specific skills live under `skills/`.
 Use `skills/product/litrev-product-stewardship/SKILL.md` for product management work, including PRD changes, feature analysis, roadmap notes, product decisions, and product research synthesis.
 
 Use `skills/documentation/litrev-documentation-stewardship/SKILL.md` when creating, reviewing, moving, promoting, retiring, or reconciling durable documentation and project progress records.
-
-The current Codex runtime installs are available at:
-
-- `/Users/yaacov/.codex/skills/litrev-product-stewardship/SKILL.md`
-- `/Users/yaacov/.codex/skills/litrev-documentation-stewardship/SKILL.md`
 
 Project skills are workflow helpers. They should point agents back to the canonical repo documents and must not override `docs/product/`, `docs/architecture/`, `docs/documentation-policy.md`, or this `AGENTS.md` file.
 
