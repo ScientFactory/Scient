@@ -37,7 +37,7 @@ remain unchanged where they are source or immutable historical truth.
 
 | Checkout | Branch | Commit | Remote |
 |---|---|---|---|
-| Synara-derived desktop | `codex/project-init-kernel` | `2cf34a05b` | `yaacovcorcos/papilab-desktop` |
+| Synara-derived desktop | `codex/project-init-kernel` | `fb3b53a4c` | `yaacovcorcos/papilab-desktop` |
 | OpenCode | `dev` | `f85656c01` | `yaacovcorcos/opencode` |
 
 ## Verification
@@ -48,6 +48,8 @@ remain unchanged where they are source or immutable historical truth.
 - PapiLab project-init package TypeScript check: passed.
 - PapiLab project-init focused tests: 4 files, 31 tests passed.
 - Synara-derived desktop brand check: passed (`PapiLab identity check passed`).
+- Targeted renamed-surface tests: 4 files, 19 tests passed; the project-init
+  package remains at 4 files, 31 tests passed.
 - Synara-derived desktop release smoke and both full upstream source suites
   were not run locally because Bun is not installed in this environment. The
   hosted source checks remain the authoritative follow-up.
