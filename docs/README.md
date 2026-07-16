@@ -17,7 +17,7 @@ Start here:
 - [Technology stack](architecture/technology-stack.md) - current proposed stack direction.
 - [Product roadmap](planning/product-roadmap.md) - current sequence of coherent product outcomes.
 - [First vertical-slice implementation plan](planning/first-papilab-vertical-slice-implementation-plan.md) - bounded plan for the active product slice.
-- [LitRev-to-PapiLab rename execution plan](planning/litrev-to-papilab-rename-execution-plan.md) - proposed controlled identity migration, verification, and rollback plan.
+- [LitRev-to-PapiLab rename execution plan](planning/litrev-to-papilab-rename-execution-plan.md) - executed identity migration, remaining public cutover, verification, and rollback record.
 - [Architecture](architecture/README.md) - architecture direction, future architecture homes, and decisions.
 - [Design](design/README.md) - future home for product design principles and UI guidance.
 - [Quality](quality/README.md) - quality principles and testing philosophy.

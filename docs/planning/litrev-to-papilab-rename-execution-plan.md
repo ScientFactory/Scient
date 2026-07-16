@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Last updated: 2026-07-16
-Purpose: Defines the proposed controlled migration from the LitRev product identity to PapiLab across product truth, documentation, owned source repositories, local state, packaging, infrastructure, and public surfaces.
+Purpose: Defines and records the controlled migration from the LitRev product identity to PapiLab across product truth, documentation, owned source repositories, local state, packaging, infrastructure, and public surfaces.
 Doc type: Planning note
 
 ## Execution Status
@@ -29,24 +29,26 @@ Synara/OpenCode upstream relationship, breaking or silently discarding local
 state, colliding with official applications, or leaving the project with two
 unresolved active identities.
 
-This plan gives future reviewers and executing agents one place to verify the
+This plan gives future reviewers and maintaining agents one place to verify the
 intended scope, decision prerequisites, change order, compatibility policy,
-evidence requirements, rollback path, and definition of completion. It is a
-proposed execution plan, not approval to begin the rename and not proof that
-any rename work has been implemented.
+evidence requirements, rollback path, and the external conditions still
+required for full public cutover. The local portion has been executed; this
+document remains the canonical closeout and rollback record. It does not create
+a legal entity, provide legal or trademark clearance, or replace product
+truth.
 
 ## Document Rules
 
-This document owns the proposed rename sequence, workstreams, verification,
-and closeout criteria. It records Yaacov's 2026-07-16 decision to use PapiLab as
+This document owns the rename sequence, workstreams, verification, and
+closeout criteria. It records Yaacov's 2026-07-16 decision to use PapiLab as
 the canonical product identity and intended company/organization identity, but
 it does not create a legal entity, provide legal or trademark clearance,
 replace product truth, or define current implementation.
 
 The canonical product name and positioning must be promoted into
 `docs/product/`, and the hard-to-reverse technical identity and reset/rollback
-choices must be recorded in an accepted architecture decision before runtime
-cutover begins.
+choices are recorded in an accepted architecture decision and remain the
+authority for runtime maintenance after the local cutover.
 
 Historical documents and exact evidence must continue to describe the name,
 paths, commands, identifiers, commits, tags, and results that existed when the
@@ -150,22 +152,22 @@ architecture decision is accepted:
     publication and client-consumption contract is separately enabled and
     verified.
 
-## Remaining Prerequisites
+## Remaining Prerequisites And Follow-Up
 
-The choices above remove implementation ambiguity. The remaining prerequisites
-are evidence and external-state requirements:
+The choices above removed implementation ambiguity. The local rename work is
+complete; the remaining prerequisites are evidence, legal, and external-state
+requirements:
 
-1. Complete serious preliminary naming clearance before source cutover and
-   professional review before company formation, trademark filing, or public
-   commercial claims.
-2. Confirm repository-name availability and capture the GitHub settings that
-   must survive each rename.
-3. Inventory the current LitRev development profiles and decide which, if any,
-   merit an archive before clean reset.
+1. Complete serious preliminary naming clearance before company formation,
+   trademark filing, or public commercial claims, with professional review.
+2. Repository names and GitHub ownership have been cut over; retain the
+   captured settings and recheck protection rules after every repository move.
+3. The former LitRev development state was kept outside the new PapiLab
+   namespaces; any future archive or import must remain an explicit decision.
 4. Confirm the credentials and access needed later for GitHub settings, domain,
    deployment, signing, email, authentication, and release destinations.
-5. Record the accepted working identity in product truth and an architecture
-   decision before runtime implementation changes.
+5. The accepted working identity is now recorded in product truth and
+   ADR-0001; keep those documents authoritative for future runtime changes.
 
 ### Naming Clearance
 
@@ -242,33 +244,33 @@ The rename is successful only when all of the following are true:
 
 ## Working Identity Matrix
 
-This matrix is the selected starting point for the identity architecture
-decision and execution ledger. External availability and implementation remain
-unverified until their respective phases pass.
+This matrix is the selected identity architecture and execution ledger. Values
+that already equal the target are complete for the local cutover; rows marked
+pending remain external or intentionally deferred.
 
-| Surface | Current identity | Proposed identity | Required treatment |
+| Surface | Observed/current state | Target or remaining state | Required treatment |
 |---|---|---|---|
 | Company/organization identity | Not established in this repository | `PapiLab` | Treat as intended identity pending legal and organizational setup. |
-| Product display name | `LitRev` | `PapiLab` | Rename active product surfaces. |
-| Product descriptor | Broad description varies | `Scientific Workspace` | Use when a clarifying descriptor is needed. |
-| Positioning line | Broad description varies | `Run your entire scientific project with AI agents.` | Use as the working primary product promise. |
-| Technical namespace | `litrev` | `papilab` | Use consistently for new product-owned identifiers. |
-| Parent repository | `LitRev` | `PapiLab` | Rename after code/docs references and GitHub settings are prepared. |
-| Desktop repository | Owned `synara` fork | `papilab-desktop` | Preserve fork ancestry and official Synara `upstream`. |
+| Product display name | `PapiLab` | `PapiLab` | Complete locally; reverify public deployment. |
+| Product descriptor | `Scientific Workspace` | `Scientific Workspace` | Complete locally; retain as the clarifying descriptor. |
+| Positioning line | `Run your entire scientific project with AI agents.` | Same | Complete as the working primary product promise. |
+| Technical namespace | `papilab` | `papilab` | Use consistently for new product-owned identifiers. |
+| Parent repository | `PapiLab` | `PapiLab` | Complete; preserve repository settings. |
+| Desktop repository | `papilab-desktop` | `papilab-desktop` | Complete locally; preserve official Synara `upstream`. |
 | Agent-runtime repository | Owned `opencode` fork | Keep `opencode` | Rename only PapiLab-owned adapters and maintenance surfaces. |
-| Application protocol | `litrev://app` | `papilab://app` | Clean cut; no general legacy forwarding. |
-| Production bundle ID | `com.yaacovcorcos.litrev` | `com.yaacovcorcos.papilab` | Treat as a new app identity and test signing/updating assumptions. |
-| Development bundle ID | `com.yaacovcorcos.litrev.dev` | `com.yaacovcorcos.papilab.dev` | Preserve production/development isolation. |
-| Product home | `~/.litrev` | `~/.papilab` | Archive selected development state, then start clean. |
-| Desktop user-data profile | `litrev` / `litrev-dev` | `papilab` / `papilab-dev` | Start clean and test predecessor coexistence. |
-| Browser partition | `litrev-browser` | `papilab-browser` | Start clean; do not import browser state or read official Synara state. |
-| Persisted browser/storage keys | `litrev:*` and `litrev.*` | `papilab:*` and `papilab.*` | Start clean; no general key migration or aliasing. |
-| Runtime environment | `LITREV_*` | `PAPILAB_*` | Clean cut; no general compatibility aliases. |
-| Update channel/configuration | LitRev-named channel and variables | PapiLab-named channel and variables | Keep updates disabled until the PapiLab release contract is independently verified. |
-| Scratch workspace directory | `litrev-opencode-workspaces` | `papilab-opencode-workspaces` | Do not migrate disposable scratch state. |
-| Worktree/branch prefix | `litrev` | `papilab` | Keep historical branch and tag names unchanged. |
-| Project metadata | Not yet implemented | Reserve `.papilab` | Do not introduce `.litrev` for new project scaffolds. |
-| Maintenance/verifier names | `litrev:upstream-check` and LitRev-named scripts | PapiLab-named equivalents | Rename scripts/tests without weakening their checks. |
+| Application protocol | `papilab://app` | `papilab://app` | Complete; no general legacy forwarding. |
+| Production bundle ID | `com.yaacovcorcos.papilab` | `com.yaacovcorcos.papilab` | Complete locally; test signing/updating assumptions before release. |
+| Development bundle ID | `com.yaacovcorcos.papilab.dev` | `com.yaacovcorcos.papilab.dev` | Complete; preserve production/development isolation. |
+| Product home | `~/.papilab` | `~/.papilab` | Complete; former state remains separate. |
+| Desktop user-data profile | `papilab` / `papilab-dev` | `papilab` / `papilab-dev` | Complete; test predecessor coexistence on each release candidate. |
+| Browser partition | `papilab-browser` | `papilab-browser` | Complete; do not import browser state or read official Synara state. |
+| Persisted browser/storage keys | `papilab:*` and `papilab.*` | `papilab:*` and `papilab.*` | Complete; no general legacy key migration or aliasing. |
+| Runtime environment | PapiLab-owned variables use `PAPILAB_*`; inherited `SYNARA_*` remain where required | New PapiLab variables | Keep compatibility variables documented and do not add LitRev aliases. |
+| Update channel/configuration | PapiLab-named channel and variables; client updates disabled | PapiLab-named channel and variables | Keep updates disabled until the PapiLab release contract is independently verified. |
+| Scratch workspace directory | `papilab-opencode-workspaces` | `papilab-opencode-workspaces` | Complete; do not migrate disposable scratch state. |
+| Worktree/branch prefix | `papilab` | `papilab` | Complete; keep historical branch and tag names unchanged. |
+| Project metadata | `.papilab` is the project-initiation namespace | `.papilab` | Complete for the current package; do not introduce `.litrev`. |
+| Maintenance/verifier names | PapiLab-named equivalents | PapiLab-named equivalents | Complete; keep historical Gate scripts immutable. |
 | Historical Gate tags | `litrev-gate-*` | Keep unchanged | Immutable historical evidence. |
 
 ## Occurrence Classification
@@ -311,7 +313,8 @@ The rename must not proceed while meaningful occurrences remain unclassified.
 
 1. Treat the PapiLab product-name decision as recorded; do not reopen it merely
    because implementation has not started.
-2. Complete serious preliminary naming-clearance work before source cutover.
+2. Preserve the remaining naming-clearance and professional-review work before
+   company formation, trademark filing, or public commercial claims.
 3. Test the name, pronunciation, descriptor, and positioning with a small set
    of representative English-speaking and multilingual researchers.
 4. Confirm that the `Papi` connotations remain acceptable for a professional,
@@ -445,12 +448,11 @@ legacy, upstream, external, and generated names.
 
 ## Phase 4: Prepare Active Documentation And Repository Knowledge
 
-Prepare this change after the durable decisions are approved, but merge it at
-the point defined in `Proposed Change And Merge Order`. The documentation may
-describe an accepted future cutover before source work merges only when it says
-clearly that the runtime rename remains planned. Do not merge wording that
-claims the PapiLab runtime exists while the maintained source still implements
-only LitRev identity.
+The local documentation cutover has been executed after the durable decisions
+were approved. Use this phase as the review checklist for keeping active docs,
+indexes, source locks, and historical notes synchronized with the maintained
+source heads. Do not merge wording that claims public deployment completion
+while the external site still serves the former identity.
 
 ### Work
 
@@ -465,8 +467,9 @@ only LitRev identity.
    tags, commits, branches, pull requests, and historical commands.
 5. Add one concise note to historical Gate documents explaining that the
    product was later renamed to PapiLab. Do not rewrite their body evidence.
-6. Keep current and proposed states explicit. Do not imply the PapiLab runtime
-   is implemented before its source cutover merges.
+6. Keep current, historical, and external-pending states explicit. Do not
+   imply public deployment completion before its source and hosting owners
+   have reverified the public surfaces.
 7. Update `docs/README.md`, area indexes, architecture-decision indexes, skills
    indexes, and any root navigation affected by moved or renamed files.
 
@@ -635,9 +638,10 @@ Perform this phase only after the source and documentation changes are green.
 
 ### Exit condition
 
-All owned repositories and public surfaces resolve to the intended PapiLab
-owners and artifacts, no critical integration depends on a stale LitRev URL,
-and the previous domain/deployment state can still be restored.
+The owned repositories and maintained desktop surfaces resolve to the intended
+PapiLab owners and artifacts, no critical local integration depends on a stale
+LitRev URL, and the previous domain/deployment state can still be restored.
+The public website and deployment remain a separate pending phase.
 
 ## Phase 9: End-To-End Verification
 
@@ -716,10 +720,12 @@ Verification must cover all layers below at exact candidate merge heads.
 All required checks are green, every exception is documented, the live smoke
 uses exact reviewed heads, and no blocker is deferred into the public cutover.
 
-## Proposed Change And Merge Order
+## Executed Change And Merge Order
 
-Keep each change independently reviewable and do not collapse these lanes into
-one cross-repository mega-commit.
+The following order was used to keep each change independently reviewable. Do
+not collapse future public or release work into one cross-repository
+mega-commit. Steps 2 through 6 are complete locally; steps 7 and 8 remain
+pending until the external public surfaces and final hosted evidence are ready.
 
 1. **Baseline maintenance:** optional upstream refreshes and exact source pins,
    with no rename changes.
