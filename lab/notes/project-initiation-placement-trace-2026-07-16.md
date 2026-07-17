@@ -146,7 +146,7 @@ The implementation preserves the decision in this trace: the package has no
 Electron, React, Synara application, OpenCode, SQLite, or provider dependency;
 opening a folder remains zero-write; initialization requires a separately
 previewed plan; existing project files are preserved or proposed rather than
-silently replaced; and interrupted application has conservative recovery. The
+silently replaced; and interrupted initialization has conservative recovery. The
 package remains present after the reviewed Synara v0.5.5 sync on owned desktop
 `main` at `fd37cdcda16ff34c3b13d098e5a35d0d1aff5096`.
 
