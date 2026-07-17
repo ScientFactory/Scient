@@ -2,7 +2,7 @@
 
 Status: Active
 Owner: Yaacov
-Last updated: 2026-07-16
+Last updated: 2026-07-17
 Purpose: Records the executed PapiLab identity cutover, verification results, and remaining external cutover work.
 Doc type: Research evidence
 
@@ -37,8 +37,8 @@ remain unchanged where they are source or immutable historical truth.
 
 | Checkout | Branch | Commit | Remote |
 |---|---|---|---|
-| Synara-derived desktop | `main` | `bb7ee10a` | `yaacovcorcos/papilab-desktop` |
-| OpenCode | `dev` | `f85656c01` | `yaacovcorcos/opencode` |
+| Synara-derived desktop | `main` | `fd37cdcd` | `yaacovcorcos/papilab-desktop` |
+| OpenCode | `dev` | `8c19505ec` | `yaacovcorcos/opencode` |
 
 ## Verification
 
@@ -62,8 +62,27 @@ remain unchanged where they are source or immutable historical truth.
   desktop build, Windows process regression, and release smoke. PR #5 merged
   that tested head to owned `main` as
   `bb7ee10afa2b6a462d8e13204261fb355503036b`.
-- OpenCode branch protection now requires the renamed `PapiLab quality` check;
-  the former `LitRev source quality` requirement has been removed.
+- Later cosmetic and inherited-example cleanup landed through desktop PRs #7
+  and #8 without changing the ownership boundary.
+- The maintained desktop fork was then reconciled through official Synara
+  v0.5.5 at upstream `9be46c3ce6a7521b64436b7334bc6fce16e3cac4`.
+  Exact head `d4b10c27339992e63a16e83f2384ca53ccacabca`
+  passed hosted CI run `29567845155`, including formatting, lint, typecheck,
+  the full unit and browser suites, desktop build, preload verification,
+  Windows process regression, and release smoke. PR #9 merged it to owned
+  `main` as `fd37cdcda16ff34c3b13d098e5a35d0d1aff5096`, zero commits
+  behind that tested upstream revision.
+- OpenCode branch protection now requires `PapiLab source quality`; the former
+  `LitRev source quality` requirement has been removed. The workflow and
+  required-check context were aligned during the reviewed 1.18.3 sync. Exact
+  head `bb3e3867922a4f185f02541564bfb960e4fec03f` passed hosted run
+  `29569910754`; PR #4 merged it to owned `dev` as
+  `18ca88886d86e83ddd959f0f4eaf17948697ae17`.
+- Official upstream review-tooltip follow-up `b527f605d9136a0b651cbc034e24ce02de15c631`
+  was reviewed separately. Exact head
+  `865f8bde1aa64b7993b8211664c544ba6a4d3d68` passed hosted run
+  `29571215689`; PR #5 merged it to owned `dev` as
+  `8c19505ecc2780bce01dd8acb3a695a6b3b8868b`.
 
 ## Public Surface Status
 
