@@ -1,9 +1,9 @@
 # LitRev-To-PapiLab Rename Execution Plan
 
-Status: Active
+Status: Historical
 Owner: Yaacov
-Last updated: 2026-07-16
-Purpose: Defines and records the controlled migration from the LitRev product identity to PapiLab across product truth, documentation, owned source repositories, local state, packaging, infrastructure, and public surfaces.
+Last updated: 2026-07-17
+Purpose: Preserves the executed LitRev-to-PapiLab intermediate identity migration, evidence requirements, and rollback context.
 Doc type: Planning note
 
 ## Execution Status
@@ -14,14 +14,17 @@ repository names have been cut over to PapiLab on 2026-07-16. The exact source
 commits and checks are recorded in
 `../../lab/notes/papilab-rename-execution-report-2026-07-16.md`.
 
-The public `papilab.com` deployment still serves an existing page titled
-“LitRev Dashboard”. That hosted deployment is outside this documentation-only
-repository and remains a coordinated follow-up, not a silently changed DNS or
-production release. The rename is therefore not declared fully complete until
-the owning deployment is updated and the public/authentication/download paths
-are reverified.
+PapiLab is now an implemented intermediate identity, not the accepted final
+public direction. `../product/scient-product-identity.md` accepts ScientFactory
+as the future company and Scient as both app and native-agent name. The proposed
+future migration lives in `papilab-to-scient-rename-execution-plan.md`.
 
-## Goal
+The public `papilab.com` deployment was not completed as a distinct final
+PapiLab destination. Its owner-controlled state remains historical external
+context; any future public cutover belongs to the Scient plan rather than this
+superseded PapiLab destination.
+
+## Historical Goal
 
 Rename the active product and maintained product-owned implementation identity
 from **LitRev** to **PapiLab** without losing historical truth, damaging the
@@ -32,23 +35,23 @@ unresolved active identities.
 This plan gives future reviewers and maintaining agents one place to verify the
 intended scope, decision prerequisites, change order, compatibility policy,
 evidence requirements, rollback path, and the external conditions still
-required for full public cutover. The local portion has been executed; this
-document remains the canonical closeout and rollback record. It does not create
-a legal entity, provide legal or trademark clearance, or replace product
-truth.
+required for full public cutover. The local portion was executed; this document
+remains the historical closeout and rollback record. It does not create a legal
+entity, provide legal or trademark clearance, replace product truth, or govern
+the future Scient rename.
 
 ## Document Rules
 
-This document owns the rename sequence, workstreams, verification, and
-closeout criteria. It records Yaacov's 2026-07-16 decision to use PapiLab as
-the canonical product identity and intended company/organization identity, but
-it does not create a legal entity, provide legal or trademark clearance,
-replace product truth, or define current implementation.
+This document preserves the historical rename sequence, workstreams,
+verification, and closeout criteria. It records Yaacov's 2026-07-16 decision to
+use PapiLab as the then-current product identity, but it does not govern the
+accepted Scient direction, create a legal entity, provide legal or trademark
+clearance, replace product truth, or define current implementation.
 
-The canonical product name and positioning must be promoted into
-`docs/product/`, and the hard-to-reverse technical identity and reset/rollback
-choices are recorded in an accepted architecture decision and remain the
-authority for runtime maintenance after the local cutover.
+The then-current PapiLab name was promoted and implemented. The accepted
+forward identity now lives in `../product/scient-product-identity.md`; the
+hard-to-reverse foundation and ownership boundary remains recorded in ADR-0001
+until deliberately renamed or superseded.
 
 Historical documents and exact evidence must continue to describe the name,
 paths, commands, identifiers, commits, tags, and results that existed when the
@@ -57,19 +60,10 @@ to the new identity, but it must not rewrite history.
 
 ### Update Policy
 
-Update this plan when:
-
-- the name is accepted, rejected, or materially changed;
-- an identity, compatibility, repository, or infrastructure choice is made;
-- a phase starts, completes, fails, or is deliberately skipped;
-- execution reveals a rename surface or migration risk not represented here;
-  or
-- the merge order, rollback path, or completion criteria change.
-
-Do not mark this document `Accepted` merely because individual rename tasks
-have been completed. Product truth and architecture decisions own acceptance;
-this planning note should eventually become `Historical` after verified
-closeout.
+Keep this plan Historical. Update it only to correct factual or link errors,
+preserve newly discovered evidence about the executed LitRev-to-PapiLab
+migration, or point to a superseding authority. New Scient work belongs in the
+PapiLab-to-Scient plan rather than reopening this historical plan.
 
 ## Current Truth
 
@@ -79,15 +73,16 @@ closeout.
 - The accepted PRD defines a product broader than literature review: one local-
   first workspace for an entire scientific or scholarly research project.
 - ADR-0001 accepts the owned Synara fork as the initial application foundation
-  and the owned OpenCode fork as the initial agent-runtime foundation while
-  keeping canonical scientific meaning product-owned.
+  and **Scient** as PapiLab's first-party OpenCode-derived agent while keeping
+  external OpenCode separate and canonical scientific meaning product-owned.
 - Gate 1.5 established an isolated LitRev desktop identity in the Synara fork.
   That identity is real code and includes application naming, bundle IDs,
   protocol, local homes, browser/storage namespaces, workspace names, update
   configuration, tests, and maintenance tooling.
-- OpenCode remains an upstream-aligned owned engine. Its upstream name and core
-  identity are not product branding and should not be renamed merely for
-  cosmetic uniformity.
+- The owned OpenCode fork remains the upstream-traceable source foundation for
+  Scient. Scient is the resulting owned agent, not a shell over a separate
+  OpenCode engine. External OpenCode remains independently branded and
+  configured. Upstream names, licenses, and attribution remain source truth.
 - Gate 1 and Gate 1.5 notes, tags, commit references, pull requests, and exact
   commands are historical evidence produced under the LitRev name.
 - `papilab.com` is owned by Yaacov, but domain ownership alone is not product-
@@ -99,9 +94,9 @@ closeout.
   that it is also the intended company name, and decided that the parent GitHub
   repository will be renamed from `LitRev` to `PapiLab`.
 
-## Accepted Working Identity
+## Historical Executed Identity
 
-The working brand system for execution is:
+The intermediate brand system executed on 2026-07-16 was:
 
 - **Company/organization identity:** `PapiLab`, subject to legal availability
   and any later incorporation or organization decision
@@ -112,7 +107,9 @@ The working brand system for execution is:
 - **Domain:** `papilab.com`
 - **Parent GitHub repository:** `PapiLab`
 - **Desktop fork repository:** `papilab-desktop`
-- **Agent-runtime repository:** keep `opencode`
+- **First-party agent:** `Scient`, subject to separate public brand clearance
+- **Agent source repository:** keep `opencode` as the current upstream-traceable
+  source checkout unless a separate topology decision changes it
 
 The company/organization statement is an intended identity, not a claim that a
 legal entity or GitHub organization already exists. The descriptor and
@@ -136,8 +133,9 @@ architecture decision is accepted:
    separate later operation.
 5. The owned Synara fork will become `papilab-desktop`, while its official
    `upstream` remains Synara and its fork ancestry is preserved.
-6. The owned OpenCode repository remains `opencode`; only the PapiLab-owned
-   adapter, verifier, CI, and documentation surfaces change names.
+6. The owned OpenCode repository remains `opencode` as the current source
+   foundation; Scient is the first-party agent produced and evolved from that
+   source. External OpenCode remains a separate external-agent path.
 7. New durable project metadata uses `.papilab`. No new implementation may
    introduce `.litrev` as a project-format path.
 8. Existing LitRev runtime state is development-only and will be archived if it
@@ -257,7 +255,8 @@ pending remain external or intentionally deferred.
 | Technical namespace | `papilab` | `papilab` | Use consistently for new product-owned identifiers. |
 | Parent repository | `PapiLab` | `PapiLab` | Complete; preserve repository settings. |
 | Desktop repository | `papilab-desktop` | `papilab-desktop` | Complete locally; preserve official Synara `upstream`. |
-| Agent-runtime repository | Owned `opencode` fork | Keep `opencode` | Rename only PapiLab-owned adapters and maintenance surfaces. |
+| First-party agent | Planned but not implemented | `Scient` | Use Scient as the product identity; complete separate public brand clearance before release. |
+| Agent source repository | Owned `opencode` fork | Keep `opencode` for current source provenance | Build Scient from this source while preserving upstream names, licenses, attribution, and selective-update history. |
 | Application protocol | `papilab://app` | `papilab://app` | Complete; no general legacy forwarding. |
 | Production bundle ID | `com.yaacovcorcos.papilab` | `com.yaacovcorcos.papilab` | Complete locally; test signing/updating assumptions before release. |
 | Development bundle ID | `com.yaacovcorcos.papilab.dev` | `com.yaacovcorcos.papilab.dev` | Complete; preserve production/development isolation. |
@@ -267,7 +266,7 @@ pending remain external or intentionally deferred.
 | Persisted browser/storage keys | `papilab:*` and `papilab.*` | `papilab:*` and `papilab.*` | Complete; no general legacy key migration or aliasing. |
 | Runtime environment | PapiLab-owned variables use `PAPILAB_*`; inherited `SYNARA_*` remain where required | New PapiLab variables | Keep compatibility variables documented and do not add LitRev aliases. |
 | Update channel/configuration | PapiLab-named channel and variables; client updates disabled | PapiLab-named channel and variables | Keep updates disabled until the PapiLab release contract is independently verified. |
-| Scratch workspace directory | `papilab-opencode-workspaces` | `papilab-opencode-workspaces` | Complete; do not migrate disposable scratch state. |
+| Scratch workspace directory | `papilab-opencode-workspaces` | `papilab-agent-workspaces` | Pending terminology cleanup; retain exact legacy recognition only for the required upgrade window. |
 | Worktree/branch prefix | `papilab` | `papilab` | Complete; keep historical branch and tag names unchanged. |
 | Project metadata | `.papilab` is the project-initiation namespace | `.papilab` | Complete for the current package; do not introduce `.litrev`. |
 | Maintenance/verifier names | PapiLab-named equivalents | PapiLab-named equivalents | Complete; keep historical Gate scripts immutable. |
@@ -560,6 +559,13 @@ coexist with all official and retained predecessor profiles.
 
 ## Phase 6: Rename Only The PapiLab-Owned OpenCode Surface
 
+This phase records the narrower PapiLab identity cutover completed before the
+Scient decision. ADR-0001 now governs the forward product identity: the owned
+fork is Scient's source foundation, Scient is the agent product, and connected
+OpenCode remains separate. Preserve the source-level names and evidence below
+where they remain required for upstream compatibility, attribution, or history;
+do not interpret them as a requirement to expose Scient as OpenCode.
+
 ### Work
 
 1. Keep OpenCode's upstream product name, package identity, source structure,
@@ -575,9 +581,9 @@ coexist with all official and retained predecessor profiles.
 
 ### Exit condition
 
-The OpenCode fork remains recognizably and maintainably OpenCode, while its
-product-owned integration surface uses PapiLab and remains compatible with the
-renamed desktop application.
+The completed cutover kept the fork recognizably and maintainably OpenCode at
+the source level. Forward product work now builds Scient from that foundation
+under ADR-0001 while retaining source lineage and selective-updateability.
 
 ## Phase 7: Establish The PapiLab Project Namespace
 
@@ -690,8 +696,8 @@ Verification must cover all layers below at exact candidate merge heads.
 ### Coexistence verification
 
 - Run PapiLab alongside retained LitRev development state and official Synara.
-- Connect the owned OpenCode runtime without overwriting official OpenCode or
-  Codex credentials/state.
+- Run Scient and separately connect external OpenCode without overwriting
+  external OpenCode, Codex, or other external-agent credentials/state.
 - Verify distinct processes, bundle IDs, protocols, user-data paths, browser
   partitions, ports where applicable, and scratch workspaces.
 
@@ -710,7 +716,8 @@ Verification must cover all layers below at exact candidate merge heads.
 
 - Open or create the controlled scientific-project capsule used by the first
   vertical slice.
-- Run the bounded owned OpenCode action through the renamed desktop foundation.
+- Run the bounded action through Scient while external OpenCode remains a
+  separate available target.
 - Verify project root, context, approval behavior, transcript/event fidelity,
   result display, cleanup, reopening, and recovery.
 - Do not claim that this smoke validates a complete scientific project model.

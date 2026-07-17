@@ -2,13 +2,20 @@
 
 Status: Draft
 Owner: Yaacov
-Last updated: 2026-07-12
+Last updated: 2026-07-17
 Purpose: Tracks the rollout priorities and unresolved commercial choices for how PapiLab users access and select models.
 Doc type: Planning note
 
 ## Document Rules
 
 This document owns sequencing and open product choices. The accepted access requirement lives in `../product/PRD.md`; model comparisons live in `../research/source-evaluations/model-portfolio-and-provider-routing.md`; future runtime details belong in `../architecture/agent-runtime.md`.
+
+Agent selection is a separate layer from model access. **Scient** is PapiLab's
+first-party agent; OpenCode, Codex, Claude, Droid, and other supported products
+are external agents. After an execution target is selected, the access source,
+provider, and model choices are limited to what that target legitimately
+supports. Do not collapse an external-agent subscription, a provider account,
+an API key, and a model into one “provider” choice.
 
 ## Priority 1: Initial Access
 
@@ -18,7 +25,8 @@ Launch with all three access paths:
 2. **Bring your own API key** - the user supplies provider credentials and pays that provider directly.
 3. **PapiLab-managed access** - PapiLab pays providers and gives users access through a PapiLab plan.
 
-Start with manual model choice. Always show the access source, provider, and model that will be used.
+Start with manual model choice. Always show the selected agent, access source,
+provider, and model that will be used.
 
 For PapiLab-managed access, the commercial options remain open:
 

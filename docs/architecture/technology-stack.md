@@ -46,6 +46,11 @@ The core architectural rule is:
 
 > PapiLab owns scientific truth. Agents and infrastructure serve that truth.
 
+`../product/scient-product-identity.md` accepts ScientFactory as the future
+company and Scient as both app and native-agent name. This document continues
+to use PapiLab for current implemented surfaces until the rename is executed;
+technical text distinguishes the Scient agent where needed.
+
 ## Stack Summary
 
 | Layer | Current Direction | Status |
@@ -62,9 +67,9 @@ The core architectural rule is:
 | Large file storage | Object storage | Proposed; not scaffolded |
 | Sync | Local-first SQLite-to-cloud sync | Under evaluation; not scaffolded |
 | Application foundation | Owned Synara fork | Accepted initial foundation through ADR-0001; scientific product fit remains unproven |
-| Agent provider layer | Synara provider contracts and service | Inherited runtime machinery to pressure-test behind a PapiLab-owned boundary |
-| Agent runtime foundation | Owned OpenCode fork | Accepted initial foundation through ADR-0001; build and adapter compatibility verified |
-| Later agent candidate | Goose | Source-depth candidate; integration deferred until after the first PapiLab gateway |
+| External-agent layer | Synara provider contracts and service | Inherited machinery for external agents; preservation required, project-task compatibility not yet certified |
+| First-party agent | Scient, derived from the owned OpenCode fork | Accepted identity and source foundation through ADR-0001; Scient product/runtime not yet implemented |
+| Later Scient source | Goose | Source-depth candidate for capabilities and architecture lessons; deferred until after the first PapiLab gateway |
 | Executor safety reference | Codex | Evaluation/reference |
 | Scientific runtime | Python via uv | Proposed |
 | Native services | Rust selectively | Deferred until needed |
@@ -82,7 +87,8 @@ the owned application baseline. A later maintained sync through official Synara
 v0.5.5 passed hosted CI at `d4b10c27` and advanced owned `main` to
 `fd37cdcd`, zero commits behind tested upstream `9be46c3c`; exact provenance is
 recorded in `lab/external/sources.lock.md`.
-The owned OpenCode fork is at `agent-forks/opencode/` on `dev` at `8c19505ec`,
+The owned OpenCode fork—the current source foundation for Scient—is at
+`agent-forks/opencode/` on `dev` at `8c19505ec`,
 after reviewed syncs through OpenCode 1.18.3 at official upstream
 `b527f605d`. Its final hosted source-quality run passed at `865f8bde1`, and the
 owned default was zero commits behind that tested upstream. Historical
@@ -98,13 +104,14 @@ The scaffold currently provides:
 | Local coordinator | Bun during development, Node-compatible build, WebSocket RPC, provider routing, terminal/filesystem/Git/browser services under `apps/server` | Runtime machinery PapiLab may wrap or borrow; not the scientific project kernel |
 | Local state | SQLite through Effect SQL | Synara session/orchestration projection state; not canonical PapiLab scientific state |
 | Shared contracts | Effect schemas in `packages/contracts` plus runtime helpers in `packages/shared` | Candidate provider/runtime boundary; PapiLab domain contracts do not exist yet |
-| Agent integration | Existing provider adapters, including the OpenCode SDK path verified with the owned OpenCode binary | Reusable execution machinery; no PapiLab agent gateway or run ledger exists yet |
+| Agent integration | Existing provider adapters, including external OpenCode, plus compatibility evidence from the owned OpenCode build | Reusable external-agent machinery; Scient, its isolated identity, and the PapiLab gateway do not exist yet |
 | Tooling | Bun workspaces, Turborepo, Vite, Vitest, TypeScript 5.7 | Inherited compatibility baseline, not an automatic long-term commitment |
 
 `lab/papilab-bridge/` currently contains planning documentation only. The owned
 Synara checkout now contains the dependency-light `@papilab/project-init`
 package, but there are still no PapiLab-owned scientific domain contracts,
-agent gateway, cloud client, sync implementation, or production build pipeline.
+Scient implementation, agent gateway, cloud client, sync implementation, or
+production build pipeline.
 
 ### Scaffold Use Rule
 
@@ -314,15 +321,25 @@ accepted write-back path.
 
 Current posture:
 
-- Build the first PapiLab workflow on the owned OpenCode runtime through the
-  existing verified Synara integration.
+- Build the first PapiLab workflow through **Scient**, PapiLab's first-party
+  research agent derived from the owned OpenCode fork.
+- Treat Scient as one agent product, codebase, runtime identity, configuration,
+  release, and update channel. Do not model it as a PapiLab shell that launches
+  a separately identified OpenCode engine.
+- Keep inherited OpenCode core and Scient-owned capabilities and integrations
+  identifiable inside Scient's source where practical. This is a maintenance
+  boundary for selective upstream updates, not a product or process boundary.
+- Preserve the inherited external-agent layer. External OpenCode remains a
+  distinct external agent with its own binary or endpoint, configuration,
+  credentials, sessions, and updates.
 - Codex is the execution-safety and sandboxing reference.
-- Evaluate Goose later as a broader local-agent engine through `goose acp` over
-  stdio, behind the PapiLab gateway. Keep authenticated `goose serve` as a later
-  process-separated option; do not use the removed `goosed` REST surface.
-- Treat Goose permissions, sessions, recipes, and tool events as runtime inputs
-  to normalize. They do not provide the PapiLab project boundary or canonical
-  run ledger by themselves.
+- Evaluate Goose later as a source of capabilities and architecture lessons for
+  Scient. ACP may remain useful for a bounded comparison or for a future
+  separately offered external Goose agent, but Scient must not become a shell that
+  silently switches between branded engines.
+- Treat any Goose permissions, sessions, recipes, and tool events as research or
+  external-runtime inputs to normalize. They do not provide the PapiLab project
+  boundary or canonical run ledger by themselves.
 
 PapiLab should not commit to any agent's internal data model as the canonical project model.
 
@@ -434,10 +451,11 @@ Completed historical experiments remain evidence, not the roadmap.
 | Area | Proven | Not Yet Proven | Evidence Or Owner |
 |---|---|---|---|
 | Synara-derived application | Owned fork, build, isolated PapiLab identity and state, reviewed upstream process | Scientific-product fit, sustainable domain UI divergence, and long-term maintenance cost | Gate 1 and Gate 1.5 lab reports; ADR-0001 owns adoption |
-| OpenCode-derived runtime | Owned build, Synara compatibility, project-root fidelity, transcript fidelity, and approval flow for a constrained action | PapiLab scientific tools, durable task behavior, recovery semantics, and justified core changes | Gate 1.5 report; ADR-0001 owns adoption |
+| Scient source foundation | Owned OpenCode build, Synara compatibility, project-root fidelity, transcript fidelity, and approval flow for a constrained action | Scient identity and packaging, owned capabilities, isolated Scient state, durable task behavior, and justified inherited-core changes | Gate 1.5 report proves the source baseline; ADR-0001 owns Scient adoption |
+| External agents | Nine inherited adapters and external OpenCode settings/adapter paths are present in source | Per-agent live compatibility, subscription/auth behavior, project-task certification, and migration protection | [Scient and external agents implementation plan](../planning/scient-and-external-agents-implementation-plan.md) |
 | PapiLab project state | Product responsibilities and trust boundary are documented | Persistence, portable local record, recovery, and first real scientific object relationship | First vertical-slice plan |
-| PapiLab agent boundary | Context, proposal, review, provenance, and permission responsibilities are documented | Actual contract, code placement, event mapping, and accepted write-back path | First vertical-slice plan; `agent-runtime.md` remains a future home |
-| Goose | Source seams, ACP path, and safety risks inspected | Owned fork, adapter, isolation, and incremental value after the PapiLab gateway | Goose source-depth inspection |
+| Scient-agent and PapiLab-app boundary | Scient-agent identity plus context, proposal, review, provenance, and permission responsibilities are documented | Actual contract, code placement, event mapping, isolated Scient-agent state, and accepted write-back path | ADR-0001 and linked implementation plans; `agent-runtime.md` remains a future home |
+| Goose | Source seams, ACP path, and safety risks inspected | Incremental capabilities or architecture lessons for Scient; any future external Goose path is a separate decision | Goose source-depth inspection |
 | Cloud sync | Postgres, object storage, and local-first sync are proposed directions | Authority, offline behavior, conflicts, revocation, and recovery | Later roadmap and focused architecture work |
 
 Gate 1 and Gate 1.5 are retained only as historical names for completed work.
@@ -457,9 +475,10 @@ Postgres
 Supabase as initial cloud platform candidate
 object storage
 local-first sync under evaluation
-owned OpenCode fork as the initial agent-runtime foundation
+Scient as the owned OpenCode-derived first-party agent
+inherited Synara adapters for independently connected external agents
 Codex safety reference
-Goose later substrate/provider evaluation
+Goose later capability and architecture source for Scient
 Python via uv for scientific computation
 selective Rust services later
 ProseMirror/Tiptap-family editor

@@ -2,7 +2,7 @@
 
 Status: Active
 Owner: Yaacov
-Last updated: 2026-07-16
+Last updated: 2026-07-17
 Purpose: Defines the current sequence of coherent PapiLab product outcomes without turning technology experiments into the product roadmap.
 Doc type: Planning note
 
@@ -19,16 +19,17 @@ its order, or when a slice is accepted, deferred, or rejected.
 ## Now: First PapiLab Scientific Project Slice
 
 A researcher can open a small local scientific project, add source material
-manually, delegate one bounded task to the PapiLab agent through the owned
-OpenCode runtime, inspect the context and proposed result, accept or reject it,
-and reopen the project without losing its scientific meaning or history.
+manually, delegate one bounded task to **Scient**, inspect the context and
+proposed result, accept or reject it, and reopen the project without losing its
+scientific meaning or history. Scient is PapiLab's owned OpenCode-derived
+first-party agent; it is not a separate shell over an OpenCode engine.
 
 The slice combines:
 
 - a durable local project identity;
 - one manually captured source excerpt;
 - one bounded scientific task and visible context receipt;
-- one OpenCode-backed agent action;
+- one Scient action using its inherited OpenCode-derived capabilities;
 - one proposed evidence-linked note;
 - inspect, edit, accept, and reject behavior;
 - a recovery point; and
@@ -46,8 +47,10 @@ The implementation plan is
 - Strengthen the evidence-to-writing path based on the first slice.
 - Add scientific capabilities through the PapiLab-owned layer as real needs
   appear.
-- Make isolated OpenCode core changes only for demonstrated runtime gaps.
-- Run the established boundary through Goose as a broader-engine comparison.
+- Make isolated changes to Scient's inherited OpenCode core only for
+  demonstrated runtime gaps.
+- Evaluate Goose as a later source of capabilities and architecture lessons for
+  Scient, without turning Scient into an engine-switching shell.
 - Choose the next coherent workflow, with data-to-figure as a leading candidate.
 
 ## Later

@@ -2,7 +2,7 @@
 
 Status: Active
 Owner: Yaacov
-Last updated: 2026-07-16
+Last updated: 2026-07-17
 Purpose: Indexes PapiLab's accepted architecture decision records and the rules for using them.
 Doc type: Repo orientation
 
@@ -10,7 +10,7 @@ Accepted architecture decisions should live here when decisions are made.
 
 Current decisions:
 
-- `ADR-0001-synara-opencode-foundation-and-papilab-ownership-boundary.md` - accepts the owned Synara fork as the initial application foundation, the owned OpenCode fork as the initial runtime foundation, and the PapiLab-owned scientific boundary between them.
+- `ADR-0001-synara-opencode-foundation-and-papilab-ownership-boundary.md` - accepts the owned Synara fork as the initial application foundation, Scient as the owned OpenCode-derived first-party agent, external OpenCode as a separate external agent, and the PapiLab-owned scientific boundary around agent execution.
 
 Supporting file:
 

@@ -3,13 +3,17 @@
 Status: Accepted
 Version: v1
 Owner: Yaacov
-Last updated: 2026-07-16
+Last updated: 2026-07-17
 Purpose: Defines PapiLab's product direction, core capabilities, user experience principles, and product constraints.
 Doc type: Product truth
 
 ## Document Rules
 
 The PRD defines what PapiLab should be and why it matters. It should not define how the product is implemented.
+
+The accepted future company, application, native-agent, and external-agent
+names live in `scient-product-identity.md`. PapiLab remains the current
+implemented identity until the linked rename plan is executed and verified.
 
 Implementation plans, package structure, task sequencing, and framework-specific code patterns do not belong in the PRD. Those belong in planning, architecture, development, or quality docs.
 
@@ -21,11 +25,31 @@ Always update the current status of a PRD item when its real product or implemen
 
 Update the PRD whenever PapiLab's product direction changes, including adding, removing, or materially changing a feature, capability, product constraint, or user experience principle.
 
+## Chosen Forward Product Identity
+
+ScientFactory is the chosen future company identity. **Scient** is the chosen
+public name for both the scientific workspace application and its native
+first-party research agent. OpenCode, Codex, Claude, Droid, and other
+independently connected products are **external agents**.
+
+Architecture and implementation text must qualify **Scient app** and **Scient
+agent** whenever the shared name could obscure their separate responsibilities,
+state, processes, credentials, or updates. The complete accepted vocabulary and
+current-versus-target boundary live in `scient-product-identity.md`; execution
+is governed by `../planning/papilab-to-scient-rename-execution-plan.md`.
+
 ## Product Overview
 
 PapiLab is a local-first scientific workspace where researchers, collaborators, and AI agents run an entire research project together, from early project formation through publication-ready outputs. Each project brings research materials, sources, data, analysis work, writing, citations, decisions, memory, collaboration, and outputs into one durable workspace.
 
-The agent is a real project worker inside PapiLab's workspace. Chat is a primary way researchers work with the agent: asking questions, planning, delegating tasks, discussing project context, and turning conversation into durable project changes. Chat should be project-native and connected to the workspace, while the project record, evidence, files, data, draft, artifacts, and review surfaces remain the product center.
+The **Scient agent** is the native first-party research agent and a real project
+worker inside the workspace. The product should also preserve supported
+external agents as separate choices, including external OpenCode. Chat is a primary way
+researchers work with Scient or a selected external agent: asking questions,
+planning, delegating tasks, discussing project context, and turning
+conversation into durable project changes. Chat should be project-native and
+connected to the workspace, while the project record, evidence, files, data,
+draft, artifacts, and review surfaces remain the product center.
 
 The goal of PapiLab is to make scientific work faster without making it opaque. Researchers should be able to work manually, delegate safely, collaborate, preserve project history, and keep ownership of the work.
 
@@ -43,7 +67,12 @@ PapiLab should organize scientific work around the research project as the durab
 
 ### Agentic-First, Workspace-Native, Researcher-Owned
 
-PapiLab is agentic-first and workspace-native. Researchers should be able to work conversationally with the project agent, delegate from project objects, and continue the same work through high-quality manual surfaces. The agent does real project work inside the project context: sources, evidence, files, code, analyses, figures, drafts, citations, scientific methods, and artifacts.
+PapiLab is agentic-first and workspace-native. Researchers should be able to
+work conversationally with Scient or a selected external agent, delegate from
+project objects, and continue the same work through high-quality manual
+surfaces. Agents do real project work inside the project context: sources,
+evidence, files, code, analyses, figures, drafts, citations, scientific methods,
+and artifacts.
 
 Agentic-first does not mean chat-only or agent-only. Important work must remain inspectable, editable, correctable, and recoverable through high-quality product surfaces. Manual interaction is a reliability requirement: it lets researchers understand, verify, continue, and own the work agents help produce.
 
@@ -168,7 +197,9 @@ A project may begin from a question, dataset, draft, protocol, paper collection,
 
 Researchers should be able to understand the state of the project without reconstructing it from scattered files or chat history.
 
-The workspace should make it clear what exists, what changed, what needs attention, what is uncertain, what is blocked, what the agent is doing, and what outputs or decisions may need review.
+The workspace should make it clear what exists, what changed, what needs
+attention, what is uncertain, what is blocked, what Scient or the selected
+external agent is doing, and what outputs or decisions may need review.
 
 Project state should be explicit where it affects trust or continuation, including local-only, syncing, conflicted, failed, stale, waiting for approval, blocked, and recoverable states.
 
@@ -229,7 +260,7 @@ PapiLab should have a recognizable product shape. These are the main product sur
 | Surface | Product responsibility |
 |---|---|
 | Project Home | Orient the researcher to project status, recent changes, open tasks, blocked work, stale outputs, collaborator activity, agent activity, review needs, and next actions. |
-| Project Agent And Chat | Provide the primary conversational surface for asking questions, planning work, delegating tasks, discussing project context, and turning conversation into durable project changes. Chat should be project-native, context-receipted, task-aware, and connected to project records rather than detached conversation. |
+| Scient And Connected-Agent Chat | Provide the primary conversational surface for working with Scient or a selected external agent: asking questions, planning work, delegating tasks, discussing project context, and turning conversation into durable project changes. Chat should be project-native, context-receipted, task-aware, and connected to project records rather than detached conversation. Scient and external agents must remain visibly distinct choices. |
 | Project Direction And Protocol | Capture the topic, question, goals, hypotheses, scope, criteria, methods, analysis plan, reporting plan, milestones, and decision history. Support guided bootstrap from loose starting material into a reviewed project scaffold. |
 | Source Library And Reader | Manage sources, PDFs, references, metadata, duplicate-safe import, reading, annotations, parser state, source detail, and backlinks. |
 | Evidence Ledger And Claims | Support screening, extraction, evidence tables, evidence records, quality and risk judgments, claim support, contradictions, uncertainty, and unsupported-claim diagnostics. |
@@ -244,7 +275,12 @@ PapiLab should have a recognizable product shape. These are the main product sur
 
 Every important project object or change should have an obvious place to inspect it. Researchers should be able to find where a change landed and what related project material it affects.
 
-Core product surfaces should remain connected by project-wide search, navigation, backlinks, status indicators, object-aware actions, and project agent chat. A researcher should be able to move from an output to the material that produced it, from a claim to its support, from agent work to the affected artifacts, and from a changed source or analysis to the project areas that may need review.
+Core product surfaces should remain connected by project-wide search,
+navigation, backlinks, status indicators, object-aware actions, and Scient or
+external-agent chat. A researcher should be able to move from an output to the
+material that produced it, from a claim to its support, from agent work to the
+affected artifacts, and from a changed source or analysis to the project areas
+that may need review.
 
 PapiLab should maintain stable product vocabulary for durable project records and relationships without turning the PRD into a database schema. Important records include the project, protocol, source, file, source region or chunk, screening decision, extraction, claim, evidence link, dataset, analysis run, figure, table, manuscript, citation, note, agent run, proposed artifact, memory, collaborator, and export or deposit record.
 
@@ -253,7 +289,8 @@ PapiLab should maintain stable product vocabulary for durable project records an
 These journeys are not roadmap phases or implementation slices. They describe the core flows PapiLab must make coherent across product surfaces.
 
 - Start a project from a question, files, sources, dataset, protocol, or draft.
-- Use project agent chat to ask questions, plan work, delegate tasks, and create reviewable project changes.
+- Use Scient or external-agent chat to ask questions, plan work, delegate
+  tasks, and create reviewable project changes.
 - Import sources, preserve source identity, and read or annotate source material.
 - Screen, extract, evaluate evidence, and connect evidence to claims.
 - Ask grounded questions and save synthesis into project records.
@@ -368,7 +405,20 @@ Manuscript import and reconciliation should be honest about fidelity. PapiLab sh
 
 ## Agent Delegation, Review, And Safe Automation
 
-PapiLab agents should perform bounded project work inside the same project workspace researchers use. Agents should be able to organize sources, extract evidence, write and edit files, revise drafts, write and run code, run approved local tools, create analyses and figures, update citations, identify gaps, prepare artifacts, and assist with scientific or methodological knowledge.
+Scient is PapiLab's first-party research agent. External agents such as
+OpenCode, Codex, Claude, Droid, and other supported products remain separate
+user choices; selecting or updating Scient must not silently replace, redirect,
+or consume the identity, configuration, subscription, credentials, or sessions
+of an external agent. In particular, Scient and external OpenCode must be able
+to coexist as distinct agents even though Scient's implementation lineage is an
+architecture concern derived from OpenCode.
+
+Scient and supported external agents should perform bounded project work
+inside the same project workspace researchers use. They should be able to
+organize sources, extract evidence, write and edit files, revise drafts, write
+and run code, run approved local tools, create analyses and figures, update
+citations, identify gaps, prepare artifacts, and assist with scientific or
+methodological knowledge.
 
 Agent work should be object-scoped and context-aware. A researcher should be able to delegate from a source, evidence table, manuscript section, dataset, analysis run, figure, citation, note, or project task, and PapiLab should capture the relevant project context for that work.
 
@@ -383,6 +433,12 @@ Agents, integrations, collaborators, and local tools should not widen their own 
 The PRD should define the user/product contract for safe automation, not runtime architecture, model routing internals, executor storage, or external connector design.
 
 ## Model Access, Choice, And Routing
+
+Agent choice, access source, provider, and model are different product
+decisions. A researcher may choose Scient or an external agent, then use the
+access and model choices that execution target legitimately supports. PapiLab
+must not describe an external agent subscription as though it were a model
+provider credential, or describe a model choice as though it selected an agent.
 
 PapiLab should initially support three ways to access models:
 

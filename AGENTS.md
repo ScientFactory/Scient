@@ -20,6 +20,19 @@ but the broader application architecture and first scientific vertical slice
 have not been built. Do not infer scientific-state, gateway, sync, cloud, or
 production boundaries from that narrow package.
 
+ScientFactory is the chosen future company identity. **Scient** is the chosen
+public name for both the future application and its native first-party research
+agent. The current implemented application identity remains PapiLab until the
+rename plan is executed and verified. In technical contexts, use **Scient app**
+and **Scient agent** whenever the meaning could be ambiguous.
+
+The Scient agent is planned but not yet implemented. Architecturally, it is the
+owned OpenCode-derived agent itself—not an app shell around a separate OpenCode
+engine. External OpenCode and the other inherited external-agent paths remain
+separate choices with separate identity, configuration, credentials, sessions,
+and updates. Public brand and trademark clearance remains outstanding and must
+be completed before public release.
+
 The current repo contents are working documents. They are expected to change as the product, architecture, and implementation plan become clearer.
 
 ## Core Working Principles
@@ -43,11 +56,14 @@ Current important documents:
 - `docs/README.md` - documentation map and current repo structure.
 - `docs/documentation-policy.md` - rules for creating, updating, and classifying documentation.
 - `docs/product/PRD.md` - product direction, core capabilities, user experience principles, and technical requirements.
+- `docs/product/scient-product-identity.md` - accepted future company, application, agent, external-agent, and naming vocabulary.
 - `docs/product/product-philosophy.md` - durable product principles that guide product, architecture, design, quality, and implementation.
 - `docs/architecture/technology-stack.md` - current technology stack direction and open implementation decisions.
 - `docs/architecture/decisions/ADR-0001-synara-opencode-foundation-and-papilab-ownership-boundary.md` - accepted initial application/runtime foundations and the PapiLab-owned scientific boundary.
 - `docs/planning/product-roadmap.md` - active sequence of coherent product outcomes.
 - `docs/planning/first-papilab-vertical-slice-implementation-plan.md` - concrete plan and acceptance criteria for the current implementation slice.
+- `docs/planning/scient-and-external-agents-implementation-plan.md` - proposed implementation plan for the Scient agent, external-agent preservation, and Scient-versus-external-agent identity isolation.
+- `docs/planning/papilab-to-scient-rename-execution-plan.md` - proposed migration plan from the current PapiLab implementation identity to Scient and ScientFactory.
 
 Use each document according to its metadata. The PRD and ADR-0001 are accepted
 direction; the roadmap is active planning; the product philosophy, technology
@@ -73,6 +89,14 @@ When proposing technical direction, separate:
 - deferred questions
 
 The PRD should stay focused on product truth. Stack choices and implementation details should live in architecture documents unless they are direct product constraints.
+
+Use **Scient** as the public name for both the future app and native agent. In
+technical or potentially ambiguous text, write **Scient app** or **Scient
+agent**. Use **external agent** for an independently connected product such as
+OpenCode, Codex, Claude, or Droid. Do not create “ScientApp” or “ScientAgent” as
+separate public brands, and do not describe the Scient agent as a wrapper around
+a separate OpenCode engine. “Agent guidance” and the portable `AGENTS.md` file
+are project instructions, not the Scient agent product.
 
 ## Project Skills
 

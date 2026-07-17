@@ -20,6 +20,9 @@ The fork, upstream-update, and divergence rules remain owned by
 `open-source-adaptation-build-strategy.md`. Exact executed evidence belongs in a
 dated lab note. Do not invent permanent package paths, APIs, schemas, or commands
 before the selected Synara and OpenCode revisions have been traced.
+Scient's identity, its internal inherited-core maintenance boundary, and the
+preservation of external agents are governed by
+`scient-and-external-agents-implementation-plan.md` and ADR-0001.
 
 Update this plan when source tracing or implementation evidence resolves an open
 boundary, changes the sequence, or invalidates an assumption. Do not rewrite the
@@ -28,9 +31,10 @@ architecture decision.
 
 ## Goal
 
-Build one permanent PapiLab-owned workflow on the maintained Synara and OpenCode
-foundations: manual source capture, bounded agent assistance, a visible proposal
-and decision, and durable reopening and recovery.
+Build one permanent PapiLab-owned workflow on the maintained Synara foundation
+through **Scient**, PapiLab's owned OpenCode-derived first-party agent: manual
+source capture, bounded agent assistance, a visible proposal and decision, and
+durable reopening and recovery.
 
 The first work begins with a bounded project-initiation placement trace and a
 portable PapiLab-owned initialization kernel. The remaining **First-Slice
@@ -49,10 +53,12 @@ tests. The package remains present on the maintained desktop `main` at
 baseline is `8c19505ec` on `dev`, after the reviewed OpenCode 1.18.3 sync and
 review-tooltip follow-up.
 
-Phase 2, the remaining first-slice boundary trace, is the next work. No
-scientific-state store, project-initiation UI or server RPC, PapiLab agent
-gateway, proposal/decision ledger, or complete scientific workflow is claimed
-as implemented.
+Phase 2, the remaining first-slice boundary trace, is the next work. The owned
+OpenCode checkout is Scient's selected source foundation, but Scient itself is
+not yet implemented or packaged. No scientific-state store,
+project-initiation UI or server RPC, PapiLab agent gateway,
+proposal/decision ledger, or complete scientific workflow is claimed as
+implemented.
 
 ## Product Slice
 
@@ -62,7 +68,7 @@ as implemented.
 3. Persist minimal, path-independent PapiLab-owned project identity.
 4. Add one selected source excerpt manually.
 5. Create one bounded scientific task with an inspectable context receipt.
-6. Execute the task through the owned OpenCode runtime.
+6. Execute the task through Scient.
 7. Record the action and result in a PapiLab-owned run/proposal boundary.
 8. Return one evidence-linked note as a proposal.
 9. Let the researcher inspect, edit, accept, or reject the proposal.
@@ -90,10 +96,13 @@ not a frozen general schema.
 - Prefer existing provider, extension, configuration, tool, and adapter seams.
   Allow narrow inherited-core changes only for demonstrated product, safety, or
   reliability needs.
-- Stop OpenCode source tracing at Synara's existing adapter/SDK boundary unless
-  a required behavior cannot be understood or enforced there.
-- Keep accepted scientific state independent of Synara and OpenCode session or
-  projection databases.
+- Begin Scient tracing from Synara's existing OpenCode adapter/SDK boundary and
+  the owned OpenCode fork. Trace deeper only when a required Scient behavior,
+  identity boundary, or safety rule cannot be understood or enforced there.
+- Preserve external OpenCode and every inherited external-agent adapter while
+  adding Scient as a distinct execution target.
+- Keep accepted scientific state independent of Synara, Scient, connected
+  OpenCode, and other external-agent session or projection databases.
 - Keep upstream maintenance separate from PapiLab product branches and commits.
 - Defer Goose, cloud, sync, collaboration, mobile, and broad product redesign.
 
@@ -277,7 +286,7 @@ source excerpt, show one evidence note, inspect task context, and review a
 proposal. Determine how manual UI and agent-facing integration can call the same
 PapiLab-owned operations without redesigning the full workbench.
 
-#### C. OpenCode Execution
+#### C. Scient Execution And External OpenCode Separation
 
 Trace provider discovery, session creation, working-directory selection,
 prompt/context assembly, permissions, approvals, tool and file events,
@@ -286,6 +295,12 @@ existing provider/runtime events are reusable execution evidence and where the
 PapiLab gateway must add scientific context and proposal semantics. Identify
 where PapiLab can enforce project filesystem scope independently of generated
 paths, shell commands, or model requests.
+
+Start from the existing external OpenCode adapter and the owned OpenCode source
+fork, but do not turn that adapter into Scient. Decide the narrowest path for
+building Scient as one OpenCode-derived agent with its own identity,
+configuration, state, lifecycle, and updates while external OpenCode remains
+independently selectable and configured.
 
 #### D. Persistence And State Ownership
 
@@ -298,8 +313,9 @@ table:
 | Application identity and settings | Synara | To trace | To trace | No |
 | Workspace path | Synara | To trace | To trace | Host reference only |
 | Synara project/session projection | Synara | To trace | To trace | No |
-| OpenCode session and transcript | OpenCode/Synara | To trace | To trace | No |
-| Runtime events and tool logs | OpenCode/Synara | To trace | To trace | Evidence only |
+| Scient session and transcript | Missing; OpenCode-derived source selected | To decide | Must for runtime continuity | No |
+| External OpenCode session and transcript | OpenCode/Synara | To trace | To trace | No |
+| Runtime events and tool logs | Scient or external agent/Synara | To trace | To trace | Evidence only |
 | PapiLab project identity | Missing | To decide | Must | Yes |
 | Source excerpt and evidence note | Missing | To decide | Must | Yes |
 | Task and context receipt | Missing | To decide | Must | Yes |
@@ -380,7 +396,8 @@ It must record:
 8. candidate seam comparison and selected permanent placement;
 9. existing machinery to reuse unchanged;
 10. surfaces PapiLab must not couple to;
-11. any required Synara change and any proven OpenCode gap;
+11. any required Synara change, the Scient integration seam, and any proven
+    inherited OpenCode-core gap;
 12. the exact first coding backlog; and
 13. a go/no-go verdict for implementation.
 
@@ -429,19 +446,23 @@ Implement in this order:
    deterministic boundary, recovery, and confinement tests pass. Confirm that
    the gateway is genuinely PapiLab-owned before wiring in a live provider or
    changing inherited core.
-7. **Owned OpenCode integration.** Put the real owned runtime behind the same
-   PapiLab gateway and project operations. Change OpenCode core only for a
-   demonstrated gap that existing SDK, adapter, configuration, tool, skill, or
-   permission seams cannot satisfy cleanly. Re-run filesystem-scope tests
-   through the real adapter path.
+7. **Scient integration.** Build and identify the owned OpenCode-derived agent
+   as Scient and put Scient behind the same PapiLab gateway and project
+   operations. Scient is one agent/runtime, not a shell over a separately
+   identified OpenCode engine. Keep inherited OpenCode core and Scient-owned
+   additions internally identifiable where practical; change inherited core
+   only for a demonstrated gap that existing SDK, adapter, configuration, tool,
+   skill, or permission seams cannot satisfy cleanly. Keep external OpenCode
+   registered and independently configured. Re-run filesystem-scope tests
+   through Scient.
 8. **Minimal review UI.** Show exact context, proposal contents, affected
    project material, edit/accept/reject controls, and understandable failure or
    cancellation state.
 9. **Non-Git recovery proof.** Prove accepted state can be protected and
    understood after ordinary failure and crash-mid-apply without Git refs, an
    active executor session, or reconstructing chat history.
-10. **Live end-to-end smoke.** Run the controlled fixture through owned
-   OpenCode, review the proposal, close the app, reopen it, and verify
+10. **Live end-to-end smoke.** Run the controlled fixture through Scient,
+   review the proposal, close the app, reopen it, and verify
    PapiLab-owned state. If the normalized runtime event sequence adds adapter
    coverage beyond the gateway fake, sanitize it into a stable replay fixture;
    do not commit raw provider transcripts, secrets, or machine-specific paths.
@@ -454,11 +475,16 @@ Implement in this order:
   including permanent PapiLab-owned packages or modules, UI integration,
   canonical project persistence, gateway, review, and recovery workflow, unless
   the accepted trace decision invokes the external-topology escape route.
-- The owned OpenCode fork remains unchanged until the trace or implementation
-  proves a runtime gap. Any change uses its own narrow branch and review.
+- The owned OpenCode fork is Scient's source foundation. It remains unchanged
+  until the trace or implementation proves the first required Scient identity,
+  packaging, integration, or runtime change. Keep inherited-core and
+  Scient-owned changes in narrow, reviewable lanes.
 - Upstream synchronization uses separate maintenance branches and pull requests;
   do not mix it with first-slice product changes.
-- Goose remains deferred until the PapiLab gateway works through OpenCode.
+- External OpenCode and the other inherited external agents remain available;
+  their broader project-task certification does not block this Scient-first
+  slice.
+- Goose remains deferred until the PapiLab gateway works through Scient.
 
 ## Acceptance Criteria
 
@@ -476,14 +502,16 @@ Implement in this order:
   the prior accepted state or a complete recoverable change, never a silently
   partial accepted result.
 - Reads and proposed writes outside the authorized project scope are rejected
-  through both the deterministic executor and owned OpenCode adapter paths.
-- Accepted project state and recovery remain independent of Synara/OpenCode
-  session and projection databases.
+  through both the deterministic executor and Scient paths.
+- Scient and external OpenCode remain distinct execution targets; this slice
+  must not repurpose the existing `opencode` identity or configuration.
+- Accepted project state and recovery remain independent of Synara, Scient, and
+  external-agent session and projection databases.
 - The project reopens with its accepted note, source relationship, task,
   context, proposal decision, and recovery information understandable from
   PapiLab-owned state.
-- Deterministic tests prove system behavior; one live owned-OpenCode smoke proves
-  the real adapter path without making live model wording the only evidence.
+- Deterministic tests prove system behavior; one live Scient smoke proves the
+  real agent path without making live model wording the only evidence.
 - The completed slice produces an explicit decision about deeper Synara and
   OpenCode ownership.
 
@@ -496,7 +524,7 @@ Implement in this order:
 - full manuscript, analysis, notebook, or figure systems
 - complete project schema or agent-run architecture
 - broad Synara redesign or package renaming
-- speculative OpenCode core changes
+- speculative changes to Scient's inherited OpenCode core
 - polished research-cockpit UI
 - another disposable bridge implementation
 - a large Gate 1.5-style runtime evidence archive
@@ -543,7 +571,7 @@ Stop and report before widening scope if:
 - explicit non-Git recovery approach;
 - selected permanent code location;
 - reuse-versus-change list;
-- OpenCode-change verdict;
+- Scient integration and inherited OpenCode-core change verdict;
 - Synara-hosted versus external-topology verdict;
 - narrow first coding backlog; and
 - Yaacov's approval to implement.

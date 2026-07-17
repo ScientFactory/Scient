@@ -2,7 +2,7 @@
 
 Status: Proposed
 Owner: Yaacov
-Last updated: 2026-07-16
+Last updated: 2026-07-17
 Purpose: Maps which open-source systems PapiLab should study, prototype, adapt, or integrate, and which product boundaries PapiLab must keep owned.
 Doc type: Research evidence
 
@@ -45,8 +45,10 @@ Current inputs:
   CoCalc.
 - The accepted foundation decision in
   `../../architecture/decisions/ADR-0001-synara-opencode-foundation-and-papilab-ownership-boundary.md`:
-  use the owned Synara and OpenCode forks initially while PapiLab keeps its
-  scientific meaning, agent boundary, provenance, and review model owned.
+  use the owned Synara fork initially; build Scient as the owned
+  OpenCode-derived first-party agent; preserve external OpenCode separately;
+  and keep PapiLab's scientific meaning, agent boundary, provenance, and review
+  model owned.
 - Current planning discussion that upstream-trackable tools, thin forks,
   divergent forks, reference sources, projections, adapters, and export targets
   need different update strategies.
@@ -140,15 +142,17 @@ still PapiLab-boundary-first:
    tools for sources and PDFs, Zettlr/Overleaf/Quarto/MyST for writing/export
    expectations, Jupyter-style tools for analysis compatibility, and ELN/RDM
    tools for protocol/lab/repository references.
-4. Use the owned OpenCode fork as the initial runtime foundation. Keep Goose as
-   a deferred broader-engine comparison after the first PapiLab gateway exists.
-   Neither engine replaces PapiLab's agent contract.
+4. Use the owned OpenCode fork as the source foundation for Scient, PapiLab's
+   first-party agent. Scient is the resulting owned agent, not a shell over a
+   separate OpenCode engine. Preserve external OpenCode as an independent
+   external agent. Keep Goose as a deferred source of capabilities and
+   architecture lessons after the first PapiLab gateway exists.
 5. Use PapiLab-owned forks as the writable source remotes, while preferring
    upstream binaries, SDKs, CLIs, configuration, sidecars, adapters, and
    extensions over core modifications. An owned fork may remain upstream-
    aligned. Use divergent core changes only when PapiLab intentionally takes
    ownership of a modified product surface and accepts cherry-pick updates.
-6. Normalize every engine through a PapiLab-owned Agent Gateway: scoped context,
+6. Normalize Scient and external agents through a PapiLab-owned Agent Gateway: scoped context,
    permissions, approvals, file actions, tool calls, diffs, artifacts, errors,
    checkpoints, and final write-back.
 7. Preserve raw upstream logs as runtime evidence, but store accepted scientific
@@ -172,7 +176,7 @@ to it as an adapter, engine, projection, or export artifact.
 | Engine adapter state | Runtime-specific state that can be cached, inspected, and rebuilt from the PapiLab model. | PaperQA context stores, ASReview screening DBs, GROBID/Docling extraction outputs, executor session metadata. |
 | Editor projection | State used to render and edit a manuscript, not the manuscript truth itself. | Tiptap JSON, Plate/Slate state, Lexical state, Yjs document state. |
 | Export artifact | A generated package or file derived from the PapiLab model. | Quarto project, Pandoc AST, MyST document, LaTeX/Typst output, Word export, JATS export. |
-| Agent runtime log | A replayable history of tool calls, approvals, diffs, errors, checkpoints, and artifacts. | Goose sessions, Codex sessions, OpenCode sessions, PapiLab AgentRun records. |
+| Agent runtime log | A replayable history of tool calls, approvals, diffs, errors, checkpoints, and artifacts. | Goose sessions, Codex sessions, OpenCode sessions, PapiLab execution-run records. |
 
 This boundary prevents a common architecture mistake: letting the most convenient
 tool format quietly become the product truth.
@@ -199,7 +203,7 @@ identified so far. It is a working recommendation, not a final dependency list.
 | PRD surface | Best source candidates so far | Current borrow mode | PapiLab-owned boundary |
 |---|---|---|---|
 | Project Home | Synara and T3 Code for workbench status, sessions, terminals, branches, diffs, previews, and provider activity; Vercel AI Elements for inspectable agent UI patterns. | Forked workbench prototype and reference. | Project status, stale-output signals, review needs, blocked work, collaborator activity, and next actions belong to PapiLab project state. |
-| Project Agent And Chat | Synara for multi-agent workspace shell; OpenCode for local file/shell/edit execution; Goose for broader local automation and MCP-style agent substrate; Codex for safety and approval reference; Vercel AI SDK for typed model/tool streams. | Forked workbench prototype plus embedded engines. | Context receipts, permissions, tool scope, proposed changes, durable AgentRun records, checkpoints, and accepted write-back belong to PapiLab. |
+| Scient And Connected-Agent Chat | Synara for the multi-agent workspace shell; the owned OpenCode fork as Scient's source foundation; external OpenCode and other inherited adapters as separate external choices; Goose for later capability and architecture study; Codex for safety and approval reference; Vercel AI SDK for typed model/tool streams. | Forked workbench, owned OpenCode-derived agent, external-agent adapters, and references. | Scient identity, context receipts, permissions, tool scope, proposed changes, durable AgentRun records, checkpoints, and accepted write-back belong to PapiLab. |
 | Project Direction And Protocol | protocols.io, SciNote, RSpace, eLabFTW, Chemotion, Kadi4Mat, and openBIS as protocol, ELN, lab workflow, and research-data-management references. | Reference and later adapter candidates. | The project direction, protocol fields, eligibility criteria, analysis plan, and decision log are PapiLab objects. |
 | Source Library And Reader | Zotero, Zotero Reader, Zotero Document Worker, Paperlib, Tropy, JabRef, CSL, GROBID, Docling, and local-first note/PDF references such as Logseq and SiYuan. | Adapter, component spike, embedded parser, compatibility target, and reference. | Source identity, duplicate confidence, source-region links, parser state, annotations, backlinks, and citation intent belong to PapiLab. |
 | Evidence Ledger And Claims | ASReview for screening mechanics; GROBID and Docling for extraction; PaperQA for cited scientific QA; Lacuna for paper-grounded research-map patterns; Elicit, Rayyan, Covidence, scite, Consensus, and SciSpace as workflow references. | Embedded engines, adapters, and references. | Evidence records, claims, support links, extraction review state, uncertainty, contradictions, and unsupported-claim diagnostics belong to PapiLab. |
@@ -207,7 +211,7 @@ identified so far. It is a working recommendation, not a final dependency list.
 | Draft And Manuscript Workspace | Tiptap/ProseMirror first; Plate and Lexical as challengers; Zettlr, Overleaf, Word, and Google Docs as academic writing and collaboration references; Quarto/Pandoc/MyST/Manubot for export and publishing paths. | Projection, challenger prototype, reference, and export adapter. | Manuscript structure, citations, evidence links, comments, suggestions, reconciliation state, and publication metadata belong to PapiLab. |
 | Data And Analysis Workbench | Python through uv; marimo as reactive-notebook reference; Jupyter/JupyterLab Desktop, RStudio/Positron, and CoCalc as analysis-workbench references; DuckDB, pandas, Polars, Arrow/Parquet, SciPy, statsmodels, scikit-learn, and later R/tidyverse. | Embedded runtime, projection, compatibility target, and reference. | Dataset, Analysis, AnalysisRun, parameters, method notes, outputs, dependency state, staleness, and provenance belong to PapiLab. |
 | Figures, Tables, And Artifacts | Matplotlib/seaborn, Plotly, Altair/Vega-Lite, Great Tables/gt, Mermaid, Graphviz, Cytoscape.js, tldraw, Excalidraw, xyflow, Inkscape, diagrams.net, and BioIcons. | Runtime projection, artifact generator, and reference. | Figure, Table, Artifact, caption, data/code linkage, manuscript usage, review state, and stale-output state belong to PapiLab. |
-| Agent Runs And Review | OpenCode, Goose, Codex, Synara, T3 Code, and Vercel AI SDK/Elements. | Embedded engines, forked workbench prototype, and reference. | AgentRun lifecycle, approvals, diffs, logs, artifacts, failures, retries, cancellation, checkpoints, and recovery belong to PapiLab. |
+| Agent Runs And Review | Scient's OpenCode-derived source foundation, external OpenCode and other agents, Goose, Codex, Synara, T3 Code, and Vercel AI SDK/Elements. | Owned agent source, external-agent adapters, forked workbench prototype, and references. | AgentRun lifecycle, approvals, diffs, logs, artifacts, failures, retries, cancellation, checkpoints, and recovery belong to PapiLab. |
 | Memory, History, And Decisions | Earlier PapiLab prototype patterns, Stencila provenance ideas, Goose/Codex/OpenCode runtime logs, AFFiNE/Logseq/SiYuan knowledge-workspace patterns, and targeted Hermes ideas. | Reference and normalized runtime evidence. | Scientific memory, decision history, trust metadata, provenance, snapshots, rollback, and auditability belong to PapiLab. |
 | Collaboration And Mobile Continuation | Yjs/Hocuspocus for document collaboration; Yorkie as challenger; PowerSync/Electric for structured sync candidates; TinyBase, RxDB, and cr-sqlite as secondary references; OSF, Dataverse, GitHub, and GitLab for sharing/deposit expectations. | Candidate engine, adapter, and reference. | Membership, roles, permissions, attribution, conflict state, cloud mirror authority, mobile action scope, and recovery belong to PapiLab. |
 | Settings, Integrations, And Export | Zotero/JabRef/CSL, Quarto/Pandoc/MyST, Typst/LaTeX/Overleaf, OSF, Dataverse, GitHub, GitLab, object storage, and cloud-drive style integrations. | Adapter and export target. | Project configuration, integration state, export/deposit records, portability receipts, and fidelity reports belong to PapiLab. |
@@ -223,8 +227,8 @@ ADR-0001, that ADR remains the decision authority.
 | PapiLab scientific project graph | Projects, sources, evidence, claims, datasets, runs, figures, manuscripts, memory, provenance. | PapiLab-owned core | `no-upstream` |
 | PapiLab agent contract | Permissions, context receipts, proposed changes, review, recovery. | PapiLab-owned core | `no-upstream` |
 | Synara | Desktop workbench, chat shell, terminals, diffs, sessions, provider/workflow UI. | Accepted initial application foundation through ADR-0001. Keep changes isolated where useful; allow deliberate divergence when PapiLab owns the surface. | `thin-fork-merge`; move deliberately to `divergent-cherry-pick` if deeply reshaped |
-| OpenCode | Local file read/write, shell, code edits, patches, sessions, possibly subagents. | Accepted initial runtime foundation through ADR-0001, used through a PapiLab-owned boundary. | `adapter-maintained`; allow narrow, identifiable core changes for proven needs |
-| Goose | Broader local automation, ACP agent/server, recipes, MCP extensions, scheduling, and subagents. | Deferred broader-engine comparison after the first PapiLab gateway; owned fork only when implementation begins. | `deferred`; then `adapter-maintained` if adopted |
+| OpenCode source fork | Local file read/write, shell, code edits, patches, sessions, and possibly subagents as the inherited source foundation for Scient. | Accepted source foundation for Scient through ADR-0001. Inherited core remains internally traceable, but Scient is the owned agent product. External OpenCode remains a separate external adapter path. | `adapter-maintained` initially; allow narrow, identifiable core changes and deliberate divergence for proven Scient needs |
+| Goose | Broader local automation, ACP agent/server, recipes, MCP extensions, scheduling, and subagents. | Deferred capability and architecture source for Scient after the first PapiLab gateway. A future external Goose agent would require a separate decision. | `deferred`; later `reference-only`, `adapter-maintained`, or selective adaptation based on evidence |
 | Codex app-server | Sandbox, approvals, diffs, rollback, interrupt/resume ideas. | Reference / cherry-pick source. | `reference-only` |
 | T3 Code | Backend lifecycle, provider-instance separation, preview/process patterns. | Reference / cherry-pick source. | `reference-only` |
 | Aider | Git/edit discipline, repo-map and patch workflow lessons. | Reference benchmark. | `reference-only` |
@@ -305,22 +309,21 @@ These are sources likely to shape architecture prototypes. This research map
 does not set their implementation order; the active sequence lives in
 `../../planning/product-roadmap.md` and its linked implementation plan.
 
-### Local Agent Platform
+### Scient And Connected-Agent Sources
 
 | Source | Adaptation target | Why it matters | Do not adopt | Depth status |
 |---|---|---|---|---|
-| Goose | ACP over stdio or authenticated HTTP/WebSocket, persistent sessions, recipes, scheduling, MCP extensions, provider registry, safety inspectors, hooks, and subagents. | Goose is a strong broader-agent engine behind PapiLab. Current ACP supports streaming, permission requests, cancellation, client-provided file/terminal capabilities, and session lifecycle. | Do not make Goose the product center or its session database canonical. Do not rely on its working directory as a filesystem sandbox: built-in developer tools accept absolute paths, and autonomous mode is the default. | Source-depth review completed at `3c1fdd692`; fork and adapter work is deferred until after the first PapiLab gateway. |
-| OpenCode | File/shell/edit executor, LSP/code-project operations, snapshots, session protocol, CLI/TUI/server/client split, plugin/tool architecture. | PapiLab needs the power to read/write files, run commands, create artifacts, and show diffs like a serious coding agent. | Do not turn PapiLab into "OpenCode for science." The scientific object graph must remain above the executor. | Owned-fork build and Synara compatibility smoke completed in historical Gate 1.5 work. ADR-0001 accepts the fork as the initial runtime foundation; the first vertical slice must validate the PapiLab-owned boundary. |
+| Goose | ACP over stdio or authenticated HTTP/WebSocket, persistent sessions, recipes, scheduling, MCP extensions, provider registry, safety inspectors, hooks, and subagents. | Goose is a strong source of broader-agent capabilities and architecture lessons that may later improve Scient. Current ACP supports streaming, permission requests, cancellation, client-provided file/terminal capabilities, and session lifecycle. | Do not make Goose the product center, turn Scient into an engine-switching shell, or make Goose session state canonical. Do not rely on its working directory as a filesystem sandbox: built-in developer tools accept absolute paths, and autonomous mode is the default. | Source-depth review completed at `3c1fdd692`; implementation work is deferred until after the first PapiLab gateway works through Scient. |
+| OpenCode | File/shell/edit agent behavior, LSP/code-project operations, snapshots, session protocol, CLI/TUI/server/client split, and plugin/tool architecture. | The owned fork is Scient's source foundation. PapiLab needs these capabilities and intends to own and evolve the resulting agent. | Do not expose Scient as “OpenCode for science,” treat OpenCode as a second engine underneath Scient, or let agent state define the scientific object graph. External OpenCode remains a separate external agent. | Owned-fork build and Synara compatibility smoke completed in historical Gate 1.5 work. ADR-0001 accepts Scient as the owned OpenCode-derived first-party agent; the first vertical slice must implement and validate that identity and boundary. |
 | Codex app-server | Approval protocol, sandbox model, diff flow, interrupt/rollback/session protocol, file API, skills/MCP, Rust daemon boundary. | Useful comparator for what a trusted local executor and approval model can feel like. | Do not depend on Codex-specific assumptions as the only runtime path. | Needs direct harness comparison against OpenCode. |
 | Aider | Git-centered edit discipline, repo maps, patch workflow, simple terminal ergonomics. | Useful as a benchmark for file changes and rollback, even if not the main architecture. | Do not make the app Python-first or terminal-first because Aider is good. | Side benchmark, not primary source. |
 
-Recommendation: treat Goose as the current leading broader-agent engine
-candidate and defer its first spike until the PapiLab gateway works through the
-owned OpenCode foundation. Use `goose acp` over stdio for that later spike. The
-old `goosed` REST surface was removed upstream; authenticated
-`goose serve` is a later process-separated option. PapiLab should put thin,
-testable adapters over engine candidates instead of betting everything on one
-runtime too early.
+Recommendation: build Scient from the owned OpenCode source foundation and
+defer Goose work until the PapiLab gateway works through Scient. Use a bounded
+`goose acp` comparison later when it helps evaluate capabilities or architecture;
+do not use that experiment to redefine Scient as an engine-switching shell. The
+old `goosed` REST surface was removed upstream, and authenticated `goose serve`
+is relevant only to a separately reviewed process or external-agent path.
 
 ### Desktop Shell, Backend Lifecycle, And Provider Abstraction
 
@@ -656,11 +659,11 @@ to the earlier synthesis. The active sequence lives in
    or document format.
 
 1. Agent kernel shootout.
-   Build one local project scenario and run it through Goose-inspired daemon
-   ideas, Codex/OpenCode executor adapters, and Synara/T3-style shell logs. The
-   scenario should import papers, create a protocol, edit a draft, run a script,
-   update an artifact, and show approvals/diffs/provenance through the PapiLab
-   object and event contract.
+   Build one local project scenario through Scient, then compare the same
+   PapiLab boundary with selected external-agent adapters and bounded
+   Goose/Codex architecture references. The scenario should import papers,
+   create a protocol, edit a draft, run a script, update an artifact, and show
+   approvals/diffs/provenance through the PapiLab object and event contract.
 
 2. Evidence pipeline.
    Import from Zotero/JabRef, parse with GROBID and Docling, answer with PaperQA,
@@ -707,9 +710,10 @@ Current research points toward PapiLab as a local-first, cloud-mirrored scientif
 workspace with a PapiLab-owned project graph; TypeScript/React product logic;
 Electron-first desktop delivery unless a real limitation appears; SQLite local
 project state mirrored to Postgres/object storage; the owned Synara fork as the
-accepted initial application foundation; the owned OpenCode fork as the
-accepted initial runtime foundation; Codex as the safety/sandboxing reference;
-Goose as a later broader local-agent comparison; Tiptap/ProseMirror-family writing;
+accepted initial application foundation; Scient as the owned OpenCode-derived
+first-party agent; external OpenCode and other external agents as separate
+choices; Codex as the safety/sandboxing reference; Goose as a later capability
+and architecture source for Scient; Tiptap/ProseMirror-family writing;
 GROBID/Docling/PaperQA/ASReview-powered evidence workflows; Lacuna-inspired
 research-map patterns for paper-grounded search and synthesis;
 Quarto/Pandoc-first export with MyST as challenger;
