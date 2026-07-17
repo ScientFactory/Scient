@@ -1,7 +1,7 @@
-# Upstream source checkouts are intentionally not committed to the parent LitRev repo.
-/agent-forks/opencode/
+# Upstream source checkouts are intentionally not committed to the parent Scient repo.
+/agent-forks/scient-agent/
 /agent-forks/goose/
-/desktop-app-forks/synara/
+/desktop-app-forks/scient-desktop/
 /desktop-app-forks/t3code/
 
 # Local clone scratch files.

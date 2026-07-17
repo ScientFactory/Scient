@@ -12,10 +12,12 @@ Agent forks are source checkouts for systems that may provide local execution,
 file editing, shell access, tool routing, provider abstraction, recipes, MCP
 support, or broader automation behavior.
 
-Current checkouts:
+Current and reserved checkouts:
 
-- `opencode/` - first local file/shell/edit executor candidate.
-- `goose/` - broader local-agent, automation, desktop, and MCP/source reference.
+- `scient-agent/` - owned OpenCode-derived source foundation for the planned
+  native Scient agent.
+- `goose/` - reserved restore path for later broader-agent, automation,
+  desktop, and MCP/source research; no local checkout is retained currently.
 
 ## Rules
 
