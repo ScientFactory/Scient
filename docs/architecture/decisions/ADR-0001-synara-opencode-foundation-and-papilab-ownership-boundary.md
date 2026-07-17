@@ -2,19 +2,32 @@
 
 Status: Accepted
 Owner: Yaacov
-Last updated: 2026-07-16
-Purpose: Records the decision to use the owned Synara and OpenCode forks as PapiLab's initial application and agent-runtime foundations while keeping scientific capabilities and canonical project meaning owned by PapiLab.
+Last updated: 2026-07-17
+Purpose: Records the decision to use the owned Synara fork as PapiLab's application foundation and the owned OpenCode fork as the source foundation for Scient while keeping external agents and canonical scientific state separately owned.
 Doc type: Architecture decision
 
 ## Context
 
-Accepted on 2026-07-16.
+Originally accepted on 2026-07-16. Amended by Yaacov on 2026-07-17 to name
+Scient and clarify that it is the owned OpenCode-derived agent itself, while
+external OpenCode remains separate.
 
-PapiLab needs a serious local desktop workbench and agent runtime before it can
+The accepted future product identity also names the application **Scient**.
+Until that rename is executed, this ADR uses PapiLab for the current app and
+Scient for the planned agent. After cutover, precise architecture text must use
+**Scient app** and **Scient agent** where the shared public name could be
+ambiguous. `../../product/scient-product-identity.md` owns that naming decision.
+
+PapiLab needs a serious local desktop workbench and first-party agent before it can
 validate a complete scientific workflow. The owned Synara fork already provides
 desktop, workspace, provider, process, terminal, preview, diff, and review
 machinery. The owned OpenCode fork already provides a capable local agent loop,
 model integration, tools, permissions, sessions, and file and shell execution.
+
+The chosen name for PapiLab's first-party research agent is **Scient**. Scient
+is the agent derived from the owned OpenCode fork. It is not a PapiLab wrapper
+around a separately operated or separately branded OpenCode engine. External
+OpenCode remains an independent external-agent choice in the application.
 
 Gate 1 and Gate 1.5 proved that the maintained forks build, remain isolated from
 the official applications, preserve reviewed upstream ancestry, and work
@@ -31,29 +44,45 @@ available to both researchers and agents.
 1. The owned Synara fork is PapiLab's initial application foundation for the
    desktop shell, local workspace experience, UI, lifecycle, and runtime
    plumbing.
-2. The owned OpenCode fork is PapiLab's initial agent-runtime foundation.
-3. PapiLab owns the scientific project meaning, capabilities, permission scope,
+2. Scient is PapiLab's first-party research agent. Scient is one owned
+   OpenCode-derived agent product, runtime, and codebase—not a separate agent
+   shell that delegates to an independently identified OpenCode engine.
+3. Within Scient's codebase, inherited OpenCode core and Scient-owned
+   capabilities, integrations, identity, and product behavior should remain
+   identifiable where practical. This is a source-maintenance boundary for
+   selective upstream updates, not a separate product, process, user choice, or
+   runtime identity.
+4. External OpenCode remains a separate external agent alongside Codex,
+   Claude, Droid, and the other inherited external-agent paths. Scient must not
+   reuse or silently redirect external OpenCode's durable identity,
+   configuration, credentials, subscription path, sessions, or update channel.
+5. PapiLab owns the scientific project meaning, capabilities, permission scope,
    context receipts, proposed-change lifecycle, provenance, review, recovery,
    and accepted state built on those foundations.
-4. PapiLab scientific operations should be separated from inherited cores where
+6. PapiLab scientific operations should be separated from inherited cores where
    practical so the manual UI and agents can use the same operations. Separation
    means clear modules and interfaces; it does not require a separate repository
    or process.
-5. Configuration, tools, skills, adapters, and other extension seams are the
+7. Configuration, tools, skills, adapters, and other extension seams are the
    preferred first integration method because they reduce unnecessary fork
    conflict. This is a maintainability preference, not a prohibition on core
    changes.
-6. PapiLab may patch Synara or OpenCode core when a demonstrated product,
-   security, reliability, or runtime requirement cannot be met cleanly through
-   an extension seam. Such patches should remain narrow and identifiable where
-   practical.
-7. A fork may progress deliberately from upstream-aligned, through isolated
+8. PapiLab may patch Synara or Scient's inherited OpenCode core when a
+   demonstrated product, security, reliability, or runtime requirement cannot
+   be met cleanly through an extension seam. Such patches should remain narrow
+   and identifiable where practical.
+9. A fork may progress deliberately from upstream-aligned, through isolated
    PapiLab patches, to selective divergence or full PapiLab ownership. Official
    upstream changes remain optional reviewed inputs, not a product dependency.
-8. Synara and OpenCode runtime/session databases may remain useful execution
-   state, but they are not canonical PapiLab scientific project state.
-9. Goose remains a valuable later engine and architecture comparison. It is not
-   on the critical path for the first PapiLab scientific project slice.
+10. Synara, Scient, and external-agent runtime/session databases may remain
+    useful execution state, but they are not canonical PapiLab scientific
+    project state.
+11. Goose remains valuable later as a source of agent capabilities and
+    architecture lessons for Scient. Any adopted behavior becomes part of
+    Scient rather than creating a hidden engine-switching product. A future
+    external Goose option, if separately chosen, would remain distinct from
+    Scient. Goose is not on the critical path for the first PapiLab scientific
+    project slice.
 
 ## Alternatives Considered
 
@@ -68,6 +97,13 @@ workflow.
 This would simplify upstream updates but limit the integration depth and product
 control PapiLab expects to need.
 
+### Put A Generic First-Party Shell In Front Of A Separate OpenCode Engine
+
+This would make the product/runtime boundary look replaceable, but it would
+misstate the ownership decision. PapiLab intends to own and evolve the
+OpenCode-derived agent itself. Scient is that agent; OpenCode lineage is an
+internal source-maintenance concern, not a second product underneath it.
+
 ### Modify Inherited Cores Without A PapiLab Layer
 
 This would move quickly at first but risk making coding-session, provider, and
@@ -77,8 +113,12 @@ engine state define the scientific product accidentally.
 
 - The first implementation uses real maintained foundations rather than a
   disposable harness.
-- Upstream synchronization remains useful but may become more manual as PapiLab
-  intentionally diverges.
+- Scient has one product identity, runtime lifecycle, configuration, release,
+  and update channel even while its inherited OpenCode core remains traceable.
+- External OpenCode remains independently available and independently
+  configured.
+- Upstream OpenCode synchronization remains useful but may become more manual as
+  Scient intentionally diverges.
 - PapiLab must define a small owned boundary before scientific work is accepted
   into project state.
 - The first slice must pressure-test whether Synara can host PapiLab without
@@ -88,19 +128,20 @@ engine state define the scientific product accidentally.
 
 ## Revisit Triggers
 
-The PapiLab ownership boundary in Decisions 3 and 8 implements the accepted
+The PapiLab ownership boundary in Decisions 5 and 10 implements the accepted
 product requirement that external tools must not become canonical scientific
 project truth. The triggers below apply to the selection and use of Synara and
-OpenCode, not to that ownership boundary. Changing the boundary would require
-an explicit product decision and a superseding architecture decision.
+Scient's OpenCode-derived source foundation, not to that ownership boundary.
+Changing the boundary would require an explicit product decision and a
+superseding architecture decision.
 
 Revisit this decision if:
 
 - Synara's architecture prevents a coherent scientific project experience;
 - maintaining the fork costs more than retaining selected components in a new
   PapiLab shell;
-- OpenCode cannot support required scientific or safety behavior without broad,
-  unstable core changes;
-- another runtime materially improves PapiLab's agent capabilities; or
+- Scient's inherited OpenCode core cannot support required scientific or safety
+  behavior without broad, unstable core changes;
+- another source or architecture materially improves Scient's capabilities; or
 - licensing, security, release, or platform constraints change the viability of
   either foundation.

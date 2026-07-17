@@ -29,6 +29,15 @@ fork contains the first narrow PapiLab-owned project-initiation package, but it
 does not yet contain the complete scientific application, vertical slice, or
 the development and operational workflows that the documents anticipate.
 
+ScientFactory is the chosen future company identity. **Scient** is the chosen
+public name for both the future app and its native first-party research agent.
+The current implemented app remains PapiLab until the rename plan is executed
+and verified. The Scient agent will be one owned OpenCode-derived agent, not an
+app shell around a separately exposed OpenCode engine. External OpenCode and
+the other external-agent choices remain independent. The Scient agent has not
+been implemented yet; the accepted identity, ownership decision, and proposed
+implementation plans are linked below.
+
 The repository currently owns PapiLab product and project knowledge. It is not yet the general memory for company strategy, finance, legal, people, customer records, or cross-product authority. A proposed connected-company model is documented in [Repository Scope And Company Memory](planning/repository-scope-and-company-memory.md), but it does not change the current boundary.
 
 Keep that maturity boundary in mind throughout onboarding:
@@ -61,10 +70,11 @@ Read these documents in order. The order is intentional: understand the accepted
 
 1. **Enter through the repository.** Read the [PapiLab repository README](../README.md) for the shortest current-state statement and the official starting links.
 2. **Understand the product.** Read the [PapiLab Product Requirements Document](product/PRD.md) in full. It is the accepted product truth. Pay particular attention to its document rules, product overview, principles, research lifecycle, workspace requirements, primary journeys, non-goals, readiness criteria, and open questions.
-3. **Understand the principles behind the product.** Read the [Product Philosophy](product/product-philosophy.md). It explains the long-term ownership and first-principles posture behind the work. Its status is `Draft`, so use it as evolving product guidance and do not let it override the accepted PRD.
-4. **Learn the repository map.** Read the [Documentation index](README.md) to understand where product, architecture, planning, research, design, quality, development, and operations knowledge belongs.
-5. **Learn how to judge what you read.** Read the [Documentation Policy](documentation-policy.md), especially its status values, placement rules, evidence rules, promotion rules, and truth rules. This is what lets you distinguish accepted direction from proposals, plans, evidence, placeholders, and implemented behavior.
-6. **Understand the agent boundary.** Read [AGENTS.md](../AGENTS.md), even if an agent will do most of the repository work. It defines how agents must reason, which sources they must trust, how they should place documentation, and what they must not invent.
+3. **Understand the chosen identity.** Read [Scient Product Identity](product/scient-product-identity.md) for the accepted ScientFactory company name, shared Scient app/agent name, external-agent vocabulary, and current-versus-target boundary.
+4. **Understand the principles behind the product.** Read the [Product Philosophy](product/product-philosophy.md). It explains the long-term ownership and first-principles posture behind the work. Its status is `Draft`, so use it as evolving product guidance and do not let it override the accepted PRD.
+5. **Learn the repository map.** Read the [Documentation index](README.md) to understand where product, architecture, planning, research, design, quality, development, and operations knowledge belongs.
+6. **Learn how to judge what you read.** Read the [Documentation Policy](documentation-policy.md), especially its status values, placement rules, evidence rules, promotion rules, and truth rules. This is what lets you distinguish accepted direction from proposals, plans, evidence, placeholders, and implemented behavior.
+7. **Understand the agent boundary.** Read [AGENTS.md](../AGENTS.md), even if an agent will do most of the repository work. It defines how agents must reason, which sources they must trust, how they should place documentation, and what they must not invent.
 
 Do not replace this sequence with a chat summary. Summaries can help with comprehension, but the linked repository documents remain the durable project knowledge.
 
@@ -91,7 +101,7 @@ After completing the shared journey, follow every route relevant to your contrib
 
 ### Product And Product Planning
 
-The accepted [PapiLab Product Requirements Document](product/PRD.md) and draft [Product Philosophy](product/product-philosophy.md) from the shared journey come first. Then read:
+The accepted [PapiLab Product Requirements Document](product/PRD.md), accepted [Scient Product Identity](product/scient-product-identity.md), and draft [Product Philosophy](product/product-philosophy.md) from the shared journey come first. Then read:
 
 1. [Planning](planning/README.md) to understand what planning documents may and may not own.
 2. [Product Roadmap](planning/product-roadmap.md) for the active sequence of coherent product outcomes.
@@ -112,7 +122,7 @@ Do not infer implemented interfaces from design notes, screenshots, or placehold
 ### Architecture And Engineering Direction
 
 1. [Architecture Documentation](architecture/README.md) to learn the architecture area's authority and current map.
-2. [ADR-0001](architecture/decisions/ADR-0001-synara-opencode-foundation-and-papilab-ownership-boundary.md) for the accepted Synara, OpenCode, and PapiLab ownership boundary.
+2. [ADR-0001](architecture/decisions/ADR-0001-synara-opencode-foundation-and-papilab-ownership-boundary.md) for the accepted Synara application foundation, Scient's OpenCode-derived source foundation, external-agent separation, and PapiLab ownership boundary.
 3. [Technology Stack](architecture/technology-stack.md) for the proposed stack direction, actual scaffold state, validation status, explicit non-decisions, and deferred choices.
 4. [Security And Permissions](architecture/security-and-permissions.md) for the draft trust-boundary and permission principles that architecture and agent-tool proposals must respect.
 5. Continue only into the task-relevant architecture documents identified by the [architecture index](architecture/README.md) or the task handoff.
@@ -127,9 +137,10 @@ Complete the architecture route first when the work may influence implementation
 2. [Source Evaluations](research/source-evaluations/README.md) for the rules governing evaluations of external systems.
 3. [PapiLab Open-Source Adaptation Map](research/source-evaluations/open-source-adaptation-map.md) for the current cross-source synthesis, candidate roles, PapiLab-owned boundaries, and research prototype backlog.
 4. [Open-Source Adaptation Build Strategy](planning/open-source-adaptation-build-strategy.md) for the draft path from research candidates toward controlled build experiments.
-5. [First Vertical-Slice Implementation Plan](planning/first-papilab-vertical-slice-implementation-plan.md) when the work touches the active Synara/OpenCode implementation slice.
-6. [PapiLab Lab](../lab/README.md) for the experimental layout, promotion rule, current evidence map, and lab guardrails.
-7. Read only the spike report, lab note, or source material named by the task handoff; do not read raw research chronologically and assume the newest or most detailed file is authoritative.
+5. [Scient And External Agents Implementation Plan](planning/scient-and-external-agents-implementation-plan.md) when the work touches Scient-agent identity, external-agent preservation, or agent/runtime isolation.
+6. [First Vertical-Slice Implementation Plan](planning/first-papilab-vertical-slice-implementation-plan.md) when the work touches the active PapiLab implementation slice through Scient.
+7. [PapiLab Lab](../lab/README.md) for the experimental layout, promotion rule, current evidence map, and lab guardrails.
+8. Read only the spike report, lab note, or source material named by the task handoff; do not read raw research chronologically and assume the newest or most detailed file is authoritative.
 
 ### Quality And Implementation Review
 

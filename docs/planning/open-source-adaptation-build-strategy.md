@@ -38,9 +38,13 @@ keeping PapiLab's scientific project meaning owned:
   shell: Zotero-family components for source/PDF work, Zettlr/Overleaf/Quarto
   for writing/export expectations, Jupyter-style tools for analysis
   compatibility, and ELN/RDM tools for protocol/lab/repository references;
-- use the owned OpenCode fork as the initial agent-runtime foundation;
-- evaluate Goose later as a broader local-agent and automation engine;
-- keep all agents behind a PapiLab-owned gateway for context, permissions,
+- use the owned OpenCode fork as the source foundation for **Scient**, PapiLab's
+  first-party research agent;
+- preserve external OpenCode and the other inherited external-agent paths as
+  separate choices rather than aliases for Scient;
+- evaluate Goose later as a source of capabilities and architecture lessons for
+  Scient, or through a separately reviewed external-agent path;
+- keep Scient and external agents behind a PapiLab-owned gateway for context, permissions,
   proposed changes, provenance, review, checkpoints, and write-back.
 
 ## First-Slice Constraints
@@ -53,7 +57,8 @@ that work without duplicating it:
 1. Use one vertical scientific workflow to pressure-test both foundations.
 2. Keep scientific operations available to manual UI and agents through a
    PapiLab-owned layer where practical.
-3. Preserve project meaning independently of Synara/OpenCode session state.
+3. Preserve project meaning independently of Synara, Scient, and external-agent
+   session state.
 4. Prefer extension seams first, but make isolated core changes when a proven
    requirement cannot be met cleanly otherwise.
 5. Reconsider the foundation if inherited coding assumptions prevent the
@@ -122,9 +127,13 @@ Keep change lanes separable where practical:
 - release or updater configuration.
 
 Synara is expected to carry visible PapiLab identity and domain UI. OpenCode is
-an embedded engine, so its standalone desktop branding does not need to change.
-If PapiLab later adopts Goose, apply the same principle unless it decides to
-distribute a standalone Goose-derived application.
+Scient's inherited source foundation, not a separately branded engine beneath
+Scient. Scient therefore needs its own product, binary, configuration, session,
+release, and update identity while inherited OpenCode core remains traceable for
+upstream maintenance and attribution. The external OpenCode option retains
+OpenCode identity and remains independently configured. If PapiLab later adopts
+Goose-derived capabilities, they become part of Scient unless PapiLab separately
+decides to offer an external Goose agent.
 
 An upstream sync should be a deliberate operation: fetch `upstream`, create a
 sync branch from the PapiLab-maintained branch, merge the selected upstream
@@ -177,7 +186,7 @@ evidence, not product architecture.
 ## Deferred Goose Evaluation
 
 All Goose execution work is deferred until after the first PapiLab gateway works
-through OpenCode, including:
+through Scient, including:
 
 - creating and attaching the owned Goose repository;
 - building and releasing the owned-fork Goose binary;
@@ -185,7 +194,8 @@ through OpenCode, including:
 - testing approval, cancellation, tool-event, and session behavior;
 - enforcing and proving outside-project path denial;
 - deciding Goose runtime-state and credential isolation; and
-- deciding whether Goose is accepted as a PapiLab engine.
+- deciding whether particular Goose capabilities or architecture patterns add
+  enough value to Scient, or whether a distinct external Goose path is useful.
 
 The completed source-depth inspection remains research input, not a current
 implementation commitment.
@@ -216,6 +226,8 @@ as coding sessions, Git worktrees, provider chats, or engine-owned artifacts.
   deliberately PapiLab-owned?
 - Can a stabilized Synara fork host the first science-facing slice without
   leaking coding-product assumptions into the PapiLab project kernel?
+- Which OpenCode-derived modules can remain close to upstream inside Scient,
+  and which Scient-owned capabilities require deliberate divergence?
 - Should Zotero Reader or Zotero Document Worker be embedded as components, or
   should PapiLab build/choose simpler PDF and extraction components while using
   Zotero as a reference and compatibility target?
