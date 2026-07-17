@@ -12,10 +12,11 @@ Desktop app forks are source checkouts for products whose shell, UI, process
 lifecycle, provider model, preview, terminal, diff, or desktop runtime behavior
 may help Scient move faster.
 
-Current checkouts:
+Current and reserved checkouts:
 
-- `synara/` - first desktop workbench shell candidate.
-- `t3code/` - desktop/runtime/provider/process lifecycle reference.
+- `scient-desktop/` - owned Synara-derived Scient application foundation.
+- `t3code/` - reserved restore path for a desktop/runtime/provider/process
+  lifecycle reference; no local checkout is retained currently.
 - `goose-desktop.md` - pointer to the Goose checkout because Goose spans agent
   and desktop roles.
 
