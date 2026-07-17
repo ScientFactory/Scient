@@ -1,15 +1,15 @@
-# PapiLab Bridge
+# Scient Bridge
 
 Status: Draft
 Owner: Yaacov
-Last updated: 2026-07-07
-Purpose: Holds PapiLab-owned adapter and integration experiments connecting lab source checkouts.
+Last updated: 2026-07-17
+Purpose: Holds Scient-owned adapter and integration experiments connecting lab source checkouts.
 Doc type: Planning note
 
 ## Purpose
 
-This folder is for PapiLab-owned bridge code and contracts that connect upstream
-tools without letting any upstream project define PapiLab's product model.
+This folder is for Scient-owned bridge code and contracts that connect upstream
+tools without letting any upstream project define Scient's product model.
 
 Early bridge work may include:
 
@@ -21,7 +21,7 @@ Early bridge work may include:
 
 ## Rules
 
-- Keep bridge code PapiLab-owned.
+- Keep bridge code Scient-owned.
 - Prefer small, inspectable contracts over broad hidden coupling.
 - Record assumptions in `../notes/` when they are not ready for durable docs.
 - Promote stable architecture into `docs/architecture/` or ADRs later.

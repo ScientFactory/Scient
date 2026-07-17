@@ -9,12 +9,12 @@ Doc type: Planning note
 ## Goal
 
 Build the **Scient agent** as the native first-party research agent of the
-current PapiLab and future Scient app while preserving every external-agent
-connection inherited from the Synara application foundation.
+Scient app while preserving every external-agent connection inherited from the
+Synara application foundation.
 
 Scient is the owned OpenCode-derived agent itself. It is one product, codebase,
 runtime identity, process lifecycle, configuration, session system, release,
-and update channel. Scient must not be implemented or described as a PapiLab
+and update channel. Scient must not be implemented or described as a Scient
 agent shell that launches a separately identified OpenCode engine.
 
 Inside Scient's source, inherited OpenCode core and Scient-owned capabilities,
@@ -26,7 +26,7 @@ agent, engine choice, configuration, process, or product.
 External OpenCode remains an independent external agent. It must never be
 removed, renamed into Scient, silently redirected to Scient, or used as
 Scient's credential and state store. A user must be able to use Scient and
-external OpenCode on the same machine and in the same PapiLab installation
+external OpenCode on the same machine and in the same Scient installation
 without either one reading, overwriting, updating, or impersonating the other.
 
 Codex, Claude, Droid, Cursor, Antigravity, Grok, Kilo, Pi, and other supported
@@ -41,8 +41,8 @@ and recovery record. Agents execute bounded work behind that boundary.
 
 ## Naming Status
 
-ScientFactory is the chosen future company identity. Scient is the chosen
-public name for both the future app and its native first-party agent. In this
+ScientFactory is the company identity. Scient is the public name for both the
+implemented app and its planned native first-party agent. In this
 technical plan, **Scient** refers to the agent unless **Scient app** is stated.
 `../product/scient-product-identity.md` owns the accepted vocabulary, and
 `papilab-to-scient-rename-execution-plan.md` owns the identity migration.
@@ -56,9 +56,9 @@ Until clearance is complete:
   `first-party-agent` so a legal rename does not require project-record,
   settings, or migration rewrites;
 - do not reuse `opencode` as Scient's durable identity; and
-- do not rename the current `agent-forks/opencode/` source checkout merely to
-  simulate product completion. Its path records source provenance until a
-  separately reviewed repository-topology migration is useful.
+- do not infer product completion from the owned `scient-agent` repository
+  name. The repository establishes the source boundary; running evidence must
+  establish the native product identity and behavior.
 
 ## Review Brief
 
@@ -72,7 +72,7 @@ Review this plan against these questions:
    processes, storage, sessions, settings, updates, and user experience?
 4. Are all inherited external agents preserved without falsely claiming that
    every CLI, subscription, or version is already certified?
-5. Does PapiLab own scientific meaning and durable project records above every
+5. Does Scient own scientific meaning and durable project records above every
    agent session?
 6. Can Goose-derived capabilities later improve Scient without turning Scient
    into an engine-switching shell?
@@ -90,23 +90,22 @@ It does not replace:
 - the accepted naming system in `../product/scient-product-identity.md`;
 - the accepted product direction in `../product/PRD.md`;
 - the accepted ownership decision in
-  `../architecture/decisions/ADR-0001-synara-opencode-foundation-and-papilab-ownership-boundary.md`;
+  `../architecture/decisions/ADR-0001-synara-opencode-foundation-and-scient-ownership-boundary.md`;
 - the product sequence in `product-roadmap.md`; or
 - the active scientific-slice plan in
-  `first-papilab-vertical-slice-implementation-plan.md`.
+  `first-scient-vertical-slice-implementation-plan.md`.
 
 The early phases constrain the first vertical slice. Later phases expand and
-certify external-agent paths after Scient completes the first bounded PapiLab
+certify external-agent paths after Scient completes the first bounded Scient
 workflow. Promote stable runtime contracts into
 `../architecture/agent-runtime.md` only after running implementation evidence
 exists.
 
 ## Decision Summary
 
-The current PapiLab and future Scient app support two product-level agent
-categories:
+The Scient app supports two product-level agent categories:
 
-1. **Scient**: PapiLab's first-party research agent, owned and evolved from the
+1. **Scient**: the product's first-party research agent, owned and evolved from the
    OpenCode fork.
 2. **External agents**: external agent products that users connect through
    their own installation, account, subscription, API, endpoint, or local
@@ -125,7 +124,7 @@ Source lineage does not merge product identities:
 ## Current Implementation Truth
 
 At maintained desktop-fork revision
-`fd37cdcda16ff34c3b13d098e5a35d0d1aff5096`, inspected on 2026-07-17, the
+`d9d8992a62e4dda37543c214f96fc97556c798f2`, inspected on 2026-07-17, the
 inherited host contains a shared provider adapter contract and adapters for:
 
 - Codex;
@@ -156,19 +155,21 @@ every external CLI version, subscription entitlement, account login, remote
 endpoint, model, or provider-specific feature currently works. Preserve the
 paths first, then certify compatibility honestly per agent.
 
-The owned OpenCode checkout at `agent-forks/opencode/` is the accepted source
-foundation for Scient. It currently remains an upstream-aligned owned fork.
-Scient product identity, packaging, Scient-owned state isolation, and owned scientific
-capabilities have not been implemented.
+The owned OpenCode-derived checkout at `agent-forks/scient-agent/`, maintained
+on `dev` at `5ffaf9a2dfa5b958e8f4856b94b50d26b00c6b76`, is the accepted
+source foundation for the Scient agent. Its repository and
+maintenance-verifier identity are Scient-owned while its current runtime
+remains upstream-aligned OpenCode source. Scient-agent packaging, private state
+isolation, and owned scientific capabilities have not been implemented.
 
 The following are also not yet implemented:
 
 - a Scient execution target;
-- a PapiLab-owned scientific task gateway;
+- a Scient-owned scientific task gateway;
 - durable context, run, proposal, decision, and recovery records; or
 - a certified external-agent compatibility matrix.
 
-The existing `@papilab/project-init` package remains valid and agent-independent.
+The existing `@scientfactory/project-init` package remains valid and agent-independent.
 Its portable `AGENTS.md` guidance is project instruction material, not the
 Scient product.
 
@@ -177,22 +178,22 @@ Scient product.
 | Term | Meaning |
 |---|---|
 | Agent | A user-visible worker such as Scient, Codex, Claude, Droid, or OpenCode. |
-| Scient | PapiLab's first-party, owned OpenCode-derived research agent. |
+| Scient | The product's first-party, owned OpenCode-derived research agent. |
 | External agent | An external agent product connected through a user-owned installation, account, subscription, API, or endpoint. |
 | Agent connection | One configured instance of an agent, including stable identity, health, capabilities, and non-secret configuration references. |
 | Execution target | The Scient profile or external-agent connection selected for a task. |
 | Inherited Scient core | OpenCode-derived source retained inside Scient and kept traceable for selective upstream updates. It is not a separate engine or product. |
-| Scient-owned additions | Scientific capabilities, tools, policies, identity, integration, and product behavior owned directly by PapiLab inside Scient. |
-| Access source | How model or service access is funded and authenticated: external subscription/account, bring-your-own key, or PapiLab-managed access. |
+| Scient-owned additions | Scientific capabilities, tools, policies, identity, integration, and product behavior owned directly by Scient inside Scient. |
+| Access source | How model or service access is funded and authenticated: external subscription/account, bring-your-own key, or Scient-managed access. |
 | Model | The selected inference model, distinct from agent and access source. |
 
 The inherited source uses “provider” for several concepts. Do not begin with a
 repository-wide rename. Treat `ProviderKind` as compatibility vocabulary for
-existing external agents while introducing PapiLab-owned execution-target and
+existing external agents while introducing Scient-owned execution-target and
 connection contracts above it.
 
-Do not use “PapiLab Agent” as another product name. Use **Scient**. Use
-“PapiLab agent gateway” only for the PapiLab-owned execution boundary, not for
+Do not use “Scient Agent” as another product name. Use **Scient**. Use
+“Scient agent gateway” only for the Scient-owned execution boundary, not for
 the product name. Use “portable project agent guidance” for `AGENTS.md` content.
 
 ## Non-Negotiable Scient And External OpenCode Separation
@@ -200,18 +201,18 @@ the product name. Use “portable project agent guidance” for `AGENTS.md` cont
 | Surface | Scient | External OpenCode |
 |---|---|---|
 | Product identity | Scient | OpenCode |
-| Durable internal identity | Brand-neutral PapiLab first-party-agent ID | Existing external `opencode` identity |
-| User choice | “Scient” with a PapiLab first-party explanation | “OpenCode” under external agents |
-| Source/runtime | One PapiLab-owned OpenCode-derived agent build | User-selected or externally installed OpenCode binary/server |
+| Durable internal identity | Brand-neutral Scient first-party-agent ID | Existing external `opencode` identity |
+| User choice | “Scient” with a Scient first-party explanation | “OpenCode” under external agents |
+| Source/runtime | One Scient-owned OpenCode-derived agent build | User-selected or externally installed OpenCode binary/server |
 | Process lifecycle | Started and supervised as Scient | Existing OpenCode adapter lifecycle |
-| Home/config directory | Dedicated Scient location | Existing external OpenCode location and PapiLab connection settings |
+| Home/config directory | Dedicated Scient location | Existing external OpenCode location and Scient connection settings |
 | Endpoint/password | Scient-owned internal endpoint and secret handling if needed | Existing `openCodeServerUrl` and `openCodeServerPassword` path |
 | Credentials | Scient-specific access configuration | User's external OpenCode/provider credentials |
 | Sessions/transcripts | Scient execution state, non-canonical | External OpenCode execution state, non-canonical |
 | Skills/plugins/tools | Scient-owned catalog and policy over its inherited core | External OpenCode-discovered catalog and policy |
 | Logs/cache | Scient namespace | External OpenCode namespace |
 | Updates | One deliberate Scient release process | External OpenCode installation/update process |
-| Canonical scientific record | PapiLab project records only | PapiLab project records only when invoked for a PapiLab task |
+| Canonical scientific record | Scient project records only | Scient project records only when invoked for a Scient task |
 
 Additional rules:
 
@@ -219,7 +220,7 @@ Additional rules:
 - Never make Scient depend on the external OpenCode binary path, endpoint,
   password, home, or update setting.
 - Never silently migrate an existing thread from external OpenCode to Scient.
-- Never let either runtime's database or transcript become canonical PapiLab
+- Never let either runtime's database or transcript become canonical Scient
   scientific state.
 - Never expose a second OpenCode-branded runtime as though it were a component
   users configure underneath Scient.
@@ -229,10 +230,10 @@ Additional rules:
 ## Target Architecture
 
 ```text
-PapiLab project operation / task UI
+Scient project operation / task UI
             |
             v
-PapiLab-owned scientific agent gateway
+Scient-owned scientific agent gateway
   - task intent and selected project context
   - permissions and filesystem confinement
   - execution-target identity
@@ -252,8 +253,8 @@ one owned OpenCode-derived agent              inherited adapter registry
 ```
 
 The inherited generic chat host may continue to call provider services directly
-during migration. The PapiLab gateway becomes mandatory for operations that
-read or propose changes to canonical PapiLab project state.
+during migration. The Scient gateway becomes mandatory for operations that
+read or propose changes to canonical Scient project state.
 
 ## Working Contracts To Introduce
 
@@ -280,7 +281,7 @@ External target:
 
 ### Executor port
 
-Defines the minimum operations required by the PapiLab gateway: inspect health
+Defines the minimum operations required by the Scient gateway: inspect health
 and capabilities, start bounded work, stream normalized events, handle
 approval, interrupt, and finish with a typed outcome. Scient implements this
 port as one agent. The external-agent bridge adapts existing provider paths.
@@ -301,7 +302,7 @@ invent the complete scientific object model in this work.
 ### Scient internal source boundary
 
 Keeps inherited OpenCode-derived modules and Scient-owned modules identifiable
-where practical. PapiLab-specific scientific capabilities should live in
+where practical. Scient-specific scientific capabilities should live in
 Scient-owned modules or stable seams first. Core changes are allowed when a
 demonstrated product, safety, or reliability requirement demands them.
 
@@ -368,17 +369,16 @@ use one coherent meaning for Scient.
    handoff, and maintenance behavior.
 5. Add characterization tests before changing schemas or routing.
 6. Record which checks require installed CLIs/accounts and which can use fakes.
-7. Replace ambiguous user-facing “PapiLab agent guidance” wording with
+7. Replace ambiguous user-facing “Scient agent guidance” wording with
    “portable project agent guidance” where it refers to `AGENTS.md`.
-8. Plan the shared scratch-root rename from
-   `papilab-opencode-workspaces` to `papilab-agent-workspaces`. Keep exact legacy
-   recognition during the required upgrade window so existing previews fail
-   safely rather than silently.
+8. Preserve `scient-opencode-workspaces` as the external OpenCode scratch root.
+   Give the future Scient agent a separate `scient-agent-workspaces` root; do
+   not relabel external OpenCode state as native-agent state.
 
 Exit evidence: a source-backed flow map and green baseline tests that detect
 accidental removal or reinterpretation of external agents.
 
-### Phase 2 — Introduce PapiLab-Owned Target And Executor Contracts
+### Phase 2 — Introduce Scient-Owned Target And Executor Contracts
 
 1. Add the execution-target union above inherited `ProviderKind`.
 2. Add stable connection IDs so multiple future connections do not require
@@ -442,7 +442,7 @@ identity and state on clean-install and upgraded machines.
 5. Reject or pause work when effective permissions exceed approved scope.
 6. Keep proposed project mutations reviewable before acceptance.
 
-Exit evidence: the first workflow can be reconstructed from PapiLab records
+Exit evidence: the first workflow can be reconstructed from Scient records
 after Scient's session state is unavailable.
 
 ### Phase 6 — Prove Scient And External OpenCode Together
@@ -450,11 +450,11 @@ after Scient's session state is unavailable.
 This is the first dual-path proof because shared lineage exposes accidental
 coupling most effectively.
 
-1. Configure Scient and external OpenCode in one PapiLab installation.
+1. Configure Scient and external OpenCode in one Scient installation.
 2. Run the same bounded, non-destructive task through each target.
 3. Verify different labels, IDs, processes, versions, homes, credentials,
    endpoints, sessions, logs, and update controls.
-4. Verify both produce the minimum PapiLab proposal/provenance envelope despite
+4. Verify both produce the minimum Scient proposal/provenance envelope despite
    different native events.
 5. Verify disabling, signing out of, corrupting, or removing one path does not
    prevent the other from starting.
@@ -495,7 +495,7 @@ and dated live-smoke evidence where credentials are required.
    with separate state and certification.
 
 Exit evidence: a keep/adopt/reject decision for each evaluated capability,
-without changing Scient's identity or canonical PapiLab records.
+without changing Scient's identity or canonical Scient records.
 
 ### Phase 9 — Complete The User Experience
 
@@ -506,7 +506,7 @@ without changing Scient's identity or canonical PapiLab records.
 4. Separate agent selection from access-source and model selection.
 5. Let users select an execution target per task and explicitly set defaults.
 6. Explain which subscriptions/accounts belong to external tools and which
-   access is managed by PapiLab.
+   access is managed by Scient.
 7. Show handoff context and permissions before transfer.
 8. Preserve accessibility, keyboard navigation, reduced motion, and clear error
    recovery.
@@ -519,7 +519,7 @@ OpenCode without reading architecture documentation.
 Keep these lanes reviewable:
 
 1. inherited Synara desktop core;
-2. PapiLab desktop/domain modules;
+2. Scient desktop/domain modules;
 3. narrow desktop integration seams;
 4. unavoidable inherited Synara core patches;
 5. Scient's inherited OpenCode core;
@@ -572,14 +572,14 @@ Required test layers:
 ## Security, Privacy, And Trust
 
 - External authentication remains owned by the external product unless an
-  explicit PapiLab-managed path is implemented.
-- PapiLab and Scient must not scrape, duplicate, or migrate external
+  explicit Scient-managed path is implemented.
+- Scient and Scient must not scrape, duplicate, or migrate external
   subscription tokens.
 - Project records may retain non-secret agent identity, model, access-source
   label, version, capability snapshot, timing, and outcome metadata.
 - Redact tokens, passwords, authorization headers, and sensitive environment
   variables from logs, receipts, exports, and crash reports.
-- PapiLab computes and enforces permissions for PapiLab project work; an agent
+- Scient computes and enforces permissions for Scient project work; an agent
   request cannot widen them.
 - Filesystem access remains inside the selected project and explicitly approved
   external paths.
@@ -602,7 +602,7 @@ reproduce behavior:
 - proposal, decision, cleanup, and recovery outcomes; and
 - native session reference only when safe and useful.
 
-PapiLab records must show whether a task was accepted, rejected, interrupted,
+Scient records must show whether a task was accepted, rejected, interrupted,
 failed, or recovered without requiring raw native logs.
 
 ## Rollout
@@ -624,7 +624,7 @@ Pause if implementation appears to require:
 - representing OpenCode as a separately configured engine beneath Scient;
 - sharing credentials, homes, endpoints, sessions, or updates between Scient
   and external OpenCode;
-- treating an agent transcript/database as canonical PapiLab state;
+- treating an agent transcript/database as canonical Scient state;
 - a repository-wide `ProviderKind` rename before the boundary works;
 - modifying every external-agent adapter before the Scient path works;
 - certifying every agent before the first scientific slice;
@@ -647,7 +647,7 @@ Prefer narrow changes in this order:
 9. Per-agent compatibility certification.
 10. Goose capability/architecture evaluation.
 
-Do not mix upstream synchronization, broad inherited refactors, PapiLab domain
+Do not mix upstream synchronization, broad inherited refactors, Scient domain
 behavior, Scient core changes, and UI redesign in one review lane.
 
 ## Acceptance Criteria
@@ -665,7 +665,7 @@ This program is complete only when:
 - both coexist and complete the same bounded task;
 - failure, sign-out, update, or removal of one does not disable the other;
 - existing settings and threads migrate losslessly and idempotently;
-- project operations pass through PapiLab-owned context, permission, proposal,
+- project operations pass through Scient-owned context, permission, proposal,
   review, provenance, and recovery boundaries;
 - project truth is reconstructable without any agent's session database;
 - agent, access source, provider, and model are visible and not conflated;
@@ -674,7 +674,7 @@ This program is complete only when:
 - Scient and inherited desktop upstream updates are separately controlled and
   regression-tested; and
 - useful future Goose capabilities can be added without changing Scient's
-  identity or canonical PapiLab records.
+  identity or canonical Scient records.
 
 ## Explicit Exclusions
 

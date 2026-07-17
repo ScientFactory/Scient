@@ -2,15 +2,15 @@
 
 Status: Draft
 Owner: Yaacov
-Last updated: 2026-07-12
-Purpose: Defines PapiLab's testing philosophy before implementation-specific commands, lanes, and CI gates exist.
+Last updated: 2026-07-17
+Purpose: Defines Scient's testing philosophy before implementation-specific commands, lanes, and CI gates exist.
 Doc type: Testing doctrine
 
-This document defines how PapiLab should think about tests. It is not a command reference, CI plan, coverage policy, or test framework decision.
+This document defines how Scient should think about tests. It is not a command reference, CI plan, coverage policy, or test framework decision.
 
 ## Core Position
 
-Testing exists to protect PapiLab's product invariants: scientific truth, durable project state, user control, local-first reliability, cloud consistency, agent safety, and recoverability.
+Testing exists to protect Scient's product invariants: scientific truth, durable project state, user control, local-first reliability, cloud consistency, agent safety, and recoverability.
 
 The goal is not test volume. The goal is to catch real regressions early with the smallest reliable proof that exercises the actual failure mode.
 
@@ -76,7 +76,7 @@ Mocks are acceptable for external providers, clocks, nondeterminism, and expensi
 
 Do not mock owned state, permissions, persistence, file writes, sync behavior, or agent tool boundaries when those are the actual risk under test.
 
-## PapiLab-Specific Proof Obligations
+## Scient-Specific Proof Obligations
 
 Durable scientific state must have persistence proof: save, reload, migration, failure recovery, and compatibility where relevant.
 
@@ -92,11 +92,11 @@ Performance is part of correctness for core workflows. A feature that only works
 
 ## Model Evaluation
 
-External benchmarks are comparative research, not release proof. Before PapiLab assigns final production model roles or enables automatic routing, it must run a replayable internal evaluation suite on representative PapiLab workflows.
+External benchmarks are comparative research, not release proof. Before Scient assigns final production model roles or enables automatic routing, it must run a replayable internal evaluation suite on representative Scient workflows.
 
 That later suite should cover scientific faithfulness, citations and evidence, mathematics, data analysis, coding, tools and agents, conversation and writing, long context, and vision or document work. Runs should preserve the model and provider version, reasoning settings, prompts and fixtures, tools, attempts, scoring method, latency, and cost.
 
-Define the detailed methodology in `docs/quality/model-evaluation-methodology.md` when real PapiLab workflows and fixtures exist. Until then, external benchmark analysis belongs in `docs/research/source-evaluations/model-benchmark-map.md`.
+Define the detailed methodology in `docs/quality/model-evaluation-methodology.md` when real Scient workflows and fixtures exist. Until then, external benchmark analysis belongs in `docs/research/source-evaluations/model-benchmark-map.md`.
 
 ## Architecture Feedback
 
@@ -112,7 +112,7 @@ Tests verify behavior. Review still judges whether the design preserves clear ow
 
 ## Candidate Testing Conventions
 
-These conventions should be revisited when PapiLab has implementation and selected test tooling.
+These conventions should be revisited when Scient has implementation and selected test tooling.
 
 ### File Organization
 

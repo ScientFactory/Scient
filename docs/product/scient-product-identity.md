@@ -3,7 +3,7 @@
 Status: Accepted
 Owner: Yaacov
 Last updated: 2026-07-17
-Purpose: Defines the chosen company, product, agent, and external-agent naming system for the future Scient identity.
+Purpose: Defines the accepted company, product, agent, and external-agent naming system for Scient.
 Doc type: Product truth
 
 ## Document Rules
@@ -14,9 +14,11 @@ PRD owns the broader product requirements. Architecture documents own runtime
 and state boundaries. The rename execution plan owns migration order,
 compatibility, verification, and rollback.
 
-The identity decision is accepted direction. It does not mean the current
-PapiLab repositories, packages, local state, project metadata, application
-identity, website, or releases have already been renamed.
+The identity decision is active for the company, repositories, application,
+packages, local state, and new project metadata. PapiLab remains only where
+required for migration compatibility or historical truth. The public website
+cutover is a separately deferred owner task, and the native Scient agent is
+still planned rather than implemented.
 
 ## Decision
 
@@ -102,9 +104,9 @@ Recommended settings groups:
 the category name for external agents because some agents use local binaries,
 endpoints, accounts, API keys, or no subscription at all.
 
-## Target Product Namespace
+## Product Namespace
 
-The accepted target for initialized project metadata is `.scient/`.
+Initialized Scient project metadata uses `.scient/`.
 
 `.scient/` is the **Scient app's project metadata directory**. It is not the
 Scient agent's home, session store, cache, credential location, or private
@@ -113,12 +115,14 @@ agent is unavailable and must remain usable manually or through an external
 agent.
 
 The exact contents and versioning of `.scient/` remain governed by the project
-format and implementation evidence. The current implemented package still
-creates `.papilab/`; migration to `.scient/` has not yet been executed.
+format and implementation evidence. The implemented project-init package
+creates `.scient/project.json` and provides additive, conflict-safe migration
+from supported `.papilab/project.json` projects.
 
-## Target Technical Naming Direction
+## Technical Naming
 
-The rename plan will validate and execute these targets:
+The implemented app and project-init surfaces use these names. Agent-specific
+rows remain reserved for the planned native Scient agent:
 
 | Surface | Target direction |
 |---|---|
@@ -136,49 +140,46 @@ The rename plan will validate and execute these targets:
 | Agent home/profile | A dedicated `scient-agent` location, isolated from the app and external OpenCode |
 | Agent scratch workspaces | `scient-agent-workspaces` |
 
-These are accepted naming targets, not claims about current implementation.
-Exact identifiers may change before execution if platform constraints,
-availability, migration safety, or formal clearance requires it. Any material
-change to the public identity returns to this document for owner review.
+The Scient-agent home and scratch-workspace names remain planned until that
+runtime exists. Any material change to the public identity returns to this
+document for owner review.
 
-## Repository Direction
+## Repository Topology
 
-The intended long-term topology is:
+The owned topology is:
 
 | Repository role | Confirmed owner and target name |
 |---|---|
 | GitHub organization | `ScientFactory` |
 | Parent product and documentation repository | `ScientFactory/Scient` |
 | Maintained desktop fork | `ScientFactory/scient-desktop` |
-| Owned OpenCode-derived source repository before the Scient agent exists | `ScientFactory/opencode` |
-| Owned first-party agent repository after the Scient agent exists | `ScientFactory/scient-agent` |
+| Owned first-party agent source repository | `ScientFactory/scient-agent` |
 
-The `ScientFactory` GitHub organization was created on 2026-07-17. Repository
-ownership has not yet moved there. The current OpenCode-derived source
-repository must transfer to the organization as `opencode` and retain that name
-until it actually builds and packages the Scient agent. A later repository
-rename must preserve official OpenCode as fetch-only upstream, Git ancestry,
-licenses, attribution, inherited-core traceability, and reviewed update
-history. External OpenCode remains a distinct external agent regardless of
-repository topology.
+The `ScientFactory` GitHub organization was created on 2026-07-17 and owns all
+three repositories. The agent source repository is named `scient-agent` now by
+explicit owner decision, even though the native agent product is not yet
+implemented. It preserves official OpenCode as fetch-only upstream, Git
+ancestry, licenses, attribution, inherited-core traceability, and reviewed
+update history. External OpenCode remains a distinct external agent regardless
+of repository topology.
 
-## Current-State Boundary
+## Current State
 
-At acceptance time:
+After the verified rename:
 
-- PapiLab remains the active repository and implemented desktop identity.
-- The `ScientFactory` GitHub organization exists, but it does not yet own the
-  parent, desktop, or OpenCode-derived repositories.
-- `@papilab/project-init` and `.papilab/` are the only implemented first-party
-  project-initiation names.
+- Scient is the active parent repository and implemented desktop identity.
+- `ScientFactory` owns `Scient`, `scient-desktop`, and `scient-agent`.
+- `@scientfactory/project-init` and `.scient/` are the implemented first-party
+  project-initiation names; PapiLab inputs are accepted only by the documented
+  migration path.
 - The Scient agent is planned but not implemented.
 - The broader scientific project format, agent gateway, and first vertical
   slice remain unbuilt.
 - The public website and deployment have not been cut over to Scient.
 
 Do not rewrite historical LitRev or PapiLab evidence as though it occurred
-under Scient. Do not describe target names as implemented until the execution
-plan records verified cutover evidence.
+under Scient. Do not infer a finished Scient-agent runtime from the owned
+`scient-agent` repository name.
 
 ## Clearance Boundary
 

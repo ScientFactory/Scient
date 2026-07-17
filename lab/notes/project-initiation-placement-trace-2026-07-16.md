@@ -13,7 +13,7 @@ project-initiation kernel was implemented. It records the point-in-time source
 baseline and placement decision; the executed outcome is recorded below. It
 does not complete the broader first-slice source trace or activate
 `docs/architecture/project-format.md`. The accepted ownership boundary remains
-`../../docs/architecture/decisions/ADR-0001-synara-opencode-foundation-and-papilab-ownership-boundary.md`.
+`../../docs/architecture/decisions/ADR-0001-synara-opencode-foundation-and-scient-ownership-boundary.md`.
 
 ## Selected Source Baseline
 

@@ -1,4 +1,0 @@
-interface:
-  display_name: "PapiLab Documentation Stewardship"
-  short_description: "Govern and maintain PapiLab project documentation"
-  default_prompt: "Use $papilab-documentation-stewardship to handle this PapiLab documentation request in the correct canonical home."

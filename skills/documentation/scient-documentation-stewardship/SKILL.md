@@ -1,10 +1,10 @@
 ---
-name: papilab-documentation-stewardship
-description: Apply PapiLab's documentation policy to create, update, review, move, promote, retire, and reconcile repository documentation and progress records. Use for documentation audits, repository-scope and placement questions, AI-assisted durable knowledge capture, metadata or status changes, placeholder activation, index maintenance, conflict or drift reconciliation, and documentation resulting from product, architecture, research, implementation, or operations. Do not use for product analysis alone, code changes without documentation impact, or read-only status lookup.
+name: scient-documentation-stewardship
+description: Apply Scient's documentation policy to create, update, review, move, promote, retire, and reconcile repository documentation and progress records. Use for documentation audits, repository-scope and placement questions, AI-assisted durable knowledge capture, metadata or status changes, placeholder activation, index maintenance, conflict or drift reconciliation, and documentation resulting from product, architecture, research, implementation, or operations. Do not use for product analysis alone, code changes without documentation impact, or read-only status lookup.
 
 ---
 
-# PapiLab Documentation Stewardship
+# Scient Documentation Stewardship
 
 ## Core Judgment
 
@@ -16,7 +16,7 @@ In the current documentation-first phase, repository documents are the main dura
 
 Use this skill as a workflow. Treat `docs/documentation-policy.md`, `AGENTS.md`, the relevant area index, and each document's own rules as authority.
 
-Use `papilab-product-stewardship` for product judgment. Use both skills when product work also changes durable documentation.
+Use `scient-product-stewardship` for product judgment. Use both skills when product work also changes durable documentation.
 
 ## Choose The Mode
 
@@ -37,7 +37,7 @@ Do not edit in `review` or `plan` mode unless the user explicitly expands the re
 Always:
 
 1. Inspect the worktree and preserve unrelated changes.
-2. Confirm that the material belongs inside the current PapiLab repository.
+2. Confirm that the material belongs inside the current Scient repository.
 3. Read the complete target document, including metadata, document rules, and any update policy.
 4. Read the owning area index and any canonical source the target depends on.
 
@@ -96,7 +96,7 @@ Distinguish planned, in-progress, completed, verified, deferred, blocked, reject
 Before finishing, check:
 
 1. Metadata, status, purpose, document type, content, and authority agree.
-2. The material belongs in the PapiLab repository and has a real accountable owner where required.
+2. The material belongs in the Scient repository and has a real accountable owner where required.
 3. Placement follows the documentation policy, context is navigable, and canonical truth is not duplicated.
 4. Planned, proposed, experimental, implemented, and historical material remain distinct.
 5. Contradictions and uncertainty remain visible instead of being smoothed away.

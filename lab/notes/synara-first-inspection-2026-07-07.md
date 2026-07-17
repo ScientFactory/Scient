@@ -2,7 +2,7 @@
 
 Status: Historical
 Owner: Yaacov
-Last updated: 2026-07-16
+Last updated: 2026-07-17
 Purpose: Preserves the first technical inspection of Synara and the initial ownership plan that preceded the accepted foundation decision.
 Doc type: Research evidence
 
@@ -11,7 +11,7 @@ Doc type: Research evidence
 The inspected source findings remain useful evidence. Body text may retain
 contemporary planning and Gate 1.6 language as point-in-time wording. Current
 foundation and sequencing decisions live in
-`../../docs/architecture/decisions/ADR-0001-synara-opencode-foundation-and-papilab-ownership-boundary.md`,
+`../../docs/architecture/decisions/ADR-0001-synara-opencode-foundation-and-scient-ownership-boundary.md`,
 `../../docs/planning/product-roadmap.md`, and the first-slice implementation
 plan.
 

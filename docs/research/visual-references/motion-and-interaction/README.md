@@ -2,7 +2,7 @@
 
 Status: Active
 Owner: Yaacov
-Last updated: 2026-07-12
+Last updated: 2026-07-17
 Purpose: Indexes external motion, hover, transition, and animated-state references that must be understood over time rather than from a still image alone.
 Doc type: Research evidence
 
@@ -10,7 +10,7 @@ Doc type: Research evidence
 
 Use these references to locate and re-observe time-dependent interface behavior. A screenshot can identify the surface, but it cannot preserve timing, easing, sequencing, cursor movement, or entry and exit behavior. Follow the recorded live source and inspection steps before drawing conclusions.
 
-Everything here is raw research evidence. A saved reference is not an accepted LitRev motion language, navigation pattern, interaction rule, accessibility claim, implementation requirement, or instruction to copy another product.
+Everything here is raw research evidence. A saved reference is not an accepted Scient motion language, navigation pattern, interaction rule, accessibility claim, implementation requirement, or instruction to copy another product.
 
 Static images belong in `images/`. Use `<product>-<surface>-<interaction-pattern>-<YYYY-MM-DD>.<ext>` and remove or crop browser or identifying information before committing a reference.
 
@@ -28,7 +28,7 @@ Static images belong in `images/`. Use `<product>-<surface>-<interaction-pattern
 - **Surface:** Desktop homepage header and the `Products` hover mega-menu.
 - **Live source:** [x.ai](https://x.ai/).
 - **Source evidence:** Screenshot supplied by Yaacov and live interaction inspected on 2026-07-12.
-- **Why it was saved:** Yaacov wants the motion and the way it reacts to hover preserved as a reference for later LitRev design work. The screenshot is a locator for the interaction, not a complete record of it.
+- **Why it was saved:** Yaacov wants the motion and the way it reacts to hover preserved as a reference for later Scient design work. The screenshot is a locator for the interaction, not a complete record of it.
 
 #### Where To Look
 
@@ -51,4 +51,4 @@ Revisit the live page before using this reference. Record or inspect the menu at
 
 - **Privacy handling:** Browser tabs, controls, and address-bar content were cropped from the supplied screenshot before storage.
 - **Retrieval terms:** xAI, x.ai, header, navigation, Products, hover, mega-menu, dropdown, reactive preview, animated preview, motion, transition, Chat, Build, Imagine, Voice, iridescent sphere, row highlight, hover intent, menu persistence, exit behavior.
-- **Status:** Raw visual and interaction reference only. No LitRev motion, navigation, menu, visual-design, or implementation decision has been made from it.
+- **Status:** Raw visual and interaction reference only. No Scient motion, navigation, menu, visual-design, or implementation decision has been made from it.

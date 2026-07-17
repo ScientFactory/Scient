@@ -2,8 +2,8 @@
 
 Status: Proposed
 Owner: Yaacov
-Last updated: 2026-07-12
-Purpose: Recommends how the PapiLab repository should relate to a broader connected company memory without mixing product authority with company-level authority.
+Last updated: 2026-07-17
+Purpose: Recommends how the Scient repository should relate to a broader connected company memory without mixing product authority with company-level authority.
 Doc type: Planning note
 
 ## Document Rules
@@ -14,23 +14,23 @@ The current repository boundary remains defined by `../../README.md`, `../README
 
 ## Current Boundary
 
-This repository is the PapiLab product and project knowledge workspace. It owns PapiLab product direction, architecture, planning, research, design, quality, future implementation guidance, operations guidance when real, lab evidence, and project-specific agent workflows.
+This repository is the Scient product and project knowledge workspace. It owns Scient product direction, architecture, planning, research, design, quality, future implementation guidance, operations guidance when real, lab evidence, and project-specific agent workflows.
 
-Commercial, market, customer, or organizational material may live here when it directly informs PapiLab product work and is placed in the correct planning or research surface. This does not make the repository the unrestricted memory of the whole company.
+Commercial, market, customer, or organizational material may live here when it directly informs Scient product work and is placed in the correct planning or research surface. This does not make the repository the unrestricted memory of the whole company.
 
 ## Options
 
 | Model | Benefit | Main risk |
 | --- | --- | --- |
-| PapiLab product repository only | Clearest current boundary | Company context remains disconnected unless another system links it |
+| Scient product repository only | Clearest current boundary | Company context remains disconnected unless another system links it |
 | One company-and-product repository | Simple navigation for a small team | Product and company authority boundaries become harder to preserve |
 | Connected company and product repositories | One logical memory with separate authority boundaries | Requires deliberate cross-repository routing and discoverability |
 
 ## Recommendation
 
-Use a connected company-memory model. Keep this repository as the PapiLab product branch of that memory, and create a separate company-level authority when company strategy, finance, legal, people, customer knowledge, or cross-product decisions need durable homes.
+Use a connected company-memory model. Keep this repository as the Scient product branch of that memory, and create a separate company-level authority when company strategy, finance, legal, people, customer knowledge, or cross-product decisions need durable homes.
 
-The logical hierarchy may be connected even when the underlying knowledge lives in more than one repository or system. Link to authoritative company material instead of duplicating it inside PapiLab.
+The logical hierarchy may be connected even when the underlying knowledge lives in more than one repository or system. Link to authoritative company material instead of duplicating it inside Scient.
 
 ## Principles For A Future Company Memory
 
@@ -43,12 +43,12 @@ The logical hierarchy may be connected even when the underlying knowledge lives 
 
 ## Decision Needed Before Structural Change
 
-Before adding company-level folders or moving PapiLab under a broader hierarchy, decide:
+Before adding company-level folders or moving Scient under a broader hierarchy, decide:
 
 - the company-memory owner;
 - whether it is one repository or several connected systems;
 - the company-level document and decision types;
 - how authority and links flow between company and product knowledge; and
-- how existing PapiLab history would be preserved.
+- how existing Scient history would be preserved.
 
 Until then, do not create company, finance, legal, people, or customer-record folders in this repository merely to anticipate future scale.

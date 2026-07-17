@@ -2,11 +2,11 @@
 
 Status: Placeholder
 Owner: Yaacov
-Last updated: 2026-06-27
+Last updated: 2026-07-17
 Purpose: Defines where operational documentation should live once operational surfaces exist.
 Doc type: Future home
 
-Use this folder once PapiLab has deployment, monitoring, release, support, maintenance, backup, or incident-response workflows.
+Use this folder once Scient has deployment, monitoring, release, support, maintenance, backup, or incident-response workflows.
 
 Document here when relevant:
 

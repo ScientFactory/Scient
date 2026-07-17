@@ -2,7 +2,7 @@
 
 Status: Active
 Owner: Yaacov
-Last updated: 2026-07-12
+Last updated: 2026-07-17
 Purpose: Indexes visual patterns for agent task plans, step trackers, progress states, and workflow controls placed near a conversation composer.
 Doc type: Research evidence
 
@@ -10,7 +10,7 @@ Doc type: Research evidence
 
 Use these references to compare how a long-running agent task can expose its plan without taking the user away from the conversation. Pay attention to the relationship between progress visibility, vertical space, current-step clarity, expansion controls, and the follow-up composer.
 
-Everything here is raw research evidence. A saved reference is not an accepted LitRev task model, progress taxonomy, composer layout, interaction rule, accessibility claim, implementation requirement, or instruction to copy another product.
+Everything here is raw research evidence. A saved reference is not an accepted Scient task model, progress taxonomy, composer layout, interaction rule, accessibility claim, implementation requirement, or instruction to copy another product.
 
 Images belong in `images/` and use the filename pattern `<surface>-<state>-<YYYY-MM-DD>.<ext>`. Remove or blur project-specific wording and paths before committing a reference.
 
@@ -32,7 +32,7 @@ Images belong in `images/` and use the filename pattern `<surface>-<state>-<YYYY
 - **Design question to revisit:** Can the user understand what has happened, what is happening now, and what remains without opening a separate progress view?
 - **Privacy handling:** Project-specific task wording was blurred before storage.
 - **Retrieval terms:** agent workflow, task tracker, steps tracker, plan progress, expanded tracker, composer-adjacent, current step, completed step, future step, status dots, long-running task, follow-up composer, thought summary.
-- **Status:** Raw visual reference only. No LitRev task-state model or tracker layout has been accepted from it.
+- **Status:** Raw visual reference only. No Scient task-state model or tracker layout has been accepted from it.
 
 ### VR-020 — Agent Task Tracker Above Composer, Collapsed
 
@@ -44,4 +44,4 @@ Images belong in `images/` and use the filename pattern `<surface>-<state>-<YYYY
 - **Privacy handling:** The source-path line at the top was cropped before storage.
 - **State relationship:** VR-019 is the expanded state of the same tracker concept; VR-020 is the collapsed state.
 - **Retrieval terms:** agent workflow, task tracker, steps tracker, collapsed tracker, current step, compact progress, composer-adjacent, expand control, vertical space, long-running task, follow-up composer.
-- **Status:** Raw visual reference only. No LitRev task-state model or tracker layout has been accepted from it.
+- **Status:** Raw visual reference only. No Scient task-state model or tracker layout has been accepted from it.

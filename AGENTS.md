@@ -3,28 +3,27 @@
 Status: Active
 Owner: Yaacov
 Last updated: 2026-07-17
-Purpose: Defines how agents should work in this early PapiLab repository.
+Purpose: Defines how agents should work in this early Scient repository.
 Doc type: Agent protocol
 
 ## What This Repo Is
 
-This repo is the early planning and documentation workspace for PapiLab.
+This repo is the early planning and documentation workspace for Scient.
 
-PapiLab is a local-first, cloud-mirrored scientific workspace where researchers and AI agents run an entire research project together, from research question to publication-ready manuscript. The product direction is still being shaped.
+Scient is a local-first, cloud-mirrored scientific workspace where researchers and AI agents run an entire research project together, from research question to publication-ready manuscript. The product direction is still being shaped.
 
 ## Current State
 
 This parent repo remains documentation-first. The maintained desktop fork now
-contains the first permanent PapiLab-owned package, `@papilab/project-init`,
+contains the first permanent Scient-owned package, `@scientfactory/project-init`,
 but the broader application architecture and first scientific vertical slice
 have not been built. Do not infer scientific-state, gateway, sync, cloud, or
 production boundaries from that narrow package.
 
-ScientFactory is the chosen future company identity. **Scient** is the chosen
-public name for both the future application and its native first-party research
-agent. The current implemented application identity remains PapiLab until the
-rename plan is executed and verified. In technical contexts, use **Scient app**
-and **Scient agent** whenever the meaning could be ambiguous.
+ScientFactory is the company and GitHub organization identity. **Scient** is
+the public name for both the implemented application and its planned native
+first-party research agent. In technical contexts, use **Scient app** and
+**Scient agent** whenever the meaning could be ambiguous.
 
 The Scient agent is planned but not yet implemented. Architecturally, it is the
 owned OpenCode-derived agent itself—not an app shell around a separate OpenCode
@@ -47,7 +46,7 @@ Capture durable future context, not documentation volume. Preserve consequential
 
 AI may draft documentation, but it is not the accountable owner and cannot confer acceptance. Preserve uncertainty and specific reasoning for human review. When authoritative sources conflict, surface the contradiction and route it to the owning person or document instead of smoothing it into false agreement.
 
-Keep this repository within its PapiLab product and project boundary. Do not add company-wide finance, legal, people, customer-record, or cross-product authority here without an accepted repository-scope decision. Do not commit secrets or sensitive personal, customer, employee, or regulated data.
+Keep this repository within its Scient product and project boundary. Do not add company-wide finance, legal, people, customer-record, or cross-product authority here without an accepted repository-scope decision. Do not commit secrets or sensitive personal, customer, employee, or regulated data.
 
 ## Source Documents
 
@@ -56,14 +55,14 @@ Current important documents:
 - `docs/README.md` - documentation map and current repo structure.
 - `docs/documentation-policy.md` - rules for creating, updating, and classifying documentation.
 - `docs/product/PRD.md` - product direction, core capabilities, user experience principles, and technical requirements.
-- `docs/product/scient-product-identity.md` - accepted future company, application, agent, external-agent, and naming vocabulary.
+- `docs/product/scient-product-identity.md` - accepted company, application, agent, external-agent, and naming vocabulary.
 - `docs/product/product-philosophy.md` - durable product principles that guide product, architecture, design, quality, and implementation.
 - `docs/architecture/technology-stack.md` - current technology stack direction and open implementation decisions.
-- `docs/architecture/decisions/ADR-0001-synara-opencode-foundation-and-papilab-ownership-boundary.md` - accepted initial application/runtime foundations and the PapiLab-owned scientific boundary.
+- `docs/architecture/decisions/ADR-0001-synara-opencode-foundation-and-scient-ownership-boundary.md` - accepted initial application/runtime foundations and the Scient-owned scientific boundary.
 - `docs/planning/product-roadmap.md` - active sequence of coherent product outcomes.
-- `docs/planning/first-papilab-vertical-slice-implementation-plan.md` - concrete plan and acceptance criteria for the current implementation slice.
+- `docs/planning/first-scient-vertical-slice-implementation-plan.md` - concrete plan and acceptance criteria for the current implementation slice.
 - `docs/planning/scient-and-external-agents-implementation-plan.md` - proposed implementation plan for the Scient agent, external-agent preservation, and Scient-versus-external-agent identity isolation.
-- `docs/planning/papilab-to-scient-rename-execution-plan.md` - proposed migration plan from the current PapiLab implementation identity to Scient and ScientFactory.
+- `docs/planning/papilab-to-scient-rename-execution-plan.md` - historical execution and rollback record for the PapiLab-to-Scient migration.
 
 Use each document according to its metadata. The PRD and ADR-0001 are accepted
 direction; the roadmap is active planning; the product philosophy, technology
@@ -90,7 +89,7 @@ When proposing technical direction, separate:
 
 The PRD should stay focused on product truth. Stack choices and implementation details should live in architecture documents unless they are direct product constraints.
 
-Use **Scient** as the public name for both the future app and native agent. In
+Use **Scient** as the public name for both the app and native agent. In
 technical or potentially ambiguous text, write **Scient app** or **Scient
 agent**. Use **external agent** for an independently connected product such as
 OpenCode, Codex, Claude, or Droid. Do not create “ScientApp” or “ScientAgent” as
@@ -102,9 +101,9 @@ are project instructions, not the Scient agent product.
 
 Project-specific skills live under `skills/`.
 
-Use `skills/product/papilab-product-stewardship/SKILL.md` for product management work, including PRD changes, feature analysis, roadmap notes, product decisions, and product research synthesis.
+Use `skills/product/scient-product-stewardship/SKILL.md` for product management work, including PRD changes, feature analysis, roadmap notes, product decisions, and product research synthesis.
 
-Use `skills/documentation/papilab-documentation-stewardship/SKILL.md` when creating, reviewing, moving, promoting, retiring, or reconciling durable documentation and project progress records.
+Use `skills/documentation/scient-documentation-stewardship/SKILL.md` when creating, reviewing, moving, promoting, retiring, or reconciling durable documentation and project progress records.
 
 Project skills are workflow helpers. They should point agents back to the canonical repo documents and must not override `docs/product/`, `docs/architecture/`, `docs/documentation-policy.md`, or this `AGENTS.md` file.
 

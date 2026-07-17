@@ -2,8 +2,8 @@
 
 Status: Active
 Owner: Yaacov
-Last updated: 2026-07-11
-Purpose: Maps where PapiLab external research, source evaluations, and spike reports live.
+Last updated: 2026-07-17
+Purpose: Maps where Scient external research, source evaluations, and spike reports live.
 Doc type: Repo orientation
 
 Use this folder for source-backed research that informs product and architecture decisions.
