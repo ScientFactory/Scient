@@ -2,7 +2,7 @@
 
 Status: Active
 Owner: Yaacov
-Last updated: 2026-07-16
+Last updated: 2026-07-17
 Purpose: Gives new PapiLab collaborators a deliberate reading journey through the project, its repository, and its sources of truth before task-specific work begins.
 Doc type: Repo orientation
 
@@ -22,7 +22,12 @@ Complete the shared reading journey before starting the contribution-area route 
 
 PapiLab is a local-first, cloud-mirrored scientific workspace where researchers, collaborators, and AI agents should be able to carry a research project from its initial question to publication-ready outputs.
 
-This repository is still documentation-first. It contains accepted product direction, evolving architecture and planning, source-backed research, quality principles, and controlled lab experiments. It does not yet contain the complete PapiLab application or all of the development and operational workflows that the documents anticipate.
+This parent repository remains documentation-first. It contains accepted
+product direction, evolving architecture and planning, source-backed research,
+quality principles, and controlled lab experiments. The maintained desktop
+fork contains the first narrow PapiLab-owned project-initiation package, but it
+does not yet contain the complete scientific application, vertical slice, or
+the development and operational workflows that the documents anticipate.
 
 The repository currently owns PapiLab product and project knowledge. It is not yet the general memory for company strategy, finance, legal, people, customer records, or cross-product authority. A proposed connected-company model is documented in [Repository Scope And Company Memory](planning/repository-scope-and-company-memory.md), but it does not change the current boundary.
 

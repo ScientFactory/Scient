@@ -2,7 +2,7 @@
 
 Status: Draft
 Owner: Yaacov
-Last updated: 2026-07-16
+Last updated: 2026-07-17
 Purpose: Defines the bounded source-tracing, implementation, and verification plan for the first PapiLab scientific project slice.
 Doc type: Planning note
 
@@ -38,6 +38,21 @@ Boundary Trace** follows before scientific-state, UI, or executor integration.
 Neither trace is another numbered gate, disposable bridge, or general Synara
 architecture tour. Each must end with the evidence-backed decision required by
 the next implementation step.
+
+## Current Execution Status
+
+Phase 1 is complete. The placement trace selected the permanent package seam,
+and desktop PR #4 implemented `@papilab/project-init` with zero-write
+inspection, explicit plan/apply behavior, conservative recovery, and 43 focused
+tests. The package remains present on the maintained desktop `main` at
+`fd37cdcd`, after the reviewed official Synara v0.5.5 sync. The owned OpenCode
+baseline is `8c19505ec` on `dev`, after the reviewed OpenCode 1.18.3 sync and
+review-tooltip follow-up.
+
+Phase 2, the remaining first-slice boundary trace, is the next work. No
+scientific-state store, project-initiation UI or server RPC, PapiLab agent
+gateway, proposal/decision ledger, or complete scientific workflow is claimed
+as implemented.
 
 ## Product Slice
 

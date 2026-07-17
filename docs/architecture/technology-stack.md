@@ -2,7 +2,7 @@
 
 Status: Proposed
 Owner: Yaacov
-Last updated: 2026-07-16
+Last updated: 2026-07-17
 Purpose: Records PapiLab's current technology stack direction and open implementation decisions.
 Doc type: Architecture direction
 
@@ -74,16 +74,20 @@ The core architectural rule is:
 
 ## Actual Scaffold State
 
-As of 2026-07-16, the executable application scaffold is the owned Synara
+As of 2026-07-17, the executable application scaffold is the owned Synara
 checkout at `desktop-app-forks/synara/`. Its PapiLab identity and project-init
 lane passed hosted CI at `2ecdbb5e` and was merged as `50294e64`. The subsequent
 application-foundation follow-up passed hosted CI at `f7760e97` and advanced
-owned `main` to `bb7ee10a`; exact provenance is recorded in
-`lab/external/sources.lock.md`.
-The owned OpenCode fork is at `agent-forks/opencode/` on `dev` at `f85656c01`,
-pushed to `yaacovcorcos/opencode`. Historical Gate 1 and Gate 1.5 commits,
-tags, and ignored runtime evidence remain historical records; they are not the
-active PapiLab implementation baseline.
+the owned application baseline. A later maintained sync through official Synara
+v0.5.5 passed hosted CI at `d4b10c27` and advanced owned `main` to
+`fd37cdcd`, zero commits behind tested upstream `9be46c3c`; exact provenance is
+recorded in `lab/external/sources.lock.md`.
+The owned OpenCode fork is at `agent-forks/opencode/` on `dev` at `8c19505ec`,
+after reviewed syncs through OpenCode 1.18.3 at official upstream
+`b527f605d`. Its final hosted source-quality run passed at `865f8bde1`, and the
+owned default was zero commits behind that tested upstream. Historical
+Gate 1 and Gate 1.5 commits, tags, and ignored runtime evidence remain
+historical records; they are not the active PapiLab implementation baseline.
 
 The scaffold currently provides:
 

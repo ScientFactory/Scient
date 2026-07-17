@@ -1,17 +1,18 @@
 # Project Initiation Placement Trace
 
-Status: Draft
+Status: Historical
 Owner: Yaacov
-Last updated: 2026-07-16
+Last updated: 2026-07-17
 Purpose: Records the source-backed placement and dependency decision for the first permanent PapiLab project-initiation package.
 Doc type: Research evidence
 
 ## Scope And Authority
 
-This is the narrow placement trace required before the portable project-initiation
-kernel is implemented. It does not complete the broader first-slice source trace,
-activate `docs/architecture/project-format.md`, or claim that project initiation
-is implemented. The accepted ownership boundary remains
+This is the narrow placement trace that was required before the portable
+project-initiation kernel was implemented. It records the point-in-time source
+baseline and placement decision; the executed outcome is recorded below. It
+does not complete the broader first-slice source trace or activate
+`docs/architecture/project-format.md`. The accepted ownership boundary remains
 `../../docs/architecture/decisions/ADR-0001-synara-opencode-foundation-and-papilab-ownership-boundary.md`.
 
 ## Selected Source Baseline
@@ -133,6 +134,22 @@ format.
 10. Add a developer-only harness for previewing and applying initialization in a
     temporary or explicitly supplied folder.
 
+## Executed Outcome
+
+Desktop PR #4 implemented the selected `@papilab/project-init` package at exact
+head `2ecdbb5e6f41248200b75bf61a0e6c3dacab7364`; hosted CI run
+`29514254313` passed, and the change merged as
+`50294e6400737e28753d995f1252025f6c76e901`. Its four focused test files
+contain 43 passing tests.
+
+The implementation preserves the decision in this trace: the package has no
+Electron, React, Synara application, OpenCode, SQLite, or provider dependency;
+opening a folder remains zero-write; initialization requires a separately
+previewed plan; existing project files are preserved or proposed rather than
+silently replaced; and interrupted application has conservative recovery. The
+package remains present after the reviewed Synara v0.5.5 sync on owned desktop
+`main` at `fd37cdcda16ff34c3b13d098e5a35d0d1aff5096`.
+
 ## Remaining Trace Work
 
 The broader first-slice trace still must map manual scientific operations,
@@ -143,8 +160,8 @@ gap.
 
 ## Go Decision
 
-The selected Synara baseline and monorepo topology provide a clean permanent
-home for the portable project-initiation kernel. Implementation may begin in
-the isolated package. Product UI, server RPC, scientific-state, and executor
-integration remain no-go until the package is reviewed and the remaining
-boundary trace is completed.
+The selected Synara baseline and monorepo topology provided a clean permanent
+home for the portable project-initiation kernel, and that package has now been
+implemented and reviewed. Product UI, server RPC, scientific-state, and
+executor integration remain no-go until the remaining boundary trace is
+completed.

@@ -2,7 +2,7 @@
 
 Status: Active
 Owner: Yaacov
-Last updated: 2026-07-16
+Last updated: 2026-07-17
 Purpose: Defines how agents should work in this early PapiLab repository.
 Doc type: Agent protocol
 
@@ -14,9 +14,11 @@ PapiLab is a local-first, cloud-mirrored scientific workspace where researchers 
 
 ## Current State
 
-This repo is currently documentation-first.
-
-The application architecture has not been built yet. Do not assume that app folders, package boundaries, runtime services, database schemas, sync engines, or agent execution layers already exist.
+This parent repo remains documentation-first. The maintained desktop fork now
+contains the first permanent PapiLab-owned package, `@papilab/project-init`,
+but the broader application architecture and first scientific vertical slice
+have not been built. Do not infer scientific-state, gateway, sync, cloud, or
+production boundaries from that narrow package.
 
 The current repo contents are working documents. They are expected to change as the product, architecture, and implementation plan become clearer.
 

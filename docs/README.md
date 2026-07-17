@@ -2,11 +2,18 @@
 
 Status: Active
 Owner: Yaacov
-Last updated: 2026-07-16
+Last updated: 2026-07-17
 Purpose: Maps the PapiLab documentation structure and where each kind of information belongs.
 Doc type: Repo orientation
 
-PapiLab is currently documentation-first. This structure gives PapiLab product, architecture, planning, research, development, and operations material clear homes without pretending the implementation already exists. It is not currently the unrestricted memory of the whole company; the proposed connected-company boundary lives in [Repository Scope And Company Memory](planning/repository-scope-and-company-memory.md).
+This parent repository remains documentation-first. The maintained desktop fork
+contains the first narrow PapiLab-owned project-initiation package, while the
+scientific application architecture and vertical slice remain unbuilt. This
+structure gives product, architecture, planning, research, development, and
+operations material clear homes without presenting planned behavior as current
+implementation. It is not currently the unrestricted memory of the whole
+company; the proposed connected-company boundary lives in [Repository Scope
+And Company Memory](planning/repository-scope-and-company-memory.md).
 
 Start here:
 

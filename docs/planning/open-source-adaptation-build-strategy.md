@@ -2,7 +2,7 @@
 
 Status: Draft
 Owner: Yaacov
-Last updated: 2026-07-16
+Last updated: 2026-07-17
 Purpose: Defines the current fork, adaptation, upstream-update, and divergence strategy for open-source foundations used by PapiLab.
 Doc type: Planning note
 
@@ -24,9 +24,10 @@ validated.
 
 ## Current State
 
-PapiLab is still documentation-first. There is no implemented app, project
-kernel, agent gateway, sync layer, editor, analysis runtime, or build pipeline in
-this repo.
+The parent repository remains documentation-first. The maintained desktop fork
+contains the dependency-light `@papilab/project-init` package, but there is no
+implemented scientific application, canonical project-state kernel, agent
+gateway, sync layer, editor, analysis runtime, or PapiLab production pipeline.
 
 The current practical direction is to build on owned, working foundations while
 keeping PapiLab's scientific project meaning owned:
