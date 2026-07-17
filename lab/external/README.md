@@ -2,13 +2,13 @@
 
 Status: Draft
 Owner: Yaacov
-Last updated: 2026-07-16
-Purpose: Explains how external source provenance and ignored local checkouts are organized for the PapiLab lab.
+Last updated: 2026-07-17
+Purpose: Explains how external source provenance and ignored local checkouts are organized for the Scient lab.
 Doc type: Planning note
 
 ## Purpose
 
-This folder owns provenance metadata for upstream projects used in PapiLab fork,
+This folder owns provenance metadata for upstream projects used in Scient fork,
 integration, and source-reading work. Active owned checkouts live in ignored
 root-level folders so they can be maintained as independent repositories without
 being mistaken for tracked parent-repository content.
@@ -34,5 +34,5 @@ branches or evidence have been reconciled.
 - Record exact source commits in `sources.lock.md`.
 - Prefer one physical checkout per upstream repository.
 - Use pointer notes when one repository spans multiple roles.
-- Keep PapiLab-owned bridge code outside these upstream trees unless a fork patch
+- Keep Scient-owned bridge code outside these upstream trees unless a fork patch
   is intentionally being tested.

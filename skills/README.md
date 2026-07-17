@@ -2,18 +2,18 @@
 
 Status: Active
 Owner: Yaacov
-Last updated: 2026-07-16
-Purpose: Indexes local workflow skills that help agents work on PapiLab without becoming project authority.
+Last updated: 2026-07-17
+Purpose: Indexes local workflow skills that help agents work on Scient without becoming project authority.
 Doc type: Repo orientation
 
-This folder keeps PapiLab-specific agent skills together so they are easy to find when working on this project.
+This folder keeps Scient-specific agent skills together so they are easy to find when working on this project.
 
 Project skills are workflow helpers. They should point agents back to the canonical repo documents and must not override `AGENTS.md`, `docs/product/`, `docs/architecture/`, or `docs/documentation-policy.md`.
 
 ## Skills
 
-- [`documentation/papilab-documentation-stewardship/SKILL.md`](documentation/papilab-documentation-stewardship/SKILL.md) - governed documentation creation, review, placement, promotion, progress routing, reconciliation, and validation.
-- [`product/papilab-product-stewardship/SKILL.md`](product/papilab-product-stewardship/SKILL.md) - product management, PRD, feature analysis, roadmap, and product decision support.
+- [`documentation/scient-documentation-stewardship/SKILL.md`](documentation/scient-documentation-stewardship/SKILL.md) - governed documentation creation, review, placement, promotion, progress routing, reconciliation, and validation.
+- [`product/scient-product-stewardship/SKILL.md`](product/scient-product-stewardship/SKILL.md) - product management, PRD, feature analysis, roadmap, and product decision support.
 
 ## Adding Skills
 

@@ -2,16 +2,16 @@
 
 Status: Active
 Owner: Yaacov
-Last updated: 2026-06-27
-Purpose: Defines where PapiLab quality, testing, and engineering-standard documentation lives.
+Last updated: 2026-07-17
+Purpose: Defines where Scient quality, testing, and engineering-standard documentation lives.
 Doc type: Repo orientation
 
 Use this folder for quality principles and testing philosophy. Verification strategy belongs here when it is discussed and accepted; execution commands and CI operations belong later under `docs/development/` or `docs/operations/`.
 
 Current files:
 
-- `testing-philosophy.md` - draft testing doctrine for PapiLab.
-- `code-quality-principles.md` - draft code quality doctrine for PapiLab.
+- `testing-philosophy.md` - draft testing doctrine for Scient.
+- `code-quality-principles.md` - draft code quality doctrine for Scient.
 
 Do not use this folder as:
 

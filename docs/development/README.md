@@ -2,11 +2,11 @@
 
 Status: Placeholder
 Owner: Yaacov
-Last updated: 2026-06-27
+Last updated: 2026-07-17
 Purpose: Defines where development documentation should live once implementation exists.
 Doc type: Future home
 
-Use this folder once PapiLab has code, commands, packages, tests, APIs, configuration, or local development workflows to document.
+Use this folder once Scient has code, commands, packages, tests, APIs, configuration, or local development workflows to document.
 
 Document here when relevant:
 

@@ -1,35 +1,59 @@
 # PapiLab-To-Scient Rename Execution Plan
 
-Status: Proposed
+Status: Historical
 Owner: Yaacov
 Last updated: 2026-07-17
-Purpose: Defines the controlled future migration from the current PapiLab identity to Scient and ScientFactory.
+Purpose: Preserves the executed PapiLab-to-Scient migration, compatibility contract, verification requirements, and deferred public cutover.
 Doc type: Planning note
 
 ## Goal
 
-Rename the active PapiLab product and maintained product-owned implementation
-to the accepted Scient identity without losing project data, confusing the
-Scient app with the Scient agent, damaging Synara/OpenCode upstream lineage,
-breaking external-agent connections, or rewriting historical evidence.
+Record how the active PapiLab product and maintained product-owned
+implementation were renamed to Scient without losing project data, confusing
+the Scient app with the Scient agent, damaging Synara/OpenCode upstream
+lineage, breaking external-agent connections, or rewriting historical evidence.
 
-This plan makes the repository ready for execution by defining the authoritative
-name map, current-versus-target boundary, migration sequence, compatibility
-policy, verification requirements, rollback expectations, and completion
-criteria. It does not perform the rename and must not be cited as evidence that
-any target identifier is already implemented.
+This document began as the execution plan and now preserves the verified
+sequence, compatibility policy, rollback expectations, and closeout boundary.
+The final source revisions and hosted verification are recorded in the
+execution outcome and source lock; this document alone is not runtime evidence.
+
+## Execution Outcome
+
+The rename of existing owned surfaces is complete:
+
+- the GitHub organization and owned repositories use `ScientFactory/Scient`,
+  `ScientFactory/scient-desktop`, and `ScientFactory/scient-agent`;
+- agent-source [PR #6](https://github.com/ScientFactory/scient-agent/pull/6)
+  passed hosted run `29595488492` at `5d232a34` and merged to `dev` as
+  `5ffaf9a2`;
+- desktop [PR #12](https://github.com/ScientFactory/scient-desktop/pull/12)
+  passed hosted run `29595506303` at `179fa01e` and merged to `main` as
+  `d9d8992a`;
+- the app, packages, project metadata, protocol, bundle IDs, profiles, storage,
+  artifacts, workflows, and current documentation use Scient naming;
+- supported PapiLab app/project state has an additive migration path and remains
+  preserved for rollback;
+- Synara and OpenCode remain named where they identify inherited upstream code,
+  licenses, attribution, compatibility, or external-agent behavior; and
+- the public website cutover is explicitly deferred to the owner.
+
+The `scient-agent` repository name establishes the owned source boundary now.
+It does not claim that the native Scient agent runtime is implemented. That
+future product work remains governed by
+`scient-and-external-agents-implementation-plan.md`.
 
 ## Authorities
 
 - `../product/scient-product-identity.md` owns the accepted company, app,
   agent, and external-agent names.
 - `../product/PRD.md` owns the broader product requirements.
-- `../architecture/decisions/ADR-0001-synara-opencode-foundation-and-papilab-ownership-boundary.md`
+- `../architecture/decisions/ADR-0001-synara-opencode-foundation-and-scient-ownership-boundary.md`
   owns the inherited application/agent foundations and canonical project-state
   boundary until it is deliberately renamed or superseded.
 - `litrev-to-papilab-rename-execution-plan.md` remains the historical execution
   and rollback record for the preceding rename.
-- This document owns the proposed PapiLab-to-Scient migration sequence,
+- This document preserves the executed PapiLab-to-Scient migration sequence,
   verification, rollback, and closeout criteria.
 
 ## Accepted Name Map
@@ -44,7 +68,7 @@ any target identifier is already implemented.
 | GitHub owner | `yaacovcorcos` | `ScientFactory` |
 | Parent repository | `yaacovcorcos/PapiLab` | `ScientFactory/Scient` |
 | Desktop repository | `yaacovcorcos/papilab-desktop` | `ScientFactory/scient-desktop` |
-| OpenCode-derived source repository | `yaacovcorcos/opencode` | `ScientFactory/opencode` until `scient-agent` is truthful |
+| OpenCode-derived source repository | `yaacovcorcos/opencode` | `ScientFactory/scient-agent` |
 | Package scope | `@papilab/*` | `@scientfactory/*` |
 | Project metadata | `.papilab/` | `.scient/` |
 | Application protocol | `papilab://app` | `scient://app` |
@@ -252,13 +276,13 @@ from implemented current state.
    - `yaacovcorcos/PapiLab` to `ScientFactory/Scient`;
    - `yaacovcorcos/papilab-desktop` to
      `ScientFactory/scient-desktop`; and
-   - `yaacovcorcos/opencode` to `ScientFactory/opencode`.
+   - `yaacovcorcos/opencode` to `ScientFactory/scient-agent`.
 4. Keep official Synara and OpenCode fetch-only upstream remotes unchanged and
    keep both transferred forks in their official GitHub fork networks.
-5. Keep the OpenCode-derived source repository named `opencode` until the
-   Scient agent is real enough that `scient-agent` is truthful.
-6. When that threshold is met, rename through a separate reviewed topology
-   change while preserving official OpenCode upstream and attribution.
+5. By explicit owner decision, name the owned source boundary `scient-agent`
+   now while stating clearly that the native agent runtime remains unbuilt.
+6. Preserve official OpenCode upstream and attribution across that source
+   repository rename.
 7. Never point writable origin at an official repository.
 8. Update writable origins, source locks, workflow references, required checks,
    and release configuration immediately after each transfer. Verify CI before
@@ -306,7 +330,7 @@ while inherited/historical names remain limited to allowlisted internal truth.
 Exit evidence: new projects use `.scient/`; supported `.papilab/` projects
 migrate safely; existing user files are not overwritten.
 
-### Phase 5 — Establish The Scient Agent Identity
+### Phase 5 — Establish The Scient Agent Identity (Deferred Product Work)
 
 1. Build the owned OpenCode-derived runtime as the Scient agent, not as a
    Scient shell over a separately exposed OpenCode engine.
@@ -321,8 +345,14 @@ migrate safely; existing user files are not overwritten.
    credentials, settings, sessions, or updates.
 6. Keep external OpenCode independently selectable.
 
-Exit evidence: the Scient app and Scient agent work together while the Scient
-agent and external OpenCode coexist with isolated identity and state.
+This phase was removed from the rename closeout because no pre-existing native
+agent identity required migration. Repository naming and inherited-source
+verification are complete; implementing and proving the native runtime remains
+future product work.
+
+Exit evidence for that later work: the Scient app and Scient agent work
+together while the Scient agent and external OpenCode coexist with isolated
+identity and state.
 
 ### Phase 6 — Rename And Preserve The External-Agent Layer
 
@@ -352,28 +382,30 @@ Exit evidence: repeatable maintenance and release verification fails on stale
 identity, lost adapters, unsafe migration, unreviewed divergence, or incorrect
 update configuration.
 
-### Phase 8 — Run Coexistence And Recovery Proofs
+### Phase 8 — Run App Coexistence And Recovery Proofs
 
 Verify on clean-install and upgrade paths:
 
 - Scient app alongside official Synara and retained PapiLab state;
-- Scient agent alongside external OpenCode;
-- different app and agent processes, profiles, homes, credentials, endpoints,
-  sessions, logs, caches, and updates;
+- when the native Scient agent is later implemented, Scient agent alongside
+  external OpenCode;
+- for existing app surfaces, isolated processes, profiles, storage, endpoints,
+  logs, caches, and updates;
 - `.papilab/` migration to `.scient/`, including interruption and rollback;
 - open, initialize, reopen, and recover without Git;
 - external-agent settings and threads round-trip unchanged;
-- failure, sign-out, update, corruption, or removal of one agent does not
-  disable the other; and
+- for future agent implementation, failure, sign-out, update, corruption, or
+  removal of one agent does not disable the other; and
 - canonical project state remains reconstructable without any agent session
   database.
 
 Exit evidence: automated tests plus an installed-app smoke at exact candidate
 heads.
 
-### Phase 9 — Cut Over Public Surfaces
+### Phase 9 — Cut Over Public Surfaces (Owner-Deferred)
 
-Only after local and release evidence is clean:
+The owner explicitly deferred the live website/deployment cutover. When it is
+authorized, perform it only after local and release evidence is clean:
 
 1. Update `scientfactory.com` content and product routes.
 2. Update authentication callbacks, emails, downloads, documentation URLs,
@@ -389,7 +421,8 @@ application agree on ScientFactory and Scient.
 
 1. Update current implementation and source-lock documents with exact merged
    revisions and verification evidence.
-2. Mark this plan Historical after verified completion.
+2. Keep this plan Historical after verified closeout of the existing owned
+   surfaces.
 3. Preserve the LitRev-to-PapiLab plan and both rename reports as history.
 4. Remove only temporary branches, worktrees, archives, and evidence that are
    confirmed unnecessary; preserve user artifacts and required migration
@@ -444,12 +477,15 @@ Pause and review if execution would require:
 
 The rename is complete only when:
 
-- accepted product truth and current implementation both identify the company
-  as ScientFactory and the app/native agent as Scient;
+- accepted product truth and existing implementation identify the company as
+  ScientFactory and the app as Scient, while reserving Scient for the planned
+  native agent;
 - technical documentation distinguishes Scient app from Scient agent;
 - external agents remain independently selectable and configured;
 - new projects use `.scient/` and supported `.papilab/` projects migrate safely;
-- application and agent identity/state are isolated despite the shared brand;
+- application identity/state is isolated from PapiLab and inherited products;
+  future Scient-agent identity/state isolation remains an implementation
+  requirement rather than a completed rename claim;
 - owned repositories, protections, workflows, packages, artifacts, and source
   locks use the verified final topology;
 - installed and upgrade-path verification passes at exact merged heads;

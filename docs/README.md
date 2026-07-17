@@ -3,11 +3,11 @@
 Status: Active
 Owner: Yaacov
 Last updated: 2026-07-17
-Purpose: Maps the PapiLab documentation structure and where each kind of information belongs.
+Purpose: Maps the Scient documentation structure and where each kind of information belongs.
 Doc type: Repo orientation
 
 This parent repository remains documentation-first. The maintained desktop fork
-contains the first narrow PapiLab-owned project-initiation package, while the
+contains the first narrow Scient-owned project-initiation package, while the
 scientific application architecture and vertical slice remain unbuilt. This
 structure gives product, architecture, planning, research, development, and
 operations material clear homes without presenting planned behavior as current
@@ -20,13 +20,13 @@ Start here:
 - [Collaborator onboarding](onboarding.md) - ordered project journey, repository tour, and contribution-area reading routes.
 - [Documentation policy](documentation-policy.md) - documentation rules, metadata, statuses, and placement policy.
 - [Product requirements](product/PRD.md) - canonical product direction.
-- [Scient product identity](product/scient-product-identity.md) - accepted future company, app, native-agent, external-agent, and naming vocabulary.
+- [Scient product identity](product/scient-product-identity.md) - accepted company, app, native-agent, external-agent, and naming vocabulary.
 - [Product philosophy](product/product-philosophy.md) - draft durable product principles; the accepted PRD governs conflicts.
 - [Technology stack](architecture/technology-stack.md) - current proposed stack direction.
 - [Product roadmap](planning/product-roadmap.md) - current sequence of coherent product outcomes.
-- [First vertical-slice implementation plan](planning/first-papilab-vertical-slice-implementation-plan.md) - bounded plan for the active product slice.
+- [First vertical-slice implementation plan](planning/first-scient-vertical-slice-implementation-plan.md) - bounded plan for the active product slice.
 - [Scient and external agents implementation plan](planning/scient-and-external-agents-implementation-plan.md) - proposed plan for building the Scient agent as the owned OpenCode-derived first-party agent while preserving external agents independently.
-- [PapiLab-to-Scient rename execution plan](planning/papilab-to-scient-rename-execution-plan.md) - proposed controlled migration from the current PapiLab implementation identity to Scient and ScientFactory.
+- [PapiLab-to-Scient rename execution record](planning/papilab-to-scient-rename-execution-plan.md) - historical migration, compatibility, rollback, and deferred-public-cutover record.
 - [LitRev-to-PapiLab rename execution plan](planning/litrev-to-papilab-rename-execution-plan.md) - historical intermediate identity migration, verification, and rollback record.
 - [Architecture](architecture/README.md) - architecture direction, future architecture homes, and decisions.
 - [Design](design/README.md) - future home for product design principles and UI guidance.

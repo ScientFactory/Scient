@@ -2,16 +2,16 @@
 
 Status: Draft
 Owner: Yaacov
-Last updated: 2026-07-16
-Purpose: Records research evidence on Goose integration seams, runtime boundaries, safety gaps, and its possible later role in PapiLab.
+Last updated: 2026-07-17
+Purpose: Records research evidence on Goose integration seams, runtime boundaries, safety gaps, and its possible later role in Scient.
 Doc type: Research evidence
 
 ## Outcome
 
-Goose is a strong candidate for PapiLab's broader local-agent engine, especially
+Goose is a strong candidate for Scient's broader local-agent engine, especially
 for MCP extensions, recipes, repeatable workflows, scheduling, provider choice,
-and subagents. It should sit behind a PapiLab-owned gateway; it should not define
-PapiLab project truth, permissions, provenance, or accepted write-back.
+and subagents. It should sit behind a Scient-owned gateway; it should not define
+Scient project truth, permissions, provenance, or accepted write-back.
 
 The recommended first integration is `goose acp` over stdio. It gives a local
 client structured, bidirectional streaming without opening a network port and
@@ -21,7 +21,7 @@ current upstream removed that crate and replaced the custom-client path with ACP
 
 Goose is not a filesystem sandbox. Its working directory anchors relative
 paths, but its built-in file tools accept absolute paths and its shell tool runs
-normal host commands. PapiLab must provide the project boundary, approval policy,
+normal host commands. Scient must provide the project boundary, approval policy,
 and independent run receipt.
 
 ## Inspected Source
@@ -52,7 +52,7 @@ provider, SDK, local-inference, test, and desktop surfaces.
 
 Important components:
 
-| Component | Role relevant to PapiLab |
+| Component | Role relevant to Scient |
 |---|---|
 | `crates/goose` | Core agent loop, sessions, recipes, extensions, permissions, hooks, security inspectors, and ACP implementation. |
 | `crates/goose-cli` | `goose acp`, `goose serve`, interactive sessions, one-shot runs, recipes, scheduler commands, and configuration. |
@@ -60,27 +60,27 @@ Important components:
 | `crates/goose-providers` | Provider implementations and model streaming. |
 | `crates/goose-sdk` | Rust bindings layer and a reference ACP client; Python/Kotlin bindings currently expose a narrower provider surface. |
 | `ui/sdk` | TypeScript ACP client/types plus optional platform-specific Goose binaries. |
-| `ui/desktop` | Goose's own Electron client; useful as ACP-client reference, not a UI to embed in PapiLab. |
+| `ui/desktop` | Goose's own Electron client; useful as ACP-client reference, not a UI to embed in Scient. |
 
 Goose itself now uses ACP as the main separation between client UI and agent
-runtime. This aligns better with PapiLab than copying Goose desktop components.
+runtime. This aligns better with Scient than copying Goose desktop components.
 
 ## Integration Options
 
 | Option | Current assessment |
 |---|---|
 | `goose acp` over stdio | Recommended first spike. Local child-process lifecycle, no listening port, structured streaming, permissions, tool events, cancellation, and sessions. |
-| `goose serve` over authenticated HTTP/WebSocket | Viable later when PapiLab needs a longer-lived or separately managed backend. Requires `GOOSE_SERVER__SECRET_KEY`, origin handling, lifecycle supervision, and a local network threat review. |
+| `goose serve` over authenticated HTTP/WebSocket | Viable later when Scient needs a longer-lived or separately managed backend. Requires `GOOSE_SERVER__SECRET_KEY`, origin handling, lifecycle supervision, and a local network threat review. |
 | TypeScript `@aaif/goose-sdk` | Useful protocol/client reference and possible packaging shortcut, but the official packages bundle official binaries. An owned-fork release path would need its own package/binary provenance. |
-| Direct Rust embedding through Goose crates/SDK | Deferred. It couples PapiLab more tightly to fast-moving internal APIs and adds Rust/native build complexity before the adapter contract is proven. |
+| Direct Rust embedding through Goose crates/SDK | Deferred. It couples Scient more tightly to fast-moving internal APIs and adds Rust/native build complexity before the adapter contract is proven. |
 | `goose run` text/CLI parsing | Suitable for smoke tests or automation, but weaker than ACP for approvals, structured events, cancellation, and interactive control. |
-| Goose desktop embedding | Not recommended. PapiLab already has a workbench candidate, and embedding another desktop product would duplicate UI, state, and orchestration. |
+| Goose desktop embedding | Not recommended. Scient already has a workbench candidate, and embedding another desktop product would duplicate UI, state, and orchestration. |
 
 ## Capabilities Worth Reusing
 
 - ACP initialization, session creation/loading/listing/closing/forking, prompt
   streaming, tool-call updates, permission requests, and cancellation.
-- Client-provided filesystem and terminal capabilities, which allow a PapiLab
+- Client-provided filesystem and terminal capabilities, which allow a Scient
   client to own some tools and show native diffs or terminal output.
 - MCP extensions over stdio and Streamable HTTP, plus frontend-provided tools.
 - Recipes with parameters, response JSON schemas, extensions, retry settings,
@@ -92,33 +92,33 @@ runtime. This aligns better with PapiLab than copying Goose desktop components.
   and observability seams.
 - Configurable state isolation through `GOOSE_PATH_ROOT`.
 
-These are engine capabilities. PapiLab must decide which context is supplied,
+These are engine capabilities. Scient must decide which context is supplied,
 which tools are exposed, which changes are proposed, and which outputs become
 accepted scientific state.
 
 ## Safety And Boundary Findings
 
-1. **Autonomous mode is the documented default.** PapiLab must never inherit
+1. **Autonomous mode is the documented default.** Scient must never inherit
    that default silently. The first adapter should require explicit approval or
-   a stricter PapiLab-controlled policy.
+   a stricter Scient-controlled policy.
 2. **Working directory is not a sandbox.** Relative paths resolve from the
    session working directory, but absolute file paths are accepted. Shell
    commands run through the host shell and can address paths outside the
    project.
 3. **Tool classification is best effort.** Goose distinguishes read, write,
    shell, and other operations and provides manual/smart permission modes, but
-   documentation states classification is interpretive. PapiLab needs its own
+   documentation states classification is interpretive. Scient needs its own
    enforceable scope checks.
 4. **Hooks are helpful but not a sole security boundary.** Pre-tool hooks can
    block calls, yet hook execution errors are logged and treated as allow. A
-   failing hook must not become PapiLab's only containment mechanism.
+   failing hook must not become Scient's only containment mechanism.
 5. **Engine state is persistent and non-canonical.** Sessions are stored in a
    Goose SQLite database under its data root. This is useful for runtime resume
    and diagnostics but must remain reconstructable or discardable relative to
-   PapiLab-owned records.
+   Scient-owned records.
 6. **Some extensions write engine-specific project state.** The memory MCP can
    use `.goose/memory` under the working directory. Do not enable that behavior
-   as PapiLab project memory without an explicit adapter decision.
+   as Scient project memory without an explicit adapter decision.
 7. **ACP is still marked experimental.** It is the strongest current seam, but
    the adapter must pin and test the protocol/version surface during updates.
 8. **Upstream is moving quickly.** Twenty-three commits in four days removed a
@@ -127,25 +127,25 @@ accepted scientific state.
 
 ## Owned-Fork Recommendation
 
-Maintain a PapiLab-owned Goose fork even while keeping it close to upstream:
+Maintain a Scient-owned Goose fork even while keeping it close to upstream:
 
 ```text
-origin   -> PapiLab-owned Goose fork
+origin   -> Scient-owned Goose fork
 upstream -> aaif-goose/goose, fetch-only
 ```
 
-Initially keep PapiLab changes outside Goose core where possible:
+Initially keep Scient changes outside Goose core where possible:
 
-- a PapiLab ACP adapter/client;
-- PapiLab recipes and MCP extensions;
+- a Scient ACP adapter/client;
+- Scient recipes and MCP extensions;
 - packaging and pinned binary provenance;
 - narrowly scoped configuration defaults; and
 - upstreamable generic fixes.
 
 Do not rebrand or distribute Goose desktop merely because the source supports
 custom distributions. If Goose remains an embedded engine, its standalone UI
-is not part of the PapiLab product surface. Revisit deeper ownership only if ACP,
-recipes, extensions, and adapter seams cannot satisfy real PapiLab workflows.
+is not part of the Scient product surface. Revisit deeper ownership only if ACP,
+recipes, extensions, and adapter seams cannot satisfy real Scient workflows.
 
 Apache-2.0 permits modification and distribution subject to license and notice
 requirements. Goose's own custom-distribution guidance also cautions against
@@ -163,18 +163,18 @@ After the owned fork exists:
 5. require approval for the single harmless action;
 6. capture ACP text, tool, permission, cancellation, and completion events;
 7. prove that an attempted absolute-path access outside the fixture is denied by
-   PapiLab rather than trusted to Goose's working directory;
-8. produce a PapiLab-owned run receipt independent of Goose's `sessions.db`; and
+   Scient rather than trusted to Goose's working directory;
+8. produce a Scient-owned run receipt independent of Goose's `sessions.db`; and
 9. stop the child process and verify state and credentials remain isolated.
 
-The spike passes only if PapiLab can reconstruct what was requested, approved,
+The spike passes only if Scient can reconstruct what was requested, approved,
 executed, produced, and rejected without treating Goose session storage as
 canonical.
 
 ## Recommendation
 
 Defer the owned Goose fork and ACP-over-stdio adapter spike until after the first
-PapiLab gateway works through the owned OpenCode runtime. Use Goose later to test
+Scient gateway works through the owned OpenCode runtime. Use Goose later to test
 the broader agent and automation role through that established boundary. Do not
 add Goose directly to Synara as an unrestricted provider and do not begin from
 Goose desktop or the removed REST server.

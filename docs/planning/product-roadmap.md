@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Last updated: 2026-07-17
-Purpose: Defines the current sequence of coherent PapiLab product outcomes without turning technology experiments into the product roadmap.
+Purpose: Defines the current sequence of coherent Scient product outcomes without turning technology experiments into the product roadmap.
 Doc type: Planning note
 
 ## Document Rules
@@ -16,12 +16,12 @@ own documents.
 Update this roadmap when the active product slice changes, when evidence changes
 its order, or when a slice is accepted, deferred, or rejected.
 
-## Now: First PapiLab Scientific Project Slice
+## Now: First Scient Scientific Project Slice
 
 A researcher can open a small local scientific project, add source material
 manually, delegate one bounded task to **Scient**, inspect the context and
 proposed result, accept or reject it, and reopen the project without losing its
-scientific meaning or history. Scient is PapiLab's owned OpenCode-derived
+scientific meaning or history. The Scient agent is the owned OpenCode-derived
 first-party agent; it is not a separate shell over an OpenCode engine.
 
 The slice combines:
@@ -33,19 +33,19 @@ The slice combines:
 - one proposed evidence-linked note;
 - inspect, edit, accept, and reject behavior;
 - a recovery point; and
-- close-and-reopen continuity from PapiLab-owned state.
+- close-and-reopen continuity from Scient-owned state.
 
 The slice is desktop-first. It does not include mobile, cloud sync,
 collaboration, full PDF parsing, full citation management, a complete manuscript
 editor, a complete scientific schema, a notebook system, or Goose integration.
 
 The implementation plan is
-[`first-papilab-vertical-slice-implementation-plan.md`](first-papilab-vertical-slice-implementation-plan.md).
+[`first-scient-vertical-slice-implementation-plan.md`](first-scient-vertical-slice-implementation-plan.md).
 
 ## Next
 
 - Strengthen the evidence-to-writing path based on the first slice.
-- Add scientific capabilities through the PapiLab-owned layer as real needs
+- Add scientific capabilities through the Scient-owned layer as real needs
   appear.
 - Make isolated changes to Scient's inherited OpenCode core only for
   demonstrated runtime gaps.

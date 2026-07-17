@@ -2,35 +2,35 @@
 
 Status: Draft
 Owner: Yaacov
-Last updated: 2026-06-27
-Purpose: Defines PapiLab's early security, trust-boundary, and permission principles before implementation-specific architecture exists.
+Last updated: 2026-07-17
+Purpose: Defines Scient's early security, trust-boundary, and permission principles before implementation-specific architecture exists.
 Doc type: Architecture direction
 
 ## Document Rules
 
-This document defines security and permission principles for the future PapiLab architecture. It does not describe implemented authorization, accepted compliance posture, account architecture, sync protocol, cloud provider, or runtime sandbox.
+This document defines security and permission principles for the future Scient architecture. It does not describe implemented authorization, accepted compliance posture, account architecture, sync protocol, cloud provider, or runtime sandbox.
 
 Do not use this document as institutional compliance evidence. University, hospital, enterprise, grant, or regulated-data claims must be backed by later implementation, controls, tests, policies, and operating procedures.
 
-Use it to evaluate architecture proposals, agent-tool contracts, local-first project design, cloud mirroring, sharing, and implementation plans. Update it when PapiLab has real architecture decisions or implemented security behavior.
+Use it to evaluate architecture proposals, agent-tool contracts, local-first project design, cloud mirroring, sharing, and implementation plans. Update it when Scient has real architecture decisions or implemented security behavior.
 
 ## Current State
 
-The current repo is documentation-first. PapiLab does not yet have an implemented app, auth system, sync engine, local sandbox, project permission model, or cloud collaboration model.
+The current repo is documentation-first. Scient does not yet have an implemented app, auth system, sync engine, local sandbox, project permission model, or cloud collaboration model.
 
-The principles below are adapted from the old PapiLab_2026 security baseline, but they are rewritten for the new local-first, cloud-mirrored product direction.
+The principles below are adapted from the old Scient_2026 security baseline, but they are rewritten for the new local-first, cloud-mirrored product direction.
 
 ## Security Position
 
-PapiLab will hold sensitive research material: sources, PDFs, notes, datasets, code, analysis outputs, manuscript drafts, memory, collaborator comments, agent logs, and potentially unpublished results.
+Scient will hold sensitive research material: sources, PDFs, notes, datasets, code, analysis outputs, manuscript drafts, memory, collaborator comments, agent logs, and potentially unpublished results.
 
 Security must protect the research project as the durable center of work. Local files, local structured state, cloud mirrors, shared projects, agent tools, external imports, and publication exports must not become competing trust boundaries with unclear authority.
 
-PapiLab should be designed so future institutional security review is possible without rewriting the product foundation. That means project ownership, identity, permissions, auditability, data lifecycle, cloud mirroring, local execution, agent tooling, and external integrations need explicit boundaries from the beginning, even when the first implementation is intentionally smaller.
+Scient should be designed so future institutional security review is possible without rewriting the product foundation. That means project ownership, identity, permissions, auditability, data lifecycle, cloud mirroring, local execution, agent tooling, and external integrations need explicit boundaries from the beginning, even when the first implementation is intentionally smaller.
 
 ## Sensitive Data Classes
 
-PapiLab should assume that real projects may contain sensitive material, including:
+Scient should assume that real projects may contain sensitive material, including:
 
 - unpublished manuscripts, hypotheses, results, and intellectual property,
 - licensed or institution-provided PDFs and source material,
@@ -39,7 +39,7 @@ PapiLab should assume that real projects may contain sensitive material, includi
 - collaborator identities, comments, assignments, decisions, and review history,
 - agent prompts, context receipts, tool calls, run logs, memory, and generated artifacts.
 
-Before implementation, PapiLab must decide which sensitive data classes are supported, unsupported, or institution-gated at each product maturity level. Unsupported sensitive data should be clearly excluded rather than accidentally accepted by silence.
+Before implementation, Scient must decide which sensitive data classes are supported, unsupported, or institution-gated at each product maturity level. Unsupported sensitive data should be clearly excluded rather than accidentally accepted by silence.
 
 ## Threat Sources To Model
 
@@ -56,11 +56,11 @@ Security design should consider at least these threat sources:
 
 ## Core Invariants
 
-### Permission Scope Belongs To PapiLab
+### Permission Scope Belongs To Scient
 
 The model does not decide what it may read, write, export, delete, share, or run.
 
-Agent tools, local executors, cloud services, collaborators, and external integrations must operate inside permission scope enforced by PapiLab's architecture.
+Agent tools, local executors, cloud services, collaborators, and external integrations must operate inside permission scope enforced by Scient's architecture.
 
 ### AI Tools Do Not Widen Authority
 
@@ -72,7 +72,7 @@ An agent request to read a file, update evidence, edit a manuscript, run code, m
 
 Missing metadata, uncertain source identity, parser failures, low-confidence extraction, ambiguous duplicate matches, stale analysis outputs, and incomplete citation data should remain visible as uncertainty.
 
-PapiLab should not silently invent authoritative values to make project state look cleaner than it is.
+Scient should not silently invent authoritative values to make project state look cleaner than it is.
 
 ### Local Ownership Does Not Remove Trust Boundaries
 
@@ -128,7 +128,7 @@ These areas need focused design before they become implementation commitments:
 - retention, deletion, portability, account closure, and institutional handoff behavior,
 - vulnerability disclosure, incident response, security review, and regression-test expectations.
 
-## Policy Transfer From PapiLab_2026
+## Policy Transfer From Scient_2026
 
 Carry forward these old-app lessons:
 
@@ -151,16 +151,16 @@ Do not carry forward old implementation-specific assumptions as product truth:
 ## Open Questions
 
 - What is the first local project permission model?
-- How does PapiLab distinguish project files from out-of-scope local files?
+- How does Scient distinguish project files from out-of-scope local files?
 - Which agent actions require approval, and which can run under pre-approved scopes?
 - How should cloud mirroring represent device identity, project membership, revocation, and conflict state?
 - What is the minimum safe sandbox for local code execution?
 - How should sensitive project memory be scoped across projects, users, devices, and cloud mirrors?
 - Which sensitive data classes are explicitly supported, unsupported, or institution-gated in the first product versions?
 - What account, device, and organization model is needed for university or lab teams without making the first product enterprise-heavy?
-- Should PapiLab support institution-managed identity such as single sign-on early, later, or only after a specific partnership requires it?
+- Should Scient support institution-managed identity such as single sign-on early, later, or only after a specific partnership requires it?
 - What encryption and key-management posture is required for local projects, cloud mirrors, backups, exports, and shared projects?
 - What audit events must be durable enough for institutional review, and which logs are only developer diagnostics?
 - How are prompts, context receipts, agent logs, memory, and generated artifacts redacted, retained, exported, or deleted?
 - How should secrets, API keys, database credentials, and external connector tokens be stored, scoped, rotated, and excluded from agent-visible context?
-- What is the first vulnerability disclosure and incident-response process once external users or institutions depend on PapiLab?
+- What is the first vulnerability disclosure and incident-response process once external users or institutions depend on Scient?

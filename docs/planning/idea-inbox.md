@@ -2,8 +2,8 @@
 
 Status: Active
 Owner: Yaacov
-Last updated: 2026-07-12
-Purpose: Provides one temporary intake surface for unprocessed PapiLab ideas before they are evaluated and routed to their durable homes.
+Last updated: 2026-07-17
+Purpose: Provides one temporary intake surface for unprocessed Scient ideas before they are evaluated and routed to their durable homes.
 Doc type: Planning note
 
 ## Document Rules
@@ -47,12 +47,12 @@ is being triaged.
 
 ### 2026-07-12 — Default project workspace and built-in starting material
 
-- Idea: Plan how a new PapiLab user's basic desktop project workspace should be
+- Idea: Plan how a new Scient user's basic desktop project workspace should be
   set up when the app creates and works with local files and folders.
 - Things to remember: possible built-in starter documentation or guidance, a
   small set of built-in skills, a standard place for articles and PDFs, and
   sensible places for other common research-project material.
-- Open questions: what PapiLab should create automatically; which areas should
+- Open questions: what Scient should create automatically; which areas should
   be visible folders or files versus app-managed state; which starting material
   belongs to the app versus each project; and how this should work when opening
   an existing folder.

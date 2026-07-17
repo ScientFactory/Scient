@@ -2,11 +2,11 @@
 
 Status: Placeholder
 Owner: Yaacov
-Last updated: 2026-06-27
-Purpose: Defines what should be documented about PapiLab project structure once the format is designed.
+Last updated: 2026-07-17
+Purpose: Defines what should be documented about Scient project structure once the format is designed.
 Doc type: Future home
 
-This page will document the PapiLab project format when it exists.
+This page will document the Scient project format when it exists.
 
 Document here:
 

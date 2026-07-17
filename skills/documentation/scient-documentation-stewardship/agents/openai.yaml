@@ -1,0 +1,4 @@
+interface:
+  display_name: "Scient Documentation Stewardship"
+  short_description: "Govern and maintain Scient project documentation"
+  default_prompt: "Use $scient-documentation-stewardship to handle this Scient documentation request in the correct canonical home."

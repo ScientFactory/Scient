@@ -2,8 +2,8 @@
 
 Status: Draft
 Owner: Yaacov
-Last updated: 2026-07-07
-Purpose: Organizes upstream agent engines and automation systems used in the PapiLab lab.
+Last updated: 2026-07-17
+Purpose: Organizes upstream agent engines and automation systems used in the Scient lab.
 Doc type: Planning note
 
 ## Role
@@ -19,7 +19,7 @@ Current checkouts:
 
 ## Rules
 
-- Treat these projects as engines or references, not PapiLab's product center.
+- Treat these projects as engines or references, not Scient's product center.
 - Record exact commits in `../sources.lock.md`.
-- Build PapiLab adapters in `../../papilab-bridge/` unless testing a fork-specific
+- Build Scient adapters in `../../scient-bridge/` unless testing a fork-specific
   patch.
