@@ -79,6 +79,9 @@ Current important documents:
 - `docs/README.md` - documentation map and current repo structure.
 - `docs/documentation-policy.md` - rules for creating, updating, and classifying documentation.
 - `docs/product/PRD.md` - product direction, core capabilities, user experience principles, and technical requirements.
+- `docs/product/skills-system.md` - draft product model, trust boundaries,
+  candidate catalog, and validation order for reusable scientific skills; the
+  accepted PRD governs conflicts.
 - `docs/product/scient-product-identity.md` - accepted company, application, agent, external-agent, and naming vocabulary.
 - `docs/product/product-philosophy.md` - durable product principles that guide product, architecture, design, quality, and implementation.
 - `docs/architecture/technology-stack.md` - current technology stack direction and open implementation decisions.

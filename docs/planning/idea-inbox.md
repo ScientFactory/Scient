@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-07-11
-Last updated: 2026-07-17
+Last updated: 2026-07-18
 Purpose: Provides one temporary intake surface for unprocessed Scient ideas before they are evaluated and routed to their durable homes.
 Doc type: Planning note
 
@@ -46,16 +46,19 @@ is being triaged.
 
 ## Unprocessed Ideas
 
-### 2026-07-12 — Default project workspace and built-in starting material
+### 2026-07-12 — Default project workspace and starting material
 
 - Idea: Plan how a new Scient user's basic desktop project workspace should be
   set up when the app creates and works with local files and folders.
-- Things to remember: possible built-in starter documentation or guidance, a
-  small set of built-in skills, a standard place for articles and PDFs, and
-  sensible places for other common research-project material.
+- Routed material: the evaluated skills-system direction now lives in the
+  [Scient Skills System](../product/skills-system.md); it is no longer owned by
+  this raw inbox entry.
+- Things still to remember here: possible built-in starter documentation or
+  guidance, a standard place for articles and PDFs, and sensible places for
+  other common research-project material.
 - Open questions: what Scient should create automatically; which areas should
   be visible folders or files versus app-managed state; which starting material
-  belongs to the app versus each project; and how this should work when opening
-  an existing folder.
-- Possible area: product planning, project-format architecture, onboarding, and
-  product design.
+  belongs to the app versus each project; and how non-skill starting material
+  should work when opening an existing folder.
+- Possible area: product planning, project-format architecture, onboarding,
+  and product design.
