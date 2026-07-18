@@ -9,14 +9,19 @@ Doc type: Research evidence
 
 ## Scope
 
-- Owned repository and branch: `ScientFactory/scient-desktop`, `main`
-- Owned head inspected: `2ecfbe19590c99386099c065846b5f3b987e953b`
+- Owned repository and branch: `ScientFactory/scient-desktop`,
+  `agent/synchronize-upstream`
+- Owned default-branch base:
+  `bd2a6eed6243b13fc1423b21b2454ae060bce5c7`
+- Owned intake head inspected:
+  `2a66d69f46d930d4cd8d702152efa19e952ddf54`
 - Official repository and branch: `Emanuele-web04/synara`, `main`
 - Previous reviewed and integrated base:
   `9be46c3ce6a7521b64436b7334bc6fce16e3cac4`
-- Observed official tip: `69304bc1d59d86da8afbac367118c75db8c9dbfe`
-- Official commits reviewed: 13
-- Divergence at inspection: owned head 87 commits ahead and 13 commits behind
+- Observed official tip: `3a5720bdd0ae4ace444379cabf0a634941d232fd`
+- Official commits reviewed: 26 total; 13 after the earlier
+  `69304bc1d59d86da8afbac367118c75db8c9dbfe` checkpoint
+- Divergence at inspection: intake head 135 commits ahead and 26 commits behind
   the official tip by `git rev-list --left-right --count HEAD...upstream/main`
 
 ## Review Depth
@@ -27,8 +32,16 @@ for compatibility, reliability, security-adjacent, and likely intake candidates.
 The very broad audit commit was reviewed by its named sub-lanes and file scope;
 its hundreds of changed files were not independently re-audited line by line.
 
-This is a disposition review. It does not claim the official range was built,
-executed, integrated, or proven safe for Scient.
+The selected adaptations were implemented on an isolated owned branch and
+verified with the full local intake gate, stable and geometry browser suites,
+actual macOS arm64 packaging, and a cross-repository owned-agent smoke test.
+Focused implementation, dependency, release, architecture, and security reviews
+found and fixed a Codex startup race and an attachment symlink escape before
+publication.
+
+This evidence does not claim the whole official range was integrated or proven
+safe. In particular, the remote-access architecture in the broad audit was
+reviewed and rejected rather than imported.
 
 ## Dispositions
 
@@ -47,22 +60,47 @@ executed, integrated, or proven safe for Scient.
 | `aa09d67f594aa5c8e06e22801126cf6e90ad56b5` | Product assumptions and UX | Reimplement | Removing inherited novelty/demo surfaces is useful; do that in Scient-owned UI work without importing Synara chrome and changelog assumptions. |
 | `16eaa4314c4ee956fe926c64f2408ea8e996d9a4` | Branding | Reject | Synara logo styling must not enter Scient. |
 | `69304bc1d59d86da8afbac367118c75db8c9dbfe` | Branding | Reject | Synara logo sizing must not enter Scient. |
+| `4efc69452eca4eff31d11dd6a40e5ebad0158e8b` | Streaming persistence performance | Adapt | Port the redundant-query and transaction reductions with Scient's existing projection semantics and regression suite. Implemented in desktop PR #16. |
+| `02cbd7e40fb0fe2240c782a79eea2aed055f7d17` | Codex startup performance | Adapt | Prepare overlays outside the blocking startup path, then add per-thread serialization and single-flight discovery to prevent duplicate concurrent processes. Implemented and hardened in desktop PR #16. |
+| `da56dbcb7fde18f8a1ec826492278075651cded4` | Turn-start performance | Adapt | Parallelize independent checkpoint and prompt-image I/O while bounding attachment reads. Implemented with attachment-root confinement in desktop PR #16. |
+| `a10e965955a1ed050b5b2ebe5bf68689e72c398a` | Secret durability and thread deletion | Adapt | Preserve the durable private-write and deleted-thread cleanup behavior without importing unrelated upstream architecture. Implemented in desktop PR #16. |
+| `4bace1148664069166c1feb1cc9e51c48ab19fa9` | Claude startup performance | Adopt | Avoid the redundant first-turn permission request while preserving the existing approval boundary. Implemented with focused tests in desktop PR #16. |
+| `0a7e0ec2807a9faa59f60ab123f1b57ca1a7a3e8` | New-chat performance | Adapt | Defer non-critical persistence and mounting and prefetch models without changing Scient project initialization semantics. Implemented in desktop PR #16. |
+| `ef16dee917722d27782e95bba9c286967d61d5ed` | Claude reliability and upstream-native orchestration | Mixed | Adapt live mutable Claude settings and bounded replay. Reject native Claude subagents and dynamic workflows because Scient keeps an independent `scient-agent` boundary. |
+| `23753040ed6e72b2a72159eab1e7be78750db619` | Provider maintenance and packaging | Adapt | Pin the provider-update npm prefix and verify staged patches, then strengthen the owned release stage with a frozen filtered production install. Implemented in desktop PR #16. |
+| `2da3d4c625e5fb265b2b56e211770fb4612bd0a1` | Effect ACP deletion planning | Defer | Retain as a reference for later compatibility cleanup; do not bundle a broad deletion plan into this intake. |
+| `d8a8d0d8aa8ff046baa6dd3d1cc06cc8d8c68ee9` | Native Claude subagent and workflow follow-up | Defer | The stop, command-admission, interrupt-error, effort, and background-notice lessons are useful, but this patch depends on the rejected native Claude subagent/workflow architecture. Re-evaluate those behaviors against Scient's independent agent control plane rather than importing this implementation. |
+| `6832113503b7ed6e18a9006e1151e2a1cd9a458c` | Native-agent workflow UI | Reference | Keep the calmer state-color, compact phase, model-label, and background-notice ideas as design input for a future Scient-owned agent surface. Do not import the provider-native Claude workflow assumptions or Synara chrome as product behavior. |
+| `b1458ed6710aee77931e86ad70347484460a695e` | Native-agent workflow phase UI | Reference | Showing all phases by default with optional pill filtering is a useful future Scient-agent design idea. This patch only changes the rejected provider-native workflow card, so no code intake is warranted now. |
+| `3a5720bdd0ae4ace444379cabf0a634941d232fd` | Native-agent workflow layout | Reference | A single text-alignment rail is a useful visual-design lesson, but this is another narrow adjustment to the rejected provider-native workflow card. Keep the idea, not the implementation. |
 
 ## Intake Decision
 
-No official code was landed during this review. The file-icon hardening is the
-smallest Adopt candidate. Namespaced Cursor/Grok IDs and app-owned external
-OpenCode review are Adapt candidates. The broad audit remains a set of
-lane-specific Reimplement candidates, with security, persistence, and release
-lanes requiring attention before a public release.
+Selective intake was implemented and submitted in
+[desktop PR #16](https://github.com/ScientFactory/scient-desktop/pull/16) at
+exact head `2a66d69f46d930d4cd8d702152efa19e952ddf54`. It adapts the bounded
+reliability, performance, dependency, release, and test-enforcement lanes
+recorded above while preserving Scient identity and independent runtime
+boundaries.
+
+The exact-head [hosted CI run](https://github.com/ScientFactory/scient-desktop/actions/runs/29661006145)
+passed formatting, lint, typechecking, the full unit/integration suite, release
+smoke, Windows process regression, and the stable keybindings and ChatView
+browser files. The stable EventRouter browser file still failed two
+Linux-hosted synchronization assertions, so the PR is not ready to merge. This
+is accepted review and pending intake, not evidence that the owned default
+branch has already integrated the code.
 
 ## Resulting State
 
-- `reviewedThrough`: `69304bc1d59d86da8afbac367118c75db8c9dbfe`
+- `reviewedThrough`: `3a5720bdd0ae4ace444379cabf0a634941d232fd`
 - `integrationBase`: `9be46c3ce6a7521b64436b7334bc6fce16e3cac4`
 - Update mode: `divergent-cherry-pick`; the broad audit range demonstrates that
   routine full-source merges are no longer the honest default.
-- Code intake: none
-- Remaining risk: the broad audit's security-relevant internals require focused
-  review before related Scient work or public release; disposition does not
-  equal a security audit.
+- Code intake: pending desktop PR #16 at
+  `2a66d69f46d930d4cd8d702152efa19e952ddf54`
+- Hosted gate: blocked by two EventRouter Linux browser synchronization
+  assertions in run `29661006145`; no production failure was established.
+- Remaining risk: signing, notarization, updater policy, Windows installer
+  identity, and broader Effect ACP compatibility cleanup remain separate work.
+  The rejected remote-access architecture remains outside Scient.
