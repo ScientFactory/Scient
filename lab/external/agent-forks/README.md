@@ -2,7 +2,7 @@
 
 Status: Draft
 Owner: Yaacov
-Last updated: 2026-07-17
+Last updated: 2026-07-18
 Purpose: Organizes upstream agent engines and automation systems used in the Scient lab.
 Doc type: Planning note
 
@@ -12,16 +12,19 @@ Agent forks are source checkouts for systems that may provide local execution,
 file editing, shell access, tool routing, provider abstraction, recipes, MCP
 support, or broader automation behavior.
 
-Current and reserved checkouts:
+Current owned source and deferred references:
 
-- `scient-agent/` - owned OpenCode-derived source foundation for the planned
-  native Scient agent.
-- `goose/` - reserved restore path for later broader-agent, automation,
-  desktop, and MCP/source research; no local checkout is retained currently.
+- `ScientFactory/scient-agent` - the owned OpenCode-derived source foundation
+  for the planned native Scient agent. It is a workspace sibling, not a
+  checkout inside this directory.
+- Goose - deferred broader-agent, automation, desktop, and MCP/source research;
+  no local checkout is retained currently.
 
 ## Rules
 
-- Treat these projects as engines or references, not Scient's product center.
+- Treat external projects as engines or references, not Scient's product
+  center. The owned `scient-agent` repository remains a separate source
+  foundation with the product boundary defined by Scient architecture.
 - Record exact commits in `../sources.lock.md`.
 - Build Scient adapters in `../../scient-bridge/` unless testing a fork-specific
   patch.
