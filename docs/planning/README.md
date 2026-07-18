@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-07-17
+Last updated: 2026-07-18
 Purpose: Defines where Scient planning documents live and how they relate to product truth, architecture, design, quality, and research documents.
 Doc type: Repo orientation
 
@@ -16,6 +16,9 @@ Do not use planning docs as product truth, accepted architecture, or current imp
 Current planning docs:
 
 - `idea-inbox.md` - temporary intake for raw, unprocessed ideas before evaluation and routing.
+- `memory-architecture-discovery.md` - draft discussion of candidate memory
+  scopes, authority, lifecycle, agent access, local/cloud boundaries, and the
+  questions to resolve before architecture or storage selection.
 - `product-roadmap.md` - active sequence of coherent product outcomes, beginning with the first Scient scientific project slice.
 - `first-scient-vertical-slice-implementation-plan.md` - draft source-tracing, implementation, and verification plan for the active product slice.
 - `scient-and-external-agents-implementation-plan.md` - proposed end-to-end plan for building the Scient agent as the owned OpenCode-derived first-party agent while preserving external agents independently.

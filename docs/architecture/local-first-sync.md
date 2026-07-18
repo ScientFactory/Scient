@@ -10,7 +10,8 @@ Doc type: Future home
 This page will document Scient's local-first and sync architecture when it
 exists. Unprocessed questions about memory scope, user-selected cloud folders,
 offline behavior, conversation continuity, and future Scient cloud sync remain
-in the [Idea Inbox](../planning/idea-inbox.md#memory-context-and-continuity).
+in the draft [Memory Architecture
+Discovery](../planning/memory-architecture-discovery.md).
 No canonical memory store or sync engine is selected.
 
 Document here:

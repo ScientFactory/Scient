@@ -59,8 +59,8 @@ Phase 2 source tracing is complete in
 state-ownership gaps and candidate seams. Yaacov clarified that conversations,
 project memory, user memory, recovery, cloud synchronization, and their storage
 boundaries belong to a dedicated future memory-architecture project, not an
-immediate persistence decision. Those unprocessed ideas now live in the
-[`Idea Inbox`](idea-inbox.md#memory-context-and-continuity). The permanent
+immediate persistence decision. Those questions now live in the draft
+[`Memory Architecture Discovery`](memory-architecture-discovery.md). The permanent
 scientific-operation package and fake-executor product proof also remain
 deferred. Non-Git recovery, trusted project filesystem scope, and complete
 native-Scient/external-OpenCode runtime independence remain product
@@ -444,8 +444,8 @@ scopes and relationships among conversations, user memory, project memory, raw
 history, files, local storage, and future cloud storage must be discovered
 together in a dedicated future project.
 
-The candidate questions are preserved in the
-[`Idea Inbox`](idea-inbox.md#memory-context-and-continuity). They do not select
+The candidate questions are preserved in the draft
+[`Memory Architecture Discovery`](memory-architecture-discovery.md). They do not select
 SQLite, define a project ledger, authorize memory implementation, or block the
 independent T3 reliability work. The permanent scientific-operation package and
 deterministic fake-executor product proof remain separate deferred decisions.

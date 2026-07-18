@@ -3,7 +3,7 @@
 Status: Draft
 Owner: Yaacov
 Created: 2026-06-28
-Last updated: 2026-07-17
+Last updated: 2026-07-18
 Purpose: Tracks current product planning after the accepted PRD, including candidate features, open product questions, and cross-document handoffs.
 Doc type: Planning note
 
@@ -101,7 +101,7 @@ This is the active feature inventory. It should stay compact. Add detail only wh
 | Agent delegation and safe automation | Object-scoped tasks, context receipts, project-aware tools, proposed artifacts, task queue, durable runs, approvals, retries, cancellation, recovery. | Core | Foundation to early validation | Approval later | Architecture handoffs: `docs/architecture/agent-runtime.md` and `docs/architecture/security-and-permissions.md`. |
 | Model access and routing | Provider-connected subscriptions, bring-your-own API keys, Scient-managed access, manual model choice, and later task-aware routing. | Core | Foundation to early expansion | None first | Sequencing and commercial options: `model-access-and-routing-evolution.md`. Candidate portfolio: `../research/source-evaluations/model-portfolio-and-provider-routing.md`. |
 | Scientific skills | Built-in bounded skills for evidence extraction, drafting, citation checking, data analysis, figure creation, method guidance, journal adaptation, project mentoring. | Important | Early expansion | Approval later | Start with a tiny skill set; defer marketplace/registry mechanics. |
-| Project memory | Inspectable memory, source/authority/confidence/freshness metadata, pin/archive/forget, conflict/staleness handling, project continuity summaries. | Core | Foundation to early expansion | Capture and review later | Architecture handoff: memory may need its own doc after agent runtime pressure clarifies boundaries. |
+| Project memory | Inspectable memory, source/authority/confidence/freshness metadata, pin/archive/forget, conflict/staleness handling, project continuity summaries. | Core | Foundation to early expansion | Capture and review later | Discovery handoff: [`memory-architecture-discovery.md`](memory-architecture-discovery.md); no memory scopes or storage technology are selected. |
 | Identity, sharing, collaboration, and mobile | Account/device identity, roles, permissions, invitations, shared review, comments, assignments, attribution, cloud mirror, sync/conflict states, mobile continuation. | Core | Design early, implement in phases | Read/review/capture/approval | Architecture handoffs: collaboration model, local-first sync, security. |
 | Provenance, versioning, and recovery | Event history, source/evidence/citation/action provenance, diffs, checkpoints, snapshots, rollback, failed-run recovery, optional Git-like workflows. | Core | Foundation | Approval later | Normal users should not need Git. Architecture and quality handoffs required. |
 | External interoperability and open science | Reference managers, citation formats, scholarly databases, document formats, repositories, drives, code/data tools, archives, deposit records. | Important | Early where it unblocks core workflows | Read/review later | Name specific targets in roadmap/architecture only when compatibility is the requirement. |
@@ -122,7 +122,7 @@ The PRD intentionally leaves these open. Resolve them in the right document when
 | What cloud mirroring and collaboration semantics come first? | Local-first ownership, backup, sharing, conflicts, revocation, and restore must be coherent. | Collaboration, sync, and security architecture. |
 | What mobile actions are allowed first? | Mobile should continue project work without becoming a second source of truth. | Product planning and design. |
 | Which sensitive data classes are supported, unsupported, or institution-gated? | Security posture must be explicit before real sensitive projects are encouraged. | Security architecture and product planning. |
-| How should cross-project memory or organization-level methods work, if at all? | Useful later, but dangerous before project-level memory is trustworthy. | Product planning and future architecture. |
+| How should cross-project memory or organization-level methods work, if at all? | Useful later, but dangerous before project-level memory is trustworthy. | [Memory Architecture Discovery](memory-architecture-discovery.md) and future architecture. |
 
 ## Handoffs
 
@@ -131,6 +131,7 @@ Use this section to route work out of product planning. Do not let this file bec
 | Handoff area | Destination | Product planning input |
 |---|---|---|
 | Project format | `docs/architecture/project-format.md` | Durable project records, local files, artifacts, source/evidence/citation/analysis relationships, export/deposit records. |
+| Memory architecture discovery | `docs/planning/memory-architecture-discovery.md` | Candidate memory scopes, authority, lifecycle, conversation/history boundaries, agent access, local/cloud behavior, and technology-neutral requirements. |
 | Agent runtime | `docs/architecture/agent-runtime.md` | Object-scoped tasks, context receipts, project-aware tools, proposed artifacts, durable runs, retries, checkpoints, recovery. |
 | Security and permissions | `docs/architecture/security-and-permissions.md` | High-impact action review, permission scope, unknown-data handling, local execution, imported-file trust, sensitive data classes. |
 | Collaboration model | `docs/architecture/collaboration-model.md` | Roles, membership, invitations, attribution, shared review, comments, assignments, conflict states. |

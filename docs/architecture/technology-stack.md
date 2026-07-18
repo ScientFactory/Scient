@@ -237,8 +237,8 @@ Scient scientific project database. Scient-owned project persistence has not
 been selected, designed, or implemented. The future memory-architecture project
 will decide the roles of conversations, user memory, project memory, raw
 history, files, local application storage, and cloud storage before evaluating
-their persistence technologies. Unprocessed questions remain in the
-[Idea Inbox](../planning/idea-inbox.md#memory-context-and-continuity).
+their persistence technologies. Open questions remain in the draft
+[Memory Architecture Discovery](../planning/memory-architecture-discovery.md).
 
 Scient should distinguish:
 
@@ -477,7 +477,7 @@ Completed historical experiments remain evidence, not the roadmap.
 | Synara-derived application | Standalone owned source, build, isolated Scient identity and state, reviewed upstream process | Scientific-product fit, sustainable domain UI divergence, and long-term maintenance cost | Gate 1 and Gate 1.5 lab reports; ADR-0001 owns adoption; ADR-0002 owns repository authority |
 | Scient source foundation | Owned OpenCode build, Synara compatibility, project-root fidelity, transcript fidelity, and approval flow for a constrained action | Scient identity and packaging, owned capabilities, isolated Scient state, durable task behavior, and justified inherited-core changes | Gate 1.5 report proves the source baseline; ADR-0001 owns Scient adoption |
 | External agents | Nine inherited adapters and external OpenCode settings/adapter paths are present in source | Per-agent live compatibility, subscription/auth behavior, project-task certification, and migration protection | [Scient and external agents implementation plan](../planning/scient-and-external-agents-implementation-plan.md) |
-| Scient project state and memory | Product responsibilities, high-level memory principles, approved non-Git recovery requirement, and trust boundary are documented | Memory scopes, canonical representation, conversation relationship, package seam, portability, recovery, cloud sync, and first real scientific object relationship | PRD, [Idea Inbox](../planning/idea-inbox.md#memory-context-and-continuity), and future focused architecture work |
+| Scient project state and memory | Product responsibilities, high-level memory principles, approved non-Git recovery requirement, and trust boundary are documented | Memory scopes, canonical representation, conversation relationship, package seam, portability, recovery, cloud sync, and first real scientific object relationship | PRD, [Memory Architecture Discovery](../planning/memory-architecture-discovery.md), and future focused architecture work |
 | Scient-agent and Scient-app boundary | Scient-agent identity plus context, proposal, review, provenance, and permission responsibilities are documented | Actual contract, code placement, event mapping, isolated Scient-agent state, and accepted write-back path | ADR-0001 and linked implementation plans; `agent-runtime.md` remains a future home |
 | Goose | Source seams, ACP path, and safety risks inspected | Incremental capabilities or architecture lessons for Scient; any future external Goose path is a separate decision | Goose source-depth inspection |
 | Cloud sync | Postgres, object storage, and local-first sync are proposed directions | Authority, offline behavior, conflicts, revocation, and recovery | Later roadmap and focused architecture work |
