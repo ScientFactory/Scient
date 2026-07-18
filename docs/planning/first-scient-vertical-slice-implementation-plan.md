@@ -612,7 +612,7 @@ Stop and report before widening scope if:
 - reuse-versus-change list;
 - Scient integration and inherited OpenCode-core change verdict;
 - Synara-hosted versus external-topology verdict;
-- future memory questions routed to the idea inbox; and
+- future memory questions routed to the draft Memory Architecture Discovery; and
 - no implied authorization for scientific-state or memory implementation.
 
 ### Vertical Slice Done
