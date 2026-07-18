@@ -2,7 +2,7 @@
 
 Status: Proposed
 Owner: Yaacov
-Last updated: 2026-07-17
+Last updated: 2026-07-18
 Purpose: Records Scient's current technology stack direction and open implementation decisions.
 Doc type: Architecture direction
 
@@ -23,9 +23,10 @@ material unresolved risk changes. Put product sequencing in
 `../planning/product-roadmap.md`, implementation work in the relevant planning
 document, and exact run evidence under `lab/`.
 
-The owned Synara checkout under `desktop-app-forks/scient-desktop/` is the maintained
-application foundation. Its inherited package layout, dependencies, state model,
-and provider model remain implementation evidence, not automatically accepted
+The owned Synara checkout in the workspace sibling `../scient-desktop/`
+(relative to the Scient repository root) is the maintained application
+foundation. Its inherited package layout, dependencies, state model, and
+provider model remain implementation evidence, not automatically accepted
 Scient architecture.
 
 ## Product Constraints
@@ -78,17 +79,18 @@ Scient app from the planned Scient agent where needed.
 
 ## Actual Scaffold State
 
-As of 2026-07-17, the executable application scaffold is the owned Synara
-checkout at `desktop-app-forks/scient-desktop/`. Its Scient identity and project-init
+As of 2026-07-18, the executable application scaffold is the owned Synara
+checkout in the workspace sibling `../scient-desktop/`. Its Scient identity and project-init
 lane passed hosted CI at `2ecdbb5e` and was merged as `50294e64`. The subsequent
 application-foundation follow-up passed hosted CI at `f7760e97` and advanced
 the owned application baseline. A later maintained sync through official Synara
 v0.5.5 passed hosted CI at `d4b10c27` and advanced owned `main` to
 `fd37cdcd`. The Scient rename then passed hosted CI at `179fa01e` and merged to
-owned `main` as `d9d8992a`, based on tested upstream `9be46c3c`; exact
-provenance is recorded in `lab/external/sources.lock.md`.
+owned `main` as `d9d8992a`, based on tested upstream `9be46c3c`. Subsequent
+reviewed UI and project-init status follow-ups advanced maintained `main` to
+`2ecfbe19`; exact provenance is recorded in `lab/external/sources.lock.md`.
 The owned OpenCode-derived fork—the current source foundation for the Scient
-agent—is at `agent-forks/scient-agent/` on `dev` at `5ffaf9a2`, after a reviewed
+agent—is in the workspace sibling `../scient-agent/` on `dev` at `5ffaf9a2`, after a reviewed
 sync through source version 1.18.3 at official upstream `69a80663`. Hosted
 Scient source-quality run `29595488492` passed at exact head `5d232a34`, and
 the owned default was zero commits behind that tested upstream. Historical
@@ -151,7 +153,7 @@ The local app must remain useful without network access. The cloud layer provide
 The current lab scaffold has this upstream shape:
 
 ```text
-desktop-app-forks/scient-desktop/
+../scient-desktop/
   apps/desktop
   apps/server
   apps/web

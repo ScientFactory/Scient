@@ -2,7 +2,7 @@
 
 Status: Proposed
 Owner: Yaacov
-Last updated: 2026-07-17
+Last updated: 2026-07-18
 Purpose: Defines the end-to-end implementation plan for the Scient agent and for preserving independently connected external agents.
 Doc type: Planning note
 
@@ -124,7 +124,7 @@ Source lineage does not merge product identities:
 ## Current Implementation Truth
 
 At maintained desktop-fork revision
-`d9d8992a62e4dda37543c214f96fc97556c798f2`, inspected on 2026-07-17, the
+`2ecfbe19590c99386099c065846b5f3b987e953b`, inspected on 2026-07-18, the
 inherited host contains a shared provider adapter contract and adapters for:
 
 - Codex;
@@ -155,8 +155,9 @@ every external CLI version, subscription entitlement, account login, remote
 endpoint, model, or provider-specific feature currently works. Preserve the
 paths first, then certify compatibility honestly per agent.
 
-The owned OpenCode-derived checkout at `agent-forks/scient-agent/`, maintained
-on `dev` at `5ffaf9a2dfa5b958e8f4856b94b50d26b00c6b76`, is the accepted
+The owned OpenCode-derived checkout in the workspace sibling
+`../scient-agent/` (relative to the Scient repository root), maintained on
+`dev` at `5ffaf9a2dfa5b958e8f4856b94b50d26b00c6b76`, is the accepted
 source foundation for the Scient agent. Its repository and
 maintenance-verifier identity are Scient-owned while its current runtime
 remains upstream-aligned OpenCode source. Scient-agent packaging, private state

@@ -2,7 +2,7 @@
 
 Status: Draft
 Owner: Yaacov
-Last updated: 2026-07-17
+Last updated: 2026-07-18
 Purpose: Defines the bounded source-tracing, implementation, and verification plan for the first Scient scientific project slice.
 Doc type: Planning note
 
@@ -49,8 +49,9 @@ Phase 1 is complete. The placement trace selected the permanent package seam,
 and desktop PR #4 implemented `@scientfactory/project-init` with zero-write
 inspection, explicit plan/apply behavior, conservative recovery, and 43 focused
 tests. The package remains present on the maintained desktop `main` at
-`d9d8992a`, after the verified Scient rename on the reviewed official Synara
-v0.5.5 foundation. The owned OpenCode-derived agent-source baseline is
+`2ecfbe19`, after the verified Scient rename on the reviewed official Synara
+v0.5.5 foundation and subsequent reviewed UI and project-init status
+follow-ups. The owned OpenCode-derived agent-source baseline is
 `5ffaf9a2` on `dev`, after the verified `scient-agent` source-boundary rename
 and reviewed sync to official upstream `69a80663`.
 

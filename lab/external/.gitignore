@@ -1,7 +1,5 @@
-# Upstream source checkouts are intentionally not committed to the parent Scient repo.
-/agent-forks/scient-agent/
+# Optional temporary external reference checkouts are intentionally not committed.
 /agent-forks/goose/
-/desktop-app-forks/scient-desktop/
 /desktop-app-forks/t3code/
 
 # Local clone scratch files.

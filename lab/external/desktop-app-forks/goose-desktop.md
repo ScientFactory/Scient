@@ -2,15 +2,16 @@
 
 Status: Draft
 Owner: Yaacov
-Last updated: 2026-07-07
-Purpose: Records how Goose is represented in the desktop-app fork area without duplicating the checkout.
+Last updated: 2026-07-18
+Purpose: Records Goose's cross-role research status without implying a retained local checkout.
 Doc type: Planning note
 
-Goose spans agent-runtime and desktop-app roles. To avoid duplicating the same
-upstream repository, the physical checkout lives at:
+Goose spans agent-runtime and desktop-app roles. No local Goose checkout is
+currently retained. `../sources.lock.md` records the inspected upstream source
+and exact last-inspected commit.
 
-`../agent-forks/goose/`
-
-Use that checkout when inspecting Goose desktop behavior, app packaging,
-sidecar/runtime boundaries, recipes, provider handling, MCP behavior, or
-automation surfaces.
+If a later bounded experiment restores Goose, use one physical checkout,
+record its actual location in `sources.lock.md`, and inspect that checkout for
+desktop behavior, app packaging, sidecar/runtime boundaries, recipes, provider
+handling, MCP behavior, or automation surfaces. Do not add Goose as a fourth
+canonical repository inside the three-repository ScientFactory workspace.

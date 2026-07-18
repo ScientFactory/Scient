@@ -2,7 +2,7 @@
 
 Status: Active
 Owner: Yaacov
-Last updated: 2026-07-17
+Last updated: 2026-07-18
 Purpose: Defines how agents should work in this early Scient repository.
 Doc type: Agent protocol
 
@@ -33,6 +33,28 @@ and updates. Public brand and trademark clearance remains outstanding and must
 be completed before public release.
 
 The current repo contents are working documents. They are expected to change as the product, architecture, and implementation plan become clearer.
+
+## Three-Repository Workspace
+
+The recommended local workspace is a plain, non-Git `ScientFactory/`
+container with three sibling repositories:
+
+```text
+ScientFactory/
+├── Scient/
+├── scient-desktop/
+└── scient-agent/
+```
+
+`Scient/` owns product and project knowledge, cross-repository planning, and
+source pins. `scient-desktop/` owns the application implementation.
+`scient-agent/` owns the OpenCode-derived native-agent source foundation.
+
+Treat these as independent repositories, not a monorepo. Run Git commands from
+the intended repository, keep changes on repository-specific branches, and use
+separate pull requests for cross-repository work. State dependencies between
+those pull requests explicitly. Do not initialize Git in the container or put
+temporary worktrees inside it.
 
 ## Core Working Principles
 

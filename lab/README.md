@@ -2,7 +2,7 @@
 
 Status: Active
 Owner: Yaacov
-Last updated: 2026-07-17
+Last updated: 2026-07-18
 Purpose: Defines the experimental lab area for early Scient source forks, adapters, and integration spikes.
 Doc type: Repo orientation
 
@@ -17,7 +17,9 @@ architecture.
 
 ## Boundaries
 
-- `external/` holds local checkouts of upstream projects.
+- `external/` holds source provenance, pointer notes, and optional temporary
+  reference checkouts. The maintained Scient desktop and agent repositories
+  are workspace siblings outside `lab/`.
 - `scient-bridge/` holds Scient-owned adapter and integration experiments.
 - `notes/` holds lab inspection notes and temporary decisions.
 - `scripts/` holds repeatable lab-level verification that coordinates more than
@@ -30,9 +32,11 @@ architecture.
 - `notes/synara-first-inspection-2026-07-07.md` - first Synara desktop-base inspection, OpenCode connection path, Goose integration path, and Scient ownership boundary; planning language is superseded by ADR-0001 and the product roadmap.
 - `notes/goose-source-depth-inspection-2026-07-11.md` - research input covering Goose architecture, ACP integration seam, safety gaps, and owned-fork recommendation; implementation is deferred until after the first Scient gateway.
 
-The upstream source trees under `external/` are intentionally ignored by the
-parent Scient repository. Track their URLs, commits, roles, and update strategy
-in `external/sources.lock.md` instead of committing their source code here.
+Any temporary upstream source trees under `external/` are intentionally
+ignored by the parent Scient repository. Track their URLs, commits, roles, and
+update strategy in `external/sources.lock.md` instead of committing their source
+code here. Do not duplicate the maintained `scient-desktop` or `scient-agent`
+workspace siblings inside the lab.
 
 ## Promotion Rule
 

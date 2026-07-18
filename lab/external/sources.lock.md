@@ -2,8 +2,8 @@
 
 Status: Active
 Owner: Yaacov
-Last updated: 2026-07-17
-Purpose: Records exact upstream source checkouts used in the Scient lab.
+Last updated: 2026-07-18
+Purpose: Records exact owned and external source checkout provenance used by Scient.
 Doc type: Research evidence
 
 ## Document Rules
@@ -12,19 +12,21 @@ This file records local source checkout provenance. It is not a dependency lock
 file, accepted architecture, or a statement that Scient depends on these
 projects.
 
-Update this file whenever a lab source checkout is added, removed, recloned, or
-moved to a new commit.
+Update this file whenever an owned or lab source checkout is added, removed,
+recloned, relocated, or moved to a new commit.
 
-Local paths in the table are relative to the parent repository root.
+Maintained owned checkout paths in the table are relative to the `Scient`
+repository root and may begin with `../` because the repositories are workspace
+siblings. A deferred source with no retained checkout says so explicitly.
 
 ## Sources
 
 | Source | Local path | Official upstream | Owned repository | Tested upstream | Maintained/tested commit | Role and update mode |
 |---|---|---|---|---|---|---|
-| Scient agent source (OpenCode-derived) | `agent-forks/scient-agent/`; canonical checkout on `dev` at `5ffaf9a2dfa5b958e8f4856b94b50d26b00c6b76` | `https://github.com/anomalyco/opencode.git`, `dev` | `https://github.com/ScientFactory/scient-agent`, public fork | `69a80663a2ed7d671d2b4d5dd6f2d605714675a5` | Rename head `5d232a34638fdc2333535f1916e20e968a3bbe6e`; hosted Scient source-quality run `29595488492`; merged to owned `dev` as `5ffaf9a2dfa5b958e8f4856b94b50d26b00c6b76` | Owned, upstream-aligned source foundation for the planned Scient agent; `adapter-maintained`; native Scient runtime identity is not yet implemented. |
-| Goose | `agent-forks/goose/` is the canonical restore path; no local checkout is retained. | `https://github.com/aaif-goose/goose.git`, `main` | None; owned repository deferred | Not tested in Gate 1.5 | Last inspected commit `3c1fdd692cc8aaa5f09b9175410c09a09d4dfe49` | Deferred broader-agent research input. Repository, build, ACP adapter, runtime, credentials, and adoption wait until after the first Scient gateway. |
-| Scient desktop (Synara-derived) | `desktop-app-forks/scient-desktop/`; local user branch preserved without reset; owned `main` at `d9d8992a62e4dda37543c214f96fc97556c798f2` | `https://github.com/Emanuele-web04/synara.git`, `main` | `https://github.com/ScientFactory/scient-desktop`, public fork | `9be46c3ce6a7521b64436b7334bc6fce16e3cac4` | Rename head `179fa01ed39b7c62d8f8e8b89565d83434e572ce`; hosted CI run `29595506303`; merged to owned `main` as `d9d8992a62e4dda37543c214f96fc97556c798f2` | Accepted initial application foundation; owned `thin-fork-merge`, with deliberate divergence allowed; must not own scientific project truth. |
-| T3 Code | `desktop-app-forks/t3code/` is the canonical restore path; no local checkout is retained. | `https://github.com/pingdotgg/t3code.git`, `main` | None | Not tested in Gate 1.5 | Last inspected commit `b9cc8d6ef17ca9f45bec621bef71ad3f706b9276` | Desktop/runtime/provider/process reference only. |
+| Scient agent source (OpenCode-derived) | `../scient-agent/`; canonical workspace sibling on `dev` at `5ffaf9a2dfa5b958e8f4856b94b50d26b00c6b76` | `https://github.com/anomalyco/opencode.git`, `dev` | `https://github.com/ScientFactory/scient-agent`, public fork | `69a80663a2ed7d671d2b4d5dd6f2d605714675a5` | Rename head `5d232a34638fdc2333535f1916e20e968a3bbe6e`; hosted Scient source-quality run `29595488492`; merged to owned `dev` as `5ffaf9a2dfa5b958e8f4856b94b50d26b00c6b76` | Owned, upstream-aligned source foundation for the planned Scient agent; `adapter-maintained`; native Scient runtime identity is not yet implemented. |
+| Goose | No local checkout is retained. | `https://github.com/aaif-goose/goose.git`, `main` | None; owned repository deferred | Not tested in Gate 1.5 | Last inspected commit `3c1fdd692cc8aaa5f09b9175410c09a09d4dfe49` | Deferred broader-agent research input. Repository, build, ACP adapter, runtime, credentials, and adoption wait until after the first Scient gateway. |
+| Scient desktop (Synara-derived) | `../scient-desktop/`; canonical workspace sibling on `main` at `2ecfbe19590c99386099c065846b5f3b987e953b` | `https://github.com/Emanuele-web04/synara.git`, `main` | `https://github.com/ScientFactory/scient-desktop`, public fork | `9be46c3ce6a7521b64436b7334bc6fce16e3cac4` | Rename head `179fa01ed39b7c62d8f8e8b89565d83434e572ce`; hosted CI run `29595506303`; rename merged as `d9d8992a62e4dda37543c214f96fc97556c798f2`; current owned `main` advanced through PRs #13 and #14 to `2ecfbe19590c99386099c065846b5f3b987e953b` | Accepted initial application foundation; owned `thin-fork-merge`, with deliberate divergence allowed; must not own scientific project truth. |
+| T3 Code | No local checkout is retained. | `https://github.com/pingdotgg/t3code.git`, `main` | None | Not tested in Gate 1.5 | Last inspected commit `b9cc8d6ef17ca9f45bec621bef71ad3f706b9276` | Desktop/runtime/provider/process reference only. |
 
 Gate 1.5 immutable tags in both owned repositories:
 
@@ -106,6 +108,12 @@ The Scient application rename was then merged through
 `d9d8992a62e4dda37543c214f96fc97556c798f2`. The same head passed local full
 tests, typecheck, lint, formatting, desktop build, release smoke, brand checks,
 an exact-commit DMG inspection, and an isolated packaged-app migration smoke.
+
+Subsequent reviewed application follow-ups merged through
+<https://github.com/ScientFactory/scient-desktop/pull/13> and
+<https://github.com/ScientFactory/scient-desktop/pull/14>, advancing current
+owned `main` to `2ecfbe19590c99386099c065846b5f3b987e953b` without changing the
+tested official-upstream pin above.
 
 The earlier Gate 1.5 suite and compatibility smoke remain historical evidence
 for their recorded source pins.

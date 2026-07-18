@@ -2,7 +2,7 @@
 
 Status: Active
 Owner: Yaacov
-Last updated: 2026-07-17
+Last updated: 2026-07-18
 Purpose: Gives new Scient collaborators a deliberate reading journey through the project, its repository, and its sources of truth before task-specific work begins.
 Doc type: Repo orientation
 
@@ -28,6 +28,12 @@ quality principles, and controlled lab experiments. The maintained desktop
 fork contains the first narrow Scient-owned project-initiation package, but it
 does not yet contain the complete scientific application, vertical slice, or
 the development and operational workflows that the documents anticipate.
+
+For local work, `Scient`, `scient-desktop`, and `scient-agent` are independent
+Git repositories kept as siblings inside a plain `ScientFactory/` directory.
+The container is not a fourth repository. The root [Scient README](../README.md)
+owns the repository roles and workspace layout; contributors must make each
+change in the repository that owns it.
 
 ScientFactory is the company identity. **Scient** is the public name for both
 the implemented app and its planned native first-party research agent. The
