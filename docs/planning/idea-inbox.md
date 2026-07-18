@@ -52,12 +52,6 @@ not analysis or architecture, and should move with the idea when it is promoted.
 
 ## Unprocessed Ideas
 
-### Project And Workspace
-
-| Idea | Raised by | Date added | Context or source | Possible area |
-|---|---|---|---|---|
-| **Default project workspace and starting material.** Plan how a new Scient user's basic desktop project workspace should be set up when the app creates and works with local files and folders. | Not recorded | 2026-07-12 | The evaluated skills-system direction now lives in the [Scient Skills System](../product/skills-system.md). Remaining questions include built-in starter guidance, standard places for articles and PDFs, other common project material, what Scient creates automatically, what remains visible versus app-managed, and how non-skill starting material works when opening an existing folder. | Product planning, project-format architecture, onboarding, and product design |
-
 ### Research Exploration And Visualization
 
 | Idea | Raised by | Date added | Context or source | Possible area |
