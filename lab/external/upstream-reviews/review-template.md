@@ -1,7 +1,7 @@
 # Upstream Review: Source And Date
 
 Status: Draft
-Owner: Yaacov
+Owner: Scient 001
 Created: 2026-07-18
 Last updated: 2026-07-18
 Purpose: Records the inspected upstream range, dispositions, and any selected intake for one maintained Scient source.

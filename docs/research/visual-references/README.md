@@ -1,9 +1,9 @@
 # Visual References
 
 Status: Active
-Owner: Yaacov
+Owner: Scient 001
 Created: 2026-07-12
-Last updated: 2026-07-17
+Last updated: 2026-07-18
 Purpose: Maps external and historical internal UI screenshots into retrieval-friendly categories for later product-design research.
 Doc type: Repo orientation
 

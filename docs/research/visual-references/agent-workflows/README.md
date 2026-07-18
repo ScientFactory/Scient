@@ -1,9 +1,9 @@
 # Agent Workflow Visual References
 
 Status: Active
-Owner: Yaacov
+Owner: Scient 001
 Created: 2026-07-13
-Last updated: 2026-07-17
+Last updated: 2026-07-18
 Purpose: Indexes visual patterns for agent task plans, step trackers, progress states, and workflow controls placed near a conversation composer.
 Doc type: Research evidence
 

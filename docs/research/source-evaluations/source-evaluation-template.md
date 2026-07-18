@@ -1,9 +1,9 @@
 # Source Evaluation Template
 
 Status: Placeholder
-Owner: Yaacov
+Owner: Scient 001
 Created: 2026-06-27
-Last updated: 2026-07-17
+Last updated: 2026-07-18
 Purpose: Defines what should become the source evaluation template once agreed.
 Doc type: Future home
 

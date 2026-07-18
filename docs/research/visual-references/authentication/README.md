@@ -1,9 +1,9 @@
 # Authentication Visual References
 
 Status: Active
-Owner: Yaacov
+Owner: Scient 001
 Created: 2026-07-12
-Last updated: 2026-07-17
+Last updated: 2026-07-18
 Purpose: Indexes external and historical internal login, sign-up, account-entry, identity-provider, and authentication-consent UI references.
 Doc type: Research evidence
 

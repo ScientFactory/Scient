@@ -1,7 +1,7 @@
 # Upstream Reviews
 
 Status: Active
-Owner: Yaacov
+Owner: Scient 001
 Created: 2026-07-18
 Last updated: 2026-07-18
 Purpose: Indexes dated evidence for reviews of changes in Scient's original desktop and agent sources.
