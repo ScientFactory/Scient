@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-07-08
-Last updated: 2026-07-17
+Last updated: 2026-07-18
 Purpose: Maps temporary inspection notes and lab decisions before promotion into durable docs.
 Doc type: Repo orientation
 
@@ -20,7 +20,7 @@ integration observations, and temporary lab decisions.
 - `synara-gate-1-baseline-2026-07-11.md` - historical inherited-scaffold baseline, official-CLI correction run, and Gate 1 pass result.
 - `synara-first-inspection-2026-07-07.md` - first source inspection of Synara as desktop base, OpenCode first-agent path, Goose integration path, and Scient ownership boundary.
 - `goose-source-depth-inspection-2026-07-11.md` - research input for Goose's later role, ACP surfaces, runtime-state boundary, permission risks, and first adapter recommendation.
-- `first-slice-source-trace-2026-07-18.md` - exact desktop/agent path trace for the first scientific source-to-note slice; persistence and permanent package choices are explicitly deferred to the reviewer brief.
+- `first-slice-source-trace-2026-07-18.md` - exact desktop/agent path trace for the first scientific source-to-note slice; future memory architecture and the permanent package remain explicitly unselected.
 - `t3-code-targeted-review-2026-07-18.md` - bounded T3 Code review through `bf76535fe4da71d8de7b8bd5ffa0d2086b7af8d0`, including accepted reliability work and explicit deferred/rejected dispositions.
 
 Keep notes clear about whether they are:

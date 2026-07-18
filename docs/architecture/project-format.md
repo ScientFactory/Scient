@@ -3,14 +3,15 @@
 Status: Placeholder
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-07-17
+Last updated: 2026-07-18
 Purpose: Defines what should be documented about Scient project structure once the format is designed.
 Doc type: Future home
 
-This page will document the Scient project format when it exists. The open
-canonical-state requirements, candidate representations, and proof obligations
-are currently framed in the draft
-[Scient Project Persistence Decision Brief](scient-project-persistence-decision-brief.md).
+This page will document the Scient project format when it exists. Unprocessed
+questions about project memory, conversations, files, portability, Git, cloud
+folders, and storage boundaries remain in the
+[Idea Inbox](../planning/idea-inbox.md#memory-context-and-continuity) until a
+dedicated memory-architecture discovery begins.
 
 Document here:
 

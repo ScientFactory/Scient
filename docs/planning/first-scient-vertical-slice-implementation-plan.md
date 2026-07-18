@@ -56,14 +56,16 @@ foundation and do not make the host project projection canonical.
 
 Phase 2 source tracing is complete in
 `../../lab/notes/first-slice-source-trace-2026-07-18.md`. It proved the current
-state-ownership gaps and candidate seams, but Yaacov deferred the permanent
-package, persistence technology, and fake-executor decisions for later review.
-The open storage question now has a standalone reviewer brief at
-`../architecture/scient-project-persistence-decision-brief.md`. Non-Git
-recovery, trusted project filesystem scope, and complete native-Scient/external-
-OpenCode runtime independence are approved requirements; they are not yet
-fully implemented for ongoing scientific operations. The existing project-init
-kernel already enforces path containment for initialization; the later
+state-ownership gaps and candidate seams. Yaacov clarified that conversations,
+project memory, user memory, recovery, cloud synchronization, and their storage
+boundaries belong to a dedicated future memory-architecture project, not an
+immediate persistence decision. Those unprocessed ideas now live in the
+[`Idea Inbox`](idea-inbox.md#memory-context-and-continuity). The permanent
+scientific-operation package and fake-executor product proof also remain
+deferred. Non-Git recovery, trusted project filesystem scope, and complete
+native-Scient/external-OpenCode runtime independence remain product
+requirements; they are not a selected memory design. The existing project-init
+kernel already enforces path containment for initialization, while later
 scientific-operation and native-agent boundaries remain to be built.
 The selected OpenCode-derived source is `bc125cbc60c36e4b7013f8d7cf755f745af509b3`
 on `dev`, but the native agent is not yet implemented or packaged. No
@@ -421,22 +423,24 @@ roadmap or ADR unless the trace invalidates them.
 
 The first review established three requirements: non-Git recovery, trusted
 project filesystem scope, and complete native-Scient/external-OpenCode runtime
-independence. Yaacov deferred the permanent package, persistence representation,
-portability/sync model, and deterministic fake-executor product proof.
+independence. Yaacov later clarified that the review had grouped future memory-
+architecture questions too narrowly as a current persistence decision. The
+scopes and relationships among conversations, user memory, project memory, raw
+history, files, local storage, and future cloud storage must be discovered
+together in a dedicated future project.
 
-The review exposed an open architecture decision: the reliability, performance,
-usability, backup, migration, Git, cloud-folder, concurrency, and future-sync
-consequences of canonical project persistence are unproven. Yaacov chose to
-document and defer that decision rather than select or implement SQLite now. Use
-`../architecture/scient-project-persistence-decision-brief.md` for requirements,
-candidate, evidence, and ADR gates. Do not begin scientific-state product code
-until that later review produces explicit authorization.
+The candidate questions are preserved in the
+[`Idea Inbox`](idea-inbox.md#memory-context-and-continuity). They do not select
+SQLite, define a project ledger, authorize memory implementation, or block the
+independent T3 reliability work. The permanent scientific-operation package and
+deterministic fake-executor product proof remain separate deferred decisions.
 
 ## Phase 3: Permanent Walking Skeleton
 
 Status: Deferred. The ordered work below remains a candidate sequence, not
-current authorization. Replan it after the persistence decision and the later
-fake-executor discussion.
+current authorization. Replan the memory-dependent steps only when the future
+memory-architecture project begins, and revisit the fake-executor question
+separately. Do not treat that future discovery as a current T3 dependency.
 
 Implement in this order:
 
@@ -588,13 +592,13 @@ Stop and report before widening scope if:
 - controlled fixture;
 - five-path map;
 - completed state-ownership table;
-- explicit non-Git recovery approach;
+- approved non-Git recovery requirement and unresolved future memory handoff;
 - permanent code-location candidates and explicit owner deferral;
 - reuse-versus-change list;
 - Scient integration and inherited OpenCode-core change verdict;
 - Synara-hosted versus external-topology verdict;
-- deferred decision/evidence sequence; and
-- an explicit no-go on scientific-state implementation until later review.
+- future memory questions routed to the idea inbox; and
+- no implied authorization for scientific-state or memory implementation.
 
 ### Vertical Slice Done
 

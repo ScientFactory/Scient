@@ -1,24 +1,24 @@
 # First Scientific Slice Source Trace
 
-Status: Complete as source evidence; persistence and package decisions deferred
+Status: Complete as source evidence; memory and package architecture not selected
 Owner: Yaacov
 Created: 2026-07-18
 Last updated: 2026-07-18
-Purpose: Maps the first scientific slice's current source seams, proven gaps, and decision requirements without selecting a persistence technology or authorizing product implementation.
+Purpose: Maps the first scientific slice's current source seams and proven gaps without selecting memory layers, persistence technology, or permanent product architecture.
 Doc type: Implementation evidence
 
 ## Verdict
 
-**Do not implement the permanent scientific-state skeleton yet.** The maintained
-Synara-derived desktop can host the slice without making its project, thread,
-provider, or checkpoint projections canonical scientific state, but the
-permanent package seam and persistence model remain open for later review.
+The maintained Synara-derived desktop can host a later scientific workflow
+without making its project, thread, provider, or checkpoint projections
+canonical scientific memory. This source trace does not select the future
+memory architecture, its storage, or the permanent scientific-operation package.
 
-A hybrid placement remains a leading candidate, not an accepted design:
+A hybrid placement was one source-trace candidate, not an accepted design:
 
 1. a possible `packages/scient-project` package in `scient-desktop` owns the
-   first-slice domain rules, project-local persistence, proposal decisions,
-   recovery, and filesystem-scope policy;
+   first-slice domain rules, proposal decisions, recovery behavior, and
+   filesystem-scope policy;
 2. thin contracts, trusted-server RPC, and project-level UI shims call that
    package; and
 3. a narrow executor port accepts immutable task/context receipts and returns a
@@ -26,22 +26,19 @@ A hybrid placement remains a leading candidate, not an accepted design:
    discussion. Scient would eventually implement the port as a distinct
    execution target; external OpenCode remains an independent adapter.
 
-The requirement under review is that canonical accepted state remain
-independent of Synara's `~/.scient/userdata/state.sqlite`, provider sessions,
-chat transcripts, and Git checkpoint refs. `.scient/project.json` already owns
-portable identity. The location and representation of ongoing scientific
-records are not selected. Project-local SQLite, append-only structured files, a
-hybrid canonical-log/index design, and an app-local store with explicit portable
-bundles require evidence-based comparison in
-[`scient-project-persistence-decision-brief.md`](../../docs/architecture/scient-project-persistence-decision-brief.md).
+The trace proved that `.scient/project.json` already owns portable project
+identity while ongoing scientific memory and records have no selected location
+or representation. Conversations, task/run context, project memory, user
+memory, raw history, files, recovery, and cloud sync must be discussed together
+in a dedicated future memory-architecture project. The raw candidate layers and
+questions are preserved in the
+[`Idea Inbox`](../../docs/planning/idea-inbox.md#memory-context-and-continuity).
 
 The existing Git-backed checkpoint mechanism is not suitable for the approved
-non-Git guarantee. A future persistence design must prove that acceptance is
-atomic or equivalently recoverable, records the prior accepted state, appends
-the decision, and advances accepted state without rewriting history. No Git
-repository, worktree, executor session, or transcript may be the only way to
-reopen or recover the accepted source-to-note relationship. The mechanism is
-open.
+non-Git guarantee. A future memory and recovery design must determine how
+accepted work remains coherent and recoverable without making a Git repository,
+worktree, executor session, or transcript the only reconstruction path. The
+mechanism and record model are open.
 
 One required and user-approved native-agent gap is now proven: the selected
 `scient-agent` source still defaults its global data/config/state roots and
@@ -52,7 +49,7 @@ alter the existing external OpenCode adapter or its user-owned data paths.
 ## Controlled Fixture
 
 The deterministic synthetic capsule below remains a candidate for a later
-controlled persistence or executor test. Yaacov deferred fake-executor product
+controlled memory/recovery or executor test. Yaacov deferred fake-executor product
 implementation and is separately preparing a real project for later manual
 testing. The controlled fixture would protect the real project from destructive
 crash, corruption, migration, and recovery experiments; it is not authorized by
@@ -114,17 +111,13 @@ platform user-data profile resolved by
 
 ### Scient attachment point
 
-After the host resolves a workspace root, a future trusted server boundary
-should inspect `.scient/project.json` and open the selected project-owned record
-boundary through the approved package or service seam. The project-level UI
-should be keyed by the portable Scient project ID, while the Synara project ID
-remains a replaceable host reference. The persistence review must define what
-must move, copy, export, or restore for history to remain portable; this trace
-does not assume that a folder copy is sufficient.
-
-Failure to open the canonical store must not silently fall back to chat state.
-It should show an explicit unavailable/migration/recovery state and leave the
-project files untouched until the user chooses a safe action.
+After the host resolves a workspace root, later project-aware capabilities can
+inspect `.scient/project.json` and key their UI to the portable Scient project
+ID while keeping the Synara project ID as a replaceable host reference. This
+trace does not decide which memory or record boundary is then opened, what must
+move with the folder, or how export, restore, and cloud continuation work.
+Existing host or chat state must not be described as accepted memory merely
+because no future store has been selected.
 
 ## Path B: Manual Operations And Minimal UI
 
@@ -217,7 +210,7 @@ If a later workflow genuinely requires arbitrary shell execution, add an OS
 sandbox or isolated staged workspace as a separate safety slice. Do not claim
 that the current OpenCode permission prompt alone enforces filesystem scope.
 
-## Path D: Persistence And State Ownership
+## Path D: Current State Ownership And Future Memory Questions
 
 | State | Current owner | Location | Survives restart? | Canonical for Scient? |
 |---|---|---|---|---|
@@ -233,13 +226,15 @@ that the current OpenCode permission prompt alone enforces filesystem scope.
 | Run receipt, proposal, and decision | Missing | Project-owned representation and location undecided | Must | Must |
 | Recovery state | Missing | Project-owned representation and location undecided | Must | Must |
 
-The persistence choice must be evaluated against reliability, atomicity,
-performance, scale, backup/restore, portability, readable export, Git and cloud-
-folder behavior, concurrency, migration, packaging, future sync, and an exit
-path. Secrets and provider credentials must never enter project-owned scientific
-state. Large source files remain out of the first structured-state experiment.
-The complete open question and reviewer assignment live in the
-[persistence decision brief](../../docs/architecture/scient-project-persistence-decision-brief.md).
+The future memory-architecture project must decide which of these rows represent
+memory, raw history, provenance, ordinary files, application state, or another
+kind of project record before comparing storage technologies. Its questions
+include portability, Git independence and compatibility, user-selected cloud
+folders, recovery, conversation retention, future Scient cloud sync, privacy,
+and export. They are preserved in the
+[`Idea Inbox`](../../docs/planning/idea-inbox.md#memory-context-and-continuity).
+Secrets and provider credentials must never become project memory merely for
+convenience.
 
 ## Path E: Proposal, Review, Non-Git Recovery, And Reopening
 
@@ -257,7 +252,9 @@ Provider live diffs and host proposed plans are useful presentation/evidence
 inputs, but they remain thread/provider projections and cannot reconstruct an
 accepted scientific note after their session is deleted.
 
-The approved behavioral requirement for a later proposal flow is:
+The trace sketched the following candidate later proposal flow. Only the high-
+level non-Git recovery outcome is approved; these record and transaction details
+are not accepted memory architecture:
 
 1. create immutable source, task, and context revisions;
 2. open a run receipt before executor invocation;
@@ -269,18 +266,11 @@ The approved behavioral requirement for a later proposal flow is:
 8. atomically advance the accepted state and publish; and
 9. on reject or failure, append the outcome without changing accepted pointers.
 
-Reopening must read the portable project identity and canonical record without
-starting an agent. Recovery creates a new decision/revision that points back to
-the recovery point; audit history remains intact. Interrupted publication must
-leave the old state authoritative or the new state fully authoritative, never a
-silent partial mixture. Corruption/open failures must be explicit and read-only
-until a verified recovery action is chosen.
-
-This behavioral boundary is credible for a controlled fixture only if
-acceptance changes a bounded set of canonical records atomically or through an
-equivalently proven protocol. Later materialized project-file changes require
-content-addressed preimages or another reviewed file transaction; they must not
-be silently declared covered by the first record mechanism.
+The future memory discovery must decide whether this is the right model, what
+reopening and recovery mean at each memory layer, and how interrupted changes or
+corruption are surfaced. This trace does not select immutable records,
+transactions, accepted pointers, content-addressed preimages, or another repair
+protocol.
 
 ## Permanent Seam Comparison
 
@@ -293,12 +283,11 @@ not user acceptance and not a persistence-technology score.
 | Isolated modules scattered across contracts/server/UI | 3 | 2 | 3 | 3 | 2 | 2 | 2 |
 | Hybrid package plus thin integration shims and executor port | 5 | 5 | 5 | 4 | 4 | 5 | 5 |
 
-The hybrid remains the leading code-placement candidate because a package can
+The hybrid scored highest in this preliminary comparison because a package can
 make ownership explicit while named shims make UI/server/executor crossings
-testable. It is not selected. Yaacov deferred the permanent package and
-persistence choice for later review. The persistence evaluation must determine
-whether this placement remains appropriate once storage, migration, backup,
-portability, and support obligations are understood.
+testable. It is not selected. A future memory architecture may change which
+responsibilities belong together, so this comparison remains historical source-
+trace evidence rather than a current package recommendation.
 
 ## Reuse Unchanged
 
@@ -334,7 +323,7 @@ portability, and support obligations are understood.
 - evaluate whether `packages/scient-project` should own domain commands,
   persistence-independent interfaces, revision/recovery rules, and path-scope
   policy;
-- select a persistence model only through the decision brief's reviewed gates;
+- do not select persistence or memory boundaries from this trace;
 - add narrow DTO/RPC contracts and server services that resolve portable
   identity from the workspace root and call the package;
 - add one project-level route/view and sidebar entry; and
@@ -357,62 +346,33 @@ After a later review, expose a bounded Scient workflow capability that consumes
 the gateway receipt and returns a proposal. The first capability profile must
 not provide unrestricted shell or direct canonical writes.
 
-## Deferred Decision And Coding Sequence
+## Deferred Memory-Architecture Handoff
 
-No scientific persistence or executor code is authorized by this trace. The
-next sequence is documentation and evidence first:
+This trace does not authorize memory, persistence, or executor implementation.
+It hands the unresolved relationships among conversation history, task/run
+context, user memory, project memory, raw history, provenance, files, recovery,
+and cloud sync to a dedicated future discovery project. The candidate layers,
+questions, and explicit non-decisions are preserved in the
+[`Idea Inbox`](../../docs/planning/idea-inbox.md#memory-context-and-continuity).
 
-1. **Requirements review:** revise and accept the technology-neutral ownership,
-   recovery, portability, export, performance, and collaboration requirements.
-2. **Candidate review:** compare project-local SQLite, append-only structured
-   files, canonical files plus a derived index, app-local storage plus portable
-   bundles, and any reviewer-supported alternative.
-3. **Disposable evidence run:** exercise real persistence, process, filesystem,
-   copy, backup, restore, migration, concurrency, scale, and corruption behavior
-   without using production code or the user's live project.
-4. **Architecture decision:** propose an ADR with evidence, rejected options,
-   unsupported behavior, and an exit path; keep it Proposed until Yaacov accepts
-   it.
-5. **Package and implementation plan:** only then select the permanent package
-   seam and rewrite the coding backlog around the accepted model.
-6. **Deferred executor discussion:** decide later when and how a deterministic
-   executor proof and the user's real project should enter the sequence.
-7. **Native Scient isolation:** preserve the approved requirement that native
-   Scient and external OpenCode never share credentials, processes, paths,
-   sessions, plugins, databases, or updates; authorize implementation separately.
+The permanent scientific-operation package and deterministic fake-executor
+product proof remain separate deferred questions. Native Scient isolation is an
+approved independent requirement: native Scient and external OpenCode must not
+share credentials, processes, paths, sessions, plugins, databases, or updates.
 
 ## Go/No-Go Conditions
 
-Go now only for completing and publishing the independent T3 reliability work and
-for documenting/reviewing persistence requirements. Do not begin scientific-
-state product implementation.
-
-The later design may go to implementation only when evidence proves:
-
-- manual and agent paths share one command boundary;
-- accepted state is independent of host and provider sessions;
-- non-Git recovery is atomic or equivalently recoverable and testable;
-- project scope is enforced at the canonical/gateway boundary rather than
-  trusted to prompt wording;
-- external OpenCode remains unchanged; and
-- the first coding backlog is bounded around an accepted persistence model.
-
-Stop and revisit this decision if implementation proves any of these:
-
-- no candidate can meet the reviewed reliability, portability, performance,
-  backup, export, migration, and concurrency requirements at acceptable cost;
-- accepted state requires host projection IDs or an executor transcript;
-- scoped gateway tools cannot prevent direct native-agent writes for the
-  controlled workflow;
-- native Scient cannot isolate every durable path from external OpenCode without
-  a broad upstream-hostile rewrite; or
-- the project-level UI requires a broad workbench redesign.
+The independent T3 reliability work may complete without any memory decision.
+This trace also does not create a broad blocker for unrelated product work.
+Memory-dependent workflow behavior should be planned only when the dedicated
+memory project begins; the package, executor proof, and native-agent integration
+require their own explicit authorization.
 
 ## Review Checkpoint
 
 The source map is complete, but its former SQLite and hybrid-package selection
-is withdrawn pending later review. The approved requirements are non-Git
-recovery, trusted filesystem scope, and complete native-Scient/external-OpenCode
-runtime independence. Fake-executor work is deferred. Use the
-[Scient Project Persistence Decision Brief](../../docs/architecture/scient-project-persistence-decision-brief.md)
-for the next review; do not infer implementation authorization from this note.
+is withdrawn. The approved requirements are non-Git recovery, trusted
+filesystem scope, and complete native-Scient/external-OpenCode runtime
+independence. Fake-executor work is deferred. Future memory questions live in
+the [`Idea Inbox`](../../docs/planning/idea-inbox.md#memory-context-and-continuity);
+do not infer memory architecture or implementation authorization from this note.

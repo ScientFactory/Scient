@@ -62,7 +62,7 @@ Scient app from the planned Scient agent where needed.
 | Local coordinator | Bun/Node.js WebSocket server | Inherited scaffold candidate; not yet a Scient decision |
 | Workspace tooling | Bun workspaces, Turborepo, Vite | Inherited scaffold candidate; not yet a Scient decision |
 | Cloud web app | React, with Next.js as a later candidate | Not scaffolded |
-| Local structured state | SQLite for inherited app/session projections; canonical Scient project store undecided | App SQLite implemented; project persistence under later review |
+| Local application state | SQLite for inherited app/session projections; future memory and project-state storage undecided | App SQLite implemented; memory architecture not yet designed |
 | Cloud database | Postgres | Proposed; not scaffolded |
 | Cloud platform | Supabase | Initial default candidate; not scaffolded |
 | Large file storage | Object storage | Proposed; not scaffolded |
@@ -167,8 +167,8 @@ The current lab scaffold has this upstream shape:
 That tree remains foreign source and should not become the Scient package map by
 accident. Source-tracing notes and disposable adapter experiments may use
 `lab/scient-bridge/`. The first vertical-slice implementation belongs in a
-permanent location to be selected from source evidence and the deferred
-persistence review; do not treat the lab as its default code home.
+permanent location to be selected from source evidence and later focused
+product/architecture work; do not treat the lab as its default code home.
 
 Possible later Scient-owned package areas include:
 
@@ -234,26 +234,25 @@ SQLite is selected for canonical Scient project records.
 The inherited scaffold already uses SQLite for Synara app, session,
 orchestration, and projection state. That database must not be relabeled as the
 Scient scientific project database. Scient-owned project persistence has not
-been selected, designed, or implemented. The open requirements, candidates,
-risks, questions, and evidence gates live in the
-[Scient Project Persistence Decision Brief](scient-project-persistence-decision-brief.md).
+been selected, designed, or implemented. The future memory-architecture project
+will decide the roles of conversations, user memory, project memory, raw
+history, files, local application storage, and cloud storage before evaluating
+their persistence technologies. Unprocessed questions remain in the
+[Idea Inbox](../planning/idea-inbox.md#memory-context-and-continuity).
 
 Scient should distinguish:
 
 - global app state, such as recent projects, local settings, device identity, and local caches
 - project-owned scientific state, such as sources, protocol records, evidence records, extraction records, manuscript state, agent runs, and sync metadata
 
-The project-owned scientific record boundary is the more important
-architectural object because projects must be portable and recoverable. Its
-representation may be a project-local database, append-only structured files, a
-canonical-file/derived-index hybrid, an app-local store with explicit portable
-bundles, or another reviewed model.
+The relationship among project-owned scientific records, future memory, raw
+history, and ordinary files remains an open product and architecture question.
+Do not turn one candidate representation into architecture before that broader
+memory discovery.
 
 The inherited scaffold uses Effect SQL with SQLite through Bun. Do not replace
-that layer merely to satisfy a candidate target stack. If project persistence
-later selects SQLite, evaluate Effect SQL, Drizzle, Kysely, or a narrower owned
-layer only after the project-state contract and persistence evidence are
-reviewed.
+that layer merely to satisfy a candidate target stack. Whether any part of a
+future memory architecture reuses it is explicitly undecided.
 
 ## Cloud Data
 
@@ -478,7 +477,7 @@ Completed historical experiments remain evidence, not the roadmap.
 | Synara-derived application | Standalone owned source, build, isolated Scient identity and state, reviewed upstream process | Scientific-product fit, sustainable domain UI divergence, and long-term maintenance cost | Gate 1 and Gate 1.5 lab reports; ADR-0001 owns adoption; ADR-0002 owns repository authority |
 | Scient source foundation | Owned OpenCode build, Synara compatibility, project-root fidelity, transcript fidelity, and approval flow for a constrained action | Scient identity and packaging, owned capabilities, isolated Scient state, durable task behavior, and justified inherited-core changes | Gate 1.5 report proves the source baseline; ADR-0001 owns Scient adoption |
 | External agents | Nine inherited adapters and external OpenCode settings/adapter paths are present in source | Per-agent live compatibility, subscription/auth behavior, project-task certification, and migration protection | [Scient and external agents implementation plan](../planning/scient-and-external-agents-implementation-plan.md) |
-| Scient project state | Product responsibilities, approved non-Git recovery requirement, and trust boundary are documented | Canonical representation, package seam, reliability, portability, performance, backup, export, sync, and first real scientific object relationship | [Persistence decision brief](scient-project-persistence-decision-brief.md) and first vertical-slice plan |
+| Scient project state and memory | Product responsibilities, high-level memory principles, approved non-Git recovery requirement, and trust boundary are documented | Memory scopes, canonical representation, conversation relationship, package seam, portability, recovery, cloud sync, and first real scientific object relationship | PRD, [Idea Inbox](../planning/idea-inbox.md#memory-context-and-continuity), and future focused architecture work |
 | Scient-agent and Scient-app boundary | Scient-agent identity plus context, proposal, review, provenance, and permission responsibilities are documented | Actual contract, code placement, event mapping, isolated Scient-agent state, and accepted write-back path | ADR-0001 and linked implementation plans; `agent-runtime.md` remains a future home |
 | Goose | Source seams, ACP path, and safety risks inspected | Incremental capabilities or architecture lessons for Scient; any future external Goose path is a separate decision | Goose source-depth inspection |
 | Cloud sync | Postgres, object storage, and local-first sync are proposed directions | Authority, offline behavior, conflicts, revocation, and recovery | Later roadmap and focused architecture work |
@@ -495,7 +494,7 @@ The proposed and accepted-by-ADR foundation direction is:
 TypeScript
 React
 Electron
-SQLite for inherited app state; canonical project persistence undecided
+SQLite for inherited app state; future memory storage undecided
 Postgres
 Supabase as initial cloud platform candidate
 object storage

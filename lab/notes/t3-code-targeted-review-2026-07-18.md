@@ -98,10 +98,11 @@ When the first scientific vertical slice reaches its execution contract:
 - preserve existing external adapters and settings; and
 - keep canonical scientific state independent of every provider session store.
 
-The independent T3 intake is complete and is not blocked by the later project-
-persistence decision. Before scientific-state product implementation, use the
-[`Scient Project Persistence Decision Brief`](../../docs/architecture/scient-project-persistence-decision-brief.md)
-and the revised first-slice trace to review requirements and candidates.
+The independent T3 intake is complete and has no dependency on the future
+memory-architecture project. Raw questions about conversation, user, project,
+and task/run memory; portability; recovery; Git and cloud folders; and future
+Scient cloud sync are preserved separately in the
+[`Idea Inbox`](../../docs/planning/idea-inbox.md#memory-context-and-continuity).
 
 ## Triggered Shelf
 
