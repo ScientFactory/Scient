@@ -26,7 +26,7 @@ siblings. A deferred source with no retained checkout says so explicitly.
 
 | Source | Local path | Official upstream | Owned repository | Tested integrated upstream base | Maintained/tested commit | Role and update mode |
 |---|---|---|---|---|---|---|
-| Scient agent source (OpenCode-derived) | `../scient-agent/`; canonical workspace sibling on `dev` at `f7d61d3583687ddc09919ca9e70d69d06b0861f8` | `https://github.com/anomalyco/opencode.git`, `dev` | `https://github.com/ScientFactory/scient-agent`, public standalone repository | `69a80663a2ed7d671d2b4d5dd6f2d605714675a5` | Current owned `dev` `f7d61d3583687ddc09919ca9e70d69d06b0861f8`; exact rename and maintenance evidence below | Owned source foundation for the planned Scient agent; `adapter-maintained`; native Scient runtime identity is not yet implemented. |
+| Scient agent source (OpenCode-derived) | `../scient-agent/`; canonical workspace sibling on `dev` at `bc125cbc60c36e4b7013f8d7cf755f745af509b3` | `https://github.com/anomalyco/opencode.git`, `dev` | `https://github.com/ScientFactory/scient-agent`, public standalone repository | `69a80663a2ed7d671d2b4d5dd6f2d605714675a5` | Current owned `dev` `bc125cbc60c36e4b7013f8d7cf755f745af509b3`; exact rename and maintenance evidence below | Owned source foundation for the planned Scient agent; `adapter-maintained`; native Scient runtime identity is not yet implemented. |
 | Goose | No local checkout is retained. | `https://github.com/aaif-goose/goose.git`, `main` | None; owned repository deferred | Not tested in Gate 1.5 | Last inspected commit `3c1fdd692cc8aaa5f09b9175410c09a09d4dfe49` | Deferred broader-agent research input. Repository, build, ACP adapter, runtime, credentials, and adoption wait until after the first Scient gateway. |
 | Scient desktop (Synara-derived) | `../scient-desktop/`; canonical workspace sibling on `main` at `57e6b2cde09f64db367b894506f56db605fb91b4` | `https://github.com/Emanuele-web04/synara.git`, `main` | `https://github.com/ScientFactory/scient-desktop`, public standalone repository | `9be46c3ce6a7521b64436b7334bc6fce16e3cac4` | Current owned `main` `57e6b2cde09f64db367b894506f56db605fb91b4`; exact rename and maintenance evidence below | Accepted initial application foundation; `divergent-cherry-pick`; must not own scientific project truth. |
 | T3 Code | No local checkout is retained. | `https://github.com/pingdotgg/t3code.git`, `main` | None | Not tested in Gate 1.5 | Last inspected commit `b9cc8d6ef17ca9f45bec621bef71ad3f706b9276` | Desktop/runtime/provider/process reference only. |
@@ -41,7 +41,7 @@ review is accepted.
 | Source | Tested owned head | Reviewed through | Integration base | Update mode | Review evidence |
 |---|---|---|---|---|---|
 | Scient desktop | `57e6b2cde09f64db367b894506f56db605fb91b4` | `69304bc1d59d86da8afbac367118c75db8c9dbfe` on 2026-07-18 | `9be46c3ce6a7521b64436b7334bc6fce16e3cac4` | `divergent-cherry-pick` | [`2026-07-18-scient-desktop.md`](upstream-reviews/2026-07-18-scient-desktop.md); no code intake |
-| Scient agent source | `f7d61d3583687ddc09919ca9e70d69d06b0861f8` | `fab213312927ea64cf968832c527206e8c944f9e` on 2026-07-18 | `69a80663a2ed7d671d2b4d5dd6f2d605714675a5` | `adapter-maintained` | [`2026-07-18-scient-agent.md`](upstream-reviews/2026-07-18-scient-agent.md); no code intake |
+| Scient agent source | `bc125cbc60c36e4b7013f8d7cf755f745af509b3` | `fab213312927ea64cf968832c527206e8c944f9e` on 2026-07-18 | `69a80663a2ed7d671d2b4d5dd6f2d605714675a5` | `adapter-maintained` | [`2026-07-18-scient-agent.md`](upstream-reviews/2026-07-18-scient-agent.md); no code intake |
 
 ## Standalone Ownership And Maintenance Rollout
 
@@ -117,6 +117,12 @@ source-repository pull requests:
   `012398b080696691864f985f310dfefaf9d9a749` passed hosted source-quality run
   `29644889618` and merged as
   `f7d61d3583687ddc09919ca9e70d69d06b0861f8`.
+- Agent [PR #7](https://github.com/ScientFactory/scient-agent/pull/7)
+  moved the active quality and upstream-monitor workflows to immutable
+  Node 24 action releases; exact head
+  `e6a06de63ce668144bb00e20dbd8f392a4da230a` passed hosted source-quality run
+  `29645764713` without annotations and merged as
+  `bc125cbc60c36e4b7013f8d7cf755f745af509b3`.
 
 No source code from the reviewed official ranges was integrated during this
 rollout. The PRs above establish ownership, review, monitoring, and verification
