@@ -93,12 +93,15 @@ When the first scientific vertical slice reaches its execution contract:
 - add stable agent-connection identity above it;
 - represent native Scient and external-agent connections as distinct execution
   targets;
-- use one narrow executor port and a deterministic fake executor;
+- later evaluate one narrow executor port; Yaacov deferred the deterministic
+  fake-executor product proof;
 - preserve existing external adapters and settings; and
 - keep canonical scientific state independent of every provider session store.
 
-The first-slice boundary trace and its user review checkpoint remain the gate
-before product-code implementation.
+The independent T3 intake is complete and is not blocked by the later project-
+persistence decision. Before scientific-state product implementation, use the
+[`Scient Project Persistence Decision Brief`](../../docs/architecture/scient-project-persistence-decision-brief.md)
+and the revised first-slice trace to review requirements and candidates.
 
 ## Triggered Shelf
 

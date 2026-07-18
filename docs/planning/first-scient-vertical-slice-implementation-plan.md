@@ -55,9 +55,16 @@ at `57e6b2cde09f64db367b894506f56db605fb91b4`. They initialize only the portable
 foundation and do not make the host project projection canonical.
 
 Phase 2 source tracing is complete in
-`../../lab/notes/first-slice-source-trace-2026-07-18.md` and awaits the required
-Yaacov review checkpoint. The proposed decision is a permanent Scient project
-domain/persistence package with thin host shims and a narrow executor port.
+`../../lab/notes/first-slice-source-trace-2026-07-18.md`. It proved the current
+state-ownership gaps and candidate seams, but Yaacov deferred the permanent
+package, persistence technology, and fake-executor decisions for later review.
+The open storage question now has a standalone reviewer brief at
+`../architecture/scient-project-persistence-decision-brief.md`. Non-Git
+recovery, trusted project filesystem scope, and complete native-Scient/external-
+OpenCode runtime independence are approved requirements; they are not yet
+fully implemented for ongoing scientific operations. The existing project-init
+kernel already enforces path containment for initialization; the later
+scientific-operation and native-agent boundaries remain to be built.
 The selected OpenCode-derived source is `bc125cbc60c36e4b7013f8d7cf755f745af509b3`
 on `dev`, but the native agent is not yet implemented or packaged. No
 scientific-state store, Scient agent gateway, proposal/decision ledger, or
@@ -381,7 +388,7 @@ Do not design the full project graph or package map. Decide only the first home
 for project identity, source excerpt, evidence note, task/context, run/proposal/
 decision, and recovery responsibilities.
 
-### 3. Produce The Trace Decision
+### 3. Produce The Trace And Decision Boundary
 
 Create one dated evidence note at:
 
@@ -396,12 +403,14 @@ It must record:
 5. the completed state-ownership table;
 6. non-Git behavior and recovery findings;
 7. the proposed filesystem-scope enforcement boundary;
-8. candidate seam comparison and selected permanent placement;
+8. candidate seam comparison and either a selected permanent placement or an
+   explicit owner-approved deferral;
 9. existing machinery to reuse unchanged;
 10. surfaces Scient must not couple to;
 11. any required Synara change, the Scient integration seam, and any proven
     inherited OpenCode-core gap;
-12. the exact first coding backlog; and
+12. the exact first coding backlog or the evidence/decision sequence required
+    before such a backlog is safe; and
 13. a go/no-go verdict for implementation.
 
 Update this plan only where the trace resolves an open boundary. Update
@@ -410,16 +419,24 @@ roadmap or ADR unless the trace invalidates them.
 
 ### 4. Review Checkpoint
 
-Stop for Yaacov's review before product code begins. The review should decide
-only whether the selected permanent boundary is understandable, serves both
-manual and agent work, keeps scientific state outside inherited sessions,
-supports credible non-Git recovery, defines enforceable project filesystem
-scope, and produces a sufficiently narrow coding backlog.
+The first review established three requirements: non-Git recovery, trusted
+project filesystem scope, and complete native-Scient/external-OpenCode runtime
+independence. Yaacov deferred the permanent package, persistence representation,
+portability/sync model, and deterministic fake-executor product proof.
 
-Once accepted, begin implementation. Do not add another exploratory phase
-unless the trace identifies a real blocker.
+The review exposed an open architecture decision: the reliability, performance,
+usability, backup, migration, Git, cloud-folder, concurrency, and future-sync
+consequences of canonical project persistence are unproven. Yaacov chose to
+document and defer that decision rather than select or implement SQLite now. Use
+`../architecture/scient-project-persistence-decision-brief.md` for requirements,
+candidate, evidence, and ADR gates. Do not begin scientific-state product code
+until that later review produces explicit authorization.
 
 ## Phase 3: Permanent Walking Skeleton
+
+Status: Deferred. The ordered work below remains a candidate sequence, not
+current authorization. Replan it after the persistence decision and the later
+fake-executor discussion.
 
 Implement in this order:
 
@@ -572,12 +589,12 @@ Stop and report before widening scope if:
 - five-path map;
 - completed state-ownership table;
 - explicit non-Git recovery approach;
-- selected permanent code location;
+- permanent code-location candidates and explicit owner deferral;
 - reuse-versus-change list;
 - Scient integration and inherited OpenCode-core change verdict;
 - Synara-hosted versus external-topology verdict;
-- narrow first coding backlog; and
-- Yaacov's approval to implement.
+- deferred decision/evidence sequence; and
+- an explicit no-go on scientific-state implementation until later review.
 
 ### Vertical Slice Done
 

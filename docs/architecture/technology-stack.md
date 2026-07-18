@@ -62,11 +62,11 @@ Scient app from the planned Scient agent where needed.
 | Local coordinator | Bun/Node.js WebSocket server | Inherited scaffold candidate; not yet a Scient decision |
 | Workspace tooling | Bun workspaces, Turborepo, Vite | Inherited scaffold candidate; not yet a Scient decision |
 | Cloud web app | React, with Next.js as a later candidate | Not scaffolded |
-| Local database | SQLite | Proposed; inherited scaffold uses it for app/session projections, not Scient project truth |
+| Local structured state | SQLite for inherited app/session projections; canonical Scient project store undecided | App SQLite implemented; project persistence under later review |
 | Cloud database | Postgres | Proposed; not scaffolded |
 | Cloud platform | Supabase | Initial default candidate; not scaffolded |
 | Large file storage | Object storage | Proposed; not scaffolded |
-| Sync | Local-first SQLite-to-cloud sync | Under evaluation; not scaffolded |
+| Sync | Local-first project-state-to-cloud sync | Under evaluation; storage and sync engines not selected or scaffolded |
 | Application foundation | Standalone Scient-owned, Synara-derived source | Accepted initial foundation through ADR-0001; ownership authority through ADR-0002; scientific product fit remains unproven |
 | External-agent layer | Synara provider contracts and service | Inherited machinery for external agents; preservation required, project-task compatibility not yet certified |
 | First-party agent | Scient, derived from standalone Scient-owned, OpenCode-derived source | Accepted identity and source foundation through ADR-0001; ownership authority through ADR-0002; Scient product/runtime not yet implemented |
@@ -166,9 +166,9 @@ The current lab scaffold has this upstream shape:
 
 That tree remains foreign source and should not become the Scient package map by
 accident. Source-tracing notes and disposable adapter experiments may use
-`lab/scient-bridge/`. The first vertical-slice implementation belongs in the
-permanent location selected from source evidence during the implementation
-plan; do not treat the lab as its default code home.
+`lab/scient-bridge/`. The first vertical-slice implementation belongs in a
+permanent location to be selected from source evidence and the deferred
+persistence review; do not treat the lab as its default code home.
 
 Possible later Scient-owned package areas include:
 
@@ -197,7 +197,11 @@ where practical.
 Use Electron for the first desktop experiment. The inherited Synara scaffold
 already provides the Electron shell.
 
-Electron is the pragmatic first choice because Scient needs React, local files, SQLite, subprocesses, agent CLIs, and local background services. These are all easier to integrate in Electron than in a stricter native shell during the first product build.
+Electron is the pragmatic first choice because Scient needs React, local files,
+embedded structured storage, subprocesses, agent CLIs, and local background
+services. These are all easier to integrate in Electron than in a stricter
+native shell during the first product build. This shell choice does not select
+the canonical project-storage technology.
 
 The immediate validation question is whether the Synara-derived shell can host
 a Scient-owned project mode without forcing scientific work into coding
@@ -223,24 +227,33 @@ cloud/project model, not a separate product with separate semantics.
 
 ## Local Data
 
-Use SQLite locally.
+Use the inherited SQLite boundary for current global app, session,
+orchestration, and projection state. Do not infer from that implementation that
+SQLite is selected for canonical Scient project records.
 
 The inherited scaffold already uses SQLite for Synara app, session,
 orchestration, and projection state. That database must not be relabeled as the
 Scient scientific project database. Scient-owned project persistence has not
-been designed or implemented.
+been selected, designed, or implemented. The open requirements, candidates,
+risks, questions, and evidence gates live in the
+[Scient Project Persistence Decision Brief](scient-project-persistence-decision-brief.md).
 
 Scient should distinguish:
 
 - global app state, such as recent projects, local settings, device identity, and local caches
-- per-project scientific state, such as papers, protocol records, evidence records, extraction records, manuscript state, agent runs, and sync metadata
+- project-owned scientific state, such as sources, protocol records, evidence records, extraction records, manuscript state, agent runs, and sync metadata
 
-The per-project database is the more important architectural object because projects must be portable and recoverable.
+The project-owned scientific record boundary is the more important
+architectural object because projects must be portable and recoverable. Its
+representation may be a project-local database, append-only structured files, a
+canonical-file/derived-index hybrid, an app-local store with explicit portable
+bundles, or another reviewed model.
 
 The inherited scaffold uses Effect SQL with SQLite through Bun. Do not replace
-that layer merely to satisfy the target stack before the scaffold baseline is
-known. For Scient-owned project persistence, evaluate Effect SQL, Drizzle,
-Kysely, or a narrower owned layer after the first project-state contract exists.
+that layer merely to satisfy a candidate target stack. If project persistence
+later selects SQLite, evaluate Effect SQL, Drizzle, Kysely, or a narrower owned
+layer only after the project-state contract and persistence evidence are
+reviewed.
 
 ## Cloud Data
 
@@ -270,23 +283,31 @@ Large binary assets should not be stored directly in Postgres.
 
 ## Sync
 
-Use local-first sync between local SQLite/project state and the cloud collaboration plane.
+The product direction requires local-first sync between project-owned state and
+the future cloud collaboration plane. The local representation, cloud authority
+model, and exact sync engine are not selected.
 
 The exact sync engine is not yet selected.
 
 Current candidates:
 
-- PowerSync for SQLite-to-Postgres local-first sync
+- PowerSync if a compatible SQLite-to-Postgres topology is proven
 - Electric for Postgres-backed read sync and live web/cloud views
 - a Scient-owned sync layer if vendor tools do not fit the required project model
 
-Convex is not selected as the primary database or local-first sync foundation. It may be evaluated for collaboration features or realtime cloud workflows, but the current stack direction requires portable local project state backed by SQLite.
+Convex is not selected as the primary database or local-first sync foundation.
+It may be evaluated for collaboration features or realtime cloud workflows, but
+no candidate may override the requirements for researcher-owned, portable,
+recoverable local project state.
 
 Scient should maintain domain-level mutation and audit semantics so the product is not locked to one sync vendor.
 
 ## Collaboration
 
-Use database sync for structured scientific state.
+Use an explicit structured-state synchronization protocol for structured
+scientific state once the canonical local representation and cloud authority
+model are accepted. Do not assume file-level sync, database sync, or one vendor
+before that decision.
 
 Use CRDTs only for document-like collaborative surfaces where simultaneous text editing matters.
 
@@ -457,7 +478,7 @@ Completed historical experiments remain evidence, not the roadmap.
 | Synara-derived application | Standalone owned source, build, isolated Scient identity and state, reviewed upstream process | Scientific-product fit, sustainable domain UI divergence, and long-term maintenance cost | Gate 1 and Gate 1.5 lab reports; ADR-0001 owns adoption; ADR-0002 owns repository authority |
 | Scient source foundation | Owned OpenCode build, Synara compatibility, project-root fidelity, transcript fidelity, and approval flow for a constrained action | Scient identity and packaging, owned capabilities, isolated Scient state, durable task behavior, and justified inherited-core changes | Gate 1.5 report proves the source baseline; ADR-0001 owns Scient adoption |
 | External agents | Nine inherited adapters and external OpenCode settings/adapter paths are present in source | Per-agent live compatibility, subscription/auth behavior, project-task certification, and migration protection | [Scient and external agents implementation plan](../planning/scient-and-external-agents-implementation-plan.md) |
-| Scient project state | Product responsibilities and trust boundary are documented | Persistence, portable local record, recovery, and first real scientific object relationship | First vertical-slice plan |
+| Scient project state | Product responsibilities, approved non-Git recovery requirement, and trust boundary are documented | Canonical representation, package seam, reliability, portability, performance, backup, export, sync, and first real scientific object relationship | [Persistence decision brief](scient-project-persistence-decision-brief.md) and first vertical-slice plan |
 | Scient-agent and Scient-app boundary | Scient-agent identity plus context, proposal, review, provenance, and permission responsibilities are documented | Actual contract, code placement, event mapping, isolated Scient-agent state, and accepted write-back path | ADR-0001 and linked implementation plans; `agent-runtime.md` remains a future home |
 | Goose | Source seams, ACP path, and safety risks inspected | Incremental capabilities or architecture lessons for Scient; any future external Goose path is a separate decision | Goose source-depth inspection |
 | Cloud sync | Postgres, object storage, and local-first sync are proposed directions | Authority, offline behavior, conflicts, revocation, and recovery | Later roadmap and focused architecture work |
@@ -474,7 +495,7 @@ The proposed and accepted-by-ADR foundation direction is:
 TypeScript
 React
 Electron
-SQLite
+SQLite for inherited app state; canonical project persistence undecided
 Postgres
 Supabase as initial cloud platform candidate
 object storage

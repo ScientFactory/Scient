@@ -7,7 +7,10 @@ Last updated: 2026-07-17
 Purpose: Defines what should be documented about Scient project structure once the format is designed.
 Doc type: Future home
 
-This page will document the Scient project format when it exists.
+This page will document the Scient project format when it exists. The open
+canonical-state requirements, candidate representations, and proof obligations
+are currently framed in the draft
+[Scient Project Persistence Decision Brief](scient-project-persistence-decision-brief.md).
 
 Document here:
 

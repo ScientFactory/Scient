@@ -32,6 +32,7 @@ Start here:
 - [Scient product identity](product/scient-product-identity.md) - accepted company, app, native-agent, external-agent, and naming vocabulary.
 - [Product philosophy](product/product-philosophy.md) - draft durable product principles; the accepted PRD governs conflicts.
 - [Technology stack](architecture/technology-stack.md) - current proposed stack direction.
+- [Scient project persistence decision brief](architecture/scient-project-persistence-decision-brief.md) - draft context, alternatives, questions, and evidence gates for later storage review; no project store is selected.
 - [Product roadmap](planning/product-roadmap.md) - current sequence of coherent product outcomes.
 - [First vertical-slice implementation plan](planning/first-scient-vertical-slice-implementation-plan.md) - bounded plan for the active product slice.
 - [Scient and external agents implementation plan](planning/scient-and-external-agents-implementation-plan.md) - proposed plan for building the Scient agent as the owned OpenCode-derived first-party agent while preserving external agents independently.

@@ -12,6 +12,9 @@ Architecture docs explain how Scient should be structured and why. They must cle
 Current documents:
 
 - `technology-stack.md` - current stack direction.
+- `scient-project-persistence-decision-brief.md` - draft reviewer brief for the
+  unresolved canonical project-state, reliability, portability, backup, sync,
+  and storage-technology decision; it is not implementation authorization.
 - `project-format.md` - future home for the Scient project format.
 - `local-first-sync.md` - future home for local-first and sync architecture.
 - `collaboration-model.md` - future home for collaboration architecture.
