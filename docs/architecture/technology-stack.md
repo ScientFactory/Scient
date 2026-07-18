@@ -66,9 +66,9 @@ Scient app from the planned Scient agent where needed.
 | Cloud platform | Supabase | Initial default candidate; not scaffolded |
 | Large file storage | Object storage | Proposed; not scaffolded |
 | Sync | Local-first SQLite-to-cloud sync | Under evaluation; not scaffolded |
-| Application foundation | Owned Synara fork | Accepted initial foundation through ADR-0001; scientific product fit remains unproven |
+| Application foundation | Standalone Scient-owned, Synara-derived source | Accepted initial foundation through ADR-0001; ownership authority through ADR-0002; scientific product fit remains unproven |
 | External-agent layer | Synara provider contracts and service | Inherited machinery for external agents; preservation required, project-task compatibility not yet certified |
-| First-party agent | Scient, derived from the owned OpenCode fork | Accepted identity and source foundation through ADR-0001; Scient product/runtime not yet implemented |
+| First-party agent | Scient, derived from standalone Scient-owned, OpenCode-derived source | Accepted identity and source foundation through ADR-0001; ownership authority through ADR-0002; Scient product/runtime not yet implemented |
 | Later Scient source | Goose | Source-depth candidate for capabilities and architecture lessons; deferred until after the first Scient gateway |
 | Executor safety reference | Codex | Evaluation/reference |
 | Scientific runtime | Python via uv | Proposed |
@@ -88,12 +88,13 @@ v0.5.5 passed hosted CI at `d4b10c27` and advanced owned `main` to
 `fd37cdcd`. The Scient rename then passed hosted CI at `179fa01e` and merged to
 owned `main` as `d9d8992a`, based on tested upstream `9be46c3c`. Subsequent
 reviewed UI and project-init status follow-ups advanced maintained `main` to
-`2ecfbe19`; exact provenance is recorded in `lab/external/sources.lock.md`.
-The owned OpenCode-derived fork—the current source foundation for the Scient
-agent—is in the workspace sibling `../scient-agent/` on `dev` at `5ffaf9a2`, after a reviewed
-sync through source version 1.18.3 at official upstream `69a80663`. Hosted
-Scient source-quality run `29595488492` passed at exact head `5d232a34`, and
-the owned default was zero commits behind that tested upstream. Historical
+`2ecfbe19`. Standalone ownership and upstream-maintenance follow-ups then
+advanced maintained `main` to `d78388a4`; exact provenance is recorded in
+`lab/external/sources.lock.md`.
+The owned OpenCode-derived repository—the current source foundation for the Scient
+agent—is in the workspace sibling `../scient-agent/` on `dev` at `14003a01`,
+after a reviewed sync through source version 1.18.3 at official upstream
+`69a80663` and the standalone upstream-maintenance rollout. Historical
 Gate 1 and Gate 1.5 commits, tags, and ignored runtime evidence remain
 historical records; they are not the active Scient implementation baseline.
 
@@ -117,8 +118,8 @@ production build pipeline.
 
 ### Scaffold Use Rule
 
-The inherited scaffold pass and owned-fork identity pass are complete. Continue
-to sync the owned Synara fork deliberately, preserve the isolated Scient state
+The inherited scaffold pass and owned-source identity pass are complete. Review
+official Synara changes deliberately through the upstream-intake process, preserve the isolated Scient state
 and updater boundary, and promote only the parts that prove useful behind a
 Scient-owned project and agent contract. Do not restructure inherited packages
 or add scientific truth to Synara state merely because the shell now carries
@@ -324,7 +325,7 @@ accepted write-back path.
 Current posture:
 
 - Build the first Scient workflow through the **Scient agent**, the product's
-  first-party research agent derived from the owned OpenCode fork.
+  first-party research agent derived from the owned OpenCode source foundation.
 - Treat Scient as one agent product, codebase, runtime identity, configuration,
   release, and update channel. Do not model it as a Scient shell that launches
   a separately identified OpenCode engine.
@@ -452,7 +453,7 @@ Completed historical experiments remain evidence, not the roadmap.
 
 | Area | Proven | Not Yet Proven | Evidence Or Owner |
 |---|---|---|---|
-| Synara-derived application | Owned fork, build, isolated Scient identity and state, reviewed upstream process | Scientific-product fit, sustainable domain UI divergence, and long-term maintenance cost | Gate 1 and Gate 1.5 lab reports; ADR-0001 owns adoption |
+| Synara-derived application | Standalone owned source, build, isolated Scient identity and state, reviewed upstream process | Scientific-product fit, sustainable domain UI divergence, and long-term maintenance cost | Gate 1 and Gate 1.5 lab reports; ADR-0001 owns adoption; ADR-0002 owns repository authority |
 | Scient source foundation | Owned OpenCode build, Synara compatibility, project-root fidelity, transcript fidelity, and approval flow for a constrained action | Scient identity and packaging, owned capabilities, isolated Scient state, durable task behavior, and justified inherited-core changes | Gate 1.5 report proves the source baseline; ADR-0001 owns Scient adoption |
 | External agents | Nine inherited adapters and external OpenCode settings/adapter paths are present in source | Per-agent live compatibility, subscription/auth behavior, project-task certification, and migration protection | [Scient and external agents implementation plan](../planning/scient-and-external-agents-implementation-plan.md) |
 | Scient project state | Product responsibilities and trust boundary are documented | Persistence, portable local record, recovery, and first real scientific object relationship | First vertical-slice plan |

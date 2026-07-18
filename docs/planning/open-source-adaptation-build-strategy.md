@@ -2,15 +2,15 @@
 
 Status: Draft
 Owner: Yaacov
-Last updated: 2026-07-17
-Purpose: Defines the current fork, adaptation, upstream-update, and divergence strategy for open-source foundations used by Scient.
+Last updated: 2026-07-18
+Purpose: Defines the current source-ownership, adaptation, upstream-update, and divergence strategy for open-source foundations used by Scient.
 Doc type: Planning note
 
 ## Document Rules
 
-This file owns the practical fork, adaptation, upstream-update, and divergence
-strategy. It is not product truth, accepted architecture, current
-implementation, or the product roadmap.
+This file owns the conceptual adaptation and divergence strategy. It is not
+product truth, accepted architecture, current implementation, an operational
+runbook, or the product roadmap.
 
 The accepted product contract lives in `docs/product/PRD.md`. Source evaluation
 and candidate mapping live in
@@ -24,7 +24,7 @@ validated.
 
 ## Current State
 
-The parent repository remains documentation-first. The maintained desktop fork
+The parent repository remains documentation-first. The maintained desktop source
 contains the dependency-light `@scientfactory/project-init` package, but there is no
 implemented scientific application, canonical project-state kernel, agent
 gateway, sync layer, editor, analysis runtime, or Scient production pipeline.
@@ -32,13 +32,13 @@ gateway, sync layer, editor, analysis runtime, or Scient production pipeline.
 The current practical direction is to build on owned, working foundations while
 keeping Scient's scientific project meaning owned:
 
-- use the owned Synara fork as the initial application foundation for desktop,
+- use the owned Synara-derived source as the initial application foundation for desktop,
   workspace, UI, provider-session, and local-process work;
 - use science apps from the 2026-07-07 scan as specialized sources around the
   shell: Zotero-family components for source/PDF work, Zettlr/Overleaf/Quarto
   for writing/export expectations, Jupyter-style tools for analysis
   compatibility, and ELN/RDM tools for protocol/lab/repository references;
-- use `ScientFactory/scient-agent`, the owned OpenCode-derived fork, as the
+- use `ScientFactory/scient-agent`, the owned OpenCode-derived source, as the
   source foundation for the product's first-party **Scient agent**;
 - preserve external OpenCode and the other inherited external-agent paths as
   separate choices rather than aliases for Scient;
@@ -68,11 +68,15 @@ Names such as `ProjectKernel`, `AgentGateway`, `ProvenanceLog`, and
 `ReviewableArtifact` are planning placeholders until architecture documents or
 implementation make them real.
 
-## Fork And Upstream Rules
+## Source Adaptation And Upstream Rules
 
 Use the lightest source relationship that gives the required capability. These
 labels must match the research map in
 `docs/research/source-evaluations/open-source-adaptation-map.md`.
+Standalone repository authority is accepted in
+[`ADR-0002`](../architecture/decisions/ADR-0002-standalone-source-ownership-and-upstream-authority.md).
+The actual monitoring, review, and intake workflow lives in
+[`docs/operations/upstream-intake.md`](../operations/upstream-intake.md).
 
 1. Prefer upstream-trackable integration through configuration, plugins, CLI,
    SDK, API, sidecar, wrapper, or adapter.
@@ -94,30 +98,30 @@ labels must match the research map in
    changes into Scient-owned records.
 10. Track each source's update strategy before depending on it.
 
-### Owned-Fork Remote Topology
+### Owned-Source Remote Topology
 
-Scient owns the writable desktop and agent-source forks it adapts directly.
-Any later Goose adaptation must first receive the same owned-fork topology.
-This is an ownership and safety rule; it does not mean every fork should
-immediately diverge from upstream.
+Scient owns standalone writable desktop and agent-source repositories derived
+from the original projects. Any later Goose adaptation must first receive an
+explicit owned-repository and upstream-authority decision. This is an ownership
+and safety rule; it does not require immediate source divergence.
 
 Each active source checkout should use:
 
 ```text
-origin   -> Scient-owned fork; writable
-upstream -> official project; fetch-only, push disabled
+origin   -> ScientFactory-owned standalone repository; writable
+upstream -> original project; fetch-only, push disabled
 ```
 
 Before the first Scient source change:
 
-1. create the owned fork;
+1. create the owned repository and preserve source lineage and notices;
 2. attach it as `origin`;
 3. preserve the official repository as fetch-only `upstream`;
 4. record the baseline upstream commit;
-5. prove the unchanged fork builds or passes its smallest relevant smoke check;
+5. prove the unchanged source baseline builds or passes its smallest relevant smoke check;
 6. make Scient changes in narrow, reviewable commits; and
-7. test upstream updates on a temporary sync branch before merging them into the
-   Scient-maintained branch.
+7. review official changes through the upstream-intake procedure before any
+   selected change enters a maintenance branch.
 
 Keep change lanes separable where practical:
 
@@ -136,11 +140,11 @@ OpenCode identity and remains independently configured. If Scient later adopts
 Goose-derived capabilities, they become part of Scient unless Scient separately
 decides to offer an external Goose agent.
 
-An upstream sync should be a deliberate operation: fetch `upstream`, create a
-sync branch from the Scient-maintained branch, merge the selected upstream
-revision, resolve conflicts without flattening Scient patches, run the agreed
-smoke suite, review release/security changes, then merge through normal review.
-Do not update production integration directly from an unreviewed upstream head.
+Upstream awareness and code intake are different operations. Detect and review
+official movement first. When a selected change has bounded value, use the
+lightest appropriate path: learn, reimplement, patch-port or cherry-pick,
+bounded merge, or broad merge only while the source remains honestly thin.
+Never update an owned default branch directly from an unreviewed official head.
 
 Update strategy values:
 
@@ -151,10 +155,10 @@ Update strategy values:
   plausible.
 - `divergent-cherry-pick` - upstream is inspected and manually adapted; direct
   merges are not expected.
-- `reference-only` - no dependency or fork.
+- `reference-only` - no dependency or maintained source integration.
 - `deferred` - no active update work now.
 
-These values describe adaptation depth. They do not replace the owned-fork
+These values describe adaptation depth. They do not replace the owned-source
 remote topology above.
 
 ## Completed Preparation Evidence
@@ -169,7 +173,7 @@ Synara smoke. The exact
 history, checks, and documented execution-order correction are in the
 [`Gate 1.5 report`](../../lab/notes/gate-1-5-execution-report-2026-07-11.md).
 
-This preparation pass established:
+At that historical point, this preparation pass established:
 
 1. Created owned forks for Synara and OpenCode and attached them as `origin`;
    kept official repositories as fetch-only `upstream`.
@@ -180,10 +184,11 @@ This preparation pass established:
    adapter and constrained approval/transcript behavior.
 
 Gate 1.5 was preparation for implementation, not a new product-planning phase.
-Its durable output is the maintained Synara/OpenCode fork topology, an
-upstream-safe Synara identity layer, the owned OpenCode compatibility result,
-and repeatable upstream verifiers. Runtime homes and smoke artifacts are
-evidence, not product architecture.
+Its durable output is the proven source lineage, an upstream-safe Synara
+identity layer, the owned OpenCode compatibility result, and repeatable source
+verifiers. ADR-0002 later superseded the fork topology with standalone owned
+repositories. Runtime homes and smoke artifacts are evidence, not product
+architecture.
 
 ## Deferred Goose Evaluation
 
@@ -191,7 +196,7 @@ All Goose execution work is deferred until after the first Scient gateway works
 through Scient, including:
 
 - creating and attaching the owned Goose repository;
-- building and releasing the owned-fork Goose binary;
+- building and releasing any owned Goose-derived binary;
 - implementing the ACP-over-stdio adapter spike;
 - testing approval, cancellation, tool-event, and session behavior;
 - enforcing and proving outside-project path denial;
@@ -226,7 +231,7 @@ as coding sessions, Git worktrees, provider chats, or engine-owned artifacts.
 
 - Which Synara seams should remain upstream-aligned and which should become
   deliberately Scient-owned?
-- Can a stabilized Synara fork host the first science-facing slice without
+- Can the stabilized Synara-derived source host the first science-facing slice without
   leaking coding-product assumptions into the Scient project kernel?
 - Which OpenCode-derived modules can remain close to upstream inside Scient,
   and which Scient-owned capabilities require deliberate divergence?

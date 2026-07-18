@@ -2,7 +2,7 @@
 
 Status: Proposed
 Owner: Yaacov
-Last updated: 2026-07-17
+Last updated: 2026-07-18
 Purpose: Maps which open-source systems Scient should study, prototype, adapt, or integrate, and which product boundaries Scient must keep owned.
 Doc type: Research evidence
 
@@ -45,7 +45,7 @@ Current inputs:
   CoCalc.
 - The accepted foundation decision in
   `../../architecture/decisions/ADR-0001-synara-opencode-foundation-and-scient-ownership-boundary.md`:
-  use the owned Synara fork initially; build Scient as the owned
+  use the owned Synara-derived source initially; build Scient as the owned
   OpenCode-derived first-party agent; preserve external OpenCode separately;
   and keep Scient's scientific meaning, agent boundary, provenance, and review
   model owned.
@@ -132,7 +132,7 @@ Use these labels with source rows when the update path matters:
 The accepted foundation direction is more aggressive than "study only", but
 still Scient-boundary-first:
 
-1. Use the owned Synara fork as the initial application foundation because it
+1. Use the owned Synara-derived source as the initial application foundation because it
    materially accelerates the desktop shell, chat, terminal, diff,
    provider-session, and local-process surfaces.
 2. Pressure-test that foundation through the first science-facing slice while
@@ -142,14 +142,14 @@ still Scient-boundary-first:
    tools for sources and PDFs, Zettlr/Overleaf/Quarto/MyST for writing/export
    expectations, Jupyter-style tools for analysis compatibility, and ELN/RDM
    tools for protocol/lab/repository references.
-4. Use the owned OpenCode fork as the source foundation for Scient, Scient's
+4. Use the owned OpenCode-derived source as the foundation for Scient, Scient's
    first-party agent. Scient is the resulting owned agent, not a shell over a
    separate OpenCode engine. Preserve external OpenCode as an independent
    external agent. Keep Goose as a deferred source of capabilities and
    architecture lessons after the first Scient gateway exists.
-5. Use Scient-owned forks as the writable source remotes, while preferring
+5. Use standalone Scient-owned repositories as the writable source remotes, while preferring
    upstream binaries, SDKs, CLIs, configuration, sidecars, adapters, and
-   extensions over core modifications. An owned fork may remain upstream-
+   extensions over core modifications. Owned source may remain upstream-
    aligned. Use divergent core changes only when Scient intentionally takes
    ownership of a modified product surface and accepts cherry-pick updates.
 6. Normalize Scient and external agents through a Scient-owned Agent Gateway: scoped context,
@@ -203,7 +203,7 @@ identified so far. It is a working recommendation, not a final dependency list.
 | PRD surface | Best source candidates so far | Current borrow mode | Scient-owned boundary |
 |---|---|---|---|
 | Project Home | Synara and T3 Code for workbench status, sessions, terminals, branches, diffs, previews, and provider activity; Vercel AI Elements for inspectable agent UI patterns. | Forked workbench prototype and reference. | Project status, stale-output signals, review needs, blocked work, collaborator activity, and next actions belong to Scient project state. |
-| Scient And Connected-Agent Chat | Synara for the multi-agent workspace shell; the owned OpenCode fork as Scient's source foundation; external OpenCode and other inherited adapters as separate external choices; Goose for later capability and architecture study; Codex for safety and approval reference; Vercel AI SDK for typed model/tool streams. | Forked workbench, owned OpenCode-derived agent, external-agent adapters, and references. | Scient identity, context receipts, permissions, tool scope, proposed changes, durable AgentRun records, checkpoints, and accepted write-back belong to Scient. |
+| Scient And Connected-Agent Chat | Synara-derived source for the multi-agent workspace shell; the owned OpenCode-derived source as Scient's agent foundation; external OpenCode and other inherited adapters as separate external choices; Goose for later capability and architecture study; Codex for safety and approval reference; Vercel AI SDK for typed model/tool streams. | Inherited workbench, owned OpenCode-derived agent, external-agent adapters, and references. | Scient identity, context receipts, permissions, tool scope, proposed changes, durable AgentRun records, checkpoints, and accepted write-back belong to Scient. |
 | Project Direction And Protocol | protocols.io, SciNote, RSpace, eLabFTW, Chemotion, Kadi4Mat, and openBIS as protocol, ELN, lab workflow, and research-data-management references. | Reference and later adapter candidates. | The project direction, protocol fields, eligibility criteria, analysis plan, and decision log are Scient objects. |
 | Source Library And Reader | Zotero, Zotero Reader, Zotero Document Worker, Paperlib, Tropy, JabRef, CSL, GROBID, Docling, and local-first note/PDF references such as Logseq and SiYuan. | Adapter, component spike, embedded parser, compatibility target, and reference. | Source identity, duplicate confidence, source-region links, parser state, annotations, backlinks, and citation intent belong to Scient. |
 | Evidence Ledger And Claims | ASReview for screening mechanics; GROBID and Docling for extraction; PaperQA for cited scientific QA; Lacuna for paper-grounded research-map patterns; Elicit, Rayyan, Covidence, scite, Consensus, and SciSpace as workflow references. | Embedded engines, adapters, and references. | Evidence records, claims, support links, extraction review state, uncertainty, contradictions, and unsupported-claim diagnostics belong to Scient. |
@@ -314,7 +314,7 @@ does not set their implementation order; the active sequence lives in
 | Source | Adaptation target | Why it matters | Do not adopt | Depth status |
 |---|---|---|---|---|
 | Goose | ACP over stdio or authenticated HTTP/WebSocket, persistent sessions, recipes, scheduling, MCP extensions, provider registry, safety inspectors, hooks, and subagents. | Goose is a strong source of broader-agent capabilities and architecture lessons that may later improve Scient. Current ACP supports streaming, permission requests, cancellation, client-provided file/terminal capabilities, and session lifecycle. | Do not make Goose the product center, turn Scient into an engine-switching shell, or make Goose session state canonical. Do not rely on its working directory as a filesystem sandbox: built-in developer tools accept absolute paths, and autonomous mode is the default. | Source-depth review completed at `3c1fdd692`; implementation work is deferred until after the first Scient gateway works through Scient. |
-| OpenCode | File/shell/edit agent behavior, LSP/code-project operations, snapshots, session protocol, CLI/TUI/server/client split, and plugin/tool architecture. | The owned fork is Scient's source foundation. Scient needs these capabilities and intends to own and evolve the resulting agent. | Do not expose Scient as “OpenCode for science,” treat OpenCode as a second engine underneath Scient, or let agent state define the scientific object graph. External OpenCode remains a separate external agent. | Owned-fork build and Synara compatibility smoke completed in historical Gate 1.5 work. ADR-0001 accepts Scient as the owned OpenCode-derived first-party agent; the first vertical slice must implement and validate that identity and boundary. |
+| OpenCode | File/shell/edit agent behavior, LSP/code-project operations, snapshots, session protocol, CLI/TUI/server/client split, and plugin/tool architecture. | The standalone owned source is Scient's agent foundation. Scient needs these capabilities and intends to own and evolve the resulting agent. | Do not expose Scient as “OpenCode for science,” treat OpenCode as a second engine underneath Scient, or let agent state define the scientific object graph. External OpenCode remains a separate external agent. | Owned-source build and Synara compatibility smoke completed in historical Gate 1.5 work. ADR-0001 accepts Scient as the owned OpenCode-derived first-party agent; ADR-0002 owns repository authority; the first vertical slice must implement and validate that identity and boundary. |
 | Codex app-server | Approval protocol, sandbox model, diff flow, interrupt/rollback/session protocol, file API, skills/MCP, Rust daemon boundary. | Useful comparator for what a trusted local executor and approval model can feel like. | Do not depend on Codex-specific assumptions as the only runtime path. | Needs direct harness comparison against OpenCode. |
 | Aider | Git-centered edit discipline, repo maps, patch workflow, simple terminal ergonomics. | Useful as a benchmark for file changes and rollback, even if not the main architecture. | Do not make the app Python-first or terminal-first because Aider is good. | Side benchmark, not primary source. |
 
@@ -709,7 +709,7 @@ to the earlier synthesis. The active sequence lives in
 Current research points toward Scient as a local-first, cloud-mirrored scientific
 workspace with a Scient-owned project graph; TypeScript/React product logic;
 Electron-first desktop delivery unless a real limitation appears; SQLite local
-project state mirrored to Postgres/object storage; the owned Synara fork as the
+project state mirrored to Postgres/object storage; the owned Synara-derived source as the
 accepted initial application foundation; Scient as the owned OpenCode-derived
 first-party agent; external OpenCode and other external agents as separate
 choices; Codex as the safety/sandboxing reference; Goose as a later capability
@@ -726,7 +726,7 @@ document-like surfaces where simultaneous editing matters.
 ## Non-Negotiables
 
 - Do not let a whole-product foundation become Scient's source of truth. The
-  owned Synara fork is acceptable only while Scient's scientific project state,
+  owned Synara-derived source is acceptable only while Scient's scientific project state,
   agent gateway, provenance, and review model stay outside inherited coding-
   product assumptions.
 - Do not let any source define the scientific object model.

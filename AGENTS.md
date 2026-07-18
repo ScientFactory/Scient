@@ -14,7 +14,7 @@ Scient is a local-first, cloud-mirrored scientific workspace where researchers a
 
 ## Current State
 
-This parent repo remains documentation-first. The maintained desktop fork now
+This parent repo remains documentation-first. The maintained desktop source now
 contains the first permanent Scient-owned package, `@scientfactory/project-init`,
 but the broader application architecture and first scientific vertical slice
 have not been built. Do not infer scientific-state, gateway, sync, cloud, or
@@ -81,6 +81,8 @@ Current important documents:
 - `docs/product/product-philosophy.md` - durable product principles that guide product, architecture, design, quality, and implementation.
 - `docs/architecture/technology-stack.md` - current technology stack direction and open implementation decisions.
 - `docs/architecture/decisions/ADR-0001-synara-opencode-foundation-and-scient-ownership-boundary.md` - accepted initial application/runtime foundations and the Scient-owned scientific boundary.
+- `docs/architecture/decisions/ADR-0002-standalone-source-ownership-and-upstream-authority.md` - accepted standalone source-repository ownership and selective upstream authority.
+- `docs/operations/upstream-intake.md` - active monitoring, review, and selective intake procedure for original source changes.
 - `docs/planning/product-roadmap.md` - active sequence of coherent product outcomes.
 - `docs/planning/first-scient-vertical-slice-implementation-plan.md` - concrete plan and acceptance criteria for the current implementation slice.
 - `docs/planning/scient-and-external-agents-implementation-plan.md` - proposed implementation plan for the Scient agent, external-agent preservation, and Scient-versus-external-agent identity isolation.

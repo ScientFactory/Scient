@@ -99,7 +99,7 @@ not a frozen general schema.
   Allow narrow inherited-core changes only for demonstrated product, safety, or
   reliability needs.
 - Begin Scient tracing from Synara's existing OpenCode adapter/SDK boundary and
-  the owned OpenCode fork. Trace deeper only when a required Scient behavior,
+  the owned OpenCode-derived source. Trace deeper only when a required Scient behavior,
   identity boundary, or safety rule cannot be understood or enforced there.
 - Preserve external OpenCode and every inherited external-agent adapter while
   adding Scient as a distinct execution target.
@@ -477,7 +477,7 @@ Implement in this order:
   including permanent Scient-owned packages or modules, UI integration,
   canonical project persistence, gateway, review, and recovery workflow, unless
   the accepted trace decision invokes the external-topology escape route.
-- The owned OpenCode fork is Scient's source foundation. It remains unchanged
+- The owned OpenCode-derived repository is Scient's source foundation. It remains unchanged
   until the trace or implementation proves the first required Scient identity,
   packaging, integration, or runtime change. Keep inherited-core and
   Scient-owned changes in narrow, reviewable lanes.

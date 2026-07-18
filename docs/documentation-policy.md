@@ -2,7 +2,7 @@
 
 Status: Active
 Owner: Yaacov
-Last updated: 2026-07-17
+Last updated: 2026-07-18
 Purpose: Defines how Scient documentation should be created, classified, updated, and trusted.
 Doc type: Documentation policy
 
@@ -60,6 +60,7 @@ Use the narrowest accurate type:
 - `Documentation policy`
 - `Testing doctrine`
 - `Engineering doctrine`
+- `Operational procedure`
 - `Quality doctrine`
 
 ## Placement Rules

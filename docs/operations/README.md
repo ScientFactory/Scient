@@ -1,21 +1,20 @@
 # Operations
 
-Status: Placeholder
+Status: Active
 Owner: Yaacov
-Last updated: 2026-07-17
-Purpose: Defines where operational documentation should live once operational surfaces exist.
-Doc type: Future home
+Last updated: 2026-07-18
+Purpose: Indexes Scient's real monitoring, release-adjacent, support, and maintenance procedures.
+Doc type: Repo orientation
 
-Use this folder once Scient has deployment, monitoring, release, support, maintenance, backup, or incident-response workflows.
+Operations documentation describes repeatable work against implemented
+repositories, workflows, releases, monitoring surfaces, or maintained data.
+It must remain evidence-backed and must not invent production infrastructure.
 
-Document here when relevant:
+Current procedure:
 
-- deployment
-- release process
-- monitoring
-- backup and restore
-- support workflows
-- incident handling
-- maintenance tasks
+- [Upstream intake](upstream-intake.md) - monitoring, reviewing, and selectively
+  inheriting useful Synara and OpenCode changes into the standalone Scient
+  desktop and agent repositories.
 
-Do not invent operational procedures before there is source evidence or real practice.
+Add deployment, release, backup, incident, support, or other maintenance
+procedures here only after the corresponding operational surface exists.

@@ -2,15 +2,17 @@
 
 Status: Accepted
 Owner: Yaacov
-Last updated: 2026-07-17
-Purpose: Records the decision to use the owned Synara fork as Scient's application foundation and the owned OpenCode fork as the source foundation for Scient while keeping external agents and canonical scientific state separately owned.
+Last updated: 2026-07-18
+Purpose: Records the decision to use owned Synara-derived source as Scient's application foundation and owned OpenCode-derived source as the foundation for Scient while keeping external agents and canonical scientific state separately owned.
 Doc type: Architecture decision
 
 ## Context
 
 Originally accepted on 2026-07-16. Amended by Yaacov on 2026-07-17 to name
 Scient and clarify that it is the owned OpenCode-derived agent itself, while
-external OpenCode remains separate.
+external OpenCode remains separate. ADR-0002 later establishes that both owned
+source repositories are standalone products with original projects retained as
+fetch-only upstream references; this ADR continues to own their product roles.
 
 The accepted product identity also names the application **Scient**. Precise
 architecture text must use **Scient app** and **Scient agent** where the shared
@@ -18,19 +20,19 @@ public name could be ambiguous.
 `../../product/scient-product-identity.md` owns that naming decision.
 
 Scient needs a serious local desktop workbench and first-party agent before it can
-validate a complete scientific workflow. The owned Synara fork already provides
+validate a complete scientific workflow. The owned Synara-derived source already provides
 desktop, workspace, provider, process, terminal, preview, diff, and review
-machinery. The owned OpenCode fork already provides a capable local agent loop,
+machinery. The owned OpenCode-derived source already provides a capable local agent loop,
 model integration, tools, permissions, sessions, and file and shell execution.
 
 The chosen name for the product's first-party research agent is **Scient**. Scient
-is the agent derived from the owned OpenCode fork. It is not a Scient wrapper
+is the agent derived from the owned OpenCode source foundation. It is not a Scient wrapper
 around a separately operated or separately branded OpenCode engine. External
 OpenCode remains an independent external-agent choice in the application.
 
-Gate 1 and Gate 1.5 proved that the maintained forks build, remain isolated from
-the official applications, preserve reviewed upstream ancestry, and work
-together for a constrained executor action. They did not create Scient's
+Gate 1 and Gate 1.5 proved that the then-maintained forks built, remained
+isolated from the official applications, preserved reviewed upstream ancestry,
+and worked together for a constrained executor action. They did not create Scient's
 scientific project model, agent contract, or accepted write-back path.
 
 Scient must be free to adopt useful upstream changes without treating upstream
@@ -40,7 +42,7 @@ available to both researchers and agents.
 
 ## Decision
 
-1. The owned Synara fork is Scient's initial application foundation for the
+1. The owned Synara-derived repository is Scient's initial application foundation for the
    desktop shell, local workspace experience, UI, lifecycle, and runtime
    plumbing.
 2. The Scient agent is the app's first-party research agent. It is one owned
@@ -70,7 +72,7 @@ available to both researchers and agents.
    demonstrated product, security, reliability, or runtime requirement cannot
    be met cleanly through an extension seam. Such patches should remain narrow
    and identifiable where practical.
-9. A fork may progress deliberately from upstream-aligned, through isolated
+9. An owned source may progress deliberately from upstream-aligned, through isolated
    Scient patches, to selective divergence or full Scient ownership. Official
    upstream changes remain optional reviewed inputs, not a product dependency.
 10. Synara, Scient, and external-agent runtime/session databases may remain

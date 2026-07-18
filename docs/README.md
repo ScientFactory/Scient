@@ -6,10 +6,10 @@ Last updated: 2026-07-18
 Purpose: Maps the Scient documentation structure and where each kind of information belongs.
 Doc type: Repo orientation
 
-This parent repository remains documentation-first. The maintained desktop fork
-contains the first narrow Scient-owned project-initiation package, while the
-scientific application architecture and vertical slice remain unbuilt. This
-structure gives product, architecture, planning, research, development, and
+This parent repository remains documentation-first. The maintained desktop
+source contains the first narrow Scient-owned project-initiation package, while
+the scientific application architecture and vertical slice remain unbuilt.
+This structure gives product, architecture, planning, research, development, and
 operations material clear homes without presenting planned behavior as current
 implementation. It is not currently the unrestricted memory of the whole
 company; the proposed connected-company boundary lives in [Repository Scope
@@ -38,4 +38,4 @@ Start here:
 - [Planning](planning/README.md) - plans that guide upcoming work.
 - [Research](research/README.md) - external source evaluations, spikes, visual references, and raw or synthesized research.
 - [Development](development/README.md) - development documentation once code exists.
-- [Operations](operations/README.md) - operations documentation once operational surfaces exist.
+- [Operations](operations/README.md) - active maintenance procedures, beginning with upstream monitoring, review, and selective intake.

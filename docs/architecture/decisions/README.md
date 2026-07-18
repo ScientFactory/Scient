@@ -2,7 +2,7 @@
 
 Status: Active
 Owner: Yaacov
-Last updated: 2026-07-17
+Last updated: 2026-07-18
 Purpose: Indexes Scient's accepted architecture decision records and the rules for using them.
 Doc type: Repo orientation
 
@@ -10,7 +10,10 @@ Accepted architecture decisions should live here when decisions are made.
 
 Current decisions:
 
-- `ADR-0001-synara-opencode-foundation-and-scient-ownership-boundary.md` - accepts the owned Synara fork as the initial application foundation, OpenCode as the inherited source foundation for the planned Scient agent, external OpenCode as a separate external agent, and the Scient-owned scientific boundary around agent execution.
+- `ADR-0001-synara-opencode-foundation-and-scient-ownership-boundary.md` - accepts the owned Synara-derived source as the initial application foundation, OpenCode-derived source as the inherited foundation for the planned Scient agent, external OpenCode as a separate external agent, and the Scient-owned scientific boundary around agent execution.
+- `ADR-0002-standalone-source-ownership-and-upstream-authority.md` - accepts
+  standalone ScientFactory desktop and agent repositories, fetch-only original
+  sources, mandatory upstream awareness, and selective inheritance.
 
 Supporting file:
 

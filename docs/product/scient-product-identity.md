@@ -2,7 +2,7 @@
 
 Status: Accepted
 Owner: Yaacov
-Last updated: 2026-07-17
+Last updated: 2026-07-18
 Purpose: Defines the accepted company, product, agent, and external-agent naming system for Scient.
 Doc type: Product truth
 
@@ -152,7 +152,7 @@ The owned topology is:
 |---|---|
 | GitHub organization | `ScientFactory` |
 | Parent product and documentation repository | `ScientFactory/Scient` |
-| Maintained desktop fork | `ScientFactory/scient-desktop` |
+| Maintained desktop source repository | `ScientFactory/scient-desktop` |
 | Owned first-party agent source repository | `ScientFactory/scient-agent` |
 
 The `ScientFactory` GitHub organization was created on 2026-07-17 and owns all
