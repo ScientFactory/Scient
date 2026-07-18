@@ -30,13 +30,28 @@ The rename of existing owned surfaces is complete:
 - desktop [PR #12](https://github.com/ScientFactory/scient-desktop-fork-archive/pull/12)
   passed hosted run `29595506303` at `179fa01e` and merged to `main` as
   `d9d8992a`;
-- the app, packages, project metadata, protocol, bundle IDs, profiles, storage,
-  artifacts, workflows, and current documentation use Scient naming;
+- the public application identity, new first-party Scient package scope,
+  project metadata, protocol, bundle IDs, profiles, artifacts, product-owned
+  workflows, and current documentation were cut over from PapiLab to Scient
+  naming;
 - supported PapiLab app/project state has an additive migration path and remains
   preserved for rollback;
 - Synara and OpenCode remain named where they identify inherited upstream code,
   licenses, attribution, compatibility, or external-agent behavior; and
 - the public website cutover is explicitly deferred to the owner.
+
+The tested rename PRs now link to `scient-agent-fork-archive` and
+`scient-desktop-fork-archive`. The fork-network repositories used for the
+tested rename were later retained as read-only archives when the maintained
+`scient-agent` and `scient-desktop` repositories became standalone owned source
+repositories. That later topology transition does not rewrite the recorded
+tested heads, merge revisions, or hosted runs above.
+
+This closeout is scoped to the LitRev/PapiLab product-identity migration. It
+does not assert that inherited private `@synara/*` packages, `SYNARA_*`
+compatibility variables, Effect or service identifiers, persistence
+identifiers, upstream names, or OpenCode internals were renamed. Those are
+separate inherited-source adaptation and compatibility concerns.
 
 The `scient-agent` repository name establishes the owned source boundary now.
 It does not claim that the native Scient agent runtime is implemented. That
@@ -58,7 +73,7 @@ future product work remains governed by
 
 ## Accepted Name Map
 
-| Layer | Current active identity | Accepted target |
+| Layer | Historical pre-execution identity | Accepted target |
 |---|---|---|
 | Company/product umbrella | PapiLab | ScientFactory |
 | Application | PapiLab | Scient |
@@ -69,7 +84,7 @@ future product work remains governed by
 | Parent repository | `yaacovcorcos/PapiLab` | `ScientFactory/Scient` |
 | Desktop repository | `yaacovcorcos/papilab-desktop` | `ScientFactory/scient-desktop` |
 | OpenCode-derived source repository | `yaacovcorcos/opencode` | `ScientFactory/scient-agent` |
-| Package scope | `@papilab/*` | `@scientfactory/*` |
+| New first-party Scient package scope | `@papilab/*` | `@scientfactory/*` |
 | Project metadata | `.papilab/` | `.scient/` |
 | Application protocol | `papilab://app` | `scient://app` |
 | Product namespace | `papilab` | `scient` |
@@ -78,25 +93,29 @@ The public app and native agent intentionally share the name Scient. Technical
 and architecture work must use `ScientApp`/Scient app and
 `ScientAgent`/Scient agent when ambiguity is possible.
 
-## Current Truth Before Execution
+## Historical Pre-Execution Snapshot (2026-07-17)
 
-- The parent repository and maintained desktop are currently PapiLab.
-- The `ScientFactory` GitHub organization exists and was empty when verified on
-  2026-07-17; the product repositories have not yet transferred to it.
-- The desktop fork contains the implemented `@papilab/project-init` package,
-  which creates `.papilab/project.json`.
-- The Scient agent identity and runtime do not exist yet.
-- The owned OpenCode fork is the accepted source foundation for the future
-  Scient agent and remains upstream-traceable source code.
-- External OpenCode and the other inherited agent adapters must remain
+The following statements preserve the verified state immediately before the
+cutover began. They are historical evidence, not present-tense repository or
+implementation guidance:
+
+- The parent repository and maintained desktop were PapiLab.
+- The `ScientFactory` GitHub organization existed and was empty when verified
+  on 2026-07-17; the product repositories had not yet transferred to it.
+- The desktop fork contained the implemented `@papilab/project-init` package,
+  which created `.papilab/project.json`.
+- The Scient agent identity and runtime did not exist yet.
+- The owned OpenCode fork was the accepted source foundation for the future
+  Scient agent and remained upstream-traceable source code.
+- External OpenCode and the other inherited agent adapters had to remain
   independently selectable and configured.
 - No complete scientific project format, gateway, canonical run ledger, cloud
-  sync layer, or first scientific vertical slice has been implemented.
+  sync layer, or first scientific vertical slice had been implemented.
 - Historical LitRev and PapiLab commits, tags, evidence, paths, commands, and
-  screenshots remain exact historical truth.
-- The public deployment is owner-controlled and is not changed by documenting
-  or executing repository work unless explicitly included in the authorized
-  scope.
+  screenshots remained exact historical truth.
+- The public deployment was owner-controlled and was not changed by
+  documenting or executing repository work unless explicitly included in the
+  authorized scope.
 
 ## Rename Principles
 
@@ -195,6 +214,14 @@ External-agent identities and settings keep their meaning. The rename must not:
 Retain only narrow aliases required for a defined upgrade window or safe error
 message. Do not introduce indefinite PapiLab aliases into new project formats,
 protocols, storage, packages, or public copy.
+
+The active no-regression boundary now lives in
+`../product/scient-product-identity.md`: do not create new active LitRev or
+PapiLab identifiers, continue to read supported PapiLab inputs only through
+documented migration paths, use Scient names for new product state, write new
+project metadata to `.scient/`, and preserve historical evidence exactly.
+Removal of a retained compatibility identifier requires a specific retirement
+condition; this record does not invent a sunset date.
 
 ## Execution Sequence
 
@@ -438,7 +465,7 @@ application agree on ScientFactory and Scient.
 | Documentation | Metadata valid, indexes current, links resolve, historical evidence unchanged |
 | Application identity | Display, bundle, protocol, profile, partition, storage, artifacts, and updater isolated |
 | Project migration | `.papilab/` to `.scient/` is explicit, idempotent, recoverable, and conflict-safe |
-| Scient agent | Dedicated identity/state; inherited OpenCode lineage and attribution preserved |
+| Scient agent | Owned source boundary verified; dedicated runtime identity/state remains deferred; inherited OpenCode lineage and attribution preserved |
 | External agents | Registry, settings, credentials, defaults, threads, handoffs, and updates preserved |
 | Canonical state | Project truth survives unavailable or corrupted agent runtime state |
 | Coexistence | Scient app/agent, official Synara, retained PapiLab state, and external OpenCode do not collide |
@@ -486,8 +513,8 @@ The rename is complete only when:
 - application identity/state is isolated from PapiLab and inherited products;
   future Scient-agent identity/state isolation remains an implementation
   requirement rather than a completed rename claim;
-- owned repositories, protections, workflows, packages, artifacts, and source
-  locks use the verified final topology;
+- owned repositories, protections, workflows, the new first-party Scient
+  package scope, artifacts, and source locks use the verified final topology;
 - installed and upgrade-path verification passes at exact merged heads;
 - historical evidence remains accurate;
 - public website, authentication, downloads, and release endpoints have been
