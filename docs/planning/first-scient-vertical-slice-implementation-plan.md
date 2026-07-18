@@ -47,21 +47,30 @@ the next implementation step.
 ## Current Execution Status
 
 Phase 1 is complete. The placement trace selected the permanent package seam,
-and desktop PR #4 implemented `@scientfactory/project-init` with zero-write
-inspection, explicit plan/apply behavior, conservative recovery, and 43 focused
-tests. The package remains present on the maintained desktop `main` at
-`2ecfbe19`, after the verified Scient rename on the reviewed official Synara
-v0.5.5 foundation and subsequent reviewed UI and project-init status
-follow-ups. The owned OpenCode-derived agent-source baseline is
-`5ffaf9a2` on `dev`, after the verified `scient-agent` source-boundary rename
-and reviewed sync to official upstream `69a80663`.
+and the reviewed desktop implementation added `@scientfactory/project-init`
+with zero-write inspection, explicit plan/apply behavior, conservative
+recovery, and focused tests. The package, trusted-server RPC, project-open/setup dialog, and
+interrupted-initialization recovery UI are present on maintained desktop `main`
+at `bd2a6eed6243b13fc1423b21b2454ae060bce5c7`. They initialize only the portable
+foundation and do not make the host project projection canonical.
 
-Phase 2, the remaining first-slice boundary trace, is the next work. The owned
-OpenCode-derived checkout is the Scient agent's selected source foundation, but
-the native agent is not yet implemented or packaged. No scientific-state store,
-project-initiation UI or server RPC, Scient agent gateway,
-proposal/decision ledger, or complete scientific workflow is claimed as
-implemented.
+Phase 2 source tracing is complete in
+`../../lab/notes/first-slice-source-trace-2026-07-18.md`. It proved the current
+state-ownership gaps and candidate seams. Yaacov clarified that conversations,
+project memory, user memory, recovery, cloud synchronization, and their storage
+boundaries belong to a dedicated future memory-architecture project, not an
+immediate persistence decision. Those unprocessed ideas now live in the
+[`Idea Inbox`](idea-inbox.md#memory-context-and-continuity). The permanent
+scientific-operation package and fake-executor product proof also remain
+deferred. Non-Git recovery, trusted project filesystem scope, and complete
+native-Scient/external-OpenCode runtime independence remain product
+requirements; they are not a selected memory design. The existing project-init
+kernel already enforces path containment for initialization, while later
+scientific-operation and native-agent boundaries remain to be built.
+The selected OpenCode-derived source is `67e7f3f0341c7a5bad8d68e0a29f113b450eb02a`
+on `dev`, but the native agent is not yet implemented or packaged. No
+scientific-state store, Scient agent gateway, proposal/decision ledger, or
+complete scientific workflow is claimed as implemented.
 
 ## Product Slice
 
@@ -396,7 +405,7 @@ Do not design the full project graph or package map. Decide only the first home
 for project identity, source excerpt, evidence note, task/context, run/proposal/
 decision, and recovery responsibilities.
 
-### 3. Produce The Trace Decision
+### 3. Produce The Trace And Decision Boundary
 
 Create one dated evidence note at:
 
@@ -411,12 +420,14 @@ It must record:
 5. the completed state-ownership table;
 6. non-Git behavior and recovery findings;
 7. the proposed filesystem-scope enforcement boundary;
-8. candidate seam comparison and selected permanent placement;
+8. candidate seam comparison and either a selected permanent placement or an
+   explicit owner-approved deferral;
 9. existing machinery to reuse unchanged;
 10. surfaces Scient must not couple to;
 11. any required Synara change, the Scient integration seam, and any proven
     inherited OpenCode-core gap;
-12. the exact first coding backlog; and
+12. the exact first coding backlog or the evidence/decision sequence required
+    before such a backlog is safe; and
 13. a go/no-go verdict for implementation.
 
 Update this plan only where the trace resolves an open boundary. Update
@@ -425,16 +436,26 @@ roadmap or ADR unless the trace invalidates them.
 
 ### 4. Review Checkpoint
 
-Stop for Yaacov's review before product code begins. The review should decide
-only whether the selected permanent boundary is understandable, serves both
-manual and agent work, keeps scientific state outside inherited sessions,
-supports credible non-Git recovery, defines enforceable project filesystem
-scope, and produces a sufficiently narrow coding backlog.
+The first review established three requirements: non-Git recovery, trusted
+project filesystem scope, and complete native-Scient/external-OpenCode runtime
+independence. Yaacov later clarified that the review had grouped future memory-
+architecture questions too narrowly as a current persistence decision. The
+scopes and relationships among conversations, user memory, project memory, raw
+history, files, local storage, and future cloud storage must be discovered
+together in a dedicated future project.
 
-Once accepted, begin implementation. Do not add another exploratory phase
-unless the trace identifies a real blocker.
+The candidate questions are preserved in the
+[`Idea Inbox`](idea-inbox.md#memory-context-and-continuity). They do not select
+SQLite, define a project ledger, authorize memory implementation, or block the
+independent T3 reliability work. The permanent scientific-operation package and
+deterministic fake-executor product proof remain separate deferred decisions.
 
 ## Phase 3: Permanent Walking Skeleton
+
+Status: Deferred. The ordered work below remains a candidate sequence, not
+current authorization. Replan the memory-dependent steps only when the future
+memory-architecture project begins, and revisit the fake-executor question
+separately. Do not treat that future discovery as a current T3 dependency.
 
 Implement in this order:
 
@@ -586,13 +607,13 @@ Stop and report before widening scope if:
 - controlled fixture;
 - five-path map;
 - completed state-ownership table;
-- explicit non-Git recovery approach;
-- selected permanent code location;
+- approved non-Git recovery requirement and unresolved future memory handoff;
+- permanent code-location candidates and explicit owner deferral;
 - reuse-versus-change list;
 - Scient integration and inherited OpenCode-core change verdict;
 - Synara-hosted versus external-topology verdict;
-- narrow first coding backlog; and
-- Yaacov's approval to implement.
+- future memory questions routed to the idea inbox; and
+- no implied authorization for scientific-state or memory implementation.
 
 ### Vertical Slice Done
 
