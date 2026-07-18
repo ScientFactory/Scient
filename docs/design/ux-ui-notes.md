@@ -2,6 +2,7 @@
 
 Status: Draft
 Owner: Yaacov
+Created: 2026-07-07
 Last updated: 2026-06-28
 Purpose: Collects early UX/UI observations before they become product design principles, surface-specific guidance, research evidence, or implementation specifications.
 Doc type: Planning note

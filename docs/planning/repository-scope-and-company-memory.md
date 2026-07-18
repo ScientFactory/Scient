@@ -2,6 +2,7 @@
 
 Status: Proposed
 Owner: Yaacov
+Created: 2026-07-13
 Last updated: 2026-07-17
 Purpose: Recommends how the Scient repository should relate to a broader connected company memory without mixing product authority with company-level authority.
 Doc type: Planning note

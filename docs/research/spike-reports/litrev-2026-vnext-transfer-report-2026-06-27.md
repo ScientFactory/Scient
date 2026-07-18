@@ -2,6 +2,7 @@
 
 Status: Draft
 Owner: Yaacov
+Created: 2026-06-27
 Last updated: 2026-06-28
 Purpose: Synthesizes what the new LitRev repo should learn from LitRev_2026 and vNext planning without copying the old product shape.
 Doc type: Research evidence

@@ -2,6 +2,7 @@
 
 Status: Proposed
 Owner: Yaacov
+Created: 2026-07-17
 Last updated: 2026-07-18
 Purpose: Defines the end-to-end implementation plan for the Scient agent and for preserving independently connected external agents.
 Doc type: Planning note

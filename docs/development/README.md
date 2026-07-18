@@ -2,6 +2,7 @@
 
 Status: Placeholder
 Owner: Yaacov
+Created: 2026-06-27
 Last updated: 2026-07-17
 Purpose: Defines where development documentation should live once implementation exists.
 Doc type: Future home

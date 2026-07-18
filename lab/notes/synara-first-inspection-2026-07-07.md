@@ -2,6 +2,7 @@
 
 Status: Historical
 Owner: Yaacov
+Created: 2026-07-08
 Last updated: 2026-07-17
 Purpose: Preserves the first technical inspection of Synara and the initial ownership plan that preceded the accepted foundation decision.
 Doc type: Research evidence

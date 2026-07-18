@@ -2,6 +2,7 @@
 
 Status: Active
 Owner: Yaacov
+Created: 2026-07-12
 Last updated: 2026-07-17
 Purpose: Indexes external motion, hover, transition, and animated-state references that must be understood over time rather than from a still image alone.
 Doc type: Research evidence

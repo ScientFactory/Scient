@@ -2,6 +2,7 @@
 
 Status: Historical
 Owner: Yaacov
+Created: 2026-07-11
 Last updated: 2026-07-16
 Purpose: Defines the end-to-end preparation gate for owned Synara and OpenCode repositories, upstream updates, and Synara identity isolation.
 Doc type: Planning note

@@ -2,6 +2,7 @@
 
 Status: Active
 Owner: Yaacov
+Created: 2026-07-12
 Last updated: 2026-07-17
 Purpose: Indexes external administrative dashboards and settings interfaces kept for later product-design comparison and inspiration.
 Doc type: Research evidence

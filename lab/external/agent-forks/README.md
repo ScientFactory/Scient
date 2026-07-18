@@ -2,6 +2,7 @@
 
 Status: Draft
 Owner: Yaacov
+Created: 2026-07-08
 Last updated: 2026-07-18
 Purpose: Organizes upstream agent engines and automation systems used in the Scient lab.
 Doc type: Planning note

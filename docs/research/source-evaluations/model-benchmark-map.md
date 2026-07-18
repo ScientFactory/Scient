@@ -2,6 +2,7 @@
 
 Status: Draft
 Owner: Yaacov
+Created: 2026-07-12
 Last updated: 2026-07-17
 Purpose: Maps what external model benchmarks measure, how trustworthy they are, and how much weight Scient should give them.
 Doc type: Research evidence

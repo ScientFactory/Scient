@@ -2,6 +2,7 @@
 
 Status: Draft
 Owner: Yaacov
+Created: 2026-06-27
 Last updated: 2026-07-17
 Purpose: Defines Scient's early security, trust-boundary, and permission principles before implementation-specific architecture exists.
 Doc type: Architecture direction

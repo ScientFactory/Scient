@@ -2,6 +2,7 @@
 
 Status: Historical
 Owner: Yaacov
+Created: 2026-07-11
 Last updated: 2026-07-16
 Purpose: Records the executed Synara and OpenCode ownership, updateability, identity-isolation, and compatibility gate.
 Doc type: Research evidence

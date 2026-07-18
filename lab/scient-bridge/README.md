@@ -2,6 +2,7 @@
 
 Status: Draft
 Owner: Yaacov
+Created: 2026-07-08
 Last updated: 2026-07-17
 Purpose: Holds Scient-owned adapter and integration experiments connecting lab source checkouts.
 Doc type: Planning note

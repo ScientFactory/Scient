@@ -2,6 +2,7 @@
 
 Status: Draft
 Owner: Yaacov
+Created: 2026-06-28
 Last updated: 2026-07-17
 Purpose: Tracks current product planning after the accepted PRD, including candidate features, open product questions, and cross-document handoffs.
 Doc type: Planning note

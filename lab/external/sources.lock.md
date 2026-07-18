@@ -2,6 +2,7 @@
 
 Status: Active
 Owner: Yaacov
+Created: 2026-07-08
 Last updated: 2026-07-18
 Purpose: Records exact owned and external source provenance, tested owned revisions, and cross-repository upstream review evidence used by Scient.
 Doc type: Research evidence

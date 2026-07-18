@@ -2,6 +2,7 @@
 
 Status: Accepted
 Owner: Yaacov
+Created: 2026-07-18
 Last updated: 2026-07-18
 Purpose: Records ScientFactory's decision to own standalone desktop and agent repositories while treating original projects as read-only, selectively reviewed sources.
 Doc type: Architecture decision

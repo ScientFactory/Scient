@@ -2,6 +2,7 @@
 
 Status: Draft
 Owner: Yaacov
+Created: 2026-07-12
 Last updated: 2026-07-17
 Purpose: Tracks the rollout priorities and unresolved commercial choices for how Scient users access and select models.
 Doc type: Planning note

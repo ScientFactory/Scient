@@ -2,6 +2,7 @@
 
 Status: Active
 Owner: Yaacov
+Created: 2026-06-27
 Last updated: 2026-07-18
 Purpose: Maps the Scient documentation structure and where each kind of information belongs.
 Doc type: Repo orientation

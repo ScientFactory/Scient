@@ -2,6 +2,7 @@
 
 Status: Active
 Owner: Yaacov
+Created: 2026-06-27
 Last updated: 2026-07-18
 Purpose: Defines how agents should work in this early Scient repository.
 Doc type: Agent protocol

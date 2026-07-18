@@ -2,6 +2,7 @@
 
 Status: Active
 Owner: Yaacov
+Created: 2026-06-27
 Last updated: 2026-07-18
 Purpose: Indexes Scient's accepted architecture decision records and the rules for using them.
 Doc type: Repo orientation

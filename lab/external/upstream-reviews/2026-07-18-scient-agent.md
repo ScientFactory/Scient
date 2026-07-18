@@ -2,6 +2,7 @@
 
 Status: Active
 Owner: Yaacov
+Created: 2026-07-18
 Last updated: 2026-07-18
 Purpose: Records the disposition review of official OpenCode changes published after Scient's current integrated agent-source base.
 Doc type: Research evidence

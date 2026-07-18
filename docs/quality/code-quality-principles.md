@@ -2,6 +2,7 @@
 
 Status: Draft
 Owner: Yaacov
+Created: 2026-06-27
 Last updated: 2026-07-17
 Purpose: Defines Scient's code quality principles before implementation-specific standards and gates exist.
 Doc type: Engineering doctrine

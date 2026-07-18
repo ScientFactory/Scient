@@ -2,6 +2,7 @@
 
 Status: Placeholder
 Owner: Yaacov
+Created: 2026-06-27
 Last updated: 2026-07-17
 Purpose: Future home for Scient TypeScript conventions once implementation begins.
 Doc type: Future home

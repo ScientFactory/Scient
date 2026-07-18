@@ -2,6 +2,7 @@
 
 Status: Draft
 Owner: Yaacov
+Created: 2026-07-07
 Last updated: 2026-07-18
 Purpose: Defines the current source-ownership, adaptation, upstream-update, and divergence strategy for open-source foundations used by Scient.
 Doc type: Planning note

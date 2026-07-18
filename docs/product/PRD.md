@@ -3,6 +3,7 @@
 Status: Accepted
 Version: v1
 Owner: Yaacov
+Created: 2026-06-27
 Last updated: 2026-07-17
 Purpose: Defines Scient's product direction, core capabilities, user experience principles, and product constraints.
 Doc type: Product truth
