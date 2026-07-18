@@ -8,7 +8,7 @@ Purpose: Defines what should be documented about Scient local-first storage and 
 Doc type: Future home
 
 This page will document Scient's local-first and sync architecture when it
-exists. Unprocessed questions about memory scope, user-selected cloud folders,
+exists. Open questions about memory scope, user-selected cloud folders,
 offline behavior, conversation continuity, and future Scient cloud sync remain
 in the draft [Memory Architecture
 Discovery](../planning/memory-architecture-discovery.md).
