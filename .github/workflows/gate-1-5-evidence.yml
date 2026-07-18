@@ -1,4 +1,4 @@
-name: Gate 1.5 evidence
+name: Scient evidence
 
 on:
   pull_request:
@@ -13,9 +13,13 @@ jobs:
   evidence-manifest:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
-          node-version: 22
+          node-version: 24
       - name: Verify committed Gate 1.5 evidence
         run: node lab/scripts/verify-gate-1-5-manifest.mjs
+      - name: Test owned-source evidence verifier
+        run: node --test lab/scripts/verify-owned-sources.test.mjs
+      - name: Verify current owned-source evidence
+        run: node lab/scripts/verify-owned-sources.mjs

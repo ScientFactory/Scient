@@ -30,6 +30,9 @@ notes, and lab evidence.
   maintained owned repositories.
 - `sources.lock.md` - current local source inventory with URL, branch, commit,
   role, and update strategy.
+- `owned-sources.json` - machine-readable cross-repository source heads and
+  review checkpoints verified by parent CI against each public source
+  repository.
 - `upstream-reviews/` - dated disposition evidence for official source changes;
   repo-local `upstream-state.json` files remain the machine checkpoints.
 
@@ -40,6 +43,8 @@ notes, and lab evidence.
 - Record the actual location of any temporary external reference checkout; do
   not infer a checkout merely because a pointer directory exists.
 - Record exact source commits in `sources.lock.md`.
+- Keep `owned-sources.json`, `sources.lock.md`, and each source repository's
+  `upstream-state.json` aligned after an owned source head changes.
 - Prefer one physical checkout per upstream repository.
 - Use pointer notes when one repository spans multiple roles.
 - Keep Scient-owned bridge code outside temporary upstream trees unless a fork
