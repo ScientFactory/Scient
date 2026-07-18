@@ -43,7 +43,7 @@ editor, a complete scientific schema, a notebook system, or Goose integration.
 The implementation plan is
 [`first-scient-vertical-slice-implementation-plan.md`](first-scient-vertical-slice-implementation-plan.md).
 
-### Controlled Validation Fixture
+### Controlled Validation Project
 
 The first scientific project is **Many Labs 2's Knobe side-effect effect**. It
 provides a preregistered protocol-to-analysis-to-claim-audit loop that can be
@@ -51,23 +51,37 @@ kept small enough for the first product slice. Activation is conditional on a
 clean audit of the exact artifacts, licenses, dependencies, and expected output.
 **ManyBabies 4** is the designated replacement if that audit fails.
 
-The accepted portfolio, source evidence, fixture boundaries, and replacement
-conditions are recorded in
+The accepted validation strategy uses three complementary tracks: rich
+scientific validation projects, narrow capability fixtures, and external
+agent-evaluation benchmarks. The source evidence, boundaries, reserves, and
+activation conditions are recorded in
 [`../research/source-evaluations/scientific-project-fixture-selection.md`](../research/source-evaluations/scientific-project-fixture-selection.md).
+
+The tracks are not interchangeable. A benchmark score does not prove the
+researcher review, provenance, recovery, and reopening loop; a rich project does
+not replace deterministic component checks or comparable agent measurements.
 
 ## Next
 
 - Strengthen the evidence-to-writing path based on the first slice.
-- Activate the clinical phenotyping machine-learning fixture as the immediate
-  second project, followed by the selected Cancer Biology replication and then
-  OpenNeuro Flanker as the heavier data-workflow benchmark.
+- Build the Many Labs 2 Knobe capsule now; do not let further portfolio research
+  or benchmark integration delay it.
+- When data-to-figure work begins, activate the narrowly scoped BCG
+  `dat.colditz1994` statistics fixture and one pinned Our World in Data
+  exact-output fixture.
+- Activate the clinical phenotyping machine-learning project as the immediate
+  second rich project, followed by the selected Cancer Biology replication.
+- Prove BIDS ingestion and one behavioral result with OpenNeuro Flanker before
+  activating NARPS as the fourth and flagship neuroscience project.
+- Once the Scient-agent execution path is runnable, connect a small
+  AstaBench-wrapped DiscoveryBench validation subset. Keep it parallel to, and
+  non-blocking for, the rich-project sequence.
 - Add scientific capabilities through the Scient-owned layer as real needs
   appear.
 - Make isolated changes to Scient's inherited OpenCode core only for
   demonstrated runtime gaps.
 - Evaluate Goose as a later source of capabilities and architecture lessons for
   Scient, without turning Scient into an engine-switching shell.
-- Choose the next coherent workflow, with data-to-figure as a leading candidate.
 
 ## Later
 
@@ -75,7 +89,13 @@ conditions are recorded in
 - Mobile reading, review, capture, and approval.
 - Deeper source discovery, import, parsing, and citation workflows.
 - Multi-paper medical evidence synthesis, with the BCG vaccine meta-analysis
-  held as the first reserve fixture for that capability.
+  expanded beyond the early supplied-dataset fixture only after Scient supports
+  search, screening, appraisal, and extraction provenance.
+- Expanded AstaBench evaluation, followed by CORE-Bench v1.1/OOD for
+  reliability and cost analysis and BixBench as a computational-biology stretch
+  suite.
+- ERP CORE and ATLAS Higgs remain reserve capability candidates; ManyBabies 4
+  remains the designated first-project fallback.
 - Manuscript, analysis, figure, publishing, and open-science expansion.
 
 These later items remain sequencing direction, not implementation commitments.
