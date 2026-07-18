@@ -26,6 +26,9 @@ Start here:
 - [Collaborator onboarding](onboarding.md) - ordered project journey, repository tour, and contribution-area reading routes.
 - [Documentation policy](documentation-policy.md) - documentation rules, metadata, statuses, and placement policy.
 - [Product requirements](product/PRD.md) - canonical product direction.
+- [Scient skills system](product/skills-system.md) - draft product model, trust
+  boundaries, candidate catalog, and validation order for reusable scientific
+  skills; honor its Draft status, and use the accepted PRD to govern conflicts.
 - [Scient product identity](product/scient-product-identity.md) - accepted company, app, native-agent, external-agent, and naming vocabulary.
 - [Product philosophy](product/product-philosophy.md) - draft durable product principles; the accepted PRD governs conflicts.
 - [Technology stack](architecture/technology-stack.md) - current proposed stack direction.
