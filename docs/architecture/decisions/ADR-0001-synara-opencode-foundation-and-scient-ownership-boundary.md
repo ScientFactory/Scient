@@ -2,6 +2,7 @@
 
 Status: Accepted
 Owner: Yaacov
+Created: 2026-07-16
 Last updated: 2026-07-18
 Purpose: Records the decision to use owned Synara-derived source as Scient's application foundation and owned OpenCode-derived source as the foundation for Scient while keeping external agents and canonical scientific state separately owned.
 Doc type: Architecture decision

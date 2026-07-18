@@ -2,6 +2,7 @@
 
 Status: Active
 Owner: Yaacov
+Created: 2026-06-27
 Last updated: 2026-07-17
 Purpose: Defines where Scient product design documentation should live.
 Doc type: Repo orientation

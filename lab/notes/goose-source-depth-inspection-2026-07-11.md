@@ -2,6 +2,7 @@
 
 Status: Draft
 Owner: Yaacov
+Created: 2026-07-11
 Last updated: 2026-07-17
 Purpose: Records research evidence on Goose integration seams, runtime boundaries, safety gaps, and its possible later role in Scient.
 Doc type: Research evidence

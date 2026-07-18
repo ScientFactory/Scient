@@ -2,6 +2,7 @@
 
 Status: Proposed
 Owner: Yaacov
+Created: 2026-06-27
 Last updated: 2026-07-18
 Purpose: Maps which open-source systems Scient should study, prototype, adapt, or integrate, and which product boundaries Scient must keep owned.
 Doc type: Research evidence

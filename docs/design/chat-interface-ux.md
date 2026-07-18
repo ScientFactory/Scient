@@ -2,6 +2,7 @@
 
 Status: Draft
 Owner: Yaacov
+Created: 2026-07-07
 Last updated: 2026-07-17
 Purpose: Captures early UX/UI notes for Scient chat and streaming conversation surfaces.
 Doc type: Planning note

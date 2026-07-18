@@ -2,6 +2,7 @@
 
 Status: Accepted
 Owner: Yaacov
+Created: 2026-07-17
 Last updated: 2026-07-18
 Purpose: Defines the accepted company, product, agent, and external-agent naming system for Scient.
 Doc type: Product truth

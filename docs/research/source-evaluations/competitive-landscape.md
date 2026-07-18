@@ -2,6 +2,7 @@
 
 Status: Draft
 Owner: Yaacov
+Created: 2026-07-13
 Last updated: 2026-07-17
 Purpose: Maps direct competitors, substitute workflows, specialized alternatives, and integration candidates against Scient's product scope.
 Doc type: Research evidence

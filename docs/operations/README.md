@@ -2,6 +2,7 @@
 
 Status: Active
 Owner: Yaacov
+Created: 2026-06-27
 Last updated: 2026-07-18
 Purpose: Indexes Scient's real monitoring, release-adjacent, support, and maintenance procedures.
 Doc type: Repo orientation

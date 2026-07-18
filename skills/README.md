@@ -2,6 +2,7 @@
 
 Status: Active
 Owner: Yaacov
+Created: 2026-06-27
 Last updated: 2026-07-17
 Purpose: Indexes local workflow skills that help agents work on Scient without becoming project authority.
 Doc type: Repo orientation

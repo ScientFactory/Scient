@@ -2,6 +2,7 @@
 
 Status: Draft
 Owner: Yaacov
+Created: 2026-06-27
 Last updated: 2026-07-17
 Purpose: Defines Scient's durable product principles across product, architecture, design, quality, and implementation.
 Doc type: Product truth

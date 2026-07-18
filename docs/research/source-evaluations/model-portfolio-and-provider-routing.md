@@ -2,6 +2,7 @@
 
 Status: Draft
 Owner: Yaacov
+Created: 2026-07-12
 Last updated: 2026-07-17
 Purpose: Tracks Scient's candidate model portfolio and the distinct value each model must prove before selection.
 Doc type: Research evidence

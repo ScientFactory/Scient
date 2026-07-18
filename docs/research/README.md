@@ -2,6 +2,7 @@
 
 Status: Active
 Owner: Yaacov
+Created: 2026-06-27
 Last updated: 2026-07-17
 Purpose: Maps where Scient external research, source evaluations, and spike reports live.
 Doc type: Repo orientation

@@ -2,6 +2,7 @@
 
 Status: Active
 Owner: Yaacov
+Created: 2026-06-27
 Last updated: 2026-07-18
 Purpose: Defines how Scient documentation should be created, classified, updated, and trusted.
 Doc type: Documentation policy
@@ -13,7 +14,8 @@ Every durable Markdown document must place this metadata block immediately after
 ```md
 Status: ...
 Owner: ...
-Last updated: 2026-07-17
+Created: YYYY-MM-DD
+Last updated: YYYY-MM-DD
 Purpose: ...
 Doc type: ...
 ```
@@ -21,6 +23,19 @@ Doc type: ...
 Repo-local `SKILL.md` files are exempt from this metadata block. They must use portable YAML frontmatter with `name` and `description`, live under `skills/`, and be indexed in `skills/README.md`. Skills are workflow helpers and must not become project authority.
 
 Use a real owner when possible. For now, use `Yaacov` unless a real person or team is responsible for the document.
+
+`Created` records the earliest Git-traceable creation date of the document's
+current lineage. Preserve it when the document, product, or containing path is
+renamed, and do not reset it for ordinary rewrites. For a genuinely new
+document, use the date it first becomes a distinct durable owner. If material
+is split or merged and the lineage is ambiguous, use the new document's
+creation date and preserve important predecessor links in the document itself.
+
+Do not interpret `Created` as an acceptance, implementation, or publication
+date. Those events require their own explicit evidence when they matter.
+For imported or previously uncommitted material, a content-level
+`Last updated` date may legitimately predate the Git-traceable `Created` date;
+do not rewrite either field merely to force chronological order.
 
 ## Human Accountability And AI Assistance
 

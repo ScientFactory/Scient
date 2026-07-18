@@ -2,6 +2,7 @@
 
 Status: Draft
 Owner: Yaacov
+Created: 2026-07-07
 Last updated: 2026-06-28
 Purpose: Records a deep coherence, alignment, and consistency audit of the LitRev planning documents, a decision-by-decision architecture review, and a concrete set of proposed fixes, as a dated snapshot.
 Doc type: Research evidence

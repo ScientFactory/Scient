@@ -2,6 +2,7 @@
 
 Status: Placeholder
 Owner: Yaacov
+Created: 2026-06-27
 Last updated: 2026-07-17
 Purpose: Defines what should be documented about Scient local-first storage and cloud sync once the design is validated.
 Doc type: Future home

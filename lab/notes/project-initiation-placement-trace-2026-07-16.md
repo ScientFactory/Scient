@@ -2,6 +2,7 @@
 
 Status: Historical
 Owner: Yaacov
+Created: 2026-07-16
 Last updated: 2026-07-17
 Purpose: Records the source-backed placement and dependency decision for the first permanent PapiLab project-initiation package.
 Doc type: Research evidence

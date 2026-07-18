@@ -2,6 +2,7 @@
 
 Status: Proposed
 Owner: Yaacov
+Created: 2026-06-27
 Last updated: 2026-07-18
 Purpose: Records Scient's current technology stack direction and open implementation decisions.
 Doc type: Architecture direction

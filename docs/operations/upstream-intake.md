@@ -2,6 +2,7 @@
 
 Status: Active
 Owner: Yaacov
+Created: 2026-07-18
 Last updated: 2026-07-18
 Purpose: Defines the repeatable process for detecting, reviewing, and selectively inheriting changes from Scient's original desktop and agent sources.
 Doc type: Operational procedure

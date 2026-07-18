@@ -2,6 +2,7 @@
 
 Status: Active
 Owner: Yaacov
+Created: 2026-07-08
 Last updated: 2026-07-18
 Purpose: Defines the experimental lab area for early Scient source forks, adapters, and integration spikes.
 Doc type: Repo orientation

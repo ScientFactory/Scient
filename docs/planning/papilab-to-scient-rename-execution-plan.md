@@ -2,6 +2,7 @@
 
 Status: Historical
 Owner: Yaacov
+Created: 2026-07-17
 Last updated: 2026-07-18
 Purpose: Preserves the executed PapiLab-to-Scient migration, compatibility contract, verification requirements, and deferred public cutover.
 Doc type: Planning note

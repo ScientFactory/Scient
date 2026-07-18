@@ -2,6 +2,7 @@
 
 Status: Active
 Owner: Yaacov
+Created: 2026-06-27
 Last updated: 2026-07-18
 Purpose: Defines where Scient architecture direction, future architecture homes, and decisions belong.
 Doc type: Repo orientation

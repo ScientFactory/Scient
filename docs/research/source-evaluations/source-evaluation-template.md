@@ -2,6 +2,7 @@
 
 Status: Placeholder
 Owner: Yaacov
+Created: 2026-06-27
 Last updated: 2026-07-17
 Purpose: Defines what should become the source evaluation template once agreed.
 Doc type: Future home

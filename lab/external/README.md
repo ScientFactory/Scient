@@ -2,6 +2,7 @@
 
 Status: Active
 Owner: Yaacov
+Created: 2026-07-08
 Last updated: 2026-07-18
 Purpose: Explains how owned source repositories, external provenance, and optional reference checkouts are organized locally.
 Doc type: Repo orientation

@@ -2,6 +2,7 @@
 
 Status: Draft
 Owner: Yaacov
+Created: 2026-07-08
 Last updated: 2026-07-18
 Purpose: Records Goose's cross-role research status without implying a retained local checkout.
 Doc type: Planning note

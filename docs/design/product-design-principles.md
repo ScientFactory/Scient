@@ -2,6 +2,7 @@
 
 Status: Placeholder
 Owner: Yaacov
+Created: 2026-06-27
 Last updated: 2026-07-17
 Purpose: Future home for Scient product design principles once there are real design decisions or prototypes to document.
 Doc type: Future home

@@ -2,6 +2,7 @@
 
 Status: Placeholder
 Owner: Yaacov
+Created: 2026-06-27
 Last updated: 2026-07-17
 Purpose: Defines what should be documented about sharing and collaboration once the model is designed.
 Doc type: Future home

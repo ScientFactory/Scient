@@ -2,6 +2,7 @@
 
 Status: Draft
 Owner: Yaacov
+Created: 2026-07-16
 Last updated: 2026-07-18
 Purpose: Defines the bounded source-tracing, implementation, and verification plan for the first Scient scientific project slice.
 Doc type: Planning note

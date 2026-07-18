@@ -2,6 +2,7 @@
 
 Status: Active
 Owner: Yaacov
+Created: 2026-07-13
 Last updated: 2026-07-17
 Purpose: Indexes visual patterns for agent task plans, step trackers, progress states, and workflow controls placed near a conversation composer.
 Doc type: Research evidence

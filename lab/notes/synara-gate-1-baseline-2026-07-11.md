@@ -2,6 +2,7 @@
 
 Status: Historical
 Owner: Yaacov
+Created: 2026-07-11
 Last updated: 2026-07-16
 Purpose: Records the end-to-end Gate 1 run against the pinned Synara scaffold and the evidence for its go/no-go result.
 Doc type: Research evidence
