@@ -146,6 +146,21 @@ points with test fixtures but does not ship a discipline or workflow profile.
 Define the fixture before or at the start of source tracing so every inspection
 question serves the same workflow.
 
+For this slice, use the **Many Labs 2 Knobe side-effect effect** selected in
+[`../research/source-evaluations/scientific-project-fixture-selection.md`](../research/source-evaluations/scientific-project-fixture-selection.md).
+Complete its artifact, license, dependency, and expected-output audit before
+packaging source material. If that audit cannot produce a safe, shareable, and
+deterministic capsule, use **ManyBabies 4** as the designated replacement and
+record the failed activation condition rather than quietly substituting another
+project.
+
+The first slice needs only the Knobe capsule's source-to-note thread: one exact
+source excerpt, one bounded task, one expected evidence-linked note, and the
+review and reopening states below. Protocol, data, analysis, and output
+snapshots may be included as pinned context for later reuse, but this plan does
+not require Scient to execute the study analysis or generate a figure in the
+first slice.
+
 Use a compressed scientific-project capsule: a small, locally self-contained
 representation of a complete research project, preferably reduced from an
 openly licensed reproducible study. Use a synthetic equivalent only if a

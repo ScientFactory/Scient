@@ -3,7 +3,7 @@
 Status: Draft
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-07-17
+Last updated: 2026-07-18
 Purpose: Defines Scient's testing philosophy before implementation-specific commands, lanes, and CI gates exist.
 Doc type: Testing doctrine
 
@@ -93,9 +93,32 @@ Performance is part of correctness for core workflows. A feature that only works
 
 ## Model Evaluation
 
-External benchmarks are comparative research, not release proof. Before Scient assigns final production model roles or enables automatic routing, it must run a replayable internal evaluation suite on representative Scient workflows.
+External benchmarks are comparative research, not release proof. A scored
+scientific-agent harness measures the combined model, agent scaffold, tools,
+prompt or skill context, environment, and scorer; it must not be reported as a
+model-only result.
 
-That later suite should cover scientific faithfulness, citations and evidence, mathematics, data analysis, coding, tools and agents, conversation and writing, long context, and vision or document work. Runs should preserve the model and provider version, reasoning settings, prompts and fixtures, tools, attempts, scoring method, latency, and cost.
+Scient therefore uses three complementary forms of validation:
+
+- rich scientific validation projects for the complete researcher, review,
+  provenance, recovery, and reopening loop;
+- deterministic capability fixtures for narrow component regressions; and
+- external agent-evaluation benchmarks for comparable capability, reliability,
+  latency, and cost signals.
+
+The accepted portfolio and benchmark sequence live in
+`../research/source-evaluations/scientific-project-fixture-selection.md`.
+Passing one track never substitutes for the others.
+
+Before Scient assigns final production model roles or enables automatic
+routing, it must run a replayable internal evaluation suite on representative
+Scient workflows. That later suite should cover scientific faithfulness,
+citations and evidence, mathematics, data analysis, coding, tools and agents,
+conversation and writing, long context, and vision or document work. Runs
+should preserve the Scient and benchmark revisions, model and provider version,
+reasoning settings, prompts or skills, fixtures, tools, environment, attempts,
+scoring method and evaluator version, latency, token use, and cost. Establish
+repeated-run variance before using a score as a regression signal.
 
 Define the detailed methodology in `docs/quality/model-evaluation-methodology.md` when real Scient workflows and fixtures exist. Until then, external benchmark analysis belongs in `docs/research/source-evaluations/model-benchmark-map.md`.
 

@@ -1,79 +1,141 @@
-# Scientific Project Fixture Selection
+# Scientific Validation Portfolio And Evaluation Strategy
 
 Status: Accepted
 Owner: Yaacov
 Created: 2026-07-18
 Last updated: 2026-07-18
-Purpose: Records the selected scientific projects for validating Scient, the evidence behind the selection, and the conditions for activating each fixture.
+Purpose: Records Scient's selected validation projects, capability fixtures, agent-evaluation benchmarks, source evidence, and activation conditions.
 Doc type: Research evidence
 
 ## Document Rules
 
 This document owns the source evaluation, portfolio choice, intended role, and
-activation conditions for Scient's scientific validation projects. It does not
-change the product contract in `../../product/PRD.md`, define implementation
-architecture, or claim that an experiment has been reproduced. The product
-roadmap owns sequence, implementation plans own build work, and dated execution
-records must own actual results.
+activation conditions for three complementary validation tracks: scientific
+validation projects, capability fixtures, and agent-evaluation benchmarks. It
+does not change the product contract in `../../product/PRD.md`, define
+implementation architecture, or claim that an experiment or benchmark has been
+run. The product roadmap owns sequence, implementation plans own build work,
+quality documents own general testing doctrine, and dated execution records
+must own actual results.
 
-"Locked" means accepted for the validation portfolio. It does not mean every
+"Selected" means accepted for the validation portfolio. It does not mean every
 linked artifact has already been downloaded, licensed for redistribution, or
-proven reproducible in Scient's environment. Before activation, each project
-needs a narrow artifact audit covering the exact source snapshot, data and code
-licenses, dependencies, expected outputs, and redistribution boundary.
+proven reproducible in Scient's environment. Before activation, every project,
+fixture, or benchmark needs a narrow audit covering the exact source snapshot,
+data and code licenses, dependencies, expected outputs or scorer, and
+redistribution boundary.
 
 Sources were last inspected on 2026-07-18.
 
 ## Decision
 
-Use four complementary projects, in this order:
+Use three validation tracks. They answer different questions and must not be
+collapsed into one ranked list.
 
-1. **Many Labs 2, Knobe side-effect effect** - first controlled fixture.
-2. **Clinical phenotyping with machine learning** - immediate second fixture.
+### Track 1: Scientific Validation Projects
+
+These are rich, end-to-end project capsules. They test whether a researcher can
+use Scient to understand sources, perform or inspect analysis, review claims,
+accept or reject agent work, and reopen a project with provenance and history
+intact.
+
+Use four projects, in this order:
+
+1. **Many Labs 2, Knobe side-effect effect** - first controlled project.
+2. **Clinical phenotyping with machine learning** - immediate second project.
 3. **Reproducibility Project: Cancer Biology, drug-repurposing replication** -
-   biomedical replication and claim-comparison fixture.
-4. **OpenNeuro Flanker task (`ds000102`)** - heavier neuroscience data and
-   workflow fixture.
+   biomedical replication and claim-comparison project.
+4. **NARPS** - flagship neuroscience project for analytic flexibility,
+   provenance, and claim comparison.
 
-Keep two deliberate reserves:
+Keep **ManyBabies 4** as the replacement for the first project if the Many Labs
+2 artifact audit fails.
 
-- **ManyBabies 4** - replacement for the first fixture if the Many Labs 2
-  artifact audit fails, and a later infant-cognition reliability benchmark.
-- **BCG vaccine meta-analysis** - future medical evidence-synthesis fixture
-  once Scient can support a multi-paper extraction and meta-analysis loop.
+### Track 2: Capability Fixtures
 
-This is a portfolio rather than six versions of the same benchmark. Together,
-the projects cover preregistered behavioral research, statistical and machine
-learning analysis, biomedical replication, neuroimaging, Bayesian and
-frequentist workflows, and multi-study evidence synthesis.
+These are small, deterministic checks of one capability. They can support a
+validation project, but passing one does not prove the complete Scient product
+loop.
+
+1. **Our World in Data** - pinned CSV to exact number and independently
+   generated figure.
+2. **BCG `dat.colditz1994` with `metafor`** - supplied table to pooled estimate,
+   heterogeneity output, and forest plot. This early fixture does not include a
+   new systematic review or extraction from the original papers.
+3. **OpenNeuro Flanker (`ds000102`)** - BIDS ingestion, metadata, behavioral
+   comparison, and later one deliberately bounded imaging derivative.
+
+### Track 3: Agent-Evaluation Benchmarks
+
+These are external scored harnesses for measuring Scient-agent and scaffold
+behavior over time. They complement rather than replace the internal project
+and capability tracks.
+
+1. Start with a small **AstaBench-wrapped DiscoveryBench validation subset**.
+2. Expand only after the adapter, scoring, logging, and repeat-run policy are
+   stable.
+3. Add **CORE-Bench v1.1/OOD** later for reliability, efficiency, and
+   model-versus-scaffold analysis rather than saturated headline accuracy.
+4. Add **BixBench** last as a difficult computational-biology stretch suite.
+
+Keep **ERP CORE** and the **ATLAS Higgs challenge** as reserves. Keep the
+Reproducibility Project: Psychology and ReScience C as source pools rather than
+active commitments. Deprioritize DABStep unless generic business-style tabular
+analysis becomes a specific product need.
+
+This strategy is complete enough to build against. Further portfolio research
+must not delay the Many Labs 2 artifact audit and first project capsule.
 
 ## Selection Criteria
 
-The projects were chosen for:
+All three tracks were chosen for:
 
-- an understandable and worthwhile scientific question;
+- an understandable and worthwhile scientific question or capability;
 - accessible source material, data, code, or structured analysis inputs;
 - work scientists actually perform: reading methods, planning analyses,
   running code, checking data, regenerating outputs, and auditing claims;
-- a result that can be judged against a published or predeclared reference;
+- a result or behavior that can be judged against a published, predeclared, or
+  versioned reference;
 - safe local execution without clinical decisions or new human-subject work;
 - complementary stress on Scient rather than redundant domain coverage; and
-- a scope that can be compressed into a controlled fixture.
+- a scope that can be reduced without misrepresenting the scientific task.
 
-No candidate is accepted merely because its data are open. The useful unit is a
-small, versioned scientific task with known inputs, expected outputs, and
-explicit claim boundaries.
+Track 1 additionally requires a meaningful researcher review and continuity
+loop. Track 2 requires deterministic or tightly bounded expected outputs. Track
+3 requires a versioned scorer and enough run metadata to distinguish model,
+scaffold, environment, and cost effects.
+
+No candidate is accepted merely because its data are open or it emits a score.
+The useful unit is a versioned task with known inputs, explicit boundaries, and
+an evaluation method whose limitations are visible.
 
 ## Portfolio at a Glance
 
+### Track 1: Scientific Validation Projects
+
 | Project | Role | Main workflow | Principal stress | Activation |
 | --- | --- | --- | --- | --- |
-| Many Labs 2: Knobe effect | First fixture | Protocol to analysis to claim audit | Preregistration, provenance, statistical reproduction | Now, after artifact audit |
-| Clinical phenotyping ML | Second fixture | Simulation, inference, ML, sensitivity analysis | Python execution and overclaim control | Hold ready behind first fixture |
-| Cancer Biology replication | Third fixture | Original claim versus registered replication | Multi-source biomedical evidence and disagreement | After the core evidence loop works |
-| OpenNeuro Flanker | Fourth fixture | BIDS validation, behavioral analysis, imaging derivative | Large structured data, QC, reproducible pipelines | After lighter fixtures |
-| ManyBabies 4 | Reserve A | Registered report, simulation, Bayesian and frequentist analysis | Exclusions, reliability, multi-lab inference | Replace fixture 1 if needed; otherwise later |
-| BCG meta-analysis | Reserve B | Extraction, effect sizes, random effects, forest plot | Heterogeneity and multi-paper synthesis | When evidence-synthesis support exists |
+| Many Labs 2: Knobe effect | First project | Protocol to analysis to claim audit | Preregistration, provenance, statistical reproduction | Now, after artifact audit |
+| Clinical phenotyping ML | Second project | Simulation, inference, ML, sensitivity analysis | Python execution and overclaim control | Hold ready behind the first project |
+| Cancer Biology replication | Third project | Original claim versus registered replication | Multi-source biomedical evidence and disagreement | After the core evidence loop works |
+| NARPS | Fourth and flagship project | One dataset, predefined hypotheses, many analysis teams | Analytic flexibility, provenance, QC, claim comparison | After lighter data and BIDS work |
+
+### Track 2: Capability Fixtures
+
+| Fixture | Bounded proof | Explicit non-goal | Activation |
+| --- | --- | --- | --- |
+| Our World in Data | Pinned CSV to exact statistic and independently generated reference-matched figure | Complete research project or copied OWID visualization | When data-to-figure work begins |
+| BCG `dat.colditz1994` | Supplied table to pooled estimate, heterogeneity, and forest plot | Search, screening, or fresh extraction from 13 papers | First deterministic statistics fixture |
+| OpenNeuro Flanker | Pinned BIDS metadata and behavioral result; one later derivative | Full fMRI reproduction or flagship claim audit | Before NARPS |
+
+### Track 3: Agent-Evaluation Benchmarks
+
+| Phase | Benchmark | Primary signal | Activation |
+| --- | --- | --- | --- |
+| 1 | AstaBench / DiscoveryBench subset | Data-driven discovery quality, trace, latency, and cost | Small validation subset after the Scient-agent path is runnable |
+| 2 | Expanded AstaBench | Broader scientific-agent capability under one harness | After scorer and repeated-run behavior are stable |
+| 3 | CORE-Bench v1.1/OOD | Reliability, efficiency, generalization, and scaffold effects | Later, with container execution available |
+| 4 | BixBench | Hard computational-biology analysis | Stretch target after the lighter suites |
 
 ## 1. Many Labs 2: Knobe Side-Effect Effect
 
@@ -246,65 +308,77 @@ components.
 - [Selected replication study](https://elifesciences.org/articles/17044)
 - [Selected study's OSF project](https://osf.io/hxrmm/)
 
-## 4. OpenNeuro Flanker Task (`ds000102`)
+## 4. NARPS: Neuroimaging Analysis Replication And Prediction Study
 
 ### Topic
 
-This dataset contains behavioral and fMRI data from 26 healthy adults performing
-the Eriksen Flanker task. Participants respond to a central target while
-ignoring surrounding distractors; congruent and incongruent trials test
-attention and cognitive control. The dataset is distributed through OpenNeuro
-in the Brain Imaging Data Structure (BIDS).
+NARPS asked 70 independent analysis teams to test the same nine predefined
+hypotheses using the same functional MRI dataset. The underlying mixed-gambles
+study includes behavioral, anatomical, and functional imaging data from 108
+participants in BIDS format, together with preregistered exclusion criteria,
+quality-control material, team analysis descriptions, statistical maps, and
+published comparisons across pipelines and conclusions.
 
-### Why It Is Fourth
+### Why It Is The Flagship Fourth Project
 
-- It introduces a real, standardized neuroscience project structure rather
-  than another small analysis table.
-- It tests metadata interpretation, BIDS validation, event-level behavioral
-  analysis, imaging quality control, derivatives, and methods reporting.
-- The task is conceptually accessible, but its data expose whether Scient can
-  manage larger files and multi-step scientific pipelines with traceability.
-- It is a bridge from document-and-table workflows to serious scientific data
-  engineering.
+- It directly tests Scient's trust mission: reasonable teams can make different
+  analysis choices and reach different answers from the same data and
+  hypotheses.
+- It connects protocol, BIDS data, preprocessing and model choices, quality
+  control, statistical maps, binary hypothesis judgments, and a published
+  cross-team synthesis.
+- It gives Scient something more meaningful to preserve than one correct
+  number: the inspectable path from analytic decisions to claims.
+- It combines a compelling scientific story with a demanding test of large
+  structured data, provenance, disagreement, and reproducible computation.
 
 ### Limits and Risks
 
-- The dataset is not naturally preregistration-first, so it should not replace
-  the first protocol-to-result fixture.
-- Neuroimaging results depend heavily on preprocessing, quality control, model
-  specification, and software versions.
-- OpenNeuro notes that uploaded data are not guaranteed to have passed all
-  quality checks. Motion and other exclusions must be assessed, not assumed.
-- A small subject subset is useful for product testing but cannot be presented
-  as a reproduction of the full group-level result.
+- The whole project is too large for one capsule. Scient must select one
+  hypothesis and a deliberately small comparison of analysis paths before
+  expanding.
+- There is no single universally correct fMRI pipeline. The expected result
+  must test traceability and faithful comparison, not pretend that one team is
+  the gold standard.
+- Raw imaging, derivatives, team reports, maps, and code have separate
+  provenance and may have separate redistribution terms.
+- Historical preprocessing and neuroimaging environments are expensive and
+  sensitive to software versions. NARPS must follow lighter BIDS and
+  data-to-figure fixtures rather than becoming initial infrastructure work.
 
-### Scient Fixture
+### Scient Project Capsule
 
-1. Read the task design and produce explicit behavioral and imaging hypotheses.
-2. Validate a pinned BIDS snapshot and generate a methods inventory from its
-   metadata.
-3. Reproduce a behavioral congruent-versus-incongruent comparison from event
-   files.
-4. Run and record quality-control checks with transparent exclusions.
-5. Use a pinned precomputed derivative, or one deliberately fixed preprocessing
-   path, to reproduce one narrow contrast or figure.
-6. Link the final claim to the task definition, exact subjects, code, derivative,
-   and QC decisions.
+1. Read the preregistered criteria and nine hypotheses, then select one
+   hypothesis and define the allowed evidence before revealing team outcomes.
+2. Validate a pinned BIDS snapshot or documented subset and generate a methods,
+   subject, and quality-control inventory from its metadata.
+3. Ingest a small, preselected set of team pipeline descriptions, maps, and
+   hypothesis decisions without flattening their methodological differences.
+4. Reproduce one bounded behavioral validation result or one deliberately
+   pinned derivative-level comparison outside and then inside Scient.
+5. Compare how analytic choices affected the selected hypothesis, with every
+   conclusion linked to the relevant pipeline, subjects, code, map, and QC
+   decisions.
+6. Reject an intentionally overgeneralized conclusion, revise it into a
+   supportable claim, and verify that the evidence and decision history survive
+   reopening.
 
-Activation requires pinning the dataset version, deciding whether derivatives
-may be redistributed, selecting the full or reduced subject set, and freezing
-the preprocessing and analysis environment. Begin with behavior and BIDS
-validation; imaging comes only after those outputs are stable.
+Activation requires pinning the dataset and result snapshots, selecting one
+hypothesis and exact teams or aggregate outputs, auditing licenses separately,
+freezing any executed environment, and defining success criteria for both
+scientific fidelity and product-state continuity. Begin only after the
+OpenNeuro Flanker precursor has established basic BIDS handling.
 
 ### Primary Sources
 
-- [OpenNeuro dataset](https://openneuro.org/datasets/ds000102)
-- [Legacy OpenfMRI dataset description](https://www.openfmri.org/dataset/ds000102/)
-- [Associated Flanker and resting-state publication](https://pubmed.ncbi.nlm.nih.gov/20974260/)
-- [BIDS specification](https://bids-specification.readthedocs.io/)
-- [OpenNeuro documentation](https://docs.openneuro.org/)
+- [Cross-team NARPS analysis in Nature](https://doi.org/10.1038/s41586-020-2314-9)
+- [NARPS data descriptor](https://doi.org/10.1038/s41597-019-0113-7)
+- [OpenNeuro dataset `ds001734`](https://openneuro.org/datasets/ds001734)
+- [Task and behavioral validation code](https://github.com/rotemb9/NARPS_scientific_data)
+- [Cross-team report and map analysis code](https://github.com/poldrack/narps)
+- [Pinned NARPS analysis release](https://doi.org/10.5281/zenodo.3709273)
 
-## Reserve A. ManyBabies 4
+## Track 1 Reserve: ManyBabies 4
 
 ### Topic
 
@@ -355,7 +429,38 @@ expected-output set.
 - [Final publication](https://doi.org/10.1111/desc.13581)
 - [Analysis repository](https://github.com/manybabies/mb4-analysis)
 
-## Reserve B. BCG Vaccine Meta-Analysis
+## Track 2A. Our World In Data Exact-Output Fixture
+
+### Topic And Role
+
+Our World in Data publishes downloadable chart data and machine-readable
+metadata. A selected chart can provide a small, transparent path from a pinned
+CSV through a published value to a Scient-generated figure.
+
+This is the cleanest early smoke test for data import, calculation, figure
+generation, source attribution, and stale-output detection. It is not a rich
+scientific project and must not be presented as one.
+
+### Bounded Fixture
+
+1. Select one stable chart with useful scientific or public-health meaning.
+2. Archive the exact CSV and metadata response with retrieval date and hashes.
+3. Verify the chart-specific data provider, citation, and license.
+4. Recalculate one or more declared values and generate a new figure from the
+   pinned data rather than copying the OWID visualization.
+5. Compare values and labels with the pinned reference and report any mismatch.
+6. Change the input deliberately and prove that Scient marks the result stale.
+
+Activation requires selecting the chart, checking the underlying provider's
+terms, pinning the snapshot, and recording the expected values and tolerances.
+OWID's API and site license do not erase third-party data terms.
+
+### Primary Sources
+
+- [OWID Grapher Chart API](https://docs.owid.io/projects/etl/api/chart-api/)
+- [OWID reuse and third-party licensing guidance](https://ourworldindata.org/faqs)
+
+## Track 2B. BCG `dat.colditz1994` Statistics Fixture
 
 ### Topic
 
@@ -364,10 +469,10 @@ vaccination for preventing tuberculosis. It supports effect-size calculation,
 random-effects meta-analysis, forest plots, heterogeneity analysis, and
 moderator analysis using study year, geographic latitude, and allocation method.
 
-### Why Keep It
+### Why It Is Early
 
-- It is a compact, medically meaningful test of a workflow not covered by the
-  first four projects: synthesizing several studies rather than reproducing one.
+- It is a compact, medically meaningful deterministic test of effect-size
+  calculation, a random-effects model, heterogeneity, and figure generation.
 - The curated dataset and mature `metafor` examples make numerical outputs easy
   to verify while still exposing substantial heterogeneity.
 - It can test whether Scient keeps study-level evidence, transformations,
@@ -375,31 +480,31 @@ moderator analysis using study year, geographic latitude, and allocation method.
 
 ### Limits and Risks
 
-- The curated table is not the complete systematic-review workflow. It does not
-  by itself reproduce search, screening, full-text appraisal, or independent
-  extraction from the original reports.
+- The early fixture begins from the supplied `dat.colditz1994` table. It does
+  not reproduce search, screening, full-text appraisal, or independent
+  extraction from the 13 original reports.
 - The studies and review are old, and some source articles may not be openly
   accessible or redistributable.
 - A pooled estimate without heterogeneity and context would be misleading.
 - Dataset and package licensing still need confirmation for a distributed
   fixture.
 
-### Scient Fixture
+### Bounded Fixture
 
-1. Construct a study-to-extraction table with explicit source status.
-2. Recalculate study effect sizes from treatment and control counts.
-3. Reproduce a random-effects model and forest plot.
-4. Explain heterogeneity and the difference between confidence and prediction
+1. Pin the exact `metadat`, `metafor`, R, and dataset versions.
+2. Recalculate study effect sizes from the supplied treatment and control
+   counts.
+3. Reproduce one declared random-effects model and forest plot.
+4. Report heterogeneity and the difference between confidence and prediction
    intervals.
-5. Run one predeclared moderator analysis and distinguish exploration from
-   confirmation.
-6. Write a medical evidence note that remains educational and does not become
-   an individual treatment recommendation.
+5. Write a short evidence-linked interpretation that remains educational and
+   does not become an individual treatment recommendation.
 
-Activate this only when Scient can represent multiple papers, extraction
-provenance, and analysis lineage. Before packaging, audit the dataset license,
-pin R and `metafor`, and decide which original reports can be included versus
-linked only.
+The early fixture ends there. A later multi-paper validation project may add
+original-report retrieval, screening, extraction provenance, appraisal, and
+moderator analysis, but that expansion must not be smuggled into this smoke
+test. Before packaging, audit the dataset and package licenses and record exact
+expected numbers and figure characteristics.
 
 ### Primary Sources
 
@@ -407,9 +512,166 @@ linked only.
 - [`dat.colditz1994` dataset documentation](https://wviechtb.github.io/metadat/reference/dat.colditz1994.html)
 - [`metafor` project and worked examples](https://wviechtb.github.io/metafor/)
 
+## Track 2C. OpenNeuro Flanker BIDS Precursor (`ds000102`)
+
+### Topic And Role
+
+The dataset contains behavioral and fMRI data from 26 healthy adults performing
+the Eriksen Flanker task. It is a smaller and more teachable BIDS project than
+NARPS, making it useful for proving ingestion and pipeline mechanics before the
+flagship neuroscience project.
+
+### Bounded Fixture
+
+1. Pin and validate the BIDS dataset version.
+2. Generate a methods and file inventory from BIDS metadata.
+3. Reproduce one behavioral congruent-versus-incongruent comparison from event
+   files with transparent exclusions.
+4. Record basic QC outputs and provenance.
+5. Only after those are stable, add one pinned precomputed derivative or one
+   deliberately fixed imaging path.
+
+This fixture does not claim to reproduce the full group-level publication. Its
+job is to make BIDS ingestion, metadata, behavior, QC, and derivative lineage
+reliable enough that NARPS can test scientific disagreement rather than basic
+file handling.
+
+### Primary Sources
+
+- [OpenNeuro dataset `ds000102`](https://openneuro.org/datasets/ds000102)
+- [Legacy OpenfMRI dataset description](https://www.openfmri.org/dataset/ds000102/)
+- [Associated publication](https://pubmed.ncbi.nlm.nih.gov/20974260/)
+- [BIDS specification](https://bids-specification.readthedocs.io/)
+
+## Track 3A. AstaBench And DiscoveryBench
+
+### Role
+
+AstaBench is the preferred integration surface for external scientific-agent
+evaluation. It wraps DiscoveryBench and other research tasks in standardized
+environments, records repository state and run metadata, and reports both score
+and cost. DiscoveryBench contributes real and synthetic data-driven discovery
+tasks requiring statistical analysis and semantic interpretation.
+
+### Initial Evaluation
+
+1. Implement the smallest adapter needed to run the Scient agent through
+   AstaBench without changing Scient's product-state model to fit the harness.
+2. Start with 5-10 public validation tasks selected for data loading,
+   statistical analysis, and evidence-grounded interpretation.
+3. Preserve task version, benchmark and Scient commits, model/provider version,
+   tools, prompts or skills, sandbox image, attempts, evaluator version, score,
+   latency, token use, and cost.
+4. Inspect traces and failure classes; do not reduce all learning to one score.
+5. Expand only after repeated runs are stable enough to separate model variance,
+   scaffold changes, scorer variance, and environment failures.
+
+DiscoveryBench includes open-ended scientific answers and evaluator-model
+judgment, so its scores are not perfectly deterministic. Public validation
+answers also create contamination risk. Use validation tasks for development
+and reserve held-out test evaluation for intentional checkpoints.
+
+### Primary Sources
+
+- [AstaBench repository](https://github.com/allenai/asta-bench)
+- [AstaBench paper](https://arxiv.org/abs/2510.21652)
+- [DiscoveryBench repository](https://github.com/allenai/discoverybench)
+- [DiscoveryBench paper](https://arxiv.org/abs/2407.01725)
+
+## Track 3B. CORE-Bench v1.1 And OOD
+
+### Role
+
+CORE-Bench tests agents that reproduce computational results from research code
+and artifacts. It is close to Scient's paper-reproduction use case, but it is
+container-heavy and should follow the first AstaBench integration.
+
+The original benchmark's hard split later showed task errors, exploitable
+shortcuts, and accuracy saturation. Scient should therefore target the audited
+v1.1 and out-of-distribution suites. Its main value is measuring reliability,
+efficiency, generalization, and model-versus-scaffold effects, not chasing a
+saturated accuracy headline.
+
+Activation requires a current task audit, controlled container execution,
+repeated runs, cost limits, and explicit reporting of failures caused by the
+benchmark rather than Scient.
+
+### Primary Sources
+
+- [Original CORE-Bench repository](https://github.com/siegelz/core-bench)
+- [Original CORE-Bench paper](https://arxiv.org/abs/2409.11363)
+- [CORE-Bench v1.1 and OOD re-audit](https://arxiv.org/abs/2606.26158)
+
+## Track 3C. BixBench Stretch Suite
+
+### Role
+
+BixBench packages difficult computational-biology and bioinformatics notebook
+tasks with real data, containerized execution, and mixed exact or model-based
+verification. It is the best later biomedical stress test among the reviewed
+agent benchmarks.
+
+It is not an early dependency. Runs can be expensive and long, answer material
+is public for some tasks, and the environment adds substantial operational
+weight. Activate a small audited subset only after Scient performs reliably on
+the lighter data-analysis and reproduction suites.
+
+### Primary Sources
+
+- [BixBench repository](https://github.com/Future-House/BixBench)
+
+## Additional Reserves
+
+### ERP CORE
+
+ERP CORE provides raw and processed EEG data from 40 participants, six
+paradigms, seven event-related potential components, experiment materials,
+analysis pipelines, and reference results. It is a strong medium-weight bridge
+between tabular statistics and fMRI.
+
+It is not MATLAB-locked: the maintained MNE-BIDS-Pipeline provides a Python
+reference path. Activation still requires selecting one component and figure,
+pinning the data and pipeline version, and auditing data, code, and derivative
+licenses separately.
+
+- [ERP CORE project](https://erpinfo.org/erp-core)
+- [ERP CORE paper](https://pmc.ncbi.nlm.nih.gov/articles/PMC7909723/)
+- [MNE-BIDS-Pipeline ERP CORE example](https://mne.tools/mne-bids-pipeline/stable/examples/ERP_CORE.html)
+
+### ATLAS Higgs Challenge
+
+The CERN Open Data release contains a CC0, documented version of the 2014 ATLAS
+Higgs machine-learning challenge with labels, weights, and the approximate
+median significance metric. It is a good future physics and tabular-ML fixture,
+but it adds less near-term coverage than the selected clinical ML project and
+does not test a broad provenance or researcher-review loop by itself.
+
+- [ATLAS Higgs challenge dataset](https://opendata.cern.ch/record/328)
+
+## Reviewed But Not Activated
+
+- **Reproducibility Project: Psychology:** scientifically valuable, but too
+  broad and too overlapping with Many Labs 2 for the active portfolio. Keep it
+  as a future source pool.
+- **ReScience C:** a useful source of article-specific computational
+  reproductions and figure targets. Select and audit an individual article
+  before treating any case as lightweight; the journal as a whole is not one
+  fixture.
+- **DABStep:** useful objective scoring for multi-step tabular analysis, but its
+  synthetic business and finance tasks, hidden main-test answers, and lack of
+  figures make it lower priority for Scient's scientific trust loop.
+Primary source pools:
+
+- [Reproducibility Project: Psychology](https://osf.io/ezcuj/)
+- [ReScience C](https://rescience.github.io/)
+- [DABStep dataset](https://huggingface.co/datasets/adyen/DABstep)
+
 ## Activation Sequence and Exit Criteria
 
-Do not ingest all six projects at once. For each active fixture:
+Do not activate a whole track at once. Start the Many Labs 2 artifact audit and
+capsule now; no benchmark integration or additional taxonomy work may block it.
+
+For each scientific validation project:
 
 1. complete the artifact, license, and environment audit;
 2. define one scientific question and one bounded expected output;
@@ -418,10 +680,48 @@ Do not ingest all six projects at once. For each active fixture:
 4. record a known-good manual reproduction outside Scient;
 5. run the Scient workflow with inspect, accept, reject, revise, and reopen
    behavior; and
-6. keep the fixture only if failures can be attributed to the product rather
+6. keep the project only if failures can be attributed to the product rather
    than an ambiguous scientific target.
 
-The first fixture is complete only when Scient can preserve the full chain from
+The first project is complete only when Scient can preserve the full chain from
 source and task through execution, proposed conclusion, researcher decision,
 and reopened project state. Scientific agreement with the expected output is
 necessary, but it is not sufficient without provenance and recoverability.
+
+For each capability fixture:
+
+1. pin the exact input, environment, expected output, tolerance, and license;
+2. establish a known-good manual or reference run;
+3. test the narrow capability and its provenance without claiming a complete
+   scientific workflow; and
+4. include at least one changed-input, stale-output, or failure case where
+   relevant.
+
+For each agent-evaluation run, preserve:
+
+- Scient app, Scient agent, benchmark, dataset, scorer, and sandbox revisions;
+- model, provider, reasoning configuration, tools, prompts, and project skills;
+- validation or test split, attempts, seeds where available, and any retries;
+- score components, trace or failure class, latency, token use, and cost; and
+- known contamination, evaluator-model, benchmark-error, and environment
+  limitations.
+
+Do not turn one run into a release gate. Establish repeated-run variance first,
+report distributions or reliability rates where possible, and use external
+benchmark evidence together with Scient-owned project and capability results.
+
+## Recommended Sequence
+
+1. Audit and build the Many Labs 2 Knobe capsule for the current source-to-note
+   slice. Use ManyBabies 4 only if the audit fails.
+2. Keep the first slice bounded: data and figures may be pinned project context,
+   but they do not need to become an analysis workbench yet.
+3. When data-to-figure work begins, activate the BCG single-dataset statistics
+   fixture and one OWID exact-output fixture.
+4. Activate the clinical phenotyping project, then the Cancer Biology project.
+5. Prove BIDS ingestion with OpenNeuro Flanker before activating NARPS as the
+   flagship neuroscience project.
+6. Once the Scient-agent execution path is runnable, add a small AstaBench /
+   DiscoveryBench validation subset without delaying Track 1 product work.
+7. Expand AstaBench only after repeated-run behavior is understood; add
+   CORE-Bench v1.1/OOD and BixBench later.
