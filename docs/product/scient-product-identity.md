@@ -8,17 +8,19 @@ Doc type: Product truth
 
 ## Document Rules
 
-This document owns the chosen public names, their meanings, and the vocabulary
-used to distinguish the Scient app, the Scient agent, and external agents. The
-PRD owns the broader product requirements. Architecture documents own runtime
-and state boundaries. The rename execution plan owns migration order,
-compatibility, verification, and rollback.
+This document owns the chosen public names, their meanings, the vocabulary used
+to distinguish the Scient app, the Scient agent, and external agents, and the
+forward naming/no-regression boundary. The PRD owns the broader product
+requirements. Architecture documents own runtime and state boundaries. The
+historical rename execution plan preserves migration order, detailed
+compatibility behavior, verification, and rollback.
 
 The identity decision is active for the company, repositories, application,
-packages, local state, and new project metadata. PapiLab remains only where
-required for migration compatibility or historical truth. The public website
-cutover is a separately deferred owner task, and the native Scient agent is
-still planned rather than implemented.
+new first-party Scient package names, new product state, and new project
+metadata. It does not require a bulk rename of inherited private implementation
+identifiers. PapiLab remains only where required for migration compatibility or
+historical truth. The public website cutover is a separately deferred owner
+task, and the native Scient agent is still planned rather than implemented.
 
 ## Decision
 
@@ -128,7 +130,7 @@ rows remain reserved for the planned native Scient agent:
 |---|---|
 | Company namespace | `scientfactory` |
 | Product namespace | `scient` |
-| Package scope | `@scientfactory/*` |
+| New first-party Scient package scope | `@scientfactory/*` |
 | Project metadata directory | `.scient/` |
 | Application protocol | `scient://app` |
 | Production bundle ID | `com.scientfactory.scient` |
@@ -152,7 +154,7 @@ The owned topology is:
 |---|---|
 | GitHub organization | `ScientFactory` |
 | Parent product and documentation repository | `ScientFactory/Scient` |
-| Maintained desktop source repository | `ScientFactory/scient-desktop` |
+| Standalone desktop source repository | `ScientFactory/scient-desktop` |
 | Owned first-party agent source repository | `ScientFactory/scient-agent` |
 
 The `ScientFactory` GitHub organization was created on 2026-07-17 and owns all
@@ -180,6 +182,33 @@ After the verified rename:
 Do not rewrite historical LitRev or PapiLab evidence as though it occurred
 under Scient. Do not infer a finished Scient-agent runtime from the owned
 `scient-agent` repository name.
+
+## Forward Naming And Compatibility Policy
+
+The completed LitRev-to-PapiLab-to-Scient product rename has this forward
+boundary:
+
+- New first-party Scient packages use `@scientfactory/*`, and new active product
+  surfaces use Scient/ScientFactory names. Do not introduce a new active LitRev
+  or PapiLab identifier.
+- Historical evidence keeps the names, URLs, SHAs, filenames, commands,
+  screenshots, and paths that were true when it was produced.
+- Supported `.papilab/` project inputs remain read-and-migrate compatibility.
+  New project state is written to `.scient/`; migration must not silently
+  choose between conflicting old and new identities.
+- Every retained active LitRev or PapiLab compatibility identifier must have a
+  specific migration or recovery reason and a verifiable retirement condition
+  before it is removed. No sunset date is implied by this policy.
+
+Inherited private workspace packages retain `@synara/*`; `SYNARA_*`
+compatibility variables, Effect or service identifiers, upstream names,
+persistence identifiers, and OpenCode internals are also not unfinished
+LitRev/PapiLab rename work. They remain subject to the accepted inherited-source
+boundary in
+`../architecture/decisions/ADR-0001-synara-opencode-foundation-and-scient-ownership-boundary.md`
+and to separately reviewed source-adaptation and compatibility work. Public
+product surfaces and new first-party Scient packages still follow the Scient
+naming rules above.
 
 ## Clearance Boundary
 

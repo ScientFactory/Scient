@@ -6,14 +6,15 @@ Last updated: 2026-07-18
 Purpose: Maps the Scient documentation structure and where each kind of information belongs.
 Doc type: Repo orientation
 
-This parent repository remains documentation-first. The maintained desktop
-source contains the first narrow Scient-owned project-initiation package, while
-the scientific application architecture and vertical slice remain unbuilt.
-This structure gives product, architecture, planning, research, development, and
-operations material clear homes without presenting planned behavior as current
-implementation. It is not currently the unrestricted memory of the whole
-company; the proposed connected-company boundary lives in [Repository Scope
-And Company Memory](planning/repository-scope-and-company-memory.md).
+This parent repository remains documentation-first. The standalone desktop
+source repository contains the first narrow Scient-owned
+project-initiation package, while the scientific application architecture and
+vertical slice remain unbuilt. This structure gives product, architecture,
+planning, research, development, and operations material clear homes without
+presenting planned behavior as current implementation. It is not currently the
+unrestricted memory of the whole company; the proposed connected-company
+boundary lives in [Repository Scope And Company
+Memory](planning/repository-scope-and-company-memory.md).
 
 The root [Scient README](../README.md) owns the current three-repository local
 workspace map. This index owns the documentation map inside the `Scient`

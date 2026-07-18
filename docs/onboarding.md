@@ -24,10 +24,11 @@ Scient is a local-first, cloud-mirrored scientific workspace where researchers, 
 
 This parent repository remains documentation-first. It contains accepted
 product direction, evolving architecture and planning, source-backed research,
-quality principles, and controlled lab experiments. The maintained desktop
-fork contains the first narrow Scient-owned project-initiation package, but it
-does not yet contain the complete scientific application, vertical slice, or
-the development and operational workflows that the documents anticipate.
+quality principles, and controlled lab experiments. The standalone desktop
+source repository contains the first narrow Scient-owned
+project-initiation package, but it does not yet contain the complete scientific
+application, vertical slice, or the development and operational workflows that
+the documents anticipate.
 
 For local work, `Scient`, `scient-desktop`, and `scient-agent` are independent
 Git repositories kept as siblings inside a plain `ScientFactory/` directory.
@@ -37,8 +38,11 @@ change in the repository that owns it.
 
 ScientFactory is the company identity. **Scient** is the public name for both
 the implemented app and its planned native first-party research agent. The
-PapiLab-to-Scient rename of existing owned surfaces is complete. The Scient
-agent will be one owned OpenCode-derived agent, not an
+LitRev-to-PapiLab-to-Scient rename of the active product identity is complete.
+Historical LitRev and PapiLab evidence remains exact, and supported PapiLab
+inputs remain only as documented migration compatibility. That closeout does
+not imply that inherited Synara or OpenCode implementation identifiers have
+been renamed. The Scient agent will be one owned OpenCode-derived agent, not an
 app shell around a separately exposed OpenCode engine. External OpenCode and
 the other external-agent choices remain independent. The Scient agent has not
 been implemented yet; the accepted identity, ownership decision, and proposed

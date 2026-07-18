@@ -8,8 +8,9 @@ Doc type: Repo orientation
 
 Scient is the current repository and implemented desktop identity. The
 repository is documentation-first, with one narrow project-initiation package
-in the maintained desktop source repository. The native Scient agent remains
-planned; its owned source repository is `ScientFactory/scient-agent`.
+in the standalone desktop source repository. The native Scient agent remains
+planned; its owned source repository is
+`ScientFactory/scient-agent`.
 
 ## Related Repositories And Local Workspace
 
@@ -19,8 +20,8 @@ ScientFactory owns three independently versioned repositories:
   direction, architecture, planning, cross-repository source pins, and the
   Scient-owned scientific boundary.
 - [`ScientFactory/scient-desktop`](https://github.com/ScientFactory/scient-desktop) -
-  the maintained Synara-derived desktop application foundation and current
-  product implementation home.
+  the standalone desktop source repository and current product implementation
+  home.
 - [`ScientFactory/scient-agent`](https://github.com/ScientFactory/scient-agent) -
   the maintained OpenCode-derived source foundation for the planned native
   Scient agent.

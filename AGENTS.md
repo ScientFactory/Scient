@@ -14,8 +14,9 @@ Scient is a local-first, cloud-mirrored scientific workspace where researchers a
 
 ## Current State
 
-This parent repo remains documentation-first. The maintained desktop source now
-contains the first permanent Scient-owned package, `@scientfactory/project-init`,
+This parent repo remains documentation-first. The standalone desktop source
+repository now contains the first permanent Scient-owned package,
+`@scientfactory/project-init`,
 but the broader application architecture and first scientific vertical slice
 have not been built. Do not infer scientific-state, gateway, sync, cloud, or
 production boundaries from that narrow package.
