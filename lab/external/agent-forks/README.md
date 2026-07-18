@@ -1,7 +1,7 @@
 # Agent Forks
 
 Status: Draft
-Owner: Yaacov
+Owner: Scient 001
 Created: 2026-07-08
 Last updated: 2026-07-18
 Purpose: Organizes upstream agent engines and automation systems used in the Scient lab.
