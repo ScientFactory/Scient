@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-07-16
-Last updated: 2026-07-17
+Last updated: 2026-07-18
 Purpose: Defines the current sequence of coherent Scient product outcomes without turning technology experiments into the product roadmap.
 Doc type: Planning note
 
@@ -43,9 +43,24 @@ editor, a complete scientific schema, a notebook system, or Goose integration.
 The implementation plan is
 [`first-scient-vertical-slice-implementation-plan.md`](first-scient-vertical-slice-implementation-plan.md).
 
+### Controlled Validation Fixture
+
+The first scientific project is **Many Labs 2's Knobe side-effect effect**. It
+provides a preregistered protocol-to-analysis-to-claim-audit loop that can be
+kept small enough for the first product slice. Activation is conditional on a
+clean audit of the exact artifacts, licenses, dependencies, and expected output.
+**ManyBabies 4** is the designated replacement if that audit fails.
+
+The accepted portfolio, source evidence, fixture boundaries, and replacement
+conditions are recorded in
+[`../research/source-evaluations/scientific-project-fixture-selection.md`](../research/source-evaluations/scientific-project-fixture-selection.md).
+
 ## Next
 
 - Strengthen the evidence-to-writing path based on the first slice.
+- Activate the clinical phenotyping machine-learning fixture as the immediate
+  second project, followed by the selected Cancer Biology replication and then
+  OpenNeuro Flanker as the heavier data-workflow benchmark.
 - Add scientific capabilities through the Scient-owned layer as real needs
   appear.
 - Make isolated changes to Scient's inherited OpenCode core only for
@@ -59,6 +74,8 @@ The implementation plan is
 - Cloud mirroring and collaboration.
 - Mobile reading, review, capture, and approval.
 - Deeper source discovery, import, parsing, and citation workflows.
+- Multi-paper medical evidence synthesis, with the BCG vaccine meta-analysis
+  held as the first reserve fixture for that capability.
 - Manuscript, analysis, figure, publishing, and open-science expansion.
 
 These later items remain sequencing direction, not implementation commitments.
