@@ -8,8 +8,8 @@ Doc type: Repo orientation
 
 Scient is the current repository and implemented desktop identity. The
 repository is documentation-first, with one narrow project-initiation package
-in the maintained desktop fork. The native Scient agent remains planned; its
-owned source repository is `ScientFactory/scient-agent`.
+in the maintained desktop source repository. The native Scient agent remains
+planned; its owned source repository is `ScientFactory/scient-agent`.
 
 ## Related Repositories And Local Workspace
 

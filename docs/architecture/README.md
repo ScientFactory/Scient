@@ -2,7 +2,7 @@
 
 Status: Active
 Owner: Yaacov
-Last updated: 2026-07-17
+Last updated: 2026-07-18
 Purpose: Defines where Scient architecture direction, future architecture homes, and decisions belong.
 Doc type: Repo orientation
 
@@ -16,4 +16,6 @@ Current documents:
 - `collaboration-model.md` - future home for collaboration architecture.
 - `agent-runtime.md` - future home for detailed Scient and external-agent runtime architecture; the accepted high-level ownership boundary currently lives in ADR-0001.
 - `security-and-permissions.md` - early security, trust-boundary, and permission principles.
-- `decisions/` - accepted architecture decision records, beginning with the Synara application foundation, Scient's OpenCode-derived source foundation, external-agent separation, and the Scient-owned scientific boundary.
+- `decisions/` - accepted architecture decision records covering the inherited
+  foundations, Scient-owned scientific boundary, standalone source-repository
+  ownership, and selective upstream authority.

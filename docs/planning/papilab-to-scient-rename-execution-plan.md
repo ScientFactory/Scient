@@ -2,7 +2,7 @@
 
 Status: Historical
 Owner: Yaacov
-Last updated: 2026-07-17
+Last updated: 2026-07-18
 Purpose: Preserves the executed PapiLab-to-Scient migration, compatibility contract, verification requirements, and deferred public cutover.
 Doc type: Planning note
 
@@ -24,10 +24,10 @@ The rename of existing owned surfaces is complete:
 
 - the GitHub organization and owned repositories use `ScientFactory/Scient`,
   `ScientFactory/scient-desktop`, and `ScientFactory/scient-agent`;
-- agent-source [PR #6](https://github.com/ScientFactory/scient-agent/pull/6)
+- agent-source [PR #6](https://github.com/ScientFactory/scient-agent-fork-archive/pull/6)
   passed hosted run `29595488492` at `5d232a34` and merged to `dev` as
   `5ffaf9a2`;
-- desktop [PR #12](https://github.com/ScientFactory/scient-desktop/pull/12)
+- desktop [PR #12](https://github.com/ScientFactory/scient-desktop-fork-archive/pull/12)
   passed hosted run `29595506303` at `179fa01e` and merged to `main` as
   `d9d8992a`;
 - the app, packages, project metadata, protocol, bundle IDs, profiles, storage,

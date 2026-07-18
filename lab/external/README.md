@@ -29,6 +29,8 @@ notes, and lab evidence.
   maintained owned repositories.
 - `sources.lock.md` - current local source inventory with URL, branch, commit,
   role, and update strategy.
+- `upstream-reviews/` - dated disposition evidence for official source changes;
+  repo-local `upstream-state.json` files remain the machine checkpoints.
 
 ## Rules
 

@@ -123,8 +123,8 @@ Source lineage does not merge product identities:
 
 ## Current Implementation Truth
 
-At maintained desktop-fork revision
-`2ecfbe19590c99386099c065846b5f3b987e953b`, inspected on 2026-07-18, the
+At maintained desktop-source revision
+`d78388a42bcc09dabc926c0885ec34a8de6427b0`, inspected on 2026-07-18, the
 inherited host contains a shared provider adapter contract and adapters for:
 
 - Codex;

@@ -3,17 +3,19 @@
 Status: Active
 Owner: Yaacov
 Last updated: 2026-07-18
-Purpose: Records exact owned and external source checkout provenance used by Scient.
+Purpose: Records exact owned and external source provenance, tested owned revisions, and cross-repository upstream review evidence used by Scient.
 Doc type: Research evidence
 
 ## Document Rules
 
-This file records local source checkout provenance. It is not a dependency lock
-file, accepted architecture, or a statement that Scient depends on these
-projects.
+This file records local source checkout provenance and a human-readable
+cross-repository evidence snapshot. It is not a dependency lock file, a parser
+input for source verifiers, accepted architecture, or a statement that Scient
+depends on these projects.
 
 Update this file whenever an owned or lab source checkout is added, removed,
-recloned, relocated, or moved to a new commit.
+recloned, relocated, or moved to a new tested commit, and after an accepted
+upstream review or code intake changes the evidence snapshot.
 
 Maintained owned checkout paths in the table are relative to the `Scient`
 repository root and may begin with `../` because the repositories are workspace
@@ -21,12 +23,67 @@ siblings. A deferred source with no retained checkout says so explicitly.
 
 ## Sources
 
-| Source | Local path | Official upstream | Owned repository | Tested upstream | Maintained/tested commit | Role and update mode |
+| Source | Local path | Official upstream | Owned repository | Tested integrated upstream base | Maintained/tested commit | Role and update mode |
 |---|---|---|---|---|---|---|
-| Scient agent source (OpenCode-derived) | `../scient-agent/`; canonical workspace sibling on `dev` at `5ffaf9a2dfa5b958e8f4856b94b50d26b00c6b76` | `https://github.com/anomalyco/opencode.git`, `dev` | `https://github.com/ScientFactory/scient-agent`, public fork | `69a80663a2ed7d671d2b4d5dd6f2d605714675a5` | Rename head `5d232a34638fdc2333535f1916e20e968a3bbe6e`; hosted Scient source-quality run `29595488492`; merged to owned `dev` as `5ffaf9a2dfa5b958e8f4856b94b50d26b00c6b76` | Owned, upstream-aligned source foundation for the planned Scient agent; `adapter-maintained`; native Scient runtime identity is not yet implemented. |
+| Scient agent source (OpenCode-derived) | `../scient-agent/`; canonical workspace sibling on `dev` at `14003a01350c69dedf90c97f9f2b5db733f49951` | `https://github.com/anomalyco/opencode.git`, `dev` | `https://github.com/ScientFactory/scient-agent`, public standalone repository | `69a80663a2ed7d671d2b4d5dd6f2d605714675a5` | Current owned `dev` `14003a01350c69dedf90c97f9f2b5db733f49951`; exact rename and maintenance evidence below | Owned source foundation for the planned Scient agent; `adapter-maintained`; native Scient runtime identity is not yet implemented. |
 | Goose | No local checkout is retained. | `https://github.com/aaif-goose/goose.git`, `main` | None; owned repository deferred | Not tested in Gate 1.5 | Last inspected commit `3c1fdd692cc8aaa5f09b9175410c09a09d4dfe49` | Deferred broader-agent research input. Repository, build, ACP adapter, runtime, credentials, and adoption wait until after the first Scient gateway. |
-| Scient desktop (Synara-derived) | `../scient-desktop/`; canonical workspace sibling on `main` at `2ecfbe19590c99386099c065846b5f3b987e953b` | `https://github.com/Emanuele-web04/synara.git`, `main` | `https://github.com/ScientFactory/scient-desktop`, public fork | `9be46c3ce6a7521b64436b7334bc6fce16e3cac4` | Rename head `179fa01ed39b7c62d8f8e8b89565d83434e572ce`; hosted CI run `29595506303`; rename merged as `d9d8992a62e4dda37543c214f96fc97556c798f2`; current owned `main` advanced through PRs #13 and #14 to `2ecfbe19590c99386099c065846b5f3b987e953b` | Accepted initial application foundation; owned `thin-fork-merge`, with deliberate divergence allowed; must not own scientific project truth. |
+| Scient desktop (Synara-derived) | `../scient-desktop/`; canonical workspace sibling on `main` at `d78388a42bcc09dabc926c0885ec34a8de6427b0` | `https://github.com/Emanuele-web04/synara.git`, `main` | `https://github.com/ScientFactory/scient-desktop`, public standalone repository | `9be46c3ce6a7521b64436b7334bc6fce16e3cac4` | Current owned `main` `d78388a42bcc09dabc926c0885ec34a8de6427b0`; exact rename and maintenance evidence below | Accepted initial application foundation; `divergent-cherry-pick`; must not own scientific project truth. |
 | T3 Code | No local checkout is retained. | `https://github.com/pingdotgg/t3code.git`, `main` | None | Not tested in Gate 1.5 | Last inspected commit `b9cc8d6ef17ca9f45bec621bef71ad3f706b9276` | Desktop/runtime/provider/process reference only. |
+
+## Maintained Upstream Review State
+
+Repo-local `upstream-state.json` files are the machine-readable checkpoints.
+This table is the cross-repository evidence view. The observed official tip
+belongs in verifier output or the rolling monitor issue until a disposition
+review is accepted.
+
+| Source | Tested owned head | Reviewed through | Integration base | Update mode | Review evidence |
+|---|---|---|---|---|---|
+| Scient desktop | `d78388a42bcc09dabc926c0885ec34a8de6427b0` | `69304bc1d59d86da8afbac367118c75db8c9dbfe` on 2026-07-18 | `9be46c3ce6a7521b64436b7334bc6fce16e3cac4` | `divergent-cherry-pick` | [`2026-07-18-scient-desktop.md`](upstream-reviews/2026-07-18-scient-desktop.md); no code intake |
+| Scient agent source | `14003a01350c69dedf90c97f9f2b5db733f49951` | `fab213312927ea64cf968832c527206e8c944f9e` on 2026-07-18 | `69a80663a2ed7d671d2b4d5dd6f2d605714675a5` | `adapter-maintained` | [`2026-07-18-scient-agent.md`](upstream-reviews/2026-07-18-scient-agent.md); no code intake |
+
+## Standalone Ownership And Maintenance Rollout
+
+The selective-upstream system was implemented and verified through separate
+source-repository pull requests:
+
+- Desktop [PR #1](https://github.com/ScientFactory/scient-desktop/pull/1)
+  established the operator card, review state, verifier modes, CI integration,
+  and monitor; exact head `b6171e272b6f5ea441840135964cc67fe5c1acbd`
+  passed hosted CI run `29639112594` and merged as
+  `c132da96fef80c9c9387359b74d6fa4abba1e342`.
+- Desktop [PR #2](https://github.com/ScientFactory/scient-desktop/pull/2)
+  fixed monitor repository targeting; exact head
+  `e8b3b42728be226849bda06e027262835f21eba1` passed hosted CI run
+  `29639452686` and merged as
+  `b068d9eb2d18ab56f2e67441e485794272178b6f`.
+- Desktop [PR #3](https://github.com/ScientFactory/scient-desktop/pull/3)
+  made the integration base provably part of both official and owned history;
+  exact head `c8f3651fabe722ac60bb727f6c66afc30cbed9e7` passed hosted CI
+  run `29640292072`, attempt 2, including the browser suite, and merged as
+  `d78388a42bcc09dabc926c0885ec34a8de6427b0`. Final monitor run
+  `29640770607` passed on that exact owned head without opening a review issue.
+- Agent [PR #1](https://github.com/ScientFactory/scient-agent/pull/1)
+  established the operator card, review state, verifier modes, owned source
+  quality workflow, and monitor; exact head
+  `84dbdc1df4017dc643a7c2de9d737797ae9991ef` passed hosted source-quality
+  run `29639452734` and merged as
+  `6a0e5a176f188e25312f10f587f30f37f930ff65`.
+- Agent [PR #2](https://github.com/ScientFactory/scient-agent/pull/2)
+  guarded inherited write-capable automation; exact head
+  `894dfd433f7e6345800e2f5ea894f0b1df08023c` passed hosted source-quality
+  run `29639935967` and merged as
+  `998fb0ef9feecabea4cdfd1957038d506c1ac0ef`.
+- Agent [PR #3](https://github.com/ScientFactory/scient-agent/pull/3)
+  made the integration base provably part of both official and owned history;
+  exact head `e75da027d45579646392bcfb1dd6ee86930f3977` passed hosted
+  source-quality run `29640340180` and merged as
+  `14003a01350c69dedf90c97f9f2b5db733f49951`. Final monitor run
+  `29640673934` passed on that exact owned head without opening a review issue.
+
+No source code from the reviewed official ranges was integrated during this
+rollout. The PRs above establish ownership, review, monitoring, and verification
+machinery only.
 
 Gate 1.5 immutable tags in both owned repositories:
 
@@ -34,19 +91,19 @@ Gate 1.5 immutable tags in both owned repositories:
 - `litrev-gate-1-5-upstream-baseline` identifies the exact official upstream
   commit tested in Gate 1.5.
 
-The historical source-review branches were merged through these pull requests
-(the repository rename may redirect these links):
+The historical source-review branches and pull requests are preserved in the
+archived GitHub forks:
 
-- Synara: <https://github.com/yaacovcorcos/papilab-desktop/pull/1>
-- OpenCode: <https://github.com/yaacovcorcos/opencode/pull/1>
+- Synara: <https://github.com/ScientFactory/scient-desktop-fork-archive/pull/1>
+- OpenCode: <https://github.com/ScientFactory/scient-agent-fork-archive/pull/1>
 
 Post-closeout Synara identity-copy maintenance was merged through
-<https://github.com/yaacovcorcos/papilab-desktop/pull/2> at
+<https://github.com/ScientFactory/scient-desktop-fork-archive/pull/2> at
 `baa7b3d8d604a72467f2a1f575af7c7d85daf94d`.
 
 The OpenCode 1.18.3 refresh was merged through:
 
-- OpenCode: <https://github.com/yaacovcorcos/opencode/pull/4>, tested at
+- OpenCode: <https://github.com/ScientFactory/scient-agent-fork-archive/pull/4>, tested at
   `bb3e3867922a4f185f02541564bfb960e4fec03f` by hosted source-quality run
   `29569910754` and merged as
   `18ca88886d86e83ddd959f0f4eaf17948697ae17`.
@@ -54,7 +111,7 @@ The OpenCode 1.18.3 refresh was merged through:
 An official review-tooltip follow-up published during closeout was then merged
 through:
 
-- OpenCode: <https://github.com/yaacovcorcos/opencode/pull/5>, tested at
+- OpenCode: <https://github.com/ScientFactory/scient-agent-fork-archive/pull/5>, tested at
   `865f8bde1aa64b7993b8211664c544ba6a4d3d68` by hosted source-quality run
   `29571215689` and merged as
   `8c19505ecc2780bce01dd8acb3a695a6b3b8868b`.
@@ -64,7 +121,7 @@ The owned source repository was transferred and renamed to
 `69a80663a2ed7d671d2b4d5dd6f2d605714675a5`. Exact rename head
 `5d232a34638fdc2333535f1916e20e968a3bbe6e` passed hosted Scient
 source-quality run `29595488492` and merged through
-<https://github.com/ScientFactory/scient-agent/pull/6> as
+<https://github.com/ScientFactory/scient-agent-fork-archive/pull/6> as
 `5ffaf9a2dfa5b958e8f4856b94b50d26b00c6b76`. The protected `dev`
 branch now requires `Scient source quality`. This establishes source and
 maintenance identity only; it does not claim an implemented native Scient
@@ -77,32 +134,32 @@ workspace typechecks, a production Storybook build, and a final app production b
 The desktop fork's 2026-07-16
 upstream reconciliation and PapiLab cutover were merged through:
 
-- upstream lane: <https://github.com/yaacovcorcos/papilab-desktop/pull/6>,
+- upstream lane: <https://github.com/ScientFactory/scient-desktop-fork-archive/pull/6>,
   merged as `012b8bf48575a45ce4ecf13f8e5abeb444368679`;
 - identity and project-init lane:
-  <https://github.com/yaacovcorcos/papilab-desktop/pull/4>, tested at
+  <https://github.com/ScientFactory/scient-desktop-fork-archive/pull/4>, tested at
   `2ecdbb5e6f41248200b75bf61a0e6c3dacab7364` by hosted CI run
   `29514254313` and merged as
   `50294e6400737e28753d995f1252025f6c76e901`;
 - application-foundation follow-up:
-  <https://github.com/yaacovcorcos/papilab-desktop/pull/5>, tested at
+  <https://github.com/ScientFactory/scient-desktop-fork-archive/pull/5>, tested at
   `f7760e9757e9df286c37317d1a3f2052d2e5949b` by hosted CI run
   `29515163695` and merged as
   `bb7ee10afa2b6a462d8e13204261fb355503036b`;
 - smaller PapiLab icon follow-up:
-  <https://github.com/yaacovcorcos/papilab-desktop/pull/7>, merged as
+  <https://github.com/ScientFactory/scient-desktop-fork-archive/pull/7>, merged as
   `c48b015cfdbcb06eaf09418ef0f51fa1a782ed7c`;
 - inherited example-playground cleanup:
-  <https://github.com/yaacovcorcos/papilab-desktop/pull/8>, merged as
+  <https://github.com/ScientFactory/scient-desktop-fork-archive/pull/8>, merged as
   `6d365700d7b57f53969529475d022a2fc6785977`;
 - official Synara v0.5.5 maintenance sync:
-  <https://github.com/yaacovcorcos/papilab-desktop/pull/9>, tested at
+  <https://github.com/ScientFactory/scient-desktop-fork-archive/pull/9>, tested at
   `d4b10c27339992e63a16e83f2384ca53ccacabca` by hosted CI run
   `29567845155` and merged as
   `fd37cdcda16ff34c3b13d098e5a35d0d1aff5096`.
 
 The Scient application rename was then merged through
-<https://github.com/ScientFactory/scient-desktop/pull/12>. Exact source head
+<https://github.com/ScientFactory/scient-desktop-fork-archive/pull/12>. Exact source head
 `179fa01ed39b7c62d8f8e8b89565d83434e572ce` passed hosted CI run
 `29595506303` and merged to owned `main` as
 `d9d8992a62e4dda37543c214f96fc97556c798f2`. The same head passed local full
@@ -110,8 +167,8 @@ tests, typecheck, lint, formatting, desktop build, release smoke, brand checks,
 an exact-commit DMG inspection, and an isolated packaged-app migration smoke.
 
 Subsequent reviewed application follow-ups merged through
-<https://github.com/ScientFactory/scient-desktop/pull/13> and
-<https://github.com/ScientFactory/scient-desktop/pull/14>, advancing current
+<https://github.com/ScientFactory/scient-desktop-fork-archive/pull/13> and
+<https://github.com/ScientFactory/scient-desktop-fork-archive/pull/14>, advancing current
 owned `main` to `2ecfbe19590c99386099c065846b5f3b987e953b` without changing the
 tested official-upstream pin above.
 
@@ -122,30 +179,43 @@ for their recorded source pins.
 
 Repository ownership and adaptation depth are separate decisions:
 
-- The Synara-derived desktop and OpenCode-derived agent source use
-  ScientFactory forks as writable `origin` remotes.
+- The Synara-derived desktop and OpenCode-derived agent source use standalone
+  ScientFactory repositories as writable `origin` remotes.
 - The official repository is fetch-only `upstream` and must not be a push
   target.
-- Owning a fork does not imply immediate divergence. The inherited OpenCode
-  core remains upstream-aligned, and Scient changes begin in adapters, configuration,
+- Standalone ownership does not imply immediate divergence. The inherited
+  OpenCode core remains traceable, and Scient changes begin in adapters, configuration,
   extensions, packaging, and isolated integration seams.
 - A source may move from upstream-mergeable to selective cherry-pick only after
   Scient deliberately accepts the maintenance cost.
 
-At Gate 1.5 closeout, Synara and OpenCode had writable owned `origin` remotes.
+At Gate 1.5 closeout, Synara and OpenCode had writable owned-fork `origin`
+remotes. Those historical fork repositories were later archived and replaced
+at the product names by standalone ScientFactory repositories while preserving
+source history and the read-only official remotes.
+The preserved GitHub fork-network and pull-request history lives in
+[`scient-desktop-fork-archive`](https://github.com/ScientFactory/scient-desktop-fork-archive)
+and
+[`scient-agent-fork-archive`](https://github.com/ScientFactory/scient-agent-fork-archive).
 Their official remotes were named `upstream`, retained their official fetch
 URLs, and used the literal disabled push URL `DISABLED`. The owned default
 branches remain protected against direct unreviewed changes, force-push, and
-deletion; the desktop fork requires its maintained quality and release-smoke
-checks, and the agent-source fork requires `Scient source quality`.
+deletion; the desktop repository requires its maintained quality and
+release-smoke checks, and the agent-source repository requires
+`Scient source quality`.
+After standalone recreation, inherited OpenCode community-management,
+generated-commit, publication, deployment, scheduled-sync, and closing
+workflows were disabled; only reviewed Scient quality/read-only checks and the
+owned upstream monitor remain enabled. Workflow state must be re-audited after
+future workflow intake.
 
 The inherited OpenCode core was refreshed through source version 1.18.3 and the
 desktop fork through official Synara v0.5.5 on 2026-07-17. At their exact rename
 heads, both owned forks were zero commits behind the official revisions
 recorded above.
 Later upstream movement is new maintenance work, not a retroactive failure of
-these tested baselines; every future sync must use the maintained fork
-verifiers and record a new exact pin here.
+these tested baselines. Every future review or intake must use the maintained
+source verifiers and record exact evidence through the upstream-intake process.
 
 Goose was not added to this ownership model during Gate 1.5. At inspection
 time, its checkout had only the official fetch-only `upstream`; no local Goose
