@@ -78,7 +78,8 @@ owning socket, send notifications only through that socket, reject cross-client
 attach, detach, and CDP requests, dispose the session listener on disconnect,
 and preserve the other socket. The test exercises real framed native-pipe
 requests and two distinct tabs rather than only testing an internal helper. The
-complete bounded intake is published for review in
+complete bounded intake passed hosted CI at exact head `8a8398e8` and merged as
+`bd2a6eed` through
 [Scient desktop PR #14](https://github.com/ScientFactory/scient-desktop/pull/14).
 
 ## Use During Existing Scient Work

@@ -125,7 +125,7 @@ Source lineage does not merge product identities:
 ## Current Implementation Truth
 
 At maintained desktop-source revision
-`57e6b2cde09f64db367b894506f56db605fb91b4`, inspected on 2026-07-18, the
+`bd2a6eed6243b13fc1423b21b2454ae060bce5c7`, inspected on 2026-07-18, the
 inherited host contains a shared provider adapter contract and adapters for:
 
 - Codex;
@@ -158,7 +158,7 @@ paths first, then certify compatibility honestly per agent.
 
 The owned OpenCode-derived checkout in the workspace sibling
 `../scient-agent/` (relative to the Scient repository root), maintained on
-`dev` at `bc125cbc60c36e4b7013f8d7cf755f745af509b3`, is the accepted
+`dev` at `67e7f3f0341c7a5bad8d68e0a29f113b450eb02a`, is the accepted
 source foundation for the Scient agent. Its repository and
 maintenance-verifier identity are Scient-owned while its current runtime
 remains upstream-aligned OpenCode source. Scient-agent packaging, private state

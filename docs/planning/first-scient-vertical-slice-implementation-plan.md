@@ -51,7 +51,7 @@ and the reviewed desktop implementation added `@scientfactory/project-init`
 with zero-write inspection, explicit plan/apply behavior, conservative
 recovery, and focused tests. The package, trusted-server RPC, project-open/setup dialog, and
 interrupted-initialization recovery UI are present on maintained desktop `main`
-at `57e6b2cde09f64db367b894506f56db605fb91b4`. They initialize only the portable
+at `bd2a6eed6243b13fc1423b21b2454ae060bce5c7`. They initialize only the portable
 foundation and do not make the host project projection canonical.
 
 Phase 2 source tracing is complete in
@@ -67,7 +67,7 @@ native-Scient/external-OpenCode runtime independence remain product
 requirements; they are not a selected memory design. The existing project-init
 kernel already enforces path containment for initialization, while later
 scientific-operation and native-agent boundaries remain to be built.
-The selected OpenCode-derived source is `bc125cbc60c36e4b7013f8d7cf755f745af509b3`
+The selected OpenCode-derived source is `67e7f3f0341c7a5bad8d68e0a29f113b450eb02a`
 on `dev`, but the native agent is not yet implemented or packaged. No
 scientific-state store, Scient agent gateway, proposal/decision ledger, or
 complete scientific workflow is claimed as implemented.
