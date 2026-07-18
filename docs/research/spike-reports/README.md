@@ -1,9 +1,9 @@
 # Spike Reports
 
 Status: Placeholder
-Owner: Yaacov
+Owner: Scient 001
 Created: 2026-06-27
-Last updated: 2026-06-28
+Last updated: 2026-07-18
 Purpose: Defines where reports from technical or product spikes should live.
 Doc type: Future home
 

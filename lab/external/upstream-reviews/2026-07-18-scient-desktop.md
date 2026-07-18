@@ -1,7 +1,7 @@
 # Upstream Review: Scient Desktop On 2026-07-18
 
 Status: Active
-Owner: Yaacov
+Owner: Scient 001
 Created: 2026-07-18
 Last updated: 2026-07-18
 Purpose: Records the disposition review of official Synara changes published after Scient's current integrated desktop base.

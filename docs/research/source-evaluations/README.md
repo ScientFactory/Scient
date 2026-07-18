@@ -1,9 +1,9 @@
 # Source Evaluations
 
 Status: Active
-Owner: Yaacov
+Owner: Scient 001
 Created: 2026-06-27
-Last updated: 2026-07-17
+Last updated: 2026-07-18
 Purpose: Maps evaluations of external sources and tools that may inform Scient product and architecture decisions.
 Doc type: Repo orientation
 
@@ -15,6 +15,7 @@ Current files:
 - `model-benchmark-map.md` - external benchmark coverage, meaning, limitations, and relevance across the candidate model portfolio.
 - `model-portfolio-and-provider-routing.md` - current candidate model portfolio, distinct model roles, and the evidence needed before selection.
 - `open-source-adaptation-map.md` - cross-source synthesis of open-source systems Scient should study, prototype, adapt, or avoid.
+- `scientific-project-fixture-selection.md` - accepted three-track scientific validation strategy: four rich projects, narrow capability fixtures, agent-evaluation benchmarks, reserves, source evidence, and activation conditions.
 - `source-evaluation-template.md` - future home for the source evaluation template.
 
 Document the source, what was inspected, what Scient can learn from it, what should be avoided, and what remains uncertain.

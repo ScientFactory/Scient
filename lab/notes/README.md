@@ -1,7 +1,7 @@
 # Lab Notes
 
 Status: Active
-Owner: Yaacov
+Owner: Scient 001
 Created: 2026-07-08
 Last updated: 2026-07-18
 Purpose: Maps temporary inspection notes and lab decisions before promotion into durable docs.

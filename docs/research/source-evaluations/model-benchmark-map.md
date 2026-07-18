@@ -3,15 +3,20 @@
 Status: Draft
 Owner: Yaacov
 Created: 2026-07-12
-Last updated: 2026-07-17
+Last updated: 2026-07-18
 Purpose: Maps what external model benchmarks measure, how trustworthy they are, and how much weight Scient should give them.
 Doc type: Research evidence
 
 ## Document Rules
 
-This document owns external benchmark research across the candidate portfolio. It does not approve models or define Scient's internal evaluation methodology.
+This document owns external benchmark research across the candidate portfolio.
+It does not approve models, treat an agent-and-scaffold score as a raw model
+score, or define Scient's internal evaluation methodology.
 
 Portfolio decisions live in `model-portfolio-and-provider-routing.md`. The later Scient-owned methodology will live in `../../quality/model-evaluation-methodology.md` when representative workflows and fixtures exist.
+The selected scientific-agent benchmark sequence and its relationship to rich
+validation projects and capability fixtures live in
+`scientific-project-fixture-selection.md`.
 
 ## Portfolio Coverage
 
@@ -31,12 +36,12 @@ Record missing or non-comparable results instead of treating absence as failure 
 
 | Capability | Initial benchmarks or evidence to inspect | Why Scient needs it |
 | --- | --- | --- |
-| Science and health | GeneBench Pro, LifeSciBench, MedChemBench, HealthBench Professional | Scientific and biomedical reasoning. |
+| Science and health | GeneBench Pro, LifeSciBench, MedChemBench, HealthBench Professional; BixBench as a later agent-and-scaffold evaluation | Scientific and biomedical reasoning. |
 | Citations and evidence | Identify suitable external benchmarks; do not rely on generic factuality scores | Claim support, source fidelity, and citation integrity. |
 | Mathematics | FrontierMath and other relevant mathematical evaluations | Quantitative reasoning and research calculations. |
-| Data analysis | Identify evaluations for tables, statistics, code-assisted analysis, and interpretation | Data-to-result and data-to-figure workflows. |
-| Coding | SWE-Bench Pro, Terminal-Bench, DeepSWE, and relevant coding-agent evaluations | Scripts, analysis code, debugging, and implementation work. |
-| Tools and agents | Agents' Last Exam, Toolathlon, AutomationBench, and function-call evaluations | Multi-step work and reliable tool use. |
+| Data analysis | DiscoveryBench through AstaBench; DABStep only as lower-priority generic tabular evidence | Data-to-result, interpretation, and later data-to-figure workflows. |
+| Coding | SWE-Bench Pro, Terminal-Bench, DeepSWE, and CORE-Bench v1.1/OOD where paper reproduction is relevant | Scripts, analysis code, debugging, and implementation work. |
+| Tools and agents | AstaBench, including a small DiscoveryBench subset first; Agents' Last Exam, Toolathlon, AutomationBench, and function-call evaluations as comparison evidence | Multi-step scientific work, reliable tool use, scaffold effects, latency, and cost. |
 | Conversation and writing | Identify evaluations for instruction following, dialogue quality, editing, synthesis, and long-form writing | Everyday research collaboration and manuscript work. |
 | Long context | MRCR and GraphWalks | Large literature collections and project context. |
 | Vision and documents | MMMU Pro, document and PDF evaluations, table and OCR evidence | Figures, tables, scans, screenshots, and complex documents. |
@@ -65,9 +70,20 @@ For each benchmark, record:
 - Treat vendor-published results as useful but lower-confidence until independently reproduced or supported.
 - Prefer benchmarks that resemble real Scient work, expose their method, and resist contamination.
 - Keep benchmark capability separate from cost, privacy, provider reliability, and product fit.
+- Preserve the agent, scaffold, tools, prompts, environment, attempts, scorer,
+  latency, and cost. Do not attribute their combined result to the model alone.
+- Treat evaluator-model scoring, public answers, benchmark errors, shortcuts,
+  and saturated splits as explicit limitations rather than small-print caveats.
 
 ## Later Internal Evaluation
 
 External benchmarks will shortlist models and expose likely strengths. They will not determine final production roles or automatic routing.
 
-In a later phase, Scient will build its own replayable evaluation suite around representative scientific projects, evidence and citation work, mathematics, data analysis, coding, tools, conversation, writing, long context, and visual documents. That suite will become the stronger release and routing evidence.
+Scient's validation strategy now distinguishes rich scientific projects, narrow
+capability fixtures, and external agent-evaluation benchmarks. The first two
+tracks provide the Scient-owned product and deterministic evidence that
+external scores cannot supply. When runnable Scient workflows exist, a
+replayable internal suite should combine all three tracks across evidence and
+citation work, mathematics, data analysis, coding, tools, conversation, writing,
+long context, and visual documents. That combined suite will become the stronger
+release and routing evidence.

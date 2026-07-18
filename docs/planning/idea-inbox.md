@@ -1,7 +1,7 @@
 # Idea Inbox
 
 Status: Active
-Owner: Yaacov
+Owner: Scient 001
 Created: 2026-07-11
 Last updated: 2026-07-18
 Purpose: Provides one temporary intake surface for unprocessed Scient ideas before they are evaluated and routed to their durable homes.
@@ -22,20 +22,24 @@ remove the raw inbox entry. Do not leave duplicate copies here and elsewhere.
 
 ## Entry Shape
 
-Use the lightest useful form:
+Group entries under the nearest broad area and use the lightest useful form:
 
 ```md
 ### Area
 
-#### YYYY-MM-DD — Short title
-
-- Idea: ...
-- Context or source: ...
-- Possible area: product, architecture, design, research, quality, or unknown
+| Idea | Raised by | Date added | Context or source | Possible area |
+|---|---|---|---|---|
+| **Short title.** Description. | Person's name | YYYY-MM-DD | ... | Product, architecture, design, research, quality, or unknown |
 ```
 
 Preserve the original intent. Do not turn intake into analysis unless the idea
-is being triaged.
+is being triaged. `Raised by` identifies the human source of the idea, not the
+person or agent who edited this file. If the source cannot be established,
+write `Not recorded` rather than guessing.
+
+An unusually broad idea may have a short question inventory below its table row
+when that is necessary to preserve the raw scope. The inventory remains intake,
+not analysis or architecture, and should move with the idea when it is promoted.
 
 ## Triage Destinations
 
@@ -50,39 +54,23 @@ is being triaged.
 
 ### Project And Workspace
 
-#### 2026-07-12 — Default project workspace and starting material
+| Idea | Raised by | Date added | Context or source | Possible area |
+|---|---|---|---|---|
+| **Default project workspace and starting material.** Plan how a new Scient user's basic desktop project workspace should be set up when the app creates and works with local files and folders. | Not recorded | 2026-07-12 | The evaluated skills-system direction now lives in the [Scient Skills System](../product/skills-system.md). Remaining questions include built-in starter guidance, standard places for articles and PDFs, other common project material, what Scient creates automatically, what remains visible versus app-managed, and how non-skill starting material works when opening an existing folder. | Product planning, project-format architecture, onboarding, and product design |
 
-- Idea: Plan how a new Scient user's basic desktop project workspace should be
-  set up when the app creates and works with local files and folders.
-- Routed material: the evaluated skills-system direction now lives in the
-  [Scient Skills System](../product/skills-system.md); it is no longer owned by
-  this raw inbox entry.
-- Things still to remember here: possible built-in starter documentation or
-  guidance, a standard place for articles and PDFs, and sensible places for
-  other common research-project material.
-- Open questions: what Scient should create automatically; which areas should
-  be visible folders or files versus app-managed state; which starting material
-  belongs to the app versus each project; and how non-skill starting material
-  should work when opening an existing folder.
-- Possible area: product planning, project-format architecture, onboarding,
-  and product design.
+### Research Exploration And Visualization
+
+| Idea | Raised by | Date added | Context or source | Possible area |
+|---|---|---|---|---|
+| **Visual literature map.** Add an interactive, Obsidian-style graph view of the literature sources in a Scient project. Sources would appear as nodes, with inspectable relationships such as citations, shared topics, project links, or researcher-created connections. The view should help researchers explore clusters, identify central or isolated sources, review gaps, filter the collection, and open each source in its normal detail view. | Yishai | 2026-07-18 | Spoken idea. The initial scope should focus on sources already imported into the project; broader scholarly-network discovery and the exact relationship types remain open questions. | Source-library product planning, literature-review UX, design, and future source-relationship architecture |
 
 ### Memory, Context, And Continuity
 
-#### 2026-07-18 — Future Scient memory architecture
+| Idea | Raised by | Date added | Context or source | Possible area |
+|---|---|---|---|---|
+| **Future Scient memory architecture.** Discuss Scient's complete memory architecture as a dedicated future product and architecture project before selecting schemas, databases, or synchronization machinery. | Yaacov | 2026-07-18 | Questions about project records, conversations, SQLite, Git, user-selected cloud folders, recovery, and future Scient cloud sync arose during the first-slice source review. They belong to the broader memory-system discussion, not the completed T3 reliability work or an immediate persistence decision. Reusable questions from an oversized standalone persistence brief were condensed here before that out-of-scope architecture file was removed. | Product planning, future memory architecture, agent runtime, project format, security, provenance, synchronization, and product design |
 
-- Idea: Plan Scient's complete memory architecture as a dedicated future
-  product and architecture project before selecting schemas, databases, or
-  synchronization machinery.
-- Context or source: Questions about project records, conversations, SQLite,
-  Git, user-selected cloud folders, recovery, and future Scient cloud sync arose
-  during the first-slice source review. They belong to the broader memory-system
-  discussion, not the completed T3 reliability work or an immediate persistence
-  decision. The reusable questions from an oversized standalone persistence
-  brief were condensed here before that out-of-scope architecture file was
-  removed.
-- Possible area: product planning, future memory architecture, agent runtime,
-  project format, security, provenance, synchronization, and product design.
+#### Candidate scopes and questions to preserve
 
 Candidate scopes to discuss, not accepted layers:
 
@@ -104,7 +92,7 @@ Candidate scopes to discuss, not accepted layers:
 - **Raw history and provenance:** complete conversations, events, actions, and
   evidence that may support memory but are not automatically trusted memory.
 
-Questions to preserve for the future discovery project:
+Questions for the future discovery project:
 
 - Which candidate scopes are actually needed, and what are their precise names
   and responsibilities?

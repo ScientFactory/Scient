@@ -1,9 +1,9 @@
 # Dialog And Overlay Visual References
 
 Status: Active
-Owner: Yaacov
+Owner: Scient 001
 Created: 2026-07-12
-Last updated: 2026-07-17
+Last updated: 2026-07-18
 Purpose: Indexes external modal, dialog, warning, confirmation, and overlay patterns kept for later product-design comparison and inspiration.
 Doc type: Research evidence
 
