@@ -32,8 +32,11 @@ Start here:
 - [Scient product identity](product/scient-product-identity.md) - accepted company, app, native-agent, external-agent, and naming vocabulary.
 - [Product philosophy](product/product-philosophy.md) - draft durable product principles; the accepted PRD governs conflicts.
 - [Technology stack](architecture/technology-stack.md) - current proposed stack direction.
-- [Idea inbox](planning/idea-inbox.md) - categorized intake for unresolved ideas,
-  including the future Scient memory-architecture discovery.
+- [Idea inbox](planning/idea-inbox.md) - lightweight intake for unresolved ideas
+  before they are evaluated and routed.
+- [Memory architecture discovery](planning/memory-architecture-discovery.md) -
+  draft candidate scopes, questions, scenarios, and discovery sequence; no
+  memory architecture or storage technology is selected.
 - [Product roadmap](planning/product-roadmap.md) - current sequence of coherent product outcomes.
 - [First vertical-slice implementation plan](planning/first-scient-vertical-slice-implementation-plan.md) - bounded plan for the active product slice.
 - [Scient and external agents implementation plan](planning/scient-and-external-agents-implementation-plan.md) - proposed plan for building the Scient agent as the owned OpenCode-derived first-party agent while preserving external agents independently.

@@ -103,7 +103,7 @@ The independent T3 intake is complete and has no dependency on the future
 memory-architecture project. Raw questions about conversation, user, project,
 and task/run memory; portability; recovery; Git and cloud folders; and future
 Scient cloud sync are preserved separately in the
-[`Idea Inbox`](../../docs/planning/idea-inbox.md#memory-context-and-continuity).
+[`Memory Architecture Discovery`](../../docs/planning/memory-architecture-discovery.md).
 
 ## Triggered Shelf
 

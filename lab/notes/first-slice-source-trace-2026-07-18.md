@@ -32,7 +32,7 @@ or representation. Conversations, task/run context, project memory, user
 memory, raw history, files, recovery, and cloud sync must be discussed together
 in a dedicated future memory-architecture project. The raw candidate layers and
 questions are preserved in the
-[`Idea Inbox`](../../docs/planning/idea-inbox.md#memory-context-and-continuity).
+[`Memory Architecture Discovery`](../../docs/planning/memory-architecture-discovery.md).
 
 The existing Git-backed checkpoint mechanism is not suitable for the approved
 non-Git guarantee. A future memory and recovery design must determine how
@@ -232,7 +232,7 @@ kind of project record before comparing storage technologies. Its questions
 include portability, Git independence and compatibility, user-selected cloud
 folders, recovery, conversation retention, future Scient cloud sync, privacy,
 and export. They are preserved in the
-[`Idea Inbox`](../../docs/planning/idea-inbox.md#memory-context-and-continuity).
+[`Memory Architecture Discovery`](../../docs/planning/memory-architecture-discovery.md).
 Secrets and provider credentials must never become project memory merely for
 convenience.
 
@@ -353,7 +353,7 @@ It hands the unresolved relationships among conversation history, task/run
 context, user memory, project memory, raw history, provenance, files, recovery,
 and cloud sync to a dedicated future discovery project. The candidate layers,
 questions, and explicit non-decisions are preserved in the
-[`Idea Inbox`](../../docs/planning/idea-inbox.md#memory-context-and-continuity).
+[`Memory Architecture Discovery`](../../docs/planning/memory-architecture-discovery.md).
 
 The permanent scientific-operation package and deterministic fake-executor
 product proof remain separate deferred questions. Native Scient isolation is an
@@ -374,5 +374,5 @@ The source map is complete, but its former SQLite and hybrid-package selection
 is withdrawn. The approved requirements are non-Git recovery, trusted
 filesystem scope, and complete native-Scient/external-OpenCode runtime
 independence. Fake-executor work is deferred. Future memory questions live in
-the [`Idea Inbox`](../../docs/planning/idea-inbox.md#memory-context-and-continuity);
+the [`Memory Architecture Discovery`](../../docs/planning/memory-architecture-discovery.md);
 do not infer memory architecture or implementation authorization from this note.

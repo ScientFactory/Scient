@@ -9,9 +9,8 @@ Doc type: Future home
 
 This page will document the Scient project format when it exists. Unprocessed
 questions about project memory, conversations, files, portability, Git, cloud
-folders, and storage boundaries remain in the
-[Idea Inbox](../planning/idea-inbox.md#memory-context-and-continuity) until a
-dedicated memory-architecture discovery begins.
+folders, and storage boundaries remain in the draft
+[Memory Architecture Discovery](../planning/memory-architecture-discovery.md).
 
 Document here:
 
