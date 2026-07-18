@@ -1,0 +1,31 @@
+{
+  "schema": "scient.owned-sources/v1",
+  "sources": [
+    {
+      "ownedRepository": "ScientFactory/scient-desktop",
+      "sourceLockLabel": "Scient desktop",
+      "ownedDefaultBranch": "main",
+      "testedHead": "57e6b2cde09f64db367b894506f56db605fb91b4",
+      "officialRepository": "Emanuele-web04/synara",
+      "officialDefaultBranch": "main",
+      "reviewedThrough": "69304bc1d59d86da8afbac367118c75db8c9dbfe",
+      "reviewedAt": "2026-07-18",
+      "integrationBase": "9be46c3ce6a7521b64436b7334bc6fce16e3cac4",
+      "updateMode": "divergent-cherry-pick",
+      "reviewRecord": "lab/external/upstream-reviews/2026-07-18-scient-desktop.md"
+    },
+    {
+      "ownedRepository": "ScientFactory/scient-agent",
+      "sourceLockLabel": "Scient agent source",
+      "ownedDefaultBranch": "dev",
+      "testedHead": "f7d61d3583687ddc09919ca9e70d69d06b0861f8",
+      "officialRepository": "anomalyco/opencode",
+      "officialDefaultBranch": "dev",
+      "reviewedThrough": "fab213312927ea64cf968832c527206e8c944f9e",
+      "reviewedAt": "2026-07-18",
+      "integrationBase": "69a80663a2ed7d671d2b4d5dd6f2d605714675a5",
+      "updateMode": "adapter-maintained",
+      "reviewRecord": "lab/external/upstream-reviews/2026-07-18-scient-agent.md"
+    }
+  ]
+}

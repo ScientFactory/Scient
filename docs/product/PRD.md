@@ -4,7 +4,7 @@ Status: Accepted
 Version: v1
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-07-17
+Last updated: 2026-07-18
 Purpose: Defines Scient's product direction, core capabilities, user experience principles, and product constraints.
 Doc type: Product truth
 
@@ -18,7 +18,13 @@ identity; the native Scient agent remains planned.
 
 Implementation plans, package structure, task sequencing, and framework-specific code patterns do not belong in the PRD. Those belong in planning, architecture, development, or quality docs.
 
-Open-source adaptation strategy and implementation source choices live outside the PRD. Current source research belongs in `docs/research/source-evaluations/open-source-adaptation-map.md`; build sequencing and fork/adapter strategy belong in `docs/planning/open-source-adaptation-build-strategy.md` until promoted into architecture documents or ADRs.
+Open-source adaptation strategy and implementation source choices live outside
+the PRD. Current source research belongs in
+`docs/research/source-evaluations/open-source-adaptation-map.md`; build
+sequencing lives in
+`docs/planning/open-source-adaptation-build-strategy.md`; and the accepted
+standalone ownership and selective-upstream policy lives in
+`docs/architecture/decisions/ADR-0002-standalone-source-ownership-and-upstream-authority.md`.
 
 ### Update Policy
 
@@ -39,6 +45,13 @@ state, processes, credentials, or updates. The complete accepted vocabulary and
 implemented-versus-planned boundary live in `scient-product-identity.md`; the
 completed migration and compatibility record lives in
 `../planning/papilab-to-scient-rename-execution-plan.md`.
+
+Repository names are technical ownership labels, not additional product
+brands: `ScientFactory/Scient` owns product truth and the scientific boundary,
+`ScientFactory/scient-desktop` owns the implemented desktop application, and
+`ScientFactory/scient-agent` is the maintained source foundation for the
+planned native Scient agent. The repository name does not imply that the
+native agent runtime is already implemented.
 
 ## Product Overview
 

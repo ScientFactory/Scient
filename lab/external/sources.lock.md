@@ -26,9 +26,9 @@ siblings. A deferred source with no retained checkout says so explicitly.
 
 | Source | Local path | Official upstream | Owned repository | Tested integrated upstream base | Maintained/tested commit | Role and update mode |
 |---|---|---|---|---|---|---|
-| Scient agent source (OpenCode-derived) | `../scient-agent/`; canonical workspace sibling on `dev` at `14003a01350c69dedf90c97f9f2b5db733f49951` | `https://github.com/anomalyco/opencode.git`, `dev` | `https://github.com/ScientFactory/scient-agent`, public standalone repository | `69a80663a2ed7d671d2b4d5dd6f2d605714675a5` | Current owned `dev` `14003a01350c69dedf90c97f9f2b5db733f49951`; exact rename and maintenance evidence below | Owned source foundation for the planned Scient agent; `adapter-maintained`; native Scient runtime identity is not yet implemented. |
+| Scient agent source (OpenCode-derived) | `../scient-agent/`; canonical workspace sibling on `dev` at `f7d61d3583687ddc09919ca9e70d69d06b0861f8` | `https://github.com/anomalyco/opencode.git`, `dev` | `https://github.com/ScientFactory/scient-agent`, public standalone repository | `69a80663a2ed7d671d2b4d5dd6f2d605714675a5` | Current owned `dev` `f7d61d3583687ddc09919ca9e70d69d06b0861f8`; exact rename and maintenance evidence below | Owned source foundation for the planned Scient agent; `adapter-maintained`; native Scient runtime identity is not yet implemented. |
 | Goose | No local checkout is retained. | `https://github.com/aaif-goose/goose.git`, `main` | None; owned repository deferred | Not tested in Gate 1.5 | Last inspected commit `3c1fdd692cc8aaa5f09b9175410c09a09d4dfe49` | Deferred broader-agent research input. Repository, build, ACP adapter, runtime, credentials, and adoption wait until after the first Scient gateway. |
-| Scient desktop (Synara-derived) | `../scient-desktop/`; canonical workspace sibling on `main` at `d78388a42bcc09dabc926c0885ec34a8de6427b0` | `https://github.com/Emanuele-web04/synara.git`, `main` | `https://github.com/ScientFactory/scient-desktop`, public standalone repository | `9be46c3ce6a7521b64436b7334bc6fce16e3cac4` | Current owned `main` `d78388a42bcc09dabc926c0885ec34a8de6427b0`; exact rename and maintenance evidence below | Accepted initial application foundation; `divergent-cherry-pick`; must not own scientific project truth. |
+| Scient desktop (Synara-derived) | `../scient-desktop/`; canonical workspace sibling on `main` at `57e6b2cde09f64db367b894506f56db605fb91b4` | `https://github.com/Emanuele-web04/synara.git`, `main` | `https://github.com/ScientFactory/scient-desktop`, public standalone repository | `9be46c3ce6a7521b64436b7334bc6fce16e3cac4` | Current owned `main` `57e6b2cde09f64db367b894506f56db605fb91b4`; exact rename and maintenance evidence below | Accepted initial application foundation; `divergent-cherry-pick`; must not own scientific project truth. |
 | T3 Code | No local checkout is retained. | `https://github.com/pingdotgg/t3code.git`, `main` | None | Not tested in Gate 1.5 | Last inspected commit `b9cc8d6ef17ca9f45bec621bef71ad3f706b9276` | Desktop/runtime/provider/process reference only. |
 
 ## Maintained Upstream Review State
@@ -40,8 +40,8 @@ review is accepted.
 
 | Source | Tested owned head | Reviewed through | Integration base | Update mode | Review evidence |
 |---|---|---|---|---|---|
-| Scient desktop | `d78388a42bcc09dabc926c0885ec34a8de6427b0` | `69304bc1d59d86da8afbac367118c75db8c9dbfe` on 2026-07-18 | `9be46c3ce6a7521b64436b7334bc6fce16e3cac4` | `divergent-cherry-pick` | [`2026-07-18-scient-desktop.md`](upstream-reviews/2026-07-18-scient-desktop.md); no code intake |
-| Scient agent source | `14003a01350c69dedf90c97f9f2b5db733f49951` | `fab213312927ea64cf968832c527206e8c944f9e` on 2026-07-18 | `69a80663a2ed7d671d2b4d5dd6f2d605714675a5` | `adapter-maintained` | [`2026-07-18-scient-agent.md`](upstream-reviews/2026-07-18-scient-agent.md); no code intake |
+| Scient desktop | `57e6b2cde09f64db367b894506f56db605fb91b4` | `69304bc1d59d86da8afbac367118c75db8c9dbfe` on 2026-07-18 | `9be46c3ce6a7521b64436b7334bc6fce16e3cac4` | `divergent-cherry-pick` | [`2026-07-18-scient-desktop.md`](upstream-reviews/2026-07-18-scient-desktop.md); no code intake |
+| Scient agent source | `f7d61d3583687ddc09919ca9e70d69d06b0861f8` | `fab213312927ea64cf968832c527206e8c944f9e` on 2026-07-18 | `69a80663a2ed7d671d2b4d5dd6f2d605714675a5` | `adapter-maintained` | [`2026-07-18-scient-agent.md`](upstream-reviews/2026-07-18-scient-agent.md); no code intake |
 
 ## Standalone Ownership And Maintenance Rollout
 
@@ -64,6 +64,28 @@ source-repository pull requests:
   run `29640292072`, attempt 2, including the browser suite, and merged as
   `d78388a42bcc09dabc926c0885ec34a8de6427b0`. Final monitor run
   `29640770607` passed on that exact owned head without opening a review issue.
+- Desktop [PR #4](https://github.com/ScientFactory/scient-desktop/pull/4)
+  established the standalone Scient repository identity and merged as
+  `0b6f135c2d19e93b0d790b2427c56b6a368a2bca`.
+- Desktop [PR #5](https://github.com/ScientFactory/scient-desktop/pull/5)
+  aligned owned automation with the standalone repository and merged as
+  `91b38b1c45eb8bdef4da458bbc56d67419269588`.
+- Desktop [PR #12](https://github.com/ScientFactory/scient-desktop/pull/12)
+  established the maintained repository-governance baseline and merged as
+  `2bb8623f17c28c0dd4d50bf484ac8cf5065ce2eb`.
+- Desktop [PR #13](https://github.com/ScientFactory/scient-desktop/pull/13)
+  hardened immutable workflow and local-action verification; exact head
+  `4498b72d8edf96bc246088f0b9ca9ba3d516cc33` passed hosted CI run
+  `29644350698` and merged as
+  `57e6b2cde09f64db367b894506f56db605fb91b4`. A local arm64 DMG built from
+  that merge embedded commit `57e6b2cde09f`, had SHA-256
+  `41f9abc5a39cfdae470ad5580ea61c7da969023c445d10196db46b4e92df4424`,
+  and passed the disk-image checksum. A profile-overridden isolated test copy
+  launched and initialized `PROJECT.md`, `AGENTS.md`, and
+  `.scient/project.json` in a fresh folder. The artifact is ad-hoc rather than
+  distribution-signed and fails strict code-sign verification, so public
+  release remains blocked by
+  [issue #6](https://github.com/ScientFactory/scient-desktop/issues/6).
 - Agent [PR #1](https://github.com/ScientFactory/scient-agent/pull/1)
   established the operator card, review state, verifier modes, owned source
   quality workflow, and monitor; exact head
@@ -81,6 +103,20 @@ source-repository pull requests:
   source-quality run `29640340180` and merged as
   `14003a01350c69dedf90c97f9f2b5db733f49951`. Final monitor run
   `29640673934` passed on that exact owned head without opening a review issue.
+- Agent [PR #4](https://github.com/ScientFactory/scient-agent/pull/4)
+  established the standalone Scient repository identity and merged as
+  `b2fa83199171b4d9b1bec7287ed7121a9590c38b`.
+- Agent [PR #5](https://github.com/ScientFactory/scient-agent/pull/5)
+  hardened source-review enforcement and inherited workflow isolation; exact
+  head `3ff0b98634bece0e5b3c295b74d7b877629f48f7` passed hosted source-quality
+  run `29644353059` and merged as
+  `a4a9f25eebc5517e139bdd08da3693f389b896e9`.
+- Agent [PR #6](https://github.com/ScientFactory/scient-agent/pull/6)
+  refreshed the exact immutable `nixbuild/nix-quick-install-action` pin in the
+  retained, disabled Nix workflows; exact head
+  `012398b080696691864f985f310dfefaf9d9a749` passed hosted source-quality run
+  `29644889618` and merged as
+  `f7d61d3583687ddc09919ca9e70d69d06b0861f8`.
 
 No source code from the reviewed official ranges was integrated during this
 rollout. The PRs above establish ownership, review, monitoring, and verification
@@ -200,10 +236,12 @@ and
 [`scient-agent-fork-archive`](https://github.com/ScientFactory/scient-agent-fork-archive).
 Their official remotes were named `upstream`, retained their official fetch
 URLs, and used the literal disabled push URL `DISABLED`. The owned default
-branches remain protected against direct unreviewed changes, force-push, and
-deletion; the desktop repository requires its maintained quality and
-release-smoke checks, and the agent-source repository requires
-`Scient source quality`.
+branches block force-push and deletion and require maintained checks before a
+pull request can merge: desktop quality plus release smoke, and
+`Scient source quality` for the agent source. The current rules require zero
+approving reviews and do not enforce restrictions for administrators; this
+document does not overstate those settings as mandatory human approval or
+administrator enforcement.
 After standalone recreation, inherited OpenCode community-management,
 generated-commit, publication, deployment, scheduled-sync, and closing
 workflows were disabled; only reviewed Scient quality/read-only checks and the

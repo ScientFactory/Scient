@@ -161,7 +161,8 @@ branch.
 5. Create a dated record from
    `lab/external/upstream-reviews/review-template.md`.
 6. Update the repo-local state to the exact reviewed tip and run
-   `--review-check`.
+   `--require-reviewed-tip`. The older `--review-check` spelling remains a
+   strict compatibility alias.
 7. Submit the source-state and parent-evidence changes through their own
    repository PRs. Cross-link dependencies; do not combine repositories into
    one Git commit.
