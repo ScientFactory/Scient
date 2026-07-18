@@ -18,7 +18,7 @@
       "ownedRepository": "ScientFactory/scient-agent",
       "sourceLockLabel": "Scient agent source",
       "ownedDefaultBranch": "dev",
-      "testedHead": "f7d61d3583687ddc09919ca9e70d69d06b0861f8",
+      "testedHead": "bc125cbc60c36e4b7013f8d7cf755f745af509b3",
       "officialRepository": "anomalyco/opencode",
       "officialDefaultBranch": "dev",
       "reviewedThrough": "fab213312927ea64cf968832c527206e8c944f9e",
