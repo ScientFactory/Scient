@@ -90,10 +90,10 @@ v0.5.5 passed hosted CI at `d4b10c27` and advanced owned `main` to
 owned `main` as `d9d8992a`, based on tested upstream `9be46c3c`. Subsequent
 reviewed UI and project-init status follow-ups advanced maintained `main` to
 `2ecfbe19`. Standalone ownership and upstream-maintenance follow-ups then
-advanced maintained `main` to `d78388a4`; exact provenance is recorded in
+advanced maintained `main` to `57e6b2cd`; exact provenance is recorded in
 `lab/external/sources.lock.md`.
 The owned OpenCode-derived repository—the current source foundation for the Scient
-agent—is in the workspace sibling `../scient-agent/` on `dev` at `14003a01`,
+agent—is in the workspace sibling `../scient-agent/` on `dev` at `bc125cbc`,
 after a reviewed sync through source version 1.18.3 at official upstream
 `69a80663` and the standalone upstream-maintenance rollout. Historical
 Gate 1 and Gate 1.5 commits, tags, and ignored runtime evidence remain

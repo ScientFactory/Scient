@@ -57,6 +57,10 @@ Current inputs:
   [Lacuna: A Research Map for Machine Learning](https://arxiv.org/html/2606.26246v1)
   and live site as a research-map reference for literature search, synthesis, and
   agent-readable paper-grounded intermediate objects.
+- Targeted T3 Code inspection through revision
+  `bf76535fe4da71d8de7b8bd5ffa0d2086b7af8d0` on 2026-07-18, with
+  accepted, deferred, and rejected dispositions recorded in
+  [`t3-code-targeted-review-2026-07-18.md`](../../../lab/notes/t3-code-targeted-review-2026-07-18.md).
 
 Remaining evidence gaps before architecture promotion:
 
@@ -330,13 +334,16 @@ is relevant only to a separately reviewed process or external-agent path.
 
 | Source | Adaptation target | Why it matters | Do not adopt | Depth status |
 |---|---|---|---|---|
-| T3 Code | Desktop/backend process lifecycle, provider-instance patterns, remote/SSH/Tailscale ideas if needed, multi-surface product structure. | Gives practical patterns for a desktop agent app that coordinates backends and providers. | Do not inherit coding-product assumptions. | Needs targeted review of provider-instance and process lifecycle code. |
+| T3 Code | Bounded reliability fixes now; provider-instance separation as design evidence for execution targets above `ProviderKind`; lifecycle and diagnostics patterns only when a concrete trigger appears. | Supplies proven implementation details and comparison evidence without becoming Scient's product architecture. | Do not inherit coding-product assumptions, broad runtime alignment, mobile/cloud surfaces, or speculative remote infrastructure. | Targeted review completed through `bf76535fe4da71d8de7b8bd5ffa0d2086b7af8d0` on 2026-07-18. Three reliability fixes were accepted, snapshot startup was characterized, browser socket isolation was proven and fixed, and all larger ideas were explicitly deferred or rejected. |
 | Synara | Orchestration, UI/provider adapters, Effect server ideas, event-sourced orchestration, desktop/web split, worktree/Git flows. | Useful for building a reliable agent workspace that can explain what happened. | Do not copy its UI shape blindly; Scient needs a research cockpit. | Accepted initial application foundation through ADR-0001; scientific-product fit still needs pressure testing. |
 | Vercel AI SDK | Model/provider abstraction, typed stream parts, tool-call state, approval status, UI message events, mock providers, and model I/O tests. | Useful for model plumbing and chat/event surfaces around Scient-owned actions. | Do not use it as the abstraction over local executors like OpenCode or Codex. Executor actions need a Scient-owned contract. | Candidate model I/O layer; needs a narrow harness prototype. |
 | Vercel AI Elements | Tool cards, source citations, confirmations, terminal output, file trees, artifacts, plans, queue state. | Useful UI pieces for agent work inspection. | Do not let it make Scient a generic chat surface. | Side UI pattern source. |
 
-Recommendation: adapt shell/process/provider ideas from T3 Code and Synara, but
-keep the scientific navigation and object model Scient-owned.
+Recommendation: keep Synara as the owned application foundation and use T3 Code
+only as a trigger-driven donor. The completed T3 review does not create an
+ongoing upstream-monitoring obligation. Provider-instance patterns may inform
+the already-planned execution-target contract, while scientific navigation,
+canonical state, provenance, review, and recovery remain Scient-owned.
 
 ### Desktop Base And Science-App Candidates
 

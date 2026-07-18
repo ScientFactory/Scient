@@ -47,21 +47,21 @@ the next implementation step.
 ## Current Execution Status
 
 Phase 1 is complete. The placement trace selected the permanent package seam,
-and desktop PR #4 implemented `@scientfactory/project-init` with zero-write
-inspection, explicit plan/apply behavior, conservative recovery, and 43 focused
-tests. The package remains present on the maintained desktop `main` at
-`2ecfbe19`, after the verified Scient rename on the reviewed official Synara
-v0.5.5 foundation and subsequent reviewed UI and project-init status
-follow-ups. The owned OpenCode-derived agent-source baseline is
-`5ffaf9a2` on `dev`, after the verified `scient-agent` source-boundary rename
-and reviewed sync to official upstream `69a80663`.
+and the reviewed desktop implementation added `@scientfactory/project-init`
+with zero-write inspection, explicit plan/apply behavior, conservative
+recovery, and focused tests. The package, trusted-server RPC, project-open/setup dialog, and
+interrupted-initialization recovery UI are present on maintained desktop `main`
+at `57e6b2cde09f64db367b894506f56db605fb91b4`. They initialize only the portable
+foundation and do not make the host project projection canonical.
 
-Phase 2, the remaining first-slice boundary trace, is the next work. The owned
-OpenCode-derived checkout is the Scient agent's selected source foundation, but
-the native agent is not yet implemented or packaged. No scientific-state store,
-project-initiation UI or server RPC, Scient agent gateway,
-proposal/decision ledger, or complete scientific workflow is claimed as
-implemented.
+Phase 2 source tracing is complete in
+`../../lab/notes/first-slice-source-trace-2026-07-18.md` and awaits the required
+Yaacov review checkpoint. The proposed decision is a permanent Scient project
+domain/persistence package with thin host shims and a narrow executor port.
+The selected OpenCode-derived source is `bc125cbc60c36e4b7013f8d7cf755f745af509b3`
+on `dev`, but the native agent is not yet implemented or packaged. No
+scientific-state store, Scient agent gateway, proposal/decision ledger, or
+complete scientific workflow is claimed as implemented.
 
 ## Product Slice
 
