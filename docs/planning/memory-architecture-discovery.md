@@ -374,6 +374,23 @@ The discussion should distinguish:
    files, relevant memory, decisions, and provenance without requiring the
    original provider transcript.
 
+## Historical Reference: LitRev 2026
+
+The historical [LitRev 2026](https://github.com/yaacovcorcos/LitRev_2026)
+project contains a substantial implemented memory and retrieval system. Scient
+will use it as a reference implementation from which to retrieve and
+selectively adapt useful ideas, not as an architecture, dependency,
+compatibility target, or system to copy wholesale.
+
+Useful reference areas include capture-before-belief, scoped memory,
+provenance and authority metadata, review-before-promotion, lifecycle controls,
+bounded and auditable retrieval, and durable background extraction. Its limits
+are also evidence: Scient should avoid treating ordinary event history as
+memory, injecting every user preference globally, duplicating canonical
+project records, or inheriting storage-specific assumptions. Every borrowed
+pattern must be reevaluated against Scient's local-first, portable,
+user-controlled, and future-cloud requirements.
+
 ## Persistence Questions Come Later
 
 Only after the scope, authority, lifecycle, privacy, portability, and sync
