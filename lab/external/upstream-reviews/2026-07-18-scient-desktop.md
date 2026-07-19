@@ -77,29 +77,37 @@ reviewed and rejected rather than imported.
 
 ## Intake Decision
 
-Selective intake was implemented and submitted in
-[desktop PR #16](https://github.com/ScientFactory/scient-desktop/pull/16) at
-exact head `8627660b68d7f30c4e25e984706b6437f49f2135`. It adapts the bounded
+Selective intake was implemented in
+[desktop PR #16](https://github.com/ScientFactory/scient-desktop/pull/16) and
+merged into `main` as merge commit
+`d37e27be6ac5b365688629b7f690b6839b06e534`. It adapts the bounded
 reliability, performance, dependency, release, and test-enforcement lanes
 recorded above while preserving Scient identity and independent runtime
 boundaries.
 
-The earlier [hosted CI run](https://github.com/ScientFactory/scient-desktop/actions/runs/29671768972)
-was superseded by final exact-head
-[run 29672359757](https://github.com/ScientFactory/scient-desktop/actions/runs/29672359757).
-Local verification passed formatting, lint with zero errors, typechecking,
-unit coverage, four consecutive acknowledgment-aware EventRouter browser runs,
-and the full stable browser gate with 160 blocking assertions; the 11 documented
-Linux-geometry cases remain isolated in their dedicated gate.
+An earlier exact-head run failed the Linux stable EventRouter gate: the first
+assistant event was absent in the sequence-advance case, and the trailing
+assistant chunk did not flush in the streaming case. That flakiness was
+root-caused and fixed in desktop commit
+`d2ef87ecda10091ea8249cc0880f08527859ba14`: the browser test fixture returned
+`{}` for void and streaming-void RPC methods, but Effect RPC decodes
+`Schema.Void` as `null` on the wire, so the `{}` produced
+`SchemaError(Expected null, got {})`, failing the RPC stream and triggering
+transport reconnect churn that dropped thread events. The fixture now returns
+`null` for the void unsubscribe methods and leaves streaming subscriptions open
+without an erroneous `Exit(Success({}))`. EventRouter passes 8/8 with zero
+SchemaErrors locally and on hosted CI.
 
-The final hosted run passed release smoke, Windows process regression,
-ownership, PTY, identity, workflow, formatting, lint, typecheck, the full
-non-browser test suite, and the marketing build. It failed the Linux stable
-EventRouter gate: the first assistant event was absent in the sequence-advance
-case, and the trailing assistant chunk did not flush in the streaming case.
-The other six EventRouter cases passed. Therefore desktop PR #16 is not ready
-to merge. This evidence records the completed review and the exact blocker; it
-does not approve the code intake.
+The final hosted CI [run 29680719887](https://github.com/ScientFactory/scient-desktop/actions/runs/29680719887)
+passed all jobs on the merged head, including the blocking stable browser gate
+with 160 assertions, release smoke, Windows process regression, formatting,
+lint, typecheck, the full non-browser suite, and the marketing build. The
+`continue-on-error` mask that had temporarily made the stable gate non-blocking
+was removed; only the Linux-geometry job remains non-blocking. One geometry case
+(`keeps long user message estimate close at the 'desktop' viewport`) still fails
+in that non-blocking job; it shares the same fixture pattern in
+`ChatView.browser.tsx` and is tracked for a separate fixture-reliability
+follow-up rather than blocking this intake.
 
 Dependency auditing improved from 112 advisories on the owned base to 30 on the
 intake branch, including 2 critical to 0 and 38 high to 12. The remaining 30
@@ -111,17 +119,19 @@ advisories are inherited/transitive; this is not a zero-vulnerability claim.
 - `integrationBase`: `9be46c3ce6a7521b64436b7334bc6fce16e3cac4`
 - Update mode: `divergent-cherry-pick`; the broad audit range demonstrates that
   routine full-source merges are no longer the honest default.
-- Code intake: pending desktop PR #16 at
-  `8627660b68d7f30c4e25e984706b6437f49f2135`
-- Hosted gate: exact-head run `29672359757` failed two of eight Linux
-  EventRouter assertions despite repeated local passes. The source PR remains
-  blocked and must not be merged until a later follow-up produces an exact-head
-  green hosted run.
+- Code intake: merged. Desktop PR #16 merged into `main` as
+  `d37e27be6ac5b365688629b7f690b6839b06e534`.
+- Hosted gate: exact-head [run 29680719887](https://github.com/ScientFactory/scient-desktop/actions/runs/29680719887)
+  passed on the merged head, including the blocking stable browser gate. The
+  earlier EventRouter discrepancy was a malformed test fixture returning `{}`
+  for void RPC methods, now fixed; the stable gate is blocking again.
+- Owned-source lock: advanced to the merged head. The parent
+  `owned-sources.json` and `sources.lock.md` now record tested owned head
+  `d37e27be6ac5b365688629b7f690b6839b06e534`.
 - Newer official commits reported by the upstream monitor after the frozen
   cutoff remain unreviewed and intentionally outside this intake.
-- Source state remains an open PR. Do not advance the parent owned-source lock
-  until desktop PR #16 is merged into its default branch.
 - Remaining risk: signing, notarization, updater policy, Windows installer
   identity, and broader Effect ACP compatibility cleanup remain separate work.
-  The rejected remote-access architecture remains outside Scient. The hosted
-  EventRouter discrepancy is a current merge blocker, not a deferred risk.
+  The rejected remote-access architecture remains outside Scient. One
+  non-blocking Linux-geometry case remains for a separate fixture-reliability
+  follow-up.
