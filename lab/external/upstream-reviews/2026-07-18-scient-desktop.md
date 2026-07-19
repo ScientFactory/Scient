@@ -3,7 +3,7 @@
 Status: Active
 Owner: Scient 001
 Created: 2026-07-18
-Last updated: 2026-07-19
+Last updated: 2026-07-20
 Purpose: Records the disposition review of official Synara changes published after Scient's current integrated desktop base.
 Doc type: Research evidence
 
@@ -126,10 +126,10 @@ advisories are inherited/transitive; this is not a zero-vulnerability claim.
   earlier EventRouter discrepancy was a malformed test fixture returning `{}`
   for void RPC methods, now fixed; the stable gate is blocking again.
 - Owned-source lock: advanced to current owned `main`
-  `d4a3f96ca880034f1727ec3416b4e6d1ef05e52f`. The parent `owned-sources.json`
-  and `sources.lock.md` record this tested owned head; it is the desktop PR #16
-  merge (`d37e27be6ac5b365688629b7f690b6839b06e534`) plus a later
-  marketing-only commit.
+  `9e0e909a9df9da55f201c11b80ff69867f8a35e1`. The parent `owned-sources.json`
+  and `sources.lock.md` record this tested owned head. Later Scient-owned
+  product changes, including built-in skills in desktop PR #35, do not advance
+  this record's `reviewedThrough` or `integrationBase` values.
 - Newer official commits reported by the upstream monitor after the frozen
   cutoff remain unreviewed and intentionally outside this intake.
 - Remaining risk: signing, notarization, updater policy, Windows installer

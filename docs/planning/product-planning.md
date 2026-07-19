@@ -3,7 +3,7 @@
 Status: Draft
 Owner: Yaacov
 Created: 2026-06-28
-Last updated: 2026-07-18
+Last updated: 2026-07-20
 Purpose: Tracks current product planning after the accepted PRD, including candidate features, open product questions, and cross-document handoffs.
 Doc type: Planning note
 
@@ -100,7 +100,8 @@ This is the active feature inventory. It should stay compact. Add detail only wh
 | Data, code, analysis, figures, and artifacts | Script or notebook-compatible work, approved execution, run records, datasets, outputs, stale-output detection, tables, figures, visual planning, artifact manager. | Core | Early validation to early expansion | Desktop first; review later | Architecture handoffs: execution, artifacts, reproducibility, project format. |
 | Agent delegation and safe automation | Object-scoped tasks, context receipts, project-aware tools, proposed artifacts, task queue, durable runs, approvals, retries, cancellation, recovery. | Core | Foundation to early validation | Approval later | Architecture handoffs: `docs/architecture/agent-runtime.md` and `docs/architecture/security-and-permissions.md`. |
 | Model access and routing | Provider-connected subscriptions, bring-your-own API keys, Scient-managed access, manual model choice, and later task-aware routing. | Core | Foundation to early expansion | None first | Sequencing and commercial options: `model-access-and-routing-evolution.md`. Candidate portfolio: `../research/source-evaluations/model-portfolio-and-provider-routing.md`. |
-| Scientific skills | Built-in bounded skills for evidence extraction, drafting, citation checking, data analysis, figure creation, method guidance, journal adaptation, project mentoring. | Important | Early expansion | Approval later | Start with a tiny skill set; defer marketplace/registry mechanics. |
+| Scientific skills | Built-in and imported bounded skills for evidence extraction, drafting, citation checking, data analysis, figure creation, method guidance, journal adaptation, and project mentoring, with visible installation, activation, attribution, and deactivation. | Important | Early expansion | Approval later | Start with a tiny skill set. Product direction: [`../product/skills-system.md`](../product/skills-system.md). |
+| Skill packs, plugins, and organization distribution | Later user-controlled skill packs; compatible executable plugins; and private organization sharing of skills, packs, and plugins with visible origin, version, capabilities, and activation state. | Later | Deferred | Desktop first; read/review later | First prove individual personal and project skill installation, activation, invocation, attribution, update, and recovery. Organization distribution additionally depends on identity, collaboration, permissions, and trust foundations. |
 | Project memory | Inspectable memory, source/authority/confidence/freshness metadata, pin/archive/forget, conflict/staleness handling, project continuity summaries. | Core | Foundation to early expansion | Capture and review later | Discovery handoff: [`memory-architecture-discovery.md`](memory-architecture-discovery.md); no memory scopes or storage technology are selected. |
 | Identity, sharing, collaboration, and mobile | Account/device identity, roles, permissions, invitations, shared review, comments, assignments, attribution, cloud mirror, sync/conflict states, mobile continuation. | Core | Design early, implement in phases | Read/review/capture/approval | Architecture handoffs: collaboration model, local-first sync, security. |
 | Provenance, versioning, and recovery | Event history, source/evidence/citation/action provenance, diffs, checkpoints, snapshots, rollback, failed-run recovery, optional Git-like workflows. | Core | Foundation | Approval later | Normal users should not need Git. Architecture and quality handoffs required. |
@@ -123,6 +124,7 @@ The PRD intentionally leaves these open. Resolve them in the right document when
 | What mobile actions are allowed first? | Mobile should continue project work without becoming a second source of truth. | Product planning and design. |
 | Which sensitive data classes are supported, unsupported, or institution-gated? | Security posture must be explicit before real sensitive projects are encouraged. | Security architecture and product planning. |
 | How should cross-project memory or organization-level methods work, if at all? | Useful later, but dangerous before project-level memory is trustworthy. | [Memory Architecture Discovery](memory-architecture-discovery.md) and future architecture. |
+| How should organizations share private skills, packs, and compatible plugins without silently activating them or transferring Scient project authority? | Organization distribution can improve consistency and reuse, but origin, versioning, member control, plugin permissions, revocation, and project ownership must remain clear. | Skills product planning plus future collaboration, security, and extension architecture. |
 
 ## Handoffs
 
@@ -134,6 +136,7 @@ Use this section to route work out of product planning. Do not let this file bec
 | Memory architecture discovery | `docs/planning/memory-architecture-discovery.md` | Candidate memory scopes, authority, lifecycle, conversation/history boundaries, agent access, local/cloud behavior, and technology-neutral requirements. |
 | Agent runtime | `docs/architecture/agent-runtime.md` | Object-scoped tasks, context receipts, project-aware tools, proposed artifacts, durable runs, retries, checkpoints, recovery. |
 | Security and permissions | `docs/architecture/security-and-permissions.md` | High-impact action review, permission scope, unknown-data handling, local execution, imported-file trust, sensitive data classes. |
+| Skills and later extensions | `docs/product/skills-system.md` and future architecture after product acceptance | Individual skill installation and control first; later pack composition, plugin boundaries, and private organization distribution without silent activation or authority transfer. |
 | Collaboration model | `docs/architecture/collaboration-model.md` | Roles, membership, invitations, attribution, shared review, comments, assignments, conflict states. |
 | Local-first sync | `docs/architecture/local-first-sync.md` | Local ownership, cloud mirror, device identity, offline behavior, restore, revocation, conflict semantics. |
 | Product design | `docs/design/product-design-principles.md` | Project home, workspace areas, object-aware actions, context receipts, review surfaces, mobile continuation. |

@@ -3,7 +3,7 @@
 Status: Draft
 Owner: Yaacov
 Created: 2026-07-18
-Last updated: 2026-07-18
+Last updated: 2026-07-20
 Purpose: Defines the proposed product model, trust boundaries, candidate catalog, and validation order for reusable scientific skills in Scient.
 Doc type: Product truth
 
@@ -37,16 +37,23 @@ traceable workspace; explicit non-destructive project initialization; bounded
 agent work; visible context; reviewable proposals; permissions; provenance;
 and recovery. Those accepted constraints govern the skills product.
 
-The skills model in this document is still draft product direction. No skill
-catalog, foundational pack, Skills Library, project activation record,
-personalization flow, or skill provenance receipt is claimed as implemented.
-Merging this draft would record the current product discussion; it would not
-accept every proposed or candidate item.
+The skills model in this document is still mostly draft product direction.
+[ADR-0003](../architecture/decisions/ADR-0003-built-in-skills-portfolio-and-project-activation.md)
+accepts the app-owned built-in portfolio boundary, immutable built-in release
+identity, and `.scient/skills.lock.json` project activation record. The first
+implementation contains only the user-visible Skill Authoring v0.1
+meta-capability. It is activated at user scope, enabled by default, visible in
+Settings, and automatically available to agents for matching skill-authoring
+work. It does not implement a researcher-facing scientific skill,
+foundational pack, Skills Library, personalization flow, project-scoped
+scientific invocation, or skill invocation receipt.
 
 The following labels apply within this document:
 
 - **Accepted constraint** - existing accepted product direction that this
   system must preserve.
+- **Accepted direction** - a skills-product decision explicitly accepted for
+  implementation without promoting unrelated candidates in this draft.
 - **Proposed direction** - the current recommendation, awaiting explicit
   acceptance.
 - **Candidate** - worth validating or retaining in the working catalog, but not
@@ -87,10 +94,19 @@ Researcher-facing skills can be:
 
 ### Skill-System Meta-Capabilities
 
-**Candidate:** Skill Authoring, Skill Personalization, Skill Validation, and
-Skill Update Review are platform-assisted workflows for managing skills. They
-are not ordinary scientific skills and should follow only after the basic
-skills product is trustworthy.
+**Accepted direction:** Skill Authoring is a user-visible constructive
+meta-capability for creating, revising, adapting, and reviewing candidate
+skills. It is enabled by default at user scope and may be deactivated in
+Settings. While enabled, agents should automatically load it when the current
+work matches its trigger contract; while disabled, it is unavailable for new
+work. It is not an ordinary researcher-facing scientific skill, does not
+appear in project initialization, and cannot activate, publish, approve, or
+validate what it produces. Its v0.1 release exists to improve real authoring
+work without substituting dogfooding for scientific validation.
+
+**Candidate:** Skill Personalization, Skill Validation, and Skill Update Review
+remain later platform-assisted workflows. They should follow only after the
+basic skills product is trustworthy.
 
 ### Packs And Project Profiles
 
@@ -98,6 +114,27 @@ skills product is trustworthy.
 project profile may recommend a pack, project structure, views, or guidance.
 Neither is itself an executable skill, and neither should create an
 incompatible Scient project format.
+
+**Accepted direction:** Skill packs remain a later product feature. Scient
+should first make individual skills easy to install, inspect, activate,
+deactivate, invoke, attribute, update, and recover. A later pack may offer one
+visible activation or deactivation action for a curated collection, but the
+researcher must still be able to inspect the member skills and understand the
+effective activation state. Exact behavior for overlapping packs, individual
+member overrides, compatibility, and pack updates remains open.
+
+### Plugins And Extension Delivery
+
+**Accepted direction:** A plugin is a future executable extension, not a skill
+or a pack. Plugins may eventually contribute compatible tools, integrations,
+views, or skills, but installing a plugin must not make its guidance, output,
+or bundled skills canonical Scient project authority. Plugin execution,
+isolation, permissions, packaging, installation, and lifecycle belong to a
+separate future extension-product and architecture direction.
+
+The early skills product does not depend on a general plugin platform. It
+should prove first-party and imported declarative skills before executable
+third-party extensions broaden the trust boundary.
 
 ## Boundary With Scient Authority And Agent Behavior
 
@@ -117,10 +154,11 @@ uncertainty, and recovery explanations - by turning off a skill. Its detailed
 product and runtime definition belongs with the Scient agent, not in this
 document.
 
-**Proposed direction:** Generic desktop or provider skill catalogs, portable
+**Accepted direction:** Generic desktop or provider skill catalogs, portable
 skill folders, prompt delivery, and external-agent configuration may deliver or
 expose compatible skills. They do not own canonical Scient skill identity,
-project activation, attribution, or scientific project effects.
+project activation, attribution, or scientific project effects. ADR-0003 owns
+the corresponding architecture boundary.
 
 External agents may receive compatible skill guidance, but they do not own
 project skill state or scientific write-back. Their outputs enter trusted
@@ -205,11 +243,12 @@ external actions, and project changes regardless of what a skill requests.
 
 ### Reproducible Identity And No Silent Behavioral Change
 
-**Proposed direction:** Scient-maintained built-ins should have stable identity,
+**Accepted direction:** Scient-maintained built-ins have stable identity,
 version, origin, and content digest. Existing projects should not silently
 receive behavior-changing updates. Historical work should remain associated
 with the skill identity actually used even after deactivation, replacement, or
-update.
+update. The first package implements immutable release identity and exact
+resolution; historical invocation attribution remains future work.
 
 ### Imported Skills Begin Untrusted
 
@@ -252,10 +291,11 @@ an open product decision.
 
 ## Built-Ins, Derivatives, And Updates
 
-**Proposed direction:** Scient-maintained built-in skills should normally ship
-centrally with Scient rather than copying mutable bodies into every project. A
-project should preserve the exact built-in identity it activates. The precise
-activation-record format and location remain architecture decisions.
+**Accepted direction:** Scient-maintained built-in skills ship centrally from
+the app-owned built-in portfolio rather than copying mutable bodies into every
+project. A project preserves the exact built-in identity it activates in
+`.scient/skills.lock.json`. ADR-0003 owns the package, digest, activation, and
+delivery architecture.
 
 Personalizing a built-in should create an editable project-owned derivative
 rather than silently changing the product copy. The derivative should preserve
@@ -284,6 +324,7 @@ invoke it from a bounded task, and identify the skill behind a result.
 - Scient built-ins;
 - recommended for the current project or stage;
 - workflow and domain packs;
+- organization-provided skills and packs;
 - project-created or personalized; and
 - imported.
 
@@ -434,11 +475,12 @@ plan or roadmap.
 
 The active
 [First Scient Vertical Slice Implementation Plan](../planning/first-scient-vertical-slice-implementation-plan.md)
-continues to own the current build. Its evidence-to-note workflow may establish
-some operations needed below, but this draft does not add skills infrastructure
-to that plan or change its scope. Any such implementation change requires a
-separate reviewed planning update after the relevant product direction is
-accepted.
+continues to own the scientific workflow build. The separately authorized
+ADR-0003 implementation establishes the built-in portfolio, user-scoped Skill
+Authoring activation and agent delivery, and the portable project activation
+record. It does not add a researcher-facing skill to that slice or change its
+Evidence to Note prerequisites. Project-scoped scientific invocation still
+requires reviewed planning after its product foundations exist.
 
 ### 0a - Evidence To Note Prerequisites
 
@@ -508,7 +550,9 @@ The following should not block the first validations:
 - a public skill marketplace;
 - community ratings and monetization;
 - remote skill catalogs;
-- organization-wide policy and distribution;
+- a general plugin distribution and execution platform;
+- private organization distribution of skills, packs, and compatible plugins;
+- organization-wide extension policy or enforcement;
 - automatic activation inferred from project contents;
 - automatic skill generation from project history;
 - cross-project skill analytics;
@@ -518,21 +562,30 @@ The following should not block the first validations:
 
 ## Open Product Questions
 
+ADR-0003 resolves two different activation scopes. User-scoped meta-skills are
+controlled in Settings and are not written into each project. Project-scoped
+scientific skills are selected during explicit setup; setup records their
+identities without invoking them, and no second post-setup activation action is
+required.
+
 1. Which foundational skills are required, recommended, or optional during
    project initialization?
-2. Should the initialization confirmation activate the selected default pack,
-   or should activation require a second explicit action?
-3. Which properties must be visible before activation versus before each
+2. Which properties must be visible before activation versus before each
    invocation?
-4. What evaluation standard must a Scient-maintained built-in pass?
-5. Which skill updates require explicit project reapproval?
-6. How should project owners require, prohibit, or replace particular skills?
-7. How should a personalized derivative receive and compare upstream updates?
-8. Which compatible skills should Scient project to external agents, in what
+3. What evaluation standard must a Scient-maintained built-in pass?
+4. Which skill updates require explicit project reapproval?
+5. How should project owners require, prohibit, or replace particular skills?
+6. How should a personalized derivative receive and compare upstream updates?
+7. Which compatible skills should Scient project to external agents, in what
    format, and how should the interface identify their use?
-9. When does a workflow deserve a maintained pack rather than a recommendation
+8. When does a workflow deserve a maintained pack rather than a recommendation
    list?
-10. Which real project should ground the first specialized pack?
+9. Which real project should ground the first specialized pack?
+10. How should pack activation, member deactivation, overlapping packs, and
+    pack updates compose without hiding the effective skill state?
+11. When organization support exists, how should an organization share private
+    skills, packs, and compatible plugins while preserving visible origin,
+    version, capability requirements, member control, and project authority?
 
 ## Decision Register
 
@@ -543,10 +596,11 @@ The following should not block the first validations:
 | Organize scientific skills as universal, domain-specific, and project-personalized | Proposed direction | Validate against real projects without fragmenting the project format |
 | Keep permissions, review, provenance, recovery, and dependable trust behavior independent of optional skill state | Accepted constraint | Accepted PRD researcher-control and scientific-reliability requirements |
 | Treat project operations, tools, skill-management infrastructure, and user interfaces as supporting systems rather than optional skills | Proposed direction | Preserve a clear skills-product boundary without specifying those systems here |
-| Treat generic or provider skill plumbing as delivery rather than canonical Scient skill authority | Proposed direction | Architecture and compatibility details remain open |
-| Let external agents receive compatible guidance without owning project skill state or scientific write-back | Proposed direction | Projection format and user experience remain open |
-| Offer a visible foundational pack during explicit project initialization | Proposed direction | Decide required versus recommended entries and confirmation behavior |
-| Centrally maintain built-ins and preserve project activation identity | Proposed direction | Runtime and project-state architecture remain open |
+| Treat generic or provider skill plumbing as delivery rather than canonical Scient skill authority | Accepted direction | ADR-0003; enabled built-in delivery is implemented while invocation receipts remain open |
+| Let external agents receive app-resolved compatible guidance without owning user or project skill state or scientific write-back | Accepted direction | ADR-0003; broader compatibility formats and invocation UX remain open |
+| Offer a visible foundational pack during explicit project initialization | Proposed direction | Decide required versus recommended entries and presentation; setup confirmation already records the selected identities under ADR-0003 |
+| Centrally maintain built-ins and preserve exact project activation identity | Accepted direction | ADR-0003; initial app-owned package and activation lock implementation |
+| Ship Skill Authoring v0.1 as a user-visible, default-enabled, deactivatable meta-skill outside project initialization | Accepted direction | Automatically guide matching authoring work without treating dogfooding as scientific validation |
 | Create project-owned derivatives with visible lineage | Proposed direction | Portable format and location remain open |
 | Preserve attribution across activation, invocation, deactivation, replacement, and non-silent updates | Proposed direction | Exact lifecycle and storage design remain open |
 | Use the four-state lifecycle vocabulary in this draft | Candidate | Validate the names and transitions after the first skills exist |
@@ -554,4 +608,6 @@ The following should not block the first validations:
 | Validate Evidence to Note first, then Claim-Evidence Audit after claims exist | Candidate | Promote into planning only after product review |
 | Use the five-skill foundational shortlist in this draft | Candidate | Evaluate after the first two validations |
 | Build workflow or domain packs only from real projects | Candidate | Select the first grounded project later |
+| Build individual skill installation and control before skill packs or executable plugins | Accepted direction | Keep the first system small and prove activation, invocation, attribution, update, and recovery before broader composition or execution |
+| Keep private organization distribution of skills, packs, and compatible plugins as later product scope | Accepted direction | Revisit after personal and project skill flows plus organization identity, collaboration, permissions, and trust foundations are proven |
 | Defer remote catalogs and a public marketplace | Deferred | Revisit after trust, identity, updates, and permissions are proven |
