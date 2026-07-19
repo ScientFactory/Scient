@@ -3,7 +3,7 @@
 Status: Active
 Owner: Scient 001
 Created: 2026-07-11
-Last updated: 2026-07-18
+Last updated: 2026-07-19
 Purpose: Provides one temporary intake surface for unprocessed Scient ideas before they are evaluated and routed to their durable homes.
 Doc type: Planning note
 
@@ -57,3 +57,35 @@ not analysis or architecture, and should move with the idea when it is promoted.
 | Idea | Raised by | Date added | Context or source | Possible area |
 |---|---|---|---|---|
 | **Visual literature map.** Add an interactive, Obsidian-style graph view of the literature sources in a Scient project. Sources would appear as nodes, with inspectable relationships such as citations, shared topics, project links, or researcher-created connections. The view should help researchers explore clusters, identify central or isolated sources, review gaps, filter the collection, and open each source in its normal detail view. | Yishai | 2026-07-18 | Spoken idea. The initial scope should focus on sources already imported into the project; broader scholarly-network discovery and the exact relationship types remain open questions. | Source-library product planning, literature-review UX, design, and future source-relationship architecture |
+
+### Citations And Publishing
+
+| Idea | Raised by | Date added | Context or source | Possible area |
+|---|---|---|---|---|
+| **Project-native and standalone citation generator.** Let a user provide a DOI, URL, article title, or available bibliographic information, choose a citation style, and generate the corresponding formatted citation. Offer the capability both as an agent-accessible tool within a Scient project and as a lightweight standalone UI for one-off citation generation. | Yaacov | 2026-07-18 | Spoken idea. Open questions include supported identifiers and source types, in-text citation versus bibliography output, metadata lookup and correction, style coverage, copy or export formats, and how a generated citation should become a project source when used inside Scient. | Citation and manuscript product planning, source metadata, standalone utility UX, agent tools, and citation-style integration |
+
+### Scientific Domains And Disciplines
+
+| Idea | Raised by | Date added | Context or source | Possible area |
+|---|---|---|---|---|
+| **Scientific domain and interdisciplinary support.** Create a clean way for Scient to recognize and support different scientific domains, including medicine, biology, chemistry, physics, computer science, mathematics, engineering, social sciences, and other fields, while also supporting projects that span multiple disciplines. | Yaacov | 2026-07-18 | Spoken idea. The necessary product features and boundaries are still unresolved; the immediate need is to investigate what should stay common across Scient and what should adapt to a project's scientific domain or combination of domains. | Product planning, project setup, scientific skills and packs, agent context and routing, methods and evidence standards, product design, and evaluation |
+
+Questions to preserve:
+
+- Should researchers select one or more domains, should Scient infer them, or
+  should both be possible and correctable?
+- Which differences actually require domain adaptation: terminology, source
+  types and databases, methods, evidence standards, safety or regulatory
+  constraints, data and analysis tools, or expected outputs?
+- Which adaptations belong in domain-specific skills, packs, templates, tools,
+  or guidance rather than the shared Scient product core?
+- How should domain context affect agent behavior, model or tool selection, and
+  scientific evaluation without creating opaque assumptions?
+- How should interdisciplinary projects combine domain support without forcing
+  the project into one silo or duplicating the shared project workflow?
+
+### App Distribution, Updates, And Releases
+
+| Idea | Raised by | Date added | Context or source | Possible area |
+|---|---|---|---|---|
+| **Controlled desktop releases and trusted in-app updates.** Let installed Scient apps check for an explicitly published release, show a clear update action, download it safely, and install it with an understandable restart flow. Keep ordinary pushes to `main` separate from public releases so development can continue without updating users. Use a protected stable release branch, such as `release/stable`, as the deliberate promotion boundary: when a tested commit is ready, promote it from `main` to that branch and publish the public release from there. Only the explicit release should become the website download and the update offered to installed apps, with an immutable version tag and release artifacts recording the exact source that shipped. | Yaacov | 2026-07-19 | Spoken idea. The desktop repository already contains a Check for Updates menu item, update-button states, background check/download machinery, a GitHub Releases feed, website downloads from the latest release, and a tag/manual-dispatch release workflow. Client updates are still disabled in source pending a reviewed activation and installed-app feed test. The unresolved idea is therefore release activation and governance, not updating users from every push. | Desktop product and release planning, update UX, release-channel governance, CI/CD, code signing and notarization, installed-app testing, and website distribution |
