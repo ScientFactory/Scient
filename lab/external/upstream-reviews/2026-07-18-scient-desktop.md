@@ -125,9 +125,11 @@ advisories are inherited/transitive; this is not a zero-vulnerability claim.
   passed on the merged head, including the blocking stable browser gate. The
   earlier EventRouter discrepancy was a malformed test fixture returning `{}`
   for void RPC methods, now fixed; the stable gate is blocking again.
-- Owned-source lock: advanced to the merged head. The parent
-  `owned-sources.json` and `sources.lock.md` now record tested owned head
-  `d37e27be6ac5b365688629b7f690b6839b06e534`.
+- Owned-source lock: advanced to current owned `main`
+  `d4a3f96ca880034f1727ec3416b4e6d1ef05e52f`. The parent `owned-sources.json`
+  and `sources.lock.md` record this tested owned head; it is the desktop PR #16
+  merge (`d37e27be6ac5b365688629b7f690b6839b06e534`) plus a later
+  marketing-only commit.
 - Newer official commits reported by the upstream monitor after the frozen
   cutoff remain unreviewed and intentionally outside this intake.
 - Remaining risk: signing, notarization, updater policy, Windows installer
