@@ -20,8 +20,9 @@ The identity decision is active for the company, repositories, application,
 new first-party Scient package names, new product state, and new project
 metadata. It does not require a bulk rename of inherited private implementation
 identifiers. PapiLab remains only where required for migration compatibility or
-historical truth. The public website cutover is a separately deferred owner
-task, and the native Scient agent is still planned rather than implemented.
+historical truth. The public website cutover is complete in its independently
+owned repository, while the native Scient agent is still planned rather than
+implemented.
 
 ## Decision
 

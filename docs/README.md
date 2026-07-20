@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-07-18
+Last updated: 2026-07-20
 Purpose: Maps the Scient documentation structure and where each kind of information belongs.
 Doc type: Repo orientation
 
@@ -17,7 +17,7 @@ unrestricted memory of the whole company; the proposed connected-company
 boundary lives in [Repository Scope And Company
 Memory](planning/repository-scope-and-company-memory.md).
 
-The root [Scient README](../README.md) owns the current three-repository local
+The root [Scient README](../README.md) owns the current four-repository local
 workspace map. This index owns the documentation map inside the `Scient`
 repository and does not turn the sibling repositories into a monorepo.
 
