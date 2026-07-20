@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-07-18
+Last updated: 2026-07-19
 Purpose: Indexes Scient's accepted architecture decision records and the rules for using them.
 Doc type: Repo orientation
 
@@ -15,6 +15,10 @@ Current decisions:
 - `ADR-0002-standalone-source-ownership-and-upstream-authority.md` - accepts
   standalone ScientFactory desktop and agent repositories, fetch-only original
   sources, mandatory upstream awareness, and selective inheritance.
+- `ADR-0003-built-in-skills-portfolio-and-project-activation.md` - accepts the
+  app-owned built-in skills portfolio, immutable release identity, portable
+  project activation lock, and delivery boundary for native and external
+  agents.
 
 Supporting file:
 
