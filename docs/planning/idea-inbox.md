@@ -3,7 +3,7 @@
 Status: Active
 Owner: Scient 001
 Created: 2026-07-11
-Last updated: 2026-07-19
+Last updated: 2026-07-20
 Purpose: Provides one temporary intake surface for unprocessed Scient ideas before they are evaluated and routed to their durable homes.
 Doc type: Planning note
 
@@ -89,3 +89,9 @@ Questions to preserve:
 | Idea | Raised by | Date added | Context or source | Possible area |
 |---|---|---|---|---|
 | **Controlled desktop releases and trusted in-app updates.** Let installed Scient apps check for an explicitly published release, show a clear update action, download it safely, and install it with an understandable restart flow. Keep ordinary pushes to `main` separate from public releases so development can continue without updating users. Use a protected stable release branch, such as `release/stable`, as the deliberate promotion boundary: when a tested commit is ready, promote it from `main` to that branch and publish the public release from there. Only the explicit release should become the website download and the update offered to installed apps, with an immutable version tag and release artifacts recording the exact source that shipped. | Yaacov | 2026-07-19 | Spoken idea. The desktop repository already contains a Check for Updates menu item, update-button states, background check/download machinery, a GitHub Releases feed, website downloads from the latest release, and a tag/manual-dispatch release workflow. Client updates are still disabled in source pending a reviewed activation and installed-app feed test. The unresolved idea is therefore release activation and governance, not updating users from every push. | Desktop product and release planning, update UX, release-channel governance, CI/CD, code signing and notarization, installed-app testing, and website distribution |
+
+### Feedback And Support
+
+| Idea | Raised by | Date added | Context or source | Possible area |
+|---|---|---|---|---|
+| **In-context screenshot feedback.** Make a feedback action available from anywhere in Scient. A user should be able to invoke it, instantly capture the current Scient view or select the relevant area, add a written comment, review the submission, and send the screenshot and comment to the Scient team. | Yaacov | 2026-07-20 | Spoken idea. Open questions include full-view versus region capture, annotation and redaction, which diagnostic context may accompany a submission, how feedback is received and tracked, failure handling, and explicit consent safeguards so project content or sensitive information is never sent unexpectedly. | Product planning, desktop and web UX, feedback and support operations, privacy and security, and diagnostics |
