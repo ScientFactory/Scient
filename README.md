@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-07-18
+Last updated: 2026-07-20
 Purpose: Entry point for the Scient product and project repository.
 Doc type: Repo orientation
 
@@ -15,7 +15,7 @@ planned; its owned source repository is
 
 ## Related Repositories And Local Workspace
 
-ScientFactory owns three independently versioned repositories:
+ScientFactory owns four independently versioned repositories:
 
 - [`ScientFactory/Scient`](https://github.com/ScientFactory/Scient) - product
   direction, architecture, planning, cross-repository source pins, and the
@@ -26,6 +26,8 @@ ScientFactory owns three independently versioned repositories:
 - [`ScientFactory/scient-agent`](https://github.com/ScientFactory/scient-agent) -
   the maintained OpenCode-derived source foundation for the planned native
   Scient agent.
+- [`ScientFactory/ScientFactory-website`](https://github.com/ScientFactory/ScientFactory-website) -
+  the public website, download experience, and Cloudflare Pages deployment.
 
 The recommended local workspace keeps them as sibling Git repositories inside
 a plain, non-Git `ScientFactory/` directory:
@@ -34,13 +36,16 @@ a plain, non-Git `ScientFactory/` directory:
 ScientFactory/
 ├── Scient/
 ├── scient-desktop/
-└── scient-agent/
+├── scient-agent/
+└── website/
 ```
 
 The container is local organization only; the ScientFactory GitHub
 organization is the remote grouping. Run Git commands, create branches, and
 open pull requests in the repository that owns the change. Keep temporary
-worktrees outside the three-repository container.
+worktrees outside the four-repository container. Follow the
+[GitHub operating model](docs/operations/github-operating-model.md) for branch,
+promotion, release, deployment, and worktree rules.
 
 Start here:
 

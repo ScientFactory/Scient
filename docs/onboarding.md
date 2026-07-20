@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-07-12
-Last updated: 2026-07-18
+Last updated: 2026-07-20
 Purpose: Gives new Scient collaborators a deliberate reading journey through the project, its repository, and its sources of truth before task-specific work begins.
 Doc type: Repo orientation
 
@@ -31,11 +31,11 @@ project-initiation package, but it does not yet contain the complete scientific
 application, vertical slice, or the development and operational workflows that
 the documents anticipate.
 
-For local work, `Scient`, `scient-desktop`, and `scient-agent` are independent
-Git repositories kept as siblings inside a plain `ScientFactory/` directory.
-The container is not a fourth repository. The root [Scient README](../README.md)
-owns the repository roles and workspace layout; contributors must make each
-change in the repository that owns it.
+For local work, `Scient`, `scient-desktop`, `scient-agent`, and `website` are
+independent Git repositories kept as siblings inside a plain `ScientFactory/`
+directory. The container is not a Git repository. The root
+[Scient README](../README.md) owns the repository roles and workspace layout;
+contributors must make each change in the repository that owns it.
 
 ScientFactory is the company identity. **Scient** is the public name for both
 the implemented app and its planned native first-party research agent. The
@@ -47,8 +47,9 @@ been renamed. The Scient agent will be one owned OpenCode-derived agent, not an
 app shell around a separately exposed OpenCode engine. External OpenCode and
 the other external-agent choices remain independent. The Scient agent has not
 been implemented yet; the accepted identity, ownership decision, and proposed
-implementation plans are linked below. The public website cutover remains a
-separately deferred owner task.
+implementation plans are linked below. The public website is now independently
+owned by `ScientFactory/ScientFactory-website` and deployed from its protected
+`main` branch.
 
 The repository currently owns Scient product and project knowledge. It is not yet the general memory for company strategy, finance, legal, people, customer records, or cross-product authority. A proposed connected-company model is documented in [Repository Scope And Company Memory](planning/repository-scope-and-company-memory.md), but it does not change the current boundary.
 

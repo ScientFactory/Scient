@@ -3,7 +3,7 @@
 Status: Accepted
 Owner: Yaacov
 Created: 2026-07-17
-Last updated: 2026-07-18
+Last updated: 2026-07-20
 Purpose: Defines the accepted company, product, agent, and external-agent naming system for Scient.
 Doc type: Product truth
 
@@ -20,8 +20,9 @@ The identity decision is active for the company, repositories, application,
 new first-party Scient package names, new product state, and new project
 metadata. It does not require a bulk rename of inherited private implementation
 identifiers. PapiLab remains only where required for migration compatibility or
-historical truth. The public website cutover is a separately deferred owner
-task, and the native Scient agent is still planned rather than implemented.
+historical truth. The public website cutover is complete in its independently
+owned repository, while the native Scient agent is still planned rather than
+implemented.
 
 ## Decision
 
@@ -157,9 +158,10 @@ The owned topology is:
 | Parent product and documentation repository | `ScientFactory/Scient` |
 | Standalone desktop source repository | `ScientFactory/scient-desktop` |
 | Owned first-party agent source repository | `ScientFactory/scient-agent` |
+| Public website repository | `ScientFactory/ScientFactory-website` |
 
 The `ScientFactory` GitHub organization was created on 2026-07-17 and owns all
-three repositories. The agent source repository is named `scient-agent` now by
+four repositories. The agent source repository is named `scient-agent` now by
 explicit owner decision, even though the native agent product is not yet
 implemented. It preserves official OpenCode as fetch-only upstream, Git
 ancestry, licenses, attribution, inherited-core traceability, and reviewed
@@ -171,14 +173,16 @@ of repository topology.
 After the verified rename:
 
 - Scient is the active parent repository and implemented desktop identity.
-- `ScientFactory` owns `Scient`, `scient-desktop`, and `scient-agent`.
+- `ScientFactory` owns `Scient`, `scient-desktop`, `scient-agent`, and
+  `ScientFactory-website`.
 - `@scientfactory/project-init` and `.scient/` are the implemented first-party
   project-initiation names; PapiLab inputs are accepted only by the documented
   migration path.
 - The Scient agent is planned but not implemented.
 - The broader scientific project format, agent gateway, and first vertical
   slice remain unbuilt.
-- The public website and deployment have not been cut over to Scient.
+- The public website is deployed from `ScientFactory-website:main` to
+  `scientfactory.com` through Cloudflare Pages.
 
 Do not rewrite historical LitRev or PapiLab evidence as though it occurred
 under Scient. Do not infer a finished Scient-agent runtime from the owned
