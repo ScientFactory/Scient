@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-07-18
+Last updated: 2026-07-21
 Purpose: Defines where Scient planning documents live and how they relate to product truth, architecture, design, quality, and research documents.
 Doc type: Repo orientation
 
@@ -16,6 +16,9 @@ Do not use planning docs as product truth, accepted architecture, or current imp
 Current planning docs:
 
 - `idea-inbox.md` - temporary intake for raw, unprocessed ideas before evaluation and routing.
+- `linux-distribution-hardening.md` - proposed cross-repository migration from
+  an insecure Ubuntu AppImage fallback to an installed, sandbox-preserving
+  Linux distribution path with explicit release evidence.
 - `memory-architecture-discovery.md` - draft discussion of candidate memory
   scopes, authority, lifecycle, agent access, local/cloud boundaries, and the
   questions to resolve before architecture or storage selection.
