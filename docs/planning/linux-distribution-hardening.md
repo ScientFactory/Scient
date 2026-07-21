@@ -67,16 +67,16 @@ inspected state; later code must be re-read before implementation.
 ### Scient
 
 - `scient-desktop` `main` at
-  [`211ed85448dddf3cc36366a4847e752b79cde3a6`](https://github.com/ScientFactory/scient-desktop/commit/211ed85448dddf3cc36366a4847e752b79cde3a6)
+  [`f658bbc503d81f191e97bea357bfa79cf027ff37`](https://github.com/ScientFactory/scient-desktop/commit/f658bbc503d81f191e97bea357bfa79cf027ff37)
   builds Linux as AppImage and pins electron-builder 26.15.3. The relevant
   current sources are
-  [`package.json`](https://github.com/ScientFactory/scient-desktop/blob/211ed85448dddf3cc36366a4847e752b79cde3a6/package.json#L46-L60),
-  [`build-desktop-artifact.ts`](https://github.com/ScientFactory/scient-desktop/blob/211ed85448dddf3cc36366a4847e752b79cde3a6/scripts/build-desktop-artifact.ts#L89-L93),
+  [`package.json`](https://github.com/ScientFactory/scient-desktop/blob/f658bbc503d81f191e97bea357bfa79cf027ff37/package.json#L46-L60),
+  [`build-desktop-artifact.ts`](https://github.com/ScientFactory/scient-desktop/blob/f658bbc503d81f191e97bea357bfa79cf027ff37/scripts/build-desktop-artifact.ts#L89-L93),
   and the
-  [release matrix](https://github.com/ScientFactory/scient-desktop/blob/211ed85448dddf3cc36366a4847e752b79cde3a6/.github/workflows/release.yml#L219-L223).
+  [release matrix](https://github.com/ScientFactory/scient-desktop/blob/f658bbc503d81f191e97bea357bfa79cf027ff37/.github/workflows/release.yml#L219-L223).
 - The current updater policy explicitly disables Linux updates when the app is
   not running as AppImage in
-  [`updateState.ts`](https://github.com/ScientFactory/scient-desktop/blob/211ed85448dddf3cc36366a4847e752b79cde3a6/apps/desktop/src/updateState.ts#L151-L170).
+  [`updateState.ts`](https://github.com/ScientFactory/scient-desktop/blob/f658bbc503d81f191e97bea357bfa79cf027ff37/apps/desktop/src/updateState.ts#L151-L170).
 - `ScientFactory-website` `main` at
   [`6879b47a78abc1fae58436199322769a7e8601b7`](https://github.com/ScientFactory/ScientFactory-website/commit/6879b47a78abc1fae58436199322769a7e8601b7)
   selects `-x86_64.AppImage` as the Linux download in
