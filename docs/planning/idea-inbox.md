@@ -90,6 +90,12 @@ Questions to preserve:
 - How should interdisciplinary projects combine domain support without forcing
   the project into one silo or duplicating the shared project workflow?
 
+### Desktop Navigation And Thread Activity
+
+| Idea | Raised by | Date added | Context or source | Possible area |
+|---|---|---|---|---|
+| **Progressive-density desktop thread list.** Keep Scient's existing project and worktree grouping. Within each group, show live or attention-requiring threads as compact, information-rich cards, while quiet, seen, or completed threads remain simple rows. Rich cards could expose existing status, title, branch or worktree, provider, pull-request state, and diff summary when available. Derive the presentation from Scient's existing activity and attention state rather than introducing a separate persisted settled lifecycle. Desktop only; defer evaluation and implementation. | Yaacov | 2026-07-22 | T3 Code commit [`32c6012dabdbd0eb178b25ea4225d889ec8f6475`](https://github.com/pingdotgg/t3code/commit/32c6012dabdbd0eb178b25ea4225d889ec8f6475), dated 2026-07-22: “Sidebar v2 beta: flat thread list with a server-backed settled lifecycle” ([PR #4026](https://github.com/pingdotgg/t3code/pull/4026)). Inspect that exact commit before any future evaluation. The transferable idea is progressive visual density; T3's flat cross-project list as a hierarchy replacement, persisted settle or unsettle lifecycle, storage migration, controls, identity, and mobile implementation are out of scope. | Desktop sidebar and thread-list design, activity and attention presentation, accessibility, and future UX evaluation |
+
 ### App Distribution, Updates, And Releases
 
 | Idea | Raised by | Date added | Context or source | Possible area |
