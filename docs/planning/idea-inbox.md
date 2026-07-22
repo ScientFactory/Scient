@@ -3,7 +3,7 @@
 Status: Active
 Owner: Scient 001
 Created: 2026-07-11
-Last updated: 2026-07-20
+Last updated: 2026-07-22
 Purpose: Provides one temporary intake surface for unprocessed Scient ideas before they are evaluated and routed to their durable homes.
 Doc type: Planning note
 
@@ -51,6 +51,12 @@ not analysis or architecture, and should move with the idea when it is promoted.
 - Accepted product truth: `../product/`, only after explicit promotion
 
 ## Unprocessed Ideas
+
+### Skills And Extensibility
+
+| Idea | Raised by | Date added | Context or source | Possible area |
+|---|---|---|---|---|
+| **Project skill management after initialization.** ADR-0003 already accepts project-scoped built-in identities, an initialization-time activation lock, and the rule that activation is not invocation. Future product work should let users inspect and change a project's active skills after setup and decide whether optional domain skills that are available at user scope can be enabled or disabled for individual projects. An active skill is only eligible for use; an agent should load and follow it only when the current work matches its trigger. Do not build this management flow solely for the initial medical-exam-study skill; for now, that skill can remain user-scoped, disabled by default, and semantically invoked only for matching study work. | Yaacov | 2026-07-22 | Spoken product idea while defining the medical-exam-study built-in. Existing accepted project-activation architecture is recorded in ADR-0003; the unresolved idea is post-initialization management and user-versus-project activation composition. | Skills product planning, project settings, activation override semantics, agent skill routing, and UX |
 
 ### Research Exploration And Visualization
 
