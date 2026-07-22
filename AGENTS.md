@@ -36,27 +36,38 @@ be completed before public release.
 
 The current repo contents are working documents. They are expected to change as the product, architecture, and implementation plan become clearer.
 
-## Three-Repository Workspace
+## Internal Team Workspace
 
-The recommended local workspace is a plain, non-Git `ScientFactory/`
-container with three sibling repositories:
+Internal contributors should open a contributor-owned parent directory as the
+editor or agent workspace. Its name is arbitrary, and it must remain a plain,
+non-Git container with the three core repositories as sibling checkouts:
 
 ```text
-ScientFactory/
+<scient-workspace>/
 ├── Scient/
 ├── scient-desktop/
-└── scient-agent/
+├── scient-agent/
+└── website/          # optional
 ```
 
 `Scient/` owns product and project knowledge, cross-repository planning, and
 source pins. `scient-desktop/` owns the application implementation.
-`scient-agent/` owns the OpenCode-derived native-agent source foundation.
+`scient-agent/` owns the OpenCode-derived native-agent source foundation. Add
+`website/` only when website or download-surface work needs it.
+
+Starting an agent from the parent workspace gives it cross-repository read
+context; it does not give every task cross-repository write scope. Identify the
+owning repository before editing and keep unrelated sibling repositories
+read-only. Do not add unrelated private company repositories, credentials,
+personal files, or customer material to this workspace. External contributors
+working in a public repository are not required to have the private `Scient`
+checkout.
 
 Treat these as independent repositories, not a monorepo. Run Git commands from
 the intended repository, keep changes on repository-specific branches, and use
 separate pull requests for cross-repository work. State dependencies between
 those pull requests explicitly. Do not initialize Git in the container or put
-temporary worktrees inside it.
+temporary worktrees inside it; use a separate contributor-chosen worktree root.
 
 ## Core Working Principles
 
