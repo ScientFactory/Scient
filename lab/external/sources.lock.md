@@ -28,7 +28,7 @@ siblings. A deferred source with no retained checkout says so explicitly.
 |---|---|---|---|---|---|---|
 | Scient agent source (OpenCode-derived) | `../scient-agent/`; canonical workspace sibling on `dev` at `709a26002c697f06cbaebeb8fac40e87de0ab6b3` | `https://github.com/anomalyco/opencode.git`, `dev` | `https://github.com/ScientFactory/scient-agent`, public standalone repository | `69a80663a2ed7d671d2b4d5dd6f2d605714675a5` | Current owned `dev` `709a26002c697f06cbaebeb8fac40e87de0ab6b3`; exact rename and maintenance evidence below | Owned source foundation for the planned Scient agent; `adapter-maintained`; native Scient runtime identity is not yet implemented. |
 | Goose | No local checkout is retained. | `https://github.com/aaif-goose/goose.git`, `main` | None; owned repository deferred | Not tested in Gate 1.5 | Last inspected commit `3c1fdd692cc8aaa5f09b9175410c09a09d4dfe49` | Deferred broader-agent research input. Repository, build, ACP adapter, runtime, credentials, and adoption wait until after the first Scient gateway. |
-| Scient desktop (Synara-derived) | `../scient-desktop/`; canonical workspace sibling on `main` at `5982a794f16c61841bff9cf334575cd6e0ed0c6c` | `https://github.com/Emanuele-web04/synara.git`, `main` | `https://github.com/ScientFactory/scient-desktop`, public standalone repository | `9be46c3ce6a7521b64436b7334bc6fce16e3cac4` | Current owned `main` `5982a794f16c61841bff9cf334575cd6e0ed0c6c`; exact rename and maintenance evidence below | Accepted initial application foundation; `divergent-cherry-pick`; must not own scientific project truth. |
+| Scient desktop (Synara-derived) | `../scient-desktop/`; canonical workspace sibling on `main` at `abb7a05bf04be8c968fdf240732a61744d0e8493` | `https://github.com/Emanuele-web04/synara.git`, `main` | `https://github.com/ScientFactory/scient-desktop`, public standalone repository | `9be46c3ce6a7521b64436b7334bc6fce16e3cac4` | Current owned `main` `abb7a05bf04be8c968fdf240732a61744d0e8493`; exact rename and maintenance evidence below | Accepted initial application foundation; `divergent-cherry-pick`; must not own scientific project truth. |
 | T3 Code | No canonical local checkout is retained. | `https://github.com/pingdotgg/t3code.git`, `main` | None | Not tested in Gate 1.5 | Targeted review completed through `bf76535fe4da71d8de7b8bd5ffa0d2086b7af8d0`; see [`t3-code-targeted-review-2026-07-18.md`](../notes/t3-code-targeted-review-2026-07-18.md) | Trigger-driven desktop/runtime/provider/process reference only; not a continuously monitored upstream. |
 
 ## Maintained Upstream Review State
@@ -40,7 +40,7 @@ review is accepted.
 
 | Source | Tested owned head | Reviewed through | Integration base | Update mode | Review evidence |
 |---|---|---|---|---|---|
-| Scient desktop | `5982a794f16c61841bff9cf334575cd6e0ed0c6c` | `3a5720bdd0ae4ace444379cabf0a634941d232fd` on 2026-07-18 | `9be46c3ce6a7521b64436b7334bc6fce16e3cac4` | `divergent-cherry-pick` | [`2026-07-18-scient-desktop.md`](upstream-reviews/2026-07-18-scient-desktop.md); desktop PR #16 established the reviewed intake; later Scient-owned product work does not advance the upstream checkpoint |
+| Scient desktop | `abb7a05bf04be8c968fdf240732a61744d0e8493` | `3a5720bdd0ae4ace444379cabf0a634941d232fd` on 2026-07-18 | `9be46c3ce6a7521b64436b7334bc6fce16e3cac4` | `divergent-cherry-pick` | [`2026-07-18-scient-desktop.md`](upstream-reviews/2026-07-18-scient-desktop.md); desktop PR #16 established the reviewed intake; later Scient-owned product work does not advance the upstream checkpoint |
 | Scient agent source | `709a26002c697f06cbaebeb8fac40e87de0ab6b3` | `fab213312927ea64cf968832c527206e8c944f9e` on 2026-07-18 | `69a80663a2ed7d671d2b4d5dd6f2d605714675a5` | `adapter-maintained` | [`2026-07-18-scient-agent.md`](upstream-reviews/2026-07-18-scient-agent.md); no code intake |
 
 ## Standalone Ownership And Maintenance Rollout
@@ -130,6 +130,14 @@ source-repository pull requests:
   official checkpoint or integration base. PR #72 head
   `35e50c0612bed2e19785f6e805b828317933c2dd` passed hosted CI run
   `29906551895`, including format, lint, typecheck, unit, browser, Windows
+  process, release-smoke, and desktop-build coverage, before the ordinary
+  squash merge.
+- Desktop [PR #69](https://github.com/ScientFactory/scient-desktop/pull/69)
+  then advanced owned `main` to
+  `abb7a05bf04be8c968fdf240732a61744d0e8493` without changing the reviewed
+  official checkpoint or integration base. Its exact head
+  `b509b56e28922eb7b6f5f7dc2110b02582eab6bf` passed hosted CI run
+  `29911307148`, including format, lint, typecheck, unit, browser, Windows
   process, release-smoke, and desktop-build coverage, before the ordinary
   squash merge.
 - Agent [PR #1](https://github.com/ScientFactory/scient-agent/pull/1)
