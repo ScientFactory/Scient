@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-07-12
-Last updated: 2026-07-20
+Last updated: 2026-07-22
 Purpose: Gives new Scient collaborators a deliberate reading journey through the project, its repository, and its sources of truth before task-specific work begins.
 Doc type: Repo orientation
 
@@ -65,7 +65,15 @@ Keep that maturity boundary in mind throughout onboarding:
 
 The repository's documentation structure is an intentional foundation for the project, not a claim that every part of Scient has already been designed or built. The [Documentation index](README.md) establishes the main knowledge areas, and the [Documentation Policy](documentation-policy.md) defines how material enters those areas and becomes trustworthy. Product, architecture, planning, research, design, quality, development, and operations work should grow on top of this base instead of creating disconnected documents or competing sources of truth.
 
-Many files are deliberately marked `Placeholder`. For example, the [Development](development/README.md) and [Operations](operations/README.md) documents reserve homes for workflows that do not exist yet. Other placeholder files reserve future homes within their own areas. A placeholder should explain what will belong there, why the home exists, and what it must not be used as today. It is not an accepted decision, current guidance, an implementation specification, or evidence that the described system exists.
+Many files are deliberately marked `Placeholder`. For example, the
+[Development](development/README.md) document reserves homes for workflows that
+do not exist yet. The [Operations](operations/README.md) area now combines real
+active procedures with future operational homes, so follow each linked
+document's own status. Other placeholder files reserve future homes within
+their areas. A placeholder should explain what will belong there, why the file
+exists, and what it must not be used as today. It is not an accepted decision,
+current guidance, an implementation specification, or evidence that the
+described system exists.
 
 As Scient matures, collaborators should build on this documentation base deliberately:
 
@@ -88,6 +96,10 @@ Read these documents in order. The order is intentional: understand the accepted
 5. **Learn the repository map.** Read the [Documentation index](README.md) to understand where product, architecture, planning, research, design, quality, development, and operations knowledge belongs.
 6. **Learn how to judge what you read.** Read the [Documentation Policy](documentation-policy.md), especially its status values, placement rules, evidence rules, promotion rules, and truth rules. This is what lets you distinguish accepted direction from proposals, plans, evidence, placeholders, and implemented behavior.
 7. **Understand the agent boundary.** Read [AGENTS.md](../AGENTS.md), even if an agent will do most of the repository work. It defines how agents must reason, which sources they must trust, how they should place documentation, and what they must not invent.
+8. **Learn the contribution workflow.** Read the [Team Contribution
+   Protocol](operations/team-contribution-protocol.md) for the current minimum
+   branch, verification, self-review, review, and evidence requirements. Then
+   follow the owning repository's contributor guide and technical instructions.
 
 Do not replace this sequence with a chat summary. Summaries can help with comprehension, but the linked repository documents remain the durable project knowledge.
 
@@ -104,7 +116,7 @@ After the shared journey, use this map to know where to look. You do not need to
 | Design | [Design](design/README.md) | Early design notes, future design homes, and surface-specific guidance. Much of this area is still draft or placeholder material. |
 | Quality | [Quality](quality/README.md) | Testing, engineering, and quality doctrine. These documents define principles, not yet-complete command or CI references. |
 | Development | [Development](development/README.md) | A placeholder for setup, commands, package structure, APIs, and development workflows once real implementation surfaces exist. |
-| Operations | [Operations](operations/README.md) | A placeholder for deployment, monitoring, support, backup, release, and maintenance workflows once they exist. |
+| Operations | [Operations](operations/README.md) | Active contribution, repository-operation, and upstream-intake procedures, plus future homes for additional operational workflows as their surfaces become real. |
 | Experimental work | [Scient Lab](../lab/README.md) | Controlled source inspection, forks, adapters, prototypes, and verification evidence. Nothing here is accepted architecture or current product implementation unless it has been promoted. |
 | Agent workflows | [Project Skills](../skills/README.md) | Workflow helpers for agents. Skills route agents back to project authority; they do not become authority themselves. |
 

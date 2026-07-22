@@ -3,7 +3,7 @@
 Status: Draft
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-07-18
+Last updated: 2026-07-22
 Purpose: Defines Scient's testing philosophy before implementation-specific commands, lanes, and CI gates exist.
 Doc type: Testing doctrine
 
@@ -14,6 +14,18 @@ This document defines how Scient should think about tests. It is not a command r
 Testing exists to protect Scient's product invariants: scientific truth, durable project state, user control, local-first reliability, cloud consistency, agent safety, and recoverability.
 
 The goal is not test volume. The goal is to catch real regressions early with the smallest reliable proof that exercises the actual failure mode.
+
+## Current Operationalization
+
+The active [Team Contribution
+Protocol](../operations/team-contribution-protocol.md) turns a small subset of
+this draft doctrine into today's minimum contribution workflow: identify the
+affected risk, provide focused automated proof, manually exercise changed
+user-facing behavior, record gaps honestly, and review the final diff before
+requesting independent approval.
+
+This document remains the broader testing doctrine. Repository-specific test
+commands and hosted checks remain in the repositories that implement them.
 
 ## Required Reasoning
 

@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-07-20
+Last updated: 2026-07-22
 Purpose: Indexes Scient's real monitoring, release-adjacent, support, and maintenance procedures.
 Doc type: Repo orientation
 
@@ -12,6 +12,10 @@ repositories, workflows, releases, monitoring surfaces, or maintained data.
 It must remain evidence-backed and must not invent production infrastructure.
 
 Current procedures:
+
+- [Team contribution protocol](team-contribution-protocol.md) - minimum shared
+  branch, verification, self-review, independent-review, and evidence workflow
+  across maintained ScientFactory repositories.
 
 - [GitHub operating model](github-operating-model.md) - repository ownership,
   branches, pull requests, release promotion, website deployment, permissions,

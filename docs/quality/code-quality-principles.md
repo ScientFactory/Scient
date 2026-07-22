@@ -3,7 +3,7 @@
 Status: Draft
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-07-17
+Last updated: 2026-07-22
 Purpose: Defines Scient's code quality principles before implementation-specific standards and gates exist.
 Doc type: Engineering doctrine
 
@@ -14,6 +14,17 @@ This document defines the engineering quality bar Scient should use when code ex
 Scient should optimize for long-term correctness, explainable ownership, and recoverable scientific work over quick local fixes.
 
 A small change is good only if it solves the real problem without making the system harder to reason about.
+
+## Current Operationalization
+
+The active [Team Contribution
+Protocol](../operations/team-contribution-protocol.md) operationalizes the
+current minimum review bar: explain the real need, keep scope coherent, match
+verification to risk, inspect the complete final diff, consider existing
+primitives and ownership boundaries, and state limitations or deferrals.
+
+This draft document continues to own the broader engineering doctrine. It does
+not become a command reference or CI policy through that link.
 
 ## Root Cause Over Symptom Patches
 
