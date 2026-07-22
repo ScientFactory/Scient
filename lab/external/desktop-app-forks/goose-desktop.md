@@ -3,7 +3,7 @@
 Status: Draft
 Owner: Yaacov
 Created: 2026-07-08
-Last updated: 2026-07-18
+Last updated: 2026-07-22
 Purpose: Records Goose's cross-role research status without implying a retained local checkout.
 Doc type: Planning note
 
@@ -15,4 +15,4 @@ If a later bounded experiment restores Goose, use one physical checkout,
 record its actual location in `sources.lock.md`, and inspect that checkout for
 desktop behavior, app packaging, sidecar/runtime boundaries, recipes, provider
 handling, MCP behavior, or automation surfaces. Do not add Goose as a fourth
-canonical repository inside the three-repository ScientFactory workspace.
+canonical owned repository inside the internal product workspace.

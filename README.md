@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-07-20
+Last updated: 2026-07-22
 Purpose: Entry point for the Scient product and project repository.
 Doc type: Repo orientation
 
@@ -29,21 +29,37 @@ ScientFactory owns four independently versioned repositories:
 - [`ScientFactory/ScientFactory-website`](https://github.com/ScientFactory/ScientFactory-website) -
   the public website, download experience, and Cloudflare Pages deployment.
 
-The recommended local workspace keeps them as sibling Git repositories inside
-a plain, non-Git `ScientFactory/` directory:
+For internal team repository work, each contributor must create a local
+workspace root that they control. The folder name is arbitrary;
+`scient-workspace/` is only an example, not a required name or a company
+repository. The root must remain a
+plain, non-Git directory containing the three core product repositories as
+sibling checkouts. Clone the website alongside them only when the work needs
+website or download-surface context.
 
 ```text
-ScientFactory/
+<scient-workspace>/
 ├── Scient/
 ├── scient-desktop/
 ├── scient-agent/
-└── website/
+└── website/          # optional
 ```
 
-The container is local organization only; the ScientFactory GitHub
-organization is the remote grouping. Run Git commands, create branches, and
-open pull requests in the repository that owns the change. Keep temporary
-worktrees outside the four-repository container. Follow the
+Open this parent directory as the editor or agent workspace so product
+documentation, desktop code, and agent code are available in one working
+context. That broader read context does not broaden write authority: identify
+the owning child repository before editing, and run Git commands, create
+branches, and open pull requests there. Keep temporary worktrees outside the
+workspace root.
+
+Internal contributors need authorized access to the private `Scient`
+repository. External contributors working in a public repository are not
+required to clone it and should be able to follow that public repository's own
+contributor guidance. Do not place unrelated private company repositories,
+credentials, personal files, or customer material in the product workspace.
+
+The workspace root is local organization only; the ScientFactory GitHub
+organization is the remote grouping. Follow the
 [GitHub operating model](docs/operations/github-operating-model.md) for branch,
 promotion, release, deployment, and worktree rules.
 

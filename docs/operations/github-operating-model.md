@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-07-20
-Last updated: 2026-07-20
+Last updated: 2026-07-22
 Purpose: Defines how ScientFactory repositories, branches, pull requests, releases, deployments, permissions, and local worktrees are operated.
 Doc type: Operational procedure
 
@@ -15,9 +15,11 @@ repository's integration branch. Shipping code is a separate, deliberate
 promotion. Website production is the one exception: a reviewed merge to the
 website's `main` branch deploys production automatically.
 
-The local `ScientFactory/` directory is a plain container, not a monorepo and
-not a Git repository. Every commit, branch, worktree, pull request, check, and
-release belongs to exactly one child repository.
+An internal contributor's local workspace root is a plain directory whose name
+and location they choose. It is not a monorepo or a Git repository. Opening it
+as an editor or agent workspace provides cross-repository context, while every
+commit, branch, worktree, pull request, check, and release still belongs to
+exactly one child repository.
 
 ## Repository And Branch Map
 
@@ -28,9 +30,10 @@ release belongs to exactly one child repository.
 | `ScientFactory/scient-agent` | `scient-agent/` | Public | `dev` | `release/stable` is the agent promotion boundary. Agent artifact publication remains disabled until an owned artifact contract exists. |
 | `ScientFactory/ScientFactory-website` | `website/` | Public | `main` | `main` is the Cloudflare Pages production source. Pull requests receive preview deployments. |
 
-The website repository uses `website/` locally because the parent folder
-already supplies the ScientFactory context. The remote repository keeps the
-explicit `ScientFactory-website` name.
+The website repository may use `website/` when cloned into the shared local
+workspace; the remote repository keeps the explicit
+`ScientFactory-website` name. Website checkout is optional unless the task
+needs website or download-surface context.
 
 ## What Goes Where
 
@@ -68,21 +71,21 @@ branch.
 
 ## Local Worktrees
 
-Keep primary checkouts as siblings:
+The [Scient README](../../README.md#related-repositories-and-local-workspace)
+owns the recommended internal workspace layout. Keep the three core primary
+checkouts as siblings there, with the website checkout optional. Keep temporary
+task worktrees outside that workspace under a separate location chosen by the
+contributor, for example:
 
 ```text
-ScientFactory/
-├── Scient/
-├── scient-desktop/
-├── scient-agent/
-└── website/
+<parent-directory>/
+├── <scient-workspace>/
+└── <scient-worktrees>/
 ```
 
-Keep temporary worktrees outside that container, under:
-
-```text
-/Users/yaacov/REPOs/ScientFactory-worktrees/
-```
+The names are examples. Do not initialize Git in either container, and do not
+place unrelated private company repositories or sensitive material inside the
+product workspace.
 
 Before removing a worktree, confirm all of the following:
 

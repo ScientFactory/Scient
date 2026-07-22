@@ -19,6 +19,22 @@ This guide is for anyone joining Scient work: product collaborators, researchers
 
 Complete the shared reading journey before starting the contribution-area route that matches your work. The task itself should arrive separately, with its own objective, scope, authority, expected output, and validation requirements.
 
+## Internal Team Workspace Setup
+
+Before starting internal repository work, team contributors must complete the
+[local workspace setup](../README.md#related-repositories-and-local-workspace)
+documented in the Scient README. Open that plain parent directory as the editor
+or agent workspace so the private product documentation, desktop source, and
+agent source are available in one context. Follow the [GitHub operating
+model](operations/github-operating-model.md#local-worktrees) for worktree
+placement and repository boundaries.
+
+This setup is an internal team workflow. It does not require an external
+contributor to obtain the private `Scient` repository before contributing to a
+public repository. Access to the shared workspace also does not authorize an
+agent or contributor to change every repository; each task retains its stated
+scope and must be implemented in the repository that owns it.
+
 ## Current Project State
 
 Scient is a local-first, cloud-mirrored scientific workspace where researchers, collaborators, and AI agents should be able to carry a research project from its initial question to publication-ready outputs.
@@ -31,10 +47,10 @@ project-initiation package, but it does not yet contain the complete scientific
 application, vertical slice, or the development and operational workflows that
 the documents anticipate.
 
-For local work, `Scient`, `scient-desktop`, `scient-agent`, and `website` are
-independent Git repositories kept as siblings inside a plain `ScientFactory/`
-directory. The container is not a Git repository. The root
-[Scient README](../README.md) owns the repository roles and workspace layout;
+For internal local work, `Scient`, `scient-desktop`, and `scient-agent` are the
+core independent sibling repositories; `website` is optional when its surface
+is relevant. Their parent workspace is not a Git repository. The root [Scient
+README](../README.md) owns the repository roles and workspace layout;
 contributors must make each change in the repository that owns it.
 
 ScientFactory is the company identity. **Scient** is the public name for both

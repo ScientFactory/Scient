@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-07-08
-Last updated: 2026-07-18
+Last updated: 2026-07-22
 Purpose: Explains how owned source repositories, external provenance, and optional reference checkouts are organized locally.
 Doc type: Repo orientation
 
@@ -12,7 +12,8 @@ Doc type: Repo orientation
 This folder owns provenance metadata for upstream projects used in Scient fork,
 integration, and source-reading work. The maintained owned repositories do not
 live here: `Scient`, `scient-desktop`, and `scient-agent` are independent
-siblings inside the plain local `ScientFactory/` workspace.
+siblings under the contributor's plain local product workspace described in
+the root [Scient README](../../README.md#related-repositories-and-local-workspace).
 
 Optional temporary reference checkouts may be retained under this folder when
 a bounded lab task needs them, but they are never canonical owned checkouts.
