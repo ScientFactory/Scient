@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-07-16
-Last updated: 2026-07-18
+Last updated: 2026-07-23
 Purpose: Defines the current sequence of coherent Scient product outcomes without turning technology experiments into the product roadmap.
 Doc type: Planning note
 
@@ -64,6 +64,17 @@ not replace deterministic component checks or comparable agent measurements.
 ## Next
 
 - Strengthen the evidence-to-writing path based on the first slice.
+- Design the collaboration foundation alongside the scientific project model:
+  individual identity and affiliation, ad hoc teams, nested institutions and
+  research groups, project membership, external collaborators, roles,
+  permissions, attribution, version history, review, and recovery. This design
+  must not delay the current local slice, but the project model should not need
+  to be replaced later to support shared work.
+- After the first single-researcher scientific-state path is stable, validate a
+  narrow shared-project slice: invite one collaborator, assign a project role,
+  comment or suggest a change, review it, preserve attribution and history, and
+  revoke access without damaging the project. Expand from asynchronous review
+  to simultaneous editing only after this shared-state boundary is dependable.
 - Build the Many Labs 2 Knobe capsule now; do not let further portfolio research
   or benchmark integration delay it.
 - When data-to-figure work begins, activate the narrowly scoped BCG
@@ -85,7 +96,10 @@ not replace deterministic component checks or comparable agent measurements.
 
 ## Later
 
-- Cloud mirroring and collaboration.
+- Broader cloud mirroring, offline multi-device synchronization, synchronized
+  co-editing across scientific surfaces, institution administration, managed
+  identity, and organization policy controls after the narrow shared-project
+  slice proves project membership, permissions, attribution, and recovery.
 - Mobile reading, review, capture, and approval.
 - Deeper source discovery, import, parsing, and citation workflows.
 - Multi-paper medical evidence synthesis, with the BCG vaccine meta-analysis

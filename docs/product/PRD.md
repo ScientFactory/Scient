@@ -4,7 +4,7 @@ Status: Accepted
 Version: v1
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-07-18
+Last updated: 2026-07-23
 Purpose: Defines Scient's product direction, core capabilities, user experience principles, and product constraints.
 Doc type: Product truth
 
@@ -70,7 +70,11 @@ The goal of Scient is to make scientific work faster without making it opaque. R
 
 ## Target Users
 
-Scient is built for people doing scientific and scholarly research: PhD students, postdocs, clinician-researchers, academic researchers, research assistants, and small research teams who need one durable workspace for a project from early formation through publication-ready outputs.
+Scient is built for people doing scientific and scholarly research: PhD
+students, postdocs, clinician-researchers, academic researchers, research
+assistants, independent collaborators, research teams, laboratories, and
+institutional research communities that need one durable workspace for a
+project from early formation through publication-ready outputs.
 
 Scient should organize work around the research project, not around one fixed user type. Role-specific capabilities should be added when they strengthen the shared project workflow.
 
@@ -99,11 +103,34 @@ When support is missing, weak, uncertain, conflicting, or agent-generated, Scien
 
 Unknown data should stay unknown. Missing metadata, uncertain source identity, parser failures, low-confidence extraction, ambiguous duplicate matches, stale analysis outputs, and incomplete citation data should remain visible instead of being silently converted into authoritative-looking values.
 
-### Local-First, Collaborative, And Versioned
+### Collaboration Is Core, Local-First, And Versioned
 
-Scient projects should be locally owned, cloud-mirrored when useful, and designed for collaborative and versioned research work. Cloud mirroring should support backup, cross-device continuation, sharing, teamwork, and collaboration without becoming the only source of truth.
+Science is inherently collaborative. Collaboration is not a manuscript-only
+feature, an optional enterprise layer, or a secondary mode added after the
+individual product is complete. Researchers, collaborators, and agents should
+be able to work on the same connected scientific project throughout its
+lifecycle while preserving attribution, review, permissions, history, and
+researcher control.
 
-Scient should support multi-user project work, including comments, suggestions, assignments, approvals, and synchronized co-editing where real-time collaboration is useful. Real-time collaborative editing should strengthen the shared project record without replacing version history, attribution, review, or recovery.
+Scient should support both informal and institutional collaboration. Any group
+of researchers should be able to create a team or share a project without
+belonging to the same institution. Scient should also support durable
+organizations and nested research groups, such as an institution, faculty or
+department, laboratory, subgroup, and project team. A person may belong to
+multiple groups and projects, and project membership or responsibility may
+differ from organization membership or affiliation.
+
+Scient projects should be locally owned, cloud-mirrored when useful, and
+designed for collaborative and versioned research work. Cloud mirroring should
+support backup, cross-device continuation, sharing, teamwork, and collaboration
+without becoming the only source of truth.
+
+Scient should support multi-user project work, including presence, comments,
+suggestions, assignments, approvals, and synchronized co-editing where
+real-time collaboration is useful. It should also support asynchronous work
+across time zones and disciplines. Real-time collaborative editing should
+strengthen the shared project record without replacing version history,
+attribution, review, or recovery.
 
 Scient should work naturally with Git or Git-like versioning for project history, review, comparison, recovery, and power-user workflows. Git integration should strengthen transparency and portability, but normal collaboration should not require researchers to manage Git directly.
 
@@ -250,11 +277,28 @@ When upstream data, code, methods, or evidence change, the workspace should help
 
 ### Collaborative Research Work
 
-The workspace should support research projects involving advisors, coauthors, assistants, analysts, librarians, reviewers, and other collaborators.
+The workspace should support research projects involving advisors, coauthors,
+assistants, analysts, librarians, reviewers, external partners, and other
+collaborators. People should be able to collaborate through an ad hoc project
+team, a durable lab or research group, or a larger institution without forcing
+every project into one organizational hierarchy.
 
-Scient should support comments, suggestions, assignments, approvals, attribution, shared review, synchronized co-editing, and real-time collaboration where useful. Collaboration should strengthen the project record instead of scattering decisions across email, chat, duplicated documents, and disconnected files.
+Organization, group, and project boundaries should remain distinct. An
+institution may contain departments, labs, groups, and subgroups, while a
+project may include selected members from several institutions plus independent
+external collaborators. Organization-wide roles or policies must not silently
+grant access to every project, and project-specific roles must remain visible.
 
-Concurrent edits and contributions should produce understandable attribution, conflict, review, and recovery states.
+Scient should support presence, comments, suggestions, assignments, approvals,
+attribution, shared review, synchronized co-editing, and real-time
+collaboration where useful. Collaboration should strengthen the project record
+instead of scattering decisions across email, chat, duplicated documents, and
+disconnected files.
+
+Concurrent edits and contributions should produce understandable attribution,
+conflict, review, and recovery states. Ownership transfer, affiliation changes,
+member departure, access revocation, and institutional handoff should preserve
+the continuity and understandability of authorized project work.
 
 ### History, Review, And Recovery
 
@@ -285,7 +329,7 @@ Scient should have a recognizable product shape. These are the main product surf
 | Figures, Tables, And Artifacts | Manage generated and editable tables, figures, charts, diagrams, visual plans, captions, artifact review, manuscript usage, and export readiness. |
 | Agent Runs And Review | Show delegated tasks, context receipts, proposed changes, generated artifacts, logs, approvals, rejections, failures, retries, diffs, checkpoints, and recovery paths. |
 | Memory, History, And Decisions | Make notes, interpretations, decisions, unresolved questions, project memory, prior agent work, provenance, version history, snapshots, rollback, and audit trails inspectable and correctable. |
-| Collaboration And Mobile Continuation | Support members, roles, permissions, comments, suggestions, assignments, attribution, shared review, notifications, and mobile reading, capture, approval, and task status. |
+| Collaboration And Mobile Continuation | Support individual and institutional identities, ad hoc teams, nested organizations and research groups, project membership, external collaborators, roles, permissions, presence, comments, suggestions, assignments, attribution, shared review, notifications, and mobile reading, capture, approval, and task status. |
 | Settings, Integrations, And Export | Manage project configuration, citation formats, import and export paths, external connections, repositories, archives, cloud mirror state, and portability controls. |
 
 Every important project object or change should have an obvious place to inspect it. Researchers should be able to find where a change landed and what related project material it affects.
@@ -481,7 +525,16 @@ Project memory should strengthen continuity without becoming opaque authority. A
 
 Scient projects should be locally owned and durable, with cloud mirroring used where helpful for backup, cross-device continuation, sharing, teamwork, and collaboration. Cloud services should extend the project workspace without becoming the only source of truth.
 
-Scient should support multi-user project work through project membership, roles, permissions, invitations, access revocation, comments, suggestions, assignments, attribution, shared review, notifications, and synchronized co-editing where real-time collaboration is useful.
+Scient should support collaboration among individuals, ad hoc teams, nested
+labs or research groups, and institutions. Affiliation, organization
+membership, group membership, and project membership should remain distinct so
+cross-institutional and independent collaboration remain natural.
+
+Scient should support multi-user project work through project membership,
+roles, permissions, invitations, external collaborators, access revocation,
+presence, comments, suggestions, assignments, attribution, shared review,
+notifications, and synchronized co-editing where real-time collaboration is
+useful.
 
 Collaboration should preserve project history. Researchers should be able to see who contributed what, review major changes, resolve conflicts, and recover earlier states.
 
