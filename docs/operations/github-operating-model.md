@@ -60,9 +60,12 @@ claim authority over its release.
 2. Create one narrowly named branch and one dedicated worktree for the task.
 3. Make scoped commits; never stage unrelated user or agent work.
 4. Push the branch and open a pull request against the integration branch.
-5. Wait for required checks and review. Resolve conversations before merging.
-6. Squash-merge and delete the remote task branch.
-7. Remove the task worktree and local task branch only after confirming the pull
+5. Complete the author's self-review and relevant manual verification, wait for
+   required checks, and resolve conversations before merging.
+6. Request peer review when another person's judgment is useful; it is not a
+   default merge gate.
+7. Squash-merge and delete the remote task branch.
+8. Remove the task worktree and local task branch only after confirming the pull
    request is merged and the worktree is inactive and clean.
 
 Use branch names that describe the work, such as `feature/...`, `fix/...`,
@@ -187,17 +190,25 @@ are team maintainers. Team maintenance allows managing team membership and team
 settings; it does not replace organization-owner authority or bypass repository
 rules by itself.
 
-Public code repositories require pull requests, one approval, current required
-checks, resolved conversations, linear history, and no force-push or branch
-deletion on protected branches. Repository administrators retain emergency
-bypass so recovery is possible, but normal work follows the same pull-request
-path.
+Public code repositories require pull requests, current required checks,
+resolved conversations, linear history, and no force-push or branch deletion
+on protected branches. They do not require an approving review. Authors must
+self-review their changes and complete the relevant automated and manual
+verification. Peer review may be requested when it adds useful judgment, but
+its absence does not block a verified pull request from merging.
+
+Do not enable a required-approval branch-protection rule or request a reviewer
+solely to make a pull request mergeable unless Yaacov explicitly changes this
+policy. Repository administrators retain recovery authority, but normal work
+still follows the pull-request and required-check path.
 
 `Scient` is private. On the organization's current GitHub Free plan, GitHub does
 not enforce branch protection for that private repository. Treat `main` as
-process-protected: use pull requests, scoped checks, review, and squash merges
-even though the platform cannot enforce every rule. Re-evaluate native
-protection if the repository becomes public or the organization plan changes.
+process-protected: use pull requests, scoped checks, author self-review, and
+squash merges even though the platform cannot enforce every rule. Re-evaluate
+native protection if the repository becomes public or the organization plan
+changes, without adding a required-approval gate unless Yaacov explicitly
+requests one.
 
 ## Definition Of Done
 
