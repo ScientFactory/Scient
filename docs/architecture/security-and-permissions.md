@@ -3,7 +3,7 @@
 Status: Draft
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-07-17
+Last updated: 2026-07-23
 Purpose: Defines Scient's early security, trust-boundary, and permission principles before implementation-specific architecture exists.
 Doc type: Architecture direction
 
@@ -101,6 +101,52 @@ Do not treat any of the following as sufficient proof of access or intent:
 - cached context,
 - sync metadata without project permission checks.
 
+### Affiliation And Membership Are Not Authorization
+
+A researcher identity, email domain, ORCID record, ROR-linked affiliation,
+institution login, organization membership, lab membership, or identity-provider
+group is not by itself permission to open or change a Scient project.
+
+Scient must keep these relationships distinct:
+
+- identity and scientific attribution,
+- current or historical affiliation,
+- organization and group membership,
+- project membership and project role,
+- responsibility for a scientific object or decision, and
+- permission for a specific operation at a specific time.
+
+Institution-managed identity and groups may provide verified inputs to a later
+authorization policy. They must not become self-executing access grants unless
+an explicit Scient policy maps them to a bounded permission.
+
+### Collaboration Engines Are Not Authorization Authorities
+
+A CRDT, operational-transformation backend, local replica, WebSocket room,
+database subscription, sync shape, or possession of an update log does not
+prove that a person or agent is currently authorized.
+
+Authoritative reads, writes, synchronization, exports, invitations, ownership
+changes, and accepted scientific operations require Scient permission checks at
+the boundary that can grant or persist them. Client-side hiding, a read-only UI,
+or a previously valid connection is insufficient. Permission changes must have
+defined consistency, session invalidation, offline, retry, and audit behavior.
+
+### Revocation Stops Future Authority, Not Past Knowledge
+
+Revocation should stop future authorized access and synchronization, invalidate
+relevant sessions or keys, and remove server-held copies according to the
+applicable retention policy. It cannot guarantee erasure of material that a
+collaborator was previously authorized to download, export, copy, photograph,
+or retain on an offline device.
+
+The product must communicate this boundary honestly. It should minimize
+unnecessary replication, make offline availability visible, distinguish
+revocation from deletion, and preserve evidence of who changed access and when.
+Sensitive projects may later require institution policy, managed devices,
+encryption, shorter offline leases, or disabled export, but those controls must
+be defined and validated rather than implied.
+
 ### High-Impact Actions Need Review And Recovery
 
 High-impact changes should have permission levels, review states, provenance, and recovery paths. This includes destructive file operations, source or evidence mutation, manuscript edits, citation changes, memory writes, code execution, analysis outputs, figure updates, project sharing, cloud mirroring, and export or deposit actions.
@@ -155,6 +201,8 @@ Do not carry forward old implementation-specific assumptions as product truth:
 - How does Scient distinguish project files from out-of-scope local files?
 - Which agent actions require approval, and which can run under pre-approved scopes?
 - How should cloud mirroring represent device identity, project membership, revocation, and conflict state?
+- What consistency guarantee applies when a membership or permission changes while another device is offline or a collaborative editing session is active?
+- Which data may be retained offline, for how long, and how does the UI disclose that revocation cannot erase previously authorized copies?
 - What is the minimum safe sandbox for local code execution?
 - How should sensitive project memory be scoped across projects, users, devices, and cloud mirrors?
 - Which sensitive data classes are explicitly supported, unsupported, or institution-gated in the first product versions?

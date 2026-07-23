@@ -3,7 +3,7 @@
 Status: Proposed
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-07-18
+Last updated: 2026-07-23
 Purpose: Maps which open-source systems Scient should study, prototype, adapt, or integrate, and which product boundaries Scient must keep owned.
 Doc type: Research evidence
 
@@ -61,6 +61,10 @@ Current inputs:
   `bf76535fe4da71d8de7b8bd5ffa0d2086b7af8d0` on 2026-07-18, with
   accepted, deferred, and rejected dispositions recorded in
   [`t3-code-targeted-review-2026-07-18.md`](../../../lab/notes/t3-code-targeted-review-2026-07-18.md).
+- Focused collaboration and organization scan on 2026-07-23, covering
+  scientific project and review systems, local-first and real-time engines,
+  relationship-based authorization, research identity and affiliation,
+  institution provisioning standards, and versioned scientific data.
 
 Remaining evidence gaps before architecture promotion:
 
@@ -218,7 +222,7 @@ identified so far. It is a working recommendation, not a final dependency list.
 | Figures, Tables, And Artifacts | Matplotlib/seaborn, Plotly, Altair/Vega-Lite, Great Tables/gt, Mermaid, Graphviz, Cytoscape.js, tldraw, Excalidraw, xyflow, Inkscape, diagrams.net, and BioIcons. | Runtime projection, artifact generator, and reference. | Figure, Table, Artifact, caption, data/code linkage, manuscript usage, review state, and stale-output state belong to Scient. |
 | Agent Runs And Review | Scient's OpenCode-derived source foundation, external OpenCode and other agents, Goose, Codex, Synara, T3 Code, and Vercel AI SDK/Elements. | Owned agent source, external-agent adapters, forked workbench prototype, and references. | AgentRun lifecycle, approvals, diffs, logs, artifacts, failures, retries, cancellation, checkpoints, and recovery belong to Scient. |
 | Memory, History, And Decisions | Earlier PapiLab prototype patterns, Stencila provenance ideas, Goose/Codex/OpenCode runtime logs, AFFiNE/Logseq/SiYuan knowledge-workspace patterns, and targeted Hermes ideas. | Reference and normalized runtime evidence. | Scientific memory, decision history, trust metadata, provenance, snapshots, rollback, and auditability belong to Scient. |
-| Collaboration And Mobile Continuation | Yjs/Hocuspocus for document collaboration; Yorkie as challenger; PowerSync/Electric for structured sync candidates; TinyBase, RxDB, and cr-sqlite as secondary references; OSF, Dataverse, GitHub, and GitLab for sharing/deposit expectations. | Candidate engine, adapter, and reference. | Membership, roles, permissions, attribution, conflict state, cloud mirror authority, mobile action scope, and recovery belong to Scient. |
+| Collaboration And Mobile Continuation | Yjs/Hocuspocus for document collaboration; Automerge, ShareDB, and Yorkie as bounded challengers; a server-authoritative operation log and narrowly scoped database replication as separate structured-state approaches; Electric as a read-path candidate; PowerSync only after service-license and operations review; OSF, Dataverse, GitHub, and GitLab for sharing/deposit expectations. | Candidate engine, adapter, and reference. | Membership, roles, permissions, attribution, conflict state, accepted scientific operations, cloud mirror authority, mobile action scope, and recovery belong to Scient. |
 | Settings, Integrations, And Export | Zotero/JabRef/CSL, Quarto/Pandoc/MyST, Typst/LaTeX/Overleaf, OSF, Dataverse, GitHub, GitLab, object storage, and cloud-drive style integrations. | Adapter and export target. | Project configuration, integration state, export/deposit records, portability receipts, and fidelity reports belong to Scient. |
 
 ## Source Relationship Classification
@@ -299,7 +303,8 @@ ADR-0001, that ADR remains the decision authority.
 | BioRender / GraphPad Prism / OriginPro | Commercial UX expectations. | Reference only. | `reference-only`; no code |
 | Yjs / Hocuspocus | Realtime document collaboration. | Upstream-trackable integration, projection, collaboration engine. | `adapter-maintained` |
 | Yorkie | CRDT challenger. | Deferred challenger. | `deferred`; prototype only |
-| PowerSync / Electric | Structured local-first sync candidates. | Embedded sync engine and adapter. | `adapter-maintained` if selected; prototype, then ADR |
+| Electric | Structured read-model replication candidate, not a complete bidirectional project-sync answer. | Prototype behind a Scient-owned adapter only if the read path matches a concrete slice. | `deferred`; conflict harness, write-path design, then ADR |
+| PowerSync | Local SQLite synchronization candidate with separate client and service licensing considerations. | Prototype only after service-license, hosting, authorization, and recovery review. | `deferred`; license/operations review, conflict harness, then ADR |
 | TinyBase / RxDB / cr-sqlite | Sync fallback/reference set. | Deferred challenger. | `deferred` |
 | OSF / Dataverse | Sharing and deposit. | Adapter, export target, compatibility target. | `adapter-maintained` |
 | GitHub / GitLab | Optional remote, versioning, review path. | Adapter and compatibility target. | `adapter-maintained` |
@@ -622,19 +627,115 @@ Official-source links checked in this pass:
 
 ### Collaboration, Sync, Sharing, And Cloud
 
-| Source | Adaptation target | Why it matters | Do not adopt | Depth status |
-|---|---|---|---|---|
-| Yjs / Hocuspocus | Real-time collaborative document editing, shared types, awareness, persistence, WebSocket backend. | Default first candidate if Tiptap remains the editor. | Do not use Yjs as the whole project database. | Core collaboration candidate. |
-| Yorkie | CRDT document server, schemas, server-side document lifecycle. | Serious challenger to Hocuspocus. | Adds Go/service complexity. | Challenger prototype after conflict cases are defined. |
-| PowerSync / Electric | SQLite-to-cloud and Postgres-backed sync candidates for structured project state. | Current architecture direction already points toward SQLite-to-cloud sync for non-manuscript project state. | Do not choose one before testing conflict semantics on Scient objects. | Primary structured-sync candidate set. |
-| TinyBase / RxDB / cr-sqlite | Local-first metadata and replication experiments. | Useful fallback or reference set if the primary sync candidates do not fit Scient's object model. | Do not expand the first validation pass to every sync engine without a strict harness. | Secondary sync reference set. |
-| OSF | Open-science project sharing and external integrations. | Good model for connecting to GitHub, GitLab, Google Drive, Dataverse, Figshare, Zotero, etc. | Do not make OSF the source of truth. | Side-to-core for sharing. |
-| Dataverse | Dataset repository deposit, metadata, APIs, groups, permissions, export. | Important for institutional data publication. | Do not build a repository platform inside Scient. | Deposit/export reference. |
-| GitHub / GitLab | Versioning, review, remote backup, collaborator workflows. | Useful as optional project remote. | Do not make Git the only sync/collaboration story. | Required optional integration. |
+Collaboration is not one feature, database, or conflict-resolution algorithm.
+The source scan supports separating at least these product and architecture
+problems:
 
-Recommendation: split collaboration into three problems: manuscript realtime
-editing, structured project-state sync, and cloud sharing/deposit. First define
-Scient conflict cases, then test a narrow candidate set against those cases.
+1. person identity, scientific attribution, and affiliation;
+2. organizations, labs, groups, subgroups, and institution administration;
+3. ad hoc teams, project membership, external guests, and ownership continuity;
+4. authorization, invitations, revocation, and permission inheritance;
+5. comments, suggestions, assignments, proposals, approvals, and decisions;
+6. simultaneous editing and ephemeral presence on document-like surfaces;
+7. offline and cross-device synchronization of structured scientific objects;
+8. versioning and transfer of PDFs, datasets, code, figures, and other large or
+   binary artifacts;
+9. attributed history, provenance, comparison, recovery, and audit; and
+10. open-science sharing, registration, deposit, citation, and publication.
+
+A CRDT or operational-transformation engine may solve part of item 6 or 7. It
+does not define Scient's account model, project roles, scientific
+responsibility, accepted project state, review policy, or institutional
+governance.
+
+#### Scientific And Product Reference Systems
+
+| Source | Mechanisms worth learning from | Reuse posture and Scient boundary |
+|---|---|---|
+| [OSF Projects](https://help.osf.io/article/353-welcome-to-projects) and [research groups](https://help.osf.io/article/413-getting-started-for-research-groups) | Research projects and independently permissioned nested components; contributors with read, write, and admin access; project activity; external integrations; registrations; lab and consortium organization. | High-value product and interoperability reference. Do not make OSF Scient's source of truth or copy its project/component hierarchy before testing Scient's own object and permission model. Review exact repository paths and licenses before code reuse. |
+| [Dataverse](https://guides.dataverse.org/en/6.9/quickstart/what-is-dataverse.html) | Dataset drafts and publication, contributor-versus-curator review, groups, roles, file restrictions, major/minor versions, version comparison, persistent citation, and repository deposit. | Adopt the draft -> review -> publish and immutable-version ideas for deposits and releases. Do not build a repository platform or force all working project data into repository semantics. |
+| [eLabFTW](https://doc.elabftw.net/) | Multiple teams, granular read/write scope, experiment comments, revision history, locking, ownership transfer, audit trails, signatures, timestamps, and immutable archives. | Strong laboratory and regulated-record reference. Its application is AGPLv3; treat it as a product model unless a separately reviewed adaptation justifies the license obligations. Do not imply that borrowing the interaction model gives Scient compliance. |
+| [OpenReview groups](https://docs.openreview.net/getting-started/objects-in-openreview/groups) | Hierarchical groups, role-scoped access, invitations that define who can create or edit which records and when, signatures, readers/writers, assignments, review, and decision workflows. | Strong reference for reviewable scientific operations and delegated authority. The web application is AGPLv3 while client libraries have different licenses; review per component before reuse. Do not inherit conference-specific terminology as Scient's general collaboration model. |
+| [Current JupyterLab real-time collaboration](https://jupyterlab.readthedocs.io/en/4.4.x/user/rtc.html), its [collaboration extension](https://github.com/jupyterlab/jupyter-collaboration), and the [earlier RTC model warning](https://jupyterlab.readthedocs.io/en/3.5.x/user/rtc.html) | Yjs-backed collaborative notebooks and files, shared cursors, and an evolving content-provider integration. Earlier RTC documentation explicitly warned that two editor models for the same underlying file could diverge. | Reuse implementation lessons where compatible; JupyterLab and the collaboration extension are BSD-3-Clause. Keep model mismatch as a Scient test case without presenting an older experimental limitation as current behavior: two projections of one scientific object must not silently diverge. |
+| [Overleaf collaboration](https://docs.overleaf.com/collaborating/collaborating-in-overleaf), [history](https://docs.overleaf.com/writing-and-editing/history-and-versioning), and [Community Edition](https://github.com/overleaf/overleaf) | Familiar scientific co-writing, comments, tracked changes, history, ownership transfer, groups, and external collaborators. | Product baseline and selective source reference. Community Edition is AGPLv3, omits some hosted/professional collaboration features, and warns that unsandboxed compiles assume trusted users. Do not fork it as Scient's foundation. |
+| [Google Docs/Drive sharing](https://support.google.com/drive/answer/2494822), [comments and suggestions](https://support.google.com/docs/answer/6239410), and [version history](https://support.google.com/docs/answer/190843) | Low-friction invitation, viewer/commenter/editor roles, visible presence, suggestion accept/reject, attribution, and understandable restoration. | Closed-product UX baseline. Copy the clarity of the interaction model, not implementation or branding. Extend review beyond text into evidence, analyses, figures, decisions, and agent work. |
+| [Notion groups and sharing](https://www.notion.com/help/create-and-manage-groups) | Workspace members, external guests, groups, group owners, teamspaces, page-level access, inherited child access, and SCIM-managed groups. | Useful institution-administration reference and a warning about inherited over-access. Scient must let external scientific collaborators participate naturally and must keep group membership separate from project responsibility. |
+| [GitHub pull-request reviews](https://docs.github.com/en/pull-requests/reference/pull-request-reviews) and [code owners](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners) | Draft proposals, explicit diffs, comments, exact suggestions, approve/request-changes decisions, required reviewers, ownership-based routing, checks, and a durable decision timeline. | Adapt into object-level proposals and review for both humans and agents. Raw Git remains optional; scientific users should not need branches or commits to review an evidence or analysis change. |
+| [DVC](https://dvc.org/doc/command-reference/) and [DataLad](https://handbook.datalad.org/) | Content-addressed or externally stored data, lightweight version metadata, reproducible snapshots, selective transfer, remotes, and collaboration around large datasets and experiment artifacts. | Reference for large-data and artifact semantics, not for ordinary comments or live editing. Preserve hashes, provenance, versions, and storage routes without forcing Git commands on normal users. |
+
+#### Identity, Affiliation, Organizations, And Authorization
+
+| Source or standard | Adaptation target | Boundary |
+|---|---|---|
+| [ORCID](https://info.orcid.org/orcid-trust/) and [ROR](https://ror.org/about/) | Persistent researcher and research-organization identifiers; source-attributed affiliations; interoperable authorship and affiliation metadata. | Identity and affiliation evidence are not authorization. A verified institutional affiliation must never silently grant project access, an organization role, or scientific responsibility. ROR intentionally does not model every department or lab, so Scient still needs local group structures. |
+| [Keycloak organizations](https://www.keycloak.org/docs/latest/server_admin/) | Open-source identity brokering, invitations, organization membership, isolated nested groups, organization-specific claims, and future institutional SSO. | Apache-2.0 reference or later integration candidate. Do not make a full enterprise identity server a dependency of the first shared-project slice. Authentication remains separate from Scient authorization. |
+| [Google Zanzibar](https://research.google/pubs/zanzibar-googles-consistent-global-authorization-system/), [OpenFGA](https://openfga.dev/docs/concepts), and [SpiceDB](https://authzed.com/docs/spicedb) | Relationship-based access such as person -> group -> project -> object, inheritance, exclusions, temporary relationships, and testable permission checks. | OpenFGA and SpiceDB are Apache-2.0 prototype candidates, not selected dependencies. First model Scient relationships and adversarial cases; then compare operational complexity, consistency behavior, auditability, local/offline enforcement, and migration cost. |
+| [SCIM 2.0 users and groups](https://www.rfc-editor.org/info/rfc7643/) and [protocol](https://www.rfc-editor.org/info/rfc7644/) | Later institution-managed provisioning, deprovisioning, and group synchronization. | Provisioning is not authorization and is not needed for the first collaboration slice. Treat identity-provider groups as imported facts that Scient policies may map, not as self-executing project permissions. |
+
+#### Real-Time And Local-First Engine Candidates
+
+| Candidate | What it proves | License/reuse posture | Main risk or boundary | Current disposition |
+|---|---|---|---|---|
+| [Yjs](https://github.com/yjs/yjs) + [Hocuspocus](https://github.com/ueberdosis/hocuspocus) | Network-agnostic shared types, editor bindings, offline updates, awareness, snapshots, and a self-hostable WebSocket backend with authentication, read-only connections, persistence, and lifecycle hooks. | MIT. | Awareness is ephemeral, authorization remains external, and Yjs update state must not become the canonical scientific project record. Persisting only rendered JSON loses collaboration history. | Default first prototype for manuscript/note surfaces if the selected editor keeps a mature Yjs binding. |
+| [Automerge](https://automerge.org/docs/hello/) | JSON-like CRDT state, local storage, transport-agnostic synchronization, change history, branching, and merging across broader application objects. | MIT. | A broad CRDT project model may make validation, authorization, selective sync, schema evolution, and accepted scientific operations harder to reason about. | Primary local-first challenger for a small structured Scient object set. |
+| [ShareDB](https://github.com/share/sharedb/blob/master/README.md) | Server-oriented operational transformation for JSON documents with middleware access control, history, presence, queries, projections, offline reconnection, and pub/sub scaling. | MIT. | More server-authoritative and operationally centralized; requires custom object semantics and careful client recovery. | Primary OT challenger when authoritative validation or ordered review matters more than masterless merge. |
+| [Yorkie](https://github.com/yorkie-team/yorkie) | JSON-like CRDT documents, client replicas, offline editing, conflict resolution, server lifecycle, and JavaScript/iOS/Android clients. | Apache-2.0. | Adds a Go service and document-store model; ecosystem and Scient integration must be tested rather than inferred. | Mobile/server challenger after the first conflict harness exists. |
+| [Electric](https://github.com/electric-sql/electric) | Apache-2.0 partial replication and high-scale delivery of Postgres shapes through an HTTP read-path sync engine. | Apache-2.0. | The current system describes itself as a read-path engine, not a complete bidirectional local-write solution. It cannot be listed as a drop-in SQLite-to-cloud answer without an explicit write path. | Structured read-model candidate, not a selected project-sync engine. |
+| [PowerSync](https://docs.powersync.com/intro/self-hosting) | Local SQLite SDKs and synchronization with a backend database, including self-hosting. | Client SDKs are Apache-2.0; the service is source-available under the Functional Source License, with separate open and enterprise self-hosted offerings. | Creates licensing, service, and vendor-dependence questions and still requires Scient-specific conflict and authorization semantics. | Candidate only after license/operations review and the same conflict harness. |
+| [TinyBase](https://tinybase.org/guides/synchronization/) | Small TypeScript local-first store, persistence, mergeable stores, and pluggable synchronizers. | MIT. | Smaller data model and ecosystem; easy demos must not be mistaken for project-scale correctness. | Useful low-cost harness or fallback for bounded metadata. |
+| RxDB and cr-sqlite | Alternative local databases, replication, and CRDT experiments. | Mixed component and commercial-plugin considerations require exact license review. | Expanding the shootout before conflict cases and pass criteria are fixed will produce activity, not a decision. | Side shelf unless primary candidates expose a concrete gap. |
+
+The choice is not "CRDT or OT for Scient." Document-like editing, structured
+scientific operations, large artifacts, and review/approval can legitimately
+use different mechanisms behind one coherent product history.
+
+#### Recommended Validation Sequence
+
+This is a research recommendation, not accepted architecture or an
+implementation commitment.
+
+1. **Define the collaboration contract before infrastructure.** Specify actor
+   identity, project roles, external guests, object ownership, proposal and
+   decision records, attribution, revocation behavior, checkpoints, and the
+   canonical operations for a small set of Scient objects. Define adversarial
+   cases: simultaneous edits, conflicting screening decisions, changed
+   evidence links, stale analyses, agent-versus-human edits, offline
+   revocation, deleted groups, ownership transfer, and failed partial sync.
+2. **Validate one asynchronous shared-project slice first.** Invite one
+   collaborator, assign a project role, comment or suggest, propose a change,
+   inspect a diff, accept or reject it, recover an earlier state, and revoke
+   future access. Run the same flow for a human and an agent. This can prove the
+   collaboration product boundary before simultaneous co-editing exists.
+3. **Prototype document-like real-time collaboration separately.** Compare
+   Yjs/Hocuspocus against Automerge and ShareDB on one manuscript or structured
+   note. Test attribution, comments/suggestions, reconnect, offline edits,
+   schema migration, authorization changes, persistence, export, and recovery.
+4. **Prototype structured scientific-state sync only after canonical
+   operations exist.** Compare a server-authoritative operation log and narrow
+   local database replication against Automerge/Yorkie-style object sync.
+   Electric and PowerSync should be evaluated for the exact read/write path
+   they provide, not grouped together as interchangeable products.
+5. **Handle large and binary artifacts through versioned asset semantics.**
+   Use immutable or content-addressed versions, hashes, provenance, selective
+   transfer, and explicit replacement/promotion. Do not put PDFs, raw datasets,
+   or rendered figures inside a text CRDT.
+6. **Add institution administration only after project collaboration works.**
+   Introduce durable organizations, labs/groups, delegated group managers,
+   external guests, ownership transfer, audit, and later SSO/SCIM. A nested
+   group may help select people or inherit a default policy, but it must not
+   silently determine scientific responsibility or every project permission.
+
+Each prototype should pass the same harness: no silent data loss; deterministic
+accepted Scient state; inspectable attribution; explicit unresolved conflicts;
+permission checks at every authoritative boundary; revocation of future access;
+offline-state disclosure; schema migration and export; backup and restore; and
+no requirement that a proprietary service remain available to open a local
+project.
+
+Revocation must be described honestly. It can stop future authorized access and
+synchronization, invalidate sessions or keys, and remove server-held copies
+according to policy. It cannot guarantee erasure of material a collaborator was
+previously authorized to download, export, copy, or retain offline.
 
 ## Secondary Sources To Revisit
 
@@ -704,20 +805,26 @@ to the earlier synthesis. The active sequence lives in
    method notes, captions, manuscript claims, and stale-output checks.
 
 7. Collaboration and sync prototype.
-   First define conflict cases for Scient objects: concurrent manuscript edits,
-   evidence judgment changes, screening decisions, citation edits, agent actions,
-   and artifact updates. Then test Yjs/Hocuspocus for document-like collaboration
-   and PowerSync/Electric for structured project-state sync. Keep Yorkie,
-   TinyBase, RxDB, and cr-sqlite as challengers or fallback references unless the
-   first pass exposes a real gap. Validate every synced shape against Scient
-   schema before it becomes project truth.
+   First implement a test-only collaboration contract and conflict harness for
+   actor identity, invitations, project roles, external guests, comments,
+   proposals, decisions, ownership transfer, revocation, and canonical Scient
+   operations. Prove one asynchronous human-and-agent review flow before adding
+   simultaneous editing. Then compare Yjs/Hocuspocus, Automerge, and ShareDB on
+   one document-like surface; compare a server-authoritative operation log,
+   Automerge or Yorkie, and narrowly scoped local-database replication on a
+   small structured object set; and keep large artifacts in separately
+   versioned, hashed storage. Evaluate Electric as a read-path candidate and
+   PowerSync only after its service license and operations model are reviewed.
+   Do not promote any engine until the common harness proves attribution,
+   authorization, offline behavior, conflict visibility, migration, export,
+   backup, restore, and deterministic accepted Scient state.
 
 ## Current Synthesis
 
 Current research points toward Scient as a local-first, cloud-mirrored scientific
 workspace with a Scient-owned project graph; TypeScript/React product logic;
-Electron-first desktop delivery unless a real limitation appears; SQLite local
-project state mirrored to Postgres/object storage; the owned Synara-derived source as the
+Electron-first desktop delivery unless a real limitation appears; a candidate
+local structured store with a separately validated cloud mirror; the owned Synara-derived source as the
 accepted initial application foundation; Scient as the owned OpenCode-derived
 first-party agent; external OpenCode and other external agents as separate
 choices; Codex as the safety/sandboxing reference; Goose as a later capability
@@ -728,8 +835,11 @@ Quarto/Pandoc-first export with MyST as challenger;
 Stencila as a scientific schema/provenance reference; marimo-inspired analysis
 with Jupyter compatibility; DuckDB, pandas/Polars, and Arrow/Parquet for local
 tabular work; Matplotlib, Plotly, Altair/Vega-Lite, and table-generation tools
-for figures and scientific artifacts; and CRDTs only for collaborative
-document-like surfaces where simultaneous editing matters.
+for figures and scientific artifacts; an asynchronous, reviewable shared-project
+slice before realtime collaboration; relationship-based authorization only
+after Scient's roles and adversarial cases are modeled; CRDT or OT mechanisms
+for bounded collaborative surfaces rather than as the product's authority; and
+separately versioned storage for large scientific artifacts.
 
 ## Non-Negotiables
 
