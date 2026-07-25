@@ -225,9 +225,9 @@ source-repository pull requests:
 - Agent [PR #13](https://github.com/ScientFactory/scient-agent/pull/13)
   advanced the immutable `docker/setup-buildx-action` pin in inherited,
   upstream-repository-guarded workflows. The ordinary squash merge advanced
-  owned `dev` to `acdf841703cea2d36428f203d41aa48d2b470e55`. This owned
-  maintenance change does not advance the reviewed official checkpoint or
-  integration base.
+  owned `dev` to `acdf841703cea2d36428f203d41aa48d2b470e55`; exact-head Scient
+  quality run `30173924772` passed. This owned maintenance change does not
+  advance the reviewed official checkpoint or integration base.
 
 No source code from the reviewed official ranges was integrated during this
 rollout. The PRs above establish ownership, review, monitoring, and verification
