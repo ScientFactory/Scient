@@ -4,7 +4,7 @@ Status: Proposed
 Owner: Yaacov
 Created: 2026-07-24
 Last updated: 2026-07-25
-Purpose: Proposes the product boundary, architecture direction, source-adaptation strategy, and ordered implementation path for manual code editing, Python, R, MATLAB, notebooks, compiled scientific documents, datasets, tables, figures, analysis runs, and reproducible computational work in Scient.
+Purpose: Proposes the product boundary, architecture direction, source-adaptation strategy, and ordered implementation path for manual code editing, Python, R, MATLAB, notebooks, compiled scientific documents, datasets, tables, figures, analysis runs, reproducible computational work, and the shared foundations required by Scient's future full manuscript platform.
 Doc type: Planning note
 
 ## Decision Summary
@@ -24,6 +24,18 @@ into one oversized runtime abstraction. Python, R, MATLAB, Jupyter, Quarto,
 LaTeX, Typst, tables, and figures can then attach through adapters without
 forcing Scient to become a fork of VS Code, RStudio, Positron, JupyterLab,
 MATLAB, or Overleaf.
+
+The foundation is not complete merely because it can compile a `.tex` file.
+It must be able to grow into a capability-complete scientific authoring and
+publishing platform: file-native LaTeX/Typst/Quarto projects, rich visual
+authoring, citations and evidence, comments and tracked changes, history,
+real-time collaboration, templates, integrations, submission, institutional
+administration, and agent assistance. “Everything Overleaf has” is therefore a
+long-term capability envelope, not an instruction to make Overleaf's code,
+service topology, or LaTeX-only model Scient's foundation. The broader
+open-source adaptation inventory adds requirements from Tiptap/Plate/Lexical,
+Zotero/JabRef/CSL, Zettlr, Quarto/Pandoc/MyST, Stencila, Word/Google Docs,
+Yjs/Automerge/ShareDB, OSF/Dataverse/OpenReview, and scientific analysis tools.
 
 The recommended direction is:
 
@@ -45,6 +57,9 @@ The recommended direction is:
    services, debugging, and remote compute in that order.
 8. Add domain packs such as neuroscience/BIDS after the generic workbench can
    already open, edit, run, inspect, compare, and recover ordinary analysis.
+9. Gate every shared document decision against the complete manuscript
+   capability envelope so the first opener, editor, build, history, and
+   collaboration work remains usable rather than becoming migration debt.
 
 The recommended editor substrate is **CodeMirror 6**, subject to a bounded
 capability proof. Keep the existing `@pierre/diffs` integration for diff
@@ -100,6 +115,13 @@ meant the Beads issue-tracking system, it belongs in project/task and agent
 coordination, not in this roadmap. Neither interpretation should distort the
 first computing workbench.
 
+“Separate category” does not mean “design independently.” The computing
+workbench owns reusable execution and artifact mechanics; the manuscript area
+owns scholarly authoring, citation, review, publishing, and collaboration
+semantics. Both must agree on document identity, authority, provenance,
+projects, history, assets, projections, and agent actions before either freezes
+its foundation.
+
 ## Sources Of Authority And Related Plans
 
 This proposal is subordinate to the accepted
@@ -119,9 +141,12 @@ It also depends on, but does not replace:
 - future architecture decisions for execution, artifacts, reproducibility,
   project format, permissions, and collaboration;
 - the emerging manuscript/LaTeX plan for a first universal typesetting opener
-  and, later, an Overleaf-scale authoring experience. Its engine choice, first
-  vertical slice, and collaboration model remain proposal inputs rather than
-  decisions made by this roadmap.
+  and, later, capability-complete scholarly authoring that meets or exceeds the
+  useful Overleaf-class workflow while integrating Scient's evidence,
+  analysis, figure, agent, and local-first strengths. Its engine choice, first
+  vertical slice, canonical manuscript representation, collaboration model,
+  and donor-adaptation depth remain proposal inputs rather than decisions made
+  by this roadmap.
 
 ## Current Product Truth: What Scient Can Do Today
 
@@ -307,6 +332,28 @@ These invariants should survive every stage:
     resolution, execution orchestration, diagnostics, artifacts, and viewers.
     Keep analysis, notebook, typesetting, and manuscript concepts explicit on
     top rather than hiding them behind generic task language.
+15. **Authority mode is explicit.** An existing LaTeX/Typst/Quarto project can
+    remain file-native, while a Scient-native manuscript can be structured-
+    native. Exactly one representation is authoritative for a document at a
+    time; conversion or mode changes require a visible fidelity report.
+16. **Semantic identity survives projections.** Sections, citations, claims,
+    equations, figures, tables, comments, suggestions, and source anchors need
+    stable identities that can survive editor changes, compilation, import,
+    export, collaboration, and agent work as far as the format permits.
+17. **Projection loss is never silent.** Rich editor state, CRDT/OT state,
+    Pandoc/Quarto/MyST ASTs, LaTeX/Typst files, Word/JATS exports, and rendered
+    PDF/HTML are projections, interchange forms, or artifacts unless the
+    document's explicit authority mode says otherwise. Round trips must report
+    preserved, downgraded, unresolved, and lost content.
+18. **Editing, builds, collaboration, and history are separable services.** A
+    compiler failure must not corrupt editing; a collaboration engine must not
+    become project authority; history must span manual, agent, imported, and
+    synchronized changes; and every layer needs independent recovery.
+19. **Capability parity does not require donor lock-in.** Scient should be able
+    to deliver the full target workflow through owned contracts, selected
+    dependencies, adapters, or a deliberately reviewed donor integration.
+    Replacing one editor, compiler, sync engine, or publishing provider must not
+    require replacing the scientific project model.
 
 ## Proposed Architecture Direction
 
@@ -501,6 +548,135 @@ explicit executable or installation:
 Discovery is read-only. Installing packages, changing environments, or
 downloading a runtime requires a clear action and visible destination.
 
+### 9. Document Authority, Projection, Collaboration, And Publication Contract
+
+The shared foundation needs an explicit contract for the future manuscript
+platform before the first typesetting implementation hardens. This is a set of
+responsibilities and validation requirements, not an accepted schema or package
+design.
+
+#### Two authority modes, one project experience
+
+Scient must support both of these without treating one as a temporary import:
+
+- **file-native document projects** — existing LaTeX, Typst, Quarto, Markdown,
+  or other portable source files and their dependency graph remain canonical.
+  Semantic indexes, visual previews, comments, diagnostics, and collaboration
+  anchors are derived state. Accepted edits write back through revision-aware
+  file operations in a form the original toolchain can continue using;
+- **structured-native manuscripts** — Scient's scholarly document model is
+  canonical. Rich-text editors, source-like views, CRDT/OT documents, LaTeX,
+  Typst, Quarto, MyST, Word, JATS, HTML, and PDF are projections, interchange
+  forms, or artifacts unless an explicit conversion changes authority.
+
+One project may contain both kinds of document, but a single manuscript cannot
+silently have two canonical representations. Import, conversion, detachment,
+or a change of authority must create a reviewable reconciliation showing what
+was preserved, normalized, downgraded, unresolved, or lost. If round-trip
+editing cannot preserve a construct, Scient should keep source editing
+available and label the visual surface's limit instead of rewriting it.
+
+#### Stable identity and cross-projection anchors
+
+Path and character offsets are insufficient for full manuscript work. The
+foundation should preserve, where the authority mode permits:
+
+- stable document/project identity across rename, copy, import, and sync;
+- revisions and content identity for conditional writes and history;
+- logical identities for sections, paragraphs/blocks, citations, equations,
+  figures, tables, listings, footnotes, references, and publication metadata;
+- range/source maps among semantic objects, editor positions, source files,
+  compilation diagnostics, and rendered output;
+- resilient comment, suggestion, evidence, review, and agent anchors with
+  quoted/context fallback plus an explicit orphan/re-anchor state;
+- stable asset identity independent of a particular relative path when the
+  manuscript model, history, or collaboration requires it.
+
+The foundation does not need every semantic node in the first opener. It does
+need a versioned extension seam so early line anchors and file identities can
+be promoted without breaking comments, history, citations, or source/PDF
+navigation later.
+
+#### Projection and reconciliation adapters
+
+Use a common adapter shape for rich editors, portable source formats, imports,
+exports, and publishing providers. Each adapter should be able to declare:
+
+- supported input/output features and authority modes;
+- parse/import, render/export, and incremental-update capabilities;
+- stable-identity and source-map preservation;
+- fidelity limits and a machine- plus human-readable reconciliation report;
+- version/toolchain/template/profile dependencies;
+- deterministic fixture round trips and raw-source/output continuations;
+- whether the result is editable, reviewable, generated, or detached.
+
+This allows Tiptap/ProseMirror, Plate, or Lexical to compete as editor
+projections; LaTeX, Typst, Quarto/Pandoc, MyST, Word, JATS, Markdown, and HTML
+to compete or coexist as format adapters; and a later publishing/submission
+provider to change without redefining manuscript truth.
+
+#### Collaboration, review, and history
+
+Collaboration should operate on attributed document/project operations rather
+than on an editor engine's opaque state. The shared contract must support:
+
+- comment threads, mentions, assignments, suggestions, tracked changes,
+  accept/reject decisions, reviewer modes, and resolved/archived states;
+- the same proposal/review lifecycle for human and agent changes;
+- ephemeral presence, cursors, selections, and typing state that never become
+  scientific authority;
+- asynchronous/offline work, visible conflicts, reconnect, schema migration,
+  ownership transfer, revocation of future access, and recovery;
+- labelled milestones, attributed activity, version comparison, single-file
+  and whole-project restore, deleted-file recovery, and durable export;
+- separately versioned large/binary assets rather than embedding PDFs,
+  datasets, or figures inside a text CRDT.
+
+Yjs/Hocuspocus, Automerge, ShareDB, Yorkie, or a future engine may implement a
+bounded collaboration surface. None should own project membership,
+authorization, accepted scientific state, or the only readable history.
+
+#### Publication and institutional extension points
+
+The manuscript platform should be able to add without replacing the document
+foundation:
+
+- template records with origin, license, maintainer, version, update, and
+  project-copy semantics;
+- journal/conference/thesis/grant profiles, required metadata, reporting
+  guidelines, style/citation rules, and validation findings;
+- source packages, PDFs, supplementary files, data/code availability material,
+  cover letters, and other versioned submission artifacts;
+- direct publisher/repository/deposit adapters with submission receipts and a
+  manual download continuation;
+- Zotero/JabRef/CSL and other reference-manager adapters with citation-key and
+  refresh/reconciliation truth;
+- Git/GitHub/GitLab, local editor, drive, repository, and external-authoring
+  integrations without collapsing their histories into Scient history;
+- individual, guest, project, group, lab, and institution roles; SSO and later
+  provisioning; managed-account policy; ownership continuity; audit; retention;
+  metrics; feature/AI controls; and secure offboarding.
+
+Institution administration belongs to the identity/collaboration platform, not
+the typesetting engine. Submission belongs to publication adapters, not the
+editor. Keeping those boundaries explicit is what lets the first local opener
+scale to a full hosted, institutional, or hybrid experience.
+
+#### Service-separation lesson from Overleaf
+
+Overleaf's current repository separates real-time editing, document update and
+storage, project history, file storage, compilation, Git bridging, chat,
+notifications, and the web application. Scient should preserve comparable
+responsibility boundaries in contracts and tests, but it should not infer that
+it needs the same deployable services, databases, or network topology. Local
+desktop implementations may be in-process modules; cloud collaboration may
+later split them operationally.
+
+This separation provides a future scaling test: compilation can move from local
+to managed or remote execution; an editor or collaboration engine can change;
+history can grow from local snapshots to shared project history; and publishing
+integrations can expand without migrating the canonical scientific project.
+
 ## Source Strategy: What To Reuse, Adapt, Or Only Study
 
 “Steal” should mean licensed, selective adaptation with attribution and a clear
@@ -513,11 +689,18 @@ become Scient's product model.
 | [CodeMirror 6](https://codemirror.net/) (MIT) | Preferred editor dependency after spike | Modular editor, language packages, search, lint, merge, collaboration primitives, and its current LSP client. | Do not treat editor state as canonical project state or let extensions write outside the document contract. |
 | [Monaco Editor](https://github.com/microsoft/monaco-editor) (MIT) | Challenger/reference | Use as the capability benchmark for desktop IDE expectations. | Do not assume VS Code extensions work in Monaco; the official project says they do not. Its web workers, bundle weight, and lack of mobile-browser support make it a weaker default for Scient. |
 | Existing `@pierre/diffs` | Retain for diffs and review | Current high-quality diff rendering and selection model. | Do not force one library to own both diff rendering and the long-term scientific editor merely to reduce package count. |
+| [Tiptap/ProseMirror](https://github.com/ueberdosis/tiptap), [Plate](https://github.com/udecode/plate), and [Lexical](https://github.com/facebook/lexical) | Scientific rich-editor projection candidates and UX sources | Prototype the same long manuscript with stable semantic nodes, citations/evidence, equations, figures/tables, comments, suggestions, accessibility, performance, collaboration, and import/export. | Do not let an editor's JSON/operation format become manuscript truth or select a winner before the common fixture passes. |
+| [Zotero](https://github.com/zotero/zotero), [JabRef](https://github.com/JabRef/jabref), and [CSL](https://citationstyles.org/) | Required citation/reference compatibility and selected component candidates | Adapt import/export, structured references, citation keys, styles, locators, refresh, metadata repair, group-library expectations, and citation round trips. | Do not rebuild or fork a full reference manager first, copy copyleft code without review, or reduce evidence-linked citations to bibliography strings. |
+| [Zettlr](https://github.com/Zettlr/Zettlr) | Local academic-writing and submission-workflow reference | Study file-oriented writing, citations, math/Mermaid, Pandoc profiles, templates, and journal/conference export while preserving external-editor continuity. | Do not make Markdown the only authoring model or inherit a whole desktop application. |
 | [LaTeX Workshop](https://github.com/James-Yu/LaTeX-Workshop) (MIT) | Strongest bounded LaTeX workflow reference | Study its documented root discovery, recipes/toolchains, cancellation, dependency tracking, output/auxiliary directories, PDF refresh, and SyncTeX behavior; adapt algorithms and UX behind Scient contracts with attribution where code is reused. | Do not embed a VS Code extension or inherit VS Code's workspace, settings, and process model. |
 | [Tectonic](https://tectonic-typesetting.github.io/) | Leading managed-engine candidate | Evaluate reproducible bundles, automatic multi-pass typesetting/bibliography behavior, Unicode/OpenType support, local CLI operation, and cross-platform packaging through `TypesettingEngineAdapter`. | Do not make Tectonic the architecture or promise universal package compatibility before fixture and licensing/distribution review. |
 | [TexLab](https://github.com/latex-lsp/texlab) (GPL-3.0) | External LaTeX language-server candidate already used by `scient-agent` | Reuse the standard LSP boundary for cross-file diagnostics, completion, navigation, symbols, and forward-search capabilities after desktop lifecycle and redistribution review. | Do not copy GPL implementation into Scient or make a TeX distribution/compiler a prerequisite for opening and editing source. |
-| [Overleaf Community Edition](https://github.com/overleaf/overleaf) (AGPL-3.0) | Long-term collaborative-authoring UX and systems reference | Study project navigation, compile/recompile, logs, history, review, comments, templates, bibliography, and submission workflows. | Do not fork or embed the large service application as the local universal opener, and do not silently import its server assumptions or trusted-user compilation model. |
+| [Overleaf product/docs](https://docs.overleaf.com/) and [Community Edition](https://github.com/overleaf/overleaf) (AGPL-3.0 repository) | Comprehensive capability baseline, systems reference, compatibility target, and possible future integration subject to a separate decision | Track the full hosted workflow—code/visual editing, project/files, compilation, diagnostics, comments, tracked changes, history, collaboration, templates, citations, Git/GitHub, submission, AI assistance, groups, SSO, managed users, metrics, and offboarding—and study the repository's separation of editor/update/storage, real-time, history, compilation, Git, chat, notifications, and web concerns. | Do not assume Community Edition contains every hosted/professional feature, make its service topology Scient's architecture, or copy/link AGPL components without explicit license/product/operations acceptance. A future isolated integration, maintained fork, or self-hosted path is not permanently prohibited, but it requires its own source-depth review and ADR. |
 | [Typst](https://github.com/typst/typst) (Apache-2.0) | First-class future typesetting adapter | Preserve `.typ` as editable portable source and evaluate its incremental compiler, diagnostics, bibliography, PDF output, and watch behavior through the same document-build contract. | Do not design the contract around TeX-only pass mechanics or make Typst a hidden conversion layer for LaTeX projects. |
+| [MyST](https://github.com/jupyter-book/mystmd) and [Stencila](https://github.com/stencila/stencila) | Scientific publishing challenger and semantic-document/provenance references | Compare citations, cross-references, executable/notebook publishing, JATS, TeX/Typst paths, semantic nodes, executable steps, and agent provenance against Scient-owned document contracts. | Do not make source Markdown, either project's schema, or an executable-document runtime the canonical Scient model without a focused decision. |
+| [Yjs/Hocuspocus](https://github.com/yjs/yjs), [Automerge](https://github.com/automerge/automerge), and [ShareDB](https://github.com/share/sharedb) | Bounded collaboration-engine prototype set | Test real-time editing, awareness, offline changes, attribution, reconnect, schema migration, persistence, export, and recovery through one collaboration harness. | Do not use CRDT/OT state as project authorization, accepted scientific state, or the only history; do not put large assets inside a text collaboration document. |
+| Word and Google Docs | Manuscript exchange and review-quality compatibility baseline | Match understandable comments, suggestions/track changes, roles, presence, version restoration, and `.docx` import/export expectations through Scient-owned semantics. | Do not make Scient generic office software or rely on closed implementation details. |
+| [OSF](https://github.com/CenterForOpenScience/osf.io), [Dataverse](https://github.com/IQSS/dataverse), and [OpenReview](https://github.com/openreview/openreview) | Sharing, deposit, review, role, and publication reference/adapter set | Study project/repository handoff, draft-review-publish, persistent identifiers/citations, external collaborators, assignments, decisions, and immutable releases. | Do not make a repository or conference-review system the working manuscript truth or copy its domain hierarchy wholesale. |
 | [JupyterLab services](https://jupyterlab.readthedocs.io/en/stable/api/modules/services.html) and [rendermime](https://jupyterlab.readthedocs.io/en/stable/api/modules/rendermime.html) (BSD-3-Clause project) | Selected protocol/rendering dependencies or references | Kernel/server communication, MIME compatibility, and proven output renderers where dependency review supports it. | Do not embed or fork the full JupyterLab application and duplicate Scient's shell, project model, file explorer, and chat. |
 | [marimo](https://github.com/marimo-team/marimo) (Apache-2.0) | Adapter and reproducibility reference | Pure-Python notebook storage, reactive dependency/staleness ideas, disabled expensive cells, SQL/dataframe UX, optional external “Open in marimo.” | Do not make a Python-specific reactive model Scient's cross-language canonical notebook format. |
 | [RStudio](https://github.com/rstudio/rstudio) (AGPL-3.0) | UX reference | Source/console/environment/history/plots/help layout and R researcher workflows. | Do not fork or embed the IDE. Keep license and architecture boundaries explicit. |
@@ -1105,25 +1288,101 @@ SyncTeX. TexLab is a plausible external LSP and is already integrated in
 and relationship to the editor need explicit review. Overleaf is a long-term
 workflow reference, not the local opener's codebase or service architecture.
 
-### Long-term manuscript path
+### Full manuscript capability envelope
 
-The same base should grow in stages into:
+The long-term target is not merely an improved LaTeX preview. Scient should be
+able to cover the useful capabilities researchers expect from Overleaf and the
+broader scholarly-authoring ecosystem, then exceed them by connecting evidence,
+analysis, figures, provenance, and agents. The target envelope is:
 
-- multi-file project navigation and project-aware search;
-- citations, bibliography search/insertion, and unresolved-citation states;
-- templates and engine/build settings;
-- source/output synchronization and richer diagnostics;
-- comments, suggestions, review assignments, and manuscript history;
-- realtime collaboration and authority-aware conflict handling;
-- track changes, version comparison, submission packages, journal adaptation,
-  and institutional workflows;
-- optional remote compilation/collaboration without making the remote service
-  canonical for local project files.
+| Capability area | Durable target | Foundation that must exist early |
+|---|---|---|
+| Project and file lifecycle | Create, import/upload, copy, archive, tag, search, download, export, manage multi-file trees and assets, open arbitrary local sources, and preserve external-tool continuity. | Stable project/document/asset identity; file-native authority; conditional writes; bounded project resolution; import/export receipts. |
+| Source and visual authoring | First-class source and rich visual surfaces, long-document navigation/search, syntax and language assistance, math, tables, figures, cross-references, accessibility, and safe reconciliation with external edits. | Surface and projection registries; semantic identities and source maps; explicit authority; recoverable drafts and conflicts. |
+| Compilation and preview | Local, managed, or remote engines; versioned toolchains; automatic/manual/fast builds; cancellation; cache/output control; logs and output files; useful error modes; last-success preview; source/output synchronization. | Execution coordinator; project/dependency resolver; `DocumentBuild`; diagnostics; artifact registry; provider capability discovery. |
+| Citations and evidence | BibTeX/BibLaTeX, Zotero/JabRef/CSL interoperability, citation search/keys/locators/styles, metadata repair, refresh/reconciliation, unresolved states, and a distinction between evidence-linked and auxiliary references. | Structured reference and citation identities; adapter contract; provenance/evidence links; fidelity reporting. |
+| Review and discussion | Edit/review/view roles, link or invited access, comment threads, mentions, assignments, suggestions and tracked changes, accept/reject, reviewer modes, and later contextual project chat. | Durable attributed operations and anchors; permissions independent of the editor; one human/agent proposal lifecycle. |
+| History and recovery | Attributed activity, labelled milestones, comparisons, downloadable snapshots, file/project restore, deleted-file recovery, and intelligible relationships to Git/import/sync history. | Revision graph and immutable receipts independent of CRDT/OT state; asset versioning; migration and restore contracts. |
+| Realtime and local-first collaboration | Presence, cursors, concurrent edits, offline work, reconnect, visible conflict handling, ownership transfer, future-access revocation, and recovery without making a hosted service canonical for file-native projects. | Collaboration-engine boundary; identity/authorization; authority rules; portable history; separately versioned large assets. |
+| Templates and publication | Versioned template registry/gallery, origin and license, update/reconciliation, journal/conference/thesis/grant profiles, metadata and style validation, submission packages, direct adapters, receipts, repositories, deposits, and persistent identifiers. | Template/profile/publication adapter contracts; projection/fidelity reports; artifact packages; identity and audit. |
+| Integrations and portability | Git/GitHub/GitLab, local editors, Zotero, storage/drive providers, APIs and automation, source package import/export, and explicit history/conflict semantics at every boundary. | Provider adapters over owned document/project contracts; no external integration as sole project truth. |
+| Scientific and agent advantage | Evidence-linked claims, analysis-to-figure-to-manuscript provenance, executable documents, reproducibility checks, error assistance, language help, summaries/explanations, equation/table assistance, citation suggestions, and reviewable agent tasks. | Shared documents, runs, builds, artifacts, citations, evidence, permissions, and attributed proposal/approval records. |
+| Group and institution operation | Guests, groups/labs/institutions, roles, SSO and provisioning, managed accounts, ownership continuity, audit, retention/offboarding, metrics, and feature/AI policy. | Identity, authorization, audit, policy, export, and deletion contracts outside the editor/compiler. |
+| Accessibility, mobile, and international use | Keyboard/screen-reader quality, responsive review and approval, Unicode, multilingual/RTL content, and reliable behavior across desktop and browser continuations. | Semantic surfaces, command/action model, scoped bidi behavior, platform fixtures, and progressive rendering. |
 
-Those features add manuscript, bibliography, collaboration, and publishing
-models. They should not require removing the first opener because its document,
-resolver, coordinator, build receipt, diagnostics, and artifact layers remain
-the same.
+This is a capability inventory, not a promise that every item ships in one
+release or that Overleaf is the only benchmark. A capability may be delivered
+through owned implementation, a reviewed dependency, an adapter to an existing
+service, or a deliberately accepted donor integration. The permanent test is
+whether it composes with Scient's authority, identity, provenance, recovery,
+and portability contracts.
+
+### Capability growth ladder
+
+Use the following maturity ladder to prevent both throwaway first work and a
+premature attempt to build the whole platform. These are dependency layers,
+not accepted release dates:
+
+1. **M0 — universal file-native opener and build:** open any source, resolve
+   bounded project context, edit safely, compile through an adapter, inspect
+   diagnostics/log/output, and retain the last successful artifact.
+2. **M1 — manuscript kernel:** formalize authority modes, semantic identities,
+   anchors, projections, reconciliation reports, assets, revisions, and import/
+   export receipts before rich or collaborative state becomes entrenched.
+3. **M2 — serious individual authoring:** prove the scientific rich-editor
+   projection, source/visual round trips, structured citations/evidence,
+   figures/tables/equations, project search/navigation, templates, and
+   deterministic exports.
+4. **M3 — asynchronous review and durable history:** add comments, mentions,
+   assignments, suggestions/track changes, human and agent accept/reject,
+   milestones, comparison, restore, and deleted-file recovery.
+5. **M4 — realtime/local-first collaboration:** add a replaceable collaboration
+   engine, presence, offline/reconnect, conflicts, migration, revocation, and
+   multi-device recovery without moving scientific authority into engine state.
+6. **M5 — publication and ecosystem:** add template/profile registries,
+   validation, submission/deposit packages and providers, Git/reference-manager/
+   storage integrations, receipts, and reliable source/Word/JATS/HTML/PDF
+   interchange.
+7. **M6 — groups and institutions:** add guests, groups, roles, managed users,
+   SSO/provisioning, audit, retention/offboarding, metrics, policy controls,
+   accessible mobile review, and hybrid deployment choices.
+8. **M7 — integrated scientific intelligence:** connect literature evidence,
+   claims, datasets, analysis runs, figures, executable documents, peer review,
+   reproducibility checks, and governed agent assistance into one traceable
+   research lifecycle.
+
+Each maturity level must extend the same document/project identities and
+contracts. It may add schemas and services, but should not require replacing
+the opener, project resolver, editor boundary, history, build receipts, or
+artifact registry established below it.
+
+### Overleaf adaptation options and decision gate
+
+The present recommendation is to use Overleaf as a comprehensive product and
+systems reference while building Scient-owned contracts and selectively using
+permissive components or adapters. It is not a permanent ruling against every
+deeper relationship. Future options include:
+
+- compatibility and project-package exchange only;
+- an integration or synchronization adapter to an Overleaf deployment;
+- selected isolated services behind Scient contracts;
+- a maintained Community Edition fork or self-hosted offering;
+- an independently implemented Scient platform with equivalent capabilities.
+
+Before choosing anything deeper than reference, compatibility, or a bounded
+adapter, complete a dedicated source-depth, license, product, and operational
+decision. It must compare the actual hosted, professional, and Community
+Edition feature sets; identify per-component licensing and distribution
+obligations; measure how much relevant implementation is reusable; test fit
+with desktop/local-first and structured-native projects; define canonical data
+and history; price deployment, upgrades, observability, migration, security,
+and upstream maintenance; and show that the option accelerates the complete
+capability envelope rather than only reproducing a LaTeX collaboration silo.
+
+Overleaf's service separation is a valuable architectural lesson, not a
+topology prescription. Likewise, Community Edition availability is neither
+proof that all hosted features can be adopted nor a reason to reject a future
+fork that later proves legally, operationally, and strategically superior.
 
 ### Open decisions for the typesetting plan
 
@@ -1137,7 +1396,21 @@ Resolve these in the separate LaTeX architecture and implementation proposal:
 - auxiliary/output directory defaults and project overrides;
 - TexLab distribution/update ownership and license obligations;
 - root-choice persistence, invalidation, and multi-root behavior;
-- the first source/PDF synchronization milestone.
+- the first source/PDF synchronization milestone;
+- the exact file-native and structured-native manuscript representations and
+  the UX for deliberate conversion or authority changes;
+- the stable semantic identity, anchor, source-map, and orphan/re-anchor model;
+- the rich-editor projection winner after one scientific manuscript fixture is
+  tested in Tiptap/ProseMirror, Plate, and Lexical;
+- the projection-adapter and fidelity/reconciliation report schema;
+- the review/history operation model and the bounded collaboration-engine
+  prototype winner;
+- the Overleaf relationship: compatibility, integration, isolated services,
+  fork/self-host, independent implementation, or a staged combination;
+- the template/profile/submission registry and first direct publishing or
+  repository adapters;
+- where individual, guest, group, institution, and mobile continuation scope
+  enters the delivery sequence.
 
 ## Platform Implications
 
@@ -1272,6 +1545,36 @@ Exercise the coordinator independently of a full language integration:
 - macOS, Windows, and Linux discovery paths plus a deterministic adapter
   simulator for CI lanes without a full TeX distribution.
 
+### Manuscript platform compatibility fixture
+
+Use one realistic multi-file scientific paper to test the architectural path,
+not only isolated editor widgets. Maintain both a file-native project and a
+structured-native manuscript case and require:
+
+- source and visual edits, an external file edit, and an explicit authority
+  conversion all produce correct revisions and an understandable
+  reconciliation report;
+- sections, citations/evidence, equations, figures, tables, cross-references,
+  footnotes, metadata, and assets retain stable identities where supported;
+- LaTeX, Typst, Quarto/MyST, Word, JATS, HTML, and PDF adapters declare and
+  report preserved, normalized, downgraded, unresolved, and lost content;
+- comments, suggestions, accepted/rejected changes, evidence anchors, and
+  source/output navigation survive ordinary edits and builds, with visible
+  orphan/re-anchor recovery when they cannot;
+- humans and agents use the same attributed suggestion and approval lifecycle;
+- history labels, comparisons, single-file/project restore, and deleted-file
+  recovery work independently of the current editor or collaboration engine;
+- concurrent, offline, reconnect, conflict, schema-migration, access-revocation,
+  and abandoned-session cases recover without silent loss;
+- large figures, PDFs, datasets, and supplements are versioned as assets rather
+  than embedded in a text collaboration document;
+- template upgrade, publication-profile validation, submission-package
+  creation, and provider failure leave reviewable artifacts and receipts;
+- Git or external-provider synchronization cannot silently discard comments,
+  suggestions, evidence links, or accepted Scient history; and
+- an editor, compiler, collaboration engine, or publishing adapter can be
+  replaced in the fixture without migrating the canonical project model.
+
 ### Data fixtures
 
 - CSV/TSV/Parquet/Arrow with small, wide, large, nested, date/time-zone,
@@ -1301,14 +1604,21 @@ validator before attempting heavy imaging visualization.
 
 ## What Not To Build First
 
-- Do not fork VS Code, RStudio, Positron, JupyterLab, MATLAB, or Overleaf.
+- Do not fork VS Code, RStudio, Positron, JupyterLab, MATLAB, or Overleaf as a
+  shortcut around defining Scient's project, authority, provenance, and
+  interoperability contracts.
 - Do not build separate Python, R, and MATLAB mini-products.
 - Do not call a read-only syntax preview an editor.
 - Do not adopt a beta editor solely because T3 currently uses it.
 - Do not build a full notebook before safe editing and ordinary script runs.
 - Do not build a one-off `LatexFilePreview` that spawns a compiler, invents its
   own project scan, or bypasses shared diagnostics, artifacts, and cancellation.
-- Do not fork or self-host Overleaf merely to deliver the first local opener.
+- Do not fork or self-host Overleaf merely to deliver the first local opener or
+  before the dedicated adaptation decision gate. Do not permanently exclude a
+  deeper Overleaf relationship if that review later proves it is the best way
+  to deliver the full capability envelope.
+- Do not assume cloning Community Edition produces hosted/professional feature
+  parity or Scient's evidence, analysis, provenance, and agent advantages.
 - Do not use MCP as the only MATLAB integration.
 - Do not bundle or redistribute MATLAB or imply Scient supplies a license.
 - Do not make `.mlx`, `.ipynb` JSON, proprietary workspace binaries, or hidden
@@ -1330,8 +1640,10 @@ Approve the following direction:
    of manual scientific source editing, runtimes, notebooks, data exploration,
    figures, runs, and analysis artifacts.
 2. **Foundation:** make a conditional, recoverable editable document and surface
-   registry shared with the universal file opener; add an optional bounded
-   project/dependency resolver for formats that need more than one pathname.
+   registry shared with the universal file opener; add explicit file-native and
+   structured-native authority modes, stable identities/anchors, projection and
+   reconciliation adapters, and an optional bounded project/dependency resolver
+   for formats that need more than one pathname.
 3. **Editor:** run a bounded CodeMirror 6 proof and use it by default if it
    passes; retain `@pierre/diffs` for diff/review; adapt T3 behaviors but not its
    patched beta foundation wholesale.
@@ -1362,17 +1674,25 @@ Approve the following direction:
     dependency resolution, `Preview | Source | Log`, cancellable builds,
     diagnostics, and a retained last successful PDF. Select engines only after
     an adapter/fixture/platform proof.
-12. **Manuscripts:** evolve that opener through citations, navigation, review,
-    collaboration, history, templates, and submission without replacing the
-    shared document, execution, diagnostics, and artifact base.
-13. **Domains:** add neuroscience/BIDS as a later adapter pack after the generic
+12. **Manuscripts:** evolve that opener through the complete capability
+    envelope: serious source/visual authoring, citations/evidence, review,
+    durable history, realtime/local-first collaboration, templates,
+    publishing, integrations, portability, institutions, accessibility/mobile,
+    and governed scientific agent assistance, without replacing the shared
+    document, execution, diagnostics, history, and artifact base.
+13. **Source posture:** keep Overleaf and every donor behind owned contracts.
+    Start with product reference, compatibility, and bounded adapters; leave a
+    future isolated integration, self-hosted deployment, or maintained fork
+    available only after a dedicated source-depth/license/product/operations
+    decision proves it superior for the complete target.
+14. **Domains:** add neuroscience/BIDS as a later adapter pack after the generic
     workbench is useful.
-14. **Scope control:** preserve current Markdown, diff, terminal, PDF/image, and
+15. **Scope control:** preserve current Markdown, diff, terminal, PDF/image, and
     browser behavior; integrate rather than duplicate the universal viewer.
 
 Reject for now:
 
-- a wholesale donor fork;
+- an unreviewed wholesale donor fork;
 - a language-specific architecture;
 - notebook-first sequencing;
 - agent-only execution;
@@ -1398,7 +1718,17 @@ turning this planning note into implementation architecture:
 10. MATLAB integration and licensing/telemetry decision record;
 11. universal typesetting opener architecture, interaction design, and
     engine/LSP/license/platform fixture spike;
-12. notebook protocol/rendering spike after the script-run gate passes.
+12. manuscript authority, semantic identity, anchor, projection, fidelity, and
+    reconciliation architecture decision;
+13. scientific rich-editor shootout using one source/visual/citation/evidence/
+    figure/review/import-export fixture;
+14. citation/reference/evidence architecture and Zotero/JabRef/CSL adapter plan;
+15. review, attributed history, restore, and replaceable collaboration-engine
+    architecture plus offline/conflict/revocation fixture;
+16. template/profile/publication/submission architecture and first adapter plan;
+17. Overleaf hosted/professional/Community Edition source-depth, feature-gap,
+    license, operations, local-first, and structured-manuscript decision record;
+18. notebook protocol/rendering spike after the script-run gate passes.
 
 ## Roadmap Completion Criteria
 
@@ -1407,13 +1737,19 @@ This proposal is ready for an approval decision when reviewers agree that it:
 - answers the current-state question without overstating shipped capability;
 - keeps manual and agent work on the same project objects;
 - provides a non-throwaway path from a universal LaTeX/source opener to richer
-  manuscript and Overleaf-like work;
+  manuscript work covering the complete Overleaf-class capability envelope and
+  Scient's additional evidence, analysis, provenance, and agent workflows;
+- supports durable file-native and structured-native authority, stable semantic
+  identity, replaceable projections, and explicit round-trip fidelity without
+  requiring an opener or project-model migration;
 - shares execution mechanics across analysis and document builds without
   erasing their distinct semantics;
 - scales from ordinary scripts to notebooks, data, plots, debugging, remote
   compute, and domain packs through explicit adapters;
 - distinguishes reusable dependencies, adapter integrations, UX references,
   source-available projects, and proprietary software;
+- leaves deeper Overleaf integration, self-hosting, or fork adoption open to a
+  dedicated evidence-based gate rather than silently accepting or forbidding it;
 - sequences the highest-ROI foundations before full IDE depth;
 - preserves current viewer, Markdown, diff, terminal, and browser behavior;
 - contains explicit exit gates, platform implications, recovery states, and
