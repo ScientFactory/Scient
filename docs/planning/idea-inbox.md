@@ -3,7 +3,7 @@
 Status: Active
 Owner: Scient 001
 Created: 2026-07-11
-Last updated: 2026-07-22
+Last updated: 2026-07-25
 Purpose: Provides one temporary intake surface for unprocessed Scient ideas before they are evaluated and routed to their durable homes.
 Doc type: Planning note
 
@@ -95,6 +95,12 @@ Questions to preserve:
 | Idea | Raised by | Date added | Context or source | Possible area |
 |---|---|---|---|---|
 | **Progressive-density desktop thread list.** Keep Scient's existing project and worktree grouping. Within each group, show live or attention-requiring threads as compact, information-rich cards, while quiet, seen, or completed threads remain simple rows. Rich cards could expose existing status, title, branch or worktree, provider, pull-request state, and diff summary when available. Derive the presentation from Scient's existing activity and attention state rather than introducing a separate persisted settled lifecycle. Desktop only; defer evaluation and implementation. | Yaacov | 2026-07-22 | T3 Code commit [`32c6012dabdbd0eb178b25ea4225d889ec8f6475`](https://github.com/pingdotgg/t3code/commit/32c6012dabdbd0eb178b25ea4225d889ec8f6475), dated 2026-07-22: “Sidebar v2 beta: flat thread list with a server-backed settled lifecycle” ([PR #4026](https://github.com/pingdotgg/t3code/pull/4026)). Inspect that exact commit before any future evaluation. The transferable idea is progressive visual density; T3's flat cross-project list as a hierarchy replacement, persisted settle or unsettle lifecycle, storage migration, controls, identity, and mobile implementation are out of scope. | Desktop sidebar and thread-list design, activity and attention presentation, accessibility, and future UX evaluation |
+
+### Reliability, Recovery, And Data Safety
+
+| Idea | Raised by | Date added | Context or source | Possible area |
+|---|---|---|---|---|
+| **Fail-closed local database recovery.** When Scient cannot open or migrate its local database, preserve the original database and related files before attempting any repair; explain the exact failure in plain language; offer bounded choices such as retry, restore a verified backup, or start with a quarantined fresh database; and make every automated step idempotent, observable, and reversible. Recovery must protect Scient's own migration lineage and user data rather than replaying another product's schema assumptions. | Yaacov | 2026-07-25 | Future investigation should begin with Synara commit [`5495a6e81e4da80e996867a1c487c9546cbd0196`](https://github.com/Emanuele-web04/synara/commit/5495a6e81e4da80e996867a1c487c9546cbd0196), especially `apps/desktop/src/desktopMigrationRecovery.ts`, `apps/server/src/persistence/MigrationBackup.ts`, `apps/server/src/persistence/Migrations.ts`, `packages/shared/src/migrationRecovery.ts`, and their tests; Windows coverage follows in [`47dc7145174b71e2813b63b976a72807ad96262e`](https://github.com/Emanuele-web04/synara/commit/47dc7145174b71e2813b63b976a72807ad96262e). In Scient, inspect `scient-desktop/apps/server/src/persistence/Migrations.ts`, `scient-desktop/apps/server/src/persistence/Migrations/`, `scient-desktop/apps/desktop/src/main.ts`, and the actual SQLite startup/shutdown boundary before designing anything. Borrow failure classification, backup verification, idempotency, explicit user choices, and adversarial tests; do not copy Synara's migration aliases, replay map, Space-specific repair, updater assumptions, or database replacement policy without a Scient-specific data model, threat analysis, rollback proof, and cross-platform recovery test matrix. | Local data durability, migration architecture, desktop startup recovery, backup and restore, recovery UX, security, and cross-platform release validation |
 
 ### App Distribution, Updates, And Releases
 
