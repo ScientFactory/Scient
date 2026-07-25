@@ -10,7 +10,8 @@ Doc type: Research evidence
 ## Scope
 
 - Owned repository and branch: `ScientFactory/scient-desktop`, `main`
-- Owned head inspected: `dab9b6d58e2a3f3da02c5475b86dc083f71580f1`
+- Initial owned head inspected: `dab9b6d58e2a3f3da02c5475b86dc083f71580f1`
+- Publication-refresh owned head: `5d5df0c41e09a6dceb0bdb13f63167bc46ff3370`; the review reconciled desktop PR #129's newly merged migration-lineage guard before publication
 - Official repository and branch: `Emanuele-web04/synara`, `main`
 - Previous `reviewedThrough`: `3a5720bdd0ae4ace444379cabf0a634941d232fd`
 - Last tip observed by the intake automation: `3f66f8ee5b1e5d8aa682029b31b4b89b797a5e7f`
@@ -181,8 +182,8 @@ The shorthand in the ledger means:
 | `e89af583` | Landing trigger styling | Defer | `VISUAL` and `OVERLAP` with PR #128 |
 | `83b68523` | Architecture/reliability bundle | Defer | Decomposed below; no whole-commit intake |
 | `54dff37d` | Build diagnostics cleanup | Reject | `RELEASE`; obsolete donor config |
-| `5495a6e8` | Database recovery/migration guard | Defer | Decomposed below; protected data/recovery/update lanes and active overlap prohibit automatic intake |
-| `47dc7145` | Windows migration CI | Defer | Depends on the deferred recovery implementation; active PR #129 overlaps only the lineage-proof sub-lane |
+| `5495a6e8` | Database recovery/migration guard | Defer | Decomposed below; current main has the lineage guard, while protected recovery/update lanes and other active overlap prohibit automatic intake |
+| `47dc7145` | Windows migration CI | Defer | Current main has the merged lineage guard but not the donor recovery path or its Windows proof |
 | `3f66f8ee` | Synara v0.6.1 release | Reject | `RELEASE` |
 | `77d28c26` | Landing project text color | Defer | Quality 4/5; useful consistency, but purely `VISUAL` and overlaps dirty PR #128 |
 | `0388a9b3` | Thread detail/process scanning | Adapt | Quality 5/5 overall; decomposed below and not selected now |
@@ -231,7 +232,7 @@ The shorthand in the ledger means:
 | `162c6619` macOS release finalization | Finalizes and proves donor DMG/update-manifest mechanics. | **Reject.** Donor release authority and packaging assumptions do not transfer to Scient. |
 | `925b7dac` graceful backend stop | Gives the Windows backend an authenticated graceful-stop request, bounded wait, exit proof, and one force fallback. | **Defer.** Donor quality is 5/5, but current main lacks the whole behavior, the change crosses desktop/server/update lifecycle boundaries, and active PRs #121/#126 overlap. Reassess on the owned backend lifecycle seam after those lanes resolve. |
 | `925b7dac` updater preparation | Coordinates backend/database shutdown with update installation. | **Defer.** Protected updater and persisted-data lane; requires hosted Windows and release-specific proof outside this automation. |
-| `5495a6e8` migration lineage guard | Fails CI when an already-shipped migration is renumbered or renamed. | **Adapt.** Not selected here: PR #129 overlaps this sub-lane, and it is not current-main equivalence until merged. |
+| `5495a6e8` migration lineage guard | Fails CI when an already-shipped migration is renumbered or renamed. | **Reject.** Equivalent or stronger Scient-owned lineage validation merged in desktop PR #129 before publication refresh. |
 | `5495a6e8` bounded crash supervision | Adds readiness-based backoff, a circuit breaker, bounded diagnostic output, and one recovery handoff for repeated backend-start failures. | **Adapt.** Not selected here: PR #126 overlaps much of this behavior, and current main does not yet provide it. |
 | `5495a6e8` in-place database/update recovery | Suppresses backend restart while recovery owns the database and offers check/download/install when the normal app cannot open. | **Defer.** High user value but very high protected data-loss/updater risk, coupled to donor migration history and recovery UI; requires dedicated recovery and hosted release proof. |
 | `5495a6e8` Opus/disabled-provider discovery | Restores model visibility across Canary/disabled-provider discovery cases. | **Defer.** Active PR #123 overlaps the provider/model seam; current main is not treated as equivalent. |
@@ -254,6 +255,6 @@ release-only, or too broad. Zero implementations is the quality-preserving resul
 
 - Proposed `reviewedThrough`: `0388a9b397a12771a3716587269cbd967599736a`
 - `integrationBase`: unchanged at `9be46c3ce6a7521b64436b7334bc6fce16e3cac4`
-- Tested owned head: source inspection base `dab9b6d58e2a3f3da02c5475b86dc083f71580f1`; no product code was tested or integrated
+- Tested owned head: `5d5df0c41e09a6dceb0bdb13f63167bc46ff3370`; the review began on `dab9b6d58e2a3f3da02c5475b86dc083f71580f1` and reconciled the merged lineage-guard delta at publication refresh; no donor product code was tested or integrated
 - Rolling issue: desktop issue #15 is stale and should close only after this review-state change merges
 - Remaining follow-up: re-evaluate thread-detail retention after PR #123 resolves, and full-diff copy after PR #127 resolves with explicit interactive validation outside this automation

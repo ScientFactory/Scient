@@ -28,7 +28,7 @@ siblings. A deferred source with no retained checkout says so explicitly.
 |---|---|---|---|---|---|---|
 | Scient agent source (OpenCode-derived) | `../scient-agent/`; canonical workspace sibling on `dev` at `acdf841703cea2d36428f203d41aa48d2b470e55` | `https://github.com/anomalyco/opencode.git`, `dev` | `https://github.com/ScientFactory/scient-agent`, public standalone repository | `69a80663a2ed7d671d2b4d5dd6f2d605714675a5` | Current owned `dev` `acdf841703cea2d36428f203d41aa48d2b470e55`; exact rename and maintenance evidence below | Owned source foundation for the planned Scient agent; `adapter-maintained`; native Scient runtime identity is not yet implemented. |
 | Goose | No local checkout is retained. | `https://github.com/aaif-goose/goose.git`, `main` | None; owned repository deferred | Not tested in Gate 1.5 | Last inspected commit `3c1fdd692cc8aaa5f09b9175410c09a09d4dfe49` | Deferred broader-agent research input. Repository, build, ACP adapter, runtime, credentials, and adoption wait until after the first Scient gateway. |
-| Scient desktop (Synara-derived) | `../scient-desktop/`; canonical workspace sibling on `main` at `dab9b6d58e2a3f3da02c5475b86dc083f71580f1` | `https://github.com/Emanuele-web04/synara.git`, `main` | `https://github.com/ScientFactory/scient-desktop`, public standalone repository | `9be46c3ce6a7521b64436b7334bc6fce16e3cac4` | Current owned `main` `dab9b6d58e2a3f3da02c5475b86dc083f71580f1`; exact rename and maintenance evidence below | Accepted initial application foundation; `divergent-cherry-pick`; must not own scientific project truth. |
+| Scient desktop (Synara-derived) | `../scient-desktop/`; canonical workspace sibling on `main` at `5d5df0c41e09a6dceb0bdb13f63167bc46ff3370` | `https://github.com/Emanuele-web04/synara.git`, `main` | `https://github.com/ScientFactory/scient-desktop`, public standalone repository | `9be46c3ce6a7521b64436b7334bc6fce16e3cac4` | Current owned `main` `5d5df0c41e09a6dceb0bdb13f63167bc46ff3370`; exact rename and maintenance evidence below | Accepted initial application foundation; `divergent-cherry-pick`; must not own scientific project truth. |
 | T3 Code | No canonical local checkout is retained. | `https://github.com/pingdotgg/t3code.git`, `main` | None | Not tested in Gate 1.5 | Targeted review completed through `bf76535fe4da71d8de7b8bd5ffa0d2086b7af8d0`; see [`t3-code-targeted-review-2026-07-18.md`](../notes/t3-code-targeted-review-2026-07-18.md) | Trigger-driven desktop/runtime/provider/process reference only; not a continuously monitored upstream. |
 
 ## Maintained Upstream Review State
@@ -40,7 +40,7 @@ review is accepted.
 
 | Source | Tested owned head | Reviewed through | Integration base | Update mode | Review evidence |
 |---|---|---|---|---|---|
-| Scient desktop | `dab9b6d58e2a3f3da02c5475b86dc083f71580f1` | `0388a9b397a12771a3716587269cbd967599736a` on 2026-07-26 | `9be46c3ce6a7521b64436b7334bc6fce16e3cac4` | `divergent-cherry-pick` | [`2026-07-26-scient-desktop.md`](upstream-reviews/2026-07-26-scient-desktop.md); no source code selected or integrated; desktop checkpoint PR is a separate dependency |
+| Scient desktop | `5d5df0c41e09a6dceb0bdb13f63167bc46ff3370` | `0388a9b397a12771a3716587269cbd967599736a` on 2026-07-26 | `9be46c3ce6a7521b64436b7334bc6fce16e3cac4` | `divergent-cherry-pick` | [`2026-07-26-scient-desktop.md`](upstream-reviews/2026-07-26-scient-desktop.md); no donor source code selected or integrated; desktop checkpoint PR is a separate dependency |
 | Scient agent source | `acdf841703cea2d36428f203d41aa48d2b470e55` | `fab213312927ea64cf968832c527206e8c944f9e` on 2026-07-18 | `69a80663a2ed7d671d2b4d5dd6f2d605714675a5` | `adapter-maintained` | [`2026-07-18-scient-agent.md`](upstream-reviews/2026-07-18-scient-agent.md); no code intake |
 
 ## Standalone Ownership And Maintenance Rollout
@@ -168,6 +168,12 @@ source-repository pull requests:
   `main` to `dab9b6d58e2a3f3da02c5475b86dc083f71580f1`; main-head CI run
   `30158224041` passed the complete desktop matrix. These Scient-owned changes
   do not advance the reviewed official checkpoint or integration base.
+- Desktop [PR #129](https://github.com/ScientFactory/scient-desktop/pull/129)
+  then added the Scient-owned append-only migration-lineage guard and advanced
+  `main` to `5d5df0c41e09a6dceb0bdb13f63167bc46ff3370`. This owned guard is relevant
+  equivalence evidence for the July 26 Synara review, but it does not import the
+  donor's database-recovery, updater, or Windows recovery-execution paths and
+  does not advance the integration base.
 - Agent [PR #1](https://github.com/ScientFactory/scient-agent/pull/1)
   established the operator card, review state, verifier modes, owned source
   quality workflow, and monitor; exact head
