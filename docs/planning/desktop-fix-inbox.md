@@ -38,4 +38,52 @@ Each open fix should record:
 
 ## Open Fixes
 
-_No open fixes._
+### DF-002 — Show CLI Update Only For A Confirmed Available Update
+
+- **Date added:** 2026-07-25.
+- **Status:** Diagnosed and awaiting explicit implementation approval.
+- **Observed behavior:** In Settings > Providers > Provider tools > Installed
+  CLIs, an **Update** button can appear even when Scient has not established
+  that a newer version exists. In the supplied screenshot, Cursor and
+  Antigravity show **Update** while the same card says “No provider updates
+  detected.” The button therefore reads as a confirmed update even though the
+  underlying result may only mean that Scient knows how to run that provider's
+  updater.
+- **Expected behavior:** Show **Update** only after a successful, current check
+  has confirmed that the installed version is older than an available version.
+  An unknown, unavailable, failed, stale, or unsupported latest-version check
+  must not produce an Update button. Keep “can execute an updater” separate
+  from “an update is available,” and keep the card summary and row actions in
+  agreement.
+- **User impact:** A false-positive Update action can make users run provider
+  installers unnecessarily, erodes trust in the status shown by Settings, and
+  can create avoidable provider downtime or version churn.
+- **Diagnosis:** Inspected `scient-desktop` `origin/main` at
+  `341055d518cafabaa71f6a4c9a4ea42a9dc8cb8d`. The card summary uses
+  `getVisibleProviderUpdateStatuses`, which accepts only a
+  `behind_latest` advisory with a known latest version. The Installed CLIs row
+  instead permits `shouldOfferProviderUpdateAction` when the advisory is
+  `unknown`, provided an update command exists, and then explicitly renders
+  the button for `showProviderUpdateStatus || status === "unknown"`. Cursor
+  always exposes a native `cursor-agent update` command, and native-provider
+  update capability can exist without latest-version metadata. This makes
+  updater capability look like confirmed update availability.
+- **Smallest plausible implementation seam:** Make the Installed CLIs action
+  gate consume the same confirmed-availability predicate as the summary,
+  while treating an already queued or running update as a separate transient
+  state. If a provider has only a self-updater and no reliable check-only
+  mechanism, do not label or expose that capability as an available update.
+  Preserve explicit provider Connect, setup, custom-binary, and managed-runtime
+  flows.
+- **Validation needed:** Unit coverage for `current`, `behind_latest`, and
+  `unknown` advisories with and without update commands; Settings component or
+  browser coverage proving that summary text and row buttons cannot
+  contradict each other; failed, stale, and disabled-check states; queued,
+  running, succeeded, and unchanged transitions; keyboard and accessible-name
+  checks; and focused regression coverage for Cursor, Antigravity, and
+  Scient-managed runtimes.
+- **Evidence:** User-supplied Settings screenshot from 2026-07-25 showing the
+  contradictory summary and row actions.
+- **Related task, issue, or pull request:** Not yet created.
+- **Implementation approval:** Not yet; this entry records diagnosis and
+  expected behavior only.
