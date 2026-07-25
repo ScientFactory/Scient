@@ -15,6 +15,9 @@ Do not use planning docs as product truth, accepted architecture, or current imp
 
 Current planning docs:
 
+- `desktop-fix-inbox.md` - temporary intake for observed Scient desktop
+  problems that need diagnosis or a bounded fix but are not being implemented
+  immediately.
 - `idea-inbox.md` - temporary intake for raw, unprocessed ideas before evaluation and routing.
 - `linux-distribution-hardening.md` - proposed cross-repository migration from
   an insecure Ubuntu AppImage fallback to an installed, sandbox-preserving
