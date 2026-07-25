@@ -3,7 +3,7 @@
 Status: Active
 Owner: Scient 001
 Created: 2026-07-08
-Last updated: 2026-07-23
+Last updated: 2026-07-25
 Purpose: Records exact owned and external source provenance, tested owned revisions, and cross-repository upstream review evidence used by Scient.
 Doc type: Research evidence
 
@@ -26,9 +26,9 @@ siblings. A deferred source with no retained checkout says so explicitly.
 
 | Source | Local path | Official upstream | Owned repository | Tested integrated upstream base | Maintained/tested commit | Role and update mode |
 |---|---|---|---|---|---|---|
-| Scient agent source (OpenCode-derived) | `../scient-agent/`; canonical workspace sibling on `dev` at `709a26002c697f06cbaebeb8fac40e87de0ab6b3` | `https://github.com/anomalyco/opencode.git`, `dev` | `https://github.com/ScientFactory/scient-agent`, public standalone repository | `69a80663a2ed7d671d2b4d5dd6f2d605714675a5` | Current owned `dev` `709a26002c697f06cbaebeb8fac40e87de0ab6b3`; exact rename and maintenance evidence below | Owned source foundation for the planned Scient agent; `adapter-maintained`; native Scient runtime identity is not yet implemented. |
+| Scient agent source (OpenCode-derived) | `../scient-agent/`; canonical workspace sibling on `dev` at `acdf841703cea2d36428f203d41aa48d2b470e55` | `https://github.com/anomalyco/opencode.git`, `dev` | `https://github.com/ScientFactory/scient-agent`, public standalone repository | `69a80663a2ed7d671d2b4d5dd6f2d605714675a5` | Current owned `dev` `acdf841703cea2d36428f203d41aa48d2b470e55`; exact rename and maintenance evidence below | Owned source foundation for the planned Scient agent; `adapter-maintained`; native Scient runtime identity is not yet implemented. |
 | Goose | No local checkout is retained. | `https://github.com/aaif-goose/goose.git`, `main` | None; owned repository deferred | Not tested in Gate 1.5 | Last inspected commit `3c1fdd692cc8aaa5f09b9175410c09a09d4dfe49` | Deferred broader-agent research input. Repository, build, ACP adapter, runtime, credentials, and adoption wait until after the first Scient gateway. |
-| Scient desktop (Synara-derived) | `../scient-desktop/`; canonical workspace sibling on `main` at `640473ff3d1bbce9ec3cbb48b940cb46c99a3e03` | `https://github.com/Emanuele-web04/synara.git`, `main` | `https://github.com/ScientFactory/scient-desktop`, public standalone repository | `9be46c3ce6a7521b64436b7334bc6fce16e3cac4` | Current owned `main` `640473ff3d1bbce9ec3cbb48b940cb46c99a3e03`; exact rename and maintenance evidence below | Accepted initial application foundation; `divergent-cherry-pick`; must not own scientific project truth. |
+| Scient desktop (Synara-derived) | `../scient-desktop/`; canonical workspace sibling on `main` at `dab9b6d58e2a3f3da02c5475b86dc083f71580f1` | `https://github.com/Emanuele-web04/synara.git`, `main` | `https://github.com/ScientFactory/scient-desktop`, public standalone repository | `9be46c3ce6a7521b64436b7334bc6fce16e3cac4` | Current owned `main` `dab9b6d58e2a3f3da02c5475b86dc083f71580f1`; exact rename and maintenance evidence below | Accepted initial application foundation; `divergent-cherry-pick`; must not own scientific project truth. |
 | T3 Code | No canonical local checkout is retained. | `https://github.com/pingdotgg/t3code.git`, `main` | None | Not tested in Gate 1.5 | Targeted review completed through `bf76535fe4da71d8de7b8bd5ffa0d2086b7af8d0`; see [`t3-code-targeted-review-2026-07-18.md`](../notes/t3-code-targeted-review-2026-07-18.md) | Trigger-driven desktop/runtime/provider/process reference only; not a continuously monitored upstream. |
 
 ## Maintained Upstream Review State
@@ -40,8 +40,8 @@ review is accepted.
 
 | Source | Tested owned head | Reviewed through | Integration base | Update mode | Review evidence |
 |---|---|---|---|---|---|
-| Scient desktop | `640473ff3d1bbce9ec3cbb48b940cb46c99a3e03` | `3a5720bdd0ae4ace444379cabf0a634941d232fd` on 2026-07-18 | `9be46c3ce6a7521b64436b7334bc6fce16e3cac4` | `divergent-cherry-pick` | [`2026-07-18-scient-desktop.md`](upstream-reviews/2026-07-18-scient-desktop.md); desktop PR #16 established the reviewed intake; later Scient-owned product work does not advance the upstream checkpoint |
-| Scient agent source | `709a26002c697f06cbaebeb8fac40e87de0ab6b3` | `fab213312927ea64cf968832c527206e8c944f9e` on 2026-07-18 | `69a80663a2ed7d671d2b4d5dd6f2d605714675a5` | `adapter-maintained` | [`2026-07-18-scient-agent.md`](upstream-reviews/2026-07-18-scient-agent.md); no code intake |
+| Scient desktop | `dab9b6d58e2a3f3da02c5475b86dc083f71580f1` | `3a5720bdd0ae4ace444379cabf0a634941d232fd` on 2026-07-18 | `9be46c3ce6a7521b64436b7334bc6fce16e3cac4` | `divergent-cherry-pick` | [`2026-07-18-scient-desktop.md`](upstream-reviews/2026-07-18-scient-desktop.md); desktop PR #16 established the reviewed intake; later Scient-owned product work does not advance the upstream checkpoint |
+| Scient agent source | `acdf841703cea2d36428f203d41aa48d2b470e55` | `fab213312927ea64cf968832c527206e8c944f9e` on 2026-07-18 | `69a80663a2ed7d671d2b4d5dd6f2d605714675a5` | `adapter-maintained` | [`2026-07-18-scient-agent.md`](upstream-reviews/2026-07-18-scient-agent.md); no code intake |
 
 ## Standalone Ownership And Maintenance Rollout
 
@@ -161,6 +161,13 @@ source-repository pull requests:
   `640473ff3d1bbce9ec3cbb48b940cb46c99a3e03` with a tree identical to the
   reviewed candidate, without changing the reviewed official checkpoint or
   integration base.
+- Desktop PRs [#124](https://github.com/ScientFactory/scient-desktop/pull/124)
+  and [#125](https://github.com/ScientFactory/scient-desktop/pull/125)
+  added the file-explorer selected state and prevented background Cursor probes
+  from opening login browsers. The ordinary squash merges advanced owned
+  `main` to `dab9b6d58e2a3f3da02c5475b86dc083f71580f1`; main-head CI run
+  `30158224041` passed the complete desktop matrix. These Scient-owned changes
+  do not advance the reviewed official checkpoint or integration base.
 - Agent [PR #1](https://github.com/ScientFactory/scient-agent/pull/1)
   established the operator card, review state, verifier modes, owned source
   quality workflow, and monitor; exact head
@@ -210,6 +217,17 @@ source-repository pull requests:
   passed hosted source-quality run `29745004499` and merged as current owned
   `dev` `709a26002c697f06cbaebeb8fac40e87de0ab6b3`. Manual release-policy run
   `29745960225` then passed on the identical `release/stable` head.
+- Agent [PR #12](https://github.com/ScientFactory/scient-agent/pull/12)
+  updated the session UI's DOMPurify dependency. The ordinary squash merge
+  advanced owned `dev` to `ec28557c86c2d3bad50f9f83f0d5996e6614bd44`;
+  main-head Scient quality run `30158013257` passed. This owned maintenance
+  change does not advance the reviewed official checkpoint or integration base.
+- Agent [PR #13](https://github.com/ScientFactory/scient-agent/pull/13)
+  advanced the immutable `docker/setup-buildx-action` pin in inherited,
+  upstream-repository-guarded workflows. The ordinary squash merge advanced
+  owned `dev` to `acdf841703cea2d36428f203d41aa48d2b470e55`; exact-head Scient
+  quality run `30173924772` passed. This owned maintenance change does not
+  advance the reviewed official checkpoint or integration base.
 
 No source code from the reviewed official ranges was integrated during this
 rollout. The PRs above establish ownership, review, monitoring, and verification
