@@ -58,8 +58,8 @@ Each open fix should record:
 - **User impact:** A false-positive Update action can make users run provider
   installers unnecessarily, erodes trust in the status shown by Settings, and
   can create avoidable provider downtime or version churn.
-- **Diagnosis:** Inspected `scient-desktop` `origin/main` at
-  `341055d518cafabaa71f6a4c9a4ea42a9dc8cb8d`. The card summary uses
+- **Diagnosis:** Inspected the authoritative current `scient-desktop`
+  `origin/main` on 2026-07-25. The card summary uses
   `getVisibleProviderUpdateStatuses`, which accepts only a
   `behind_latest` advisory with a known latest version. The Installed CLIs row
   instead permits `shouldOfferProviderUpdateAction` when the advisory is
