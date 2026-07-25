@@ -110,7 +110,7 @@ The shorthand in the ledger means:
 | `a7d2a142` | Architecture/UX bundle | Reject | `BROAD` |
 | `b9c076f5` | Architecture cleanup | Reject | `BROAD` |
 | `e0a3c457` | Dialog/icon polish | Defer | `VISUAL` |
-| `c01c2511` | Startup replay pruning | Reject | `EQUIV`; Scient reconciles and clears stale runtime state at startup |
+| `c01c2511` | Startup replay pruning | Reject | `ABSENT`; donor-only runtime-open-turn repository/table, while Scient owns a different startup reconciler |
 | `65fd4746` | Cross-task labels/sidebar order | Reject | `EQUIV` for behavior; remaining value is `VISUAL` |
 | `d3b9c66d` | Bun build externalization | Reject | `EQUIV`; Scient owns separate build/release proof |
 | `9ceb8f28` | Headless Antigravity capture | Reject | `EQUIV`; Scient's provider connection avoids donor GUI capture |
@@ -118,7 +118,7 @@ The shorthand in the ledger means:
 | `7b91d562` | Pi model catalog | Reject | `EQUIV`; Scient uses discovery plus custom provider-qualified models |
 | `011b80f9` | Claude context projection | Reject | `EQUIV`; current model/options and adapter tests cover it |
 | `ac1a41c7` | Active-turn revert guard | Reject | `EQUIV`; Scient owns active-turn/checkpoint safeguards |
-| `925b7dac` | Windows backend shutdown | Reject | `EQUIV`; current owned lifecycle plus active PRs #121/#126 cover the seam |
+| `925b7dac` | Windows backend shutdown | Defer | High-quality but protected, broad lifecycle/update work; current main lacks full equivalence and active PRs #121/#126 overlap |
 | `7dbe027f` | External MCP integration | Reject | `BROAD`; imports donor identity, runtime, credentials, and storage assumptions |
 | `16029b0c` | Project spaces | Reject | Donor product/storage model conflicts with Scient project authority |
 | `d23c6d72` | Interrupted worktree recovery | Defer | `LESSON`; require a specific Scient recovery defect before intake |
@@ -127,7 +127,7 @@ The shorthand in the ledger means:
 | `58c37d9d` | Missing Codex cwd diagnosis | Reject | `EQUIV`; Scient separates CLI availability from project cwd failures |
 | `b7617e0b` | Keyboard shortcuts | Defer | `VISUAL`/interactive and product-specific |
 | `54158720` | AppSnap shortcut | Reject | Donor-only capture feature |
-| `162c6619` | ACP permissions/release | Reject | `EQUIV` permission boundaries; `RELEASE` for publication lane |
+| `162c6619` | ACP permissions/release | Defer | Decomposed below; current main does not fully match the donor permission policy |
 | `676b2850` | Space shortcuts | Reject | Rejected product concept |
 | `d03a888b` | Running spinner | Reject | `EQUIV`; Scient already adopted reduced-motion-safe treatment |
 | `00af505c` | Browser control recovery | Reject | `EQUIV`; Scient has owned browser recovery and trust boundaries |
@@ -173,7 +173,7 @@ The shorthand in the ledger means:
 | `e1cd6127` | Pinned outbound DNS | Reject | `ABSENT`; helper belongs to rejected donor gateway/outbound subsystem |
 | `2c237bfb` | New-chat project picker | Defer | `OVERLAP` with active PR #128 and appearance-dependent behavior |
 | `afc69fb3` | Project-trigger color | Defer | `VISUAL` and `OVERLAP` with PR #128 |
-| `807acfe3` | Diff refresh/toggle | Reject | `EQUIV`; active PR #127 is the Scient-owned lane |
+| `807acfe3` | Diff refresh/toggle | Defer | Current main lacks both fixes; active PR #127 overlaps the exact files and behavior |
 | `c3964039` | Full virtualized-diff copy | Defer | Valuable, but interactive/selection proof is prohibited and PR #127 overlaps |
 | `6b0f6d70` | OpenCode plan-agent state | Reject | Donor plan-agent persistence is absent; Scient's OpenCode model differs |
 | `97ca5097` | Pi ModelRuntime discovery | Defer | Valuable SDK-alignment lesson; broad provider/runtime dependency and active provider lanes |
@@ -181,8 +181,8 @@ The shorthand in the ledger means:
 | `e89af583` | Landing trigger styling | Defer | `VISUAL` and `OVERLAP` with PR #128 |
 | `83b68523` | Architecture/reliability bundle | Defer | Decomposed below; no whole-commit intake |
 | `54dff37d` | Build diagnostics cleanup | Reject | `RELEASE`; obsolete donor config |
-| `5495a6e8` | Database recovery/migration guard | Reject | `EQUIV`; Scient PR #49 research and active PR #129 own the protected lane |
-| `47dc7145` | Windows migration CI | Reject | `EQUIV`; active PR #129 owns the exact proof lane |
+| `5495a6e8` | Database recovery/migration guard | Defer | Decomposed below; protected data/recovery/update lanes and active overlap prohibit automatic intake |
+| `47dc7145` | Windows migration CI | Defer | Depends on the deferred recovery implementation; active PR #129 overlaps only the lineage-proof sub-lane |
 | `3f66f8ee` | Synara v0.6.1 release | Reject | `RELEASE` |
 | `77d28c26` | Landing project text color | Defer | Quality 4/5; useful consistency, but purely `VISUAL` and overlaps dirty PR #128 |
 | `0388a9b3` | Thread detail/process scanning | Adapt | Quality 5/5 overall; decomposed below and not selected now |
@@ -191,9 +191,51 @@ The shorthand in the ledger means:
 
 | Commit and sub-lane | User/operational effect | Scient seam and disposition |
 |---|---|---|
+| `40798196` gateway credentials/control plane | Introduces tokens, MCP injection, gateway tools, sessions, and write-capable control authority. | **Reject.** Imports donor credential, session, permission, and automation authority. |
+| `40798196` provider dispatch provenance | Propagates gateway-created origin across provider dispatch and thread creation. | **Reject for direct intake.** Coupled to the rejected gateway; retain provenance-isolation principles only. |
+| `40798196` agent-created-thread UI | Adds sidebar/chat origin labels and navigation for gateway-created threads. | **Defer.** Coupled to rejected gateway product assumptions and appearance dependent. |
+| `40798196` profile/activity presentation | Adds unrelated profile and activity-heatmap behavior. | **Reject.** Unrelated to the gateway problem and presentation-specific. |
+| `f01a85ea` gateway persistence and target resolution | Refactors credentials, sessions, durable operations, and target lookup. | **Reject.** Coupled to rejected gateway storage and authority. |
+| `f01a85ea` cross-task dispatch provenance | Changes provider/adapters and event attribution for cross-task work. | **Reject for direct intake.** Current Scient owns provider/thread provenance separately; retain isolation lessons only. |
+| `f01a85ea` cross-task UI/session logic | Adds origin labels, thread-creation behavior, tool labels, and session-state presentation. | **Defer.** Appearance/interaction dependent and coupled to the gateway model. |
+| `f01a85ea` fixtures and plan artifacts | Updates dev/browser fixtures and donor planning material. | **Reject.** Donor-only test/planning infrastructure. |
+| `a7d2a142` gateway diagnostics and managed-worktree recovery | Adds diagnostic cursors, sanitized summaries, worktree setup/recovery, and durable gateway operations. | **Reject.** Coupled to the rejected agent-gateway authority, storage, and session model. |
+| `a7d2a142` websocket admission/backpressure | Bounds and orders snapshot/live transport under pressure. | **Defer / lesson.** Scient has an owned websocket backpressure seam; require a current repro before adapting donor internals. |
+| `a7d2a142` completed-turn tool grouping | Collapses many tool rows behind a summary. | **Defer.** Appearance and interaction dependent; not eligible here. |
+| `a7d2a142` remaining Git/automation/UI refactor | Mixes Git behavior, automation updates, sidebar/chat changes, and migrations. | **Reject.** No whole-commit intake; protected and visual lanes are not independently portable. |
+| `b9c076f5` ACP runtime rewrite | Replaces a generated Effect ACP package with donor-local runtime/session primitives. | **Reject.** Broad protected provider/protocol rewrite with very low direct portability. |
+| `b9c076f5` thread-detail retention/transport | Adjusts lease retention and websocket delivery around thread detail. | **Defer.** The useful ownership concept is reviewed separately in `0388a9b3`; active PR #123 overlaps the route seam. |
+| `b9c076f5` timeline grouping and picker changes | Changes tool grouping, sidebar/chat, and composer pickers. | **Defer.** Visual/interactive and mixed with the rejected runtime rewrite. |
+| `0ce3cbff` external MCP gateway | Extends donor MCP authorization, repositories, and overview. | **Reject.** Donor gateway identity/storage/authorization are not imported. |
+| `0ce3cbff` cross-thread mentions | Adds context expansion and chips for mentioning other threads. | **Reject for direct intake.** Scient already owns mention/context behavior; any gap needs a focused current repro. |
+| `0ce3cbff` tool labels/summaries | Improves argument summaries and work-log labels. | **Defer.** Presentation-heavy; current Scient has owned tool labeling and no isolated gap was proven. |
+| `0ce3cbff` composer/menu behavior | Changes first-send, menus, chips, selection, and project picking. | **Defer.** Visual/interactive and broad. |
+| `3eb5b108` provider lifecycle and OpenCode completion | Hardens Droid/Grok/OpenCode runtime completion, event scoping, and transport. | **Reject for new intake.** Current main already includes Scient PR #120's owned OpenCode completion backstop; remaining providers need separate repros. |
+| `3eb5b108` project creation | Adds a donor project dialog and path behavior. | **Reject.** Scient owns project initiation separately. |
+| `3eb5b108` Spaces/sidebar/visual changes | Changes donor Spaces navigation, sidebar structure, and dialogs. | **Reject.** Conflicts with product authority and is appearance dependent. |
+| `d23c6d72` interrupted worktree/startup recovery | Reclaims or explains worktrees left behind by interrupted creation. | **Defer / lesson.** Require a specific current Scient recovery repro before adapting cleanup authority. |
+| `d23c6d72` desktop shutdown/update preparation | Coordinates backend exit and update lifecycle during recovery. | **Defer.** Protected updater/process lane with active overlap in PRs #121/#126. |
+| `d23c6d72` websocket session cleanup | Cleans connection-owned session state during disconnect/restart. | **Defer / lesson.** Current Scient has owned session cleanup; prove a gap before changing lifecycle code. |
+| `d23c6d72` external MCP admission | Changes donor external-MCP bridge and admission behavior. | **Reject.** Rejected donor gateway/authorization model. |
+| `d23c6d72` Spaces/menu/store polish | Mixes Spaces projection and UI changes into recovery work. | **Reject.** Conflicts with Scient product authority and is appearance dependent. |
+| `f084e94e` automation persistence and proposal lifecycle | Adds migrations, proposal/memory/settings state, scheduler behavior, and write-capable gateway tools. | **Reject.** Imports donor automation mutation and persistence authority. |
+| `f084e94e` bounded provider event ingress/reconciliation | Bounds callback queues and reconciles runtime events across adapters. | **Defer / lesson.** Valuable reliability design, but broad across every provider and no bounded current defect was established. |
+| `f084e94e` deletion/terminal/server lifecycle | Coordinates active-thread deletion, runtime cleanup, terminal ownership, and transport. | **Defer.** Protected lifecycle behavior requiring dedicated cross-system proof. |
+| `f084e94e` automation UI and work-log presentation | Adds proposal actions, cards, routes, labels, and notifications. | **Reject or defer.** Coupled to rejected automation authority and otherwise visual. |
 | `83b68523` Opus 5 catalog | Makes the new model selectable with appropriate capabilities. | **Defer / overlap.** Active desktop PR #123 already owns this model/provider seam. |
 | `83b68523` supervised process teardown | Avoids losing descendants during shutdown. | **Defer / lesson.** Current Scient does not own the donor `supervisedProcessTeardown` subsystem; prove a Scient lifecycle defect first. |
 | `83b68523` remaining architecture/refactor | Changes many donor layers without one bounded user gap. | **Reject.** Broad direct portability is very low. |
+| `162c6619` ACP permission policy | Prevents full-access auto-approval from bypassing Plan-mode or orphan-turn policy and normalizes the active interaction mode. | **Adapt later.** Current Scient auto-approves some Cursor/Grok full-access requests without the complete donor turn/plan/orphan policy. This permissions/approvals lane needs a dedicated threat-modelled implementation and tests; it is not fast-lane eligible. |
+| `162c6619` Droid/Grok/OpenCode plan lifecycle | Converts provider-specific plan approval/rejection into explicit proposal lifecycle while avoiding stale/orphan attribution. | **Defer.** Valuable but broad across three adapters, sessions, and approvals; establish provider-specific gaps before bounded work. |
+| `162c6619` macOS release finalization | Finalizes and proves donor DMG/update-manifest mechanics. | **Reject.** Donor release authority and packaging assumptions do not transfer to Scient. |
+| `925b7dac` graceful backend stop | Gives the Windows backend an authenticated graceful-stop request, bounded wait, exit proof, and one force fallback. | **Defer.** Donor quality is 5/5, but current main lacks the whole behavior, the change crosses desktop/server/update lifecycle boundaries, and active PRs #121/#126 overlap. Reassess on the owned backend lifecycle seam after those lanes resolve. |
+| `925b7dac` updater preparation | Coordinates backend/database shutdown with update installation. | **Defer.** Protected updater and persisted-data lane; requires hosted Windows and release-specific proof outside this automation. |
+| `5495a6e8` migration lineage guard | Fails CI when an already-shipped migration is renumbered or renamed. | **Adapt via the active owned lane, not here.** PR #129 overlaps this sub-lane; it is not current-main equivalence until merged. |
+| `5495a6e8` bounded crash supervision | Adds readiness-based backoff, a circuit breaker, bounded diagnostic output, and one recovery handoff for repeated backend-start failures. | **Adapt via the active owned lane, not here.** PR #126 overlaps much of this behavior; current main does not yet provide it. |
+| `5495a6e8` in-place database/update recovery | Suppresses backend restart while recovery owns the database and offers check/download/install when the normal app cannot open. | **Defer.** High user value but very high protected data-loss/updater risk, coupled to donor migration history and recovery UI; requires dedicated recovery and hosted release proof. |
+| `5495a6e8` unrelated model/project/space fixes | Mixes Opus catalog, Windows project loading, and donor Spaces navigation changes into the recovery commit. | **Reject or overlap.** Opus overlaps PR #123; Spaces conflicts with Scient product authority; no whole-commit intake. |
+| `807acfe3` diff-mode remount | Includes the render mode in the virtualized file-list key so switching modes cannot leave stale rows. | **Adapt later / overlap.** Current main lacks the fix, but active PR #127 owns the exact DiffPanel seam. |
+| `807acfe3` live Git refresh guard | Handles a null branch update by invalidating/refetching instead of leaving status stuck. | **Adapt later / overlap.** Current main lacks the null guard, but active PR #127 owns the exact Git refresh seam. |
 | `0388a9b3` thread-detail retention | Prevents an in-flight snapshot from repopulating stale thread detail after lease release, and evicts unowned details. | **Adapt later.** Current Scient lacks the exact retention guard, but active PR #123 touches `apps/web/src/routes/__root.tsx`; the lane is not independently mergeable now. Smallest future seam: a pure retention predicate plus EventRouter ownership tests. |
 | `0388a9b3` process-scan throttling | Stops synchronous descendant scans from running on every teardown poll before the root exits. | **Defer / lesson.** Quality 4/5, but the donor helper is absent from Scient; direct portability is low and dependency risk is high. |
 
