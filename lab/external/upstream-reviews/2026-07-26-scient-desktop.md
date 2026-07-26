@@ -15,10 +15,10 @@ Doc type: Research evidence
 - Official repository and branch: `Emanuele-web04/synara`, `main`
 - Previous `reviewedThrough`: `3a5720bdd0ae4ace444379cabf0a634941d232fd`
 - Last tip observed by the intake automation: `3f66f8ee5b1e5d8aa682029b31b4b89b797a5e7f`
-- Official tip fetched: `0388a9b397a12771a3716587269cbd967599736a`
+- Official tip fetched: `8ea6da0a0715c69f7b744fd4c8b38d698ab7687e`
 - Latest stable release observed: `v0.6.1`, peeled to `3f66f8ee5b1e5d8aa682029b31b4b89b797a5e7f`
-- Complete range: `3a5720bdd0ae4ace444379cabf0a634941d232fd..0388a9b397a12771a3716587269cbd967599736a` (143 commits)
-- Daily delta: `3f66f8ee5b1e5d8aa682029b31b4b89b797a5e7f..0388a9b397a12771a3716587269cbd967599736a` (2 commits)
+- Complete range: `3a5720bdd0ae4ace444379cabf0a634941d232fd..8ea6da0a0715c69f7b744fd4c8b38d698ab7687e` (144 commits)
+- Daily delta: `3f66f8ee5b1e5d8aa682029b31b4b89b797a5e7f..8ea6da0a0715c69f7b744fd4c8b38d698ab7687e` (3 commits)
 - Review evidence: fetched commit graph, per-commit subject/path/stat inspection, focused patches for candidate and protected lanes, current Scient source/tests, live open-PR and worktree overlap inventory.
 
 ## Review Depth
@@ -187,6 +187,7 @@ The shorthand in the ledger means:
 | `3f66f8ee` | Synara v0.6.1 release | Reject | `RELEASE` |
 | `77d28c26` | Landing project text color | Defer | Quality 4/5; useful consistency, but purely `VISUAL` and overlaps dirty PR #128 |
 | `0388a9b3` | Thread detail/process scanning | Adapt | Quality 5/5 overall; decomposed below and not selected now |
+| `8ea6da0a` | Automation/process/recovery bundle | Defer | Quality 4/5 with extensive tests, but 187 files cross protected and visual lanes; decomposed below |
 
 ## Mixed-Commit Sublanes
 
@@ -242,6 +243,16 @@ The shorthand in the ledger means:
 | `807acfe3` live Git refresh guard | Returns early when branch discovery is null and gates status polling until branch state is ready, preventing a self-sustaining invalidation loop. | **Adapt.** Not selected now: current main lacks the guard, but active PR #127 owns the exact Git refresh seam. |
 | `0388a9b3` thread-detail retention | Prevents an in-flight snapshot from repopulating stale thread detail after lease release, and evicts unowned details. | **Adapt.** Not selected now: active PR #123 touches `apps/web/src/routes/__root.tsx`; smallest future seam is a pure retention predicate plus EventRouter ownership tests. |
 | `0388a9b3` process-scan throttling | Stops synchronous descendant scans from running on every teardown poll before the root exits. | **Defer.** Retain the lesson; the donor helper is absent from Scient and direct portability is low. |
+| `8ea6da0a` automation runs/completion/self-cancellation | Adds dedicated run identity, completion policies, automation-mode contracts, and gateway-authorized self-cancellation. | **Reject.** Imports donor automation persistence and gateway mutation authority; no whole-lane portability. |
+| `8ea6da0a` renderer crash recovery | Bounds automatic renderer reloads, then offers an actionable recovery prompt instead of looping forever. | **Defer.** High user value and donor quality 5/5, but it changes desktop lifecycle and visible recovery UI and requires prohibited interactive/visual validation. Smallest future seam: pure bounded-reload policy plus separately validated Electron wiring. |
+| `8ea6da0a` shell hydration/executable lookup/open behavior | Hydrates the shell environment once, resolves executables across platform-specific paths, and reduces blocking OS calls. | **Defer.** Valuable performance/reliability lesson, but broad across environment trust, provider discovery, and process launch; require a current Scient repro and clean-profile proof. |
+| `8ea6da0a` Codex/process supervision and provider maintenance | Recovers stuck provider processes, bounds maintenance, and adjusts worktree/process ownership. | **Defer.** Protected provider/session/process lane with active backend and packaged-startup overlaps; not independently fast-lane eligible. |
+| `8ea6da0a` projection normalization and snapshot pipeline | Normalizes store projections, batches snapshot work, and repairs stale derived state. | **Defer.** Broad state-architecture change across server and web; no isolated current Scient failure was proven. |
+| `8ea6da0a` donor migration/index cleanup | Drops donor orchestration indexes and changes automation/provider runtime persistence. | **Reject.** Donor schema lineage and storage assumptions must not enter Scient by direct intake. |
+| `8ea6da0a` Git status, PR, and cache updates | Adjusts Git broadcaster/cache invalidation, diff totals, branch controls, and PR refresh. | **Defer.** Mixed operational/UI lane with active PR #127 overlap and no single independently proven gap. |
+| `8ea6da0a` terminal lifecycle and identifiers | Stabilizes managed terminal wrappers, session IDs, and manager cleanup. | **Defer.** Protected process/session lifecycle; current Scient has owned terminal identity and needs a specific repro before changes. |
+| `8ea6da0a` attachment/composer/chat behavior | Changes attachment identity, composer automation intent, chat state, and many control surfaces. | **Defer.** Broad behavior mixed with appearance and interaction; not eligible for automatic non-visual intake. |
+| `8ea6da0a` React compiler/hot-path UI sweep | Reworks memoization and component primitives across most visible surfaces. | **Reject.** Mechanical/performance intent is useful, but the diff is appearance-sensitive, massive, and cannot be certified without prohibited UI validation. |
 
 ## Intake Decision
 
@@ -253,7 +264,7 @@ release-only, or too broad. Zero implementations is the quality-preserving resul
 
 ## Resulting State
 
-- Proposed `reviewedThrough`: `0388a9b397a12771a3716587269cbd967599736a`
+- Proposed `reviewedThrough`: `8ea6da0a0715c69f7b744fd4c8b38d698ab7687e`
 - `integrationBase`: unchanged at `9be46c3ce6a7521b64436b7334bc6fce16e3cac4`
 - Tested owned head: `5d5df0c41e09a6dceb0bdb13f63167bc46ff3370`; the review began on `dab9b6d58e2a3f3da02c5475b86dc083f71580f1` and reconciled the merged lineage-guard delta at publication refresh; no donor product code was tested or integrated
 - Rolling issue: desktop issue #15 is stale and should close only after this review-state change merges
