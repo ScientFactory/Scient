@@ -3,7 +3,7 @@
 Status: Proposed
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-07-23
+Last updated: 2026-07-26
 Purpose: Maps which open-source systems Scient should study, prototype, adapt, or integrate, and which product boundaries Scient must keep owned.
 Doc type: Research evidence
 
@@ -65,6 +65,12 @@ Current inputs:
   scientific project and review systems, local-first and real-time engines,
   relationship-based authorization, research identity and affiliation,
   institution provisioning standards, and versioned scientific data.
+- Focused domain-workflow scan on 2026-07-26 covering neuroscience,
+  biology/bioinformatics/bioimaging, clinical research and medical publishing,
+  chemistry, mathematics/formal methods, and computer-science experiments.
+  Repository license metadata was triaged for leading embeddable viewers and
+  engines; exact revisions, transitive assets, packaging, and fixture results
+  remain required before dependency acceptance.
 
 Remaining evidence gaps before architecture promotion:
 
@@ -286,9 +292,9 @@ ADR-0001, that ADR remains the decision authority.
 | pandas / Polars | DataFrame execution. | Embedded runtime libraries. | `version-bump` |
 | Arrow / Parquet | Tabular artifact and interchange formats. | Compatibility target and artifact target. | `adapter-maintained`; stable format |
 | SciPy / statsmodels / scikit-learn | Scientific and statistical methods. | Embedded runtime libraries. | `version-bump` |
-| R / tidyverse / ggplot2 | Collaborator/runtime compatibility and figure grammar reference. | Deferred compatibility target. | `deferred` |
+| R / Bioconductor / tidyverse / ggplot2 | R, biological/statistical, collaborator, and figure-workflow compatibility. | Planned runtime adapter and package compatibility after the first Python proof; no R-specific product shell. | `adapter-maintained` after runtime-contract gate |
 | Ibis / DVC / DataLad | Portability and data versioning. | Deferred adapter and reference. | `deferred` |
-| Snakemake / Nextflow / Galaxy / Renku | Pipeline workflow expansion. | Deferred shelf. | `deferred` |
+| Snakemake / Nextflow / Galaxy / Renku | Pipeline workflow expansion. | Compatibility/reference set; bounded adapters begin only after shared workflow-run contracts pass. | `deferred` until D3 |
 | jamovi / JASP / PSPP / Orange | Statistics and no-code UX lessons. | Reference and deferred shelf. | `reference-only`; no fork |
 | Matplotlib / seaborn | Static publication figures. | Embedded figure engine and projection. | `version-bump` |
 | Plotly | Interactive charts. | Projection and embedded chart runtime. | `version-bump` |
@@ -297,8 +303,8 @@ ADR-0001, that ADR remains the decision authority.
 | Mermaid / Graphviz / Cytoscape.js | Diagrams and graphs. | Embedded output engine and projection. | `version-bump` |
 | tldraw / Excalidraw / xyflow | Canvas and flow UI components. | Add-on layer and projection; possible thin fork if needed. | `version-bump` first; `thin-fork-merge` only if needed |
 | Inkscape / diagrams.net / BioIcons | Figure polish and scientific icons. | Compatibility target, reference, export target. | `reference-only`; no fork |
-| napari / Fiji / ImageJ / CellProfiler / QuPath | Bioimage workflows. | Deferred domain adapters. | `deferred` |
-| RDKit / Mol* / 3Dmol.js / Biopython | Chemistry and bio domain tools. | Deferred embedded engines. | `deferred` |
+| napari / Fiji / ImageJ / CellProfiler / QuPath | Bioimage workflows. | Bounded viewer/external-continuation prototypes for D0–D2; quantitative workflow adapters remain deferred. | `reference-only` first |
+| RDKit / Ketcher / Mol* / 3Dmol.js / NMRium / Biopython | Chemistry and bio domain tools. | Focused chemistry structure/viewer proof candidates; broad domain depth remains deferred. | `adapter-maintained` or `version-bump` only after fixture/license gates |
 | Streamlit / Dash / Shiny / Gradio | Shareable analysis app patterns. | Reference and export inspiration. | `reference-only`; no fork |
 | BioRender / GraphPad Prism / OriginPro | Commercial UX expectations. | Reference only. | `reference-only`; no code |
 | Yjs / Hocuspocus | Realtime document collaboration. | Upstream-trackable integration, projection, collaboration engine. | `adapter-maintained` |
@@ -562,6 +568,76 @@ The first prototype should be marimo-inspired, but the engine stack should be
 plain local Python through `uv`, DuckDB for local SQL, pandas/Polars for
 DataFrame work, Arrow/Parquet for durable tabular artifacts, and a small trusted
 scientific Python package baseline.
+
+### Scientific Domain Workflow And Viewer Sources
+
+The proposed domain strategy and activation gates live in the
+[Scientific Domain Workflows Roadmap](../../planning/scientific-domain-workflows-roadmap.md).
+These rows are source triage, not architecture or dependency decisions.
+
+#### Neuroscience
+
+| Source | Adaptation target | Boundary and evidence state |
+|---|---|---|
+| [BIDS](https://bids-specification.readthedocs.io/), [BIDS Validator](https://github.com/bids-standard/bids-validator), and [OpenNeuro](https://docs.openneuro.org/) | Dataset relationships, validation, BIDS UX, transfer, and repository preparation | Compatibility/adapter set. Validator and OpenNeuro repository metadata report MIT; exact revision and packaged validator behavior still need a fixture review. |
+| [MNE](https://mne.tools/) and [MNE-BIDS](https://mne.tools/mne-bids/stable/) | Python EEG/MEG/iEEG/NIRS processing and BIDS workflows | Runtime/reference set, not a separate workbench. Repository metadata reports BSD-3-Clause. |
+| [NWB](https://nwb.org/), [PyNWB](https://github.com/NeurodataWithoutBorders/pynwb), [MatNWB](https://github.com/NeurodataWithoutBorders/matnwb), and [DANDI](https://www.dandiarchive.org/) | Neurophysiology/behavior standard, Python/MATLAB access, and archive interoperability | Compatibility and adapters. PyNWB uses a permissive BSD-style license, MatNWB reports BSD-2-Clause, and DANDI CLI reports Apache-2.0; extension and large-file behavior need fixtures. |
+| [NiiVue](https://niivue.com/) | Browser-native NIfTI/neuroimaging viewer | Strong embedded-surface prototype candidate; repository metadata reports BSD-2-Clause. Must validate Electron GPU, local assets, orientation, range loading, accessibility, and replaceable viewer state. |
+| [Neurosift](https://github.com/flatironinstitute/neurosift) | Browser NWB/DANDI visualization and remote large-data patterns | Reference or selected component after inspection; repository metadata reports Apache-2.0. Do not inherit its application model. |
+
+#### Biology, Bioinformatics, And Bioimaging
+
+| Source | Adaptation target | Boundary and evidence state |
+|---|---|---|
+| [Bioconductor](https://www.bioconductor.org/) | Reproducible R-native biological analysis and domain data conventions | Runtime/package ecosystem compatibility; no separate Bioconductor shell. |
+| [AnnData](https://anndata.readthedocs.io/) and [Scanpy](https://scanpy.readthedocs.io/) | Single-cell/spatial data relationships, backed access, and analysis workflows | Compatibility/runtime set; repositories report BSD-3-Clause. AnnData cannot become the universal Dataset model. |
+| [IGV.js](https://igv.org/doc/igvjs/) | Embeddable genome viewer with local-file support | Strong Surface Registry prototype candidate; repository metadata reports MIT. Validate indexing, ranges, local file pairs, workers, offline behavior, and large files. |
+| [Nextflow](https://nextflow.io/), [nf-core](https://nf-co.re/), [Snakemake](https://snakemake.readthedocs.io/), and [Galaxy](https://galaxyproject.org/) | Portable pipelines, community workflows, HPC/cloud, provenance, and non-coder workflow UX | Adapter/reference set, not the run or project model. Repository metadata reports Apache-2.0 for Nextflow and MIT for nf-core tools and Snakemake. |
+| [napari](https://napari.org/), [OME-Zarr](https://ngff.openmicroscopy.org/), [Viv](https://github.com/hms-dbmi/viv), [Fiji](https://imagej.net/software/fiji/), [CellProfiler](https://cellprofiler.org/), and [QuPath](https://qupath.github.io/) | Multidimensional image viewing, layers, annotations, pathology, and quantitative image workflows | Begin with bounded viewing and external continuation. napari reports BSD-3-Clause and Viv MIT; OME-Zarr implementation/license and image-analysis integrations need focused evaluations. |
+
+#### Clinical And Medical Research
+
+| Source | Adaptation target | Boundary and evidence state |
+|---|---|---|
+| [HL7 FHIR](https://hl7.org/fhir/overview.html), [OMOP CDM](https://ohdsi.github.io/CommonDataModel/), and [CDISC](https://www.cdisc.org/standards) | Healthcare exchange, observational analytics compatibility, and study-data/metadata exchange | Standards adapters and export targets, not Scient's study model. Version, implementation-guide, vocabulary, institution, and regulatory boundaries must stay explicit. |
+| [OHDSI HADES](https://ohdsi.github.io/Hades/), [ATLAS](https://github.com/OHDSI/Atlas), and [WebAPI](https://github.com/OHDSI/WebAPI) | Cohort definition, diagnostics, observational methods, data quality, and R workflows | Prefer versioned cohort/method artifacts and adapters over a platform fork. Repository metadata reports Apache-2.0. |
+| [DICOM](https://www.dicomstandard.org/), [OHIF](https://docs.ohif.org/), and [Cornerstone3D](https://www.cornerstonejs.org/) | Medical-image interoperability and browser-native viewing | OHIF/Cornerstone are strong de-identified-viewer prototype candidates; repositories report MIT. No diagnostic-use claim, and DICOMweb/local authority and metadata exposure require explicit fixtures. |
+| [EQUATOR Network](https://www.equator-network.org/) | Routing to authoritative study-type reporting guidance | Reference/profile source. Do not republish copyrighted checklists without permission or certify compliance. |
+| [JATS](https://jats.nlm.nih.gov/) | Journal-article exchange and publishing export | Compatibility/export target, not the canonical manuscript model. |
+
+#### Chemistry
+
+| Source | Adaptation target | Boundary and evidence state |
+|---|---|---|
+| [RDKit](https://www.rdkit.org/) | Parsing, identity, descriptors, depictions, and chemistry analysis | Strong embedded-engine candidate; repository metadata reports BSD-3-Clause. Preserve format, stereochemistry, units, engine version, and explicit transformation runs. |
+| [Ketcher](https://github.com/epam/ketcher) | Embeddable 2D molecule/reaction editor | Strong projection prototype candidate; repository metadata reports Apache-2.0. Require round-trip, stereochemistry, multi-molecule, CSP, bundle, and accessibility fixtures. |
+| [Mol*](https://molstar.org/) and [3Dmol.js](https://3dmol.csb.pitt.edu/) | Web-native 3D molecular/macromolecular viewing | Mol* reports MIT; 3Dmol.js license file states BSD-3-Clause. Compare Electron GPU, large structures, reproducible view state, and bundle cost. |
+| [NMRium](https://docs.nmrium.org/) | React-based 1D/2D NMR viewing and processing | Later spectrum-surface candidate; repository metadata reports MIT. Validate supported files, raw-data provenance, processing receipts, and bundle behavior. |
+| [Open Babel](https://openbabel.org/docs/) | Broad chemical-format conversion | Process/dependency candidate under GPL-2.0 review. Every conversion remains an explicit run; do not use it as canonical identity. |
+| [Chemotion ELN](https://chemotion.net/) | Chemistry ELN, sample, reaction, spectra, repository, and instrument workflow reference | AGPL-3.0 reference/adapter candidate; no first-core fork. |
+
+#### Mathematics And Formal Methods
+
+| Source | Adaptation target | Boundary and evidence state |
+|---|---|---|
+| [SymPy](https://docs.sympy.org/) | Exact symbolic computation through the Python runtime | Strong first deterministic fixture. Its repository license is permissive BSD-style; preserve assumptions, exact/numeric distinction, version, and artifacts. |
+| [SageMath](https://www.sagemath.org/) | Broad mathematical software and Jupyter-kernel compatibility | External/runtime candidate. The distribution is GPL and aggregates many components; do not bundle before a focused platform/license/size gate. |
+| [Lean 4](https://lean-lang.org/) and [mathlib](https://leanprover-community.github.io/) | Formal proof, goals, diagnostics, dependencies, and checked artifacts | Strong first proof-adapter candidate; repositories report Apache-2.0. Do not invent a universal proof schema. |
+| Julia and [Pluto](https://plutojl.org/) | Numerical/scientific runtime and reactive-notebook challenger | Later runtime/notebook compatibility; repositories report MIT. Do not expand the first runtime set without a selected project. |
+
+#### Computer Science And Software Experiments
+
+| Source | Adaptation target | Boundary and evidence state |
+|---|---|---|
+| [Perfetto](https://perfetto.dev/docs/) and [speedscope](https://www.speedscope.app/) | Browser-local trace/profile inspection, structured queries, and comparison patterns | Strong artifact-viewer prototypes; repositories report Apache-2.0 and MIT respectively. Preserve raw trace and producing run identity. |
+| [DVC](https://dvc.org/) and [MLflow](https://mlflow.org/) | Dataset/model/experiment versioning and interoperability | Later adapters; current repositories report Apache-2.0. Neither owns the canonical Scient project or experiment record. |
+| Standard language servers, debug adapters, build/test tools, Git, CI APIs, OCI, devcontainers, Nix, and schedulers | Multi-language navigation, execution, tests, reproducible environments, and remote compute | Compatibility/adapter family selected per active project. Do not become a general IDE, CI fleet, container platform, or MLOps suite. |
+
+Recommendation: use these sources to prove complete domain slices through the
+shared Surface Registry, execution coordinator, artifact/provenance model, and
+manuscript links. Promote no viewer, engine, standard, or workflow system into
+architecture until its domain fixture, license, packaging, platform,
+accessibility, security, update, and replacement gates pass.
 
 ### Figure, Table, Diagram, And Visual-Science Sources
 

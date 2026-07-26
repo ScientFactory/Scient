@@ -19,6 +19,8 @@ The accepted product contract lives in the [PRD](../product/PRD.md). Current
 product sequencing lives in the [Product Roadmap](product-roadmap.md). The
 shared computing and execution foundation is proposed in the
 [Scientific Computing And Data Analysis Roadmap](scientific-computing-and-data-analysis-roadmap.md).
+Domain-specific scientific and reporting requirements are proposed in the
+[Scientific Domain Workflows Roadmap](scientific-domain-workflows-roadmap.md).
 Detailed donor evidence lives in the
 [Open-Source Adaptation Map](../research/source-evaluations/open-source-adaptation-map.md),
 and source-relationship policy lives in the
@@ -78,6 +80,14 @@ diagnostics, artifacts, history, permissions, review, and agent attribution.
 They should not share one oversized domain record: `DocumentBuild` and
 `AnalysisRun` retain distinct semantics.
 
+The manuscript kernel must support domain profiles without becoming a separate
+editor for each field. Clinical and medical reports need versioned study-type
+and reporting-guideline profiles; biology, neuroscience, and chemistry need
+sample/method/identifier and rich-figure links; mathematics needs theorem and
+proof-aware authoring; and computer science needs algorithm, code, benchmark,
+artifact, and anonymous-review workflows. Those requirements shape M1 now even
+when their complete UX ships later.
+
 This is a proposed direction, not accepted product truth or architecture.
 
 ## Product Boundary
@@ -116,6 +126,9 @@ It does not absorb every adjacent product area:
 - A journal marketplace, publisher business, institutional identity provider,
   or general cloud drive is not required for the first complete authoring
   experience.
+- Clinical study management, an EHR, regulatory submission platform,
+  laboratory inventory, theorem prover, or CI system remains outside this
+  workspace even when their artifacts and metadata link into a manuscript.
 
 ## Current Product Truth
 
@@ -263,6 +276,16 @@ These invariants should survive every maturity stage:
 18. **Accessibility and international research are architectural concerns.**
     Keyboard use, screen readers, bidirectional text, multilingual content,
     math accessibility, and constrained displays are not late cosmetic work.
+19. **Reporting profiles guide human review.** A guideline name, checklist
+    state, or automated check never becomes a scientific-quality, clinical,
+    regulatory, or publication-compliance assertion.
+20. **Study and domain identity remains linked.** Cohorts, protocols, samples,
+    compounds, proofs, software versions, datasets, analyses, figures, and
+    tables link to the manuscript without being copied into manuscript-private
+    truth.
+21. **Blinding is a projection, not destructive redaction.** Anonymous-review
+    and restricted-review modes hide or warn about identifying material while
+    preserving canonical authority and explicit export checks.
 
 ## Shared Foundation Contract
 
@@ -427,6 +450,11 @@ equations, claims/evidence links, stable anchors, comments/suggestions, history,
 permissions, and authority/projection rules. Retain file-native authoring while
 structured-native architecture is evaluated.
 
+Define the profile boundary for clinical study semantics, life-science
+identifiers, mathematical theorem/proof structures, and CS
+software/experiment artifacts. These are typed links and profile fields over
+the shared manuscript kernel, not four new manuscript models.
+
 This is the point at which future collaboration constraints must shape the
 model. It is not the point at which realtime co-editing must ship.
 
@@ -437,6 +465,10 @@ source/output sync, reusable scientific artifacts, templates, publication
 profiles, accessibility checks, version comparison/restore, discussion and
 suggestion workflows, and the narrow asynchronous shared-project validation
 required by the active product roadmap.
+
+Validate one medical-study profile with analysis-linked tables/figures and a
+blinded export; one mathematics fixture with theorem/proof links; and one CS
+fixture with exact code/benchmark/artifact references.
 
 ## M3 — Realtime Local-First Collaboration
 
@@ -451,6 +483,10 @@ Add robust import/export, journal/conference/preprint profiles, submission
 packages, repository/deposit integrations, bibliography/reference-manager
 connections, project exchange, and optional Overleaf interoperability where an
 approved relationship provides real user value.
+
+Add JATS exchange and approved reporting-profile exports where their fidelity,
+licensing, versioning, and human-review boundaries pass. Regulatory or
+publisher-specific packages remain separately validated targets.
 
 ## M5 — Research Groups, Institutions, And Broader Access
 
@@ -489,6 +525,96 @@ ceiling. It does not approve every row for implementation.
 | Accessibility and internationalization | Keyboard and screen-reader authoring/review, accessible math and documents, bidirectional/multilingual text, locale-aware metadata, mobile/constrained review | M1–M5 |
 | Scientific and agent advantage | Claim/evidence/analysis graph, provenance, consistency review, artifact refresh, reviewer-response workflows, publication-readiness agents | M2–M6 |
 
+## Domain Manuscript Profiles
+
+The manuscript kernel should support versioned semantic profiles over the same
+documents, blocks, anchors, figures, tables, citations, comments, builds, and
+exports. A profile declares relevant fields, structures, checks, and exchange
+targets. It does not fork the editor, replace the source format, or certify the
+research.
+
+### Clinical And Medical Studies
+
+Scient should distinguish at least interventional trials, observational and
+real-world-data studies, diagnostic studies, prognostic or prediction-model
+studies, systematic reviews/meta-analyses, protocols, case reports, and
+preclinical animal studies.
+
+The profile must be able to link and render:
+
+- protocol version, registration, design, setting, sites, eligibility,
+  participants/cohort, arms or exposure/comparator, intervention, outcomes and
+  endpoints, timepoints, analysis populations, randomization/blinding where
+  relevant, and statistical analysis plan;
+- recruitment or study flow, deviations, missing data, censoring, multiplicity,
+  harms, subgroup and sensitivity analyses, and limitations;
+- baseline-characteristics tables, effect estimates with uncertainty,
+  adverse-event tables where relevant, forest plots, Kaplan-Meier plots,
+  ROC/calibration figures, and participant/study-flow diagrams;
+- source, derived, and analysis datasets plus the exact AnalysisRuns that
+  generated reported values, tables, and figures;
+- ethics, consent, registration, funding, conflicts, author roles, data/code
+  availability, and terminology/standard versions; and
+- blinded or double-blind review projections with explicit export checks for
+  names, affiliations, acknowledgments, file metadata, tracked changes, and
+  other identifying content.
+
+Use the [EQUATOR Network](https://www.equator-network.org/) to select applicable
+versioned profiles such as CONSORT, STROBE, PRISMA, SPIRIT, STARD, TRIPOD,
+CARE, ARRIVE, and RECORD. Applicability and completion require human judgment.
+Scient should link to authoritative guidance and store profile/version/user
+state; it must not republish copyrighted checklists without permission or turn
+checkboxes into an automatic compliance or quality score.
+
+Use [JATS](https://jats.nlm.nih.gov/) as an important publishing and
+article-exchange target. JATS is not the canonical manuscript model, and a
+successful export is not a publisher acceptance guarantee.
+
+### Biology, Neuroscience, And Chemistry
+
+Profiles should support:
+
+- sample/specimen/organism/cohort/condition definitions and stable domain
+  identifiers;
+- protocol, instrument, reagent, compound, sequence/reference, pipeline,
+  software, parameter, unit, and accession/deposit links;
+- rich multi-panel figures, source data, microscopy/neuroimaging/molecular
+  views, spectra, supplements, and accessible alternative descriptions;
+- generated results whose current/stale state follows their AnalysisRun; and
+- domain repository identifiers and data/code/material availability statements.
+
+The manuscript stores references and narrative, not private copies of the
+laboratory, dataset, structure, or viewer state.
+
+### Mathematics And Formal Methods
+
+Profiles should support:
+
+- definition, theorem, lemma, proposition, corollary, example, conjecture, and
+  proof structures;
+- exact equations, numbering, labels, cross-references, assumptions,
+  notation/glossary, and commutative or generated diagrams;
+- source links and checked proof artifacts with prover, library, version,
+  status, diagnostics, and staleness; and
+- LaTeX/Typst source escape hatches and publication export without claiming
+  that rendered mathematics has been formally verified.
+
+### Computer Science
+
+Profiles should support:
+
+- algorithms and pseudocode, code listings, repository/release/commit links,
+  dependency and environment receipts, datasets/models, and licenses;
+- evaluation questions, workloads, configurations, seeds, machines,
+  repetitions, uncertainty, baselines, ablations, benchmark tables, traces,
+  profiles, and reproducibility limitations;
+- artifact appendices, availability/badging metadata, supplemental packages,
+  and archival identifiers; and
+- conference templates plus anonymous-review projections and export checks.
+
+Exact conference or venue requirements remain versioned publication profiles,
+not permanent manuscript-schema assumptions.
+
 ## Focused Source Strategy
 
 The canonical source inventory and evidence belong in the
@@ -510,6 +636,9 @@ upcoming gate.
 | [Yjs](https://github.com/yjs/yjs), [Hocuspocus](https://github.com/ueberdosis/hocuspocus), [Automerge](https://github.com/automerge/automerge), [ShareDB](https://github.com/share/sharedb), and [Yorkie](https://github.com/yorkie-team/yorkie) | Collaboration, offline merge, presence, provider boundaries, operational tradeoffs | Collaboration engine is a focused architecture decision; CRDT/OT state cannot be the whole permission/history/review model |
 | Google Docs and Microsoft Word | Mainstream review, suggestion, comments, version, accessibility, and authoring expectations | Product references only; avoid proprietary-format lock-in and false parity promises |
 | [OSF](https://github.com/CenterForOpenScience/osf.io), [Dataverse](https://github.com/IQSS/dataverse), and [OpenReview](https://github.com/openreview/openreview) | Research sharing/deposit, metadata, project governance, and review workflows | Integrate through standards/APIs where valuable; Scient need not become these services |
+| [EQUATOR Network](https://www.equator-network.org/) | Authoritative routing to study-type reporting guidance and versioned human-review profiles | Link and track applicability/version; do not copy restricted checklists or certify compliance |
+| [JATS](https://jats.nlm.nih.gov/) | Journal-article exchange, publishing packages, structured export, and round-trip fixture | Export/compatibility target, not the canonical manuscript model |
+| [Lean](https://lean-lang.org/), [SymPy](https://docs.sympy.org/), and standard software artifact formats | Checked proof, exact-expression, benchmark, trace, and provenance links into mathematics/CS manuscripts | External artifacts and adapters remain distinct from manuscript authority |
 
 ### Source Decision Rules
 
@@ -670,13 +799,41 @@ scientific manuscript with:
 The fixture, not a polished demo, decides whether an editor, schema,
 collaboration engine, or conversion route is acceptable.
 
+### Domain Manuscript Fixtures
+
+Maintain representative, synthetic or public fixtures for:
+
+- a randomized-trial report, observational study, prediction-model study,
+  systematic review/meta-analysis, protocol, and case report, each with an
+  applicable versioned reporting profile and at least one intentional
+  missing/inapplicable/ambiguous item;
+- clinical tables and figures linked to preserved AnalysisRuns, plus
+  protocol/registration, ethics, funding, conflicts, author roles, data/code
+  availability, and a blinded export;
+- a neuroscience or biology manuscript with domain identifiers, a rich
+  multi-panel figure, source-data links, pipeline/software versions, and a
+  repository accession;
+- a chemistry manuscript with structure/spectrum references, units,
+  stereochemistry-sensitive identity, and an analysis-linked figure;
+- a mathematics manuscript with theorem environments, notation, diagrams, and
+  a checked Lean proof artifact; and
+- a CS conference manuscript with algorithms, exact repository release,
+  build/test/benchmark receipts, evaluation table, trace/profile, artifact
+  appendix, and anonymous-review projection.
+
+Tests must distinguish structural validation, missing metadata, stale analysis,
+export fidelity, checklist assistance, and claims requiring human judgment.
+No passing fixture should imply clinical, regulatory, proof, or venue
+certification.
+
 ### Publication Fixture
 
 Maintain at least one journal article, conference paper, thesis chapter,
 preprint/deposit, supplemental dataset/code package, and reviewer-response
 workflow. Validate metadata, assets, citations, figure/table requirements,
 accessible outputs, package contents, receipts, and a manual fallback when an
-external service is unavailable.
+external service is unavailable. Include a JATS round-trip/fidelity report and
+preserve unsupported material explicitly.
 
 ## What Not To Build First
 
@@ -697,6 +854,10 @@ external service is unavailable.
   gate.
 - Do not duplicate scientific runs, datasets, figures, tables, or evidence into
   manuscript-private copies.
+- Do not republish reporting-guideline checklists without permission or turn
+  checklist state into automatic scientific-quality or compliance claims.
+- Do not treat JATS, a clinical standard, a theorem prover, or a conference
+  template as the canonical manuscript model.
 - Do not create dozens of speculative implementation documents before the
   relevant maturity stage becomes active.
 
@@ -722,6 +883,10 @@ Approve one shared responsibility boundary with the scientific workbench for
 document identity, surface registry, project resolution, execution lifecycle,
 diagnostics, artifacts, history, permissions, review, and agent attribution,
 while retaining distinct manuscript and analysis semantics.
+
+Approve one profile mechanism for clinical/medical, life-science, mathematics,
+and CS requirements over that same manuscript kernel. Profile approval does not
+approve any particular reporting checklist, schema, editor, or export target.
 
 ### D. Authorized Spikes, Not Dependency Acceptance
 
@@ -750,6 +915,11 @@ treat their inclusion in the capability envelope as a first-release commitment.
 - history, review, permission, offline, and collaboration architecture;
 - exact Overleaf relationship, if any;
 - template/publication profile model and external submission/deposit boundaries;
+- reporting-profile applicability, checklist licensing, update ownership,
+  human sign-off, and non-certification UX;
+- JATS import/export fidelity and relationship to structured-native documents;
+- clinical study, proof artifact, software experiment, and anonymous-review
+  link/projection boundaries;
 - institution/deployment/data-governance horizon; and
 - accessibility, internationalization, and mobile/constrained-review gates.
 
@@ -762,9 +932,11 @@ Create only the handoffs required for active work:
    `DocumentBuild` contract fixture coordinated with the computing roadmap;
 3. installed LaTeX/Tectonic/Typst/TexLab platform, packaging, license, and
    quality spike;
-4. typesetting opener fixture and packaged-app quality plan; and
+4. typesetting opener fixture and packaged-app quality plan;
 5. early manuscript identity/anchor/history/permission requirements routed to
-   the existing cross-cutting architecture owners.
+   the existing cross-cutting architecture owners; and
+6. domain manuscript fixtures and a reporting-profile/JATS exchange spike
+   aligned to the Scientific Domain Workflows Roadmap.
 
 Create structured editor, collaboration engine, Overleaf relationship,
 publication, and institutional decision documents only when their stage becomes
@@ -780,6 +952,8 @@ This proposal is ready for an approval decision when reviewers agree that it:
 - supports both portable file-native and future structured-native authority;
 - shares the right foundation with scientific computing without merging domain
   semantics;
+- supports clinical/medical, life-science, mathematics, and CS profiles without
+  creating separate editors or false compliance claims;
 - designs collaboration foundations early and realtime behavior later;
 - has a coherent M0 stopping point and a dependency-ordered maturity path;
 - validates engines, editors, conversions, collaboration, and publication with

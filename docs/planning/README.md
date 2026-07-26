@@ -34,6 +34,9 @@ Current planning docs:
   shared-foundation contract, source strategy, and dependency-ordered path for
   manual code editing, Python, R, MATLAB, notebooks, data, figures, and
   reproducible analysis artifacts.
+- `scientific-domain-workflows-roadmap.md` - proposed cross-domain validation
+  overlay and first complete slices for neuroscience, biology, clinical and
+  medical research, chemistry, mathematics, and computer science.
 - `first-scient-vertical-slice-implementation-plan.md` - draft source-tracing, implementation, and verification plan for the active product slice.
 - `scient-and-external-agents-implementation-plan.md` - proposed end-to-end plan for building the Scient agent as the owned OpenCode-derived first-party agent while preserving external agents independently.
 - `papilab-to-scient-rename-execution-plan.md` - historical PapiLab-to-Scient migration, compatibility, rollback, and deferred-public-cutover record.

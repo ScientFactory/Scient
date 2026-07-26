@@ -23,6 +23,9 @@ and the source-relationship policy lives in the
 LaTeX, rich scholarly writing, publishing, and the complete Overleaf-class
 capability horizon live in the sibling
 [Manuscript, Typesetting, And Publishing Roadmap](manuscript-typesetting-and-publishing-roadmap.md).
+Cross-domain requirements, first complete domain slices, source candidates, and
+validation gates live in the
+[Scientific Domain Workflows Roadmap](scientific-domain-workflows-roadmap.md).
 
 Names in this document describe proposed responsibilities, not accepted
 packages, schemas, APIs, or implementation locations. Approval of this roadmap
@@ -80,6 +83,14 @@ inside the first Python proof. Notebooks, rich data exploration, figures,
 language services, debugging, reproducibility, remote compute, and domain packs
 then build on the same editor, execution, and artifact contracts.
 
+Domain validation begins with the foundation rather than waiting for a final
+domain-pack stage. Neuroscience, biology, and clinical workflows enter earlier
+because they match current users and selected rich projects. Chemistry,
+mathematics, and computer science remain first-class: each receives an early
+bounded fixture and permanent requirements so the shared foundation does not
+harden around only tabular life-science analysis. The sibling domain roadmap
+owns those slices and gates.
+
 The scientific workbench and manuscript workspace must share document identity,
 project resolution, execution lifecycle, diagnostics, artifacts, history,
 permissions, and agent review. They should not share one oversized domain model.
@@ -123,9 +134,11 @@ It does not absorb every adjacent product area:
 - Evidence, literature review, protocols, ELN behavior, task coordination, and
   project memory retain their own product responsibilities even when analysis
   artifacts link to them.
-- BIDS/NIfTI, DICOM, NWB, EEG/MEG, HDF5, microscopy, and similar formats belong
-  in domain interoperability packs over the generic file, data, execution, and
-  artifact contracts.
+- BIDS/NIfTI, DICOM, NWB, EEG/MEG, genomics, single-cell, microscopy,
+  chemistry, symbolic mathematics, formal proof, software benchmarks, traces,
+  and similar workflows belong in typed domain adapters over the generic file,
+  data, execution, and artifact contracts described in the
+  [Scientific Domain Workflows Roadmap](scientific-domain-workflows-roadmap.md).
 
 Separate categories must still agree on the stable project objects and
 relationships that cross them. A figure linked into a manuscript, an agent
@@ -307,6 +320,22 @@ These invariants should survive every stage:
 18. **Capability parity does not require donor lock-in.** Replacing an editor,
     runtime, renderer, collaboration engine, or publishing provider must not
     require replacing the scientific project model.
+19. **Collections are not flattened into files.** Participants, samples,
+    specimens, sites, sessions, runs, assays, channels, cohorts, conditions,
+    timepoints, and software experiments may form typed relationships while
+    original files stay portable.
+20. **Units and reference systems remain explicit.** Values, coordinates,
+    sampling bases, vocabularies, ontologies, and standards retain their
+    identity and version.
+21. **Large scientific data is progressive.** Metadata, indexes, chunks,
+    regions, tiles, paging, and sampling precede eager loading.
+22. **Restricted location is part of capability truth.** External,
+    institutional, remote, restricted, and de-identified data expose the
+    actions actually available without automatically entering generic agent
+    context.
+23. **Domain standards stay identifiable.** Imported and exported BIDS, NWB,
+    AnnData, FHIR, OMOP, CDISC, DICOM, chemical, proof, and trace artifacts do
+    not silently become an invented universal Scient format.
 
 ## Shared Foundation Contract
 
@@ -344,7 +373,8 @@ The universal opener and workbench should share a registry containing:
 
 - matcher/classifier and confidence or ambiguity;
 - supported modes such as source, preview, log, split, table, notebook, figure,
-  binary inspector, or external continuation;
+  collection, multidimensional image, genome, medical image, molecule,
+  spectrum, proof state, trace, binary inspector, or external continuation;
 - edit/save/run capabilities;
 - renderer and action providers;
 - project-context, size, platform, and dependency requirements; and
@@ -474,6 +504,7 @@ sequence.
 | Native Python/R/MATLAB plots plus [Vega-Lite](https://github.com/vega/vega-lite) | Figure capture and portable declarative-specification path. | Do not force every figure into one library or detach it from the producing run. |
 | [Quarto](https://github.com/quarto-dev/quarto-cli) and [Pandoc](https://github.com/jgm/pandoc) | Executable-document adapters and cross-domain proof. | Do not reimplement compilers or make their ASTs canonical project state. |
 | [BIDS](https://bids-specification.readthedocs.io/) and [BIDS Validator](https://github.com/bids-standard/bids-validator) | Later neuroscience domain adapter. | Do not couple the generic data workbench to neuroimaging. |
+| [Scientific Domain Workflows Roadmap](scientific-domain-workflows-roadmap.md) source set | Focused domain viewer, engine, standard, and workflow candidates for neuroscience, biology, clinical research, chemistry, mathematics, and CS. | Activate only the source needed by a complete fixture; keep detailed evidence in the research map. |
 
 ### Source Editor Proof
 
@@ -493,6 +524,22 @@ acceptable.
 The sequence uses user value and dependency, not calendar estimates. The active
 [Product Roadmap](product-roadmap.md) remains the authority for when these
 capabilities enter the overall Scient product sequence.
+
+### Domain Validation Overlay
+
+Domain support is continuous validation, not only Stage 11:
+
+| Overlay | Shared-stage proof |
+|---|---|
+| D0 with Stages 0–1 | Representative domain text, metadata, binary, image, collection, and archive files open to a useful surface or honest continuation. |
+| D1 with Stages 2–5 | OpenNeuro behavioral, clinical phenotyping, Cancer Biology, medical statistics in R, symbolic mathematics, and CS build/test/benchmark fixtures use the shared run and artifact contracts. |
+| D2 with Stages 6–8 | BIDS/NWB, AnnData/genomics, DICOM, molecule, proof-state, and trace prototypes prove typed viewing, large-data behavior, and manuscript links. |
+| D3 with Stages 9–10 | Selected pipelines, remote/HPC runs, repositories, and publication packages preserve local/remote authority and reproducibility. |
+
+The [Scientific Domain Workflows Roadmap](scientific-domain-workflows-roadmap.md)
+defines the complete slices, source candidates, and non-goals. These overlays
+must not delay the standalone Stages 0–3 product, but each stage should avoid
+choices that make its next domain fixture impossible.
 
 ## Stage 0 — Accurate File Truth And Recovery
 
@@ -766,16 +813,26 @@ authority, queued/running/lost states, reconnect, and confirmed cancellation.
 Closing a local app must not be described as cancelling remote work unless the
 remote system confirms it.
 
-## Stage 11 — Domain Packs, Beginning With Neuroscience/BIDS
+## Stage 11 — Domain Packs And Interoperability
 
-After generic data, artifacts, and runtimes work, a neuroscience pack can add
-BIDS-aware project trees, metadata/sidecar relationships, official validation,
-OpenNeuro import/deposit preparation, NIfTI metadata/orientation inspection,
-events/confounds tables, pipeline provenance, large-data/de-identification
-warnings, and later imaging/EEG/MEG/NWB/DICOM/microscopy adapters.
+After the generic data, artifact, runtime, and viewer contracts work, domain
+packs can deepen typed workflows without redefining the project model.
 
-Domain packs validate the generic workbench against real science; they do not
-redefine the generic project model around one field.
+The first deeper pack follows current-user and rich-project evidence:
+neuroscience/BIDS relationships, validation, OpenNeuro continuation,
+NIfTI/NWB metadata and bounded viewing, events/confounds, pipeline provenance,
+and later EEG/MEG/iEEG. Biology and clinical work proceed through the same
+foundation with R/Bioconductor, indexed genomics, AnnData, OME data,
+cohort/phenotype artifacts, OMOP/FHIR/CDISC compatibility, and de-identified
+DICOM viewing.
+
+Chemistry, mathematics, and computer science are not postponed until those
+lanes are complete. Their bounded structure, symbolic/proof, and
+build/test/benchmark/trace fixtures begin in D0–D2; Stage 11 adds only the
+domain depth justified by active projects.
+
+The [Scientific Domain Workflows Roadmap](scientific-domain-workflows-roadmap.md)
+owns the exact lane boundaries and activation gates.
 
 ## Researcher Outcomes And Validation Map
 
@@ -788,7 +845,8 @@ things. None substitutes for the others.
 | Stage 2–3 | Run one Python analysis and reopen its outputs with provenance/staleness. | Shared execution and artifact fixtures. | Use the active project strategy where its analysis step is ready; do not let extra benchmark work delay the bounded proof. |
 | Stage 4 | Repeat one analysis through Python, R, and MATLAB where available. | Runtime parity fixture plus simulators/licensed lanes. | Demonstrates that the product serves R/MATLAB researchers rather than only Python users. |
 | Stage 7–8 | Inspect data and produce a reproducible table/figure. | Pinned CSV/Parquet/Arrow and figure outputs. | Activate the planned BCG `dat.colditz1994` and exact-output OWID fixtures when the active roadmap reaches data-to-figure work. |
-| Stage 11 | Navigate and validate a neuroscience dataset, then reproduce one result. | BIDS error/success fixtures. | Use the active OpenNeuro Flanker project before the later NARPS flagship. |
+| D0–D2 overlay | Open domain files, run bounded workflows, and inspect typed outputs across all six domain lanes. | Domain fixture portfolio for neuroscience, biology, clinical research, chemistry, mathematics, and CS. | Use OpenNeuro Flanker, clinical phenotyping, Cancer Biology, BCG meta-analysis, plus bounded chemistry/math/CS fixtures before flagship breadth. |
+| Stage 11 / D3 | Reproduce a domain pipeline and interoperate with an external standard, repository, or remote system. | Pipeline, large-data, repository, and recovery fixtures. | Use NARPS, CORE-Bench, and BixBench only after lighter precursors pass. |
 
 Every stage must test an ordinary case, missing dependency, malformed input,
 failure/recovery case, and manual continuation. Product validation asks whether
@@ -883,8 +941,19 @@ and success.
 
 ### Domain Fixture
 
-After the generic workbench passes, activate the selected OpenNeuro/BIDS
-fixture and official validator before heavy imaging visualization.
+Maintain a bounded portfolio rather than one neuroscience-only fixture:
+
+- OpenNeuro Flanker plus BIDS success/error and a small NIfTI/NWB inspection;
+- the selected clinical phenotyping and Cancer Biology projects plus BCG
+  meta-analysis;
+- a small genomics or single-cell collection with sample and assay metadata;
+- a small molecule/macromolecular structure with malformed and multi-molecule
+  cases;
+- one exact SymPy derivation and one checked Lean theorem; and
+- one multi-language CS repository with build, tests, deterministic benchmark,
+  trace/profile, and exact revision.
+
+Flagship NARPS, CORE-Bench, and BixBench work follows the lighter fixtures.
 
 ## What Not To Build First
 
@@ -907,6 +976,10 @@ fixture and official validator before heavy imaging visualization.
   conflict semantics.
 - Do not delay useful viewing or deliberate editing because a perfect typed
   viewer/editor is unavailable.
+- Do not postpone mathematics and computer science until every life-science
+  integration is complete.
+- Do not create separate domain workbenches or make one domain standard the
+  generic Dataset, AnalysisRun, or project model.
 
 ## Approval Package
 
@@ -939,6 +1012,10 @@ Jupyter/MIME, language-service, and debug-adapter evaluations. A spike winner
 still needs the appropriate architecture, dependency, license, and platform
 decision.
 
+Also authorize the D0 domain fixture portfolio and the bounded D1 proofs in the
+Scientific Domain Workflows Roadmap. Rich viewers, pipeline engines, and
+institutional integrations remain separately gated source spikes.
+
 ### E. Explicitly Deferred Expansion
 
 Keep language-native depth, notebooks, rich data/variables, figures, debugging,
@@ -956,7 +1033,10 @@ commitment in the first implementation.
 - external edit-in-place grant, expiration, conflict, and audit UX;
 - R/MATLAB support timing reconciliation with the proposed technology stack;
 - first notebook client/MIME dependency set and imported-output behavior;
-- data explorer prototype pass thresholds; and
+- data explorer prototype pass thresholds;
+- typed collection, units/reference-system, large-data, domain-viewer state,
+  workflow-run, and restricted-location boundaries;
+- first accepted domain fixtures and component prototypes across all six lanes;
 - which decisions are hard enough to require ADRs.
 
 ## Next Planning Handoffs After Approval
@@ -970,9 +1050,11 @@ Create only the handoffs needed for active work:
 3. source-editor interaction design and dependency spike;
 4. Python vertical-slice implementation/quality plan;
 5. early identity/history/permission/collaboration requirements routed to the
-   existing cross-cutting architecture owners; and
+   existing cross-cutting architecture owners;
 6. technology-stack reconciliation for R/MATLAB timing if this proposal is
-   accepted.
+   accepted; and
+7. D0 domain file/metadata fixtures and the first bounded domain proofs from the
+   Scientific Domain Workflows Roadmap.
 
 Later notebook, data, figure, debug, remote, and domain documents should be
 created only when their stage becomes active.
@@ -991,6 +1073,8 @@ This proposal is ready for an approval decision when reviewers agree that it:
   staleness and recovery;
 - designs collaboration foundations early while deferring realtime depth;
 - keeps manuscript/typesetting depth in the linked sibling roadmap;
+- keeps neuroscience, biology, clinical research, chemistry, mathematics, and
+  computer science first-class without fragmenting the workbench;
 - distinguishes dependencies, adapters, references, proprietary runtimes, and
   deferred decisions;
 - validates researcher outcomes as well as component contracts; and
