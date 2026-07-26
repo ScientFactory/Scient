@@ -251,19 +251,39 @@ The shorthand in the ledger means:
 | `8ea6da0a` projection normalization and snapshot pipeline | Normalizes store projections, batches snapshot work, and repairs stale derived state. | **Defer.** Broad state-architecture change across server and web; no isolated current Scient failure was proven. |
 | `8ea6da0a` donor migration/index cleanup | Drops donor orchestration indexes and changes automation/provider runtime persistence. | **Reject.** Donor schema lineage and storage assumptions must not enter Scient by direct intake. |
 | `8ea6da0a` bounded Git-status cache and expired-cache probe | Caps cached worktree status at 64 entries and avoids an inevitably discarded details probe after remote TTL expiry. | **Defer.** Bounded and testable, but active PR #127 changes the same Git status/polling contract and service dependency lane; re-evaluate after it resolves. |
-| `8ea6da0a` lightweight PR polling | Uses the project-shell snapshot instead of hydrating every thread body for periodic PR list/review-count work. | **Reimplement. Selected now.** Small, nonvisual, no active file/semantic overlap, and provable with service dependency tests. |
+| `8ea6da0a` lightweight PR polling | Uses the project-shell snapshot instead of hydrating every thread body for periodic PR list/review-count work. | **Reimplement. Implemented and published as draft PR [#133](https://github.com/ScientFactory/scient-desktop/pull/133).** Small, nonvisual, no active file/semantic overlap, and proven with service dependency tests. |
 | `8ea6da0a` remaining Git/PR/UI updates | Adjusts diff totals, branch controls, and PR presentation. | **Defer.** Active PR #127 overlaps the Git lane and remaining changes are presentation dependent. |
 | `8ea6da0a` terminal ID leaf and lazy runtime registry | Stops eager callers from anchoring xterm into the router bundle and dynamically loads the registry only during terminal disposal. | **Defer.** Valuable bundle optimization, but it requires changing `ChatView.tsx`, which is actively modified by PR #128; re-evaluate after that overlap resolves. |
 | `8ea6da0a` remaining terminal lifecycle | Stabilizes managed wrappers, session IDs, manager cleanup, and server process ownership. | **Defer.** Protected process/session lifecycle; current Scient needs a specific repro before changes. |
-| `8ea6da0a` attachment sync-generation cleanup | Retires the newest `(slot, thread)` generation entry after persistence settles instead of retaining one key forever. | **Reimplement. Selected now.** Current Scient has the leak, the fix is small and nonvisual, no active overlap exists, and stale/newest concurrency is unit-testable. |
+| `8ea6da0a` attachment sync-generation cleanup | Retires the newest `(slot, thread)` generation entry after persistence settles instead of retaining one key forever. | **Reimplement. Implemented and published as draft PR [#132](https://github.com/ScientFactory/scient-desktop/pull/132).** Current Scient has the leak, the fix is small and nonvisual, no active overlap exists, and stale/newest plus staging-failure concurrency is unit-tested. |
 | `8ea6da0a` remaining composer/chat behavior | Changes automation intent, chat state, attachments, and many control surfaces. | **Defer.** Broad behavior mixed with appearance and interaction. |
 | `8ea6da0a` React compiler/hot-path UI sweep | Reworks memoization and component primitives across most visible surfaces. | **Reject.** Mechanical/performance intent is useful, but the diff is appearance-sensitive, massive, and cannot be certified without prohibited UI validation. |
 
 ## Intake Decision
 
-Two bounded Scient-native reimplementations are selected from `8ea6da0a`:
-attachment sync-generation cleanup and lightweight PR polling. They are assigned
-to independent desktop worktrees and remain separate from this evidence branch.
+Two bounded Scient-native reimplementations were selected from `8ea6da0a`:
+attachment sync-generation cleanup and lightweight PR polling. Both are
+implemented in independent desktop worktrees and published as separate draft
+PRs; neither is integrated. The attachment lane is branch
+`maintenance/upstream-attachment-generation-cleanup-20260726`, head
+`85a59897370466e0d639bc527027db1131d63339`, draft PR
+[#132](https://github.com/ScientFactory/scient-desktop/pull/132). The polling lane
+is branch `maintenance/upstream-lightweight-pr-polling-20260726`, head
+`9160667bf078ec2cf6255c104c4c49dd4582d3cc`, draft PR
+[#133](https://github.com/ScientFactory/scient-desktop/pull/133).
+
+Both lanes passed focused tests, format, lint with no errors, typecheck, relevant
+builds, the complete non-browser `bun run test` suite, `git diff --check`, and
+clean-worktree confirmation. Each received three independent read-only reviews:
+correctness/reliability, security/privacy/data loss, and architecture/lineage.
+The attachment lane's reviewers identified one scoped synchronous-staging P2;
+the lane restored prior-generation ownership, added a regression, reran the
+affected and full checks, and all three reviewers recertified the exact final
+head with no unresolved P0-P2. The polling lane was certified clean at its exact
+head by all three reviewers.
+
+No computer use, browser automation, screenshots, geometry checks, visual tests,
+or manual UI acceptance were performed for either lane.
 Thread-detail retention, Git-cache work, terminal bundle loading, full-diff copy,
 and landing-picker changes remain unselected because of active overlap or
 prohibited visual/interactive validation.
@@ -272,6 +292,6 @@ prohibited visual/interactive validation.
 
 - Proposed `reviewedThrough`: `8ea6da0a0715c69f7b744fd4c8b38d698ab7687e`
 - `integrationBase`: unchanged at `9be46c3ce6a7521b64436b7334bc6fce16e3cac4`
-- Tested owned head: `5d5df0c41e09a6dceb0bdb13f63167bc46ff3370`; the review began on `dab9b6d58e2a3f3da02c5475b86dc083f71580f1` and reconciled the merged lineage-guard delta at publication refresh; no donor product code was tested or integrated
+- Tested owned head: `5d5df0c41e09a6dceb0bdb13f63167bc46ff3370`; the review began on `dab9b6d58e2a3f3da02c5475b86dc083f71580f1` and reconciled the merged lineage-guard delta at publication refresh; two Scient-native conceptual reimplementations were tested and published as draft PRs, but no donor source code was copied and nothing is integrated
 - Rolling issue: desktop issue #15 is stale and should close only after this review-state change merges
 - Remaining follow-up: re-evaluate thread-detail retention after PR #123 resolves, and full-diff copy after PR #127 resolves with explicit interactive validation outside this automation
