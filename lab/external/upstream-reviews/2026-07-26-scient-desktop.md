@@ -187,7 +187,7 @@ The shorthand in the ledger means:
 | `3f66f8ee` | Synara v0.6.1 release | Reject | `RELEASE` |
 | `77d28c26` | Landing project text color | Defer | Quality 4/5; useful consistency, but purely `VISUAL` and overlaps dirty PR #128 |
 | `0388a9b3` | Thread detail/process scanning | Adapt | Quality 5/5 overall; decomposed below and not selected now |
-| `8ea6da0a` | Automation/process/recovery bundle | Defer | Quality 4/5 with extensive tests, but 187 files cross protected and visual lanes; decomposed below |
+| `8ea6da0a` | Automation/process/recovery bundle | Reimplement | Quality 4/5; two bounded nonvisual sub-lanes are selected, while the remaining 187-file bundle is decomposed below |
 
 ## Mixed-Commit Sublanes
 
@@ -246,21 +246,27 @@ The shorthand in the ledger means:
 | `8ea6da0a` automation runs/completion/self-cancellation | Adds dedicated run identity, completion policies, automation-mode contracts, and gateway-authorized self-cancellation. | **Reject.** Imports donor automation persistence and gateway mutation authority; no whole-lane portability. |
 | `8ea6da0a` renderer crash recovery | Bounds automatic renderer reloads, then offers an actionable recovery prompt instead of looping forever. | **Defer.** High user value and donor quality 5/5, but it changes desktop lifecycle and visible recovery UI and requires prohibited interactive/visual validation. Smallest future seam: pure bounded-reload policy plus separately validated Electron wiring. |
 | `8ea6da0a` shell hydration/executable lookup/open behavior | Hydrates the shell environment once, resolves executables across platform-specific paths, and reduces blocking OS calls. | **Defer.** Valuable performance/reliability lesson, but broad across environment trust, provider discovery, and process launch; require a current Scient repro and clean-profile proof. |
-| `8ea6da0a` Codex/process supervision and provider maintenance | Recovers stuck provider processes, bounds maintenance, and adjusts worktree/process ownership. | **Defer.** Protected provider/session/process lane with active backend and packaged-startup overlaps; not independently fast-lane eligible. |
+| `8ea6da0a` Codex version gate | Replaces synchronous per-session `codex --version` with an asynchronous, bounded, deduplicated, fingerprint-aware cache. | **Defer.** Valuable nonvisual performance fix, but the donor change adds a cross-platform executable resolver and more than 400 lines of protected process/cache behavior; it requires dedicated Windows and clean-machine lifecycle proof. |
+| `8ea6da0a` remaining process supervision/provider maintenance | Recovers stuck provider processes, bounds maintenance, and adjusts worktree/process ownership. | **Defer.** Protected provider/session/process lane with active backend and packaged-startup overlaps. |
 | `8ea6da0a` projection normalization and snapshot pipeline | Normalizes store projections, batches snapshot work, and repairs stale derived state. | **Defer.** Broad state-architecture change across server and web; no isolated current Scient failure was proven. |
 | `8ea6da0a` donor migration/index cleanup | Drops donor orchestration indexes and changes automation/provider runtime persistence. | **Reject.** Donor schema lineage and storage assumptions must not enter Scient by direct intake. |
-| `8ea6da0a` Git status, PR, and cache updates | Adjusts Git broadcaster/cache invalidation, diff totals, branch controls, and PR refresh. | **Defer.** Mixed operational/UI lane with active PR #127 overlap and no single independently proven gap. |
-| `8ea6da0a` terminal lifecycle and identifiers | Stabilizes managed terminal wrappers, session IDs, and manager cleanup. | **Defer.** Protected process/session lifecycle; current Scient has owned terminal identity and needs a specific repro before changes. |
-| `8ea6da0a` attachment/composer/chat behavior | Changes attachment identity, composer automation intent, chat state, and many control surfaces. | **Defer.** Broad behavior mixed with appearance and interaction; not eligible for automatic non-visual intake. |
+| `8ea6da0a` bounded Git-status cache and expired-cache probe | Caps cached worktree status at 64 entries and avoids an inevitably discarded details probe after remote TTL expiry. | **Defer.** Bounded and testable, but active PR #127 changes the same Git status/polling contract and service dependency lane; re-evaluate after it resolves. |
+| `8ea6da0a` lightweight PR polling | Uses the project-shell snapshot instead of hydrating every thread body for periodic PR list/review-count work. | **Reimplement. Selected now.** Small, nonvisual, no active file/semantic overlap, and provable with service dependency tests. |
+| `8ea6da0a` remaining Git/PR/UI updates | Adjusts diff totals, branch controls, and PR presentation. | **Defer.** Active PR #127 overlaps the Git lane and remaining changes are presentation dependent. |
+| `8ea6da0a` terminal ID leaf and lazy runtime registry | Stops eager callers from anchoring xterm into the router bundle and dynamically loads the registry only during terminal disposal. | **Defer.** Valuable bundle optimization, but it requires changing `ChatView.tsx`, which is actively modified by PR #128; re-evaluate after that overlap resolves. |
+| `8ea6da0a` remaining terminal lifecycle | Stabilizes managed wrappers, session IDs, manager cleanup, and server process ownership. | **Defer.** Protected process/session lifecycle; current Scient needs a specific repro before changes. |
+| `8ea6da0a` attachment sync-generation cleanup | Retires the newest `(slot, thread)` generation entry after persistence settles instead of retaining one key forever. | **Reimplement. Selected now.** Current Scient has the leak, the fix is small and nonvisual, no active overlap exists, and stale/newest concurrency is unit-testable. |
+| `8ea6da0a` remaining composer/chat behavior | Changes automation intent, chat state, attachments, and many control surfaces. | **Defer.** Broad behavior mixed with appearance and interaction. |
 | `8ea6da0a` React compiler/hot-path UI sweep | Reworks memoization and component primitives across most visible surfaces. | **Reject.** Mechanical/performance intent is useful, but the diff is appearance-sensitive, massive, and cannot be certified without prohibited UI validation. |
 
 ## Intake Decision
 
-No product code was selected or implemented. The highest-value new behavior,
-thread-detail retention ownership, is blocked from automatic intake by active
-overlap. The full-diff copy and landing picker changes require prohibited visual
-or interactive validation, and remaining behavior is equivalent, donor-coupled,
-release-only, or too broad. Zero implementations is the quality-preserving result.
+Two bounded Scient-native reimplementations are selected from `8ea6da0a`:
+attachment sync-generation cleanup and lightweight PR polling. They are assigned
+to independent desktop worktrees and remain separate from this evidence branch.
+Thread-detail retention, Git-cache work, terminal bundle loading, full-diff copy,
+and landing-picker changes remain unselected because of active overlap or
+prohibited visual/interactive validation.
 
 ## Resulting State
 
