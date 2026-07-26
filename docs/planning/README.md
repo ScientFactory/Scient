@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-07-25
+Last updated: 2026-07-26
 Purpose: Defines where Scient planning documents live and how they relate to product truth, architecture, design, quality, and research documents.
 Doc type: Repo orientation
 
@@ -25,8 +25,15 @@ Current planning docs:
 - `memory-architecture-discovery.md` - draft discussion of candidate memory
   scopes, authority, lifecycle, agent access, local/cloud boundaries, and the
   questions to resolve before architecture or storage selection.
+- `manuscript-typesetting-and-publishing-roadmap.md` - proposed durable path
+  from a universal typesetting opener through serious manuscript authoring,
+  review, collaboration, publishing, and the full Overleaf-class capability
+  horizon.
 - `product-roadmap.md` - active sequence of coherent product outcomes, beginning with the first Scient scientific project slice.
-- `scientific-computing-and-data-analysis-roadmap.md` - proposed product boundary, source strategy, architecture direction, and ordered implementation path for manual code editing, Python, R, MATLAB, notebooks, datasets, figures, and reproducible analysis artifacts.
+- `scientific-computing-and-data-analysis-roadmap.md` - proposed boundary,
+  shared-foundation contract, source strategy, and dependency-ordered path for
+  manual code editing, Python, R, MATLAB, notebooks, data, figures, and
+  reproducible analysis artifacts.
 - `first-scient-vertical-slice-implementation-plan.md` - draft source-tracing, implementation, and verification plan for the active product slice.
 - `scient-and-external-agents-implementation-plan.md` - proposed end-to-end plan for building the Scient agent as the owned OpenCode-derived first-party agent while preserving external agents independently.
 - `papilab-to-scient-rename-execution-plan.md` - historical PapiLab-to-Scient migration, compatibility, rollback, and deferred-public-cutover record.
