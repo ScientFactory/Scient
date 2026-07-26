@@ -294,5 +294,6 @@ prohibited visual/interactive validation.
 - Proposed `reviewedThrough`: `8ea6da0a0715c69f7b744fd4c8b38d698ab7687e`
 - `integrationBase`: unchanged at `9be46c3ce6a7521b64436b7334bc6fce16e3cac4`
 - Tested owned head: `5d5df0c41e09a6dceb0bdb13f63167bc46ff3370`; the review began on `dab9b6d58e2a3f3da02c5475b86dc083f71580f1` and reconciled the merged lineage-guard delta at publication refresh; one bounded donor-derived adaptation and one bounded reimplementation were tested and published as draft PRs, but no donor commit or ancestry is integrated
+- Accepted cross-repository snapshot: remains reviewed through `3a5720bdd0ae4ace444379cabf0a634941d232fd` until the dependent desktop checkpoint PR is accepted; after that merge, a follow-up parent evidence change must align `owned-sources.json` and `sources.lock.md` to this review without changing `integrationBase`
 - Rolling issue: desktop issue #15 is stale and should close only after this review-state change merges
 - Remaining follow-up: re-evaluate thread-detail retention after PR #123 resolves, and full-diff copy after PR #127 resolves with explicit interactive validation outside this automation

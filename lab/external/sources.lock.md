@@ -40,7 +40,7 @@ review is accepted.
 
 | Source | Tested owned head | Reviewed through | Integration base | Update mode | Review evidence |
 |---|---|---|---|---|---|
-| Scient desktop | `5d5df0c41e09a6dceb0bdb13f63167bc46ff3370` | `8ea6da0a0715c69f7b744fd4c8b38d698ab7687e` on 2026-07-26 | `9be46c3ce6a7521b64436b7334bc6fce16e3cac4` | `divergent-cherry-pick` | [`2026-07-26-scient-desktop.md`](upstream-reviews/2026-07-26-scient-desktop.md); one bounded donor-derived adaptation and one bounded reimplementation are published as draft desktop PRs #133 and #132; no donor commit or ancestry is integrated; desktop checkpoint PR is a separate dependency |
+| Scient desktop | `5d5df0c41e09a6dceb0bdb13f63167bc46ff3370` | `3a5720bdd0ae4ace444379cabf0a634941d232fd` on 2026-07-18 | `9be46c3ce6a7521b64436b7334bc6fce16e3cac4` | `divergent-cherry-pick` | [`2026-07-18-scient-desktop.md`](upstream-reviews/2026-07-18-scient-desktop.md); the completed July 26 review is recorded separately and its proposed checkpoint remains unpublished until the dependent desktop state PR is accepted |
 | Scient agent source | `acdf841703cea2d36428f203d41aa48d2b470e55` | `fab213312927ea64cf968832c527206e8c944f9e` on 2026-07-18 | `69a80663a2ed7d671d2b4d5dd6f2d605714675a5` | `adapter-maintained` | [`2026-07-18-scient-agent.md`](upstream-reviews/2026-07-18-scient-agent.md); no code intake |
 
 ## Standalone Ownership And Maintenance Rollout
