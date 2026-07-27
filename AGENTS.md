@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-07-22
+Last updated: 2026-07-27
 Purpose: Defines how agents should work in this early Scient repository.
 Doc type: Agent protocol
 
@@ -100,7 +100,7 @@ Current important documents:
 - `docs/architecture/decisions/ADR-0002-standalone-source-ownership-and-upstream-authority.md` - accepted standalone source-repository ownership and selective upstream authority.
 - `docs/operations/upstream-intake.md` - active monitoring, review, and selective intake procedure for original source changes.
 - `docs/operations/team-contribution-protocol.md` - active minimum branch,
-  verification, self-review, independent-review, and contribution-evidence
+  verification, self-review, peer-review guidance, and contribution-evidence
   workflow across maintained ScientFactory repositories.
 - `docs/planning/product-roadmap.md` - active sequence of coherent product outcomes.
 - `docs/planning/first-scient-vertical-slice-implementation-plan.md` - concrete plan and acceptance criteria for the current implementation slice.

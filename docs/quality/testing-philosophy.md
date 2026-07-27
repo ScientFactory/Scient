@@ -3,7 +3,7 @@
 Status: Draft
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-07-22
+Last updated: 2026-07-27
 Purpose: Defines Scient's testing philosophy before implementation-specific commands, lanes, and CI gates exist.
 Doc type: Testing doctrine
 
@@ -22,7 +22,7 @@ Protocol](../operations/team-contribution-protocol.md) turns a small subset of
 this draft doctrine into today's minimum contribution workflow: identify the
 affected risk, provide focused automated proof, manually exercise changed
 user-facing behavior, record gaps honestly, and review the final diff before
-requesting independent approval.
+marking the pull request ready or requesting peer review when it would help.
 
 This document remains the broader testing doctrine. Repository-specific test
 commands and hosted checks remain in the repositories that implement them.

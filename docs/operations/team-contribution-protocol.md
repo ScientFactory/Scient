@@ -3,16 +3,17 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-07-22
-Last updated: 2026-07-22
+Last updated: 2026-07-27
 Purpose: Defines the minimum shared workflow and verification evidence for contributions across maintained ScientFactory repositories.
 Doc type: Operational procedure
 
 ## Outcome
 
 Contributors work in the repository that owns the change, prove the affected
-behavior in proportion to its risk, review their own final diff, and obtain an
-independent review before merge. Automated checks, manual verification, review,
-merge, deployment, and release remain separate facts.
+behavior in proportion to its risk, review their own final diff, and seek peer
+review when another person's judgment would improve the change. Automated
+checks, manual verification, review, merge, deployment, and release remain
+separate facts.
 
 This is the current minimum protocol. It is intentionally small and should be
 improved when repeated contribution or review failures show that another rule
@@ -52,12 +53,14 @@ commands in the owning code repository instead of copying them here.
 5. Push fixes to the same task branch. Pull-request checks rerun on the updated
    head; a second staging branch that copies the integration branch is not part
    of the normal flow.
-6. Before requesting review, complete the required automated verification,
-   manual verification, and author self-review below.
+6. Before marking the pull request ready or requesting peer review, complete the
+   required automated verification, manual verification, and author self-review
+   below.
 7. Mark the pull request ready only when its description and evidence match the
    final diff.
-8. Merge only after current required checks pass, review conversations are
-   resolved, and at least one person other than the author approves.
+8. Merge only after current required checks pass and review conversations are
+   resolved. Request peer review when it would improve the change; it is not a
+   default approval gate.
 9. Verify deployment or publication separately when the change affects a
    deployed or released surface.
 
@@ -106,8 +109,9 @@ manual product testing may be marked `Not applicable` with a short reason.
 
 ### Author Self-Review
 
-Before requesting another person's review, the author must review the complete
-final pull-request diff as if it were someone else's change. Confirm that:
+Before marking a pull request ready or requesting another person's review, the
+author must review the complete final pull-request diff as if it were someone
+else's change. Confirm that:
 
 - every changed file belongs to the stated outcome;
 - the implementation addresses the real failure or need;
@@ -120,7 +124,8 @@ final pull-request diff as if it were someone else's change. Confirm that:
 
 Agent-assisted or generated work has the same requirement. The contributor who
 submits it remains accountable for understanding and reviewing the result.
-Self-review never replaces independent approval.
+Self-review is always required. Peer review adds independent judgment when
+useful, but this shared protocol does not require a non-author approval.
 
 ## Pull Request Evidence
 
@@ -146,10 +151,16 @@ Green checks do not prove that the scope, design, ownership, user experience,
 or recovery behavior is correct. Review must compare the stated outcome,
 actual diff, and verification evidence.
 
-New commits after review require the current head to be rechecked and reviewed
-under the owning branch's protection rules. Do not bypass required review or
-checks for ordinary work. Emergency handling and release promotion follow the
-[GitHub operating model](github-operating-model.md).
+Request peer review when another person's judgment would materially improve the
+change, especially for risky, security-sensitive, or product-direction work.
+Peer review is not a default merge gate, and this shared protocol does not set a
+required approval count.
+
+New commits require the current head to be rechecked under the owning branch's
+protection rules. Do not bypass required checks or leave review conversations
+unresolved. A repository-specific or change-specific review requirement still
+applies when its owner explicitly establishes one. Emergency handling and
+release promotion follow the [GitHub operating model](github-operating-model.md).
 
 ## Exceptions And Deferrals
 
