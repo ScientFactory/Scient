@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-07-25
-Last updated: 2026-07-27 (DF-004, DF-005, DF-006 added)
+Last updated: 2026-07-27 (DF-004, DF-005, DF-006, DF-007 added)
 Purpose: Captures observed Scient desktop problems that need a bounded diagnosis or fix but are not being implemented immediately.
 Doc type: Planning note
 
@@ -210,6 +210,38 @@ Each open fix should record:
 - **Evidence:** Two user-supplied screenshots from 2026-07-27 showing the same
   "Graceful failure fixture" preview with a "Could not preview HTML" toast in
   one and an "HTML preview opened with limits" toast in the other.
+- **Related task, issue, or pull request:** Not yet created.
+- **Implementation approval:** Not yet; this entry records reported behavior
+  and expected behavior only.
+
+### DF-007 — Images Frequently Fail To Display Or Open ("Couldn't Open This Image")
+
+- **Date added:** 2026-07-27.
+- **Status:** Reported; not yet diagnosed.
+- **Observed behavior:** Images often cannot be seen or opened. Instead of
+  rendering, the image shows a card reading "Couldn't open this image — The
+  file may have moved or be unavailable." with a **Download** button. In the
+  supplied example, several images in a single rendered message all failed this
+  way at once. Reported as a recurring ("often") problem, not a one-off.
+- **Expected behavior:** Images that exist should render inline and be
+  openable. A "couldn't open" state should be reserved for genuinely
+  missing/moved files, and should be accurate rather than the common case.
+- **User impact:** Images are a core part of reading messages and sources; when
+  they routinely fail to display, content is effectively lost and the app feels
+  unreliable.
+- **Diagnosis:** Not yet investigated. Note for the later look: determine
+  whether the underlying file is actually missing or whether image resolution
+  is looking in the wrong place (e.g. attachment path/base-directory
+  resolution, or a stale reference after the file was stored/moved). May share
+  a root with DF-004 (path/base resolution). Confirm whether the referenced
+  images still exist on disk when the card appears.
+- **Validation needed:** Reproduce with images that are known to exist on disk;
+  confirm they render and open; confirm the "couldn't open" card only appears
+  for genuinely missing files; check both freshly added and previously stored
+  images, and any attachment-directory resolution involved.
+- **Evidence:** User-supplied screenshot from 2026-07-27 showing multiple
+  "Couldn't open this image / The file may have moved or be unavailable" cards
+  in a single rendered message.
 - **Related task, issue, or pull request:** Not yet created.
 - **Implementation approval:** Not yet; this entry records reported behavior
   and expected behavior only.
