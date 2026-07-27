@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-07-25
-Last updated: 2026-07-27
+Last updated: 2026-07-27 (DF-004, DF-005, DF-006 added)
 Purpose: Captures observed Scient desktop problems that need a bounded diagnosis or fix but are not being implemented immediately.
 Doc type: Planning note
 
@@ -115,4 +115,101 @@ Each open fix should record:
   "Add project" tooltip beside the folder-with-plus toolbar icon.
 - **Related task, issue, or pull request:** Not yet created.
 - **Implementation approval:** Not yet; this entry records the requested change
+  and expected behavior only.
+
+### DF-004 — Clicking A File Reference From Another File's Render Opens The Wrong Path (ENOENT)
+
+- **Date added:** 2026-07-27.
+- **Status:** Reported; not yet diagnosed.
+- **Observed behavior:** Some files still do not open when clicked. In the
+  supplied example, clicking a file reference that appeared in the rendered
+  output of another file did not open the target file. Instead the viewer
+  showed a resolution error: `workspaceFileSystem.realpath failed for
+  /Users/yaacov/REPOs/ScientFactory: ENOENT: no such file or directory,
+  realpath '/Users/yaacov/REPOs/ScientFactory/.plan/agentGateway/mcpInjection.ts'`.
+  The breadcrumb rendered as `ScientFactory > .plan > agentGateway >
+  mcpInjection.ts`.
+- **Expected behavior:** A file reference clicked from within another file's
+  rendered content should resolve against the correct base directory (the repo
+  or document that produced the reference) and open the real file, or show a
+  clear "file not found" state — not resolve a relative path against the wrong
+  workspace root and surface a raw `realpath`/ENOENT error.
+- **User impact:** Broken navigation between files; clickable references can
+  dead-end on a raw filesystem error instead of opening or failing gracefully.
+- **Diagnosis:** Not yet investigated. Note for the later look: the failing
+  path was resolved against the top-level workspace directory
+  (`/Users/yaacov/REPOs/ScientFactory`) rather than a repo beneath it (e.g.
+  `.../scient-desktop`), so the likely seam is how relative file references
+  from rendered content pick their base/root before `workspaceFileSystem.realpath`.
+- **Validation needed:** Reproduce with a file reference embedded in another
+  file's render; confirm correct base-directory resolution across repos under
+  the workspace root; confirm a missing target yields a friendly not-found
+  state rather than a raw ENOENT string.
+- **Evidence:** User-supplied screenshot from 2026-07-27 showing the ENOENT
+  `realpath` error in the file viewer.
+- **Related task, issue, or pull request:** Not yet created.
+- **Implementation approval:** Not yet; this entry records reported behavior
+  and expected behavior only.
+
+### DF-005 — "Run Dev Server" Confirm Dismisses But Nothing Opens
+
+- **Date added:** 2026-07-27.
+- **Status:** Reported; not yet diagnosed.
+- **Observed behavior:** Opening the top HTML entrypoint in the artifact list
+  (`apps/web/index.html`, labeled "Web app source · runs a dev server") shows a
+  dialog: "This HTML entrypoint needs its development server. Run this command?
+  `npm run dev`, Working directory:
+  `/Users/yaacov/REPOs/ScientFactory/scient-desktop/apps/web`" with Cancel and
+  Confirm. Pressing **Confirm** dismisses the dialog/card as if it succeeded,
+  but nothing actually opens — no dev-server preview appears (no visible change
+  beyond the card disappearing).
+- **Expected behavior:** Confirming should start the dev server and open its
+  preview, or surface a clear error/progress state if it cannot. It must not
+  silently no-op while looking like it worked.
+- **User impact:** A primary "open the web app" path appears to succeed but
+  produces nothing, leaving the user with no preview and no error.
+- **Diagnosis:** Not yet investigated. Likely related to the HTML preview /
+  dev-server launch pipeline in `scient-desktop` (the recently merged artifact
+  preview work). Later look should confirm whether the dev server actually
+  starts, whether the preview tab/URL is ever opened, and whether a
+  readiness/failure state is being swallowed.
+- **Validation needed:** Reproduce with `apps/web/index.html`; confirm Confirm
+  either opens a working preview or reports a clear failure; cover the case
+  where `npm run dev` fails or the port never becomes ready.
+- **Evidence:** User-supplied screenshot from 2026-07-27 showing the dev-server
+  confirmation dialog for `apps/web/index.html`.
+- **Related task, issue, or pull request:** Not yet created.
+- **Implementation approval:** Not yet; this entry records reported behavior
+  and expected behavior only.
+
+### DF-006 — Contradictory Preview Toasts On The Graceful-Failure HTML Fixture
+
+- **Date added:** 2026-07-27.
+- **Status:** Reported; not yet diagnosed.
+- **Observed behavior:** Opening the last HTML in the artifact list
+  (`docs/manual-testing/html-preview/fixture-pack/broken-page.html`, titled
+  "Graceful failure fixture", which intentionally references a missing image)
+  shows conflicting toasts across attempts: in one, an error toast **"Could not
+  preview HTML"**; in another, a warning toast **"HTML preview opened with
+  limits"** — while the page text does render (heading plus "Visible after the
+  missing resource", with a broken-image placeholder).
+- **Expected behavior:** For a page that renders with only a missing sub-resource,
+  show a single consistent, truthful status. If the preview did open in a
+  degraded mode, "opened with limits" is appropriate and "Could not preview
+  HTML" should not also appear; the two messages should not contradict each
+  other for the same outcome.
+- **User impact:** Contradictory success/failure messaging erodes trust in the
+  preview and makes it unclear whether the artifact actually opened.
+- **Diagnosis:** Not yet investigated. Likely in the HTML preview status/toast
+  logic from the recently merged artifact preview pipeline in `scient-desktop`.
+  Later look should determine which message is correct for a missing-sub-resource
+  page and why both can fire.
+- **Validation needed:** Reproduce with the `broken-page.html` fixture; confirm
+  a single consistent status for the missing-resource-but-renders case; check
+  the fully-unpreviewable case still reports a clean failure.
+- **Evidence:** Two user-supplied screenshots from 2026-07-27 showing the same
+  "Graceful failure fixture" preview with a "Could not preview HTML" toast in
+  one and an "HTML preview opened with limits" toast in the other.
+- **Related task, issue, or pull request:** Not yet created.
+- **Implementation approval:** Not yet; this entry records reported behavior
   and expected behavior only.
