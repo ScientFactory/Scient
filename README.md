@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-07-22
+Last updated: 2026-07-27
 Purpose: Entry point for the Scient product and project repository.
 Doc type: Repo orientation
 
@@ -52,6 +52,13 @@ the owning child repository before editing, and run Git commands, create
 branches, and open pull requests there. Keep temporary worktrees outside the
 workspace root.
 
+Because the workspace root is a plain local container, it has no
+version-controlled agent instructions of its own. Before an agent acts from
+that root, have it read `Scient/AGENTS.md` and the applicable `AGENTS.md` and
+`CONTRIBUTING.md` files in every repository within its task scope. Starting the
+task from the owning repository is also valid while sibling repositories remain
+available as read context.
+
 Internal contributors need authorized access to the private `Scient`
 repository. External contributors working in a public repository are not
 required to clone it and should be able to follow that public repository's own
@@ -73,3 +80,5 @@ Start here:
 - [PapiLab-to-Scient rename record](docs/planning/papilab-to-scient-rename-execution-plan.md) - historical migration, compatibility, rollback, and deferred-public-cutover record.
 - [Technology stack](docs/architecture/technology-stack.md) - proposed architecture and stack direction.
 - [Agent guidance](AGENTS.md) - protocol for agents working in this repository.
+- [Team contribution protocol](docs/operations/team-contribution-protocol.md) -
+  shared verification, review, human UI, and integration-readiness workflow.

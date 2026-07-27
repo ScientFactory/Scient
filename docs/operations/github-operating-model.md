@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-07-20
-Last updated: 2026-07-22
+Last updated: 2026-07-27
 Purpose: Defines how ScientFactory repositories, branches, pull requests, releases, deployments, permissions, and local worktrees are operated.
 Doc type: Operational procedure
 
@@ -60,12 +60,15 @@ claim authority over its release.
 2. Create one narrowly named branch and one dedicated worktree for the task.
 3. Make scoped commits; never stage unrelated user or agent work.
 4. Push the branch and open a pull request against the integration branch.
-5. Complete the author's self-review and relevant manual verification, wait for
-   required checks, and resolve conversations before merging.
+5. Complete the relevant automated and manual verification plus Quality Review
+   before presenting the pull request as ready.
 6. Request peer review when another person's judgment is useful; it is not a
-   default merge gate.
-7. Squash-merge and delete the remote task branch.
-8. Remove the task worktree and local task branch only after confirming the pull
+   default approval gate.
+7. Once required checks and evidence are current, complete Integration Readiness
+   Review against the exact final head, resolve conversations, and include human
+   review of the rendered candidate for UI changes.
+8. Squash-merge and delete the remote task branch.
+9. Remove the task worktree and local task branch only after confirming the pull
    request is merged and the worktree is inactive and clean.
 
 Use branch names that describe the work, such as `feature/...`, `fix/...`,
@@ -141,6 +144,7 @@ Cloudflare Pages is connected directly to
 
 - pull requests build preview deployments;
 - required `Website quality` and `Cloudflare Pages` checks must pass;
+- user-visible changes require human review of the candidate preview;
 - merging to protected `main` deploys production;
 - `scientfactory.com` and `www.scientfactory.com` point to that Pages project;
   and
@@ -193,9 +197,11 @@ rules by itself.
 Public code repositories require pull requests, current required checks,
 resolved conversations, linear history, and no force-push or branch deletion
 on protected branches. They do not require an approving review. Authors must
-self-review their changes and complete the relevant automated and manual
-verification. Peer review may be requested when it adds useful judgment, but
-its absence does not block a verified pull request from merging.
+complete the relevant automated and manual verification, Quality Review, and
+Integration Readiness Review. User-visible UI changes also require human review
+of the rendered candidate. Peer review may be requested when it adds useful
+judgment, but its absence does not block an otherwise verified pull request
+from merging.
 
 Do not enable a required-approval branch-protection rule or request a reviewer
 solely to make a pull request mergeable unless Yaacov explicitly changes this
@@ -204,17 +210,19 @@ still follows the pull-request and required-check path.
 
 `Scient` is private. On the organization's current GitHub Free plan, GitHub does
 not enforce branch protection for that private repository. Treat `main` as
-process-protected: use pull requests, scoped checks, author self-review, and
-squash merges even though the platform cannot enforce every rule. Re-evaluate
-native protection if the repository becomes public or the organization plan
-changes, without adding a required-approval gate unless Yaacov explicitly
-requests one.
+process-protected: use pull requests, scoped checks, Quality Review, Integration
+Readiness Review, and squash merges even though the platform cannot enforce
+every rule. Re-evaluate native protection if the repository becomes public or
+the organization plan changes, without adding a required-approval gate unless
+Yaacov explicitly requests one.
 
 ## Definition Of Done
 
 A repository change is complete only when:
 
 - the owning pull request is merged and required checks passed;
+- applicable review and human UI gates were completed for the integrated
+  candidate;
 - the intended integration or release branch contains the merge;
 - deployment or publication is separately verified when applicable;
 - linked repositories and canonical documentation are consistent;

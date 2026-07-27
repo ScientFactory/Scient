@@ -3,7 +3,7 @@
 Status: Draft
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-07-22
+Last updated: 2026-07-27
 Purpose: Defines Scient's code quality principles before implementation-specific standards and gates exist.
 Doc type: Engineering doctrine
 
@@ -81,7 +81,7 @@ Review should still ask:
 - Can a future maintainer understand the behavior without chat context?
 - Is any deferral explicit?
 
-## Review Lenses
+## Quality Review Lenses
 
 Meaningful implementation changes should be reviewed through three lenses:
 
@@ -89,7 +89,16 @@ Meaningful implementation changes should be reviewed through three lenses:
 - Quality: does the change preserve clear ownership, boundaries, maintainability, and product intent?
 - Efficiency: does the change avoid unnecessary work, hot-path bloat, leaks, broad reads, and no-op updates?
 
+These lenses focus attention without constraining judgment or prescribing a
+reviewer arrangement. Review the candidate in context and follow consequential
+risks wherever they lead.
+
 Prefer existing primitives before adding new helpers, utilities, abstractions, constants, state containers, parsing logic, or validation logic.
+
+Use established types, constants, enums, string unions, and branded identifiers
+when they express an existing domain contract. Do not replace clear local code
+with an abstraction merely to reduce line count, and do not leave raw strings
+or ad hoc type guards where the codebase already owns the concept.
 
 Avoid duplicate or mirrored state. Local databases, cloud mirrors, files, snapshots, agent logs, and scientific records must not become competing sources of truth.
 
@@ -99,11 +108,25 @@ Avoid parameter sprawl that keeps a weak abstraction alive. If a function needs 
 
 Unify copy-paste only when the abstraction is real. Repetition is acceptable when the shared concept is not stable yet; duplicated product rules should become one named boundary.
 
-Efficiency is part of quality. Avoid duplicate reads or calls, run independent work concurrently when safe, keep blocking work out of hot paths, guard against no-op state updates, clean up listeners and resources, avoid unbounded memory growth, and prefer narrow reads over broad loading.
+Efficiency is part of quality. Avoid duplicate reads or calls, run independent
+work concurrently when safe, keep blocking work out of hot paths, guard against
+no-op state updates, clean up listeners and resources, avoid unbounded memory
+growth, and prefer narrow reads over broad loading. Concurrency is safe only
+when it preserves required ordering, cancellation, failure, cleanup, and
+resource-lifetime semantics.
+
+When a state wrapper accepts an updater or reducer, verify that its established
+no-change signal, such as returning the same reference, remains a true no-op.
+An outer wrapper must not silently convert a caller's no-op into a notification,
+write, render, or other recurring work.
 
 For filesystem, sync, and project-artifact operations, avoid time-of-check/time-of-use patterns unless there is a product reason to pre-check. Prefer performing the operation and handling the resulting error.
 
-Findings should be fixed in the same task when they are true, scoped, and safe. Otherwise, document the deferral or create the appropriate follow-up.
+Findings should be fixed in the same task when they are true, scoped, and safe.
+Treat review output as evidence to evaluate, not instructions to apply
+mechanically. Record why a finding is incorrect or not applicable, and document
+or route a real deferral rather than broadening the change through speculative
+cleanup.
 
 ## Repeated Findings
 

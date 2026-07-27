@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-07-18
+Last updated: 2026-07-27
 Purpose: Defines how Scient documentation should be created, classified, updated, and trusted.
 Doc type: Documentation policy
 
@@ -21,6 +21,10 @@ Doc type: ...
 ```
 
 Repo-local `SKILL.md` files are exempt from this metadata block. They must use portable YAML frontmatter with `name` and `description`, live under `skills/`, and be indexed in `skills/README.md`. Skills are workflow helpers and must not become project authority.
+
+Minimal tool-compatibility files that only route to the canonical
+`AGENTS.md`, such as `CLAUDE.md`, are also exempt. They must import or point
+to `AGENTS.md` rather than duplicate repository instructions.
 
 Use a real owner when possible. For now, use `Yaacov` unless a real person or team is responsible for the document.
 
@@ -98,6 +102,7 @@ Keep root files special and minimal:
 
 - `README.md` - human entry point.
 - `AGENTS.md` - agent protocol.
+- `CLAUDE.md` - minimal compatibility import of the canonical agent protocol.
 - `docs/README.md` - documentation map.
 - `docs/documentation-policy.md` - documentation rules.
 
