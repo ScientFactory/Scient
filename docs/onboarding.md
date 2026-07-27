@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-07-12
-Last updated: 2026-07-22
+Last updated: 2026-07-27
 Purpose: Gives new Scient collaborators a deliberate reading journey through the project, its repository, and its sources of truth before task-specific work begins.
 Doc type: Repo orientation
 
@@ -114,8 +114,9 @@ Read these documents in order. The order is intentional: understand the accepted
 7. **Understand the agent boundary.** Read [AGENTS.md](../AGENTS.md), even if an agent will do most of the repository work. It defines how agents must reason, which sources they must trust, how they should place documentation, and what they must not invent.
 8. **Learn the contribution workflow.** Read the [Team Contribution
    Protocol](operations/team-contribution-protocol.md) for the current minimum
-   branch, verification, self-review, review, and evidence requirements. Then
-   follow the owning repository's contributor guide and technical instructions.
+   branch, verification, Quality Review, Integration Readiness Review, and
+   evidence requirements. Then follow the owning repository's contributor guide
+   and technical instructions.
 
 Do not replace this sequence with a chat summary. Summaries can help with comprehension, but the linked repository documents remain the durable project knowledge.
 

@@ -14,8 +14,9 @@ It must remain evidence-backed and must not invent production infrastructure.
 Current procedures:
 
 - [Team contribution protocol](team-contribution-protocol.md) - minimum shared
-  branch, verification, self-review, peer-review guidance, and evidence workflow
-  across maintained ScientFactory repositories.
+  branch, verification, Quality Review, Integration Readiness Review, human UI
+  review, peer-review guidance, and evidence workflow across maintained
+  ScientFactory repositories.
 
 - [GitHub operating model](github-operating-model.md) - repository ownership,
   branches, pull requests, release promotion, website deployment, permissions,

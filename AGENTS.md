@@ -100,8 +100,9 @@ Current important documents:
 - `docs/architecture/decisions/ADR-0002-standalone-source-ownership-and-upstream-authority.md` - accepted standalone source-repository ownership and selective upstream authority.
 - `docs/operations/upstream-intake.md` - active monitoring, review, and selective intake procedure for original source changes.
 - `docs/operations/team-contribution-protocol.md` - active minimum branch,
-  verification, self-review, peer-review guidance, and contribution-evidence
-  workflow across maintained ScientFactory repositories.
+  verification, Quality Review, Integration Readiness Review, human UI review,
+  peer-review guidance, and contribution-evidence workflow across maintained
+  ScientFactory repositories.
 - `docs/planning/product-roadmap.md` - active sequence of coherent product outcomes.
 - `docs/planning/first-scient-vertical-slice-implementation-plan.md` - concrete plan and acceptance criteria for the current implementation slice.
 - `docs/planning/scient-and-external-agents-implementation-plan.md` - proposed implementation plan for the Scient agent, external-agent preservation, and Scient-versus-external-agent identity isolation.
@@ -114,6 +115,12 @@ stack, and implementation plan retain their stated draft or proposed limits.
 Follow `docs/documentation-policy.md` when adding or changing durable documentation.
 
 ## Working Rules For Agents
+
+Follow `docs/operations/team-contribution-protocol.md` for the shared Quality
+Review and Integration Readiness Review gates. Treat its review topics as
+starting points, use independent read-only reviewers when they add confidence,
+and never substitute automated or agent-operated evidence for required human UI
+review.
 
 Be honest about the repo's maturity. Do not describe planned architecture as implemented architecture.
 

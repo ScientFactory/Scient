@@ -21,8 +21,9 @@ The active [Team Contribution
 Protocol](../operations/team-contribution-protocol.md) turns a small subset of
 this draft doctrine into today's minimum contribution workflow: identify the
 affected risk, provide focused automated proof, manually exercise changed
-user-facing behavior, record gaps honestly, and review the final diff before
-marking the pull request ready or requesting peer review when it would help.
+user-facing behavior, record gaps honestly, complete Quality Review before
+presenting a pull request as ready, and complete Integration Readiness Review
+against the exact final candidate before merge.
 
 This document remains the broader testing doctrine. Repository-specific test
 commands and hosted checks remain in the repositories that implement them.
@@ -74,6 +75,20 @@ Use the cheapest layer that truthfully proves the behavior.
 - Manual review is valid for product judgment and visual quality, but it does not replace regression proof for known behavior.
 
 Do not invent `unit`, `integration`, or `end-to-end` labels before the implementation has boundaries that make those labels truthful.
+
+## Human UI Review
+
+Every user-visible UI or interaction change requires a human to inspect the
+rendered candidate before integration. Automated visual, geometry,
+accessibility, browser, and agent-operated checks can expose regressions but
+cannot decide whether the resulting experience is understandable, coherent,
+polished, and appropriate for Scient.
+
+Human review should exercise the relevant journey and inspect important
+product, interaction, visual, responsive, and accessibility concerns in
+proportion to the change. Record the candidate, reviewer, environment, result,
+and limitations. This judgment complements rather than replaces automated
+proof and does not itself require a non-author GitHub approval.
 
 ## Behavior Over Implementation Detail
 
@@ -145,6 +160,11 @@ Weak tests often indicate unclear ownership, hidden coupling, unstable contracts
 When CI and release gates exist, passing them will be necessary but not sufficient.
 
 Tests verify behavior. Review still judges whether the design preserves clear ownership, source truth, recoverability, and long-term maintainability.
+
+The active [Team Contribution
+Protocol](../operations/team-contribution-protocol.md) defines Quality Review
+and Integration Readiness Review. Later changes invalidate only the evidence
+they could have disturbed; repeat verification according to risk, not ceremony.
 
 ## Candidate Testing Conventions
 
