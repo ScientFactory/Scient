@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-07-25
-Last updated: 2026-07-25
+Last updated: 2026-07-27
 Purpose: Captures observed Scient desktop problems that need a bounded diagnosis or fix but are not being implemented immediately.
 Doc type: Planning note
 
@@ -87,3 +87,32 @@ Each open fix should record:
 - **Related task, issue, or pull request:** Not yet created.
 - **Implementation approval:** Not yet; this entry records diagnosis and
   expected behavior only.
+
+### DF-003 — Raise And Speed Up The "Add Project" Toolbar Tooltip
+
+- **Date added:** 2026-07-27.
+- **Status:** Captured; not yet diagnosed.
+- **Observed behavior:** Hovering the "Add project" toolbar button (the
+  folder-with-plus icon) shows an "Add project" tooltip. The tooltip sits
+  slightly low relative to the button and takes a small beat to appear on
+  hover.
+- **Expected behavior:** Make just two adjustments — position the tooltip a
+  little higher, and shorten its hover-open delay so it appears a little
+  faster. Keep the label, trigger, placement side, and all other tooltip
+  behavior unchanged.
+- **User impact:** Minor interaction polish. Low, but the current position and
+  delay make the affordance feel slightly sluggish and misaligned.
+- **Diagnosis:** Not yet investigated. Plausible seam: the tooltip's vertical
+  offset/placement and its hover-open delay for this toolbar button. Before
+  changing the delay, confirm whether it is set globally on a shared tooltip
+  primitive or per-instance here, so the change does not silently retime every
+  tooltip in the app when only this one should move.
+- **Validation needed:** Confirm the "Add project" tooltip now sits slightly
+  higher and opens slightly sooner; confirm no unintended change to other
+  tooltips' position or timing (unless a shared-primitive change is
+  intentional); keyboard-focus trigger and accessible name unchanged.
+- **Evidence:** User-supplied screenshot from 2026-07-27 showing the
+  "Add project" tooltip beside the folder-with-plus toolbar icon.
+- **Related task, issue, or pull request:** Not yet created.
+- **Implementation approval:** Not yet; this entry records the requested change
+  and expected behavior only.
