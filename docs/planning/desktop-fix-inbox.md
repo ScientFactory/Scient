@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-07-25
-Last updated: 2026-07-27 (DF-004, DF-005, DF-006, DF-007 added)
+Last updated: 2026-07-28 (DF-008, DF-009 added)
 Purpose: Captures observed Scient desktop problems that need a bounded diagnosis or fix but are not being implemented immediately.
 Doc type: Planning note
 
@@ -242,6 +242,60 @@ Each open fix should record:
 - **Evidence:** User-supplied screenshot from 2026-07-27 showing multiple
   "Couldn't open this image / The file may have moved or be unavailable" cards
   in a single rendered message.
+- **Related task, issue, or pull request:** Not yet created.
+- **Implementation approval:** Not yet; this entry records reported behavior
+  and expected behavior only.
+
+### DF-008 — Offer "Copy Link" When Double-Clicking A Link
+
+- **Date added:** 2026-07-28.
+- **Status:** Requested; not yet diagnosed.
+- **Observed behavior:** Double-clicking a link does not offer a way to copy
+  the link's URL.
+- **Expected behavior:** Double-clicking a link should let the user "copy
+  link" (copy the underlying URL/target to the clipboard). Keep normal
+  single-click activation unchanged.
+- **User impact:** Minor convenience gap; users have no quick way to grab a
+  link's address without other menus.
+- **Diagnosis:** Not yet investigated. Later look should confirm the desired
+  trigger (double-click vs. context menu) and where link interaction is handled
+  so single-click open behavior is preserved.
+- **Validation needed:** Confirm double-clicking a link copies the correct URL
+  to the clipboard; confirm single-click activation and text selection are not
+  broken; check across the link surfaces where this should apply.
+- **Evidence:** User request from 2026-07-28.
+- **Related task, issue, or pull request:** Not yet created.
+- **Implementation approval:** Not yet; this entry records the requested change
+  and expected behavior only.
+
+### DF-009 — Clicking The App During Update Restart Can Break The Update
+
+- **Date added:** 2026-07-28.
+- **Status:** Reported; not yet diagnosed.
+- **Observed behavior:** After pressing the **Update** button the app closes to
+  apply the update. If the user clicks/tries to reopen the app before it
+  relaunches itself, it somehow crashes/interrupts the update, leaving the
+  update not applied.
+- **Expected behavior:** The update should complete reliably even if the user
+  interacts with the app (or its dock/taskbar icon) during the
+  close-and-relaunch window. The update must go through to completion, or fail
+  with a definite, actionable error that clearly requires quitting/retrying the
+  update.
+- **User impact:** High for an update flow — a normal, likely user action
+  (impatiently clicking to reopen) can corrupt or abort the update, which can
+  leave the install in a bad or half-updated state.
+- **Diagnosis:** Not yet investigated. Later look should identify the
+  close/relaunch window in the auto-update flow and what a premature
+  launch/activation does to the in-progress update (e.g. a second instance
+  racing the updater). Suggested direction from the report: hold off allowing
+  the app to reopen until the update has gone through, or until a definite
+  error state that requires quitting the update — i.e. guard the relaunch/
+  single-instance behavior against a user-triggered launch mid-update.
+- **Validation needed:** Reproduce by clicking/reopening during the update
+  restart window on each platform; confirm the update completes or reports a
+  clear terminal error; confirm no second instance can race the updater;
+  confirm the app ends in a consistent, fully-updated state.
+- **Evidence:** User report from 2026-07-28.
 - **Related task, issue, or pull request:** Not yet created.
 - **Implementation approval:** Not yet; this entry records reported behavior
   and expected behavior only.
