@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-07-25
-Last updated: 2026-07-28 (DF-008, DF-009 added)
+Last updated: 2026-07-28 (DF-010 added)
 Purpose: Captures observed Scient desktop problems that need a bounded diagnosis or fix but are not being implemented immediately.
 Doc type: Planning note
 
@@ -296,6 +296,39 @@ Each open fix should record:
   clear terminal error; confirm no second instance can race the updater;
   confirm the app ends in a consistent, fully-updated state.
 - **Evidence:** User report from 2026-07-28.
+- **Related task, issue, or pull request:** Not yet created.
+- **Implementation approval:** Not yet; this entry records reported behavior
+  and expected behavior only.
+
+### DF-010 — Cloning A Remote Repo Fails With Raw "An error occurred in Effect.tryPromise"
+
+- **Date added:** 2026-07-28.
+- **Status:** Reported; not yet diagnosed.
+- **Observed behavior:** Trying to clone/pull a remote repo fails in the
+  "Select where to clone" destination picker, which shows a raw error banner:
+  **"An error occurred in Effect.tryPromise"**. It appeared both when the typed
+  destination did not exist (e.g. `/Users/yaacov/main`, "No matching folders")
+  and when browsing an existing folder (e.g. `/Users/yaacov/RTL/` listing
+  `icons` and `privacy-site`), so the clone did not succeed in either case.
+- **Expected behavior:** Cloning to a valid destination should succeed. When it
+  cannot, show a specific, actionable message (e.g. invalid/non-existent
+  destination, permission denied, auth failure, network error) — never a raw
+  internal `Effect.tryPromise` string.
+- **User impact:** The clone/pull-a-remote-repo path is broken or unusable, and
+  the only feedback is an opaque internal error that gives the user nothing to
+  act on.
+- **Diagnosis:** Not yet investigated. Later look should determine whether the
+  clone itself is failing or only the destination validation/listing, and
+  replace the leaked `Effect.tryPromise` failure with a mapped, user-facing
+  error. Confirm whether a non-existent typed path should be created vs.
+  rejected, and whether an existing folder is a valid clone target.
+- **Validation needed:** Reproduce the clone flow with a valid empty
+  destination, an existing folder, and a non-existent typed path; confirm a
+  successful clone works and that each failure yields a clear, specific message
+  rather than the raw Effect error.
+- **Evidence:** Two user-supplied screenshots from 2026-07-28 showing the
+  "Select where to clone" picker with the "An error occurred in
+  Effect.tryPromise" banner.
 - **Related task, issue, or pull request:** Not yet created.
 - **Implementation approval:** Not yet; this entry records reported behavior
   and expected behavior only.
