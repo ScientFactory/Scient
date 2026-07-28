@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-07-25
-Last updated: 2026-07-28 (DF-010 added)
+Last updated: 2026-07-28 (DF-011 added)
 Purpose: Captures observed Scient desktop problems that need a bounded diagnosis or fix but are not being implemented immediately.
 Doc type: Planning note
 
@@ -367,6 +367,38 @@ Each open fix should record:
 - **Evidence:** Two user-supplied screenshots from 2026-07-28 showing the
   "Select where to clone" picker with the "An error occurred in
   Effect.tryPromise" banner.
+- **Related task, issue, or pull request:** Not yet created.
+- **Implementation approval:** Not yet; this entry records reported behavior
+  and expected behavior only.
+
+### DF-011 — Queued Messages All Flush At Once Instead Of One At A Time
+
+- **Date added:** 2026-07-28.
+- **Status:** Reported; not yet diagnosed.
+- **Observed behavior:** While a thread is still generating a response, the user
+  can queue one or more messages. If several messages are queued back-to-back,
+  then when the in-flight response finishes, all queued messages are sent
+  together at once rather than the next single queued message being sent.
+- **Expected behavior:** When the active response completes, only the next
+  queued message (the first still-pending one) should be sent. Remaining queued
+  messages should stay queued and each be released one at a time as the
+  preceding response completes, preserving order.
+- **User impact:** Batch-flushing the whole queue collapses several intended
+  separate turns into one, so the assistant sees them merged/out of the user's
+  intended cadence, wastes the queuing feature, and can produce a confused or
+  conflated response instead of handling each message in sequence.
+- **Diagnosis:** Not yet investigated. Plausible seam: the queue-drain logic
+  that runs on response-completion likely dispatches the entire pending queue
+  in one pass instead of dequeuing a single message and waiting for the next
+  completion. Later look should confirm where queued messages are stored and
+  what event triggers the flush, and whether "send one and re-arm on next
+  completion" is the intended contract.
+- **Validation needed:** Queue two and then three messages during an in-flight
+  response; confirm exactly one is sent when the response completes, the rest
+  remain queued in order, and each subsequent one is released only after the
+  prior response finishes; confirm no message is dropped, duplicated, or
+  reordered, and that clearing/editing the queue mid-drain behaves correctly.
+- **Evidence:** User report from 2026-07-28 (no screenshot).
 - **Related task, issue, or pull request:** Not yet created.
 - **Implementation approval:** Not yet; this entry records reported behavior
   and expected behavior only.
