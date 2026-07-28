@@ -303,7 +303,7 @@ Each open fix should record:
 ### DF-010 — Cloning A Remote Repo Fails With Raw "An error occurred in Effect.tryPromise"
 
 - **Date added:** 2026-07-28.
-- **Status:** Reported; not yet diagnosed.
+- **Status:** Claude diagnosis — to be reviewed.
 - **Observed behavior:** Trying to clone/pull a remote repo fails in the
   "Select where to clone" destination picker, which shows a raw error banner:
   **"An error occurred in Effect.tryPromise"**. It appeared both when the typed
@@ -317,11 +317,49 @@ Each open fix should record:
 - **User impact:** The clone/pull-a-remote-repo path is broken or unusable, and
   the only feedback is an opaque internal error that gives the user nothing to
   act on.
-- **Diagnosis:** Not yet investigated. Later look should determine whether the
-  clone itself is failing or only the destination validation/listing, and
-  replace the leaked `Effect.tryPromise` failure with a mapped, user-facing
-  error. Confirm whether a non-existent typed path should be created vs.
-  rejected, and whether an existing folder is a valid clone target.
+- **Diagnosis (Claude diagnosis — to be reviewed):** Root cause is a
+  catch-less `Effect.tryPromise` in the clone RPC handler that swallows the
+  real error. The handler at `apps/server/src/wsRpc.ts:780-784` wraps the
+  server-side clone as
+  `Effect.tryPromise(() => cloneProjectSource(input, config.homeDir))` in the
+  thunk-only form (no `catch`). When that promise rejects, Effect wraps the
+  rejection in an `UnknownException` whose `.message` is the literal default
+  `"An error occurred in Effect.tryPromise"`; the real error is preserved only
+  on `UnknownException.error`, which nothing reads. `toWsRpcError`
+  (`apps/server/src/wsRpc.ts:184-192`) then uses
+  `cause instanceof Error && cause.message.length > 0 ? cause.message : fallbackMessage`,
+  so the `UnknownException`'s non-empty default message wins over both the real
+  error and the `"Failed to clone repository"` fallback. That string is placed
+  on `WsRpcError`, sent over the WebSocket, and rendered verbatim in the picker
+  banner (`AddProjectDialog.tsx:334-335`, `:956-959`).
+  - The messages being masked are already good, user-facing strings thrown by
+    `cloneProjectSource` (`apps/server/src/projectSources.ts:182-232`): "The
+    clone destination parent folder does not exist.", "The clone destination
+    already exists. Choose a new folder.", and "Unable to clone the repository.
+    Check access and try again." / "Clone cancelled."
+  - The directory listing in the picker is a **separate** path
+    (`api.filesystem.browse` via `ProjectPathBrowser`,
+    `AddProjectDialog.tsx:148`) and was succeeding in both screenshots, so the
+    banner is a failed clone *attempt*, not a listing failure. The true reason
+    (most likely destination-already-exists, or an access/auth failure on
+    `git clone` / `gh repo clone` / `glab repo clone`) was flattened into the
+    generic Effect string.
+  - Sibling latent case: `wsRpc.ts:777`
+    (`Effect.tryPromise(() => getRepositorySourceStatuses())`) has the same
+    catch-less pattern but is currently harmless because that callee catches
+    internally.
+  - **Two fix options.** (a) Localized: give the clone `Effect.tryPromise` a
+    `catch` that maps to `WsRpcError` using the original error's message — the
+    object `{ try, catch }` form already used across
+    `apps/server/src/git/Layers/*`; targeted, low blast radius. (b) Systemic:
+    make `toWsRpcError` unwrap Effect's `UnknownException` (read `.error`)
+    before falling back to `.message`; fixes every catch-less `tryPromise` at
+    once and fits the maintainability preference, but touches a shared error
+    path. Suggested: (a) on the clone handler plus the sibling at `:777`.
+  - Still open for the reviewer: confirm the exact `UnknownException` default
+    string in the installed `effect` version, and confirm whether a
+    non-existent typed path should be created vs. rejected and whether an
+    existing folder is a valid clone target.
 - **Validation needed:** Reproduce the clone flow with a valid empty
   destination, an existing folder, and a non-existent typed path; confirm a
   successful clone works and that each failure yields a clear, specific message
