@@ -3,7 +3,7 @@
 Status: Active
 Owner: Scient 001
 Created: 2026-07-08
-Last updated: 2026-07-28
+Last updated: 2026-07-29
 Purpose: Records exact owned and external source provenance, tested owned revisions, and cross-repository upstream review evidence used by Scient.
 Doc type: Research evidence
 
@@ -28,7 +28,7 @@ siblings. A deferred source with no retained checkout says so explicitly.
 |---|---|---|---|---|---|---|
 | Scient agent source (OpenCode-derived) | `../scient-agent/`; preserved primary sibling currently on local `dev` at `709a26002c697f06cbaebeb8fac40e87de0ab6b3`, behind the tested remote head and not used as current-state evidence | `https://github.com/anomalyco/opencode.git`, `dev` | `https://github.com/ScientFactory/scient-agent`, public standalone repository | `69a80663a2ed7d671d2b4d5dd6f2d605714675a5` | Tested owned `origin/dev` `60ed22de93a70d0e2079f545a62eafd8d740aed5`; exact rename and maintenance evidence below | Owned source foundation for the planned Scient agent; `adapter-maintained`; native Scient runtime identity is not yet implemented. |
 | Goose | No local checkout is retained. | `https://github.com/aaif-goose/goose.git`, `main` | None; owned repository deferred | Not tested in Gate 1.5 | Last inspected commit `3c1fdd692cc8aaa5f09b9175410c09a09d4dfe49` | Deferred broader-agent research input. Repository, build, ACP adapter, runtime, credentials, and adoption wait until after the first Scient gateway. |
-| Scient desktop (Synara-derived) | `../scient-desktop/`; preserved primary sibling currently on local `agent/fix-file-link-worktree-resolution-20260726` at `11f3da3f45c8068bf3ed6545c2b98c2e00e0797f`, not used as current-state evidence | `https://github.com/Emanuele-web04/synara.git`, `main` | `https://github.com/ScientFactory/scient-desktop`, public standalone repository | `9be46c3ce6a7521b64436b7334bc6fce16e3cac4` | Tested owned `origin/main` `ef9f5e8aa635f57df3cd7a5920828923ce6babef`; exact rename and maintenance evidence below | Accepted initial application foundation; `divergent-cherry-pick`; must not own scientific project truth. |
+| Scient desktop (Synara-derived) | `../scient-desktop/`; preserved primary sibling currently on local `agent/fix-file-link-worktree-resolution-20260726` at `8ff39926789e0479539497a72f6ed90aa1433e2c`, not used as current-state evidence | `https://github.com/Emanuele-web04/synara.git`, `main` | `https://github.com/ScientFactory/scient-desktop`, public standalone repository | `9be46c3ce6a7521b64436b7334bc6fce16e3cac4` | Tested owned `origin/main` `cffe72c9b43df5ba73a372085d0741142439cb46`; exact rename and maintenance evidence below | Accepted initial application foundation; `divergent-cherry-pick`; must not own scientific project truth. |
 | T3 Code | No canonical local checkout is retained. | `https://github.com/pingdotgg/t3code.git`, `main` | None | Not tested in Gate 1.5 | Targeted review completed through `bf76535fe4da71d8de7b8bd5ffa0d2086b7af8d0`; see [`t3-code-targeted-review-2026-07-18.md`](../notes/t3-code-targeted-review-2026-07-18.md) | Trigger-driven desktop/runtime/provider/process reference only; not a continuously monitored upstream. |
 
 ## Maintained Upstream Review State
@@ -40,7 +40,7 @@ review is accepted.
 
 | Source | Tested owned head | Reviewed through | Integration base | Update mode | Review evidence |
 |---|---|---|---|---|---|
-| Scient desktop | `ef9f5e8aa635f57df3cd7a5920828923ce6babef` | `8ea6da0a0715c69f7b744fd4c8b38d698ab7687e` on 2026-07-26 | `9be46c3ce6a7521b64436b7334bc6fce16e3cac4` | `divergent-cherry-pick` | [`2026-07-26-scient-desktop.md`](upstream-reviews/2026-07-26-scient-desktop.md); desktop PR #134 accepted the checkpoint as merge `869d71d100c167b164e49df831feb16b6e4768ee`; current owned head passed hosted main CI run `30302603764`; the July 28 review remains a draft proposal and does not advance this accepted checkpoint |
+| Scient desktop | `cffe72c9b43df5ba73a372085d0741142439cb46` | `8ea6da0a0715c69f7b744fd4c8b38d698ab7687e` on 2026-07-26 | `9be46c3ce6a7521b64436b7334bc6fce16e3cac4` | `divergent-cherry-pick` | [`2026-07-26-scient-desktop.md`](upstream-reviews/2026-07-26-scient-desktop.md); desktop PR #134 accepted the checkpoint as merge `869d71d100c167b164e49df831feb16b6e4768ee`; the extended [`2026-07-28-scient-desktop.md`](upstream-reviews/2026-07-28-scient-desktop.md) records the complete proposed review through `04703ddb4c951378aca9a1c7b71263b8648efd7f`; existing draft desktop PR #147 still stops at `b989c1da95ba97fb285b62e956a04c1a16067356` and must be refreshed or replaced with the 2026-07-29 boundary, aligned with then-current `main`, reverified, and independently reviewed before it can advance the repo-local checkpoint; exact-head hosted main CI run `30408409157` passed all five jobs |
 | Scient agent source | `60ed22de93a70d0e2079f545a62eafd8d740aed5` | `fab213312927ea64cf968832c527206e8c944f9e` on 2026-07-18 | `69a80663a2ed7d671d2b4d5dd6f2d605714675a5` | `adapter-maintained` | [`2026-07-18-scient-agent.md`](upstream-reviews/2026-07-18-scient-agent.md); current owned head passed hosted Scient quality run `30305988037`; no code intake |
 
 ## Standalone Ownership And Maintenance Rollout
@@ -181,11 +181,11 @@ source-repository pull requests:
   integration base. The merge commit was
   `869d71d100c167b164e49df831feb16b6e4768ee`.
 - Subsequent owned desktop work advanced `main` to
-  `ef9f5e8aa635f57df3cd7a5920828923ce6babef` without advancing that checkpoint
-  or integration base. Exact-head hosted CI run `30302603764` passed the full
-  desktop matrix, including source-ownership, identity, migration-lineage,
-  typecheck, unit, browser, build, release-smoke, Windows process, and platform
-  HTML-preview jobs.
+  `cffe72c9b43df5ba73a372085d0741142439cb46` without advancing that checkpoint
+  or integration base. Exact-head hosted CI run `30408409157` passed source
+  ownership, identity, migration lineage, typecheck, unit, browser, build,
+  release smoke, Windows process, and platform HTML-preview checks across all
+  five jobs.
 - Agent [PR #1](https://github.com/ScientFactory/scient-agent/pull/1)
   established the operator card, review state, verifier modes, owned source
   quality workflow, and monitor; exact head
