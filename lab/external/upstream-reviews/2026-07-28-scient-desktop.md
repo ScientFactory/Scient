@@ -66,6 +66,12 @@ T3 trigger-driven and reference-only, with the durable review boundary at
 |---|---|---|
 | `b3fc9783` server-side working-tree statistics | Opens the diff scope picker without fetching four complete unified patches merely to count lines. | **Adapt.** Add a narrow server/RPC statistic contract while retaining Scient's existing diff rendering and scope authority. |
 | `b3fc9783` React Compiler sweep | Reworks memoization and component shapes across visible surfaces. | **Reject.** Broad, appearance-sensitive, and not justified by a specific Scient defect. |
+| `b55c5827` exclusive SQLite locking | Tries to prevent concurrent desktop processes from writing the same donor database. | **Defer.** The concurrency invariant is valuable, but Scient currently owns WAL-mode persistence and separate process/state boundaries; changing lock mode needs multi-process recovery, startup, and data-loss proof. |
+| `b55c5827` subagent transcript simplification | Reduces subagent transcript detail and changes work-log presentation. | **Defer.** Presentation and provider-projection behavior must be specified on Scient's owned work-log seam and requires interactive acceptance. |
+| `a897cbe6` lazy provider and diff loading | Moves provider/diff imports off startup paths and preloads selected routes. | **Defer.** Potential startup benefit, but the donor change spans provider discovery, route timing, and bundling; require a measured Scient startup bottleneck and package-boundary proof. |
+| `a897cbe6` shell-environment cache | Reuses hydrated shell environment state instead of recomputing it. | **Defer.** Environment trust, invalidation, platform differences, and provider executable discovery are protected lifecycle seams. |
+| `a897cbe6` startup state reuse | Reuses previously loaded desktop/server state during initialization. | **Defer.** Broad lifecycle optimization; require cold/warm startup measurements and stale-state recovery tests before a bounded Scient adaptation. |
+| `a897cbe6` orphaned migration-artifact cleanup | Removes migration artifacts left after interrupted or superseded work. | **Defer.** Cleanup authority touches persistence and data-loss recovery; needs an exact Scient artifact lineage and fail-closed deletion proof. |
 | `997648e8` release and what's-new material | Publishes donor 0.6.2. | **Reject.** Donor publication authority never transfers. |
 | `997648e8` compiler/parser/test exactness | Removes a compiler-sensitive default parameter, guards one notification parser, and updates donor browser fixtures. | **Defer parser lesson; reject the rest.** No current reproducible Scient gap, and UI/browser proof is outside this lane. |
 | `35ccf57b` turn delivery and interruption | Prevents late provider delivery from escaping the interrupted turn and bounds interruption. | **Defer.** Retain the invariant; require a focused Scient repro after active provider lanes settle. |
@@ -102,5 +108,6 @@ change, the proposed repo-local checkpoint is:
 - `integrationBase`: unchanged at `9be46c3ce6a7521b64436b7334bc6fce16e3cac4`
 - `updateMode`: unchanged as `divergent-cherry-pick`
 
-Until both drafts are accepted, the authoritative documented Synara boundary
-remains `8ea6da0a0715c69f7b744fd4c8b38d698ab7687e`.
+Until this parent evidence PR and its dependent desktop checkpoint PR are
+accepted, the authoritative documented Synara boundary remains
+`8ea6da0a0715c69f7b744fd4c8b38d698ab7687e`.
