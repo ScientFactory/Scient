@@ -88,19 +88,25 @@ T3 trigger-driven and reference-only, with the durable review boundary at
 
 ## Intake Decision
 
-Two independent nonvisual adaptations were selected from the complete range:
-server-side working-tree statistics from `b3fc9783` and physical Windows
-Ctrl-minus handling from `94b59220`. They are to remain separate Scient-native
-draft PRs based on exact owned head
-`ef9f5e8aa635f57df3cd7a5920828923ce6babef`. No donor commit or donor ancestry
-is integrated, and `integrationBase` remains
+Physical Windows Ctrl-minus handling from `94b59220` remained the one
+fast-lane-qualified nonvisual adaptation from the complete range. It is a
+Scient-native draft based on exact owned head
+`ef9f5e8aa635f57df3cd7a5920828923ce6babef`.
+
+Server-side working-tree statistics from `b3fc9783` were also implemented and
+published as a separate reviewed draft. The final overlap refresh, however,
+found central transport conflicts with active provider PRs `#144` and `#123`.
+That draft is therefore preserved as overlap-blocked evidence and is not
+qualified for automatic progression; it must remain draft until those owning
+lanes settle and the adaptation is rebased and recertified. No donor commit or
+donor ancestry is integrated, and `integrationBase` remains
 `9be46c3ce6a7521b64436b7334bc6fce16e3cac4`.
 
 No third candidate met the automatic lane: the remaining strong work is visual,
 protected, broad, actively overlapping, dependent on donor architecture, or
 insufficiently proven in current Scient. Publication details, exact candidate
-heads, verification, independent reviews, and hosted CI belong in the draft PRs
-and the run report rather than this pre-publication evidence record.
+heads, verification, independent reviews, hosted CI, and the diff-stat overlap
+block belong in the draft PRs and the run report rather than this review ledger.
 
 ## Proposed Checkpoint
 
