@@ -3,14 +3,14 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-07-28
-Last updated: 2026-07-29
+Last updated: 2026-07-30
 Purpose: Records the complete Synara review from the accepted July 26 checkpoint through the official tip observed on July 29.
 Doc type: Research evidence
 
 ## Scope
 
 - Owned repository and branch: `ScientFactory/scient-desktop`, `main`
-- Owned head inspected: `cffe72c9b43df5ba73a372085d0741142439cb46`
+- Owned head inspected: `9dadc5c3935d6e0209978d92a1a887ea2c34dd93`
 - Official repository and branch: `Emanuele-web04/synara`, `main`
 - Documented `reviewedThrough`: `8ea6da0a0715c69f7b744fd4c8b38d698ab7687e`
 - Last tip observed by the intake automation: `b989c1da95ba97fb285b62e956a04c1a16067356`
@@ -124,11 +124,8 @@ change, the proposed repo-local checkpoint is:
 - `integrationBase`: unchanged at `9be46c3ce6a7521b64436b7334bc6fce16e3cac4`
 - `updateMode`: unchanged as `divergent-cherry-pick`
 
-Existing draft desktop PR #147 is the intended checkpoint vehicle, but its
-hosted head currently proposes only `b989c1da95ba97fb285b62e956a04c1a16067356`
-with `reviewedAt` 2026-07-28. Before acceptance, that draft must be refreshed or
-replaced to propose the exact `04703ddb4c951378aca9a1c7b71263b8648efd7f`
-boundary and 2026-07-29 review date, aligned with then-current `main`, and
-reverified and independently reviewed. Until that fully refreshed desktop
-checkpoint PR is accepted, the authoritative repo-local Synara boundary remains
+Desktop PR #147 is the dependent checkpoint vehicle. Its accepted merge must
+set the exact `04703ddb4c951378aca9a1c7b71263b8648efd7f` boundary and 2026-07-29
+review date while preserving the literal integration base. Until that desktop
+checkpoint is accepted, the authoritative repo-local Synara boundary remains
 `8ea6da0a0715c69f7b744fd4c8b38d698ab7687e`.

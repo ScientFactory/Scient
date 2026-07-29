@@ -3,7 +3,7 @@
 Status: Active
 Owner: Scient 001
 Created: 2026-07-18
-Last updated: 2026-07-29
+Last updated: 2026-07-30
 Purpose: Indexes dated evidence for reviews of changes in Scient's original desktop and agent sources.
 Doc type: Repo orientation
 
