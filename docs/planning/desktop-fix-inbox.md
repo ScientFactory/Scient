@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-07-25
-Last updated: 2026-07-28 (DF-012 added)
+Last updated: 2026-07-28 (DF-013, DF-014 added)
 Purpose: Captures observed Scient desktop problems that need a bounded diagnosis or fix but are not being implemented immediately.
 Doc type: Planning note
 
@@ -434,3 +434,63 @@ Each open fix should record:
 - **Related task, issue, or pull request:** Not yet created.
 - **Implementation approval:** Not yet; this entry records reported behavior
   and expected behavior only.
+
+### DF-013 — Broken Card UI In The "Open Project" Initialization Choice
+
+- **Date added:** 2026-07-28.
+- **Status:** Reported; not yet diagnosed.
+- **Observed behavior:** When opening a project on an existing folder or Git
+  repo, Scient presents a choice card offering how to open it (e.g. initialize
+  as a Scient project vs. open the folder without initialization). The visual
+  layout of that choice card is broken.
+- **Expected behavior:** The choice card should render cleanly and correctly —
+  proper layout, spacing, and alignment of its options and labels — consistent
+  with the rest of the app's dialog/card styling.
+- **User impact:** A broken card at the moment of opening a project looks
+  unpolished and can make the choice hard to read or trust at a key first-run
+  moment. Presentation only; distinct from the wording problem in DF-014.
+- **Diagnosis:** Not yet investigated. Later look should locate the specific
+  open-project choice card component and identify what is visually broken
+  (layout/styling regression) and its scope. Pairs with DF-014, which concerns
+  the wording of the same card's options — keep the two fixes coordinated since
+  they touch the same surface.
+- **Validation needed:** Open a project on an existing non-empty folder and on
+  a Git repo; confirm the choice card renders correctly across window sizes and
+  in light/dark themes, with no clipped, misaligned, or overlapping elements.
+- **Evidence:** User report from 2026-07-28 (no screenshot).
+- **Related task, issue, or pull request:** Not yet created.
+- **Implementation approval:** Not yet; this entry records reported behavior
+  and expected behavior only.
+
+### DF-014 — "Open Empty Folder" Wording Is Misleading For A Folder That Has Content
+
+- **Date added:** 2026-07-28.
+- **Status:** Reported; not yet diagnosed.
+- **Observed behavior:** In the same open-project choice card, the option to
+  open a folder/repo without Scient initialization is labeled with wording like
+  "open an empty folder" even when the selected folder or repo already contains
+  content. Nothing is actually emptied — the folder opens with all of its
+  contents intact — but the label reads as if opening will empty it.
+- **Expected behavior:** When the target folder/repo already has content, the
+  "open without initialization" option should use wording that makes clear the
+  folder opens as-is with its existing contents (e.g. "Open current folder as
+  is" / "Open folder without initializing"), not wording that implies the
+  folder is or must be empty. Exact wording to be decided; the point is to
+  remove the false impression that content will be discarded.
+- **User impact:** The current wording can scare a user into thinking opening
+  will erase their folder, discouraging a safe, correct action and eroding
+  trust — even though the behavior is non-destructive.
+- **Diagnosis:** Not yet investigated. Later look should find where the option
+  label is produced and whether it is static or already branches on
+  folder-empty vs. folder-has-content state, then choose accurate, reassuring
+  wording for the non-empty case (and confirm the empty-folder wording still
+  makes sense for a genuinely empty target). Pairs with DF-013 on the same
+  card.
+- **Validation needed:** Open an empty folder, a non-empty folder, and a Git
+  repo; confirm the non-initialization option's label accurately describes the
+  non-destructive open-as-is behavior in each case and never implies content
+  will be removed; confirm the actual open behavior remains non-destructive.
+- **Evidence:** User report from 2026-07-28 (no screenshot).
+- **Related task, issue, or pull request:** Not yet created.
+- **Implementation approval:** Not yet; this entry records reported behavior
+  and expected behavior only. Final wording is explicitly still to be decided.
