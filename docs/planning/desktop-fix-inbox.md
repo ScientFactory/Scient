@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-07-25
-Last updated: 2026-07-28 (DF-011 added)
+Last updated: 2026-07-28 (DF-012 added)
 Purpose: Captures observed Scient desktop problems that need a bounded diagnosis or fix but are not being implemented immediately.
 Doc type: Planning note
 
@@ -398,6 +398,38 @@ Each open fix should record:
   remain queued in order, and each subsequent one is released only after the
   prior response finishes; confirm no message is dropped, duplicated, or
   reordered, and that clearing/editing the queue mid-drain behaves correctly.
+- **Evidence:** User report from 2026-07-28 (no screenshot).
+- **Related task, issue, or pull request:** Not yet created.
+- **Implementation approval:** Not yet; this entry records reported behavior
+  and expected behavior only.
+
+### DF-012 — Can't Edit And Resend A Message That Was Stopped Before The AI Answered
+
+- **Date added:** 2026-07-28.
+- **Status:** Reported; not yet diagnosed.
+- **Observed behavior:** If the user sends a message and then stops the run
+  before the AI has produced its answer, that message cannot afterward be
+  edited and re-sent. Ordinary already-answered messages higher up in the
+  thread offer the usual edit-and-send affordance, but a sent-then-stopped
+  message does not.
+- **Expected behavior:** A message that was sent and then interrupted before a
+  response should be editable and re-sendable just like any other prior user
+  message — same edit affordance, same send behavior.
+- **User impact:** After stopping a run, the user is stuck with the original
+  message text and must retype it as a new message instead of adjusting and
+  resending the one they already wrote, which is friction and easy to mistake
+  for the feature being broken.
+- **Diagnosis:** Not yet investigated. Plausible seam: the edit-message
+  affordance is likely gated on a message state (e.g. "has a completed
+  assistant response" / "not the active turn") that a sent-then-stopped message
+  fails to satisfy, so the edit control is hidden or disabled for it. Later
+  look should confirm which state flag governs the edit affordance and whether
+  an interrupted/aborted user turn is being left in a state that excludes it.
+- **Validation needed:** Send a message, stop the run before any answer, then
+  confirm the message can be edited and re-sent with the same affordance as
+  older messages; confirm this holds whether the stop happens before any
+  streaming begins and after partial streaming; confirm no duplicate turn,
+  orphaned partial response, or broken thread ordering results.
 - **Evidence:** User report from 2026-07-28 (no screenshot).
 - **Related task, issue, or pull request:** Not yet created.
 - **Implementation approval:** Not yet; this entry records reported behavior
