@@ -1,22 +1,23 @@
 # Upstream Review: Scient Desktop And Synara, 2026-07-28
 
-Status: Draft
+Status: Active
 Owner: Yaacov
 Created: 2026-07-28
-Last updated: 2026-07-28
-Purpose: Records the complete Synara review from the accepted July 26 checkpoint through the official tip observed on July 28.
+Last updated: 2026-07-30
+Purpose: Records the complete Synara review from the accepted July 26 checkpoint through the official tip observed on July 29.
 Doc type: Research evidence
 
 ## Scope
 
 - Owned repository and branch: `ScientFactory/scient-desktop`, `main`
-- Owned head inspected: `ef9f5e8aa635f57df3cd7a5920828923ce6babef`
+- Owned head inspected: `9dadc5c3935d6e0209978d92a1a887ea2c34dd93`
 - Official repository and branch: `Emanuele-web04/synara`, `main`
 - Documented `reviewedThrough`: `8ea6da0a0715c69f7b744fd4c8b38d698ab7687e`
-- Last tip observed by the intake automation: `8ea6da0a0715c69f7b744fd4c8b38d698ab7687e`
-- Official tip fetched: `b989c1da95ba97fb285b62e956a04c1a16067356`
+- Last tip observed by the intake automation: `b989c1da95ba97fb285b62e956a04c1a16067356`
+- Official tip fetched: `04703ddb4c951378aca9a1c7b71263b8648efd7f`
 - Latest stable release observed: `v0.6.3`, peeled to `d958a9e583377a30cf4d97fb4c5e1d834eafbf92`
-- Complete and daily range: `8ea6da0a0715c69f7b744fd4c8b38d698ab7687e..b989c1da95ba97fb285b62e956a04c1a16067356` (21 commits)
+- Complete range: `8ea6da0a0715c69f7b744fd4c8b38d698ab7687e..04703ddb4c951378aca9a1c7b71263b8648efd7f` (26 commits)
+- July 29 delta: `b989c1da95ba97fb285b62e956a04c1a16067356..04703ddb4c951378aca9a1c7b71263b8648efd7f` (5 commits)
 - Review evidence: fetched commit graph, per-commit subject/path/stat inspection, focused patches for candidate and protected lanes, current Scient source/tests, and refreshed live PR/worktree overlap inventory.
 
 ## Review Depth And Boundaries
@@ -29,7 +30,7 @@ automation, screenshots, geometry checks, visual tests, or manual UI acceptance
 were performed.
 
 T3 Code was also inspected read-only through
-`a148e08197fc38b24e59c10c7cd5ba06dd182dab` for the scheduled product report.
+`8fe8f9a9c1486528f689a7499c2eb78217d35caf` for the scheduled product report.
 That scan does not advance a repository checkpoint: current Scient policy keeps
 T3 trigger-driven and reference-only, with the durable review boundary at
 `bf76535fe4da71d8de7b8bd5ffa0d2086b7af8d0`.
@@ -59,6 +60,11 @@ T3 trigger-driven and reference-only, with the durable review boundary at
 | `bfbfdeb0` | Reworks session orchestration, undo, generation leases, and provider handling. | 5/5; ambitious and well tested. | Low direct portability; overlaps active provider work. | Very Hard; 18 files across protected session/storage seams. | **Defer.** |
 | `d958a9e5` | Releases Synara 0.6.3. | 3/5; release bookkeeping. | No Scient product behavior and no publication authority. | Hard; donor release-only. | **Reject.** |
 | `b989c1da` | Resets a browser-test projection fixture. | 3/5; appropriate donor test repair. | No product gap; donor-only browser evidence. | Easy technically, prohibited and irrelevant locally. | **Reject.** |
+| `94652247` | Adds an AI-reviewed Auto runtime mode across Codex and Claude, plus capability validation, state normalization, approval handling, and picker changes. | 5/5; unusually thorough fail-closed permission and compatibility work, but a 70-file parent. | The user goal has medium fit; direct portability is low because Scient owns different approval, provider, automation, and gateway boundaries. | Very Hard; permissions, privilege transitions, persisted drafts, provider sessions, and visible controls. | **Reimplement later, not fast-lane.** |
+| `30deb50e` | Promotes Pull to the Environment panel's main Git row while a branch is behind, preserving menu access during sync. | 5/5; focused behavior with logic tests and explicit in-flight handling. | High concept fit. Scient already offers Pull in the header and panel menu, but its panel row still says Commit and Push while behind; code portability is medium. | Easy technically, but the value and correctness are interaction- and appearance-dependent. | **Adapt after visual acceptance.** |
+| `6b4e5497` | Uses committed repository pull-request templates when generating PR bodies. | 5/5; strong fallback and detection coverage. | Scient already has a stricter implementation on `PullRequestTemplateDiscovery`: immutable base-tree blobs, bounded sizes, deterministic ordering, and SCM-writing policy ownership. | Easy to compare; importing it would duplicate a stronger current seam. | **Reject as equivalent or better.** |
+| `897bcd8f` | Discovers Claude models on cold starts and also changes runtime-mode picker presentation. | 4/5; strong discovery tests, but the parent mixes server behavior with visible styling. | Discovery is already stronger in Scient's bounded temporary-process path with exact binary/cwd/generation and shutdown cancellation; presentation remains appearance-dependent. | Medium; provider lifecycle for discovery, visual proof for menus. | **Reject discovery as equivalent; defer styling.** |
+| `04703ddb` | Refines runtime-mode picker spacing, overflow, and styling. | 3/5; coherent presentation follow-up without independent behavioral value. | Low code portability and no nonvisual proof of a Scient gap. | Medium; visual, responsive, motion, and accessibility acceptance. | **Defer as visual-only.** |
 
 ## Mixed-Commit Sublanes
 
@@ -85,39 +91,41 @@ T3 trigger-driven and reference-only, with the durable review boundary at
 | `cd092c0d` Claude task-chip settlement | Settles the visible Claude task state before clearing stale resume identity. | **Defer.** Coupled provider projection and presentation behavior; require a focused lifecycle repro and nonvisual state proof before UI acceptance. |
 | `bfbfdeb0` three-way undo | Makes undo state explicit across success, absence, and failure. | **Defer.** High value but protected persistence/recovery breadth. |
 | `bfbfdeb0` generation leases and lifecycle reconciliation | Prevents stale sessions from retaining or mutating current ownership. | **Defer.** Requires a Scient-specific concurrency repro and provider-lane isolation. |
+| `94652247` Auto approval policy | Lets a provider review tool approvals automatically while still failing closed on unsupported versions, unknown capabilities, and invalid transitions. | **Reimplement only after a dedicated permission-policy design.** Keep Scient's approval ownership, explicit full-access acknowledgement, session scoping, and child-agent restrictions. |
+| `94652247` runtime-mode persistence and migrations | Persists Auto selections and normalizes drafts and automation definitions. | **Defer.** Persistence and migration breadth makes this ineligible for automatic intake; require backward/forward recovery proof and no silent privilege escalation. |
+| `94652247` picker and approval presentation | Adds Auto labels, capabilities, and approval-state controls across chat, Kanban, and automation surfaces. | **Defer.** The interaction cannot be accepted without visual, responsive, and appearance-dependent accessibility validation. |
+| `897bcd8f` Claude cold-start discovery | Starts an isolated short-lived Claude process when no warm session can supply the catalog. | **Reject as equivalent or better.** Scient already binds discovery to the selected binary, cwd, generation, timeout, shutdown, and version/account capability gates. |
+| `897bcd8f` and `04703ddb` runtime picker styling | Changes menu width, selected-state treatment, borders, overflow, and spacing. | **Defer.** Retain as presentation reference only; source inspection is not visual acceptance. |
 
 ## Intake Decision
 
-Physical Windows Ctrl-minus handling from `94b59220` remained the one
-fast-lane-qualified nonvisual adaptation from the complete range. It is a
-Scient-native draft based on exact owned head
-`ef9f5e8aa635f57df3cd7a5920828923ce6babef`.
+Physical Windows Ctrl-minus handling from `94b59220` was adapted through desktop
+PR #148 and is present on the inspected owned head. Server-side working-tree
+statistics from `b3fc9783` were subsequently integrated through the certified
+desktop queue. These are selective Scient-owned implementations; they do not
+add donor ancestry or advance `integrationBase`.
 
-Server-side working-tree statistics from `b3fc9783` were also implemented and
-published as a separate reviewed draft. The final overlap refresh, however,
-found central transport conflicts with active provider PRs `#144` and `#123`.
-That draft is therefore preserved as overlap-blocked evidence and is not
-qualified for automatic progression; it must remain draft until those owning
-lanes settle and the adaptation is rebased and recertified. No donor commit or
-donor ancestry is integrated, and `integrationBase` remains
-`9be46c3ce6a7521b64436b7334bc6fce16e3cac4`.
+No July 29 delta candidate qualified for automatic product implementation.
+The Environment-panel Pull behavior and picker refinements require prohibited
+visual and interactive acceptance. Auto approval is a broad protected
+permission feature. PR-template discovery and Claude cold-start model discovery
+already have equivalent or stronger Scient-owned implementations.
 
-No third candidate met the automatic lane: the remaining strong work is visual,
-protected, broad, actively overlapping, dependent on donor architecture, or
-insufficiently proven in current Scient. Publication details, exact candidate
-heads, verification, independent reviews, hosted CI, and the diff-stat overlap
-block belong in the draft PRs and the run report rather than this review ledger.
+No donor commit or donor ancestry is integrated by this evidence update, and
+`integrationBase` remains `9be46c3ce6a7521b64436b7334bc6fce16e3cac4`.
 
 ## Proposed Checkpoint
 
 After maintainer acceptance of this review and the dependent desktop-state
 change, the proposed repo-local checkpoint is:
 
-- `reviewedThrough`: `b989c1da95ba97fb285b62e956a04c1a16067356`
-- `reviewedAt`: `2026-07-28`
+- `reviewedThrough`: `04703ddb4c951378aca9a1c7b71263b8648efd7f`
+- `reviewedAt`: `2026-07-29`
 - `integrationBase`: unchanged at `9be46c3ce6a7521b64436b7334bc6fce16e3cac4`
 - `updateMode`: unchanged as `divergent-cherry-pick`
 
-Until this parent evidence PR and its dependent desktop checkpoint PR are
-accepted, the authoritative documented Synara boundary remains
+Desktop PR #147 is the dependent checkpoint vehicle. Its accepted merge must
+set the exact `04703ddb4c951378aca9a1c7b71263b8648efd7f` boundary and 2026-07-29
+review date while preserving the literal integration base. Until that desktop
+checkpoint is accepted, the authoritative repo-local Synara boundary remains
 `8ea6da0a0715c69f7b744fd4c8b38d698ab7687e`.
