@@ -87,4 +87,3 @@ After maintainer acceptance of this review and the dependent desktop-state chang
 - `integrationBase`: unchanged at `9be46c3ce6a7521b64436b7334bc6fce16e3cac4`
 - Update mode: unchanged as `divergent-cherry-pick`
 - Selective intake does not add Synara ancestry.
-
