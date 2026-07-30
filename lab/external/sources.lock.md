@@ -28,8 +28,8 @@ siblings. A deferred source with no retained checkout says so explicitly.
 |---|---|---|---|---|---|---|
 | Scient agent source (OpenCode-derived) | `../scient-agent/`; preserved primary sibling currently on local `dev` at `709a26002c697f06cbaebeb8fac40e87de0ab6b3`, behind the tested remote head and not used as current-state evidence | `https://github.com/anomalyco/opencode.git`, `dev` | `https://github.com/ScientFactory/scient-agent`, public standalone repository | `69a80663a2ed7d671d2b4d5dd6f2d605714675a5` | Tested owned `origin/dev` `60ed22de93a70d0e2079f545a62eafd8d740aed5`; exact rename and maintenance evidence below | Owned source foundation for the planned Scient agent; `adapter-maintained`; native Scient runtime identity is not yet implemented. |
 | Goose | No local checkout is retained. | `https://github.com/aaif-goose/goose.git`, `main` | None; owned repository deferred | Not tested in Gate 1.5 | Last inspected commit `3c1fdd692cc8aaa5f09b9175410c09a09d4dfe49` | Deferred broader-agent research input. Repository, build, ACP adapter, runtime, credentials, and adoption wait until after the first Scient gateway. |
-| Scient desktop (Synara-derived) | `../scient-desktop/`; preserved primary sibling currently on local `agent/fix-file-link-worktree-resolution-20260726` at `8ff39926789e0479539497a72f6ed90aa1433e2c`, not used as current-state evidence | `https://github.com/Emanuele-web04/synara.git`, `main` | `https://github.com/ScientFactory/scient-desktop`, public standalone repository | `9be46c3ce6a7521b64436b7334bc6fce16e3cac4` | Tested owned `origin/main` `9dadc5c3935d6e0209978d92a1a887ea2c34dd93`; exact rename and maintenance evidence below | Accepted initial application foundation; `divergent-cherry-pick`; must not own scientific project truth. |
-| T3 Code | No canonical local checkout is retained. | `https://github.com/pingdotgg/t3code.git`, `main` | None | Not tested in Gate 1.5 | Targeted review completed through `bf76535fe4da71d8de7b8bd5ffa0d2086b7af8d0`; see [`t3-code-targeted-review-2026-07-18.md`](../notes/t3-code-targeted-review-2026-07-18.md) | Trigger-driven desktop/runtime/provider/process reference only; not a continuously monitored upstream. |
+| Scient desktop (Synara-derived) | `../scient-desktop/`; preserved primary sibling currently on local `agent/fix-file-link-worktree-resolution-20260726` at `8ff39926789e0479539497a72f6ed90aa1433e2c`, not used as current-state evidence | `https://github.com/Emanuele-web04/synara.git`, `main` | `https://github.com/ScientFactory/scient-desktop`, public standalone repository | `9be46c3ce6a7521b64436b7334bc6fce16e3cac4` | Maintained owned `origin/main` `a9d762f8d5f05c5d1fc0042acd909acf892e435c`; last fully green hosted source head `9dadc5c3935d6e0209978d92a1a887ea2c34dd93`; exact current verification limitations below | Accepted initial application foundation; `divergent-cherry-pick`; must not own scientific project truth. |
+| T3 Code | No canonical local checkout is retained. A disposable fetch-only bare inspection repository was used for the July 30 scan and retained no canonical authority. | `https://github.com/pingdotgg/t3code.git`, `main` | None | Not tested in Gate 1.5 | Durable targeted-review boundary remains `bf76535fe4da71d8de7b8bd5ffa0d2086b7af8d0`; the complete scheduled scan through `a8e05cbb92633a1351529f2bc402071f615e5051` is recorded in [`2026-07-30-t3-code.md`](upstream-reviews/2026-07-30-t3-code.md) | Trigger-driven desktop/runtime/provider/process reference only; not a continuously monitored upstream. |
 
 ## Maintained Upstream Review State
 
@@ -40,7 +40,7 @@ review is accepted.
 
 | Source | Tested owned head | Reviewed through | Integration base | Update mode | Review evidence |
 |---|---|---|---|---|---|
-| Scient desktop | `9dadc5c3935d6e0209978d92a1a887ea2c34dd93` | `8ea6da0a0715c69f7b744fd4c8b38d698ab7687e` on 2026-07-26 | `9be46c3ce6a7521b64436b7334bc6fce16e3cac4` | `divergent-cherry-pick` | [`2026-07-26-scient-desktop.md`](upstream-reviews/2026-07-26-scient-desktop.md); desktop PR #134 accepted the checkpoint as merge `869d71d100c167b164e49df831feb16b6e4768ee`; the extended [`2026-07-28-scient-desktop.md`](upstream-reviews/2026-07-28-scient-desktop.md) records the complete proposed review through `04703ddb4c951378aca9a1c7b71263b8648efd7f`; desktop PR #147 is the dependent checkpoint vehicle and only its accepted merge may advance the repo-local boundary; exact-head hosted main CI run `30430184097` passed the complete desktop matrix |
+| Scient desktop | `a9d762f8d5f05c5d1fc0042acd909acf892e435c` | `04703ddb4c951378aca9a1c7b71263b8648efd7f` on 2026-07-29 | `9be46c3ce6a7521b64436b7334bc6fce16e3cac4` | `divergent-cherry-pick` | [`2026-07-28-scient-desktop.md`](upstream-reviews/2026-07-28-scient-desktop.md); Scient PR #65 accepted the disposition record as merge `78f2816b7ad18956e695431fda3e3d111fc5e9b8`, and desktop PR #147 accepted the repo-local checkpoint as merge `a9d762f8d5f05c5d1fc0042acd909acf892e435c`; hosted PR/main CI runs `30498596721` and `30498880305` each failed only the release-tag manifest count after a new tag, while their other completed jobs passed; last fully green exact-head matrix remains `30430184097` at `9dadc5c3935d6e0209978d92a1a887ea2c34dd93`; the new [`2026-07-30-scient-desktop.md`](upstream-reviews/2026-07-30-scient-desktop.md) proposes review through `47e71197781f15eea1db957b7d98339ef5f24fd7` without advancing the literal integration base |
 | Scient agent source | `60ed22de93a70d0e2079f545a62eafd8d740aed5` | `fab213312927ea64cf968832c527206e8c944f9e` on 2026-07-18 | `69a80663a2ed7d671d2b4d5dd6f2d605714675a5` | `adapter-maintained` | [`2026-07-18-scient-agent.md`](upstream-reviews/2026-07-18-scient-agent.md); current owned head passed hosted Scient quality run `30305988037`; no code intake |
 
 ## Standalone Ownership And Maintenance Rollout
@@ -180,6 +180,17 @@ source-repository pull requests:
   `8ea6da0a0715c69f7b744fd4c8b38d698ab7687e` without advancing the literal
   integration base. The merge commit was
   `869d71d100c167b164e49df831feb16b6e4768ee`.
+- Scient [PR #65](https://github.com/ScientFactory/Scient/pull/65)
+  accepted the complete review through
+  `04703ddb4c951378aca9a1c7b71263b8648efd7f` as merge
+  `78f2816b7ad18956e695431fda3e3d111fc5e9b8`. Desktop
+  [PR #147](https://github.com/ScientFactory/scient-desktop/pull/147) then
+  accepted the dependent repo-local checkpoint as merge
+  `a9d762f8d5f05c5d1fc0042acd909acf892e435c`, without advancing the literal
+  integration base. Hosted PR/main CI runs `30498596721` and `30498880305`
+  failed the release-tag manifest count after a new release tag; every other
+  completed job in those runs passed. This is an explicit verification
+  limitation, not a green exact-head matrix.
 - Subsequent owned desktop work advanced `main` to
   `9dadc5c3935d6e0209978d92a1a887ea2c34dd93` without advancing that checkpoint
   or integration base. Exact-head hosted CI run `30430184097` passed source

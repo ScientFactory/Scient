@@ -14,6 +14,8 @@ source lock.
 
 Current reviews:
 
+- [2026-07-30 Scient desktop and Synara review](2026-07-30-scient-desktop.md)
+- [2026-07-30 T3 Code scheduled review](2026-07-30-t3-code.md)
 - [2026-07-28 Scient desktop review, extended through 2026-07-29](2026-07-28-scient-desktop.md)
 - [2026-07-26 Scient desktop review](2026-07-26-scient-desktop.md)
 - [2026-07-18 Scient desktop review](2026-07-18-scient-desktop.md)
