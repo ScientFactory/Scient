@@ -191,9 +191,9 @@ source-repository pull requests:
   failed the release-tag manifest count after a new release tag; every other
   completed job in those runs passed. This is an explicit verification
   limitation, not a green exact-head matrix.
-- Subsequent owned desktop work advanced `main` to
-  `9dadc5c3935d6e0209978d92a1a887ea2c34dd93` without advancing that checkpoint
-  or integration base. Exact-head hosted CI run `30430184097` passed source
+- Before PR #147, owned desktop work had advanced `main` to
+  `9dadc5c3935d6e0209978d92a1a887ea2c34dd93` without advancing the then-current
+  checkpoint or integration base. Exact-head hosted CI run `30430184097` passed source
   ownership, identity, migration lineage, typecheck, unit, browser, build,
   release smoke, Windows process, and platform HTML-preview checks across all
   five jobs.
