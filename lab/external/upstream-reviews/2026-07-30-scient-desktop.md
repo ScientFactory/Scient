@@ -93,6 +93,15 @@ The companion [T3 scheduled review](2026-07-30-t3-code.md) records all 244 commi
 
 Exactly one new Synara adaptation qualifies for unattended implementation in this run.
 
+## Selected Adaptation State
+
+- Scient behavior: outside managed sessions, the global Antigravity hook does not launch packaged Electron; inactive PreToolUse answers `{"decision":"ask"}` to preserve the ordinary permission flow, while other inactive events remain `{}`.
+- Lineage: Scient-native reimplementation from donor commits `9ceb8f2876089c755ef6acf32c4708c5cdb71b30` and `e6eaeb53e106390b644846e236a92d7eddfee303`.
+- Owned base/head: `a9d762f8d5f05c5d1fc0042acd909acf892e435c` / `e7794027e699631b73fb95536705004856e65b21` on `maintenance/upstream-antigravity-inactive-hook-20260731`.
+- File impact: two provider files, 146 additions and 12 deletions; production behavior is 24 additions and 4 deletions, with the remainder focused tests.
+- Verification: focused Antigravity 15/15, full `bun run test` 12/12 tasks, full identity/format/lint/typecheck, server and desktop builds, release smoke, diff checks, and clean-worktree confirmation passed. Lint reported only the existing warning baseline.
+- Limitations: Windows command generation is unit-tested but was not executed on Windows. No browser, visual, screenshot, geometry, computer-use, or manual UI acceptance was performed.
+
 ## Proposed Checkpoint
 
 After maintainer acceptance of this review and the dependent desktop-state change:
