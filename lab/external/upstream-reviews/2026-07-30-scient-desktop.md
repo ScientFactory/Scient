@@ -3,8 +3,8 @@
 Status: Draft
 Owner: Yaacov
 Created: 2026-07-30
-Last updated: 2026-07-30
-Purpose: Records the complete Synara disposition review from the accepted July 29 checkpoint through the current official tip.
+Last updated: 2026-07-31
+Purpose: Records the complete Synara disposition review from the accepted July 29 checkpoint through the current official tip observed on July 31.
 Doc type: Research evidence
 
 ## Scope
@@ -13,19 +13,22 @@ Doc type: Research evidence
 - Owned head inspected: `a9d762f8d5f05c5d1fc0042acd909acf892e435c`
 - Official repository and branch: `Emanuele-web04/synara`, `main`
 - Accepted `reviewedThrough`: `04703ddb4c951378aca9a1c7b71263b8648efd7f`
-- Last tip observed by the intake automation: `04703ddb4c951378aca9a1c7b71263b8648efd7f`
-- Official tip fetched: `47e71197781f15eea1db957b7d98339ef5f24fd7`
+- Last tip observed by the intake automation: `47e71197781f15eea1db957b7d98339ef5f24fd7`
+- Official tip fetched: `96d4f69bc3f8d48120142b035e8c25faaa096d10`
 - Latest stable release observed: `v0.6.3`, peeled to `d958a9e583377a30cf4d97fb4c5e1d834eafbf92`
-- Complete and daily range: `04703ddb..47e71197` (20 commits)
+- Complete range: `04703ddb..96d4f69b` (31 commits)
+- Current daily delta: `47e71197..96d4f69b` (11 commits)
 - Review evidence: fetched commit graph; every subject, path set, statistic, parent, dependency, workflow, migration, release, and surrounding commit; focused patches for candidates and protected lanes; current Scient source/tests; live PR/worktree overlap.
 
 ## Review Depth And Boundaries
 
 Every commit in the complete contiguous range received a disposition below. Merge commits remain visible and are not double-counted as independent features. Broad commits retain parent rows and named sub-lanes.
 
+Focused inspection of `e6eaeb53` exposed a stale equivalence claim in the accepted July 26 evidence for its prerequisite `9ceb8f28`: current Scient still invoked packaged `process.execPath` directly from the globally installed hook. This draft corrects that row and treats both donor commits as provenance for one bounded inactive-hook safety invariant.
+
 This is source-intake evidence, not a claim that donor code was executed or completely audited. No donor or Scient UI was rendered. No computer use, browser automation, screenshots, geometry checks, visual tests, or manual UI acceptance were performed.
 
-The companion [T3 scheduled review](2026-07-30-t3-code.md) records all 198 commits in the required reference-donor range. T3 remains research-only and its durable targeted-review boundary does not advance.
+The companion [T3 scheduled review](2026-07-30-t3-code.md) records all 244 commits in the required reference-donor range. T3 remains research-only and its durable targeted-review boundary does not advance.
 
 ## Complete Synara Commit Ledger
 
@@ -51,6 +54,17 @@ The companion [T3 scheduled review](2026-07-30-t3-code.md) records all 198 commi
 | `10cc6260` | Merges the browser-control feature into main. | 3/5; integration-only. | No new behavior beyond `8f6521a6` and `e9fb1dd6`. | None independently; Very Hard donor ancestry. | **Reject as standalone intake; follow parent disposition.** |
 | `2ef4913d` | Reconciles main after browser control and annotation work. | 3/5; integration-only conflict resolution. | No independent Scient gap. | None independently; Hard lineage. | **Reject as standalone intake; follow parent dispositions.** |
 | `47e71197` | Merges persistent DOM annotations into main. | 3/5; integration-only. | No new behavior beyond the annotation series. | None independently; Very Hard donor ancestry. | **Reject as standalone intake; follow `e3850b69`.** |
+| `4379f1bd` | Raises one timeline test timeout under CI contention. | 3/5; narrowly stabilizes donor CI but adds no behavior. | Scient has independent timeline tests and no corresponding reproduced timeout. | None; Easy, test-only. | **Reject.** Learn-only CI signal, not product intake. |
+| `2e3b8df3` | Serves precompressed web assets with content negotiation, validators, and cache headers. | 5/5; comprehensive implementation and tests. | Scient serves packaged and development assets through its own containment and snapshot seams without equivalent generic sidecar negotiation. | Medium concept portability; Hard. Packaging, cache correctness, symlinks, release artifacts, and active release overlap. | **Adapt later.** Benchmark real Scient startup/network payloads and prove packaged assets on every platform first. |
+| `7ccd7a80` | Resumes thread subscriptions from a cursor and sends only deltas after reconnect. | 5/5; coherent contract, server, client, and lifecycle coverage. | Scient uses snapshot subscription/reconciliation and has no resume cursor. | Low direct portability; Very Hard. Transport contracts, projection ordering, stale cursors, reconnect, persistence, and shared agent protocol. | **Reimplement later.** Start with measured replay cost and an owned cursor/fence contract. |
+| `58554d42` | Negotiates WebSocket per-message compression only on the authenticated socket. | 5/5; careful handshake and regression coverage. | Scient does not enable permessage-deflate and has no measured transport-compression bottleneck. | Medium concept portability; Hard. CPU/memory budgets, compression bombs, authentication routing, and cross-repository transport proof. | **Defer.** Measure payload and resource profiles before enabling compression. |
+| `6a0ee61f` | Folds capability negotiation into the authenticated WebSocket handshake, avoiding an extra connection. | 5/5; strong end-to-end transport design and tests. | Scient negotiates through its existing bootstrap and transport contracts; no single-handshake equivalent. | Low direct portability; Very Hard. Coupled to donor transport changes and protected lifecycle/compatibility seams. | **Reimplement later.** Specify version skew, fallback, and rollback independently. |
+| `c64154db` | Archives, restores, hides, and permanently deletes complete subagent thread subtrees instead of orphaning descendants. | 5/5; explicit hierarchy traversal, cycle defense, and lifecycle tests. | Scient has parent-linked subagent threads, but its archive/unarchive/delete commands operate on one thread at a time, leaving a real hierarchy-policy gap. | Medium concept portability; Hard. Data loss, active descendants, partial failure, event ordering, storage, restore semantics, and settings/sidebar behavior. | **Reimplement later.** Define subtree lifecycle policy and transactional recovery before mutation. |
+| `fe529e3b` | Documents the donor's negotiation, compression, cursor, and asset-delivery architecture. | 4/5; useful operational explanation. | Valuable context for the adjacent transport commits, but not an owned Scient behavior. | Concept-only; Easy. | **Reject as standalone intake.** Retain as design evidence. |
+| `b621de4c` | Aligns resume-fence documentation and simplifies cursor reset after review. | 4/5; focused correctness cleanup. | Scient has no accepted cursor-resume model to repair. | Low; Hard and dependent on `7ccd7a80`. | **Defer with the cursor design.** |
+| `9d453f66` | Merges the donor transport phase into main. | 3/5; integration-only. | No independent Scient gap beyond the four transport/asset parents. | None independently; Very Hard ancestry. | **Reject as standalone intake; follow parent dispositions.** |
+| `e6eaeb53` | Prevents a globally installed inactive Antigravity PreToolUse hook from denying every tool call in non-Scient sessions. | 5/5; small event-aware fix with POSIX, Windows, direct-script, and active-path tests. | Scient has the same exact fallback bug: inactive pre-tool currently returns `{}` while active sessions already return explicit allow/ask decisions. | High concept and code portability; Easy. Low risk on two provider files with no active overlap. | **Adapt now.** Reimplement the event-aware neutral fallback on the Scient-owned adapter and preserve all other inactive events as `{}`. |
+| `96d4f69b` | Makes Tailwind scan utility-class overrides used by the donor UI. | 4/5; focused build/presentation repair. | Scient's styling graph and generated utilities differ; value and correctness are appearance-dependent. | Medium concept portability; Medium. Visual and responsive proof required. | **Defer.** Inspect only with separately authorized human visual acceptance. |
 
 ## Mixed-Commit And Feature Sublanes
 
@@ -70,20 +84,21 @@ The companion [T3 scheduled review](2026-07-30-t3-code.md) records all 198 commi
 
 ## Ranked Intake Decision
 
-1. T3 `85a89868` deterministic review-preview safety ranks above Synara candidates because it closes a proven current gap, is nonvisual, low risk, testable, and independent of protected product state.
-2. `9d7c2df8` is the highest-value Synara reliability candidate, but requires a Scient repro, recovery policy, and active provider/gateway-lane separation.
-3. `8f6521a6` visible provider-agnostic browser control has high product fit, but is a broad permission, privacy, browser, gateway, and interactive-acceptance project.
-4. `e3850b69` DOM annotations could strengthen evidence-grounded scientific work, but needs a Scient-owned evidence-selection model and browser/privacy design.
-5. `c6edf2da` is a small likely UI win, but the automation cannot perform the required visual, responsive, interaction, or accessibility acceptance.
+1. `e6eaeb53` inactive Antigravity permission fallback ranks first because it closes a reproduced current gap, is nonvisual, bounded to two provider files, low risk, and independently testable.
+2. T3 `85a89868` deterministic review-preview safety remains a strong already-implemented draft in desktop PR #164; it is not duplicated.
+3. `c64154db` subtree lifecycle is a real user-data consistency gap, but permanent deletion and partial-failure semantics require a storage/recovery design.
+4. `7ccd7a80`, `58554d42`, and `6a0ee61f` form a valuable transport roadmap, but must begin with Scient measurements and owned compatibility contracts.
+5. `2e3b8df3` could improve asset delivery, but packaging and platform-release proof make it ineligible for this fast lane.
+6. T3 `cbe80520` large-image compression is valuable, but legibility after recompression requires visual judgment prohibited in this automation.
 
-No Synara commit qualifies for unattended implementation in this run.
+Exactly one new Synara adaptation qualifies for unattended implementation in this run.
 
 ## Proposed Checkpoint
 
 After maintainer acceptance of this review and the dependent desktop-state change:
 
-- Proposed `reviewedThrough`: `47e71197781f15eea1db957b7d98339ef5f24fd7`
-- Proposed `reviewedAt`: `2026-07-30`
+- Proposed `reviewedThrough`: `96d4f69bc3f8d48120142b035e8c25faaa096d10`
+- Proposed `reviewedAt`: `2026-07-31`
 - `integrationBase`: unchanged at `9be46c3ce6a7521b64436b7334bc6fce16e3cac4`
 - Update mode: unchanged as `divergent-cherry-pick`
 - Selective intake does not add Synara ancestry.
