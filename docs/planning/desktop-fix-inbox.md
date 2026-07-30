@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-07-25
-Last updated: 2026-07-28 (DF-013, DF-014 added)
+Last updated: 2026-07-30 (DF-015 added)
 Purpose: Captures observed Scient desktop problems that need a bounded diagnosis or fix but are not being implemented immediately.
 Doc type: Planning note
 
@@ -494,3 +494,49 @@ Each open fix should record:
 - **Related task, issue, or pull request:** Not yet created.
 - **Implementation approval:** Not yet; this entry records reported behavior
   and expected behavior only. Final wording is explicitly still to be decided.
+
+### DF-015 — Mixed-Language Lines In A Hebrew Answer Render Left-To-Right Instead Of RTL
+
+- **Date added:** 2026-07-30.
+- **Status:** Reported; not yet diagnosed.
+- **Observed behavior:** In an answer written in Hebrew, most of the text
+  renders right-to-left correctly, but individual lines and bullet items that
+  begin with a Latin-script token or a number render left-to-right. The
+  observed example is a Hebrew medical answer where lines such as the
+  "55,000 לויקוציטים עם 95% PMN" bullet and its sub-lines (e.g. beginning with
+  "Polymorphonuclear Neutrophils — PMN…" and "ספירת תאים מעל 50,000…"), and a
+  trailing line beginning "MRSA — Methicillin-resistant … Staphylococcus
+  aureus", are laid out LTR — so punctuation and the leading number/term land
+  on the wrong (left) side and the line reads misaligned against the
+  surrounding RTL text.
+- **Expected behavior:** When an answer is in Hebrew (RTL), every line,
+  paragraph, and list item in that answer should inherit the answer's dominant
+  RTL base direction, including lines that happen to start with an English word
+  or a digit. Embedded Latin words, numbers, and inline code should still read
+  left-to-right within the line (per the Unicode bidi algorithm), but the base
+  direction of the block should stay RTL so alignment and punctuation placement
+  are correct.
+- **User impact:** Hebrew answers look broken and hard to read wherever they
+  mix in English terms or numbers — which is common in scientific/medical
+  content — undermining the RTL experience the app otherwise provides.
+- **Diagnosis:** Not yet investigated. Likely cause is per-line/per-block base
+  direction being inferred from the first strong character (or `dir="auto"`)
+  rather than from the answer's dominant language: a block whose first strong
+  character is Latin or whose leading token is a number gets treated as LTR.
+  Later look should find where message/markdown blocks set their text direction
+  (the renderer for assistant answers and its list-item/paragraph handling) and
+  decide direction at the answer level (or from dominant-script detection)
+  instead of per-block first-strong inference, so mixed lines keep the RTL base
+  direction while still shaping embedded LTR runs correctly.
+- **Validation needed:** Render a Hebrew answer containing: a bullet that starts
+  with a number (e.g. "55,000 …"), a line that starts with an English term
+  (e.g. "Polymorphonuclear Neutrophils — PMN …"), inline code, and a trailing
+  line starting with an acronym (e.g. "MRSA — …"); confirm all lines share the
+  RTL base direction with correct alignment and punctuation placement while
+  embedded Latin/number runs still read LTR. Confirm no regression for
+  English-only (LTR) answers and for genuinely mixed threads.
+- **Evidence:** User report from 2026-07-30 with screenshot of a Hebrew medical
+  answer showing the affected lines rendering LTR.
+- **Related task, issue, or pull request:** Not yet created.
+- **Implementation approval:** Not yet; this entry records reported behavior
+  and expected behavior only.
