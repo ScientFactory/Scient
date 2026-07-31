@@ -50,7 +50,10 @@ infrastructure.
    error, and the identities or hashes of affected records and artifacts.
    Current authority is revalidated when execution starts and immediately
    before a protected effect commits. Revocation fences queued and in-flight
-   work, and a completion authorized against a stale generation cannot commit.
+   work that has not committed, and a Scient-owned transactional completion
+   authorized against a stale generation cannot commit. Cancellation of an
+   already-started irreversible external effect is best-effort rather than a
+   guarantee.
 3. Initial actor kinds are manual user action, provider-thread agent, external
    MCP integration, and automation run. New actor kinds must enter through the
    same authority boundary rather than bypassing it.
@@ -62,8 +65,12 @@ infrastructure.
    An idempotency key is bound to the actor, project, operation, canonical
    payload, and authority generation; reuse with different inputs conflicts.
    A retry receives the durable original terminal result. Protected mutations
-   use expected-version or equivalent preconditions and an atomic commit or an
-   explicit compensating recovery so restart cannot duplicate an effect.
+   to Scient-owned transactional state use expected-version or equivalent
+   preconditions and atomically commit the authority-generation fence, effect,
+   and receipt. External or otherwise non-idempotent effects durably record
+   intent first and pass a downstream idempotency key when supported. If a
+   crash or cancellation leaves their outcome unknowable, the operation settles
+   as `uncertain/reconciliation-required` and is never retried automatically.
 5. The manual UI, provider gateways, external MCP, and automations are adapters
    over the same operation services. Their transport, lifecycle, and UX may
    differ; their authorization and product semantics may not.
