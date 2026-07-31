@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-07-08
-Last updated: 2026-07-22
+Last updated: 2026-07-31
 Purpose: Explains how owned source repositories, external provenance, and optional reference checkouts are organized locally.
 Doc type: Repo orientation
 
@@ -45,7 +45,10 @@ notes, and lab evidence.
   not infer a checkout merely because a pointer directory exists.
 - Record exact source commits in `sources.lock.md`.
 - Keep `owned-sources.json`, `sources.lock.md`, and each source repository's
-  `upstream-state.json` aligned after an owned source head changes.
+  `upstream-state.json` aligned when an accepted review or verification
+  intentionally advances the tested snapshot or a review checkpoint. Ordinary
+  movement of an owned default branch is freshness information, not an
+  automatic evidence update.
 - Prefer one physical checkout per upstream repository.
 - Use pointer notes when one repository spans multiple roles.
 - Keep Scient-owned bridge code outside temporary upstream trees unless a fork
