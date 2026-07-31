@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-07-26
-Last updated: 2026-07-26
+Last updated: 2026-07-31
 Purpose: Records the complete Synara review from Scient's previous checkpoint through the official tip observed on 2026-07-26.
 Doc type: Research evidence
 
@@ -114,7 +114,7 @@ The shorthand in the ledger means:
 | `c01c2511` | Startup replay pruning | Reject | `ABSENT`; donor-only runtime-open-turn repository/table, while Scient owns a different startup reconciler |
 | `65fd4746` | Cross-task labels/sidebar order | Reject | `EQUIV` for behavior; remaining value is `VISUAL` |
 | `d3b9c66d` | Bun build externalization | Reject | `EQUIV`; Scient owns separate build/release proof |
-| `9ceb8f28` | Headless Antigravity capture | Reject | `EQUIV`; Scient's provider connection avoids donor GUI capture |
+| `9ceb8f28` | Keeps the globally installed Antigravity hook headless and inert outside managed sessions | Defer | **Correction, 2026-07-31:** current Scient used packaged `process.execPath` directly in the global hook, so an unmanaged session could launch the Electron GUI. Reimplement the event-gated wrapper together with the later `e6eaeb53` permission-preserving fallback only after defining a safe repair lifecycle for already-installed hooks. |
 | `2227a4d7` | Live-thread sidebar priority | Reject | `EQUIV` |
 | `7b91d562` | Pi model catalog | Reject | `EQUIV`; Scient uses discovery plus custom provider-qualified models |
 | `011b80f9` | Claude context projection | Reject | `EQUIV`; current model/options and adapter tests cover it |
