@@ -24,6 +24,7 @@ Options:
 
 The command never pulls, fetches, switches, cleans, or edits an existing
 checkout. It stops if an occupied destination is not the expected repository.
+Prefix a relative workspace name beginning with `-` with `./`.
 EOF
 }
 
@@ -36,6 +37,9 @@ while (($# > 0)); do
   case "$1" in
     --workspace)
       (($# >= 2)) || fail "--workspace requires a path"
+      case "$2" in
+        -*) fail "--workspace value must not look like an option; prefix a relative name with ./" ;;
+      esac
       workspace_arg=$2
       shift 2
       ;;
@@ -101,9 +105,12 @@ canonical_github_repo() {
 validate_checkout() {
   local destination=$1
   local expected_repo=$2
+  local expected_repo_normalized
   local top_level
   local origin_url
   local actual_repo
+  local fetch_urls=()
+  local push_urls=()
 
   [[ ! -L "$destination" ]] ||
     fail "destination is a symbolic link; expected a direct Git checkout: $destination"
@@ -116,13 +123,31 @@ validate_checkout() {
   [[ "$top_level" == "$(cd "$destination" && pwd -P)" ]] ||
     fail "destination is inside a different Git checkout: $destination"
 
-  origin_url=$(git -C "$destination" remote get-url origin 2>/dev/null) ||
-    fail "checkout has no origin remote: $destination"
-  actual_repo=$(canonical_github_repo "$origin_url") ||
-    fail "checkout origin is not a supported HTTPS or SSH GitHub URL for $expected_repo: $destination"
+  while IFS= read -r origin_url; do
+    fetch_urls+=("$origin_url")
+  done < <(git -C "$destination" remote get-url --all origin 2>/dev/null)
+  ((${#fetch_urls[@]} > 0)) || fail "checkout has no origin fetch URL: $destination"
 
-  [[ "$actual_repo" == "$(printf '%s' "$expected_repo" | tr '[:upper:]' '[:lower:]')" ]] ||
-    fail "destination does not point to expected GitHub repository $expected_repo: $destination"
+  while IFS= read -r origin_url; do
+    push_urls+=("$origin_url")
+  done < <(git -C "$destination" remote get-url --push --all origin 2>/dev/null)
+  ((${#push_urls[@]} > 0)) || fail "checkout has no effective origin push URL: $destination"
+
+  expected_repo_normalized=$(printf '%s' "$expected_repo" | tr '[:upper:]' '[:lower:]')
+  for origin_url in "${fetch_urls[@]}"; do
+    actual_repo=$(canonical_github_repo "$origin_url") ||
+      fail "checkout origin fetch URL is not a supported HTTPS or SSH GitHub URL for $expected_repo: $destination"
+    [[ "$actual_repo" == "$expected_repo_normalized" ]] ||
+      fail "checkout origin fetch URL does not point to expected GitHub repository $expected_repo: $destination"
+  done
+  for origin_url in "${push_urls[@]}"; do
+    actual_repo=$(canonical_github_repo "$origin_url") ||
+      fail "checkout effective origin push URL is not a supported HTTPS or SSH GitHub URL for \
+$expected_repo: $destination"
+    [[ "$actual_repo" == "$expected_repo_normalized" ]] ||
+      fail "checkout effective origin push URL does not point to expected GitHub repository \
+$expected_repo: $destination"
+  done
 }
 
 repositories=(
@@ -181,7 +206,9 @@ for entry in "${missing[@]}"; do
   validate_checkout "$staged_destination" "$repository"
   [[ ! -e "$final_destination" && ! -L "$final_destination" ]] ||
     fail "destination appeared while cloning; left it untouched and discarded the staged clone: $final_destination"
-  mv "$staged_destination" "$final_destination"
+  mv -n "$staged_destination" "$workspace"
+  [[ ! -e "$staged_destination" && ! -L "$staged_destination" ]] ||
+    fail "destination appeared during promotion; left it untouched and discarded the staged clone: $final_destination"
   printf '[done]  %s\n' "$final_destination"
 done
 

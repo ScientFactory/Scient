@@ -64,15 +64,22 @@ To create or validate a different workspace root, pass an explicit path:
 ./scripts/bootstrap-workspace.sh --workspace ~/work/scient --with-website
 ```
 
+An option-looking relative name is rejected before any directory is created.
+Prefix an intentional name beginning with `-` with `./`, for example
+`--workspace ./-scient-workspace`.
+
 ## Safety And Idempotency
 
 The bootstrap command:
 
 - clones only missing repositories;
-- accepts HTTPS or SSH GitHub origins for the expected repository;
+- validates every origin fetch URL and every effective push URL as HTTPS or SSH
+  GitHub URLs for the expected repository;
 - leaves an existing valid checkout's branch, files, index, remotes, and local
   changes untouched;
 - stages each clone in a temporary directory before moving it into place;
+- uses no-clobber promotion and stops if another process creates the destination
+  during placement;
 - rejects symbolic-link destinations so repository scope cannot escape the
   selected workspace parent;
 - stops when a destination is not a Git checkout, has no `origin`, or points to

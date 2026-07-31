@@ -62,8 +62,49 @@ exit 64
 EOF
 chmod +x "$fake_bin/gh"
 
+cat >"$fake_bin/mv" <<'EOF'
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [[ -n "${MV_TEST_COLLISION_PATH:-}" ]]; then
+  case "${MV_TEST_COLLISION_KIND:-}" in
+    empty-directory)
+      mkdir -p "$MV_TEST_COLLISION_PATH"
+      ;;
+    nonempty-directory)
+      mkdir -p "$MV_TEST_COLLISION_PATH"
+      printf 'preserve collision\n' >"$MV_TEST_COLLISION_PATH/preserved.txt"
+      ;;
+    symlink)
+      ln -s "$MV_TEST_COLLISION_TARGET" "$MV_TEST_COLLISION_PATH"
+      ;;
+    *)
+      printf 'unexpected MV_TEST_COLLISION_KIND\n' >&2
+      exit 65
+      ;;
+  esac
+fi
+
+exec /bin/mv "$@"
+EOF
+chmod +x "$fake_bin/mv"
+
 export GH_TEST_LOG="$TEST_ROOT/gh.log"
 export PATH="$fake_bin:$PATH"
+
+option_workspace_root="$TEST_ROOT/option-workspace-root"
+mkdir -p "$option_workspace_root"
+if (cd "$option_workspace_root" && "$BOOTSTRAP" --workspace --dry-run) >"$TEST_ROOT/option.out" 2>&1; then
+  fail "option-looking workspace value should fail"
+fi
+assert_contains "$TEST_ROOT/option.out" "must not look like an option"
+assert_missing "$option_workspace_root/--dry-run"
+assert_missing "$GH_TEST_LOG"
+(cd "$option_workspace_root" && "$BOOTSTRAP" --workspace ./-scient-workspace --dry-run) \
+  >"$TEST_ROOT/dashed-workspace.out"
+assert_contains "$TEST_ROOT/dashed-workspace.out" "Dry run complete"
+assert_missing "$option_workspace_root/-scient-workspace"
+assert_missing "$GH_TEST_LOG"
 
 dry_workspace="$TEST_ROOT/dry-workspace"
 "$BOOTSTRAP" --workspace "$dry_workspace" --dry-run >"$TEST_ROOT/dry.out"
@@ -81,6 +122,8 @@ assert_missing "$workspace/website"
 git -C "$workspace/scient-desktop" checkout -q -b local-work
 printf 'preserve me\n' >"$workspace/scient-desktop/local.txt"
 git -C "$workspace/scient-agent" remote set-url origin git@github.com:ScientFactory/scient-agent.git
+git -C "$workspace/scient-desktop" remote set-url --push origin \
+  git@github.com:ScientFactory/scient-desktop.git
 "$BOOTSTRAP" --workspace "$workspace" >"$TEST_ROOT/second.out"
 [[ "$(git -C "$workspace/scient-desktop" branch --show-current)" == "local-work" ]] ||
   fail "existing branch changed"
@@ -151,6 +194,76 @@ if "$BOOTSTRAP" --workspace "$http_workspace" --dry-run >"$TEST_ROOT/http.out" 2
 fi
 assert_contains "$TEST_ROOT/http.out" "not a supported HTTPS or SSH GitHub URL"
 
+mixed_workspace="$TEST_ROOT/mixed-workspace"
+mkdir -p "$mixed_workspace/Scient"
+git init -q "$mixed_workspace/Scient"
+git -C "$mixed_workspace/Scient" remote add origin \
+  https://github.com/ScientFactory/Scient.git
+git -C "$mixed_workspace/Scient" remote set-url --add origin \
+  ssh://git@github.com/ScientFactory/Scient.git
+git -C "$mixed_workspace/Scient" remote set-url --add --push origin \
+  https://github.com/ScientFactory/Scient.git
+git -C "$mixed_workspace/Scient" remote set-url --add --push origin \
+  git@github.com:ScientFactory/Scient.git
+"$BOOTSTRAP" --workspace "$mixed_workspace" --dry-run >"$TEST_ROOT/mixed.out"
+assert_contains "$TEST_ROOT/mixed.out" "already matches ScientFactory/Scient"
+
+wrong_fetch_workspace="$TEST_ROOT/wrong-fetch-workspace"
+mkdir -p "$wrong_fetch_workspace/Scient"
+git init -q "$wrong_fetch_workspace/Scient"
+git -C "$wrong_fetch_workspace/Scient" remote add origin \
+  https://github.com/ScientFactory/Scient.git
+git -C "$wrong_fetch_workspace/Scient" remote set-url --add origin \
+  https://github.com/example/SECRET_FETCH_SENTINEL.git
+git -C "$wrong_fetch_workspace/Scient" remote set-url --push origin \
+  git@github.com:ScientFactory/Scient.git
+if "$BOOTSTRAP" --workspace "$wrong_fetch_workspace" --dry-run >"$TEST_ROOT/wrong-fetch.out" 2>&1; then
+  fail "wrong secondary fetch URL should fail"
+fi
+assert_contains "$TEST_ROOT/wrong-fetch.out" "origin fetch URL does not point"
+assert_not_contains "$TEST_ROOT/wrong-fetch.out" "SECRET_FETCH_SENTINEL"
+
+wrong_push_workspace="$TEST_ROOT/wrong-push-workspace"
+mkdir -p "$wrong_push_workspace/Scient"
+git init -q "$wrong_push_workspace/Scient"
+git -C "$wrong_push_workspace/Scient" remote add origin \
+  https://github.com/ScientFactory/Scient.git
+git -C "$wrong_push_workspace/Scient" remote set-url --add --push origin \
+  https://github.com/ScientFactory/Scient.git
+git -C "$wrong_push_workspace/Scient" remote set-url --add --push origin \
+  git@github.com:example/SECRET_WRONG_PUSH.git
+if "$BOOTSTRAP" --workspace "$wrong_push_workspace" --dry-run >"$TEST_ROOT/wrong-push.out" 2>&1; then
+  fail "wrong URL among multiple effective push URLs should fail"
+fi
+assert_contains "$TEST_ROOT/wrong-push.out" "effective origin push URL does not point"
+assert_not_contains "$TEST_ROOT/wrong-push.out" "SECRET_WRONG_PUSH"
+
+credential_push_workspace="$TEST_ROOT/credential-push-workspace"
+mkdir -p "$credential_push_workspace/Scient"
+git init -q "$credential_push_workspace/Scient"
+git -C "$credential_push_workspace/Scient" remote add origin \
+  https://github.com/ScientFactory/Scient.git
+git -C "$credential_push_workspace/Scient" remote set-url --push origin \
+  https://example-user:SECRET_PUSH_SENTINEL@github.com/ScientFactory/Scient.git
+if "$BOOTSTRAP" --workspace "$credential_push_workspace" --dry-run >"$TEST_ROOT/credential-push.out" 2>&1; then
+  fail "credential-bearing push URL should fail"
+fi
+assert_contains "$TEST_ROOT/credential-push.out" "effective origin push URL is not a supported"
+assert_not_contains "$TEST_ROOT/credential-push.out" "SECRET_PUSH_SENTINEL"
+
+malformed_push_workspace="$TEST_ROOT/malformed-push-workspace"
+mkdir -p "$malformed_push_workspace/Scient"
+git init -q "$malformed_push_workspace/Scient"
+git -C "$malformed_push_workspace/Scient" remote add origin \
+  https://github.com/ScientFactory/Scient.git
+git -C "$malformed_push_workspace/Scient" remote set-url --push origin \
+  "https://github.com/ScientFactory/Scient.git?token=SECRET_MALFORMED_PUSH_SENTINEL"
+if "$BOOTSTRAP" --workspace "$malformed_push_workspace" --dry-run >"$TEST_ROOT/malformed-push.out" 2>&1; then
+  fail "malformed push URL should fail"
+fi
+assert_contains "$TEST_ROOT/malformed-push.out" "effective origin push URL is not a supported"
+assert_not_contains "$TEST_ROOT/malformed-push.out" "SECRET_MALFORMED_PUSH_SENTINEL"
+
 wrong_workspace="$TEST_ROOT/wrong-workspace"
 mkdir -p "$wrong_workspace/scient-agent"
 git init -q "$wrong_workspace/scient-agent"
@@ -160,5 +273,43 @@ if "$BOOTSTRAP" --workspace "$wrong_workspace" >"$TEST_ROOT/wrong.out" 2>&1; the
 fi
 assert_contains "$TEST_ROOT/wrong.out" \
   "expected GitHub repository ScientFactory/scient-agent"
+
+for collision_kind in empty-directory nonempty-directory; do
+  collision_workspace="$TEST_ROOT/promotion-$collision_kind"
+  mkdir -p "$collision_workspace"
+  collision_path="$collision_workspace/Scient"
+  if MV_TEST_COLLISION_KIND="$collision_kind" \
+    MV_TEST_COLLISION_PATH="$collision_path" \
+    "$BOOTSTRAP" --workspace "$collision_workspace" >"$TEST_ROOT/promotion-$collision_kind.out" 2>&1; then
+    fail "$collision_kind promotion collision should fail"
+  fi
+  assert_contains "$TEST_ROOT/promotion-$collision_kind.out" "appeared during promotion"
+  assert_directory "$collision_path"
+  assert_missing "$collision_path/.git"
+  assert_missing "$collision_path/Scient"
+done
+assert_missing "$TEST_ROOT/promotion-empty-directory/Scient/preserved.txt"
+assert_contains "$TEST_ROOT/promotion-nonempty-directory/Scient/preserved.txt" \
+  "preserve collision"
+
+collision_symlink_target="$TEST_ROOT/promotion-symlink-target"
+mkdir -p "$collision_symlink_target"
+printf 'preserve symlink target\n' >"$collision_symlink_target/preserved.txt"
+collision_symlink_workspace="$TEST_ROOT/promotion-symlink"
+mkdir -p "$collision_symlink_workspace"
+collision_symlink_path="$collision_symlink_workspace/Scient"
+if MV_TEST_COLLISION_KIND=symlink \
+  MV_TEST_COLLISION_PATH="$collision_symlink_path" \
+  MV_TEST_COLLISION_TARGET="$collision_symlink_target" \
+  "$BOOTSTRAP" --workspace "$collision_symlink_workspace" >"$TEST_ROOT/promotion-symlink.out" 2>&1; then
+  fail "symlink promotion collision should fail"
+fi
+assert_contains "$TEST_ROOT/promotion-symlink.out" "appeared during promotion"
+[[ -L "$collision_symlink_path" ]] || fail "promotion collision symlink was replaced"
+[[ "$(readlink "$collision_symlink_path")" == "$collision_symlink_target" ]] ||
+  fail "promotion collision symlink target changed"
+assert_contains "$collision_symlink_target/preserved.txt" "preserve symlink target"
+assert_missing "$collision_symlink_target/.git"
+assert_missing "$collision_symlink_target/Scient"
 
 printf 'PASS: workspace bootstrap safety and idempotency\n'
