@@ -24,8 +24,8 @@ jobs:
           node-version: 24
       - name: Verify committed Gate 1.5 evidence
         run: node lab/scripts/verify-gate-1-5-manifest.mjs
-      - name: Test owned-source evidence verifier
-        run: node --test lab/scripts/verify-owned-sources.test.mjs
+      - name: Test owned-source evidence tooling
+        run: node --test lab/scripts/verify-owned-sources.test.mjs lab/scripts/owned-source-evidence-scope.test.mjs
       - name: Verify owned-source evidence consistency
         run: node lab/scripts/verify-owned-sources.mjs --consistency-only
       - name: Determine owned-source evidence scope
@@ -34,29 +34,7 @@ jobs:
         env:
           BASE_SHA: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.event.before }}
           HEAD_SHA: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
-        run: |
-          git diff --name-only --diff-filter=ACDMRTUXB "$BASE_SHA" "$HEAD_SHA" -- \
-            lab/external/owned-sources.json \
-            lab/external/sources.lock.md \
-            lab/external/upstream-reviews \
-            lab/scripts/verify-owned-sources.mjs \
-            lab/scripts/verify-owned-sources.test.mjs \
-            .github/workflows/gate-1-5-evidence.yml \
-            > "$RUNNER_TEMP/owned-source-evidence-files"
-          git diff --name-only --diff-filter=ACDMRTUXB "$BASE_SHA" "$HEAD_SHA" -- \
-            lab/external/owned-sources.json \
-            lab/external/sources.lock.md \
-            > "$RUNNER_TEMP/owned-source-snapshot-files"
-          if [[ -s "$RUNNER_TEMP/owned-source-evidence-files" ]]; then
-            echo "evidence_changed=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "evidence_changed=false" >> "$GITHUB_OUTPUT"
-          fi
-          if [[ -s "$RUNNER_TEMP/owned-source-snapshot-files" ]]; then
-            echo "snapshot_changed=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "snapshot_changed=false" >> "$GITHUB_OUTPUT"
-          fi
+        run: node lab/scripts/owned-source-evidence-scope.mjs
       - name: Verify pinned owned-source evidence
         if: steps.evidence_scope.outputs.evidence_changed == 'true' && steps.evidence_scope.outputs.snapshot_changed != 'true'
         run: node lab/scripts/verify-owned-sources.mjs --verify-pinned
