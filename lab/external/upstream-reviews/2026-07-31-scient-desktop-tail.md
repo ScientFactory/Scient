@@ -77,5 +77,5 @@ or visual acceptance.
 - Complete contiguous Synara evidence now covers through `f972bd2eac0913101add6c7563877816eb4c8e21`.
 - Proposed repo-local `reviewedThrough`: `f972bd2eac0913101add6c7563877816eb4c8e21` on 2026-07-31.
 - Literal `integrationBase`: unchanged at `9be46c3ce6a7521b64436b7334bc6fce16e3cac4`.
-- Selective intake from this tail: two independent Scient-native sub-lanes from `1887615c`; no donor commit ancestry.
+- Selected for separate intake: checkpoint index seeding and warning normalization from `1887615c`; implementation, publication, and integration are recorded independently, with no donor commit ancestry.
 - Rolling issue: close only after the dependent repo-local checkpoint is accepted.
