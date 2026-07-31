@@ -68,4 +68,3 @@ reimplemented by this review.
 - Literal `integrationBase`: unchanged at `9be46c3ce6a7521b64436b7334bc6fce16e3cac4`.
 - Selective intake from this tail: none.
 - Rolling issue: close only after the dependent repo-local checkpoint is accepted.
-
