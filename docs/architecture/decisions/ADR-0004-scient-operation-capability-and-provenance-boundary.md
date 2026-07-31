@@ -38,15 +38,16 @@ infrastructure.
    driving work, capturing source evidence, proposing an annotation, accepting
    a scientific record, or exporting a reviewed artifact. Ingress adapters do
    not mutate protected state directly.
-2. Every operation receives a host-resolved envelope containing:
+2. Every operation receives a host-resolved request envelope containing:
    - a unique operation and idempotency identity;
    - an actor kind and durable actor reference;
    - exact project scope and capabilities;
    - issue, expiry, and revocation context;
-   - source ingress and parent operation/run lineage; and
-   - a provenance receipt suitable for the operation's effect.
+   - source ingress and parent operation/run lineage.
    Client-, model-, page-, or prompt-supplied authority fields are never
-   trusted as proof.
+   trusted as proof. Execution emits an immutable result/effect receipt tying
+   the resolved request to the authorization decision, timestamps, outcome or
+   error, and the identities or hashes of affected records and artifacts.
 3. Initial actor kinds are manual user action, provider-thread agent, external
    MCP integration, and automation run. New actor kinds must enter through the
    same authority boundary rather than bypassing it.
@@ -86,31 +87,45 @@ infrastructure.
     implementations are adapters. Donor code may supply bounded transport,
     security, and interaction patterns, but Scient owns operation names,
     policy, records, and authority.
-12. Implementation proceeds in dependency order: operation envelope and
-    capability enforcement; completion of the thread gateway; external MCP;
-    automation adapter; browser read/capture before browser action; then
-    durable scientific annotations and acceptance. Each stage is separately
-    reviewable and reversible.
+12. Implementation follows a partial dependency order. The operation envelope,
+    capability enforcement, and effect-receipt core land first. The thread
+    gateway, external MCP, and automation adapters may then land independently
+    as consumers of that stable core. Browser read/capture depends on the core
+    and browser-session lease; browser action depends on that authority and
+    read foundation. Durable annotations depend on the capture/proposal
+    contract, not on external MCP, automation, or browser action. Each stage is
+    separately reviewable and reversible.
 
 ## Current Implementation At Acceptance
 
 The current desktop already implements a thread-scoped `scient_*` MCP gateway
-with project isolation, privilege and worktree caps, short-lived
-session/turn-bound credentials, idempotency, bounded waits, and read/drive
-tools. It is disabled by default and is wired primarily to Claude; its Codex
-configuration builder is not yet a complete live path.
+with project isolation, privilege and worktree caps, in-memory
+per-provider-session credentials revoked on session teardown or restart,
+write requests pinned to the caller's active turn, idempotency, bounded waits,
+and read/drive tools. The credentials have no wall-clock expiry. The gateway is
+disabled by default and is wired primarily to Claude; its Codex configuration
+builder is not yet a complete live path.
 
 The current automation engine has schedules, permission snapshots, risk
-acknowledgements, retries, crash recovery, worktrees, and run history. The
-current browser has visible tabs, containment and recovery behavior, PiP, and a
-Codex-compatible native pipe. These are foundations, not evidence that this ADR
-is fully implemented.
+acknowledgements, a modeled but not executed retry policy, crash recovery,
+worktrees, and run history. The current browser has visible tabs, containment
+and recovery behavior, PiP, and a Codex-compatible native pipe. These are
+foundations, not evidence that this ADR is fully implemented.
 
 Scient does not yet have the shared operation envelope, external pairing,
 external MCP integration management, automation-to-operation adapter, general
 provider browser tools, or durable scientific annotation model defined here.
 
 ## Donor Intake Boundary
+
+The reviewed donor evidence is recorded in the
+[2026-07-26 gateway, external-MCP, and automation review](../../../lab/external/upstream-reviews/2026-07-26-scient-desktop.md)
+and the
+[2026-07-30 browser-control and annotation review](../../../lab/external/upstream-reviews/2026-07-30-scient-desktop.md).
+This ADR promotes bounded concepts and implementation patterns from those
+records. It does not promote donor code, persistence, authority, product
+semantics, or ancestry; the direct-intake rejections in those records remain
+in force.
 
 - Reuse Synara's external MCP pairing, local bridge, runtime proof, credential
   hashing, revocation, private-file, capacity, idempotency, audit, and recovery
