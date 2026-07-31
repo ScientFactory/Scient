@@ -63,7 +63,7 @@ The companion [T3 scheduled review](2026-07-30-t3-code.md) records all 244 commi
 | `fe529e3b` | Documents the donor's negotiation, compression, cursor, and asset-delivery architecture. | 4/5; useful operational explanation. | Valuable context for the adjacent transport commits, but not an owned Scient behavior. | Concept-only; Easy. | **Reject as standalone intake.** Retain as design evidence. |
 | `b621de4c` | Aligns resume-fence documentation and simplifies cursor reset after review. | 4/5; focused correctness cleanup. | Scient has no accepted cursor-resume model to repair. | Low; Hard and dependent on `7ccd7a80`. | **Defer with the cursor design.** |
 | `9d453f66` | Merges the donor transport phase into main. | 3/5; integration-only. | No independent Scient gap beyond the four transport/asset parents. | None independently; Very Hard ancestry. | **Reject as standalone intake; follow parent dispositions.** |
-| `e6eaeb53` | Prevents a globally installed inactive Antigravity PreToolUse hook from denying every tool call in non-Scient sessions. | 5/5; small event-aware fix with POSIX, Windows, direct-script, and active-path tests. | Scient has the same exact fallback bug: inactive pre-tool currently returns `{}` while active sessions already return explicit allow/ask decisions. | High concept and code portability; Easy. Low risk on two provider files with no active overlap. | **Adapt now.** Reimplement the event-aware neutral fallback on the Scient-owned adapter and preserve all other inactive events as `{}`. |
+| `e6eaeb53` | Prevents a globally installed inactive Antigravity PreToolUse hook from denying every tool call in non-Scient sessions. | 5/5; small event-aware fix with POSIX, Windows, direct-script, and active-path tests. | Scient has the same exact fallback bug: inactive pre-tool currently returns `{}` while active sessions already return explicit allow/ask decisions. | High concept portability but Medium direct portability; the later fix depends on `9ceb8f28` and existing installed hooks need a governed repair lifecycle. | **Defer.** A local two-file prototype passed tests but remains unpublished because safe upgrade repair would migrate live plugin artifacts, outside this fast lane. |
 | `96d4f69b` | Makes Tailwind scan utility-class overrides used by the donor UI. | 4/5; focused build/presentation repair. | Scient's styling graph and generated utilities differ; value and correctness are appearance-dependent. | Medium concept portability; Medium. Visual and responsive proof required. | **Defer.** Inspect only with separately authorized human visual acceptance. |
 
 ## Mixed-Commit And Feature Sublanes
@@ -84,23 +84,24 @@ The companion [T3 scheduled review](2026-07-30-t3-code.md) records all 244 commi
 
 ## Ranked Intake Decision
 
-1. `e6eaeb53` inactive Antigravity permission fallback ranks first because it closes a reproduced current gap, is nonvisual, bounded to two provider files, low risk, and independently testable.
+1. `e6eaeb53` inactive Antigravity permission fallback ranks first by user impact and testability, but independent review found that existing installed hooks remain stale until the next managed session; the required repair lifecycle makes it ineligible for this fast lane.
 2. T3 `85a89868` deterministic review-preview safety remains a strong already-implemented draft in desktop PR #164; it is not duplicated.
 3. `c64154db` subtree lifecycle is a real user-data consistency gap, but permanent deletion and partial-failure semantics require a storage/recovery design.
 4. `7ccd7a80`, `58554d42`, and `6a0ee61f` form a valuable transport roadmap, but must begin with Scient measurements and owned compatibility contracts.
 5. `2e3b8df3` could improve asset delivery, but packaging and platform-release proof make it ineligible for this fast lane.
 6. T3 `cbe80520` large-image compression is valuable, but legibility after recompression requires visual judgment prohibited in this automation.
 
-Exactly one new Synara adaptation qualifies for unattended implementation in this run.
+No new adaptation remains fast-lane eligible after independent review.
 
-## Selected Adaptation State
+## Withheld Prototype State
 
-- Scient behavior: outside managed sessions, the global Antigravity hook does not launch packaged Electron; inactive PreToolUse answers `{"decision":"ask"}` to preserve the ordinary permission flow, while other inactive events remain `{}`.
+- Intended Scient behavior after the plugin is rewritten by a subsequent managed session: outside managed sessions, the global Antigravity hook does not launch packaged Electron; inactive PreToolUse answers `{"decision":"ask"}` to preserve the ordinary permission flow, while other inactive events remain `{}`.
 - Lineage: Scient-native reimplementation from donor commits `9ceb8f2876089c755ef6acf32c4708c5cdb71b30` and `e6eaeb53e106390b644846e236a92d7eddfee303`.
-- Owned base/head: `a9d762f8d5f05c5d1fc0042acd909acf892e435c` / `e7794027e699631b73fb95536705004856e65b21` on `maintenance/upstream-antigravity-inactive-hook-20260731`.
-- File impact: two provider files, 146 additions and 12 deletions; production behavior is 24 additions and 4 deletions, with the remainder focused tests.
+- Owned base/head: `a9d762f8d5f05c5d1fc0042acd909acf892e435c` / `4dfc10150d1f7f7cf69065cf8f121d92abe3bbcc` on the local-only branch `maintenance/upstream-antigravity-inactive-hook-20260731`.
+- File impact: two provider files, 146 additions and 12 deletions; production behavior is 24 additions and 4 deletions, with the remainder focused tests. The follow-up commit only stabilizes test timeouts and pipe size.
 - Verification: focused Antigravity 15/15, full `bun run test` 12/12 tasks, full identity/format/lint/typecheck, server and desktop builds, release smoke, diff checks, and clean-worktree confirmation passed. Lint reported only the existing warning baseline.
-- Limitations: Windows command generation is unit-tested but was not executed on Windows. No browser, visual, screenshot, geometry, computer-use, or manual UI acceptance was performed.
+- Review result: correctness found and resolved a synchronous-pipe test flake; security found an unresolved P2 because already-installed hooks are not repaired until the next managed session. The branch is not published and is not an implemented adaptation for release/governance purposes.
+- Limitations: a safe repair path would update live plugin artifacts and needs explicit lifecycle/migration authority. Windows command generation is unit-tested but was not executed on Windows. No browser, visual, screenshot, geometry, computer-use, or manual UI acceptance was performed.
 
 ## Proposed Checkpoint
 
