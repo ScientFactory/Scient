@@ -22,6 +22,10 @@ jobs:
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: 24
+      - name: Test workspace bootstrap safety
+        run: |
+          /bin/bash -n scripts/bootstrap-workspace.sh scripts/bootstrap-workspace.test.sh
+          /bin/bash scripts/bootstrap-workspace.test.sh
       - name: Verify committed Gate 1.5 evidence
         run: node lab/scripts/verify-gate-1-5-manifest.mjs
       - name: Test owned-source evidence tooling
