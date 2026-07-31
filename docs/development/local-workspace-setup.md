@@ -73,6 +73,8 @@ The bootstrap command:
 - leaves an existing valid checkout's branch, files, index, remotes, and local
   changes untouched;
 - stages each clone in a temporary directory before moving it into place;
+- rejects symbolic-link destinations so repository scope cannot escape the
+  selected workspace parent;
 - stops when a destination is not a Git checkout, has no `origin`, or points to
   another repository; and
 - never fetches, pulls, switches, cleans, resets, installs dependencies, creates
@@ -104,7 +106,8 @@ assuming one workspace-wide package command.
 ### GitHub CLI is not authenticated
 
 Run `gh auth login`, confirm the intended account and Git protocol, and rerun
-the bootstrap. The command never prints or stores credentials.
+the bootstrap. Origin validation errors never print the configured remote URL,
+and the command never prints or stores credentials.
 
 ### A destination already exists
 

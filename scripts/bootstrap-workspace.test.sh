@@ -30,6 +30,14 @@ assert_contains() {
   grep -Fq "$expected" "$path" || fail "expected '$expected' in $path"
 }
 
+assert_not_contains() {
+  local path=$1
+  local unexpected=$2
+  if grep -Fq "$unexpected" "$path"; then
+    fail "did not expect '$unexpected' in $path"
+  fi
+}
+
 fake_bin="$TEST_ROOT/bin"
 mkdir -p "$fake_bin"
 
@@ -97,7 +105,51 @@ ln -s "$TEST_ROOT/missing-target" "$symlink_workspace/scient-agent"
 if "$BOOTSTRAP" --workspace "$symlink_workspace" >"$TEST_ROOT/symlink.out" 2>&1; then
   fail "occupied symlink destination should fail"
 fi
-assert_contains "$TEST_ROOT/symlink.out" "not a Git checkout"
+assert_contains "$TEST_ROOT/symlink.out" "symbolic link"
+
+live_symlink_target="$TEST_ROOT/live-symlink-target"
+git init -q "$live_symlink_target"
+git -C "$live_symlink_target" remote add origin \
+  https://github.com/ScientFactory/scient-agent.git
+live_symlink_workspace="$TEST_ROOT/live-symlink-workspace"
+mkdir -p "$live_symlink_workspace"
+ln -s "$live_symlink_target" "$live_symlink_workspace/scient-agent"
+if "$BOOTSTRAP" --workspace "$live_symlink_workspace" >"$TEST_ROOT/live-symlink.out" 2>&1; then
+  fail "live symlink destination should fail"
+fi
+assert_contains "$TEST_ROOT/live-symlink.out" "symbolic link"
+
+credential_workspace="$TEST_ROOT/credential-workspace"
+mkdir -p "$credential_workspace/Scient"
+git init -q "$credential_workspace/Scient"
+git -C "$credential_workspace/Scient" remote add origin \
+  https://example-user:SECRET_CREDENTIAL_SENTINEL@github.com/ScientFactory/Scient.git
+if "$BOOTSTRAP" --workspace "$credential_workspace" --dry-run >"$TEST_ROOT/credential.out" 2>&1; then
+  fail "credential-bearing origin should fail"
+fi
+assert_contains "$TEST_ROOT/credential.out" "not a supported HTTPS or SSH GitHub URL"
+assert_not_contains "$TEST_ROOT/credential.out" "SECRET_CREDENTIAL_SENTINEL"
+
+malformed_workspace="$TEST_ROOT/malformed-workspace"
+mkdir -p "$malformed_workspace/Scient"
+git init -q "$malformed_workspace/Scient"
+git -C "$malformed_workspace/Scient" remote add origin \
+  "https://github.com/ScientFactory/Scient.git?token=SECRET_PATH_SENTINEL"
+if "$BOOTSTRAP" --workspace "$malformed_workspace" --dry-run >"$TEST_ROOT/malformed.out" 2>&1; then
+  fail "malformed GitHub origin should fail"
+fi
+assert_contains "$TEST_ROOT/malformed.out" "not a supported HTTPS or SSH GitHub URL"
+assert_not_contains "$TEST_ROOT/malformed.out" "SECRET_PATH_SENTINEL"
+
+http_workspace="$TEST_ROOT/http-workspace"
+mkdir -p "$http_workspace/Scient"
+git init -q "$http_workspace/Scient"
+git -C "$http_workspace/Scient" remote add origin \
+  http://github.com/ScientFactory/Scient.git
+if "$BOOTSTRAP" --workspace "$http_workspace" --dry-run >"$TEST_ROOT/http.out" 2>&1; then
+  fail "plaintext HTTP origin should fail"
+fi
+assert_contains "$TEST_ROOT/http.out" "not a supported HTTPS or SSH GitHub URL"
 
 wrong_workspace="$TEST_ROOT/wrong-workspace"
 mkdir -p "$wrong_workspace/scient-agent"
@@ -106,6 +158,7 @@ git -C "$wrong_workspace/scient-agent" remote add origin https://github.com/exam
 if "$BOOTSTRAP" --workspace "$wrong_workspace" >"$TEST_ROOT/wrong.out" 2>&1; then
   fail "wrong origin should fail"
 fi
-assert_contains "$TEST_ROOT/wrong.out" "expected ScientFactory/scient-agent"
+assert_contains "$TEST_ROOT/wrong.out" \
+  "expected GitHub repository ScientFactory/scient-agent"
 
 printf 'PASS: workspace bootstrap safety and idempotency\n'

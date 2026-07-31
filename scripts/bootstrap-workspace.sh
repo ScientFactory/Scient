@@ -79,7 +79,7 @@ canonical_github_repo() {
   local repo
 
   case "$url" in
-    https://github.com/*|http://github.com/*)
+    https://github.com/*)
       repo=${url#*github.com/}
       ;;
     git@github.com:*)
@@ -94,6 +94,7 @@ canonical_github_repo() {
   esac
 
   repo=${repo%.git}
+  [[ "$repo" =~ ^[A-Za-z0-9][A-Za-z0-9-]*/[A-Za-z0-9_.-]+$ ]] || return 1
   printf '%s\n' "$repo" | tr '[:upper:]' '[:lower:]'
 }
 
@@ -104,6 +105,8 @@ validate_checkout() {
   local origin_url
   local actual_repo
 
+  [[ ! -L "$destination" ]] ||
+    fail "destination is a symbolic link; expected a direct Git checkout: $destination"
   [[ -d "$destination" ]] ||
     fail "destination exists but is not a Git checkout directory: $destination"
 
@@ -116,10 +119,10 @@ validate_checkout() {
   origin_url=$(git -C "$destination" remote get-url origin 2>/dev/null) ||
     fail "checkout has no origin remote: $destination"
   actual_repo=$(canonical_github_repo "$origin_url") ||
-    fail "checkout origin is not a supported GitHub URL: $destination ($origin_url)"
+    fail "checkout origin is not a supported HTTPS or SSH GitHub URL for $expected_repo: $destination"
 
   [[ "$actual_repo" == "$(printf '%s' "$expected_repo" | tr '[:upper:]' '[:lower:]')" ]] ||
-    fail "destination points to $actual_repo, expected $expected_repo: $destination"
+    fail "destination does not point to expected GitHub repository $expected_repo: $destination"
 }
 
 repositories=(
