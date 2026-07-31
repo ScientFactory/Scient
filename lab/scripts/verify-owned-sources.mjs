@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { existsSync, readFileSync } from "node:fs";
+import { appendFileSync, existsSync, readFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -106,7 +106,21 @@ async function fetchJson(url, fetchImpl) {
   return response.json();
 }
 
-export async function verifyOwnedSources(manifest, options = {}) {
+function expectedRemoteState(source) {
+  return {
+    ownedRepository: source.ownedRepository,
+    ownedDefaultBranch: source.ownedDefaultBranch,
+    officialRepository: source.officialRepository,
+    officialDefaultBranch: source.officialDefaultBranch,
+    updateMode: source.updateMode,
+    reviewedThrough: source.reviewedThrough,
+    reviewedAt: source.reviewedAt,
+    integrationBase: source.integrationBase,
+    reviewRecord: `ScientFactory/Scient:${source.reviewRecord}`,
+  };
+}
+
+export async function verifyPinnedOwnedSourceEvidence(manifest, options = {}) {
   const root = options.root ?? repoRoot;
   const fetchImpl = options.fetchImpl ?? fetch;
   const sources = validateOwnedSourcesManifest(manifest, root, options.maintainedSources);
@@ -114,17 +128,7 @@ export async function verifyOwnedSources(manifest, options = {}) {
   for (const source of sources) {
     const rawUrl = `https://raw.githubusercontent.com/${source.ownedRepository}/${source.testedHead}/upstream-state.json`;
     const state = await fetchJson(rawUrl, fetchImpl);
-    const expectedState = {
-      ownedRepository: source.ownedRepository,
-      ownedDefaultBranch: source.ownedDefaultBranch,
-      officialRepository: source.officialRepository,
-      officialDefaultBranch: source.officialDefaultBranch,
-      updateMode: source.updateMode,
-      reviewedThrough: source.reviewedThrough,
-      reviewedAt: source.reviewedAt,
-      integrationBase: source.integrationBase,
-      reviewRecord: `ScientFactory/Scient:${source.reviewRecord}`,
-    };
+    const expectedState = expectedRemoteState(source);
     for (const [field, expected] of Object.entries(expectedState)) {
       if (state?.[field] !== expected) {
         fail(`${source.ownedRepository} upstream-state.json ${field} expected ${expected}, received ${state?.[field]}`);
@@ -138,19 +142,164 @@ export async function verifyOwnedSources(manifest, options = {}) {
         `${source.ownedRepository} default branch expected ${source.ownedDefaultBranch}, received ${repository?.default_branch}`,
       );
     }
-    const refUrl = `${repositoryUrl}/git/ref/heads/${encodeURIComponent(source.ownedDefaultBranch)}`;
-    const ref = await fetchJson(refUrl, fetchImpl);
-    if (ref?.object?.sha !== source.testedHead) {
-      fail(`${source.ownedRepository} ${source.ownedDefaultBranch} expected ${source.testedHead}, received ${ref?.object?.sha}`);
+  }
+  return sources;
+}
+
+export async function collectOwnedSourceFreshness(manifest, options = {}) {
+  const root = options.root ?? repoRoot;
+  const fetchImpl = options.fetchImpl ?? fetch;
+  const sources = options.sources ?? validateOwnedSourcesManifest(manifest, root, options.maintainedSources);
+  const results = [];
+
+  for (const source of sources) {
+    const repositoryUrl = `https://api.github.com/repos/${source.ownedRepository}`;
+    try {
+      if (options.verifyDefaultBranch !== false) {
+        const repository = await fetchJson(repositoryUrl, fetchImpl);
+        if (repository?.default_branch !== source.ownedDefaultBranch) {
+          results.push({
+            repository: source.ownedRepository,
+            branch: source.ownedDefaultBranch,
+            testedHead: source.testedHead,
+            observedHead: undefined,
+            status: "unknown",
+            detail: `default branch expected ${source.ownedDefaultBranch}, received ${repository?.default_branch}`,
+          });
+          continue;
+        }
+      }
+
+      const refUrl = `${repositoryUrl}/git/ref/heads/${encodeURIComponent(source.ownedDefaultBranch)}`;
+      const ref = await fetchJson(refUrl, fetchImpl);
+      const observedHead = ref?.object?.sha;
+      if (!SHA.test(String(observedHead))) {
+        throw new Error(`invalid head received: ${observedHead}`);
+      }
+      results.push({
+        repository: source.ownedRepository,
+        branch: source.ownedDefaultBranch,
+        testedHead: source.testedHead,
+        observedHead,
+        status: observedHead === source.testedHead ? "current" : "stale",
+      });
+    } catch (error) {
+      results.push({
+        repository: source.ownedRepository,
+        branch: source.ownedDefaultBranch,
+        testedHead: source.testedHead,
+        observedHead: undefined,
+        status: "unknown",
+        detail: error instanceof Error ? error.message : String(error),
+      });
     }
   }
+  return results;
+}
+
+export function requireKnownOwnedSourceFreshness(results) {
+  const unknown = results.filter((result) => result.status === "unknown");
+  if (unknown.length > 0) {
+    fail(
+      `live freshness is unknown for ${unknown.map((result) => `${result.repository} (${result.detail})`).join(", ")}`,
+    );
+  }
+}
+
+export function requireCurrentOwnedSourceHeads(results) {
+  requireKnownOwnedSourceFreshness(results);
+  const stale = results.filter((result) => result.status === "stale");
+  if (stale.length > 0) {
+    fail(
+      stale
+        .map(
+          (result) =>
+            `${result.repository} ${result.branch} expected ${result.testedHead}, received ${result.observedHead}`,
+        )
+        .join("; "),
+    );
+  }
+}
+
+export function formatOwnedSourceFreshnessReport(results) {
+  const lines = [
+    "## Owned-source evidence freshness",
+    "",
+    "| Owned repository | Branch | Tested head | Observed head | Status |",
+    "|---|---|---|---|---|",
+  ];
+  for (const result of results) {
+    const observed = result.observedHead ?? "Not determined";
+    const status = result.status === "current" ? "Current" : result.status === "stale" ? "Stale" : "Unknown";
+    lines.push(
+      `| \`${result.repository}\` | \`${result.branch}\` | \`${result.testedHead}\` | \`${observed}\` | ${status} |`,
+    );
+    if (result.detail) lines.push(`|  |  |  |  | ${result.detail} |`);
+  }
+  lines.push(
+    "",
+    "A stale tested head is informational. It records the last accepted tested snapshot and does not claim to be the live owned head.",
+  );
+  return lines.join("\n");
+}
+
+function escapeWorkflowCommand(value) {
+  return String(value).replaceAll("%", "%25").replaceAll("\r", "%0D").replaceAll("\n", "%0A");
+}
+
+export async function verifyOwnedSources(manifest, options = {}) {
+  const sources = await verifyPinnedOwnedSourceEvidence(manifest, options);
+  const results = await collectOwnedSourceFreshness(manifest, {
+    ...options,
+    sources,
+    verifyDefaultBranch: false,
+  });
+  requireCurrentOwnedSourceHeads(results);
   return sources.length;
 }
 
 async function main() {
   const manifest = JSON.parse(readFileSync(defaultManifestPath, "utf8"));
+  const modes = process.argv.slice(2);
+  const allowedModes = new Set([
+    "--consistency-only",
+    "--verify-pinned",
+    "--require-current-head",
+    "--report-freshness",
+  ]);
+  if (modes.some((mode) => !allowedModes.has(mode)) || modes.length > 1) {
+    fail(`select at most one verifier mode: ${[...allowedModes].join(", ")}`);
+  }
+  const mode = modes[0] ?? "--require-current-head";
+
+  if (mode === "--consistency-only") {
+    const sources = validateOwnedSourcesManifest(manifest);
+    console.log(`Owned source evidence consistency passed (${sources.length} repositories).`);
+    return;
+  }
+  if (mode === "--verify-pinned") {
+    const sources = await verifyPinnedOwnedSourceEvidence(manifest);
+    console.log(`Pinned owned source evidence passed (${sources.length} repositories).`);
+    return;
+  }
+  if (mode === "--report-freshness") {
+    const results = await collectOwnedSourceFreshness(manifest);
+    const report = formatOwnedSourceFreshnessReport(results);
+    console.log(report);
+    if (process.env.GITHUB_STEP_SUMMARY) appendFileSync(process.env.GITHUB_STEP_SUMMARY, `${report}\n`);
+    for (const result of results.filter((entry) => entry.status === "stale")) {
+      console.log(
+        `::warning title=Owned source evidence is stale::${escapeWorkflowCommand(
+          `${result.repository} ${result.branch} tested ${result.testedHead}, observed ${result.observedHead}`,
+        )}`,
+      );
+    }
+    requireKnownOwnedSourceFreshness(results);
+    return;
+  }
+
   const count = await verifyOwnedSources(manifest);
-  console.log(`Owned source evidence passed (${count} repositories).`);
+  console.log(`Current owned source evidence passed (${count} repositories).`);
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
