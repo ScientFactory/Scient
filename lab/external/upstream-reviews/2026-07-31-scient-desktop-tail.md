@@ -1,6 +1,6 @@
 # Upstream Review: Scient Desktop And Synara Tail, 2026-07-31
 
-Status: Draft
+Status: Active
 Owner: Yaacov
 Created: 2026-07-31
 Last updated: 2026-08-01
