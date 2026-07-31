@@ -16,14 +16,14 @@ Doc type: Research evidence
 - Existing contiguous review evidence before this record: `04703ddb..96d4f69b` (31 commits), recorded in `2026-07-30-scient-desktop.md`; its checkpoint remains proposed until the dependent repo-local state is accepted.
 - Review-evidence boundary entering this tail record: `96d4f69bc3f8d48120142b035e8c25faaa096d10`
 - Prior tip captured by this record: `f972bd2eac0913101add6c7563877816eb4c8e21`
-- Bounded observation: 2026-08-01 02:04:08 IDT / 2026-07-31 23:04:08 UTC
-- Current fetched tip at that observation: `7367e77efb56bb37afc4f5288bae9f9cc2bd49f1`
+- Bounded observation: 2026-08-01 02:52:49 IDT / 2026-07-31 23:52:49 UTC
+- Current fetched tip at that observation: `e701d207e5d88787fab77f1daf2683bd84724a03`
 - Current stable release: `v0.6.3`, peeled to `d958a9e583377a30cf4d97fb4c5e1d834eafbf92`
-- Full accepted-boundary range: `04703ddb..7367e77e` (44 commits)
-- Complete tail dispositioned in this record: `96d4f69b..7367e77e` (13 commits)
-- New extension inspected after the prior revision of this record: `f972bd2e..7367e77e` (8 commits)
-- Previously dispositioned by contiguous repository evidence: 31 of 44
-- Dispositioned in this record: 13 of 44
+- Full accepted-boundary range: `04703ddb..e701d207` (45 commits)
+- Complete tail dispositioned in this record: `96d4f69b..e701d207` (14 commits)
+- New extension inspected after the prior revision of this record: `f972bd2e..e701d207` (9 commits)
+- Previously dispositioned by contiguous repository evidence: 31 of 45
+- Dispositioned in this record: 14 of 45
 - Remaining undispositioned: 0
 
 ## Review Depth
@@ -53,6 +53,7 @@ acceptance were performed.
 | `8f334cfa` | Corrects steer activity so ordinary turns do not show duplicate activity while subagent steering remains visible; adds a manual update action for self-updating providers; and further stabilizes transcript anchoring. | 4/5; useful focused tests, but one parent spans runtime projection, provider maintenance/contracts, settings UI, and transcript geometry. | Scient uses different activity and provider contracts. Its update UI already prompts only on confirmed `behind_latest`, avoiding the donor's false-status problem; its transcript seam is owned separately. | High for the steering invariant, medium for manual update UX and anchoring, low parent portability. | Very Hard; provider-event semantics, subagent attribution, updater authority, contracts, settings UI, and virtualized transcript proof. | **Decompose: reimplement the steering projection invariant after a Scient repro; defer a manual self-update action as an independent product lane; adapt anchoring only with the cumulative sequence; reject the mixed parent.** | No parent intake. |
 | `5fa65ecc` | Stops an unknown version check from being treated as an available update for self-updating providers while preserving a manual update action. | 5/5 for the donor contract and tests, with minor unrelated anchoring formatting churn. | Scient's `hasConfirmedProviderUpdate` already requires confirmed `behind_latest`, so it does not have the false-prompt bug. A manual provider-update action remains a separate product opportunity. | None as a bug fix; medium concept fit for the manual action; low code portability. | Medium; updater authority, offline/unknown status, cancellation, provider lifecycle, and settings interaction proof. | **Reject as a duplicate bug fix; defer the independently useful manual-update action; reject formatting-only anchoring churn.** | No. |
 | `7367e77e` | Keeps the transcript tail stable when adjacent virtualized rows use estimated heights, including Thinking/Working header geometry. | 5/5; focused cumulative geometry correction with browser coverage. | Scient owns equivalent message-timeline and tail-spacer seams but has different row composition and lifecycle states. | High concept fit; low direct portability and dependent on all preceding anchoring refinements. | Hard; all adjacent tail gaps, estimated-to-measured transitions, status headers, streaming, responsive layout, and human visual proof. | **Adapt later only as the final part of one cumulative Scient-native transcript-anchoring implementation.** | No partial intake. |
+| `e701d207` | Keeps Cursor, Droid, and Grok session notifications alive after `startSession` returns so assistant text, tools, and usage do not silently disappear; it also documents Claude steer timing and adds a local hybrid-steer probe. | 3/5 as a parent; the three-line lifecycle correction is precise and explains the failure, but the commit adds no regression test and mixes production fixes with a hard-coded `bypassPermissions` probe. | Scient has the same `Effect.forkChild` notification-drain lifetime in all three ACP adapters and the same transferred session scopes, so the user-facing transcript gap is real and the owning seams are `CursorAdapter`, `DroidAdapter`, and `GrokAdapter`. The Claude change is comment-only; the probe has no owned product seam. | High concept and direct-code fit for the three provider drains; none for the probe | Medium for the bounded provider fix; Very Hard and unsafe for the probe | **Decompose: adapt only the three notification drains onto their existing session scopes with Scient-owned lifecycle regressions; learn from the Claude timing note; reject the probe.** | **Yes, one fast-lane candidate:** the nonvisual three-provider session-lifetime correction, provided its clean baseline and focused lifecycle proof pass. |
 
 ## Mixed-Commit Sublanes
 
@@ -78,6 +79,9 @@ acceptance were performed.
 | `712f2950` dock launcher | Do not import; Scient's current launcher is equivalent or better. | Existing dock-launch behavior and packaging checks remain green. |
 | `8f334cfa` steer activity projection | Reproduce duplicate ordinary-turn activity and child-steer attribution through Scient's provider event contracts, then reimplement the target distinction without importing donor lifecycle state. | Parent and subagent steering, repeated and late events, restart/replay, provider switching, projection deduplication, and renderer activity acceptance. |
 | `8f334cfa` and `5fa65ecc` provider update UI | Consider one owned manual-update action only for providers that explicitly support self-update; keep it independent from version-status truth. | Known-behind, known-current, unknown/offline, unsupported/manual modes, cancellation, concurrent update, restart, permissions, accessibility, and packaging. |
+| `e701d207` Cursor/Droid/Grok notification-drain lifetime | Fork each existing notification drain into its already-owned session scope; do not import the parent commit or change provider contracts. | Start returns before a later notification, normal text/tool/usage delivery, startup failure, stop/restart, stale session, concurrent teardown, drain interruption, no leaked fiber, and unchanged provider routing. |
+| `e701d207` Claude steer timing note | Learn only; retain the measured constraint that a queued steer behind a long-running tool is not read until the provider builds its next request. | Revisit documentation only with a maintained Scient-specific provider test or user-facing contract. |
+| `e701d207` `steer-probe2.mjs` | Do not import a hard-coded local executable path, `bypassPermissions`, long-running command, process termination, or disposable research harness into product source. | No proof required; rejection preserves permissions, portability, and repository hygiene. |
 
 ## Intake Decision
 
@@ -90,12 +94,14 @@ steering and promoted-draft recovery remain separate reimplementation
 candidates; the latter still requires a current reproduction. The cumulative
 transcript anchoring and hover features remain later human-validated adaptations. The dock
 launcher and duplicate Codex lane are rejected because Scient already has
-equivalent or better owned behavior.
+equivalent or better owned behavior. The newly observed provider-notification
+lifetime defect is selected as one bounded Scient-native adaptation; the
+Claude comment and local steer probe are not selected.
 
 ## Resulting State
 
-- Complete contiguous Synara evidence now covers through `7367e77efb56bb37afc4f5288bae9f9cc2bd49f1` at the bounded observation above.
-- Proposed repo-local `reviewedThrough`: `7367e77efb56bb37afc4f5288bae9f9cc2bd49f1`. The accepted repo-local checkpoint remains `04703ddb4c951378aca9a1c7b71263b8648efd7f` until dependent desktop PR #171 is updated and accepted.
+- Complete contiguous Synara evidence now covers through `e701d207e5d88787fab77f1daf2683bd84724a03` at the bounded observation above.
+- Proposed repo-local `reviewedThrough`: `e701d207e5d88787fab77f1daf2683bd84724a03`. The accepted repo-local checkpoint remains `04703ddb4c951378aca9a1c7b71263b8648efd7f` until dependent desktop PR #171 is updated and accepted.
 - Literal `integrationBase`: unchanged at `9be46c3ce6a7521b64436b7334bc6fce16e3cac4`.
 - Integrated Scient-native adaptations from `1887615c`: warning normalization through desktop PR #174, merged as `1d965f5d4ea21456e173a3df04677e926e7c96e9`, and checkpoint index seeding through desktop PR #175, merged as tested owned head `aaf81de45909d090e024b00f2b1b528e134d7929`.
 - Rolling issue: close only after the dependent repo-local checkpoint is accepted.
