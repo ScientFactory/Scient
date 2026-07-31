@@ -12,15 +12,17 @@ Doc type: Research evidence
 - Owned repository and branch: `ScientFactory/scient-desktop`, `main`
 - Owned head inspected: `af413e30c2807ad396890a392981ae188fd0353f`
 - Official repository and branch: `Emanuele-web04/synara`, `main`
-- Authoritatively covered boundary: `96d4f69bc3f8d48120142b035e8c25faaa096d10`
 - Repo-local accepted `reviewedThrough`: `04703ddb4c951378aca9a1c7b71263b8648efd7f`
+- Existing contiguous review evidence: `04703ddb..96d4f69b` (31 commits), recorded in `2026-07-30-scient-desktop.md`; its checkpoint remains proposed until the dependent repo-local state is accepted.
+- Highest documented review-evidence boundary: `96d4f69bc3f8d48120142b035e8c25faaa096d10`
 - Last observed tip: `35cab763c9e542b22d65bf910a36e99d33be8455`
 - Current fetched tip: `f972bd2eac0913101add6c7563877816eb4c8e21`
 - Current stable release: `v0.6.3`, peeled to `d958a9e583377a30cf4d97fb4c5e1d834eafbf92`
-- Full required range: `96d4f69b..f972bd2e` (5 commits)
+- Full accepted-boundary range: `04703ddb..f972bd2e` (36 commits)
+- Tail newly inspected in this record: `96d4f69b..f972bd2e` (5 commits)
 - Daily delta from the last observed tip: `35cab763..f972bd2e` (2 commits)
-- Authoritative-covered before this review: 0 of 5
-- Newly dispositioned: 5 of 5
+- Previously dispositioned by contiguous repository evidence: 31 of 36
+- Newly dispositioned: 5 of 36
 - Remaining undispositioned: 0
 
 ## Review Depth
