@@ -19,4 +19,6 @@ Current documents:
 - `security-and-permissions.md` - early security, trust-boundary, and permission principles.
 - `decisions/` - accepted architecture decision records covering the inherited
   foundations, Scient-owned scientific boundary, standalone source-repository
-  ownership, selective upstream authority, and built-in skills activation.
+  ownership, selective upstream authority, built-in skills activation, and the
+  shared operation/capability/provenance boundary used by agents, external MCP,
+  automations, browser work, and scientific evidence capture.
