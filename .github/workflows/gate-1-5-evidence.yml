@@ -5,6 +5,9 @@ on:
   push:
     branches:
       - main
+  schedule:
+    - cron: "23 4 * * 1"
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -14,6 +17,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: 24
@@ -21,5 +26,43 @@ jobs:
         run: node lab/scripts/verify-gate-1-5-manifest.mjs
       - name: Test owned-source evidence verifier
         run: node --test lab/scripts/verify-owned-sources.test.mjs
-      - name: Verify current owned-source evidence
-        run: node lab/scripts/verify-owned-sources.mjs
+      - name: Verify owned-source evidence consistency
+        run: node lab/scripts/verify-owned-sources.mjs --consistency-only
+      - name: Determine owned-source evidence scope
+        id: evidence_scope
+        if: github.event_name == 'pull_request' || github.event_name == 'push'
+        env:
+          BASE_SHA: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.event.before }}
+          HEAD_SHA: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
+        run: |
+          git diff --name-only --diff-filter=ACDMRTUXB "$BASE_SHA" "$HEAD_SHA" -- \
+            lab/external/owned-sources.json \
+            lab/external/sources.lock.md \
+            lab/external/upstream-reviews \
+            lab/scripts/verify-owned-sources.mjs \
+            lab/scripts/verify-owned-sources.test.mjs \
+            .github/workflows/gate-1-5-evidence.yml \
+            > "$RUNNER_TEMP/owned-source-evidence-files"
+          git diff --name-only --diff-filter=ACDMRTUXB "$BASE_SHA" "$HEAD_SHA" -- \
+            lab/external/owned-sources.json \
+            lab/external/sources.lock.md \
+            > "$RUNNER_TEMP/owned-source-snapshot-files"
+          if [[ -s "$RUNNER_TEMP/owned-source-evidence-files" ]]; then
+            echo "evidence_changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "evidence_changed=false" >> "$GITHUB_OUTPUT"
+          fi
+          if [[ -s "$RUNNER_TEMP/owned-source-snapshot-files" ]]; then
+            echo "snapshot_changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "snapshot_changed=false" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Verify pinned owned-source evidence
+        if: steps.evidence_scope.outputs.evidence_changed == 'true' && steps.evidence_scope.outputs.snapshot_changed != 'true'
+        run: node lab/scripts/verify-owned-sources.mjs --verify-pinned
+      - name: Require current owned-source heads for snapshot changes
+        if: steps.evidence_scope.outputs.snapshot_changed == 'true'
+        run: node lab/scripts/verify-owned-sources.mjs --require-current-head
+      - name: Report live owned-source freshness
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: node lab/scripts/verify-owned-sources.mjs --report-freshness

@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-07-18
-Last updated: 2026-07-18
+Last updated: 2026-07-31
 Purpose: Defines the repeatable process for detecting, reviewing, and selectively inheriting changes from Scient's original desktop and agent sources.
 Doc type: Operational procedure
 
@@ -65,6 +65,30 @@ The machine-readable state in each code repository contains repository identity,
 branches, update mode, `reviewedThrough`, `reviewedAt`, `integrationBase`, and a
 review-record reference. `sources.lock.md` is the human-readable cross-repository
 evidence snapshot, not an input parser for the verifier.
+
+## Parent Evidence Verification
+
+Parent CI keeps four evidence questions separate:
+
+- **Local consistency** validates the committed manifest, source-lock rows, and
+  review references without contacting another repository. It is required for
+  every pull request and `main` update.
+- **Pinned integrity** verifies that the `upstream-state.json` at each exact
+  recorded `testedHead` agrees with the parent snapshot. It runs when owned
+  source evidence or its verifier changes.
+- **Current-head strictness** additionally requires each recorded `testedHead`
+  to equal the live owned default-branch head. It runs only when a pull request
+  or push changes the owned-source snapshot in `owned-sources.json` or
+  `sources.lock.md`.
+- **Freshness reporting** compares the accepted tested snapshot with live owned
+  heads on a schedule or manual dispatch. Ordinary head movement is reported as
+  stale but does not fail: a tested head is durable evidence, not a recurring
+  bookkeeping pin. An unavailable or malformed live result remains an error
+  because the workflow cannot honestly report freshness.
+
+These checks do not advance evidence automatically. A strict result is true at
+the time it ran; source movement after that check requires a fresh observation
+when current-head equality matters.
 
 ## Three Activities
 
