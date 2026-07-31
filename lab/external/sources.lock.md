@@ -3,7 +3,7 @@
 Status: Active
 Owner: Scient 001
 Created: 2026-07-08
-Last updated: 2026-07-31
+Last updated: 2026-08-01
 Purpose: Records exact owned and external source provenance, tested owned revisions, and cross-repository upstream review evidence used by Scient.
 Doc type: Research evidence
 
@@ -28,8 +28,8 @@ siblings. A deferred source with no retained checkout says so explicitly.
 |---|---|---|---|---|---|---|
 | Scient agent source (OpenCode-derived) | `../scient-agent/`; preserved primary sibling currently on local `dev` at `709a26002c697f06cbaebeb8fac40e87de0ab6b3`, behind the tested remote head and not used as current-state evidence | `https://github.com/anomalyco/opencode.git`, `dev` | `https://github.com/ScientFactory/scient-agent`, public standalone repository | `69a80663a2ed7d671d2b4d5dd6f2d605714675a5` | Tested owned `origin/dev` `60ed22de93a70d0e2079f545a62eafd8d740aed5`; exact rename and maintenance evidence below | Owned source foundation for the planned Scient agent; `adapter-maintained`; native Scient runtime identity is not yet implemented. |
 | Goose | No local checkout is retained. | `https://github.com/aaif-goose/goose.git`, `main` | None; owned repository deferred | Not tested in Gate 1.5 | Last inspected commit `3c1fdd692cc8aaa5f09b9175410c09a09d4dfe49` | Deferred broader-agent research input. Repository, build, ACP adapter, runtime, credentials, and adoption wait until after the first Scient gateway. |
-| Scient desktop (Synara-derived) | `../scient-desktop/`; preserved primary sibling currently on local `agent/fix-file-link-worktree-resolution-20260726` at `8ff39926789e0479539497a72f6ed90aa1433e2c`, not used as current-state evidence | `https://github.com/Emanuele-web04/synara.git`, `main` | `https://github.com/ScientFactory/scient-desktop`, public standalone repository | `9be46c3ce6a7521b64436b7334bc6fce16e3cac4` | Maintained owned `origin/main` `af413e30c2807ad396890a392981ae188fd0353f`; hosted main run `30621808615` passed all jobs; exact current verification limitations below | Accepted initial application foundation; `divergent-cherry-pick`; must not own scientific project truth. |
-| T3 Code | No canonical local checkout is retained. Disposable fetch-only bare inspection repositories are used and retain no canonical authority. | `https://github.com/pingdotgg/t3code.git`, `main` | None | Not tested in Gate 1.5 | Durable targeted-review boundary remains `bf76535fe4da71d8de7b8bd5ffa0d2086b7af8d0`; the complete scheduled scan through `df78cda8bf9c0971300e1bf35251774d9fbc833a` is recorded in [`2026-07-30-t3-code.md`](upstream-reviews/2026-07-30-t3-code.md), and the complete tail through `acf761b2f511e1918260a8043e151bbc2849e29a` is recorded in [`2026-07-31-t3-code-tail.md`](upstream-reviews/2026-07-31-t3-code-tail.md) | Trigger-driven desktop/runtime/provider/process reference only; not a continuously monitored upstream. |
+| Scient desktop (Synara-derived) | `../scient-desktop/`; preserved primary sibling currently on local `agent/fix-file-link-worktree-resolution-20260726` at `8ff39926789e0479539497a72f6ed90aa1433e2c`, not used as current-state evidence | `https://github.com/Emanuele-web04/synara.git`, `main` | `https://github.com/ScientFactory/scient-desktop`, public standalone repository | `9be46c3ce6a7521b64436b7334bc6fce16e3cac4` | Tested owned `origin/main` `aaf81de45909d090e024b00f2b1b528e134d7929`; hosted main CI run `30665802249` passed all five jobs | Accepted initial application foundation; `divergent-cherry-pick`; must not own scientific project truth. |
+| T3 Code | No canonical local checkout is retained. Disposable fetch-only bare inspection repositories are used and retain no canonical authority. | `https://github.com/pingdotgg/t3code.git`, `main` | None | Not tested in Gate 1.5 | Durable targeted-review boundary remains `bf76535fe4da71d8de7b8bd5ffa0d2086b7af8d0`; complete scheduled evidence covers `df78cda8..bfc31507` (13 commits) through `bfc31507f8483b0ba22cf10f5862947b49b20a53`, recorded in [`2026-07-30-t3-code.md`](upstream-reviews/2026-07-30-t3-code.md) and [`2026-07-31-t3-code-tail.md`](upstream-reviews/2026-07-31-t3-code-tail.md); nightly `v0.0.32-nightly.20260731.968` is at that exact tip | Trigger-driven desktop/runtime/provider/process reference only; not a continuously monitored upstream. |
 
 ## Maintained Upstream Review State
 
@@ -40,7 +40,7 @@ review is accepted.
 
 | Source | Tested owned head | Reviewed through | Integration base | Update mode | Review evidence |
 |---|---|---|---|---|---|
-| Scient desktop | `af413e30c2807ad396890a392981ae188fd0353f` | `04703ddb4c951378aca9a1c7b71263b8648efd7f` on 2026-07-29 | `9be46c3ce6a7521b64436b7334bc6fce16e3cac4` | `divergent-cherry-pick` | [`2026-07-28-scient-desktop.md`](upstream-reviews/2026-07-28-scient-desktop.md); Scient PR #65 accepted the disposition record as merge `78f2816b7ad18956e695431fda3e3d111fc5e9b8`, and desktop PR #147 accepted the repo-local checkpoint as merge `a9d762f8d5f05c5d1fc0042acd909acf892e435c`; hosted current-main run `30621808615` passed all jobs; [`2026-07-30-scient-desktop.md`](upstream-reviews/2026-07-30-scient-desktop.md) and [`2026-07-31-scient-desktop-tail.md`](upstream-reviews/2026-07-31-scient-desktop-tail.md) provide complete contiguous disposition evidence through `f972bd2eac0913101add6c7563877816eb4c8e21` and propose that repo-local checkpoint without advancing the literal integration base |
+| Scient desktop | `aaf81de45909d090e024b00f2b1b528e134d7929` | `04703ddb4c951378aca9a1c7b71263b8648efd7f` on 2026-07-29 | `9be46c3ce6a7521b64436b7334bc6fce16e3cac4` | `divergent-cherry-pick` | [`2026-07-28-scient-desktop.md`](upstream-reviews/2026-07-28-scient-desktop.md); Scient PR #65 accepted the disposition record as merge `78f2816b7ad18956e695431fda3e3d111fc5e9b8`, and desktop PR #147 accepted the repo-local checkpoint as merge `a9d762f8d5f05c5d1fc0042acd909acf892e435c`; hosted main CI run `30665802249` passed all five jobs at the tested head; [`2026-07-30-scient-desktop.md`](upstream-reviews/2026-07-30-scient-desktop.md) and [`2026-07-31-scient-desktop-tail.md`](upstream-reviews/2026-07-31-scient-desktop-tail.md) provide complete contiguous disposition evidence through `712f2950c83fecd98a83353fbaa1baf2e41fde3e` (`04703ddb..712f2950`, 40 commits). Dependent desktop PR #171 remains the unaccepted repo-local checkpoint vehicle, so the accepted `reviewedThrough` above is intentionally unchanged. Scient-native adaptations were integrated separately through desktop PR #174 as merge `1d965f5d4ea21456e173a3df04677e926e7c96e9` and PR #175 as merge `aaf81de45909d090e024b00f2b1b528e134d7929`, without donor commit ancestry or a literal integration-base advance. |
 | Scient agent source | `60ed22de93a70d0e2079f545a62eafd8d740aed5` | `fab213312927ea64cf968832c527206e8c944f9e` on 2026-07-18 | `69a80663a2ed7d671d2b4d5dd6f2d605714675a5` | `adapter-maintained` | [`2026-07-18-scient-agent.md`](upstream-reviews/2026-07-18-scient-agent.md); current owned head passed hosted Scient quality run `30305988037`; no code intake |
 
 ## Standalone Ownership And Maintenance Rollout
@@ -197,6 +197,15 @@ source-repository pull requests:
   ownership, identity, migration lineage, typecheck, unit, browser, build,
   release smoke, Windows process, and platform HTML-preview checks across all
   five jobs.
+- Desktop [PR #174](https://github.com/ScientFactory/scient-desktop/pull/174)
+  integrated the bounded Scient-native Codex warning-normalization adaptation
+  as merge `1d965f5d4ea21456e173a3df04677e926e7c96e9`. Desktop
+  [PR #175](https://github.com/ScientFactory/scient-desktop/pull/175)
+  integrated the bounded checkpoint index stat-cache adaptation as merge
+  `aaf81de45909d090e024b00f2b1b528e134d7929`. Hosted main CI run
+  `30665802249` passed all five jobs at that exact tested head. These are
+  independent Scient-native adaptations from reviewed behavior, not donor
+  commit ancestry, and they do not advance the literal integration base.
 - Agent [PR #1](https://github.com/ScientFactory/scient-agent/pull/1)
   established the operator card, review state, verifier modes, owned source
   quality workflow, and monitor; exact head
@@ -263,9 +272,10 @@ source-repository pull requests:
   quality run `30305988037` passed. This documentation change does not advance
   the reviewed official checkpoint or integration base.
 
-No source code from the reviewed official ranges was integrated during this
-rollout. The PRs above establish ownership, review, monitoring, and verification
-machinery only.
+No donor source code or commit ancestry from the reviewed official ranges was
+integrated during the foundational ownership rollout. Later bounded
+Scient-native adaptations are recorded explicitly above; they do not turn
+review evidence into a contiguous upstream integration base.
 
 Gate 1.5 immutable tags in both owned repositories:
 
