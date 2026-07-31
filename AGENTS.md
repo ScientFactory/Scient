@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-07-27
+Last updated: 2026-07-31
 Purpose: Defines how agents should work in this early Scient repository.
 Doc type: Agent protocol
 
@@ -54,6 +54,9 @@ non-Git container with the three core repositories as sibling checkouts:
 source pins. `scient-desktop/` owns the application implementation.
 `scient-agent/` owns the OpenCode-derived native-agent source foundation. Add
 `website/` only when website or download-surface work needs it.
+
+Use the [local workspace setup](docs/development/local-workspace-setup.md) to
+create or validate this layout without modifying correct existing checkouts.
 
 Starting an agent from the parent workspace gives it cross-repository read
 context; it does not give every task cross-repository write scope. Identify the

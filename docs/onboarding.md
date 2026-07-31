@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-07-12
-Last updated: 2026-07-27
+Last updated: 2026-07-31
 Purpose: Gives new Scient collaborators a deliberate reading journey through the project, its repository, and its sources of truth before task-specific work begins.
 Doc type: Repo orientation
 
@@ -22,10 +22,11 @@ Complete the shared reading journey before starting the contribution-area route 
 ## Internal Team Workspace Setup
 
 Before starting internal repository work, team contributors must complete the
-[local workspace setup](../README.md#related-repositories-and-local-workspace)
-documented in the Scient README. Open that plain parent directory as the editor
-or agent workspace so the private product documentation, desktop source, and
-agent source are available in one context. Follow the [GitHub operating
+[local workspace setup](development/local-workspace-setup.md). The root
+[Scient README](../README.md#related-repositories-and-local-workspace) owns the
+repository roles and workspace shape. Open that plain parent directory as the
+editor or agent workspace so the private product documentation, desktop source,
+and agent source are available in one context. Follow the [GitHub operating
 model](operations/github-operating-model.md#local-worktrees) for worktree
 placement and repository boundaries.
 

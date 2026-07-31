@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-07-22
+Last updated: 2026-07-31
 Purpose: Maps the Scient documentation structure and where each kind of information belongs.
 Doc type: Repo orientation
 
@@ -48,5 +48,6 @@ Start here:
 - [Quality](quality/README.md) - quality principles and testing philosophy.
 - [Planning](planning/README.md) - plans that guide upcoming work.
 - [Research](research/README.md) - external source evaluations, spikes, visual references, and raw or synthesized research.
-- [Development](development/README.md) - development documentation once code exists.
+- [Development](development/README.md) - implemented contributor setup and
+  future code, command, testing, and configuration documentation.
 - [Operations](operations/README.md) - active maintenance procedures, beginning with upstream monitoring, review, and selective intake.

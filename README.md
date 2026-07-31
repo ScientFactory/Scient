@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-07-27
+Last updated: 2026-07-31
 Purpose: Entry point for the Scient product and project repository.
 Doc type: Repo orientation
 
@@ -51,6 +51,11 @@ context. That broader read context does not broaden write authority: identify
 the owning child repository before editing, and run Git commands, create
 branches, and open pull requests there. Keep temporary worktrees outside the
 workspace root.
+
+Internal contributors can create or validate this layout with the
+[local workspace bootstrap](docs/development/local-workspace-setup.md). The
+command clones only missing sibling repositories and leaves correct existing
+checkouts untouched.
 
 Because the workspace root is a plain local container, it has no
 version-controlled agent instructions of its own. Before an agent acts from
