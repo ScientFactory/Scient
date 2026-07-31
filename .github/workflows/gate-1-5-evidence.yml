@@ -5,6 +5,9 @@ on:
   push:
     branches:
       - main
+  schedule:
+    - cron: "23 4 * * 1"
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -14,12 +17,34 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: 24
+      - name: Test workspace bootstrap safety
+        run: |
+          /bin/bash -n scripts/bootstrap-workspace.sh scripts/bootstrap-workspace.test.sh
+          /bin/bash scripts/bootstrap-workspace.test.sh
       - name: Verify committed Gate 1.5 evidence
         run: node lab/scripts/verify-gate-1-5-manifest.mjs
-      - name: Test owned-source evidence verifier
-        run: node --test lab/scripts/verify-owned-sources.test.mjs
-      - name: Verify current owned-source evidence
-        run: node lab/scripts/verify-owned-sources.mjs
+      - name: Test owned-source evidence tooling
+        run: node --test lab/scripts/verify-owned-sources.test.mjs lab/scripts/owned-source-evidence-scope.test.mjs
+      - name: Verify owned-source evidence consistency
+        run: node lab/scripts/verify-owned-sources.mjs --consistency-only
+      - name: Determine owned-source evidence scope
+        id: evidence_scope
+        if: github.event_name == 'pull_request' || github.event_name == 'push'
+        env:
+          BASE_SHA: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.event.before }}
+          HEAD_SHA: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
+        run: node lab/scripts/owned-source-evidence-scope.mjs
+      - name: Verify pinned owned-source evidence
+        if: steps.evidence_scope.outputs.evidence_changed == 'true' && steps.evidence_scope.outputs.snapshot_changed != 'true'
+        run: node lab/scripts/verify-owned-sources.mjs --verify-pinned
+      - name: Require current owned-source heads for snapshot changes
+        if: steps.evidence_scope.outputs.snapshot_changed == 'true'
+        run: node lab/scripts/verify-owned-sources.mjs --require-current-head
+      - name: Report live owned-source freshness
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: node lab/scripts/verify-owned-sources.mjs --report-freshness

@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-07-12
-Last updated: 2026-07-27
+Last updated: 2026-07-31
 Purpose: Gives new Scient collaborators a deliberate reading journey through the project, its repository, and its sources of truth before task-specific work begins.
 Doc type: Repo orientation
 
@@ -22,10 +22,11 @@ Complete the shared reading journey before starting the contribution-area route 
 ## Internal Team Workspace Setup
 
 Before starting internal repository work, team contributors must complete the
-[local workspace setup](../README.md#related-repositories-and-local-workspace)
-documented in the Scient README. Open that plain parent directory as the editor
-or agent workspace so the private product documentation, desktop source, and
-agent source are available in one context. Follow the [GitHub operating
+[local workspace setup](development/local-workspace-setup.md). The root
+[Scient README](../README.md#related-repositories-and-local-workspace) owns the
+repository roles and workspace shape. Open that plain parent directory as the
+editor or agent workspace so the private product documentation, desktop source,
+and agent source are available in one context. Follow the [GitHub operating
 model](operations/github-operating-model.md#local-worktrees) for worktree
 placement and repository boundaries.
 
@@ -42,10 +43,10 @@ Scient is a local-first, cloud-mirrored scientific workspace where researchers, 
 This parent repository remains documentation-first. It contains accepted
 product direction, evolving architecture and planning, source-backed research,
 quality principles, and controlled lab experiments. The standalone desktop
-source repository contains the first narrow Scient-owned
-project-initiation package, but it does not yet contain the complete scientific
-application, vertical slice, or the development and operational workflows that
-the documents anticipate.
+source repository contains the first narrow Scient-owned project-initiation
+package, but it does not yet contain the complete scientific application or
+vertical slice, and many anticipated development and operational workflows
+remain incomplete.
 
 For internal local work, `Scient`, `scient-desktop`, and `scient-agent` are the
 core independent sibling repositories; `website` is optional when its surface
@@ -81,15 +82,16 @@ Keep that maturity boundary in mind throughout onboarding:
 
 The repository's documentation structure is an intentional foundation for the project, not a claim that every part of Scient has already been designed or built. The [Documentation index](README.md) establishes the main knowledge areas, and the [Documentation Policy](documentation-policy.md) defines how material enters those areas and becomes trustworthy. Product, architecture, planning, research, design, quality, development, and operations work should grow on top of this base instead of creating disconnected documents or competing sources of truth.
 
-Many files are deliberately marked `Placeholder`. For example, the
-[Development](development/README.md) document reserves homes for workflows that
-do not exist yet. The [Operations](operations/README.md) area now combines real
-active procedures with future operational homes, so follow each linked
-document's own status. Other placeholder files reserve future homes within
-their areas. A placeholder should explain what will belong there, why the file
-exists, and what it must not be used as today. It is not an accepted decision,
-current guidance, an implementation specification, or evidence that the
-described system exists.
+Many files are deliberately marked `Placeholder`. The
+[Development](development/README.md) index is now `Active` because it owns the
+implemented local workspace setup while still listing placeholder future homes
+such as TypeScript conventions. The [Operations](operations/README.md) area
+combines real active procedures with future operational homes, so follow each
+linked document's own status. Other placeholder files reserve future homes
+within their areas. A placeholder should explain what will belong there, why
+the file exists, and what it must not be used as today. It is not an accepted
+decision, current guidance, an implementation specification, or evidence that
+the described system exists.
 
 As Scient matures, collaborators should build on this documentation base deliberately:
 
@@ -132,7 +134,7 @@ After the shared journey, use this map to know where to look. You do not need to
 | Research | [Research](research/README.md) | External-source evaluations, spike reports, visual references, and research evidence. Research must be promoted before it becomes product or architecture authority. |
 | Design | [Design](design/README.md) | Early design notes, future design homes, and surface-specific guidance. Much of this area is still draft or placeholder material. |
 | Quality | [Quality](quality/README.md) | Testing, engineering, and quality doctrine. These documents define principles, not yet-complete command or CI references. |
-| Development | [Development](development/README.md) | A placeholder for setup, commands, package structure, APIs, and development workflows once real implementation surfaces exist. |
+| Development | [Development](development/README.md) | Implemented contributor workspace setup plus future homes for commands, package structure, APIs, and additional development workflows. |
 | Operations | [Operations](operations/README.md) | Active contribution, repository-operation, and upstream-intake procedures, plus future homes for additional operational workflows as their surfaces become real. |
 | Experimental work | [Scient Lab](../lab/README.md) | Controlled source inspection, forks, adapters, prototypes, and verification evidence. Nothing here is accepted architecture or current product implementation unless it has been promoted. |
 | Agent workflows | [Project Skills](../skills/README.md) | Workflow helpers for agents. Skills route agents back to project authority; they do not become authority themselves. |
