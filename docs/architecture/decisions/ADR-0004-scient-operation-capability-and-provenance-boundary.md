@@ -48,6 +48,9 @@ infrastructure.
    trusted as proof. Execution emits an immutable result/effect receipt tying
    the resolved request to the authorization decision, timestamps, outcome or
    error, and the identities or hashes of affected records and artifacts.
+   Current authority is revalidated when execution starts and immediately
+   before a protected effect commits. Revocation fences queued and in-flight
+   work, and a completion authorized against a stale generation cannot commit.
 3. Initial actor kinds are manual user action, provider-thread agent, external
    MCP integration, and automation run. New actor kinds must enter through the
    same authority boundary rather than bypassing it.
@@ -56,6 +59,11 @@ infrastructure.
    scientific-record propose/accept, export, and other consequential powers
    remain distinct. A lower-privileged actor cannot launder work through a
    higher-privileged thread or automation.
+   An idempotency key is bound to the actor, project, operation, canonical
+   payload, and authority generation; reuse with different inputs conflicts.
+   A retry receives the durable original terminal result. Protected mutations
+   use expected-version or equivalent preconditions and an atomic commit or an
+   explicit compensating recovery so restart cannot duplicate an effect.
 5. The manual UI, provider gateways, external MCP, and automations are adapters
    over the same operation services. Their transport, lifecycle, and UX may
    differ; their authorization and product semantics may not.
@@ -63,11 +71,19 @@ infrastructure.
    and expiring credentials, immediate revocation, bounded rates and
    concurrency, and explicitly selected existing projects by default. It does
    not silently grant all current or future projects, expose raw absolute paths
-   by default, or inherit a provider thread's authority.
+   by default, or inherit a provider thread's authority. Pairing is
+   owner-approved, one-use, and short-lived; consent names exact projects and
+   capabilities. The client credential is shown once, while Scient stores only
+   a hash. Credentials support rotation and are excluded from prompts, logs,
+   receipts, URLs, and support bundles. The default bridge is local-only or
+   loopback with runtime proof. Remote operation requires a separately reviewed
+   authenticated TLS design and never sends a plaintext bearer credential.
 7. Automations store an inspectable grant snapshot and create a fresh actor for
-   every run. Their schedule, retries, worktree, thread, transcript, and memory
-   are execution state. They may propose or invoke scientific operations but
-   never become scientific truth merely by completing successfully.
+   every run. At each run, resume, or future retry, that snapshot is intersected
+   with current policy and revocation state; it never preserves revoked power.
+   Their schedule, retry policy, worktree, thread, transcript, and memory are
+   execution state. They may propose or invoke scientific operations but never
+   become scientific truth merely by completing successfully.
 8. Browser control is split into read, capture, and action capabilities and is
    bound to the visible Scient browser, an owned browser-session lease, and an
    exact target. Navigation, human takeover, target replacement, or revocation
@@ -78,10 +94,14 @@ infrastructure.
    operation provenance, and redaction decisions. Prompt-injection signals and
    uncertainty remain visible rather than being converted into instructions.
 10. Durable scientific annotations and evidence are project-owned,
-    inspectable, editable, and recoverable records. DOM selectors, screenshots,
-    chat messages, agent memory, and browser sessions may be supporting
-    receipts, but they are not canonical records. Capture creates a proposal;
-    acceptance is a distinct Scient-owned operation.
+    inspectable, correctable, and recoverable records. Their provenance and
+    acceptance receipts are immutable and append-only. Corrections create
+    versioned successors or supersessions; a material content, source, or hash
+    change creates a new proposal that requires acceptance. Expected-version
+    conflict checks prevent stale overwrite. DOM selectors, screenshots, chat
+    messages, agent memory, and browser sessions may be supporting receipts,
+    but they are not canonical records. Capture creates a proposal; acceptance
+    is a distinct Scient-owned operation.
 11. The operation core is organized as a host-independent service boundary.
     Desktop, provider, browser, persistence, filesystem, Git, and future agent
     implementations are adapters. Donor code may supply bounded transport,
