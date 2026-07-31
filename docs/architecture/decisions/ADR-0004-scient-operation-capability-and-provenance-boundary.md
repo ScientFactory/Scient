@@ -177,4 +177,3 @@ an equivalent stronger boundary with proven migration and rollback.
 Do not weaken project scoping, explicit authority, provenance, or the separation
 between execution state and accepted scientific truth merely to reduce adapter
 work.
-
