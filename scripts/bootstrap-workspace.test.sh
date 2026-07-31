@@ -66,6 +66,13 @@ cat >"$fake_bin/mv" <<'EOF'
 #!/usr/bin/env bash
 set -euo pipefail
 
+if [[ "${MV_TEST_FORCE_FAILURE:-false}" == true ]]; then
+  exit 73
+fi
+if [[ "${MV_TEST_STATUS_ZERO_NOOP:-false}" == true ]]; then
+  exit 0
+fi
+
 if [[ -n "${MV_TEST_COLLISION_PATH:-}" ]]; then
   case "${MV_TEST_COLLISION_KIND:-}" in
     empty-directory)
@@ -94,6 +101,11 @@ export PATH="$fake_bin:$PATH"
 
 option_workspace_root="$TEST_ROOT/option-workspace-root"
 mkdir -p "$option_workspace_root"
+if (cd "$option_workspace_root" && "$BOOTSTRAP" --workspace "") >"$TEST_ROOT/empty-option.out" 2>&1; then
+  fail "empty workspace value should fail"
+fi
+assert_contains "$TEST_ROOT/empty-option.out" "requires a non-empty path"
+assert_missing "$GH_TEST_LOG"
 if (cd "$option_workspace_root" && "$BOOTSTRAP" --workspace --dry-run) >"$TEST_ROOT/option.out" 2>&1; then
   fail "option-looking workspace value should fail"
 fi
@@ -311,5 +323,23 @@ assert_contains "$TEST_ROOT/promotion-symlink.out" "appeared during promotion"
 assert_contains "$collision_symlink_target/preserved.txt" "preserve symlink target"
 assert_missing "$collision_symlink_target/.git"
 assert_missing "$collision_symlink_target/Scient"
+
+promotion_failure_workspace="$TEST_ROOT/promotion-failure"
+mkdir -p "$promotion_failure_workspace"
+if MV_TEST_FORCE_FAILURE=true \
+  "$BOOTSTRAP" --workspace "$promotion_failure_workspace" >"$TEST_ROOT/promotion-failure.out" 2>&1; then
+  fail "non-collision promotion failure should fail"
+fi
+assert_contains "$TEST_ROOT/promotion-failure.out" "could not promote staged clone"
+assert_missing "$promotion_failure_workspace/Scient"
+
+promotion_noop_workspace="$TEST_ROOT/promotion-status-zero-noop"
+mkdir -p "$promotion_noop_workspace"
+if MV_TEST_STATUS_ZERO_NOOP=true \
+  "$BOOTSTRAP" --workspace "$promotion_noop_workspace" >"$TEST_ROOT/promotion-status-zero-noop.out" 2>&1; then
+  fail "status-zero promotion no-op should fail"
+fi
+assert_contains "$TEST_ROOT/promotion-status-zero-noop.out" "could not promote staged clone"
+assert_missing "$promotion_noop_workspace/Scient"
 
 printf 'PASS: workspace bootstrap safety and idempotency\n'

@@ -33,10 +33,20 @@ fail() {
   exit 1
 }
 
+fail_promotion() {
+  local final_destination=$1
+
+  if [[ -e "$final_destination" || -L "$final_destination" ]]; then
+    fail "destination appeared during promotion; left it untouched and discarded the staged clone: $final_destination"
+  fi
+  fail "could not promote staged clone; destination was left absent and the staged clone was discarded: $final_destination"
+}
+
 while (($# > 0)); do
   case "$1" in
     --workspace)
       (($# >= 2)) || fail "--workspace requires a path"
+      [[ -n "$2" ]] || fail "--workspace requires a non-empty path"
       case "$2" in
         -*) fail "--workspace value must not look like an option; prefix a relative name with ./" ;;
       esac
@@ -206,9 +216,14 @@ for entry in "${missing[@]}"; do
   validate_checkout "$staged_destination" "$repository"
   [[ ! -e "$final_destination" && ! -L "$final_destination" ]] ||
     fail "destination appeared while cloning; left it untouched and discarded the staged clone: $final_destination"
-  mv -n "$staged_destination" "$workspace"
+  # GNU mv can return nonzero for an occupied directory, while BSD mv can
+  # report a successful -n no-op. Handle both and retain the source-disappearance
+  # postcondition so neither behavior can nest or replace a raced-in target.
+  if ! mv -n "$staged_destination" "$workspace"; then
+    fail_promotion "$final_destination"
+  fi
   [[ ! -e "$staged_destination" && ! -L "$staged_destination" ]] ||
-    fail "destination appeared during promotion; left it untouched and discarded the staged clone: $final_destination"
+    fail_promotion "$final_destination"
   printf '[done]  %s\n' "$final_destination"
 done
 
