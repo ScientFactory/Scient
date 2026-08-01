@@ -3,7 +3,7 @@
 Status: Active
 Owner: Scient 001
 Created: 2026-07-18
-Last updated: 2026-08-01
+Last updated: 2026-08-02
 Purpose: Indexes dated evidence for reviews of changes in Scient's original desktop and agent sources.
 Doc type: Repo orientation
 
@@ -14,6 +14,8 @@ source lock.
 
 Current reviews:
 
+- [2026-08-02 Scient desktop and Synara review](2026-08-02-scient-desktop.md)
+- [2026-08-02 T3 Code scheduled review](2026-08-02-t3-code.md)
 - [2026-07-31 Scient desktop and Synara tail review](2026-07-31-scient-desktop-tail.md)
 - [2026-07-31 T3 Code scheduled tail review](2026-07-31-t3-code-tail.md)
 - [2026-07-30 Scient desktop and Synara review](2026-07-30-scient-desktop.md)
