@@ -10,20 +10,20 @@ Doc type: Research evidence
 ## Scope
 
 - Owned repository and branch: `ScientFactory/scient-desktop`, `main`
-- Tested owned head: `aaf81de45909d090e024b00f2b1b528e134d7929`; hosted main CI run `30665802249` passed all jobs.
+- Inspected owned head: `6ff7f3692083d4006986c30150892dc2cbc6fd32`; hosted main CI run `30674780524` and the exact-head local full nonvisual suite each failed one different unrelated test, while the hosted failure's focused local rerun passed.
 - Official repository and branch: `Emanuele-web04/synara`, `main`
 - Repo-local accepted `reviewedThrough`: `04703ddb4c951378aca9a1c7b71263b8648efd7f`
 - Existing contiguous review evidence before this record: `04703ddb..96d4f69b` (31 commits), recorded in `2026-07-30-scient-desktop.md`; its checkpoint remains proposed until the dependent repo-local state is accepted.
 - Review-evidence boundary entering this tail record: `96d4f69bc3f8d48120142b035e8c25faaa096d10`
 - Prior tip captured by this record: `f972bd2eac0913101add6c7563877816eb4c8e21`
-- Bounded observation: 2026-08-01 02:52:49 IDT / 2026-07-31 23:52:49 UTC
-- Current fetched tip at that observation: `e701d207e5d88787fab77f1daf2683bd84724a03`
+- Bounded observation: 2026-08-01 03:33:00 IDT / 2026-08-01 00:33:00 UTC
+- Current fetched tip at that observation: `60e7a43d395cf93e2be51476bd35ae99d238557f`
 - Current stable release: `v0.6.3`, peeled to `d958a9e583377a30cf4d97fb4c5e1d834eafbf92`
-- Full accepted-boundary range: `04703ddb..e701d207` (45 commits)
-- Complete tail dispositioned in this record: `96d4f69b..e701d207` (14 commits)
-- New extension inspected after the prior revision of this record: `f972bd2e..e701d207` (9 commits)
-- Previously dispositioned by contiguous repository evidence: 31 of 45
-- Dispositioned in this record: 14 of 45
+- Full accepted-boundary range: `04703ddb..60e7a43d` (46 commits)
+- Complete tail dispositioned in this record: `96d4f69b..60e7a43d` (15 commits)
+- New extension inspected after the prior revision of this record: `f972bd2e..60e7a43d` (10 commits)
+- Previously dispositioned by contiguous repository evidence: 31 of 46
+- Dispositioned in this record: 15 of 46
 - Remaining undispositioned: 0
 
 ## Review Depth
@@ -54,6 +54,7 @@ acceptance were performed.
 | `5fa65ecc` | Stops an unknown version check from being treated as an available update for self-updating providers while preserving a manual update action. | 5/5 for the donor contract and tests, with minor unrelated anchoring formatting churn. | Scient's `hasConfirmedProviderUpdate` already requires confirmed `behind_latest`, so it does not have the false-prompt bug. A manual provider-update action remains a separate product opportunity. | None as a bug fix; medium concept fit for the manual action; low code portability. | Medium; updater authority, offline/unknown status, cancellation, provider lifecycle, and settings interaction proof. | **Reject as a duplicate bug fix; defer the independently useful manual-update action; reject formatting-only anchoring churn.** | No. |
 | `7367e77e` | Keeps the transcript tail stable when adjacent virtualized rows use estimated heights, including Thinking/Working header geometry. | 5/5; focused cumulative geometry correction with browser coverage. | Scient owns equivalent message-timeline and tail-spacer seams but has different row composition and lifecycle states. | High concept fit; low direct portability and dependent on all preceding anchoring refinements. | Hard; all adjacent tail gaps, estimated-to-measured transitions, status headers, streaming, responsive layout, and human visual proof. | **Adapt later only as the final part of one cumulative Scient-native transcript-anchoring implementation.** | No partial intake. |
 | `e701d207` | Keeps Cursor, Droid, and Grok session notifications alive after `startSession` returns so assistant text, tools, and usage do not silently disappear; it also documents Claude steer timing and adds a local hybrid-steer probe. | 3/5 as a parent; the three-line lifecycle correction is precise and explains the failure, but the commit adds no regression test and mixes production fixes with a hard-coded `bypassPermissions` probe. | Scient has the same `Effect.forkChild` notification-drain lifetime in all three ACP adapters and the same transferred session scopes, so the user-facing transcript gap is real and the owning seams are `CursorAdapter`, `DroidAdapter`, and `GrokAdapter`. The Claude change is comment-only; the probe has no owned product seam. | High concept and direct-code fit for the three provider drains; none for the probe | Medium for the bounded provider fix; Very Hard and unsafe for the probe | **Decompose: adapt only the three notification drains onto their existing session scopes with Scient-owned lifecycle regressions; learn from the Claude timing note; reject the probe.** | **Yes, one fast-lane candidate:** the nonvisual three-provider session-lifetime correction, provided its clean baseline and focused lifecycle proof pass. |
+| `60e7a43d` | Replaces the donor's custom growing tail spacer with LegendList's native anchored-end-space API so a just-sent message stays fixed while Thinking/Working rows and streamed text appear; it also upgrades `@legendapp/list` from `3.0.0-beta.44` to `3.3.3`. | 4.5/5; the native ownership model is clearer, deletes more code than it adds, and extends targeted browser regressions, but the 1,294-line dependency/virtualization rewrite still depends on appearance, geometry, motion, and a package upgrade. | Scient has the older independently owned `ChatView`, `MessagesTimeline`, and `chat-scroll` behavior and does not have Synara's cumulative `useTailAnchorSpacer` sequence, so there is no safe direct patch. | High concept fit; very low direct-code portability | Hard; virtualized row measurement, dependency behavior, smooth/reduced motion, user scroll intent, focus, responsive geometry, accessibility, and visual acceptance | **Adapt later as one cumulative Scient-native transcript-anchoring project, after human visual/interaction proof; do not import this final commit alone.** | No; automatic implementation is prohibited because correctness is appearance- and interaction-dependent. |
 
 ## Mixed-Commit Sublanes
 
@@ -96,13 +97,16 @@ transcript anchoring and hover features remain later human-validated adaptations
 launcher and duplicate Codex lane are rejected because Scient already has
 equivalent or better owned behavior. The newly observed provider-notification
 lifetime defect is selected as one bounded Scient-native adaptation; the
-Claude comment and local steer probe are not selected.
+Claude comment and local steer probe are not selected. The final native
+anchored-end-space rewrite strengthens the cumulative transcript-anchoring
+recommendation but remains ineligible for automatic implementation because its
+value and correctness require browser geometry, motion, and human interaction proof.
 
 ## Resulting State
 
-- Complete contiguous Synara evidence now covers through `e701d207e5d88787fab77f1daf2683bd84724a03` at the bounded observation above.
-- Proposed repo-local `reviewedThrough`: `e701d207e5d88787fab77f1daf2683bd84724a03`. The accepted repo-local checkpoint remains `04703ddb4c951378aca9a1c7b71263b8648efd7f` until dependent desktop PR #171 is updated and accepted.
+- Complete contiguous Synara evidence now covers through `60e7a43d395cf93e2be51476bd35ae99d238557f` at the bounded observation above.
+- Proposed repo-local `reviewedThrough`: `60e7a43d395cf93e2be51476bd35ae99d238557f`. The accepted repo-local checkpoint remains `04703ddb4c951378aca9a1c7b71263b8648efd7f` until dependent desktop PR #171 is updated and accepted.
 - Literal `integrationBase`: unchanged at `9be46c3ce6a7521b64436b7334bc6fce16e3cac4`.
 - Integrated Scient-native adaptations from `1887615c`: warning normalization through desktop PR #174, merged as `1d965f5d4ea21456e173a3df04677e926e7c96e9`, and checkpoint index seeding through desktop PR #175, merged as tested owned head `aaf81de45909d090e024b00f2b1b528e134d7929`.
-- Selected provider-notification lifetime adaptation from `e701d207`: implemented and non-visually verified on independent desktop branch `fix/provider-notification-session-scope-20260801` at `c2124b955d61e8fd7b9aa96d38492e9940477327` (7 files, 286 additions, 3 deletions), with no donor ancestry. It is not yet published or integrated; live current-head `scient-agent` adapter smoke is unavailable because the historical harness was removed, so the passing committed-evidence check is not treated as runtime proof.
+- Selected provider-notification lifetime adaptation from `e701d207`: implemented and non-visually verified on independent desktop branch `fix/provider-notification-session-scope-20260801` at `22d02be67d11b654534728dbeb95b2a6e17dfd3b` (9 files, 419 additions, 6 deletions), with no donor ancestry. Exact-head focused tests passed 19/19, full `bun run test` passed all 12 tasks, format/lint/typecheck/desktop build passed, and three independent reviews found no P0-P3. It is not yet published or integrated; live current-head `scient-agent` adapter smoke is unavailable because the historical harness was removed, so fake-runtime lifecycle proof is not treated as live-provider runtime proof.
 - Rolling issue: close only after the dependent repo-local checkpoint is accepted.
