@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-07-19
+Last updated: 2026-07-31
 Purpose: Indexes Scient's accepted architecture decision records and the rules for using them.
 Doc type: Repo orientation
 
@@ -19,6 +19,10 @@ Current decisions:
   app-owned built-in skills portfolio, immutable release identity, portable
   project activation lock, and delivery boundary for native and external
   agents.
+- `ADR-0004-scient-operation-capability-and-provenance-boundary.md` - accepts one
+  host-independent Scient operation, capability, and provenance boundary for
+  manual actions, agents, external MCP clients, automations, visible-browser
+  work, and project-owned scientific evidence.
 
 Supporting file:
 

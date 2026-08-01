@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-07-19
+Last updated: 2026-07-31
 Purpose: Defines where Scient architecture direction, future architecture homes, and decisions belong.
 Doc type: Repo orientation
 
@@ -19,4 +19,6 @@ Current documents:
 - `security-and-permissions.md` - early security, trust-boundary, and permission principles.
 - `decisions/` - accepted architecture decision records covering the inherited
   foundations, Scient-owned scientific boundary, standalone source-repository
-  ownership, selective upstream authority, and built-in skills activation.
+  ownership, selective upstream authority, built-in skills activation, and the
+  shared operation/capability/provenance boundary used by agents, external MCP,
+  automations, browser work, and scientific evidence capture.
