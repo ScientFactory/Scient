@@ -10,7 +10,7 @@ Doc type: Research evidence
 ## Scope
 
 - Owned repository and branch: `ScientFactory/scient-desktop`, `main`
-- Inspected owned head: `6ff7f3692083d4006986c30150892dc2cbc6fd32`; hosted main CI run `30674780524` attempt 1 and the exact-head local full nonvisual suite each failed one different unrelated test, while the hosted failure's focused local rerun passed. Hosted run attempt 2 was still in progress at the final inspection.
+- Inspected owned head: `6ff7f3692083d4006986c30150892dc2cbc6fd32`; both attempts of hosted main CI run `30674780524` failed `integration/orchestrationEngine.integration.test.ts` while the exact focused local rerun passed 11 tests with 1 skipped. The exact-head local full nonvisual suite failed one different `localImageRoute.test.ts` assertion after 2,746 passes and 10 skips.
 - Official repository and branch: `Emanuele-web04/synara`, `main`
 - Repo-local accepted `reviewedThrough`: `04703ddb4c951378aca9a1c7b71263b8648efd7f`
 - Existing contiguous review evidence before this record: `04703ddb..96d4f69b` (31 commits), recorded in `2026-07-30-scient-desktop.md`; its checkpoint remains proposed until the dependent repo-local state is accepted.
