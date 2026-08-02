@@ -3,7 +3,7 @@
 Status: Proposed
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-08-01
+Last updated: 2026-08-02
 Purpose: Maps which open-source systems Scient should study, prototype, adapt, or integrate, and which product boundaries Scient must keep owned.
 Doc type: Research evidence
 
@@ -65,6 +65,12 @@ Current inputs:
   main range daily as a research donor. This changes review cadence only; it
   does not make T3 an owned upstream, checkpoint source, integration base, or
   replacement desktop foundation.
+- Yaacov's 2026-08-02 approval of the
+  [T3 foundation migration proposition](../../planning/t3-foundation-migration-proposition.md)
+  as the basis for a proposed successor decision. The resulting
+  [ADR-0005](../../architecture/decisions/ADR-0005-t3-derived-desktop-foundation.md)
+  remains `Proposed`: T3 is not yet an owned application upstream, no candidate
+  repository exists, and ADR-0001 still governs the current foundation.
 - Focused collaboration and organization scan on 2026-07-23, covering
   scientific project and review systems, local-first and real-time engines,
   relationship-based authorization, research identity and affiliation,
@@ -142,8 +148,8 @@ Use these labels with source rows when the update path matters:
 
 ## Global Fork And Borrow Strategy
 
-The accepted foundation direction is more aggressive than "study only", but
-still Scient-boundary-first:
+The current accepted foundation direction is more aggressive than "study
+only", but still Scient-boundary-first:
 
 1. Use the owned Synara-derived source as the initial application foundation because it
    materially accelerates the desktop shell, chat, terminal, diff,
@@ -177,6 +183,14 @@ still Scient-boundary-first:
 The matching build strategy is started in
 `docs/planning/open-source-adaptation-build-strategy.md`. This source map remains
 the research trail, not the build plan or final architecture decision.
+
+ADR-0005 proposes a future change to items 1, 2, 5, and 8: one fresh
+T3-derived successor would preserve literal ancestry and normally consume
+bounded reviewed T3 ranges during an initial aligned period, while the current
+Synara-derived application becomes the continuity host. The Scient-owned
+scientific and agent boundaries in the remaining items are preserved. Do not
+rewrite the source rows as an accepted T3 dependency unless the ADR is accepted
+against Phase Zero evidence.
 
 ## Truth Boundary
 
@@ -348,11 +362,14 @@ is relevant only to a separately reviewed process or external-agent path.
 | Vercel AI SDK | Model/provider abstraction, typed stream parts, tool-call state, approval status, UI message events, mock providers, and model I/O tests. | Useful for model plumbing and chat/event surfaces around Scient-owned actions. | Do not use it as the abstraction over local executors like OpenCode or Codex. Executor actions need a Scient-owned contract. | Candidate model I/O layer; needs a narrow harness prototype. |
 | Vercel AI Elements | Tool cards, source citations, confirmations, terminal output, file trees, artifacts, plans, queue state. | Useful UI pieces for agent work inspection. | Do not let it make Scient a generic chat surface. | Side UI pattern source. |
 
-Recommendation: keep Synara as the owned application foundation and review T3
-Code daily as a read-only research donor. Daily cadence requires a complete
-disposition of each newly observed range, but it creates no integration
-obligation, owned checkpoint, or broad alignment project. Provider-instance
-patterns may inform the already-planned execution-target contract, while
+Under the currently accepted ADR-0001, the recommendation remains to keep
+Synara as the owned application foundation and review T3 Code daily as a
+read-only research donor. Daily cadence requires a complete disposition of each
+newly observed range, but it creates no integration obligation, owned
+checkpoint, or broad alignment project. ADR-0005 proposes replacing this donor
+relationship with literal T3 ancestry for a successor application after Phase
+Zero evidence; while that ADR remains `Proposed`, this paragraph records current
+architecture rather than the intended migration outcome. In either foundation,
 scientific navigation, canonical state, provenance, review, and recovery remain
 Scient-owned.
 
@@ -378,13 +395,12 @@ references around a Scient-owned project kernel.
 | AFFiNE / Logseq / SiYuan | Local-first docs, canvas, backlinks, block references, PDF annotation links, knowledge graph and note workflows. | Useful for manual researcher workspace behavior: notes, backlinks, object links, canvas/planning, and local ownership. | Do not make Scient a generic PKM or Notion clone. | Reference only. |
 | CoCalc | Jupyter, LaTeX, terminal, whiteboard, chat, real-time collaboration, scientific teaching/research workspace. | It proves the value of combining computation, writing, terminal, and collaboration in one scientific environment. | Do not fork or run from source as a base; MS-RSL source licensing makes it reference-only for Scient. | Reference only. |
 
-Recommendation: begin by stabilizing a Synara fork as the workbench shell, then
-immediately pressure-test it with science surfaces: import a paper, view and
-annotate source material, create an evidence-linked note or draft paragraph,
-delegate one agent task, and review the resulting project change. If Synara
-cannot host that without forcing coding-product assumptions into Scient's
-kernel, keep its useful pieces as cherry-pick/reference material and move toward
-a more Scient-owned shell.
+The 2026-07-07 scan recommended beginning with a Synara fork and then
+pressure-testing it with science surfaces. That was the evidence available when
+ADR-0001 was accepted; it is not a new recommendation to extend the current
+Synara implementation. ADR-0005 now proposes a fresh T3-derived successor,
+subject to Phase Zero proof, while retaining the same requirement that inherited
+coding-product assumptions must not define Scient's scientific kernel.
 
 Source and reference links checked for this scan:
 
@@ -830,8 +846,10 @@ to the earlier synthesis. The active sequence lives in
 Current research points toward Scient as a local-first, cloud-mirrored scientific
 workspace with a Scient-owned project graph; TypeScript/React product logic;
 Electron-first desktop delivery unless a real limitation appears; a candidate
-local structured store with a separately validated cloud mirror; the owned Synara-derived source as the
-accepted initial application foundation; Scient as the owned OpenCode-derived
+local structured store with a separately validated cloud mirror; the owned
+Synara-derived source as the accepted initial application foundation and
+continuity host, with ADR-0005 proposing a fresh T3-derived successor subject to
+Phase Zero proof; Scient as the owned OpenCode-derived
 first-party agent; external OpenCode and other external agents as separate
 choices; Codex as the safety/sandboxing reference; Goose as a later capability
 and architecture source for Scient; Tiptap/ProseMirror-family writing;
@@ -850,9 +868,9 @@ separately versioned storage for large scientific artifacts.
 ## Non-Negotiables
 
 - Do not let a whole-product foundation become Scient's source of truth. The
-  owned Synara-derived source is acceptable only while Scient's scientific project state,
-  agent gateway, provenance, and review model stay outside inherited coding-
-  product assumptions.
+  current Synara-derived source or a future T3-derived successor is acceptable
+  only while Scient's scientific project state, agent gateway, provenance, and
+  review model stay outside inherited coding-product assumptions.
 - Do not let any source define the scientific object model.
 - Do not hide scientific work inside chat messages.
 - Do not accept agent changes without inspectable diffs and provenance.

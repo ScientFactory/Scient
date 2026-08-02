@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-07-16
-Last updated: 2026-07-23
+Last updated: 2026-08-02
 Purpose: Defines the current sequence of coherent Scient product outcomes without turning technology experiments into the product roadmap.
 Doc type: Planning note
 
@@ -16,6 +16,27 @@ own documents.
 
 Update this roadmap when the active product slice changes, when evidence changes
 its order, or when a slice is accepted, deferred, or rejected.
+
+## Proposed Enabling Track: T3 Foundation Migration
+
+The researcher outcome below remains the product destination. A proposed
+foundation transition now changes where its remaining implementation would
+continue, not why Scient is building it.
+
+[ADR-0005](../architecture/decisions/ADR-0005-t3-derived-desktop-foundation.md)
+proposes a fresh T3-derived successor application, and the
+[T3 foundation migration proposition](t3-foundation-migration-proposition.md)
+defines the evidence and promotion sequence. While that ADR is `Proposed`, the
+Synara-derived app remains the supported current application and the existing
+first-slice plan remains the truthful current implementation record. No
+candidate repository exists.
+
+The next proposed work is the read-only Phase Zero evidence pass. If the
+foundation ADR is accepted, the migration plan will become the active enabling
+track and will re-establish the smallest project and source behavior before the
+new Scient-agent and researcher-review work resumes. This preserves the
+scientific outcome without building new scientific architecture in the
+continuity host.
 
 ## Now: First Scient Scientific Project Slice
 
