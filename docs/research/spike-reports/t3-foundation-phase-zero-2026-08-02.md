@@ -15,6 +15,13 @@ product code, migrate user data, enable cloud, or select a release identity.
 Those actions remain gated by the proposed foundation ADR and the migration
 constitution.
 
+The governing proposed decision is
+[ADR-0005](../../architecture/decisions/ADR-0005-t3-derived-desktop-foundation.md);
+the planning context is the [T3 foundation migration
+proposition](../../planning/t3-foundation-migration-proposition.md). This
+report supplies evidence to those documents but does not become their
+authority.
+
 The inspection was read-only with respect to the owned primary checkouts. The
 T3 inspection checkout was disposable, detached at the exact official tip,
 fetch-only, and had push disabled. Package installation and verification
@@ -27,6 +34,12 @@ validation was performed.
 Inspection timestamps: 2026-08-02 20:51:01 Asia/Jerusalem / 2026-08-02
 17:51:01 UTC. These times identify this evidence snapshot; they do not make a
 future revision current.
+
+The toolchain verification was strengthened after review: a final exact-tip
+rerun completed at 2026-08-02 21:10:24 Asia/Jerusalem / 2026-08-02 18:10:24
+UTC under Node `v24.13.1`, matching T3's root engine requirement. The earlier
+Node 22 run remains useful as setup history but is not the final baseline
+claim.
 
 | Authority | Exact ref observed | Role | State used for this dossier |
 |---|---|---|---|
@@ -105,9 +118,10 @@ not yet an integration base because no owned candidate repository exists.
 ### Toolchain and setup
 
 - T3 root package manager: `pnpm@11.10.0`.
-- T3 root engine expectation: Node `^24.13.1`; inspected environment was Node
-  `v22.22.3`. The server package accepts Node `^22.16 || ^23.11 || >=24.10`,
-  but the root mismatch remains a reproducibility limitation.
+- T3 root engine expectation: Node `^24.13.1`. The final baseline rerun used
+  official Node `v24.13.1`; an earlier setup pass used Node `v22.22.3`, which
+  is retained only as setup history. The server package also accepts Node
+  `^22.16 || ^23.11 || >=24.10`.
 - Global `vp` was unavailable. The repository-local installation supplied
   `vp v0.2.2` and the pinned Vite+/Vitest/Ox tooling.
 - `pnpm install --frozen-lockfile --ignore-scripts` was first used only to
@@ -124,12 +138,12 @@ created.
 
 | Command | Result | Limitations and observations |
 |---|---|---|
-| `pnpm exec vp run build` | Passed | Marketing, web, server, and Electron desktop artifacts built; normal large-chunk/plugin timing and sourcemap/dependency warnings were emitted |
-| `pnpm exec vp run test` | Passed after isolated Electron repair | All workspace suites completed; the server reported 201 passed and 2 skipped files, 1,825 passed and 7 skipped tests; no source changes |
-| `pnpm exec vp check` | Passed | 2,383 files formatted; 0 lint errors and 11 existing warnings, mainly nested React components and one array-index key |
-| `pnpm exec vp run typecheck` | Passed | No errors; six TypeScript suggestions in SSH, desktop WSL/desktop test, and server decider code |
-| `pnpm exec vp run lint:mobile` | Passed | Mobile source analysis completed; optional `swiftlint`, `ktlint`, and `detekt` were not installed and were skipped |
-| `pnpm run release:smoke` | Passed | Setup emitted the known Node-engine/deprecation/peer warnings; no release was published |
+| `pnpm exec vp run build` | Passed under Node 24 | Marketing, web, server, and Electron desktop artifacts built; normal large-chunk/plugin timing and sourcemap/dependency warnings were emitted |
+| `pnpm exec vp run test` | Passed under Node 24 after isolated Electron repair | All workspace suites completed; the server reported 201 passed and 2 skipped files, 1,825 passed and 7 skipped tests; no source changes |
+| `pnpm exec vp check` | Passed under Node 24 | 2,263 files checked; 0 lint errors and 11 existing warnings, mainly nested React components and one array-index key |
+| `pnpm exec vp run typecheck` | Passed under Node 24 | No errors; six TypeScript suggestions in SSH, desktop WSL/desktop test, and server decider code |
+| `pnpm exec vp run lint:mobile` | Passed under Node 24 | Mobile source analysis completed; optional `swiftlint`, `ktlint`, and `detekt` were not installed and were skipped |
+| `pnpm run release:smoke` | Passed under Node 24 | Setup emitted the known deprecation/peer warnings; no release was published |
 | `git status --short --branch` | Clean | Only ignored dependency/build artifacts existed after verification |
 
 The first test invocation failed only because the intentionally script-free
@@ -154,7 +168,13 @@ The primary inspection paths were `AGENTS.md`, `README.md`,
 `docs/internals/server-updates.md`, `docs/user/updating.md`,
 `docs/internals/resource-telemetry.md`, `apps/server/src/config.ts`,
 `apps/server/src/cloud/publicConfig.ts`, `apps/desktop/src/electron/`,
-`apps/mobile/app.config.ts`, `scripts/build-desktop-artifact.ts`, and
+`apps/mobile/app.config.ts`, `scripts/build-desktop-artifact.ts`,
+`apps/server/src/telemetry/AnalyticsService.ts`,
+`apps/server/src/telemetry/Identify.ts`,
+`apps/desktop/src/app/DesktopEnvironment.ts`,
+`apps/desktop/src/app/DesktopAppIdentity.ts`,
+`apps/desktop/src/preview/BrowserSession.ts`,
+`scripts/lib/public-config.ts`, `packages/shared/src/relayTracing.ts`, and
 `infra/relay/README.md`. These paths are evidence pointers, not a claim that
 their current APIs are Scient contracts.
 
@@ -171,8 +191,12 @@ their current APIs are Scient contracts.
 A Scient candidate must receive collision-safe identity, protocol, executable,
 artifact, and update-feed decisions before distribution. Keeping T3's values
 would risk opening the wrong app, sharing Electron partitions, colliding with
-credentials, or consuming T3 update authority. Rebranding is not a cosmetic
-search-and-replace task.
+credentials, or consuming T3 update authority. `DesktopAppIdentity` also
+falls back to a legacy T3 user-data directory when it exists, so changing only
+the app ID or display name is insufficient. The candidate must explicitly
+disable that legacy fallback and use a new preview partition prefix as well as
+new protocol, executable, bundle, state, and update identities. Rebranding is
+not a cosmetic search-and-replace task.
 
 ### Server state and persistence
 
@@ -194,12 +218,33 @@ Tailscale paths, Clerk authentication, mobile notifications, and relay-side
 storage/deployment boundaries. Public configuration is absent unless supplied;
 no cloud credentials, deployment, or selected-user enablement was performed.
 
+T3 also has a separate `AnalyticsService` whose current defaults enable
+PostHog delivery (`T3CODE_TELEMETRY_ENABLED=true`, a bundled T3 PostHog key,
+and `https://us.i.posthog.com`). Its identifier helper first reads
+`~/.codex/auth.json` or `~/.claude.json` and hashes the provider account/user
+value; those paths are outside `T3CODE_HOME`. Provider/session usage metadata
+is also recorded by the service. This is a concrete identity and privacy
+boundary, not merely an optional configuration detail. A candidate must fail
+closed before startup unless this service is disabled or replaced by a
+Scient-owned, consented implementation, and must not inherit the host
+provider-identity lookup.
+
+T3's public-config/build path can also map OTLP/Axiom endpoint, dataset, and
+ingest-token values into `EXPO_PUBLIC_*` and `VITE_*` client configuration;
+the mobile manifest's observability block serializes those values and the
+relay client sends a bearer token. These values must be treated as public
+artifact material, never as a Scient secret boundary: a candidate must use a
+separate Scient project/token with explicit redaction and consent, or disable
+client tracing entirely. No T3 endpoint, dataset, token, or PostHog identity
+was enabled or copied in D2.
+
 T3 also has local resource/process telemetry and optional OTLP configuration;
-the inspected resource-telemetry documentation does not describe a mandatory
-telemetry database. A candidate must keep cloud/mobile foundations available
-for later production-dark and selected-user gates, while disabling T3 outbound
-telemetry and publication/update authority until Scient has explicitly adopted
-their privacy and operations policy.
+resource telemetry can observe process command lines and descendant provider
+processes. The inspected resource-telemetry documentation does not describe a
+mandatory telemetry database, but a candidate still requires redaction,
+consent, and no endpoint inheritance before any trace or process data leaves
+the device. Cloud/mobile foundations remain available for later production-
+dark and selected-user gates only after these controls are proven.
 
 ### Mobile
 
@@ -260,11 +305,13 @@ foundation acceptance or bootstrap until assigned a gate and owner:
 
 | Risk | Severity | Why it matters | Required next proof |
 |---|---|---|---|
-| Root Node 24 expectation versus inspected Node 22 | Medium | Local success used the server-compatible range but not the root-supported toolchain | Reproduce baseline under the documented contributor Node version or explicitly accept the limitation |
 | T3 service/update/rollback churn | High | Current tip changed a large, failure-sensitive lifecycle surface | Proof 1/packaged startup, identity, rollback, and update-feed isolation |
 | Fixed T3 brand/protocol/bundle/state identities | High | Collisions could affect installed apps, credentials, partitions, and update routing | Candidate identity matrix and collision tests before bootstrap release work |
 | T3 host persistence versus Scient scientific truth | High | Reusing `state.sqlite` as scientific authority would couple the product to host internals | Scient contract/persistence boundary and sanitized continuity fixtures |
 | Cloud/relay/mobile operational and legal identity | High | T3 credentials, endpoints, terms, and update roots cannot be inherited blindly | Production-dark cloud and mobile foundation design before selected-user enablement |
+| Default T3 AnalyticsService and host-provider identity | High | Current defaults can send PostHog events and correlate `~/.codex`/`~/.claude` identifiers outside `T3CODE_HOME` | Fail-closed analytics disablement/replacement and identity-source tests before candidate startup |
+| Public OTLP/Axiom client configuration | High | Build/mobile config can ship endpoint, dataset, and bearer-token values into public artifacts | Separate Scient observability project/token or disabled client tracing, with redaction and consent proof |
+| Legacy T3 user-data fallback and preview partitions | High | A clone can reuse existing T3 credentials/state or Electron preview sessions even after superficial renaming | Collision matrix, legacy-path refusal, new partition prefix, and isolated-state tests |
 | Optional mobile linters unavailable | Low/Medium | Mobile static analysis is incomplete in this environment | Run the platform linters in the supported CI/toolchain before mobile release claims |
 | No visual/manual validation | Low for D2 | This dossier makes no appearance claim | Apply the visual gate only to later user-facing implementation |
 

@@ -1,11 +1,11 @@
 # Spike Reports
 
-Status: Placeholder
-Owner: Scient 001
+Status: Active
+Owner: Yaacov
 Created: 2026-06-27
 Last updated: 2026-08-02
-Purpose: Defines where reports from technical or product spikes should live.
-Doc type: Future home
+Purpose: Indexes dated reports from technical or product spikes.
+Doc type: Research index
 
 Use this folder for short reports after a focused investigation or prototype.
 
