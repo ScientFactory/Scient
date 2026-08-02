@@ -3,8 +3,8 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-07-31
-Purpose: Indexes Scient's accepted architecture decision records and the rules for using them.
+Last updated: 2026-08-02
+Purpose: Indexes Scient's accepted and serious proposed architecture decision records and the rules for using them.
 Doc type: Repo orientation
 
 Accepted architecture decisions should live here when decisions are made.
@@ -23,6 +23,13 @@ Current decisions:
   host-independent Scient operation, capability, and provenance boundary for
   manual actions, agents, external MCP clients, automations, visible-browser
   work, and project-owned scientific evidence.
+
+Proposed decisions:
+
+- `ADR-0005-t3-derived-desktop-foundation.md` - proposes a fresh,
+  ancestry-preserving T3-derived successor desktop while keeping the current
+  Synara-derived app as the supported continuity product until explicit
+  cutover. It does not yet supersede ADR-0001 or authorize repository creation.
 
 Supporting file:
 

@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-07-31
+Last updated: 2026-08-02
 Purpose: Defines where Scient architecture direction, future architecture homes, and decisions belong.
 Doc type: Repo orientation
 
@@ -20,5 +20,6 @@ Current documents:
 - `decisions/` - accepted architecture decision records covering the inherited
   foundations, Scient-owned scientific boundary, standalone source-repository
   ownership, selective upstream authority, built-in skills activation, and the
-  shared operation/capability/provenance boundary used by agents, external MCP,
-  automations, browser work, and scientific evidence capture.
+  shared operation/capability/provenance boundary, plus the proposed
+  T3-derived successor-foundation decision. The proposed ADR does not yet
+  supersede the accepted Synara foundation.

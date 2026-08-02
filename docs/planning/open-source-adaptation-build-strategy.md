@@ -3,7 +3,7 @@
 Status: Draft
 Owner: Yaacov
 Created: 2026-07-07
-Last updated: 2026-07-18
+Last updated: 2026-08-02
 Purpose: Defines the current source-ownership, adaptation, upstream-update, and divergence strategy for open-source foundations used by Scient.
 Doc type: Planning note
 
@@ -23,7 +23,23 @@ Do not use this file to invent package boundaries, schemas, APIs, commands,
 sync protocols, sandbox details, or dependency commitments before they have been
 validated.
 
-## Current State
+## Proposed T3 Transition
+
+[ADR-0005](../architecture/decisions/ADR-0005-t3-derived-desktop-foundation.md)
+proposes replacing the long-term Synara-derived desktop target with a fresh,
+literal-ancestry T3-derived Scient application. The reviewed
+[migration proposition](t3-foundation-migration-proposition.md) owns its
+capability dispositions, proof gates, initial ancestry-preserving update
+strategy, and stop conditions.
+
+This proposal does not change current implementation truth. ADR-0001 remains
+accepted, `scient-desktop` remains the supported Synara-derived application,
+and no T3-derived candidate repository exists. Phase Zero must refresh and test
+the exact official T3 baseline before ADR-0005 can be accepted. If accepted,
+this strategy will be reconciled as the evergreen source-relationship owner;
+until then, the Synara rules below describe the current foundation.
+
+## Current Accepted State
 
 The parent repository remains documentation-first. The maintained desktop source
 contains the dependency-light `@scientfactory/project-init` package, but there is no
@@ -215,8 +231,10 @@ as coding sessions, Git worktrees, provider chats, or engine-owned artifacts.
 
 - License and attribution review for any copied code, fork, embedded engine, or
   bundled dependency.
-- Source-depth review of Synara and OpenCode integration seams. Goose integration
-  review belongs to its later evaluation.
+- Source-depth review of the exact proposed T3 baseline and its Scient
+  integration seams. Historical Synara evidence remains relevant to continuity
+  and capability comparison. OpenCode baseline refresh and Goose integration
+  review belong to the later Scient-agent work.
 - Source-depth and license review of the science-app components that may become
   more than references, especially Zotero Reader, Zotero Document Worker,
   Paperlib, Tropy, Zettlr, Overleaf, JupyterLab Desktop, Stencila, and the ELN
@@ -230,10 +248,11 @@ as coding sessions, Git worktrees, provider chats, or engine-owned artifacts.
 
 ## Open Questions
 
-- Which Synara seams should remain upstream-aligned and which should become
-  deliberately Scient-owned?
-- Can the stabilized Synara-derived source host the first science-facing slice without
-  leaking coding-product assumptions into the Scient project kernel?
+- Which T3 seams can remain upstream-aligned, and which product-quality needs
+  justify deliberate, documented Scient ownership and divergence?
+- Can a fresh T3-derived candidate host the first science-facing slice without
+  leaking coding-product assumptions into the Scient project kernel, and can it
+  still absorb bounded current T3 ranges at an acceptable cost?
 - Which OpenCode-derived modules can remain close to upstream inside Scient,
   and which Scient-owned capabilities require deliberate divergence?
 - Should Zotero Reader or Zotero Document Worker be embedded as components, or

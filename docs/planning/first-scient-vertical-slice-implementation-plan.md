@@ -3,7 +3,7 @@
 Status: Draft
 Owner: Yaacov
 Created: 2026-07-16
-Last updated: 2026-07-18
+Last updated: 2026-08-02
 Purpose: Defines the bounded source-tracing, implementation, and verification plan for the first Scient scientific project slice.
 Doc type: Planning note
 
@@ -29,6 +29,24 @@ Update this plan when source tracing or implementation evidence resolves an open
 boundary, changes the sequence, or invalidates an assumption. Do not rewrite the
 roadmap or ADR unless the evidence changes their product outcome or accepted
 architecture decision.
+
+## Proposed Foundation Transition
+
+This plan remains the truthful record of the current Synara-based slice and its
+implemented project-initiation work. It is not yet superseded because
+[ADR-0005](../architecture/decisions/ADR-0005-t3-derived-desktop-foundation.md)
+and the
+[T3 foundation migration proposition](t3-foundation-migration-proposition.md)
+remain proposed, and no successor repository exists.
+
+Yaacov has approved the proposed direction that remaining new scientific
+architecture should target the T3-derived candidate if that foundation decision
+is accepted. Do not begin the unimplemented phases of this Synara-specific plan
+while Phase Zero evaluates that decision. Current-app correctness, security,
+data-protection, and continuity work remains separately allowed. If ADR-0005 is
+accepted and the migration plan is promoted, this document should become
+`Superseded` without rewriting its implementation evidence or historical
+reasoning.
 
 ## Goal
 
