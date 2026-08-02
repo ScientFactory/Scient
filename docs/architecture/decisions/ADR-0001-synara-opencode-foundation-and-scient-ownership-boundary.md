@@ -1,11 +1,24 @@
 # ADR-0001: Synara And OpenCode Foundations With A Scient Ownership Boundary
 
-Status: Accepted
+Status: Superseded
 Owner: Yaacov
 Created: 2026-07-16
-Last updated: 2026-07-18
+Last updated: 2026-08-02
 Purpose: Records the decision to use owned Synara-derived source as Scient's application foundation and owned OpenCode-derived source as the foundation for Scient while keeping external agents and canonical scientific state separately owned.
 Doc type: Architecture decision
+
+## Successor
+
+Superseded on 2026-08-02 by
+[ADR-0005](ADR-0005-t3-derived-desktop-foundation.md), which selects a fresh
+T3-derived foundation for the successor Scient app. This record remains the
+historical source for the initial Synara/OpenCode choice. ADR-0005 explicitly
+preserves the Scient-agent identity, external-agent separation, scientific
+authority, and justified-core-change boundaries established here.
+
+The current Synara-derived application remains the supported continuity
+application until an explicit cutover. Supersession changes the target
+foundation; it does not retire, freeze, or rewrite the current application.
 
 ## Context
 

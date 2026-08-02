@@ -1,36 +1,36 @@
-# ADR-0005: Proposed T3-Derived Desktop Foundation
+# ADR-0005: T3-Derived Desktop Foundation
 
-Status: Proposed
+Status: Accepted
 Owner: Yaacov
 Created: 2026-08-02
 Last updated: 2026-08-02
-Purpose: Proposes a fresh T3-derived foundation for the successor Scient app while preserving Scient ownership, scientific authority, current-user continuity, and the independent Scient agent boundary.
+Purpose: Selects a fresh T3-derived foundation for the successor Scient app while preserving Scient ownership, scientific authority, current-user continuity, and the independent Scient agent boundary.
 Doc type: Architecture decision
 
 ## Document Rules
 
-This ADR owns only the proposed durable desktop-foundation and upstream
-relationship. It does not authorize repository creation, product code, cloud
-enablement, user-data conversion, release, cutover, or retirement of the
+This ADR owns the durable desktop-foundation and upstream relationship. The
+active migration plan may authorize a bounded candidate bootstrap under the
+accepted Phase Zero evidence. This ADR does not authorize feature migration,
+cloud enablement, user-data conversion, release, cutover, or retirement of the
 current application.
 
 The living
-[T3 foundation migration proposition](../../planning/t3-foundation-migration-proposition.md)
+[T3 foundation migration plan](../../planning/t3-foundation-migration-plan.md)
 owns capability sequencing, proof gates, open implementation choices, and the
-documentation transition. Phase Zero evidence may refine this ADR while its
-status remains `Proposed`. Once accepted, ordinary implementation learning
-belongs in the migration plan or dated evidence; a material decision change
-requires an explicit amendment or successor.
+documentation transition. Ordinary implementation learning belongs in that
+plan or dated evidence; a material decision change requires an explicit
+amendment or successor.
 
 ## Context
 
 [ADR-0001](ADR-0001-synara-opencode-foundation-and-scient-ownership-boundary.md)
-accepts the current Synara-derived desktop foundation, the OpenCode-derived
+accepted the current Synara-derived desktop foundation, the OpenCode-derived
 source foundation for the planned Scient agent, external-agent separation, and
 Scient ownership of scientific truth. That decision enabled the current
 application and its first permanent Scient-owned packages.
 
-The current evidence reviewed in the migration proposition indicates that
+The current evidence reviewed in the migration plan indicates that
 modern T3 is a stronger maintained source for much of the generic application
 platform: desktop and service lifecycle, provider sessions, chat, browser and
 preview, files, terminals, Git, packaging, updater behavior, and current
@@ -42,11 +42,15 @@ Changing the host must not make T3 the owner of Scient's scientific model or
 force inferior product choices merely to preserve easy merges. It also must not
 turn the current app and a new candidate into permanent co-equal products.
 
-Yaacov approved the migration proposition on 2026-08-02 as the basis for this
-proposed decision and a read-only Phase Zero evidence pass. The exact candidate
-repository and implementation baseline do not yet exist.
+Yaacov approved the migration direction on 2026-08-02, reviewed the resulting
+ADR point by point, and accepted this exact post-evidence decision on
+2026-08-02. The
+[Phase Zero dossier](../../research/spike-reports/t3-foundation-phase-zero-2026-08-02.md)
+verified the official T3 baseline and did not trigger a stop condition. The
+candidate repository does not yet exist; its bounded creation is governed by
+the active migration plan.
 
-## Proposed Decision
+## Decision
 
 1. ScientFactory will target one successor Scient desktop application derived
    from a freshly fetched official T3 revision with literal Git ancestry. The
@@ -97,8 +101,8 @@ repository and implementation baseline do not yet exist.
 
 ## Decisions Preserved From ADR-0001
 
-If this ADR becomes `Accepted`, it will supersede ADR-0001 only as the desktop
-foundation decision. The following durable boundaries must remain in force:
+This ADR supersedes ADR-0001 as the forward desktop-foundation decision. The
+following durable boundaries remain in force:
 
 - the Scient agent is the owned first-party agent product planned from an
   independently maintained source foundation, not a wrapper around an
@@ -113,17 +117,19 @@ foundation decision. The following durable boundaries must remain in force:
 - host, provider, session, and agent-runtime persistence is not canonical
   scientific project truth.
 
-ADR-0001 remains `Accepted` while this ADR is `Proposed`. Its historical body
-will not be rewritten. If this exact successor is accepted, ADR-0001 should be
-marked `Superseded` with reciprocal links in the same accepted-decision change.
+ADR-0001 is now `Superseded`. Its historical body remains unchanged apart from
+metadata and a reciprocal successor notice. It continues to explain why the
+initial foundation was chosen and to supply the preserved boundaries named
+above.
 
 ## Relationship To Other Accepted Decisions
 
 - [ADR-0002](ADR-0002-standalone-source-ownership-and-upstream-authority.md)
   continues to govern standalone ownership, fetch-only original sources,
   mandatory awareness, review-versus-integration state, and optional
-  absorption. This ADR proposes that accepted T3 ranges normally use literal
-  merges during the initial aligned phase; it does not make T3 authoritative.
+  absorption. This ADR selects an initial policy in which accepted T3 ranges
+  normally use literal merges during the initial aligned phase; it does not
+  make T3 authoritative.
 - [ADR-0003](ADR-0003-built-in-skills-portfolio-and-project-activation.md)
   remains accepted. Any future change to skill ownership, scope eligibility,
   released location, or activation requires its own explicit reconciliation.
@@ -149,7 +155,8 @@ This ADR does not decide:
 - the later point at which broad T3 alignment should become more selective.
 
 These decisions belong to the evidence and focused gates identified by the
-migration proposition.
+migration plan. The plan may make a provisional bootstrap choice without
+turning that choice into durable architecture or a public product identity.
 
 ## Alternatives Considered
 
@@ -195,13 +202,13 @@ they are useful.
   replayed.
 - Scientific package boundaries must be proven through real workflows instead
   of becoming a speculative universal platform.
-- Acceptance of this ADR will change the target foundation, not the current
+- Acceptance of this ADR changes the target foundation, not the current
   implementation, published application, user data, cloud availability, or
   release state.
 
-## Evidence Required Before Acceptance
+## Acceptance Evidence
 
-The Phase Zero record must refresh and review:
+The Phase Zero record refreshed and reviewed:
 
 - the exact official T3 tip, candidate base choice, tag comparison, license,
   notices, assets, and provenance;
@@ -213,15 +220,24 @@ The Phase Zero record must refresh and review:
 - a safe owned-`origin` and fetch-only-T3 remote topology;
 - provisional non-colliding candidate identity, protocol, executable, and state
   directory; and
-- any evidence that triggers a stop or material revision to this proposed
+- evidence that could have triggered a stop or material revision to this
   decision.
 
-Explicit Yaacov acceptance of the exact post-evidence text is required before
-the ADR becomes `Accepted` or repository bootstrap is authorized.
+The exact official T3 tip remained
+`e60821f0e0d82a5d671ca3b94719c49d333921c8`, tagged
+`v0.0.32-nightly.20260802.980`, when D3 refreshed it. The untouched baseline
+passed the recorded Node 24 build, test, check, typecheck, mobile-lint, and
+release-smoke commands in the disposable fetch-only checkout. The dossier
+identified mandatory identity, telemetry, state, updater, cloud/mobile, and
+legacy-fallback controls; it found no reason to reject the foundation.
+
+Yaacov explicitly authorized D3 end to end on 2026-08-02. Repository bootstrap
+is authorized only through the narrower scope, risk dispositions, and stop
+conditions in the active migration plan.
 
 ## Revisit And Stop Triggers
 
-Reconsider this proposal if evidence shows that:
+Reconsider this decision if evidence shows that:
 
 - normal T3 updates repeatedly require broad unrelated changes;
 - scientific authority cannot remain independent of T3 application state;

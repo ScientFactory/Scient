@@ -11,7 +11,6 @@ Accepted architecture decisions should live here when decisions are made.
 
 Current decisions:
 
-- `ADR-0001-synara-opencode-foundation-and-scient-ownership-boundary.md` - accepts the owned Synara-derived source as the initial application foundation, OpenCode-derived source as the inherited foundation for the planned Scient agent, external OpenCode as a separate external agent, and the Scient-owned scientific boundary around agent execution.
 - `ADR-0002-standalone-source-ownership-and-upstream-authority.md` - accepts
   standalone ScientFactory desktop and agent repositories, fetch-only original
   sources, mandatory upstream awareness, and selective inheritance.
@@ -23,13 +22,18 @@ Current decisions:
   host-independent Scient operation, capability, and provenance boundary for
   manual actions, agents, external MCP clients, automations, visible-browser
   work, and project-owned scientific evidence.
-
-Proposed decisions:
-
-- `ADR-0005-t3-derived-desktop-foundation.md` - proposes a fresh,
+- `ADR-0005-t3-derived-desktop-foundation.md` - accepts a fresh,
   ancestry-preserving T3-derived successor desktop while keeping the current
   Synara-derived app as the supported continuity product until explicit
-  cutover. It does not yet supersede ADR-0001 or authorize repository creation.
+  cutover. Candidate bootstrap is authorized only through the active migration
+  plan and its evidence gates.
+
+Superseded decisions:
+
+- `ADR-0001-synara-opencode-foundation-and-scient-ownership-boundary.md` -
+  records the initial Synara/OpenCode foundation choice. ADR-0005 supersedes
+  its forward desktop-foundation decision while preserving its Scient-agent,
+  external-agent, scientific-authority, and justified-core-change boundaries.
 
 Supporting file:
 

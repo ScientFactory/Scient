@@ -1,10 +1,10 @@
 # Open-Source Adaptation Build Strategy
 
-Status: Draft
+Status: Active
 Owner: Yaacov
 Created: 2026-07-07
 Last updated: 2026-08-02
-Purpose: Defines the current source-ownership, adaptation, upstream-update, and divergence strategy for open-source foundations used by Scient.
+Purpose: Defines the evergreen source-ownership, adaptation, upstream-update, and divergence strategy for T3, Synara, OpenCode, and other open-source inputs used by Scient.
 Doc type: Planning note
 
 ## Document Rules
@@ -23,34 +23,44 @@ Do not use this file to invent package boundaries, schemas, APIs, commands,
 sync protocols, sandbox details, or dependency commitments before they have been
 validated.
 
-## Proposed T3 Transition
+## Accepted T3 Relationship
 
 [ADR-0005](../architecture/decisions/ADR-0005-t3-derived-desktop-foundation.md)
-proposes replacing the long-term Synara-derived desktop target with a fresh,
+accepts replacing the long-term Synara-derived desktop target with a fresh,
 literal-ancestry T3-derived Scient application. The reviewed
-[migration proposition](t3-foundation-migration-proposition.md) owns its
+[migration plan](t3-foundation-migration-plan.md) owns its
 capability dispositions, proof gates, initial ancestry-preserving update
 strategy, and stop conditions.
 
-This proposal does not change current implementation truth. ADR-0001 remains
-accepted, `scient-desktop` remains the supported Synara-derived application,
-and no T3-derived candidate repository exists. Phase Zero must refresh and test
-the exact official T3 baseline before ADR-0005 can be accepted. If accepted,
-this strategy will be reconciled as the evergreen source-relationship owner;
-until then, the Synara rules below describe the current foundation.
+This accepted target does not change current implementation truth.
+`scient-desktop` remains the supported Synara-derived continuity application,
+and no T3-derived candidate repository exists. ADR-0001 is superseded as the
+forward desktop-foundation decision but preserved as history; ADR-0002
+continues to govern standalone ownership and fetch-only source authority.
 
-## Current Accepted State
+For the future candidate, qualified reviewed T3 ranges normally enter through
+bounded ancestry-preserving merges during the initial aligned phase. T3 does
+not become product authority, and an observed tip does not become an
+integration base until its ancestry is literally present. Scient may carry
+explicit direct divergences when product quality, scientific ownership,
+identity, privacy, security, accessibility, reliability, or release safety
+requires them. The active migration plan owns the finite move and the later
+evidence-based decision about when broad alignment should become selective.
+
+## Current Implementation And Accepted Target
 
 The parent repository remains documentation-first. The maintained desktop source
 contains the dependency-light `@scientfactory/project-init` package, but there is no
 implemented scientific application, canonical project-state kernel, agent
 gateway, sync layer, editor, analysis runtime, or Scient production pipeline.
 
-The current practical direction is to build on owned, working foundations while
-keeping Scient's scientific project meaning owned:
+Current implementation and forward source roles are:
 
-- use the owned Synara-derived source as the initial application foundation for desktop,
-  workspace, UI, provider-session, and local-process work;
+- keep the owned Synara-derived desktop as the supported continuity
+  application and source of behavior, failure, migration, and design evidence;
+- create the successor from the exact official T3 base authorized by the
+  migration plan, with owned `origin`, fetch-only T3 `upstream`, literal
+  ancestry, and explicit divergence;
 - use science apps from the 2026-07-07 scan as specialized sources around the
   shell: Zotero-family components for source/PDF work, Zettlr/Overleaf/Quarto
   for writing/export expectations, Jupyter-style tools for analysis
@@ -61,25 +71,26 @@ keeping Scient's scientific project meaning owned:
   separate choices rather than aliases for Scient;
 - evaluate Goose later as a source of capabilities and architecture lessons for
   Scient, or through a separately reviewed external-agent path;
-- keep Scient and external agents behind a Scient-owned gateway for context, permissions,
-  proposed changes, provenance, review, checkpoints, and write-back.
+- build any later Scient-agent gateway as new Scient and Scient Agent work
+  after the desktop foundation, not as migration parity.
 
-## First-Slice Constraints
+## Migration And First-Scientific-Slice Constraints
 
-The active product sequence lives in `product-roadmap.md`, and its concrete
-implementation is planned in
-`first-scient-vertical-slice-implementation-plan.md`. This strategy constrains
-that work without duplicating it:
+The active product sequence lives in `product-roadmap.md`, and the executable
+foundation sequence lives in `t3-foundation-migration-plan.md`. The superseded
+Synara-specific first-slice plan remains historical evidence. This strategy
+constrains current and future source work without duplicating those plans:
 
-1. Use one vertical scientific workflow to pressure-test both foundations.
+1. Use the selected migration and scientific workflows to pressure-test the
+   T3 foundation while keeping the current app as continuity evidence.
 2. Keep scientific operations available to manual UI and agents through a
    Scient-owned layer where practical.
 3. Preserve project meaning independently of Synara, Scient, and external-agent
    session state.
-4. Prefer extension seams first, but make isolated core changes when a proven
-   requirement cannot be met cleanly otherwise.
-5. Reconsider the foundation if inherited coding assumptions prevent the
-   accepted product workflow.
+4. Prefer extension seams when they are equally strong, but make explicit core
+   changes when they are the better durable product design.
+5. Reconsider the foundation if inherited coding assumptions, update cost, or
+   authority coupling prevent the accepted product workflow.
 
 Names such as `ProjectKernel`, `AgentGateway`, `ProvenanceLog`, and
 `ReviewableArtifact` are planning placeholders until architecture documents or
@@ -148,7 +159,10 @@ Keep change lanes separable where practical:
 - unavoidable upstream-core patches; and
 - release or updater configuration.
 
-Synara is expected to carry visible Scient identity and domain UI. OpenCode is
+The T3-derived candidate is expected to carry visible Scient identity and
+domain UI after its safety envelope is proven. The Synara-derived app retains
+its current identity and continuity role rather than receiving new scientific
+features. OpenCode is
 Scient's inherited source foundation, not a separately branded engine beneath
 Scient. Scient therefore needs its own product, binary, configuration, session,
 release, and update identity while inherited OpenCode core remains traceable for
@@ -231,7 +245,7 @@ as coding sessions, Git worktrees, provider chats, or engine-owned artifacts.
 
 - License and attribution review for any copied code, fork, embedded engine, or
   bundled dependency.
-- Source-depth review of the exact proposed T3 baseline and its Scient
+- Source-depth review of the exact selected T3 baseline and its Scient
   integration seams. Historical Synara evidence remains relevant to continuity
   and capability comparison. OpenCode baseline refresh and Goose integration
   review belong to the later Scient-agent work.

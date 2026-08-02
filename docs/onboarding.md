@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-07-12
-Last updated: 2026-07-31
+Last updated: 2026-08-02
 Purpose: Gives new Scient collaborators a deliberate reading journey through the project, its repository, and its sources of truth before task-specific work begins.
 Doc type: Repo orientation
 
@@ -166,10 +166,16 @@ Do not infer implemented interfaces from design notes, screenshots, or placehold
 ### Architecture And Engineering Direction
 
 1. [Architecture Documentation](architecture/README.md) to learn the architecture area's authority and current map.
-2. [ADR-0001](architecture/decisions/ADR-0001-synara-opencode-foundation-and-scient-ownership-boundary.md) for the accepted Synara application foundation, Scient's OpenCode-derived source foundation, external-agent separation, and Scient ownership boundary.
-3. [Technology Stack](architecture/technology-stack.md) for the proposed stack direction, actual scaffold state, validation status, explicit non-decisions, and deferred choices.
-4. [Security And Permissions](architecture/security-and-permissions.md) for the draft trust-boundary and permission principles that architecture and agent-tool proposals must respect.
-5. Continue only into the task-relevant architecture documents identified by the [architecture index](architecture/README.md) or the task handoff.
+2. [ADR-0005](architecture/decisions/ADR-0005-t3-derived-desktop-foundation.md)
+   for the accepted successor desktop foundation, the preserved Scient-agent
+   and scientific ownership boundaries, and the current application's
+   continuity role.
+3. [ADR-0001](architecture/decisions/ADR-0001-synara-opencode-foundation-and-scient-ownership-boundary.md)
+   when historical context for the initial Synara/OpenCode decision is needed;
+   it is superseded, not current forward authority.
+4. [Technology Stack](architecture/technology-stack.md) for the proposed stack direction, actual scaffold state, validation status, explicit non-decisions, and deferred choices.
+5. [Security And Permissions](architecture/security-and-permissions.md) for the draft trust-boundary and permission principles that architecture and agent-tool proposals must respect.
+6. Continue only into the task-relevant architecture documents identified by the [architecture index](architecture/README.md) or the task handoff.
 
 The stack is proposed, security guidance is draft, and several architecture files are future homes. None of them should be described as implemented unless current repository evidence proves it.
 
@@ -180,11 +186,14 @@ Complete the architecture route first when the work may influence implementation
 1. [Research](research/README.md) for the research area's evidence and promotion boundaries.
 2. [Source Evaluations](research/source-evaluations/README.md) for the rules governing evaluations of external systems.
 3. [Scient Open-Source Adaptation Map](research/source-evaluations/open-source-adaptation-map.md) for the current cross-source synthesis, candidate roles, Scient-owned boundaries, and research prototype backlog.
-4. [Open-Source Adaptation Build Strategy](planning/open-source-adaptation-build-strategy.md) for the draft path from research candidates toward controlled build experiments.
-5. [Scient And External Agents Implementation Plan](planning/scient-and-external-agents-implementation-plan.md) when the work touches Scient-agent identity, external-agent preservation, or agent/runtime isolation.
-6. [First Vertical-Slice Implementation Plan](planning/first-scient-vertical-slice-implementation-plan.md) when the work touches the active Scient implementation slice through Scient.
-7. [Scient Lab](../lab/README.md) for the experimental layout, promotion rule, current evidence map, and lab guardrails.
-8. Read only the spike report, lab note, or source material named by the task handoff; do not read raw research chronologically and assume the newest or most detailed file is authoritative.
+4. [Open-Source Adaptation Build Strategy](planning/open-source-adaptation-build-strategy.md) for the active evergreen T3, Synara, OpenCode, and donor relationship.
+5. [T3 Foundation Migration Plan](planning/t3-foundation-migration-plan.md) when
+   the work touches the successor candidate, proof gates, capability
+   dispositions, or documentation transition.
+6. [Scient And External Agents Implementation Plan](planning/scient-and-external-agents-implementation-plan.md) when the work touches Scient-agent identity, external-agent preservation, or agent/runtime isolation.
+7. [First Vertical-Slice Implementation Plan](planning/first-scient-vertical-slice-implementation-plan.md) only for superseded Synara-specific reasoning or completed project-init evidence; new execution follows the active migration plan.
+8. [Scient Lab](../lab/README.md) for the experimental layout, promotion rule, current evidence map, and lab guardrails.
+9. Read only the spike report, lab note, or source material named by the task handoff; do not read raw research chronologically and assume the newest or most detailed file is authoritative.
 
 ### Quality And Implementation Review
 

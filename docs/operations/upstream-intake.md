@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-07-18
-Last updated: 2026-07-31
+Last updated: 2026-08-02
 Purpose: Defines the repeatable process for detecting, reviewing, and selectively inheriting changes from Scient's original desktop and agent sources.
 Doc type: Operational procedure
 
@@ -42,6 +42,15 @@ behind count is not.
 Each checkout uses writable `origin` and fetch-only `upstream` with push URL
 `DISABLED`. The owned repositories are standalone products; the upstream
 remote records lineage and provides review input.
+
+ADR-0005 selects official T3 as the future upstream for the successor desktop,
+but `ScientFactory/scient-desktop-next` does not yet exist. Do not add a
+maintained-source row, machine checkpoint, integration base, or repo-local
+intake lane until D4 creates the repository and verifies its exact ancestry.
+After bootstrap, its initial update mode will use reviewed bounded merges while
+the relationship remains honestly aligned; the current Synara lane remains
+active for the supported continuity application until an explicit retirement
+decision.
 
 ## State Model
 

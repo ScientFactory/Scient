@@ -3,7 +3,7 @@
 Status: Proposed
 Owner: Yaacov
 Created: 2026-07-17
-Last updated: 2026-07-18
+Last updated: 2026-08-02
 Purpose: Defines the end-to-end implementation plan for the Scient agent and for preserving independently connected external agents.
 Doc type: Planning note
 
@@ -91,14 +91,17 @@ It does not replace:
 - the accepted naming system in `../product/scient-product-identity.md`;
 - the accepted product direction in `../product/PRD.md`;
 - the accepted ownership decision in
-  `../architecture/decisions/ADR-0001-synara-opencode-foundation-and-scient-ownership-boundary.md`;
+  `../architecture/decisions/ADR-0005-t3-derived-desktop-foundation.md`, which
+  preserves the agent boundary established by superseded ADR-0001;
 - the product sequence in `product-roadmap.md`; or
-- the active scientific-slice plan in
-  `first-scient-vertical-slice-implementation-plan.md`.
+- the active desktop foundation sequence in
+  `t3-foundation-migration-plan.md`.
 
-The early phases constrain the first vertical slice. Later phases expand and
-certify external-agent paths after Scient completes the first bounded Scient
-workflow. Promote stable runtime contracts into
+This plan remains proposed and the native Scient agent remains unimplemented.
+Refresh the OpenCode foundation and reconcile the desktop-agent contract only
+when the post-foundation agent lane opens. Later phases expand and certify
+external-agent paths after Scient completes the first bounded Scient workflow.
+Promote stable runtime contracts into
 `../architecture/agent-runtime.md` only after running implementation evidence
 exists.
 
@@ -345,10 +348,11 @@ The migration must:
 
 ## Implementation Sequence
 
-### Phase 0 — Canonical Reconciliation
+### Phase 0 — Canonical Reconciliation (completed direction work)
 
 1. Name Scient in the PRD and distinguish it from external agents.
-2. Amend ADR-0001 with the one-agent/one-runtime ownership decision.
+2. Preserve the one-agent/one-runtime ownership decision now carried forward
+   by ADR-0005 from superseded ADR-0001.
 3. Update technology and adaptation docs to describe OpenCode as Scient's source
    lineage rather than a separate engine beneath Scient.
 4. Update the first vertical-slice plan to use Scient.

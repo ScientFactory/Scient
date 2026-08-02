@@ -18,8 +18,8 @@ Current files:
 - `scientific-project-fixture-selection.md` - accepted three-track scientific validation strategy: four rich projects, narrow capability fixtures, agent-evaluation benchmarks, reserves, source evidence, and activation conditions.
 - `source-evaluation-template.md` - future home for the source evaluation template.
 - `t3-migration-capability-catalog.md` - compact research index of the 159
-  Synara, Scient, and branch-derived capabilities dispositioned by the proposed
-  T3 foundation migration direction, with raw-input provenance and authority
+  Synara, Scient, and branch-derived capabilities dispositioned by the active
+  T3 foundation migration plan, with raw-input provenance and authority
   limits.
 
 Document the source, what was inspected, what Scient can learn from it, what should be avoided, and what remains uncertain.

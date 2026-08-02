@@ -3,7 +3,7 @@
 Status: Accepted
 Owner: Yaacov
 Created: 2026-07-17
-Last updated: 2026-07-20
+Last updated: 2026-08-02
 Purpose: Defines the accepted company, product, agent, and external-agent naming system for Scient.
 Doc type: Product truth
 
@@ -205,13 +205,16 @@ boundary:
   specific migration or recovery reason and a verifiable retirement condition
   before it is removed. No sunset date is implied by this policy.
 
-Inherited private workspace packages retain `@synara/*`; `SYNARA_*`
+The current continuity application's inherited private workspace packages
+retain `@synara/*`; `SYNARA_*`
 compatibility variables, Effect or service identifiers, upstream names,
 persistence identifiers, and OpenCode internals are also not unfinished
-LitRev/PapiLab rename work. They remain subject to the accepted inherited-source
-boundary in
-`../architecture/decisions/ADR-0001-synara-opencode-foundation-and-scient-ownership-boundary.md`
-and to separately reviewed source-adaptation and compatibility work. Public
+LitRev/PapiLab rename work. They remain subject to the historical
+inherited-source boundary in
+`../architecture/decisions/ADR-0001-synara-opencode-foundation-and-scient-ownership-boundary.md`,
+the accepted forward boundary in
+`../architecture/decisions/ADR-0005-t3-derived-desktop-foundation.md`, and
+separately reviewed source-adaptation and compatibility work. Public
 product surfaces and new first-party Scient packages still follow the Scient
 naming rules above.
 

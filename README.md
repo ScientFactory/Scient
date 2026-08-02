@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-07-31
+Last updated: 2026-08-02
 Purpose: Entry point for the Scient product and project repository.
 Doc type: Repo orientation
 
@@ -12,6 +12,13 @@ repository is documentation-first, with one narrow project-initiation package
 in the standalone desktop source repository. The native Scient agent remains
 planned; its owned source repository is
 `ScientFactory/scient-agent`.
+
+[ADR-0005](docs/architecture/decisions/ADR-0005-t3-derived-desktop-foundation.md)
+selects a fresh T3-derived successor desktop, and the active
+[migration plan](docs/planning/t3-foundation-migration-plan.md) authorizes its
+bounded bootstrap. No candidate repository exists yet, so the repository list
+and workspace layout below continue to describe current implementation rather
+than the accepted target.
 
 ## Related Repositories And Local Workspace
 
@@ -84,6 +91,8 @@ Start here:
 - [Scient product identity](docs/product/scient-product-identity.md) - accepted company, app, native-agent, and external-agent naming system.
 - [PapiLab-to-Scient rename record](docs/planning/papilab-to-scient-rename-execution-plan.md) - historical migration, compatibility, rollback, and deferred-public-cutover record.
 - [Technology stack](docs/architecture/technology-stack.md) - proposed architecture and stack direction.
+- [T3 foundation migration plan](docs/planning/t3-foundation-migration-plan.md) -
+  active proof-gated transition and current D4 bootstrap authority.
 - [Agent guidance](AGENTS.md) - protocol for agents working in this repository.
 - [Team contribution protocol](docs/operations/team-contribution-protocol.md) -
   shared verification, review, human UI, and integration-readiness workflow.

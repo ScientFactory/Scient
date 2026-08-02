@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-07-31
+Last updated: 2026-08-02
 Purpose: Maps the Scient documentation structure and where each kind of information belongs.
 Doc type: Repo orientation
 
@@ -39,7 +39,12 @@ Start here:
   draft candidate scopes, questions, scenarios, and discovery sequence; no
   memory architecture or storage technology is selected.
 - [Product roadmap](planning/product-roadmap.md) - current sequence of coherent product outcomes.
-- [First vertical-slice implementation plan](planning/first-scient-vertical-slice-implementation-plan.md) - bounded plan for the active product slice.
+- [T3 foundation migration plan](planning/t3-foundation-migration-plan.md) -
+  active proof-gated transition to the accepted successor foundation and the
+  exact D4 bootstrap authorization.
+- [First vertical-slice implementation plan](planning/first-scient-vertical-slice-implementation-plan.md) -
+  superseded Synara-specific plan preserved for historical reasoning and
+  completed project-initiation evidence.
 - [Scient and external agents implementation plan](planning/scient-and-external-agents-implementation-plan.md) - proposed plan for building the Scient agent as the owned OpenCode-derived first-party agent while preserving external agents independently.
 - [PapiLab-to-Scient rename execution record](planning/papilab-to-scient-rename-execution-plan.md) - historical migration, compatibility, rollback, and deferred-public-cutover record.
 - [LitRev-to-PapiLab rename execution plan](planning/litrev-to-papilab-rename-execution-plan.md) - historical intermediate identity migration, verification, and rollback record.

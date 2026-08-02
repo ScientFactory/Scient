@@ -17,28 +17,29 @@ own documents.
 Update this roadmap when the active product slice changes, when evidence changes
 its order, or when a slice is accepted, deferred, or rejected.
 
-## Proposed Enabling Track: T3 Foundation Migration
+## Now: T3 Foundation Migration
 
-The researcher outcome below remains the product destination. A proposed
-foundation transition now changes where its remaining implementation would
-continue, not why Scient is building it.
+The researcher outcome below remains the product destination. The accepted
+foundation transition changes where its remaining implementation will continue,
+not why Scient is building it.
 
 [ADR-0005](../architecture/decisions/ADR-0005-t3-derived-desktop-foundation.md)
-proposes a fresh T3-derived successor application, and the
-[T3 foundation migration proposition](t3-foundation-migration-proposition.md)
-defines the evidence and promotion sequence. While that ADR is `Proposed`, the
-Synara-derived app remains the supported current application and the existing
-first-slice plan remains the truthful current implementation record. No
-candidate repository exists.
+accepts a fresh T3-derived successor application, and the active
+[T3 foundation migration plan](t3-foundation-migration-plan.md) defines the
+proof-gated execution sequence. The Synara-derived app remains the supported
+current application, the earlier Synara-specific first-slice plan is preserved
+as superseded planning, and no candidate repository exists yet.
 
-The next proposed work is the read-only Phase Zero evidence pass. If the
-foundation ADR is accepted, the migration plan will become the active enabling
-track and will re-establish the smallest project and source behavior before the
-new Scient-agent and researcher-review work resumes. This preserves the
-scientific outcome without building new scientific architecture in the
-continuity host.
+The next authorized work is D4 candidate bootstrap: create the provisional
+owned repository from the exact accepted T3 base, prove the pristine baseline,
+and establish the identity, privacy, state, update, and boundary safety
+envelope. Feature migration, user-data conversion, cloud enablement, release,
+and cutover remain behind their own plan gates. The migration will then
+re-establish the selected project, source/PDF, provider-onboarding, voice,
+mathematical/bidirectional, and What's New outcomes before new Scient-agent and
+researcher-review work resumes.
 
-## Now: First Scient Scientific Project Slice
+## After The Foundation: First Scient Scientific Project Slice
 
 A researcher can open a small local scientific project, add source material
 manually, delegate one bounded task to **Scient**, inspect the context and
@@ -61,8 +62,10 @@ The slice is desktop-first. It does not include mobile, cloud sync,
 collaboration, full PDF parsing, full citation management, a complete manuscript
 editor, a complete scientific schema, a notebook system, or Goose integration.
 
-The implementation plan is
+The earlier Synara-specific implementation plan is preserved as
 [`first-scient-vertical-slice-implementation-plan.md`](first-scient-vertical-slice-implementation-plan.md).
+Its product outcome remains important, but its implementation sequence is
+superseded by the active migration plan and later focused Scient-agent work.
 
 ### Controlled Validation Project
 
