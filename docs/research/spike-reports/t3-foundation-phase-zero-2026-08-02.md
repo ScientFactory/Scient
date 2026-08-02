@@ -236,7 +236,9 @@ relay client sends a bearer token. These values must be treated as public
 artifact material, never as a Scient secret boundary: a candidate must use a
 separate Scient project/token with explicit redaction and consent, or disable
 client tracing entirely. No T3 endpoint, dataset, token, or PostHog identity
-was enabled or copied in D2.
+was enabled in a candidate runtime or copied into Scient in D2; the values
+remain present only in the disposable donor checkout as observed source
+evidence.
 
 T3 also has local resource/process telemetry and optional OTLP configuration;
 resource telemetry can observe process command lines and descendant provider
