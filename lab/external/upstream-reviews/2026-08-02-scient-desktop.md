@@ -13,7 +13,7 @@ Doc type: Research evidence
 - Owned head inspected: `3829e5dd82a4760184aabafa4c96127744ef79f2`
 - Official repository and branch: `Emanuele-web04/synara`, `main`
 - Accepted documented `reviewedThrough`: `ab33931da4c8da884b1445244085f4eeee3eafb6`
-- Prior observed tip used only for the daily digest: `ab33931da4c8da884b1445244085f4eeee3eafb6`, recovered from the archived prior-run report because the automation memory file was absent
+- Prior observed tip used only for the daily digest: `ab33931da4c8da884b1445244085f4eeee3eafb6`, recorded in the automation memory's 2026-08-01 run entry
 - Bounded observation: 2026-08-02 02:37:06 IDT / 2026-08-01 23:37:06 UTC
 - Current fetched tip: `65f6684aa6ff88c8d57a9f11d541a54b41be1539`
 - Current stable release: `v0.6.4`, peeled to `b85190f2b2e230e2eb68009714651bee78cc0bd8`; main is one commit ahead
