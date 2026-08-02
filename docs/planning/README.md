@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-07-25
+Last updated: 2026-08-02
 Purpose: Defines where Scient planning documents live and how they relate to product truth, architecture, design, quality, and research documents.
 Doc type: Repo orientation
 
@@ -29,6 +29,11 @@ Current planning docs:
 - `scientific-computing-and-data-analysis-roadmap.md` - proposed product boundary, source strategy, architecture direction, and ordered implementation path for manual code editing, Python, R, MATLAB, notebooks, datasets, figures, and reproducible analysis artifacts.
 - `first-scient-vertical-slice-implementation-plan.md` - draft source-tracing, implementation, and verification plan for the active product slice.
 - `scient-and-external-agents-implementation-plan.md` - proposed end-to-end plan for building the Scient agent as the owned OpenCode-derived first-party agent while preserving external agents independently.
+- `t3-foundation-migration-proposition.md` - proposed destination,
+  capability dispositions, proof gates, decision sequence, and documentation
+  transition system for deciding whether Scient should replace its
+  Synara-derived desktop foundation with a fresh, ancestry-preserving
+  T3-derived application.
 - `papilab-to-scient-rename-execution-plan.md` - historical PapiLab-to-Scient migration, compatibility, rollback, and deferred-public-cutover record.
 - `litrev-to-papilab-rename-execution-plan.md` - historical intermediate product-identity migration, verification, and rollback record for renaming LitRev to PapiLab.
 - `gate-1-5-execution-plan.md` - historical execution plan for owned source repositories, upstream synchronization, and Synara identity isolation.
