@@ -3,7 +3,7 @@
 Status: Active
 Owner: Scient 001
 Created: 2026-06-27
-Last updated: 2026-07-18
+Last updated: 2026-08-02
 Purpose: Maps evaluations of external sources and tools that may inform Scient product and architecture decisions.
 Doc type: Repo orientation
 
@@ -17,6 +17,10 @@ Current files:
 - `open-source-adaptation-map.md` - cross-source synthesis of open-source systems Scient should study, prototype, adapt, or avoid.
 - `scientific-project-fixture-selection.md` - accepted three-track scientific validation strategy: four rich projects, narrow capability fixtures, agent-evaluation benchmarks, reserves, source evidence, and activation conditions.
 - `source-evaluation-template.md` - future home for the source evaluation template.
+- `t3-migration-capability-catalog.md` - compact research index of the 159
+  Synara, Scient, and branch-derived capabilities dispositioned by the proposed
+  T3 foundation migration direction, with raw-input provenance and authority
+  limits.
 
 Document the source, what was inspected, what Scient can learn from it, what should be avoided, and what remains uncertain.
 
