@@ -17,7 +17,7 @@ Doc type: Research evidence
 - Last observed tip used only for the daily digest: `65f6684aa6ff88c8d57a9f11d541a54b41be1539`, recorded by the 2026-08-02 automation run
 - Bounded observation: 2026-08-03; exact inspection times are recorded in the automation report and PR
 - Current fetched tip: `928cfaa07778098518835062798365e4555070b7`
-- Current stable release: `v0.6.5`, peeled to `fcf24599c165383e83d6f8b9981623468d071c98`; main is four commits ahead
+- Current stable release: `v0.6.5`, peeled to `fcf24599c165383e83d6f8b9981623468d071c98`; main is six commits ahead
 - Full authoritative range: `ab33931d..928cfaa0` (35 commits)
 - Already covered by accepted authoritative dispositions in that range: 0
 - Commits re-inspected and dispositioned in this run: 35
