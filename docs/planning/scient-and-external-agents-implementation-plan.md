@@ -3,7 +3,7 @@
 Status: Proposed
 Owner: Yaacov
 Created: 2026-07-17
-Last updated: 2026-08-02
+Last updated: 2026-08-03
 Purpose: Defines the end-to-end implementation plan for the Scient agent and for preserving independently connected external agents.
 Doc type: Planning note
 
@@ -197,9 +197,11 @@ repository-wide rename. Treat `ProviderKind` as compatibility vocabulary for
 existing external agents while introducing Scient-owned execution-target and
 connection contracts above it.
 
-Do not use “Scient Agent” as another product name. Use **Scient**. Use
-“Scient agent gateway” only for the Scient-owned execution boundary, not for
-the product name. Use “portable project agent guidance” for `AGENTS.md` content.
+Use **Scient** as the shared public product name. Technical and planning text
+may use **Scient agent**, **Scient Agent**, or `ScientAgent` to distinguish the
+native agent from the Scient app; these are qualifiers rather than separate
+public brands. Use “Scient agent gateway” only for the Scient-owned execution
+boundary. Use “portable project agent guidance” for `AGENTS.md` content.
 
 ## Non-Negotiable Scient And External OpenCode Separation
 

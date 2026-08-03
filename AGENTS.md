@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-08-02
+Last updated: 2026-08-03
 Purpose: Defines how agents should work in this early Scient repository.
 Doc type: Agent protocol
 
@@ -158,12 +158,14 @@ When proposing technical direction, separate:
 The PRD should stay focused on product truth. Stack choices and implementation details should live in architecture documents unless they are direct product constraints.
 
 Use **Scient** as the public name for both the app and native agent. In
-technical or potentially ambiguous text, write **Scient app** or **Scient
-agent**. Use **external agent** for an independently connected product such as
-OpenCode, Codex, Claude, or Droid. Do not create “ScientApp” or “ScientAgent” as
-separate public brands, and do not describe the Scient agent as a wrapper around
-a separate OpenCode engine. “Agent guidance” and the portable `AGENTS.md` file
-are project instructions, not the Scient agent product.
+technical or potentially ambiguous text, use **Scient app** for the application
+and **Scient agent**, **Scient Agent**, or `ScientAgent` for the native agent;
+the capitalization and compound form are context-appropriate technical
+qualifiers, not separate public brands. Use **external agent** for an
+independently connected product such as OpenCode, Codex, Claude, or Droid. Do
+not describe the Scient agent as a wrapper around a separate OpenCode engine.
+“Agent guidance” and the portable `AGENTS.md` file are project instructions,
+not the Scient agent product.
 
 ## Project Skills
 

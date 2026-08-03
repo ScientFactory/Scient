@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-08-01
-Last updated: 2026-08-02
+Last updated: 2026-08-03
 Purpose: Governs the proof-gated migration from the current Synara-derived Scient app to one fully ScientFactory-owned application with fresh official T3 ancestry.
 Doc type: Planning note
 
@@ -1099,9 +1099,12 @@ D3 resolves only the choices required to enter D4 safely:
 
 1. provisional owned repository: `ScientFactory/scient-desktop-next`, private
    during foundation proof, with `main` as the default integration branch;
-2. exact bootstrap base:
-   `e60821f0e0d82a5d671ca3b94719c49d333921c8`, tagged
-   `v0.0.32-nightly.20260802.980`, refreshed unchanged from official T3 at D3;
+2. bootstrap base-selection rule: immediately before repository creation,
+   freshly fetch official T3 and use its then-current `main` tip; record that
+   exact revision and tag as the integration base after the pristine baseline
+   passes. Do not keep editing this plan as T3 advances. An earlier revision may
+   be selected only through a conscious documented exception made after
+   comparison with the fresh tip;
 3. writable owned `origin` and official `pingdotgg/t3code` fetch-only
    `upstream` with push disabled; no Synara remote in the candidate;
 4. a collision-free provisional candidate identity and state namespace,
@@ -1995,13 +1998,14 @@ user migration is justified*.
 
 The dated
 [Phase Zero dossier](../research/spike-reports/t3-foundation-phase-zero-2026-08-02.md)
-is the accepted evidence input for D3. D3 refreshed official T3 again and
-confirmed that `main` still points to
-`e60821f0e0d82a5d671ca3b94719c49d333921c8`, tagged
-`v0.0.32-nightly.20260802.980`. That exact revision—not an older local fork—is
-the D4 bootstrap base. The dossier's observed owned heads remain dated evidence;
-D4 must refresh owned repository, branch, worktree, pull-request, and
-responsibility overlap immediately before mutation.
+is the accepted evidence input for D3. Its T3 revision records what D3 actually
+inspected; it is not a moving D4 baseline lock. Immediately before repository
+creation, D4 must freshly fetch official T3 and use the then-current official
+`main` tip. If a demonstrated stability problem requires an earlier revision,
+record the comparison and conscious exception. Record the exact selected
+revision and tag as the candidate integration base only after its pristine
+baseline passes. D4 must also refresh owned repository, branch, worktree,
+pull-request, and responsibility overlap immediately before mutation.
 
 ### Repository creation authorization
 

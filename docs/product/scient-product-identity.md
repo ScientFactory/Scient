@@ -3,7 +3,7 @@
 Status: Accepted
 Owner: Yaacov
 Created: 2026-07-17
-Last updated: 2026-08-02
+Last updated: 2026-08-03
 Purpose: Defines the accepted company, product, agent, and external-agent naming system for Scient.
 Doc type: Product truth
 
@@ -66,7 +66,7 @@ be confused.
 | Term | Meaning |
 |---|---|
 | **Scient app** / `ScientApp` | The scientific workspace application and product shell |
-| **Scient agent** / `ScientAgent` | The native first-party OpenCode-derived research agent |
+| **Scient agent** / **Scient Agent** / `ScientAgent` | The native first-party OpenCode-derived research agent; capitalization and the compound code form may vary with context |
 | **Scient project** / `ScientProject` | A project owned by the Scient app and usable independently of any one agent runtime |
 | **External agent** / `ExternalAgent` | An independently identified agent product such as OpenCode, Codex, Claude, or Droid |
 | **External-agent connection** / `ExternalAgentConnection` | One configured installation, endpoint, account, or connection for an external agent |
@@ -74,8 +74,8 @@ be confused.
 | **Access method** | A subscription/account, API key, local model, or ScientFactory-managed access path |
 | **Model** | The inference model available through the selected agent and access method |
 
-`ScientApp`, `ScientAgent`, and similar compound forms are engineering
-qualifiers, not additional public brands.
+`Scient Agent`, `ScientApp`, `ScientAgent`, and similar qualified or compound
+forms are acceptable technical vocabulary, not additional public brands.
 
 ## Product And Agent Ownership Boundary
 
