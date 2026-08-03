@@ -154,8 +154,8 @@ Implementation evidence:
   paths passed, so this was an execution-environment failure, not a source
   regression
 - The implementation history records all three donor revisions and MIT
-  provenance. The owning server package received its full suite and build; the
-  root aggregate suite was not duplicated in this isolated lane
+  provenance. The owning server package received its full suite and build;
+  repository-wide `bun run test` passed all 12 Turbo tasks in 3m17s
 - Independent security review found that a slash-bearing extension provider ID
   could serialize to a slug that selected a different provider/model. The
   follow-up omits that unroundtrippable identity and adds the exact collision
