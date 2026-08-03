@@ -131,7 +131,9 @@ Implementation evidence:
 
 - Branch: `fix/upstream-pi-model-metadata-20260803`
 - Exact base: `3829e5dd82a4760184aabafa4c96127744ef79f2`
-- Commit: `e7a281dd33b3bc5cbac3e1e7035fe98c36cd0cdc`
+- Commits: `e7a281dd33b3bc5cbac3e1e7035fe98c36cd0cdc` and security-review
+  follow-up `32eb90fd804d7e9feeaa06b20e97c20c70a98601`; final head
+  `32eb90fd804d7e9feeaa06b20e97c20c70a98601`
 - Worktree: isolated outside the shared workspace at
   `/Users/yaacov/REPOs/ScientFactory-worktrees/scient-desktop-upstream-pi-model-metadata-20260803`
 - Production change: `apps/server/src/provider/Layers/PiAdapter.ts` adds one
@@ -141,19 +143,23 @@ Implementation evidence:
 - Regression change: `apps/server/src/provider/Layers/PiAdapter.test.ts` adds
   exact cases for valid identity, display trimming, blank-display fallback,
   blank identity, unresolvable trimmed identity, and thinking metadata
-- Diff: 2 files, 155 additions, 22 deletions (production +44/-22; tests +111)
+- Diff: 2 files, 170 additions, 22 deletions (production +50/-22; tests +120)
 - Focused baseline: 6/6 Pi adapter tests passed
-- Final nonvisual verification: 12/12 focused Pi adapter tests; server
+- Final nonvisual verification: 13/13 focused Pi adapter tests; server
   typecheck; scoped formatting; scoped lint with zero errors and six inherited
-  warnings; full server suite with 2,958 passing and 10 skipped tests across
+  warnings; full server suite with 2,959 passing and 10 skipped tests across
   233 passing and 2 skipped files; server build; and `git diff --check` passed
 - One full-suite attempt with an incomplete shell `PATH` failed ACP child spawn
   and the native `lsof` test; the complete rerun with the configured runtime
   paths passed, so this was an execution-environment failure, not a source
   regression
-- The commit records all three donor revisions and MIT provenance. The owning
-  server package received its full suite and build; the root aggregate suite
-  was not duplicated in this isolated lane
+- The implementation history records all three donor revisions and MIT
+  provenance. The owning server package received its full suite and build; the
+  root aggregate suite was not duplicated in this isolated lane
+- Independent security review found that a slash-bearing extension provider ID
+  could serialize to a slug that selected a different provider/model. The
+  follow-up omits that unroundtrippable identity and adds the exact collision
+  boundary regression before publication
 - No browser, computer use, screenshots, geometry, visual tests, manual UI
   acceptance, credentials, persistence, release authority, or live data were
   used or changed
@@ -172,5 +178,5 @@ diff or commit.
 - Proposed repo-local `reviewedThrough`: `928cfaa07778098518835062798365e4555070b7`.
 - Accepted repo-local checkpoint while this evidence remains draft: `ab33931da4c8da884b1445244085f4eeee3eafb6`.
 - Literal `integrationBase`: unchanged at `9be46c3ce6a7521b64436b7334bc6fce16e3cac4`.
-- Selected intake: Pi descriptor containment; implemented independently at desktop commit `e7a281dd33b3bc5cbac3e1e7035fe98c36cd0cdc`, pending independent review and draft publication.
+- Selected intake: Pi descriptor containment; implemented independently through desktop head `32eb90fd804d7e9feeaa06b20e97c20c70a98601`, pending final recertification and draft publication.
 - Rolling issue: `ScientFactory/scient-desktop#15` remains open until the dependent checkpoint is accepted.
