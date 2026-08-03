@@ -3,7 +3,7 @@
 Status: Proposed
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-08-02
+Last updated: 2026-08-03
 Purpose: Maps which open-source systems Scient should study, prototype, adapt, or integrate, and which product boundaries Scient must keep owned.
 Doc type: Research evidence
 
@@ -75,6 +75,13 @@ Current inputs:
   scientific project and review systems, local-first and real-time engines,
   relationship-based authorization, research identity and affiliation,
   institution provisioning standards, and versioned scientific data.
+- Focused GenOffice source-depth review on 2026-08-03 at revision
+  `0127f6289aa1eed852c6375c09ec4de0d9c260e3`, with `v0.4.110` as the
+  current release. The review covered the complete public history, Apache-2.0
+  core and separately licensed `ee/` boundary, Office engines, agent and
+  provider packages, project storage, Electron security, CI, and local
+  non-visual verification. The source is promising but its public maintenance
+  history is only days old and mostly opaque snapshot commits.
 
 Remaining source-research gaps:
 
@@ -235,9 +242,9 @@ identified so far. It is a working recommendation, not a final dependency list.
 | Source Library And Reader | Zotero, Zotero Reader, Zotero Document Worker, Paperlib, Tropy, JabRef, CSL, GROBID, Docling, and local-first note/PDF references such as Logseq and SiYuan. | Adapter, component spike, embedded parser, compatibility target, and reference. | Source identity, duplicate confidence, source-region links, parser state, annotations, backlinks, and citation intent belong to Scient. |
 | Evidence Ledger And Claims | ASReview for screening mechanics; GROBID and Docling for extraction; PaperQA for cited scientific QA; Lacuna for paper-grounded research-map patterns; Elicit, Rayyan, Covidence, scite, Consensus, and SciSpace as workflow references. | Embedded engines, adapters, and references. | Evidence records, claims, support links, extraction review state, uncertainty, contradictions, and unsupported-claim diagnostics belong to Scient. |
 | Synthesis Surface | PaperQA for grounded answer mechanics; Lacuna for map-grounded literature search and survey synthesis; Elicit, Consensus, SciSpace, and scite for answer and evidence UX references. | Embedded engine and reference. | Synthesis becomes durable only when saved into Scient notes, evidence, claims, decisions, or draft material. |
-| Draft And Manuscript Workspace | Tiptap/ProseMirror first; Plate and Lexical as challengers; Zettlr, Overleaf, Word, and Google Docs as academic writing and collaboration references; Quarto/Pandoc/MyST/Manubot for export and publishing paths. | Projection, challenger prototype, reference, and export adapter. | Manuscript structure, citations, evidence links, comments, suggestions, reconciliation state, and publication metadata belong to Scient. |
+| Draft And Manuscript Workspace | Tiptap/ProseMirror first; Plate and Lexical as challengers; GenOffice as a source candidate for byte-preserving DOCX compatibility; Zettlr, Overleaf, Word, and Google Docs as academic writing and collaboration references; Quarto/Pandoc/MyST/Manubot for export and publishing paths. | Projection, challenger prototype, Office compatibility adapter candidate, reference, and export adapter. | Manuscript structure, citations, evidence links, comments, suggestions, reconciliation state, fidelity receipts, and publication metadata belong to Scient. |
 | Data And Analysis Workbench | Python through uv; marimo as reactive-notebook reference; Jupyter/JupyterLab Desktop, RStudio/Positron, and CoCalc as analysis-workbench references; DuckDB, pandas, Polars, Arrow/Parquet, SciPy, statsmodels, scikit-learn, and later R/tidyverse. | Embedded runtime, projection, compatibility target, and reference. | Dataset, Analysis, AnalysisRun, parameters, method notes, outputs, dependency state, staleness, and provenance belong to Scient. |
-| Figures, Tables, And Artifacts | Matplotlib/seaborn, Plotly, Altair/Vega-Lite, Great Tables/gt, Mermaid, Graphviz, Cytoscape.js, tldraw, Excalidraw, xyflow, Inkscape, diagrams.net, and BioIcons. | Runtime projection, artifact generator, and reference. | Figure, Table, Artifact, caption, data/code linkage, manuscript usage, review state, and stale-output state belong to Scient. |
+| Figures, Tables, And Artifacts | Matplotlib/seaborn, Plotly, Altair/Vega-Lite, Great Tables/gt, Mermaid, Graphviz, Cytoscape.js, tldraw, Excalidraw, xyflow, Inkscape, diagrams.net, and BioIcons; GenOffice as a later XLSX/PPTX compatibility and editable-artifact candidate. | Runtime projection, artifact generator, compatibility adapter candidate, and reference. | Figure, Table, Artifact, caption, data/code linkage, manuscript usage, review state, fidelity receipts, and stale-output state belong to Scient. |
 | Agent Runs And Review | Scient's OpenCode-derived source foundation, external OpenCode and other agents, Goose, Codex, Synara, T3 Code, and Vercel AI SDK/Elements. | Owned agent source, external-agent adapters, forked workbench prototype, and references. | AgentRun lifecycle, approvals, diffs, logs, artifacts, failures, retries, cancellation, checkpoints, and recovery belong to Scient. |
 | Memory, History, And Decisions | Earlier PapiLab prototype patterns, Stencila provenance ideas, Goose/Codex/OpenCode runtime logs, AFFiNE/Logseq/SiYuan knowledge-workspace patterns, and targeted Hermes ideas. | Reference and normalized runtime evidence. | Scientific memory, decision history, trust metadata, provenance, snapshots, rollback, and auditability belong to Scient. |
 | Collaboration And Mobile Continuation | Yjs/Hocuspocus for document collaboration; Automerge, ShareDB, and Yorkie as bounded challengers; a server-authoritative operation log and narrowly scoped database replication as separate structured-state approaches; Electric as a read-path candidate; PowerSync only after service-license and operations review; OSF, Dataverse, GitHub, and GitLab for sharing/deposit expectations. | Candidate engine, adapter, and reference. | Membership, roles, permissions, attribution, conflict state, accepted scientific operations, cloud mirror authority, mobile action scope, and recovery belong to Scient. |
@@ -268,6 +275,7 @@ forward desktop decision.
 | Overleaf | LaTeX academic workflow, compile logs, collaboration expectations. | Reference, compatibility target, export target. | `reference-only`; no fork |
 | Zettlr | Academic Markdown writing, citation workflow, Pandoc-based export, local-file writing UX. | Reference, export-path inspiration, compatibility expectation. | `reference-only`; no fork |
 | Word / Google Docs | Comments, track changes, manuscript exchange expectations. | Compatibility target. | `adapter-maintained`; export/import only |
+| GenOffice | Byte-preserving DOCX/PPTX/XLSX editing, passthrough of unsupported OOXML, bounded artifact tools, snapshots/diffs/rollback, and selected Electron/AI-script security patterns. | Component source and prototype candidate around Scient-owned manuscript and artifact objects; never a whole-suite foundation, project store, agent authority, or canonical scientific model. Apache-2.0 core only; exclude `ee/`. | `reference-only` first; consider an extracted `adapter-maintained` component only after a scientific-corpus fidelity prototype and explicit source/update decision |
 | Zotero | Import/export, translators, collections, PDF/annotation expectations. | Adapter and compatibility target. | `adapter-maintained`; do not fork product |
 | Zotero Reader | PDF/EPUB/HTML reading and annotation UX, source-region navigation, annotation-to-note behavior. | Component spike, reference, possible upstream-trackable integration after license/source review. | `adapter-maintained` if embedded; otherwise `reference-only` |
 | Zotero Document Worker | PDF annotation processing, PDF text extraction/rendering, structured extraction from PDFs/EPUBs/HTML snapshots. | Component spike, embedded worker candidate, parser reference. | `adapter-maintained` if embedded; otherwise `reference-only` |
@@ -392,6 +400,7 @@ references around a Scient-owned project kernel.
 | eLabFTW / SciNote / RSpace / Chemotion / Kadi4Mat / openBIS | ELN, protocol, inventory, FAIR/RDM, repository, audit, and lab workflow expectations. | These show what scientific-traceability and institutional research-data workflows require outside pure literature review. | Do not become a wet-lab ELN or RDM platform before proving the project graph. | Deferred reference and later adapters. |
 | AFFiNE / Logseq / SiYuan | Local-first docs, canvas, backlinks, block references, PDF annotation links, knowledge graph and note workflows. | Useful for manual researcher workspace behavior: notes, backlinks, object links, canvas/planning, and local ownership. | Do not make Scient a generic PKM or Notion clone. | Reference only. |
 | CoCalc | Jupyter, LaTeX, terminal, whiteboard, chat, real-time collaboration, scientific teaching/research workspace. | It proves the value of combining computation, writing, terminal, and collaboration in one scientific environment. | Do not fork or run from source as a base; MS-RSL source licensing makes it reference-only for Scient. | Reference only. |
+| GenOffice | Surgical DOCX/PPTX/XLSX editing, unsupported-content passthrough, format-specific agent tools, snapshots and diffs, and a multi-editor Electron shell. | It is the strongest inspected source so far for preserving editable Office artifacts while changing only supported regions. | Do not use its generic office-suite shell, cloud identity/provider assumptions, chat store, or Office block models as Scient's app foundation or scientific truth. | Source-depth review completed at `0127f628...`; focused Office-fidelity prototypes recommended, whole-product adoption rejected. |
 
 The 2026-07-07 scan recommended beginning with a Synara fork and then
 pressure-testing it with science surfaces. That was the evidence available when
@@ -416,6 +425,7 @@ Source and reference links checked for this scan:
   [JabRef](https://github.com/JabRef/jabref).
 - Writing and publishing: [Zettlr](https://github.com/Zettlr/Zettlr),
   [Overleaf](https://github.com/overleaf/overleaf),
+  [GenOffice](https://github.com/genspark-ai/genoffice),
   [Quarto](https://quarto.org/),
   [MyST](https://mystmd.org/),
   [Manubot rootstock](https://github.com/manubot/rootstock).
@@ -464,10 +474,56 @@ source review.
 | Lexical | Performance, accessibility, headless editor architecture, Word/HTML import lessons. | Serious fallback if Tiptap/Plate struggle with long scientific documents. | More DIY for scientific features. | Challenger prototype. |
 | Overleaf | Academic writing workflow, LaTeX project model, compile logs, templates, collaboration expectations. | Scientists know it; it teaches submission and LaTeX workflows. | Do not fork Overleaf or become LaTeX-first. | Reference only unless export integration. |
 | Word / Google Docs | Track changes, comments, collaborative writing expectations, non-technical manuscript UX. | Many scientists live here. Export/import must respect their workflows. | Do not make Scient generic office software. | Product reference. |
+| GenOffice DOCX path | Original-OOXML anchors, unsupported-content passthrough, surgical paragraph/run patches, byte-preserving untouched ZIP entries, tracked revisions, comments, equations, citations/sources, notes, tables, headers/footers, charts, CJK, and RTL. | It provides a concrete open-source route to honest Word import, reconciliation, and re-export without regenerating every structure the editor does not understand. | Do not make the DOCX block tree or original Office file the canonical Scient manuscript. The Tiptap conversion and app UI are much more coupled than the pure engine. | Highest-value GenOffice prototype candidate; source quality 4/5, public maturity not yet proven. |
 
 Recommendation: use Tiptap first, prototype Plate and Lexical against the same
-scientific document, and keep Overleaf/Word/Google Docs as UX and export
-benchmarks.
+scientific document, and add GenOffice's DOCX engine to that harness as a
+compatibility adapter candidate. Keep Overleaf/Word/Google Docs as UX and export
+benchmarks; do not confuse a high-fidelity Office projection with Scient's
+manuscript model.
+
+### Office-Format Fidelity And Editable Artifact Sources
+
+GenOffice is an AI-native Electron office suite with separate Docs, Sheets,
+Slides, PDF, and shell applications plus private workspace packages. Its most
+distinctive mechanism is not the suite UI: it keeps the original Office package,
+anchors modeled content to original OOXML, passes unsupported structures through,
+and rewrites only dirty regions. That is directly relevant to Scient's requirement
+to report what import, reconciliation, and export preserved or lost.
+
+| GenOffice lane | Quality and evidence | Scient value | Reuse posture |
+|---|---|---|---|
+| DOCX engine and Tiptap projection | 4/5 source quality. The pure TypeScript engine has broad format tests and byte-preserving patch paths; the editor conversion/UI layer is substantially more coupled. | Highest value: manuscript exchange, tracked changes/comments, and unsupported Word-content survival around a Scient-owned manuscript. | Prototype the engine boundary first; extract or maintain an adapter only if a real scientific corpus passes. |
+| XLSX sidecar, gateway, and operation journal | 4/5 architecture, medium-to-hard extraction. Rust streaming, bounded viewport loading, stale-file checks, copy-on-write OOXML, revision conflicts, dry-run, approval, and fail-closed save paths are strong. Some architecture/compatibility prose is visibly stale relative to the code. | Useful for evidence tables and editable spreadsheet artifacts without making Excel or Univer the `Dataset`, `Analysis`, or `Table` truth. | Prototype after the first Scient table/artifact contract; borrow the safety contract even if the implementation is not reused. |
+| PPTX engine, renderer, and constrained layout interpreter | 4/5 source quality, medium-to-hard extraction. Surgical OOXML, passthrough, rendering tests, atomic layout edits, and an Acorn-parsed allowlisted interpreter are unusually thoughtful. Large app/main/skill modules increase maintenance cost. | Later conference-presentation and scientific-communication artifacts, plus a strong reference for safely executing model-authored layout operations. | Component/reference candidate after manuscript and analysis artifact needs are proven; do not adopt the whole Slides app. |
+| PDF app | 3/5. Competent local annotations, forms, page operations, atomic save, and sandboxing, but less distinctive and less source-provenance-oriented. | Office-suite compatibility reference only. Zotero Reader and Document Worker remain stronger candidates for research reading and exact source-region workflows. | `reference-only`; no first prototype. |
+| Agent core and per-editor tools | 3/5 generic office-agent quality, 2/5 Scient fit. The ReAct loop has cancellation, compaction, bounded retries, fresh context, and a first-mutation snapshot; it lacks Scient's authority, evidence, permission, and accepted-write-back contract. | Learn from one structured artifact being editable by both person and agent, with the same operations, previews, diffs, and rollback. | Selective pattern source only; do not create a second Scient agent runtime. |
+| Provider/search, project store, and shell | 2/5 Scient fit. Cloud account/search behavior is partly outside the repository; the JSON/JSONL store is generic chat/file metadata; the shell is a generic office-suite host. | Minor provider-degradation, rename-stable chat association, multi-tab, and process-hardening lessons. | Reject as Scient foundations or canonical storage; `reference-only` at most. |
+| Electron and hostile-input security | 4/5 as a reference, not a security certification. Sandboxed renderers, isolated contexts, URL/redirect/private-network gates, size-limited IPC, atomic file replacement, and the constrained slide-script interpreter have focused tests. IPC validation is not equally uniform across every app, and AI-generated HTML still warrants independent threat review. | Concrete hardening cases for any future embedded Office adapter or model-authored artifact operation. | Compare and adapt bounded controls behind Scient/T3 security seams; never infer safety from the donor's policy alone. |
+
+The Apache-2.0 core is reusable with its LICENSE/NOTICE and attribution
+obligations; `ee/` is separately licensed and must be excluded. The workspace
+packages are private and unpublished, so there is no current dependency-version
+update path. Any direct use would require an explicit source extraction, vendor,
+or narrow-fork decision.
+
+Verification at `0127f628...` passed the production npm license allowlist,
+TypeScript checks across all workspaces, 3,218 local tests (with one additional
+test skipped), and production builds for all five apps. Lint completed with no
+errors and eight React-hook warnings. The current hosted CI run also passed.
+The exact run is [GenOffice CI 30753206647](https://github.com/genspark-ai/genoffice/actions/runs/30753206647).
+No Microsoft Office/LibreOffice acceptance, visual comparison, installer test,
+or manual editor exercise was performed. The repository's optional real-Word
+fidelity scripts are not part of CI, so real scientific-document fidelity remains
+a prototype question rather than a proven claim.
+
+The largest reservation is maturity and maintainability. The public repository
+was created on 2026-07-31 and has only seven commits: one approximately
+349,000-line public snapshot, several opaque sync snapshots, and two dependency
+action bumps. Several central files exceed 3,000 lines, the generated Sheets
+renderer bundle is large, and some design documents lag the implementation.
+This is substantial source, but not yet evidence of a healthy long-term upstream,
+review culture, or reliable release cadence.
 
 ### Citations, Reference Library, And PDF Reading
 
@@ -808,7 +864,13 @@ to the earlier synthesis. The active sequence lives in
 4. Publishing export prototype.
    Map Scient manuscript/evidence objects to Quarto/Pandoc first and MyST as a
    challenger. Export to Word/PDF/HTML/LaTeX or Typst where feasible. Treat each
-   export as an artifact DAG generated from Scient state.
+   export as an artifact DAG generated from Scient state. Add a bounded
+   GenOffice fidelity lane using real scientific DOCX, PPTX, and XLSX files:
+   test no-op byte preservation, narrow edits, unsupported-content survival,
+   comments/revisions, citations, equations, tables, figures/charts, stale-file
+   handling, crash-safe save, and opening in Word/PowerPoint/Excel and
+   LibreOffice. Require a fidelity receipt and prove that Office state remains a
+   projection/artifact rather than canonical Scient state.
 
 5. Scientific schema and provenance prototype.
    Compare Scient manuscript/evidence objects against Stencila-style semantic
@@ -853,6 +915,8 @@ and architecture source for Scient; Tiptap/ProseMirror-family writing;
 GROBID/Docling/PaperQA/ASReview-powered evidence workflows; Lacuna-inspired
 research-map patterns for paper-grounded search and synthesis;
 Quarto/Pandoc-first export with MyST as challenger;
+GenOffice as a source-depth Office-fidelity candidate, beginning with DOCX and
+deferring PPTX/XLSX until their scientific artifact seams are defined;
 Stencila as a scientific schema/provenance reference; marimo-inspired analysis
 with Jupyter compatibility; DuckDB, pandas/Polars, and Arrow/Parquet for local
 tabular work; Matplotlib, Plotly, Altair/Vega-Lite, and table-generation tools
