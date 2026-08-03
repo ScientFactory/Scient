@@ -16,18 +16,18 @@ Doc type: Research evidence
 - Earlier evidence in this draft PR: [`2026-08-02-scient-desktop.md`](2026-08-02-scient-desktop.md) covers `ab33931d..65f6684` (4 commits), but remains research evidence until accepted
 - Last observed tip used only for the daily digest: `65f6684aa6ff88c8d57a9f11d541a54b41be1539`, recorded by the 2026-08-02 automation run
 - Bounded observation: 2026-08-03; exact inspection times are recorded in the automation report and PR
-- Current fetched tip: `928cfaa07778098518835062798365e4555070b7`
-- Current stable release: `v0.6.5`, peeled to `fcf24599c165383e83d6f8b9981623468d071c98`; main is six commits ahead
-- Full authoritative range: `ab33931d..928cfaa0` (35 commits)
+- Current fetched tip: `9265ca5ae006d2ccad85b67ff1d11f24ca6c3fab`
+- Current stable release: `v0.6.5`, peeled to `fcf24599c165383e83d6f8b9981623468d071c98`; main is seven commits ahead
+- Full authoritative range: `ab33931d..9265ca5a` (36 commits)
 - Already covered by accepted authoritative dispositions in that range: 0
-- Commits re-inspected and dispositioned in this run: 35
-- Daily continuation listed in this record: `65f6684..928cfaa0` (31 commits)
+- Commits re-inspected and dispositioned in this run: 36
+- Daily continuation listed in this record: `65f6684..9265ca5a` (32 commits)
 - Remaining undispositioned: 0
 - Literal integration base: `9be46c3ce6a7521b64436b7334bc6fce16e3cac4`
 
 ## Review Depth
 
-Every commit in the complete 35-commit range received subject, parent, path,
+Every commit in the complete 36-commit range received subject, parent, path,
 statistic, focused or complete patch, dependency, migration, workflow, release,
 protected-lane, current Scient implementation, current tests, pull-request,
 branch, and worktree inspection. Broad parents remain visible and are
@@ -74,6 +74,7 @@ ideas remain recommendation evidence only.
 | Synara | `f41a68a2` | Rejects Pi rows whose provider or model identity would change under trimming, preserving registry-resolvable slugs. | 5/5; it closes the subtle correctness flaw in the earlier normalization and adds exact regressions. | Scient's raw Pi mapping has no isolation boundary, but raw identities must remain exact for lookup. | High | High | Easy | Provider/model identity, slug stability, and extension omission behavior | **Adapt; required correction for the selected Pi lane.** | Selected; final result recorded below | Trim display metadata only; never silently normalize registry identities. |
 | Synara | `fff93e1e` | Retargets transcript anchoring during streaming and limits Recent Activity to the current 04:00-based working day. | 4/5; strong focused logic plus extensive browser coverage, but the 358-line anchor rewrite remains appearance/geometry-sensitive and one browser case stays quarantined. | Scient has a different transcript timeline and Activity Center retention/grouping model. | High for stable streaming; low for the donor date policy | Low | Very Hard | Geometry, streaming growth, user takeover, virtualization, browser timing, time zones, and product date semantics | **Defer; decompose below.** | No | Reproduce transcript jitter on current Scient before a dedicated visual lane; do not import the 04:00 policy without product evidence. |
 | Synara | `928cfaa0` | Merges the Pi metadata fix branch after the identity correction. | 2/5; no behavior beyond `f5ec4b65`, `2f33cd70`, and `f41a68a2`. | Scient records exact donor commits without importing merge ancestry. | None | None | Easy | Lineage confusion | **Reject as merge-only.** | No | Cite the three substantive commits only. |
+| Synara | `9265ca5a` | Makes a just-sent message visibly glide to its transcript anchor without reversing, teleporting, or drifting after landing. | 5/5; uses one clock, seeds motion from the measured visible offset, replaces an asymptotic approach with a bounded cubic ease-out, and strengthens browser proof against teleporting. | Scient's current `useTailAnchorScroll` owns the preceding exponential approach and related unit/browser tests, but has no proof that the sent message traverses multiple visible frames rather than teleporting. | High | High structurally | Hard | Scroll geometry, motion, virtualization, layout mutation, reduced motion, user takeover, browser timing, and human appearance judgment | **Adapt later; automatically ineligible today.** | No | Reproduce the current motion with a human, then adapt the one-clock visible-offset glide on the owned seam with browser geometry, reduced-motion, and manual visual acceptance. |
 
 ## Mixed-Commit Sublanes
 
@@ -105,9 +106,10 @@ ideas remain recommendation evidence only.
 2. Oversized-image preparation ranks second for user benefit, but it is a
    26-file composer/provider/lifecycle change whose correctness includes image
    legibility and appearance; it is automatically ineligible.
-3. Transcript user-takeover and streaming-anchor work ranks next, but every
-   qualified proof depends on geometry, motion, browser interaction, and human
-   visual acceptance.
+3. The sent-message glide at `9265ca5a` and the earlier transcript
+   user-takeover/streaming-anchor work rank next, but every qualified proof
+   depends on geometry, motion, browser interaction, and human visual
+   acceptance.
 4. The Activity feed/Done lifecycle offers substantial task-orientation value,
    but it competes with Scient's existing Activity Center and requires product
    direction, a migration, broad UI work, and a long correction chain.
@@ -172,10 +174,10 @@ diff or commit.
 
 ## Resulting State
 
-- Complete contiguous disposition evidence in this unfinished draft sequence extends through `928cfaa07778098518835062798365e4555070b7`.
-- Full revalidated range: `ab33931d..928cfaa0` (35 commits), zero remaining.
-- Daily delta: `65f6684..928cfaa0` (31 commits), every commit explicitly listed above.
-- Proposed repo-local `reviewedThrough`: `928cfaa07778098518835062798365e4555070b7`.
+- Complete contiguous disposition evidence in this unfinished draft sequence extends through `9265ca5ae006d2ccad85b67ff1d11f24ca6c3fab`.
+- Full revalidated range: `ab33931d..9265ca5a` (36 commits), zero remaining.
+- Daily delta: `65f6684..9265ca5a` (32 commits), every commit explicitly listed above.
+- Proposed repo-local `reviewedThrough`: `9265ca5ae006d2ccad85b67ff1d11f24ca6c3fab`.
 - Accepted repo-local checkpoint while this evidence remains draft: `ab33931da4c8da884b1445244085f4eeee3eafb6`.
 - Literal `integrationBase`: unchanged at `9be46c3ce6a7521b64436b7334bc6fce16e3cac4`.
 - Selected intake: Pi descriptor containment; implemented independently through desktop head `32eb90fd804d7e9feeaa06b20e97c20c70a98601`, pending final recertification and draft publication.
