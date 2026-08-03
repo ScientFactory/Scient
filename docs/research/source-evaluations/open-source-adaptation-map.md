@@ -3,7 +3,7 @@
 Status: Proposed
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-08-02
+Last updated: 2026-08-03
 Purpose: Maps which open-source systems Scient should study, prototype, adapt, or integrate, and which product boundaries Scient must keep owned.
 Doc type: Research evidence
 
@@ -357,7 +357,7 @@ is relevant only to a separately reviewed process or external-agent path.
 
 | Source | Adaptation target | Why it matters | Do not adopt | Depth status |
 |---|---|---|---|---|
-| T3 Code | Daily complete-range research review; bounded reliability, provider, lifecycle, diagnostics, and UI/UX concepts only when each has a defensible Scient-native seam. | Supplies proven implementation details and comparison evidence without becoming Scient's product architecture. | Do not inherit coding-product assumptions, broad runtime alignment, mobile/cloud surfaces, or speculative remote infrastructure. Daily observation does not create owned-upstream ancestry or an integration base. | Durable problem-triggered boundary remains `bf76535fe4da71d8de7b8bd5ffa0d2086b7af8d0`; scheduled evidence now extends through `5192f777fe54c2a2a359f6c25ecf5fbde46d49b0`. Accepted, adapted, deferred, and rejected lanes remain independently recorded. |
+| T3 Code | Daily complete-range research review; bounded reliability, provider, lifecycle, diagnostics, and UI/UX concepts only when each has a defensible Scient-native seam. | Supplies proven implementation details and comparison evidence without becoming Scient's product architecture. | Do not inherit coding-product assumptions, broad runtime alignment, mobile/cloud surfaces, or speculative remote infrastructure. Daily observation does not create owned-upstream ancestry or an integration base. | Durable problem-triggered boundary remains `bf76535fe4da71d8de7b8bd5ffa0d2086b7af8d0`; complete scheduled evidence in the current draft review sequence now extends through `69dfb7f09a473d270a8b127cb1c39836fa1c6bc4`. Accepted, adapted, deferred, and rejected lanes remain independently recorded. |
 | Synara | Orchestration, UI/provider adapters, Effect server ideas, event-sourced orchestration, desktop/web split, worktree/Git flows. | Useful for building a reliable agent workspace that can explain what happened. | Do not copy its UI shape blindly; Scient needs a research cockpit. | Accepted initial application foundation through ADR-0001; scientific-product fit still needs pressure testing. |
 | Vercel AI SDK | Model/provider abstraction, typed stream parts, tool-call state, approval status, UI message events, mock providers, and model I/O tests. | Useful for model plumbing and chat/event surfaces around Scient-owned actions. | Do not use it as the abstraction over local executors like OpenCode or Codex. Executor actions need a Scient-owned contract. | Candidate model I/O layer; needs a narrow harness prototype. |
 | Vercel AI Elements | Tool cards, source citations, confirmations, terminal output, file trees, artifacts, plans, queue state. | Useful UI pieces for agent work inspection. | Do not let it make Scient a generic chat surface. | Side UI pattern source. |
