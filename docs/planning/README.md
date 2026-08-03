@@ -25,19 +25,24 @@ Current planning docs:
 - `memory-architecture-discovery.md` - draft discussion of candidate memory
   scopes, authority, lifecycle, agent access, local/cloud boundaries, and the
   questions to resolve before architecture or storage selection.
-- `product-roadmap.md` - active sequence of coherent product outcomes, beginning with the first Scient scientific project slice.
+- `product-roadmap.md` - active sequence of coherent product outcomes, with the
+  T3 foundation migration as the current enabling track before the first full
+  Scient scientific project slice.
 - `scientific-computing-and-data-analysis-roadmap.md` - proposed product boundary, source strategy, architecture direction, and ordered implementation path for manual code editing, Python, R, MATLAB, notebooks, datasets, figures, and reproducible analysis artifacts.
-- `first-scient-vertical-slice-implementation-plan.md` - draft source-tracing, implementation, and verification plan for the active product slice.
+- `first-scient-vertical-slice-implementation-plan.md` - superseded
+  Synara-specific source-tracing and implementation plan, preserved for its
+  reasoning and completed project-initiation evidence.
 - `scient-and-external-agents-implementation-plan.md` - proposed end-to-end plan for building the Scient agent as the owned OpenCode-derived first-party agent while preserving external agents independently.
-- `t3-foundation-migration-proposition.md` - proposed destination,
-  capability dispositions, proof gates, decision sequence, and documentation
-  transition system for deciding whether Scient should replace its
-  Synara-derived desktop foundation with a fresh, ancestry-preserving
-  T3-derived application.
+- `t3-foundation-migration-plan.md` - active destination, capability
+  dispositions, proof gates, D4 bootstrap authorization, and documentation
+  transition system for replacing the Synara-derived desktop foundation with
+  a fresh, ancestry-preserving T3-derived application.
 - `papilab-to-scient-rename-execution-plan.md` - historical PapiLab-to-Scient migration, compatibility, rollback, and deferred-public-cutover record.
 - `litrev-to-papilab-rename-execution-plan.md` - historical intermediate product-identity migration, verification, and rollback record for renaming LitRev to PapiLab.
 - `gate-1-5-execution-plan.md` - historical execution plan for owned source repositories, upstream synchronization, and Synara identity isolation.
 - `model-access-and-routing-evolution.md` - priorities and open choices for provider-connected, bring-your-own-key, Scient-managed, and automatically routed model access.
-- `open-source-adaptation-build-strategy.md` - unfinished planning note for the fork/adapter/upstream strategy that turns source evaluations into a first build path.
+- `open-source-adaptation-build-strategy.md` - active evergreen ownership,
+  fork/adapter, upstream-update, and divergence strategy across T3, Synara,
+  OpenCode, and other sources.
 - `product-planning.md` - draft product planning after PRD acceptance, including candidate features, open product questions, and cross-document handoffs.
 - `repository-scope-and-company-memory.md` - proposed boundary between this Scient product repository and a future connected company memory.

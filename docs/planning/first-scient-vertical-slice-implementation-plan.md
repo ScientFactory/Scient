@@ -1,21 +1,24 @@
 # First Scient Vertical Slice Implementation Plan
 
-Status: Draft
+Status: Superseded
 Owner: Yaacov
 Created: 2026-07-16
 Last updated: 2026-08-02
-Purpose: Defines the bounded source-tracing, implementation, and verification plan for the first Scient scientific project slice.
+Purpose: Preserves the bounded Synara-specific source-tracing, implementation, and verification plan that preceded the active T3 foundation migration.
 Doc type: Planning note
 
 ## Document Rules
 
-This plan operationalizes the active product slice in `product-roadmap.md` and
-the ownership decision in
+This plan preserves the earlier Synara-specific execution path and its
+project-initiation evidence. It is no longer the active implementation plan.
+Its original ownership decision was
 `../architecture/decisions/ADR-0001-synara-opencode-foundation-and-scient-ownership-boundary.md`.
-It owns the immediate work sequence, boundary-trace requirements, implementation
-scope, and acceptance checks for this slice. It does not define the full project
-format, final runtime architecture, complete scientific schema, or implemented
-behavior.
+The active [T3 foundation migration plan](t3-foundation-migration-plan.md),
+under accepted
+[ADR-0005](../architecture/decisions/ADR-0005-t3-derived-desktop-foundation.md),
+now owns the executable foundation and migration sequence. This historical
+plan does not define the full project format, final runtime architecture,
+complete scientific schema, or current implementation behavior.
 
 The fork, upstream-update, and divergence rules remain owned by
 `open-source-adaptation-build-strategy.md`. Exact executed evidence belongs in a
@@ -23,30 +26,22 @@ dated lab note. Do not invent permanent package paths, APIs, schemas, or command
 before the selected Synara and OpenCode revisions have been traced.
 Scient's identity, its internal inherited-core maintenance boundary, and the
 preservation of external agents are governed by
-`scient-and-external-agents-implementation-plan.md` and ADR-0001.
+`scient-and-external-agents-implementation-plan.md` and ADR-0005, which
+preserves the applicable agent decisions from ADR-0001.
 
-Update this plan when source tracing or implementation evidence resolves an open
-boundary, changes the sequence, or invalidates an assumption. Do not rewrite the
-roadmap or ADR unless the evidence changes their product outcome or accepted
-architecture decision.
+Do not resume or extend this plan. Correct historical errors in place; route
+new foundation, capability, or implementation work to the active migration
+plan and the focused plan for that lane.
 
-## Proposed Foundation Transition
+## Supersession
 
-This plan remains the truthful record of the current Synara-based slice and its
-implemented project-initiation work. It is not yet superseded because
-[ADR-0005](../architecture/decisions/ADR-0005-t3-derived-desktop-foundation.md)
-and the
-[T3 foundation migration proposition](t3-foundation-migration-proposition.md)
-remain proposed, and no successor repository exists.
-
-Yaacov has approved the proposed direction that remaining new scientific
-architecture should target the T3-derived candidate if that foundation decision
-is accepted. Do not begin the unimplemented phases of this Synara-specific plan
-while Phase Zero evaluates that decision. Current-app correctness, security,
-data-protection, and continuity work remains separately allowed. If ADR-0005 is
-accepted and the migration plan is promoted, this document should become
-`Superseded` without rewriting its implementation evidence or historical
-reasoning.
+Superseded on 2026-08-02 by the active T3 foundation migration plan. Preserve
+the implemented `@scientfactory/project-init` evidence and the reasoning below;
+re-establish its user value against the selected T3 baseline rather than
+continuing the unimplemented Synara-specific phases. Current-app correctness,
+security, data-protection, and continuity work remains separately allowed. No
+successor repository exists yet, so this supersession changes planning
+authority rather than current implementation truth.
 
 ## Goal
 

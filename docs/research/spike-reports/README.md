@@ -13,7 +13,8 @@ Current files:
 
 - `t3-foundation-phase-zero-2026-08-02.md` - refreshed T3/owned baseline,
   isolated verification, identity/isolation evidence, and unresolved risks for
-  the proposed Scient T3 foundation.
+  the now-accepted Scient T3 foundation. It remains dated evidence rather than
+  architecture or implementation truth.
 - `litrev-2026-vnext-transfer-report-2026-06-27.md` - research transfer report on what the new LitRev should learn from LitRev_2026 and vNext planning.
 - `coherence-report-2026-06-28.md` - dated coherence and architecture audit of the planning documents, with a decision-by-decision review and proposed fixes.
 - `spike-report-template.md` - future home for the spike report template.

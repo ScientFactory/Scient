@@ -4,17 +4,17 @@ Status: Draft
 Owner: Yaacov
 Created: 2026-08-02
 Last updated: 2026-08-02
-Purpose: Preserves a compact, repo-local index of the capabilities evaluated for the proposed T3 foundation migration.
+Purpose: Preserves a compact, repo-local research index of the capabilities evaluated for the accepted T3 foundation migration direction.
 Doc type: Research evidence
 
 ## How To Use This Catalog
 
 This file preserves the 159 source IDs and titles used by the
-[T3 foundation migration proposition](../../planning/t3-foundation-migration-proposition.md).
+[T3 foundation migration plan](../../planning/t3-foundation-migration-plan.md).
 It is an evidence index, not product truth, an implementation backlog, or proof
 that a capability exists at the current head of any repository.
 
-The proposition owns the current disposition of each ID. Before implementation,
+The active plan owns the current migration disposition of each ID. Before implementation,
 verify the behavior and owning seam against the exact selected Scient, Synara,
 T3, and Scient Agent revisions. Branch-derived entries require provenance,
 ownership, and state verification before they may be treated as available work.

@@ -1,34 +1,42 @@
-# Scient T3 Migration Proposition
+# T3 Foundation Migration Plan
 
-Status: Proposed
+Status: Active
 Owner: Yaacov
 Created: 2026-08-01
-Last updated: 2026-08-02
-Purpose: Proposes the future ScientFactory architecture and the principles that should govern a possible migration to a fresh T3-derived Scient application.
+Last updated: 2026-08-03
+Purpose: Governs the proof-gated migration from the current Synara-derived Scient app to one fully ScientFactory-owned application with fresh official T3 ancestry.
 Doc type: Planning note
 
 ## Document Rules
 
-Yaacov approved this proposition on 2026-08-02 as the planning basis for the
-first documentation and evidence slices. Its `Proposed` status remains
-deliberate: it is not yet an accepted architecture decision, an executable
-implementation plan, or authorization to create repositories, migrate data,
-change application code, or retire the current Scient application.
+Yaacov accepted
+[ADR-0005](../architecture/decisions/ADR-0005-t3-derived-desktop-foundation.md)
+and promoted this plan on 2026-08-02 after reviewing the
+[Phase Zero dossier](../research/spike-reports/t3-foundation-phase-zero-2026-08-02.md).
+ADR-0005 owns the durable desktop-foundation decision. This plan owns migration
+sequencing, capability dispositions, proof gates, bootstrap scope, stop
+conditions, documentation transitions, and the currently authorized next
+gate.
 
-Part I defines the proposed destination: what ScientFactory would own, how the
+Part I defines the accepted destination: what ScientFactory will own, how the
 repositories would relate, and how Scient could continue receiving T3
 improvements without allowing T3 to define the scientific product. Part II
 dispositions the known Scient and Synara capability portfolio from first
 principles. Part III defines the proof-gated migration constitution: the
 baseline, contract, divergence, persistence, continuity, update, and cutover
-rules that should govern a later executable plan. Part IV defines how accepted
+rules that govern execution. Part IV defines how accepted
 decisions, plans, current-state documentation, evidence, operations, and
 cutover records must change without pretending future work is already real.
-Exact repository creation, work breakdown, estimates, and release decisions
-still require Yaacov's approval and fresh baseline evidence.
+The candidate repository does not yet exist. This plan authorizes only the
+bounded D4 bootstrap recorded in Part III: create the provisional repository
+from the exact selected T3 base, prove the pristine baseline, and establish the
+first identity, privacy, state, update, and boundary-isolation change. It does
+not authorize feature migration, legacy-data conversion, cloud enablement,
+distribution, release, cutover, or retirement of the current application.
 
-This proposition decides product direction, ownership, sequencing, boundaries,
-and proof gates. It deliberately does not pre-write the implementation plan for
+This plan records accepted direction and owns migration sequencing,
+boundaries, and proof gates. It deliberately does not pre-write the
+implementation plan for
 skills, source intake, provider onboarding, voice, legacy-data transition, or
 another selected capability. Each capability receives a separate focused plan
 when its implementation lane is opened, using the then-current T3 source and
@@ -36,16 +44,21 @@ the evidence relevant to that feature. The legacy-data transition plan must be
 accepted before old user data is converted or cutover is attempted, but it is
 not a prerequisite for beginning the clean candidate foundation.
 
-If this proposition is accepted, its durable decisions must be promoted into
-the correct Scient product, architecture, planning, operations, and source-lock
-documents. This proposed file does not silently override the current accepted
-Synara-derived foundation or any existing ADR.
+### Update Policy
 
-## Direction Review State
+Update this plan when accepted evidence changes a proof-gate state, a risk
+disposition, a stop condition, or the next authorized transition. Keep detailed
+task lists and capability implementation plans with their owning work. Never
+predict another repository's implementation, release, cloud, mobile, or
+cutover state here.
 
-During Yaacov's 2026-08-02 line-by-line review, he approved the proposition as
-the basis for a narrow proposed successor ADR and truthful documentation
-reconciliation. The reviewed directions include:
+## Accepted Direction And Current State
+
+During Yaacov's 2026-08-02 line-by-line review, he approved the directions
+below. D2 then verified the current official T3 baseline and exposed the
+identity, privacy, state, updater, cloud/mobile, and continuity risks now
+assigned to explicit gates. These migration-sequencing decisions do not
+silently amend the accepted PRD or claim implementation:
 
 - build one fully ScientFactory-owned T3-derived application;
 - keep the current application only as a usable bridge and direct new features
@@ -63,7 +76,7 @@ reconciliation. The reviewed directions include:
 - target the serious Scient skills product for the end of M1, while preserving
   an explicit decision gate to defer it until immediately after migration. Do
   not plan its detailed scope, storage, trust, adaptation, or import behavior
-  in this proposition; plan those when its implementation lane opens;
+  in this plan; plan those when its implementation lane opens;
 - include portable project inspection and initialization, durable scientific
   source and PDF intake, guided provider connection and managed provider
   lifecycle, and substantially improved mathematical and bidirectional text
@@ -130,37 +143,35 @@ reconciliation. The reviewed directions include:
   finished or current agent product; and
 - discuss external MCP clients in P2.
 
-These directions authorize the documentation-only first slice and the next
-read-only Phase Zero evidence pass. They do not yet replace the accepted
-Synara foundation ADR or authorize repository creation, product code, user-data
-conversion, cloud enablement, release, or cutover.
+ADR-0005 now replaces the forward desktop-foundation decision in ADR-0001.
+The current Synara-derived Scient app remains the supported continuity product,
+no T3-derived candidate repository exists yet, and no user data, cloud service,
+release channel, or website surface has changed. The only next authorized
+implementation is D4 candidate bootstrap under Part III.
 
-## Governance Conflict And Promotion Path
+## Authority And Reconciliation State
 
-Scient's accepted direction is still the Synara-derived application foundation
-defined by [ADR-0001](../architecture/decisions/ADR-0001-synara-opencode-foundation-and-scient-ownership-boundary.md).
+[ADR-0005](../architecture/decisions/ADR-0005-t3-derived-desktop-foundation.md)
+is the accepted forward desktop-foundation decision.
+[ADR-0001](../architecture/decisions/ADR-0001-synara-opencode-foundation-and-scient-ownership-boundary.md)
+is superseded but preserved as the historical initial-foundation record.
 [ADR-0002](../architecture/decisions/ADR-0002-standalone-source-ownership-and-upstream-authority.md)
-currently treats original sources as selective, fetch-only authorities rather
+continues to treat original sources as fetch-only, reviewed inputs rather
 than owned integration bases. The active [product roadmap](product-roadmap.md),
 the [first vertical-slice plan](first-scient-vertical-slice-implementation-plan.md),
 the [open-source adaptation strategy](open-source-adaptation-build-strategy.md),
 the [technology stack](../architecture/technology-stack.md), and the
 [open-source adaptation map](../research/source-evaluations/open-source-adaptation-map.md)
-all reflect that Synara-first direction to different degrees.
-
-This proposition intentionally asks Yaacov to reconsider that foundation. It
-cannot govern implementation merely by being merged as a planning note. If the
-direction is accepted, a separately reviewed architecture decision must amend
-or supersede ADR-0001 and explicitly define T3's new ancestry and upstream
-authority relationship under ADR-0002. The affected planning, architecture,
-operations, and source-lock documents must then be reconciled in their owning
-repositories before repository bootstrap or migration code is authorized.
+are reconciled by the D3 change that promoted this plan. Current-implementation
+documents continue to describe the Synara-derived app until D4 creates a real
+candidate and later gates produce stronger evidence. The source lock and
+upstream-intake manifest must not invent the candidate before then.
 
 The accepted [PRD](../product/PRD.md), the product principles in
 [product philosophy](../product/product-philosophy.md), and the host-independent
 scientific operation boundary in
 [ADR-0004](../architecture/decisions/ADR-0004-scient-operation-capability-and-provenance-boundary.md)
-remain the constraints against which this proposed host change must be judged.
+remain the constraints against which this accepted host change must be judged.
 In particular, T3 preview or composer annotations may supply useful interaction
 receipts, but they cannot become canonical scientific annotations without the
 durable identity, provenance, authority, and recovery rules required by
@@ -168,9 +179,9 @@ ADR-0004.
 
 # Part I: The Future ScientFactory
 
-## 1. Executive Proposition
+## 1. Executive Direction
 
-The proposed direction is:
+The accepted direction is:
 
 > Build one fully ScientFactory-owned, T3-derived Scient desktop application
 > with a rigorously isolated Scient-owned scientific application layer inside
@@ -218,7 +229,7 @@ The corresponding maintenance rule is:
 > long-term architecture, and make each such divergence explicit, tested, and
 > maintainable through future T3 updates.
 
-In this proposal, **independent** means that Scient owns the scientific data
+In this plan, **independent** means that Scient owns the scientific data
 model, contracts, state transitions, persistence rules, and tests, and that
 these do not depend on T3 application internals. It does not initially mean a
 separate `scient-core` repository, daemon, deployment, or second user-facing
@@ -257,7 +268,7 @@ lesson, and much of the generic host implementation should be replaced by T3.
 The goal is not to preserve code for its own sake. The goal is to preserve user
 value, product knowledge, scientific guarantees, and tested failure behavior.
 
-## 3. Proposed Repository Topology
+## 3. Repository Topology
 
 ScientFactory should remain a plain workspace containing independent
 repositories. It should not become one Git monorepo. Product authority, the
@@ -282,15 +293,16 @@ ScientFactory/
 └── website/                Website, downloads, and public release surfaces
 ```
 
-The name `scient-desktop-next` and the internal package names are illustrative.
-Repository creation, final naming, and exact package boundaries remain explicit
-later decisions. The important decision is the dependency shape, not these
-names.
+`scient-desktop-next` is the authorized provisional migration-repository name;
+it is not the final public product or repository name. The internal package
+names remain illustrative and are created only as real vertical slices require
+them. The important durable decision is the dependency shape, not a speculative
+package inventory.
 
 The diagram does not imply that T3's current cloud, relay, web, or mobile
-deployables should be removed or moved into new repositories. Phase Zero must
-map their freshest official topology, determine which pieces remain useful to
-Scient, and preserve their update path. A separately deployed Scient cloud
+deployables should be removed or moved into new repositories. Phase Zero mapped
+their official topology; D4 must preserve their source and build boundaries
+without enabling live services. A separately deployed Scient cloud
 service should trigger a repository and lifecycle decision before its first
 selected-user environment, not an automatic extraction based only on plans.
 
@@ -306,7 +318,7 @@ ScientFactory/
 
 The final desktop repository name must be selected before its first public
 release after an updater, signing, release-feed, redirect, and rollback audit.
-This proposal does **not** assume that the new repository will be renamed to
+This plan does **not** assume that the new repository will be renamed to
 `scient-desktop`, or that the old repository can safely surrender that name.
 The old Synara-derived repository and release feed should retain a stable,
 unambiguous identity throughout migration and the rollback window. It may be
@@ -843,7 +855,7 @@ When a selected lane is ready to begin, write its focused product and
 implementation plan against the then-current T3 baseline. That plan should
 resolve the concrete experience, data behavior, affected seams, alternatives,
 verification, rollback, and any user decision specific to the feature. This
-proposition should not accumulate those implementation details in advance or
+plan should not accumulate those implementation details in advance or
 become a substitute for those plans.
 
 The recommended delivery sequence is:
@@ -871,14 +883,14 @@ the T3-derived desktop repository. When Scient Agent or another real repository
 is a consumer, contracts should land before consumers, and no repository should
 claim another repository's unmerged work as implemented.
 
-## 10. Proposed Build Direction
+## 10. Build Direction
 
 Migration and scientific product development should pressure-test each other.
 Scient should not spend months reproducing generic feature parity before
 building scientific value, and it should not build its scientific architecture
 inside the legacy host while planning to replace that host.
 
-The proposed high-level direction is:
+The planned high-level direction is:
 
 ### Foundation proof
 
@@ -975,7 +987,7 @@ not part of the initial implementation commitment.
 
 ## 11. Explicit Rejections
 
-This proposition rejects:
+This plan rejects:
 
 - replaying all Scient commits onto T3;
 - building a new generic desktop shell from zero now;
@@ -986,7 +998,7 @@ This proposition rejects:
 - completing generic feature parity before one real scientific workflow;
 - assuming conflict-free upstream merges are possible;
 - treating T3 as Scient's permanent scientific product architecture rather
-  than the proposed primary host platform.
+  than the selected primary host platform.
 
 ## 12. Principal Risks And Required Guardrails
 
@@ -1053,10 +1065,9 @@ Engineering decisions should be made at the latest responsible moment, but no
 later. Four timing classes prevent both premature implementation planning and
 dangerous architectural drift.
 
-### 13.1 Direction decisions to settle in this proposition
+### 13.1 Accepted direction decisions
 
-These determine what ScientFactory is choosing to build. They should be
-approved or revised before the successor foundation ADR is prepared:
+ADR-0005 and this active plan establish that ScientFactory will:
 
 1. build one fully ScientFactory-owned application from a fresh official T3
    ancestry rather than replaying Scient commits or permanently maintaining two
@@ -1067,7 +1078,7 @@ approved or revised before the successor foundation ADR is prepared:
 3. use ordinary ancestry-preserving T3 merges during the initial aligned phase,
    while allowing conscious direct changes to T3-owned surfaces when they make
    the product materially better;
-4. accept the high-level M1, P1, later, use-T3, learn-only, and rejected
+4. use the high-level M1, P1, later, use-T3, learn-only, and rejected
    capability boundaries in Part II, including the current application as a
    continuity bridge rather than a second feature target;
 5. preserve useful T3 cloud and mobile foundations, keep scientific authority
@@ -1076,34 +1087,41 @@ approved or revised before the successor foundation ADR is prepared:
 6. require explicit divergence ownership, update rehearsals, recovery, and
    stop-or-redesign gates instead of assuming the migration must continue after
    evidence shows a poor boundary; and
-7. promote an accepted direction through the ADR and documentation transition
-   in Part IV before repository bootstrap changes current architecture truth.
+7. change architecture and planning authority before repository bootstrap
+   changes implementation truth.
 
 Exact names, paths, commands, schemas, providers, databases, and release
 numbers are not direction decisions merely because they eventually matter.
 
-### 13.2 Phase Zero and bootstrap decisions
+### 13.2 Resolved Phase Zero and D4 bootstrap decisions
 
-These require the freshly fetched source and current repository state. Decide
-them after the direction is accepted but before the corresponding foundation
-code is created:
+D3 resolves only the choices required to enter D4 safely:
 
-1. the candidate repository name and creation sequence, exact official T3
-   base, current tag comparison, license, notices, assets, and provenance;
-2. the untouched T3 build, test, packaging, service, telemetry, updater, cloud,
-   relay, web, mobile, and platform baseline that Scient is actually inheriting;
-3. owned `origin`, fetch-only T3 upstream, branch protections, initial
-   contribution/update lanes, and current branch, worktree, pull-request, and
-   ownership overlap;
-4. the provisional Scient application and bundle identifiers, protocol, and
-   state directory needed to prevent collision with T3 and the current Scient
-   app, plus disabled-by-default T3 telemetry and update publication;
-5. the smallest boundary-enforcement and divergence-manifest mechanism needed
-   before product features begin, derived from the selected T3 source rather
-   than old seam names; and
-6. which existing T3 cloud, relay, web, and mobile components are preserved
-   unchanged, kept buildable but disabled, adapted later, or excluded from the
-   initial Scient release. No live service or user data is authorized here.
+1. provisional owned repository: `ScientFactory/scient-desktop-next`, private
+   during foundation proof, with `main` as the default integration branch;
+2. bootstrap base-selection rule: immediately before repository creation,
+   freshly fetch official T3 and use its then-current `main` tip; record that
+   exact revision and tag as the integration base after the pristine baseline
+   passes. Do not keep editing this plan as T3 advances. An earlier revision may
+   be selected only through a conscious documented exception made after
+   comparison with the fresh tip;
+3. writable owned `origin` and official `pingdotgg/t3code` fetch-only
+   `upstream` with push disabled; no Synara remote in the candidate;
+4. a collision-free provisional candidate identity and state namespace,
+   selected in the candidate's first commit from the reserved
+   `scient-desktop-next`/`Scient Next` family and verified against both current
+   Scient and T3 before startup; these are migration identities, not the final
+   public product name;
+5. fail-closed telemetry and observability, no T3 provider-identity reads, no
+   inherited update publication or live cloud endpoints, and explicit refusal
+   of T3's legacy user-data fallback before candidate startup; and
+6. preserve T3 cloud, relay, web, and mobile source/build foundations where
+   practical while keeping every live service, public update, and mobile
+   product release disabled.
+
+The repository visibility is a bootstrap safety choice, not a permanent
+product decision. It must be reconsidered with license, notice, contribution,
+release, and public-source obligations before any external distribution.
 
 Bootstrap does not require choosing a separate scientific database, designing
 the legacy importer, enabling cloud, or finalizing signing, public updater,
@@ -1165,7 +1183,7 @@ owners exist:
 7. any final repository rename or source-monitoring retirement after its
    operational safety and value are demonstrated.
 
-## 14. Proposed Destination In One Sentence
+## 14. Accepted Destination In One Sentence
 
 > ScientFactory should build one T3-derived Scient desktop application whose
 > Scient-owned scientific application layer is logically independent and
@@ -1282,7 +1300,7 @@ read-only comparison on 2026-08-02 found:
   against the official remote, with push disabled in the disposable donor
   checkout; the latest observed tag was
   `v0.0.32-nightly.20260802.980` at that same commit. It is newer than the
-  catalog's `03adf215c`, this proposal's former `0ad91b6e` observation, and
+  catalog's `03adf215c`, this plan's former `0ad91b6e` observation, and
   Fable's `a041981` seam baseline;
 - all six commits from the proposal's former `0ad91b6e` observation through
   `e60821f0` were inspected, not merely the new tip. They add a substantial
@@ -1295,7 +1313,7 @@ read-only comparison on 2026-08-02 found:
   to the persistence and release proofs. The other five changes refine T3
   platform behavior but do not overturn the Part II portfolio decisions;
 - `scient-desktop origin/main` was
-  `3829e5dd82a4760184aabafa4c96127744ef79f2`, newer than this proposal's former
+  `3829e5dd82a4760184aabafa4c96127744ef79f2`, newer than this plan's former
   `a3f0a27ba` snapshot and Fable's `50cb55c5` snapshot. Earlier verified Scient
   behaviors remain migration evidence, but current-baseline claims must be
   refreshed before implementation;
@@ -1347,7 +1365,7 @@ that selected baseline.
 These are the first changes because every later feature depends on them or
 because an artifact must not be distributed without them.
 
-| Capability | Proposed decision | Ownership and divergence | Why first | Required proof |
+| Capability | Plan decision | Ownership and divergence | Why first | Required proof |
 |---|---|---|---|---|
 | Scient identity, application IDs, protocols, and data directory | **Minimum local isolation first; full release identity later** | Deliberate, centralized T3 divergence; preserve internal `@t3tools/*` names | Even a local candidate must not identify or store itself as T3 or the current Scient app | Provisional bundle/app ID, protocol, executable, and state-directory isolation; final signing and public identity are release-gate work |
 | Telemetry and privacy | **Integrate first** | Deliberate T3 divergence in the quiet telemetry service; Scient policy owns any future analytics | Unchanged T3 sends enabled telemetry to T3 Tools | No outbound analytics without the approved consent state; CI regression guard |
@@ -1369,10 +1387,10 @@ This table now distinguishes the Scient capabilities explicitly selected for
 M1 from new scientific product work that should follow the migration. Moving
 to T3 must not force the Scient Agent roadmap into desktop cutover.
 
-| Capability | Proposed decision | Best implementation | T3 relationship | Quality boundary |
+| Capability | Plan decision | Best implementation | T3 relationship | Quality boundary |
 |---|---|---|---|---|
 | Project inspection and initialization | **Integrate first in M1** | Move or re-establish `@scientfactory/project-init` as a Scient-owned package; keep planning, containment, idempotency, and recovery headless | Thin adapter into T3 project creation/opening; do not substitute `t3.json` for the Scient project contract | Opening remains write-free; initialization is previewed, additive, race-safe, non-Git, and recoverable |
-| Serious skills library and user/project control | **Target the end of M1, with an explicit option to defer until immediately after migration** | Write a separate product and implementation plan when this lane opens; do not port the minimal current feature merely to satisfy migration parity | Reuse T3 discovery, delivery, and presentation where they fit, with deliberate app changes only after the focused plan decides the strongest experience | M1 must not ship a rushed skills foundation. Scope, storage, import, trust, adaptation, and update behavior remain later decisions, not omissions in this proposition |
+| Serious skills library and user/project control | **Target the end of M1, with an explicit option to defer until immediately after migration** | Write a separate product and implementation plan when this lane opens; do not port the minimal current feature merely to satisfy migration parity | Reuse T3 discovery, delivery, and presentation where they fit, with deliberate app changes only after the focused plan decides the strongest experience | M1 must not ship a rushed skills foundation. Scope, storage, import, trust, adaptation, and update behavior remain later decisions, not omissions in this plan |
 | M1 capability-owned records | **Integrate only what the selected M1 features require** | Persist project initialization, source identity, and PDF intake without prebuilding skill, scientific-task, proposal, decision, or agent-run models; add skill state only if the late-M1 plan is accepted | T3 stores host references and presentation state; selected Scient records remain portable | Reopening the selected M1 state works without cloud or provider sessions; migration scope does not manufacture the later scientific domain model |
 | Governed agent work and researcher review | **Post-migration Scient and Scient Agent product work; not M1 or cutover** | Design context receipts, operations, proposals, decisions, receipts, recovery, and manual review with the Scient Agent roadmap | Reuse T3 execution and presentation machinery where it fits; do not justify an agent gateway as migration parity | Must eventually prove inspect, edit, accept, reject, apply, and recover, but no placeholder contract or UI is required to migrate the desktop foundation |
 | Scientific Studio (working name) | **Extreme-priority P1; explicitly not M1** | Build a new first-class scientific home inside each open project for workflows that deserve dedicated UI beyond chat and the ordinary side panel | Scient-owned product surface mounted through the smallest strong T3 application seam; do not port the inherited coding Studio or Kanban model | The final name remains open. It is not a project hub: the project is already the containing workspace. Scope must grow from real scientific surfaces rather than becoming a generic dashboard |
@@ -1434,12 +1452,12 @@ finished feature or the new proposal as already accepted architecture.
 Scient is source-centered. The old features should be rebuilt around durable
 project material rather than copied as ephemeral chat conveniences.
 
-| Capability | Proposed decision | Best implementation | Divergence decision | Important future consequence |
+| Capability | Plan decision | Best implementation | Divergence decision | Important future consequence |
 |---|---|---|---|---|
 | PDF and selected scientific-source intake | **Integrate a focused PDF/source path in M1 after the minimal project record exists** | The separate feature plan selects the initial file types and the smallest durable source identity required; it must not silently turn M1 into a universal dataset and document system | Scient-owned source behavior with a thin T3 file-access and reader adapter | Chat can refer to the selected project source instead of making the provider attachment the only copy; broader datasets, CSVs, and document workflows require their own product scope |
 | PDF reading | **Integrate first in M1 for the source workflow** | Reuse proven PDF rendering components or libraries behind a Scient source-reader contract; choose a reader architecture with selection, page/region coordinate, overlay, and extension capabilities without implementing the annotation product | Mostly separate UI; small T3 dispatch and signed-file adapter | Stable source identity and content version are required in M1; do not freeze a PDF-only annotation schema before the cross-artifact design |
 | Scientific annotations | **P1 scientific product; explicitly not M1** | Design one elaborate Scient-owned annotation system for PDFs, figures, graphs, images, and later scientific surfaces, with durable identity, target-specific anchors, content version, author, provenance, status, relationships, and evolution rules | Reuse T3 capture and presentation machinery through target adapters where it fits; do not treat composer-scoped preview annotations as canonical project records | M1 viewers must leave usable capture, coordinate, overlay, and extension seams; the later system must survive reopen, detect stale anchors, remain manually editable, and connect to evidence without silently becoming accepted evidence |
-| Material selected outside the project folder | **Decide inside the focused source/PDF plan, not in this proposition** | Determine then whether the initial behavior copies material into the project, references its original location, or offers an explicit choice | Do not add a broad arbitrary-absolute-path bypass to T3 merely to avoid making the product decision | The chosen behavior must explain portability and what happens if the original file moves or becomes unavailable |
+| Material selected outside the project folder | **Decide inside the focused source/PDF plan, not in this plan** | Determine then whether the initial behavior copies material into the project, references its original location, or offers an explicit choice | Do not add a broad arbitrary-absolute-path bypass to T3 merely to avoid making the product decision | The chosen behavior must explain portability and what happens if the original file moves or becomes unavailable |
 | Generic non-image chat attachments | **Do not port Synara's implementation as-is** | First satisfy scientific files through durable source/artifact intake; add bounded ephemeral attachment support later only if a verified workflow remains | Avoid immediate changes across every provider adapter and chat union | Prevents scientific material from becoming disposable provider payload |
 | HTML, local-file, and generated-artifact preview | **Use T3's browser and preview system as-is in M1** | Do not port C08-C09 or add a general Scient provenance, trust, or staleness layer during migration. After migration, recheck concrete gaps such as local HTML behavior, relative assets, live refresh, and generated-artifact open cards against then-current T3 and Synara | No M1 divergence or parallel browser manager | A later gap must be demonstrated as missing user behavior, not justified by a generic security label. Any future restriction must solve a specific threat without unnecessarily blocking legitimate files |
 | Durable generated images and screenshots | **P1 immediately after migration; not an M1 or cutover requirement** | Reimplement the intended user behavior as artifact ingestion plus durable attachment projection; reuse T3 lightbox/compression | Proposed small hot-lane divergence after a renderer seam exists | Generated images should remain visible after reopen and connect to the task, inputs, code, and later figure record |
@@ -1468,7 +1486,7 @@ Current-user usage must decide whether any item becomes a strict cutover
 blocker. An item explicitly assigned to P1 below remains post-M1 work despite
 being inventoried in this host-experience gate.
 
-| Capability | Proposed decision | Best implementation | Divergence decision | Guardrail |
+| Capability | Plan decision | Best implementation | Divergence decision | Guardrail |
 |---|---|---|---|---|
 | Guided provider connection | **Integrate in M1 for the provider drivers already present in the selected T3 baseline** | Write a focused onboarding plan when this lane opens, then redesign the non-developer journey against T3 `ProviderInstance` and driver capabilities rather than porting current Scient screens | Proposed host-native divergence in provider lifecycle, authorization, onboarding, and settings; no new provider driver is required for M1 | A scientist can discover, connect, verify, understand, and recover a supported existing-T3 provider without using a terminal or being shown a false success state |
 | Managed provider lifecycle | **Plan and implement in the M1 provider-onboarding lane only for the lifecycle promises Scient deliberately makes** | Use T3's stronger driver architecture; the focused plan decides installation, repair, update, rollback, disconnect, and sign-out behavior per existing driver instead of assuming every driver supports the same actions | Host-native divergence where the accepted user journey requires it; do not port the old closed provider union or static recipe table | Never claim an action the driver cannot safely complete; explain stage-specific failures and preserve credential isolation, recovery, and clean disconnection where promised |
@@ -1954,7 +1972,7 @@ This is a conscious direction change from the earlier Synara-first foundation,
 not a rejection of Scient's first principles. The first principles remain the
 same: Scient owns scientific truth; researchers retain manual control; agent
 work is reviewable and recoverable; projects are durable and portable; open
-source serves the product without defining it. The proposed change is to use a
+source serves the product without defining it. The accepted change is to use a
 better-maintained host while making those principles more enforceable.
 
 # Part III: Proof-Gated Migration Constitution
@@ -1962,11 +1980,13 @@ better-maintained host while making those principles more enforceable.
 ## 1. What This Part Decides
 
 This part converts the destination and portfolio decisions into execution
-rules. It deliberately does not create the repository, freeze either current
-application, assign calendar estimates, or authorize implementation.
+rules. D3 authorizes only D4 candidate bootstrap. It does not create the
+repository, freeze either current application, assign calendar estimates,
+authorize feature migration, or imply continued investment after a failed
+gate.
 
-The central recommendation remains: proceed toward a fresh T3-derived Scient
-candidate, but make the first work a sequence of falsifiable architecture and
+The accepted direction is to proceed toward a fresh T3-derived Scient
+candidate through a sequence of falsifiable architecture and
 continuity proofs. Do not begin with a parity port. Do not treat the migration
 as committed merely because the new application builds.
 
@@ -1974,46 +1994,139 @@ The capability Gates A-D in Part II answer *what belongs when*. The proof gates
 below answer *what must be demonstrated before more irreversible investment or
 user migration is justified*.
 
-## 2. Phase Zero: Establish Current Authority Before Design Hardens
+## 2. Accepted Phase Zero Evidence And D4 Authorization
 
-Before repository creation, prepare one small dated bootstrap dossier
-containing:
+The dated
+[Phase Zero dossier](../research/spike-reports/t3-foundation-phase-zero-2026-08-02.md)
+is the accepted evidence input for D3. Its T3 revision records what D3 actually
+inspected; it is not a moving D4 baseline lock. Immediately before repository
+creation, D4 must freshly fetch official T3 and use the then-current official
+`main` tip. If a demonstrated stability problem requires an earlier revision,
+record the comparison and conscious exception. Record the exact selected
+revision and tag as the candidate integration base only after its pristine
+baseline passes. D4 must also refresh owned repository, branch, worktree,
+pull-request, and responsibility overlap immediately before mutation.
 
-1. the freshly fetched official `pingdotgg/t3code` `main` SHA and current tags;
-2. the exact owned `Scient`, `scient-desktop`, `scient-agent`, and website
-   heads, releases, worktrees, open branches, pull requests, and in-flight
-   owner work;
-3. the selected candidate repository, exact base, owned `origin`, fetch-only T3
-   upstream, current license, notices, bundled assets, third-party licenses,
-   trademarks, and provenance;
-4. T3's untouched build and test commands plus the locations and defaults of
-   its telemetry, updater, services, state directory, cloud, relay, web, and
-   mobile roots; and
-5. provisional non-colliding application/bundle ID, protocol, executable name,
-   and state directory, with T3-owned telemetry and update publication disabled
-   for the candidate.
+### Repository creation authorization
 
-Other important investigations have later deadlines. Inventory current-user
-data and sanitized fixtures before the transition/import lane. Audit real
-packaging, signing, feeds, website delivery, platform support, and rollback
-before distributing a candidate. Complete the cloud identity, storage,
-synchronization, security, and operational design before a selected user can
-enable cloud. None of those designs is a prerequisite to cloning and verifying
-the candidate safely.
+Yaacov authorizes D4 to create one private provisional repository,
+`ScientFactory/scient-desktop-next`, with `main` as its default integration
+branch. Create it from the exact selected T3 history without squashing or
+replaying Scient commits. Configure:
 
-Phase Zero must refresh the official T3 remote again when it runs. Today's
-`e60821f0...` observation proves why: every analysis baseline had already
-become stale. The chosen implementation base may be the refreshed tip or a
-deliberately selected stable tag/revision, but it must never be an old local
-fork selected by convenience.
+```text
+origin   -> ScientFactory/scient-desktop-next; writable
+upstream -> pingdotgg/t3code; fetch-only; push disabled
+```
 
-Outputs are evidence and decisions, not product code: the bootstrap dossier,
-current-work disposition, license/notice checklist, candidate-base and
-isolation decisions, preservation map, and unresolved-risk register.
+Do not configure Synara as a candidate remote. Synara remains a donor and the
+foundation of the separately supported continuity application. Preserve T3's
+MIT license, applicable component notices, and source lineage from the first
+commit. Repository visibility and final public naming are later decisions; no
+public release follows from repository creation.
+
+Protect `main` as the integration branch and make the first Scient change
+through a short-lived bootstrap branch and draft pull request. Do not push
+product changes directly to `main`, rewrite inherited history, mix upstream
+maintenance with Scient product work, or claim a baseline check for any commit
+other than the exact revision tested. Establish repository-specific commands
+and required checks from the pristine baseline before the first Scient commit;
+do not copy Synara's commands or policies by name.
+
+### First-commit safety envelope
+
+Before a Scient-branded candidate process starts against a developer's normal
+environment, the first Scient change must establish and test one centralized,
+collision-free provisional identity matrix. D3 reserves these candidate-only
+values; D4 must trace every T3 source location that implements them:
+
+| Surface | Provisional D4 value |
+|---|---|
+| Display identity | `Scient Next` / `Scient Next Dev` |
+| App and bundle/package ID | `com.scientfactory.scient.next` with an isolated development suffix where the platform requires one |
+| Executable and artifact prefix | `scient-next` / `Scient-Next-` |
+| Protocol schemes | `scient-next` / `scient-next-dev` |
+| User-data and development state | a new `Scient Next` root that shares no path or fallback with T3 or current Scient |
+| Preview/browser partition prefix | `persist:scient-next-preview-` |
+| Update feed/channel | disabled; no inherited T3 or current-Scient feed |
+
+Service, mobile, web, and build identifiers exercised by D4 must derive from
+the same candidate namespace. These are migration identities, not a second
+public brand or the final cutover identity.
+
+The first change must also:
+
+- refuse T3's legacy user-data fallback rather than reading an existing T3
+  profile;
+- avoid the current Scient app's data directory, protocols, credentials,
+  partitions, updater, release feed, and installed identity;
+- disable T3 `AnalyticsService`, PostHog delivery, provider-account identity
+  reads from `~/.codex` and `~/.claude`, and any other inherited outbound
+  analytics by default;
+- omit inherited OTLP/Axiom endpoints, datasets, bearer tokens, and client
+  tracing configuration from artifacts;
+- disable update publication and every inherited T3 release authority;
+- keep cloud, relay, web, and mobile source/build foundations where practical
+  but configure no live Scient or T3 service endpoint or production credential;
+  and
+- add the minimum divergence record and behavioral guards needed to prevent
+  those protections from disappearing during an upstream merge.
+
+The first change may preserve T3's internal package names. It must not perform
+a broad namespace rewrite, introduce scientific product features, open current
+Scient data, or design a replacement database.
+
+### Risk disposition and ownership
+
+Yaacov is accountable for accepting each gate. D4's implementation owner must
+record the exact operator in the candidate repository before work begins.
+
+| D2 risk | D3 disposition | Required exit evidence |
+|---|---|---|
+| Service/update/rollback churn | Preserve the T3 implementation; disable publication in Proof 1; evaluate packaged startup and rollback before distribution | Proof 1 isolation, then Proof 5 packaged update and rollback |
+| Fixed T3 brand, protocol, bundle, executable, state, and preview identities | Must be removed from the candidate safety envelope before normal startup | Central identity matrix plus collision and legacy-fallback tests |
+| T3 host persistence versus Scient scientific truth | T3 keeps host state; no scientific tables enter D4 | Focused persistence decision and crash/recovery spike before the first durable Scient records |
+| Cloud, relay, web, and mobile identity and operations | Preserve foundations, keep production-dark, inherit no T3 authority | Build-preservation evidence in D4; Cloud Gate 1 before any selected user; mobile checkpoint before mobile claims |
+| Default analytics and provider identity reads | Disable fail-closed before candidate startup | No-network/default tests and source guards in Proof 1 |
+| Public OTLP/Axiom client configuration | Omit at bootstrap; later use a separately approved Scient observability design or remain disabled | Artifact/config inspection in Proof 1 and the applicable cloud/release gate |
+| Legacy T3 data fallback and preview partitions | Refuse fallback and allocate new partitions | Isolated state/profile tests before candidate startup |
+| Optional mobile linters unavailable in D2 | Does not block desktop bootstrap; blocks mobile release claims | Supported mobile CI/toolchain evidence before mobile release |
+| No D2 visual/manual validation | Correct for evidence-only D2 and D3; no UI claim is made | Human UI and accessibility evidence at the first affected user-facing gate |
+
+### Current-user continuity census
+
+Yaacov owns the continuity census. Before any importer design or user-data
+conversion, inventory supported current Scient releases and platforms; app and
+development data roots; SQLite schemas and migrations; settings; projects and
+project-init records; threads and provider sessions; attachments, generated
+files, previews, worktrees, logs, and archives; credential locations and
+reauthentication boundaries; updater/channel state; and any known unsupported
+or corrupted histories. Use schema inspection, synthetic fixtures, and
+explicitly approved sanitized examples only—never production credentials or a
+broad copy of live user data.
+
+The census must classify each data class as import, archive, reauthenticate,
+regenerate, intentionally leave behind with explanation, or still unresolved.
+It is required before the focused importer plan and Proof 5, not before D4
+repository creation.
+
+### D4 stop conditions
+
+Stop D4 before feature work if the exact baseline cannot be reproduced; literal
+ancestry or notices cannot be preserved; the candidate cannot avoid T3 and
+current-Scient identity/state; inherited telemetry, identity reads, update
+publication, or live service endpoints cannot be made fail-closed; required
+cloud/mobile foundations cannot remain buildable without accepting T3 service
+authority; or another active worktree or branch ambiguously overlaps the
+bootstrap. Resolve or explicitly amend the plan before continuing.
+
+This authorization ends after the pristine baseline and first safety-envelope
+change. Proof 2, feature migration, user-data conversion, cloud enablement,
+distribution, and release each require their own gate.
 
 ## 3. Candidate Repository, Ancestry, And Identity
 
-After explicit approval:
+Under the bounded D4 authorization above:
 
 1. create a new owned repository from the selected exact official T3 revision,
    preserving literal Git ancestry;
@@ -2141,7 +2254,7 @@ The open question is where those new Scient-owned tables live, not whether the
 inherited T3 database exists.
 
 Fable recommends storing Scient tables in T3's SQLite file under a separate
-migration ledger. The current proposition had leaned toward distinct
+migration ledger. An earlier version of this plan leaned toward distinct
 Scient-owned persistence. These statements concern different dimensions:
 schema authority can be independent whether the bytes live in one physical
 database or two.
@@ -2229,7 +2342,7 @@ system to prove:
 - website downloads and checksums point to the intended signed artifact.
 
 No arbitrary version number, repository rename, bridge duration, or release
-date belongs in this proposition. They should be chosen only after current
+date belongs in this plan. They should be chosen only after current
 release-state and packaged cross-grade evidence exist.
 
 ## 9. Proof Gates And Investment Sequence
@@ -2358,7 +2471,7 @@ consequence of elapsed time or feature count.
 The existing application remains the continuity product until Proof 6. It may
 receive critical correctness, security, data-protection, and currently needed
 user-continuity work. Other agents' existing work is not interrupted or
-repurposed by this proposal.
+repurposed by this plan.
 
 An explicit freeze begins only after Yaacov approves its scope against the
 live branch/PR/worktree inventory. It must not be retroactively assigned to a
@@ -2457,17 +2570,11 @@ Stopping under these conditions is not failure. The purpose of the proof gates
 is to discover whether T3 is the best host before Scient's valuable scientific
 work becomes trapped inside it.
 
-## 14. Recommended Immediate Decision And Next Work
+## 14. Current Authorized Next Work
 
-The strategy now contains enough direction to begin; more abstract feature
-planning should not delay the candidate. First merge this reviewed proposition,
-draft the narrow successor foundation ADR as `Proposed`, and reconcile the
-small set of documents that need to describe the proposed target without
-changing current-state truth. Then run the small Phase Zero evidence pass.
-
-Use that evidence to accept or revise the successor ADR. Only after the ADR is
-accepted should this proposition become the active migration plan and candidate
-bootstrap be authorized from a freshly fetched official T3 base.
+D0-D3 are the reviewed planning, decision, evidence, and promotion sequence.
+ADR-0005 is accepted, this plan is active, and D4 candidate bootstrap is the
+only authorized next implementation.
 
 Repository creation needs the exact base, provenance, owned/fetch-only remotes,
 clean baseline, and provisional collision-safe identity and state directory.
@@ -2476,8 +2583,9 @@ service design, mobile UI, signing identity, public updater, or release plan.
 Those remain focused decisions before their corresponding implementation or
 distribution gates.
 
-The first code milestone should be Proofs 0-3, not provider parity, UI polish,
-or a release. That sequence tells us early whether Scient can obtain T3's
+The first code milestone is Proof 0 followed by the bounded Proof 1 safety
+envelope, not provider parity, UI polish, or a release. Proofs 2 and 3 require
+their later gate authorization. This sequence tells us early whether Scient can obtain T3's
 maintenance advantages while keeping scientific authority, user continuity,
 and conscious product divergence under our control.
 
@@ -2528,7 +2636,7 @@ migration story into every repository:
 | What product are we building and why? | Accepted [PRD](../product/PRD.md) and product philosophy |
 | Which application foundation and ownership boundaries are accepted? | Architecture decision records |
 | Which technology roles are selected or still open? | [Technology stack](../architecture/technology-stack.md) |
-| What is the finite migration sequence and current gate? | This proposition after promotion into the active migration plan |
+| What is the finite migration sequence and current gate? | This active migration plan |
 | What is the order of researcher outcomes? | [Product roadmap](product-roadmap.md) |
 | What cloud or mobile service, client, environment, command, or deployment exists now? | The owning implementation and operations documentation at an exact verified revision |
 | How do owned and donor sources relate over time? | [Open-source adaptation strategy](open-source-adaptation-build-strategy.md), ADR-0002, and the operational intake procedure |
@@ -2539,16 +2647,14 @@ migration story into every repository:
 Dependent documents should link to these owners. They should not restate the
 same architecture or gate status in slightly different words.
 
-## 3. Accept The Direction Before Changing The Foundation
+## 3. Accepted Foundation Record
 
-Approval of this proposition is approval to prepare the durable decision
-package. It is not authorization to create the T3-derived repository or change
-product code.
+Yaacov accepted the durable decision package on 2026-08-02 after D2 Phase Zero
+evidence. The accepted ADR and this plan authorize only the bounded D4
+bootstrap; they do not authorize product features, migration, or release.
 
-After this proposition lands, the next pull request should draft a focused
-Scient architecture decision as `Proposed`. At the current numbering it would
-be ADR-0005, but the next available number must be rechecked when the work
-starts. The decision should:
+[ADR-0005](../architecture/decisions/ADR-0005-t3-derived-desktop-foundation.md)
+records the resulting decision:
 
 1. select a fresh, literal-ancestry T3-derived application as Scient's target
    desktop foundation, subject to the proof and stop gates in this plan;
@@ -2576,17 +2682,17 @@ starts. The decision should:
 9. name the decision's consequences for ADR-0001, ADR-0002, ADR-0003,
    ADR-0004, the current desktop, and the later cutover decision.
 
-The decision must restate the still-valid agent and scientific-ownership parts
-of ADR-0001. Only then can ADR-0001 become `Superseded` without accidentally
-discarding those decisions. Its historical body should remain unchanged apart
-from metadata and a clear successor notice.
+The decision restates the still-valid agent and scientific-ownership parts of
+ADR-0001. ADR-0001 is therefore `Superseded` without discarding those
+decisions; its historical body remains unchanged apart from metadata and a
+clear successor notice.
 
-ADR-0002 should remain `Accepted` if the final decision continues to satisfy
+ADR-0002 remains `Accepted` because the final decision satisfies
 its standalone ownership, fetch-only remote, mandatory awareness, selective
 absorption, and review-versus-integration rules. The new decision should apply
 those rules to T3's different ancestry-preserving merge relationship. If the
-chosen operating model genuinely contradicts ADR-0002, it must amend or
-supersede it explicitly rather than describing a false compatibility.
+operating model later genuinely contradicts ADR-0002, it must be amended or
+superseded explicitly rather than describing a false compatibility.
 
 ADR-0003 remains `Accepted` until an explicit successor or amendment changes
 it. The migration should preserve its app-owned authority, immutable built-in
@@ -2599,35 +2705,27 @@ not inferred from moving to T3.
 ADR-0004 remains `Accepted`. It was designed to survive a T3, Synara, or other
 host and should constrain the migration rather than be rewritten around T3.
 
-The decision workflow is:
+The completed workflow was: proposed ADR, Phase Zero evidence, exact human
+acceptance, reciprocal ADR supersession, plan promotion, documentation
+reconciliation, and explicit D4 authorization. None of those steps claims that
+the candidate exists.
 
-1. draft the new ADR as `Proposed` after Yaacov approves this proposition;
-2. review its exact preserved and superseded decisions;
-3. run the small Phase Zero evidence pass while the ADR remains `Proposed`;
-4. change it to `Accepted` only after Yaacov explicitly accepts that exact ADR
-   against the Phase Zero evidence;
-5. in the same accepted decision change, mark ADR-0001 `Superseded`, add
-   reciprocal links, and update the architecture-decision index; and
-6. do not authorize repository bootstrap until the active planning
-   reconciliation below is also complete.
+## 4. Active Plan Promotion Record
 
-## 4. Promote This Proposition Instead Of Creating A Parallel Plan
+This document is the finite execution owner. D3 promoted the reviewed
+proposition rather than creating a parallel plan that could drift from it.
 
-Once the successor ADR is accepted, this document should become the finite
-execution owner rather than leaving one accepted ADR, one proposed migration
-document, and another newly invented plan to drift apart.
+The promotion:
 
-The recommended promotion is:
-
-- rename this file to `t3-foundation-migration-plan.md`;
-- change the title to **T3 Foundation Migration Plan** and status to `Active`;
-- preserve its original `Created` date and record the promotion date;
-- replace proposal language only where the accepted ADR has resolved it;
-- add a short update policy defining gate-state and evidence updates;
-- link to the accepted successor ADR as the architecture authority;
-- retain the capability dispositions as planning decisions, while requiring
+- renamed this file to `t3-foundation-migration-plan.md`;
+- changed the title to **T3 Foundation Migration Plan** and status to `Active`;
+- preserved its original `Created` date and recorded promotion on 2026-08-02;
+- replaced proposal language where the accepted ADR resolved it;
+- added an update policy defining gate-state and evidence updates;
+- linked the accepted successor ADR as the architecture authority;
+- retained the capability dispositions as planning decisions, while requiring
   baseline revalidation before implementation; and
-- mark the plan `Historical` after cutover and the defined rollback/support
+- will mark the plan `Historical` after cutover and the defined rollback/support
   window close.
 
 The plan should own a small gate table with exact states and evidence links. It
@@ -2637,9 +2735,8 @@ that owns it.
 
 The existing Synara-specific
 [first vertical-slice implementation plan](first-scient-vertical-slice-implementation-plan.md)
-should become `Superseded` only when this promoted plan and its first executable
-proof sequence are active. Until then it remains the truthful current plan,
-even though this proposition recommends replacing it.
+is `Superseded` because this active plan now owns the executable proof
+sequence. It remains preserved as historical planning context.
 
 The [open-source adaptation strategy](open-source-adaptation-build-strategy.md)
 should become the evergreen owner of the accepted T3, Synara, OpenCode, and
@@ -2651,21 +2748,21 @@ upstream policy.
 
 The default transition for each existing documentation surface is:
 
-| Document or surface | Truth today | Change after decision acceptance | Later evidence-triggered change |
+| Document or surface | D3 state | D3 treatment | Later evidence-triggered change |
 |---|---|---|---|
 | [PRD](../product/PRD.md) | Accepted product truth; not a host-selection document | No change merely because T3 is selected | Update only if the researcher promise or product boundary changes |
-| ADR-0001 | Accepted Synara/OpenCode foundation decision | Mark `Superseded` only when the replacement ADR is accepted; preserve its body and reasoning | Remains historical evidence |
-| Successor foundation ADR | Does not yet exist | Draft `Proposed`, then make `Accepted` only through explicit Yaacov acceptance | Revisit only through its named evidence triggers or another ADR |
+| ADR-0001 | Superseded initial Synara/OpenCode foundation decision | Preserve its body, reasoning, and reciprocal ADR-0005 link | Remains historical evidence |
+| ADR-0005 | Accepted T3-derived successor-foundation decision | Governs the durable target; bootstrap authority stays in this plan | Revisit only through its named evidence triggers or another ADR |
 | ADR-0002 | Accepted source ownership and upstream authority | Keep accepted if compatible; link the successor ADR rather than duplicating it | Amend only if the implemented T3 relationship contradicts it |
 | ADR-0003 | Accepted built-in skills ownership, identity, project activation, and delivery boundary | Preserve its accepted constraints; do not pretend the old minimal implementation is the target skills product | Amend explicitly if user-selectable scope eligibility or the released-portfolio location changes; update from real skills-product decisions and implementation evidence |
 | ADR-0004 | Accepted host-independent operation boundary | No status change; cite it as a migration constraint | Update only for a real operation-boundary decision, not host plumbing |
 | [Skills system](../product/skills-system.md) | Draft product home combining accepted constraints, accepted directions, and proposed skill candidates | Reconcile the serious library, scope-control, local-import, and project-adaptation direction only after explicit product review | Keep proposed, accepted, deferred, and implemented states distinct as the new product is designed and built |
-| [Technology stack](../architecture/technology-stack.md) | Proposed direction naming Synara as current accepted foundation | Split **current implementation** from **accepted target** and link the successor ADR | Replace the current-state section only when exact candidate or cutover evidence exists |
-| [Product roadmap](product-roadmap.md) | Active researcher-outcome sequence | Preserve the first scientific outcome; add migration as an enabling track and link the active migration plan | Change outcome order only for a product reason, not generic parity work |
-| First vertical-slice plan | Draft Synara-specific execution plan | Mark `Superseded` when the promoted migration plan owns the executable first slice | Preserve as historical planning context |
-| Open-source adaptation strategy | Draft Synara-first conceptual strategy | Reconcile into the evergreen T3/Synara/OpenCode relationship under the accepted ADRs | Update from measured merge cost or an explicit source-authority decision |
-| [Open-source adaptation map](../research/source-evaluations/open-source-adaptation-map.md) | Proposed research synthesis; T3 is reference-only | Update T3 to selected target-foundation evidence and Synara to continuity/legacy evidence, while linking the ADR | Continue to record external-source learning without becoming implementation truth |
-| [Capability catalog](../research/source-evaluations/t3-migration-capability-catalog.md) | Draft research index | Keep as research; link the accepted plan | Correct entries only from verified source evidence; do not use it as a task tracker |
+| [Technology stack](../architecture/technology-stack.md) | Proposed stack direction with current and target roles separated | Link accepted ADR-0005 and keep the nonexistent candidate out of current implementation | Replace current-state claims only when exact candidate or cutover evidence exists |
+| [Product roadmap](product-roadmap.md) | Active researcher-outcome sequence with migration as the current enabling track | Preserve the scientific outcome and link this active plan | Change outcome order only for a product reason, not generic parity work |
+| First vertical-slice plan | Superseded Synara-specific execution plan | Preserve as historical planning context and route current execution here | Reopen its scientific outcome only through the post-foundation roadmap |
+| Open-source adaptation strategy | Active evergreen T3/Synara/OpenCode relationship | Apply accepted ADR-0005 and ADR-0002 without duplicating this finite migration | Update from measured merge cost or an explicit source-authority decision |
+| [Open-source adaptation map](../research/source-evaluations/open-source-adaptation-map.md) | Research synthesis with T3 as selected target evidence and Synara as continuity evidence | Link accepted ADR-0005 without making research implementation truth | Continue to record external-source learning without becoming implementation truth |
+| [Capability catalog](../research/source-evaluations/t3-migration-capability-catalog.md) | Draft research index linked to this active plan | Keep as research, not a backlog | Correct entries only from verified source evidence; do not use it as a task tracker |
 | [Sources lock](../../lab/external/sources.lock.md) | Active evidence for repositories and exact reviewed/tested states that exist now | Do not predeclare a repository, remote, base, or test result | Add the candidate only after creation and exact baseline verification; update later states from accepted evidence |
 | [Upstream intake procedure](../operations/upstream-intake.md) | Active operations for the current desktop and agent relationships | Do not add a nonexistent T3 application lane | Add the new repo after bootstrap; preserve Synara monitoring while the continuity app remains supported; retire lanes only by explicit decision |
 | Dated review and spike records | Point-in-time evidence | Never rewrite them into the new decision | Add new dated evidence and link from the active plan |
@@ -2684,9 +2781,9 @@ Documentation should move with the proof that makes each claim true.
 
 ### Before Phase Zero
 
-Required before the read-only evidence pass:
+Completed through D1 before the read-only evidence pass:
 
-- this proposition merged as the reviewed planning basis;
+- the predecessor proposition merged as the reviewed planning basis;
 - a narrow successor foundation ADR in `Proposed` status;
 - proposed-target wording reconciled where current documents would otherwise
   hide or contradict the investigation; and
@@ -2694,12 +2791,12 @@ Required before the read-only evidence pass:
 
 ### Before Repository Creation
 
-Required after Phase Zero and before candidate bootstrap:
+Completed by D3 before candidate bootstrap:
 
 - the successor foundation ADR accepted against the refreshed evidence;
 - ADR-0001 marked `Superseded` with reciprocal links while its historical body
   remains intact;
-- this proposition promoted into the active migration plan;
+- the predecessor proposition promoted into this active migration plan;
 - reconciled technology-stack, roadmap, first-slice, adaptation-strategy, and
   source-evaluation roles;
 - an accepted bootstrap dossier, unresolved-risk disposition, and explicit
@@ -2880,10 +2977,10 @@ is valid when the change truly has no durable documentation effect.
 
 | Sequence | Owning change | What becomes true | Implementation authority |
 |---|---|---|---|
-| **D0: Proposition** | Current Scient documentation branch | The reviewed planning direction and transition system are available without changing architecture authority | Authorizes only the proposed-ADR and evidence work named here |
+| **D0: Proposition** | Historical Scient documentation change | The reviewed planning direction and transition system became available without changing architecture authority | Authorized only the proposed-ADR and evidence work named there |
 | **D1: Proposed foundation decision and first reconciliation** | Separate Scient documentation pull request | A narrow successor ADR is `Proposed`; directly affected documents distinguish the proposed target from current implementation | Authorizes the read-only Phase Zero evidence pass, not repository bootstrap or product code |
 | **D2: Phase Zero evidence** | Scient research/evidence pull request | The exact current baselines, risks, names, licenses, bootstrap isolation choices, and unresolved questions are reviewed; see [`t3-foundation-phase-zero-2026-08-02.md`](../research/spike-reports/t3-foundation-phase-zero-2026-08-02.md) | Supplies evidence for accepting or revising the ADR; still no repository or product code |
-| **D3: Foundation acceptance and planning promotion** | Dependent Scient architecture and planning pull request or reviewed stack | The exact successor ADR is accepted, ADR-0001 is superseded without losing its preserved decisions, this proposition becomes the active plan, and technology, roadmap, source strategy, first-slice, and research roles no longer contradict the accepted target | May authorize candidate bootstrap under the accepted dossier; no feature migration or legacy-data conversion |
+| **D3: Foundation acceptance and planning promotion** | Dependent Scient architecture and planning pull request or reviewed stack | ADR-0005 is accepted, ADR-0001 is superseded without losing preserved decisions, this plan is active, and technology, roadmap, source strategy, first-slice, and research roles no longer contradict the accepted target | Authorizes only D4 candidate bootstrap under the accepted dossier; no feature migration or legacy-data conversion |
 | **D4: Candidate bootstrap** | New repository pull request, followed by separate Scient evidence update | The candidate repository, T3 ancestry, bootstrap documentation, and pristine baseline actually exist | Enables Proof 1 work under the recorded base |
 | **D5: Proof and feature lanes** | Independent owning-repository code/documentation pull requests plus evidence follow-ups | The identity/safety envelope, scientific behavior, production-dark cloud path, selected-user cloud release when authorized, and mobile foundation become implemented and verified only through their applicable gates | Limited to the accepted next gate; no implied desktop cutover, broad cloud availability, or mobile product release |
 | **D6: Cutover bundle** | Coordinated, dependency-labeled pull requests in Scient, both desktop roles, agent when affected, and website | The new release becomes the primary Scient application and the old application becomes the legacy rollback path | Release authority only after every required proof and explicit cutover acceptance |
@@ -2920,11 +3017,11 @@ complete for a gate when the documents necessary to understand that gate are
 truthful, navigable, non-duplicative, and supported by the same exact evidence
 used to accept the gate.
 
-## 9. Required Deliverables After Approval
+## 9. Gate-Coupled Required Deliverables
 
-This proposition intentionally defines architecture, portfolio decisions,
+This plan intentionally records architecture authority, portfolio decisions,
 proof gates, and documentation transitions rather than a pretend-ready
-backlog. After approval and Phase Zero, produce only when their prerequisites
+backlog. After D3 acceptance and Phase Zero, produce only when their prerequisites
 are real:
 
 - the accepted successor foundation ADR and promoted active migration plan;
@@ -2952,7 +3049,7 @@ opened. It is not a prerequisite for the desktop migration or M1 cutover.
 
 ## Research And Current-Truth Inputs
 
-This proposal synthesizes, without promoting them to accepted truth:
+This plan synthesizes, without promoting research inputs to accepted truth:
 
 - the accepted Scient product direction and current roadmap;
 - the current proposed technology-stack and open-source adaptation documents;
@@ -2971,7 +3068,7 @@ This proposal synthesizes, without promoting them to accepted truth:
 
 The large raw AI-generated reports are deliberately not copied into the
 documentation tree as parallel truth. Their hashes and role are recorded in
-the capability catalog, while this proposition preserves the conclusions that
+the capability catalog, while this plan preserves the conclusions that
 survived source verification. External and AI-generated analyses remain
 research inputs. Exact code,
 performance, security, migration, and user-experience claims must be reverified

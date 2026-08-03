@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-07-31
+Last updated: 2026-08-03
 Purpose: Defines how agents should work in this early Scient repository.
 Doc type: Agent protocol
 
@@ -35,6 +35,12 @@ and updates. Public brand and trademark clearance remains outstanding and must
 be completed before public release.
 
 The current repo contents are working documents. They are expected to change as the product, architecture, and implementation plan become clearer.
+
+ADR-0005 now accepts a fresh T3-derived successor desktop, while the current
+Synara-derived `scient-desktop` remains the supported continuity application.
+The successor candidate repository does not exist yet. Until D4 creates and
+verifies it, keep the three-core-repository workspace map below truthful and do
+not describe the target as current implementation.
 
 ## Internal Team Workspace
 
@@ -99,7 +105,12 @@ Current important documents:
 - `docs/product/scient-product-identity.md` - accepted company, application, agent, external-agent, and naming vocabulary.
 - `docs/product/product-philosophy.md` - durable product principles that guide product, architecture, design, quality, and implementation.
 - `docs/architecture/technology-stack.md` - current technology stack direction and open implementation decisions.
-- `docs/architecture/decisions/ADR-0001-synara-opencode-foundation-and-scient-ownership-boundary.md` - accepted initial application/runtime foundations and the Scient-owned scientific boundary.
+- `docs/architecture/decisions/ADR-0005-t3-derived-desktop-foundation.md` -
+  accepted successor desktop foundation, Scient ownership boundary, and
+  current-application continuity role.
+- `docs/architecture/decisions/ADR-0001-synara-opencode-foundation-and-scient-ownership-boundary.md` -
+  superseded historical initial-foundation decision whose agent and scientific
+  ownership boundaries are preserved by ADR-0005.
 - `docs/architecture/decisions/ADR-0002-standalone-source-ownership-and-upstream-authority.md` - accepted standalone source-repository ownership and selective upstream authority.
 - `docs/operations/upstream-intake.md` - active monitoring, review, and selective intake procedure for original source changes.
 - `docs/operations/team-contribution-protocol.md` - active minimum branch,
@@ -107,12 +118,16 @@ Current important documents:
   peer-review guidance, and contribution-evidence workflow across maintained
   ScientFactory repositories.
 - `docs/planning/product-roadmap.md` - active sequence of coherent product outcomes.
-- `docs/planning/first-scient-vertical-slice-implementation-plan.md` - concrete plan and acceptance criteria for the current implementation slice.
+- `docs/planning/t3-foundation-migration-plan.md` - active proof-gated
+  migration sequence and current D4 bootstrap authorization.
+- `docs/planning/first-scient-vertical-slice-implementation-plan.md` -
+  superseded Synara-specific plan preserved as historical planning evidence.
 - `docs/planning/scient-and-external-agents-implementation-plan.md` - proposed implementation plan for the Scient agent, external-agent preservation, and Scient-versus-external-agent identity isolation.
 - `docs/planning/papilab-to-scient-rename-execution-plan.md` - historical execution and rollback record for the PapiLab-to-Scient migration.
 
-Use each document according to its metadata. The PRD and ADR-0001 are accepted
-direction; the roadmap is active planning; the product philosophy, technology
+Use each document according to its metadata. The PRD and ADR-0005 are accepted
+direction; ADR-0001 is superseded history; the roadmap and migration plan are
+active planning; the product philosophy, technology
 stack, and implementation plan retain their stated draft or proposed limits.
 
 Follow `docs/documentation-policy.md` when adding or changing durable documentation.
@@ -143,12 +158,14 @@ When proposing technical direction, separate:
 The PRD should stay focused on product truth. Stack choices and implementation details should live in architecture documents unless they are direct product constraints.
 
 Use **Scient** as the public name for both the app and native agent. In
-technical or potentially ambiguous text, write **Scient app** or **Scient
-agent**. Use **external agent** for an independently connected product such as
-OpenCode, Codex, Claude, or Droid. Do not create “ScientApp” or “ScientAgent” as
-separate public brands, and do not describe the Scient agent as a wrapper around
-a separate OpenCode engine. “Agent guidance” and the portable `AGENTS.md` file
-are project instructions, not the Scient agent product.
+technical or potentially ambiguous text, use **Scient app** for the application
+and **Scient agent**, **Scient Agent**, or `ScientAgent` for the native agent;
+the capitalization and compound form are context-appropriate technical
+qualifiers, not separate public brands. Use **external agent** for an
+independently connected product such as OpenCode, Codex, Claude, or Droid. Do
+not describe the Scient agent as a wrapper around a separate OpenCode engine.
+“Agent guidance” and the portable `AGENTS.md` file are project instructions,
+not the Scient agent product.
 
 ## Project Skills
 

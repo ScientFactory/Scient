@@ -18,7 +18,7 @@ constitution.
 The governing proposed decision is
 [ADR-0005](../../architecture/decisions/ADR-0005-t3-derived-desktop-foundation.md);
 the planning context is the [T3 foundation migration
-proposition](../../planning/t3-foundation-migration-proposition.md). This
+proposition](../../planning/t3-foundation-migration-plan.md). This
 report supplies evidence to those documents but does not become their
 authority.
 

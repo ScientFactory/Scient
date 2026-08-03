@@ -26,23 +26,23 @@ document, and exact run evidence under `lab/`.
 
 The owned Synara checkout in the workspace sibling `../scient-desktop/`
 (relative to the Scient repository root) remains the maintained current
-application foundation under ADR-0001. Its inherited package layout,
+application and continuity foundation. ADR-0001 records why it was selected;
+ADR-0005 now owns the forward target. Its inherited package layout,
 dependencies, state model, and provider model remain implementation evidence,
 not automatically accepted Scient architecture.
 
-## Proposed Foundation Transition
+## Accepted Foundation Target
 
-[ADR-0005](decisions/ADR-0005-t3-derived-desktop-foundation.md) now proposes a
+[ADR-0005](decisions/ADR-0005-t3-derived-desktop-foundation.md) accepts a
 fresh, literal-ancestry T3-derived successor application. The reviewed
-[migration proposition](../planning/t3-foundation-migration-proposition.md)
-owns the evidence and transition sequence. Both remain proposed: no candidate
-repository exists, ADR-0001 still governs the current foundation, and the
+[migration plan](../planning/t3-foundation-migration-plan.md) owns the
+proof-gated transition sequence. No candidate repository exists, and the
 current Synara-derived app remains the supported application.
 
-The next authorized work is a read-only Phase Zero evidence pass. If the exact
-successor ADR is later accepted, this document should promote T3 from proposed
-target to accepted target while preserving separate current-implementation and
-transition state until cutover.
+The next authorized work is the bounded D4 candidate bootstrap from exact
+official T3 commit `e60821f0e0d82a5d671ca3b94719c49d333921c8`, not feature
+migration or release. Current implementation, accepted target, verified
+candidate, published release, and cutover remain separate states.
 
 ## Product Constraints
 
@@ -81,10 +81,10 @@ Scient app from the planned Scient agent where needed.
 | Cloud platform | Supabase | Initial default candidate; not scaffolded |
 | Large file storage | Object storage | Proposed; not scaffolded |
 | Sync | Local-first project-state-to-cloud sync | Under evaluation; storage and sync engines not selected or scaffolded |
-| Current application foundation | Standalone Scient-owned, Synara-derived source | Implemented and accepted initial foundation through ADR-0001; remains supported during the proposed investigation |
-| Proposed successor application foundation | Fresh, literal-ancestry T3-derived Scient-owned source | Proposed by ADR-0005; exact base, repository, untouched baseline, and acceptance remain Phase Zero work |
+| Current application foundation | Standalone Scient-owned, Synara-derived source | Implemented continuity foundation; remains supported until explicit cutover |
+| Accepted successor application foundation | Fresh, literal-ancestry T3-derived Scient-owned source | Accepted by ADR-0005; exact D4 base selected and baseline verified in Phase Zero; candidate repository not yet created |
 | External-agent layer | Synara provider contracts and service | Inherited machinery for external agents; preservation required, project-task compatibility not yet certified |
-| First-party agent | Scient, derived from standalone Scient-owned, OpenCode-derived source | Accepted identity and source foundation through ADR-0001; ownership authority through ADR-0002; Scient product/runtime not yet implemented |
+| First-party agent | Scient, derived from standalone Scient-owned, OpenCode-derived source | ADR-0005 preserves ADR-0001's accepted identity and source boundary; ownership authority through ADR-0002; Scient product/runtime not yet implemented |
 | Later Scient source | Goose | Source-depth candidate for capabilities and architecture lessons; deferred until after the first Scient gateway |
 | Executor safety reference | Codex | Evaluation/reference |
 | Scientific runtime | Python via uv | Proposed |
@@ -218,11 +218,11 @@ services. These are all easier to integrate in Electron than in a stricter
 native shell during the first product build. This shell choice does not select
 the canonical project-storage technology.
 
-Under the current ADR-0001 foundation, the validation question was whether the
+Under the initial ADR-0001 foundation, the validation question was whether the
 Synara-derived shell could host a Scient-owned project mode without forcing
 scientific work into coding projects, Git worktrees, provider threads, or
-engine-owned artifacts. ADR-0005 proposes answering the forward-looking host
-question through Phase Zero against current T3 and then through the first
+engine-owned artifacts. ADR-0005 answers the forward-looking host selection
+and requires the remaining fit question to be proven through the first
 scientific workflow in the candidate, while keeping the same scientific-
 authority constraint.
 
@@ -491,12 +491,12 @@ Completed historical experiments remain evidence, not the roadmap.
 
 | Area | Proven | Not Yet Proven | Evidence Or Owner |
 |---|---|---|---|
-| Synara-derived application | Standalone owned source, build, isolated Scient identity and state, reviewed upstream process | Scientific-product fit, sustainable domain UI divergence, and long-term maintenance cost | Gate 1 and Gate 1.5 lab reports; ADR-0001 owns adoption; ADR-0002 owns repository authority |
-| Proposed T3-derived successor | Dated source comparisons identify a stronger current generic host and a plausible ancestry-preserving relationship | Exact selected base, license and notice acceptance, untouched baseline, sustainable Scient seams, hostile-update cost, identity isolation, user continuity, and cutover safety | Proposed ADR-0005 and the T3 foundation migration proposition; no candidate repository exists |
-| Scient source foundation | Owned OpenCode build, Synara compatibility, project-root fidelity, transcript fidelity, and approval flow for a constrained action | Scient identity and packaging, owned capabilities, isolated Scient state, durable task behavior, and justified inherited-core changes | Gate 1.5 report proves the source baseline; ADR-0001 owns Scient adoption |
+| Synara-derived application | Standalone owned source, build, isolated Scient identity and state, reviewed upstream process | Continuity support, current-user census, import/archive path, rollback window, and later retirement | Gate 1 and Gate 1.5 lab reports; superseded ADR-0001 records initial adoption; ADR-0002 owns repository authority |
+| Accepted T3-derived successor | Exact official base selected; untouched Node 24 build, test, check, typecheck, mobile-lint, and release-smoke passed in Phase Zero | Candidate repository, identity/privacy/state envelope, sustainable Scient seams, hostile-update cost, user continuity, and cutover safety | Accepted ADR-0005, active T3 foundation migration plan, and Phase Zero dossier; no candidate repository exists |
+| Scient source foundation | Owned OpenCode build, Synara compatibility, project-root fidelity, transcript fidelity, and approval flow for a constrained action | Scient identity and packaging, owned capabilities, isolated Scient state, durable task behavior, and justified inherited-core changes | Gate 1.5 report proves the source baseline; ADR-0005 preserves ADR-0001's Scient-agent decision |
 | External agents | Nine inherited adapters and external OpenCode settings/adapter paths are present in source | Per-agent live compatibility, subscription/auth behavior, project-task certification, and migration protection | [Scient and external agents implementation plan](../planning/scient-and-external-agents-implementation-plan.md) |
 | Scient project state and memory | Product responsibilities, high-level memory principles, approved non-Git recovery requirement, and trust boundary are documented | Memory scopes, canonical representation, conversation relationship, package seam, portability, recovery, cloud sync, and first real scientific object relationship | PRD, [Memory Architecture Discovery](../planning/memory-architecture-discovery.md), and future focused architecture work |
-| Scient-agent and Scient-app boundary | Scient-agent identity plus context, proposal, review, provenance, and permission responsibilities are documented | Actual contract, code placement, event mapping, isolated Scient-agent state, and accepted write-back path | ADR-0001 and linked implementation plans; `agent-runtime.md` remains a future home |
+| Scient-agent and Scient-app boundary | Scient-agent identity plus context, proposal, review, provenance, and permission responsibilities are documented | Actual contract, code placement, event mapping, isolated Scient-agent state, and accepted write-back path | ADR-0005 preserves the ADR-0001 agent boundary; linked implementation plans; `agent-runtime.md` remains a future home |
 | Goose | Source seams, ACP path, and safety risks inspected | Incremental capabilities or architecture lessons for Scient; any future external Goose path is a separate decision | Goose source-depth inspection |
 | Cloud sync | Postgres, object storage, and local-first sync are proposed directions | Authority, offline behavior, conflicts, revocation, and recovery | Later roadmap and focused architecture work |
 
@@ -504,12 +504,12 @@ Gate 1 and Gate 1.5 are retained only as historical names for completed work.
 Future product and implementation sequencing lives in
 `../planning/product-roadmap.md` and the linked implementation plan.
 
-## Current And Proposed Stack Direction
+## Current And Accepted-Target Stack Direction
 
-The stack below combines current accepted roles with proposed technology
-directions. Its current desktop foundation is Synara-derived under ADR-0001;
-ADR-0005 proposes changing the target desktop foundation to a fresh T3-derived
-application after Phase Zero review and explicit acceptance.
+The stack below combines current implementation roles, the accepted T3 target,
+and still-proposed technology choices. The current desktop remains
+Synara-derived; ADR-0005 selects a fresh T3-derived successor after Phase Zero
+review and explicit acceptance.
 
 ```text
 TypeScript
