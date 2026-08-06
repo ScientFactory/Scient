@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-08-02
+Last updated: 2026-08-06
 Purpose: Entry point for the Scient product and project repository.
 Doc type: Repo orientation
 
@@ -31,8 +31,9 @@ ScientFactory owns four independently versioned repositories:
   the standalone desktop source repository and current product implementation
   home.
 - [`ScientFactory/scient-agent`](https://github.com/ScientFactory/scient-agent) -
-  the maintained OpenCode-derived source foundation for the planned native
-  Scient agent.
+  the owned source repository and historical OpenCode-derived incumbent for the
+  planned native Scient agent; its refreshed implementation foundation remains
+  unselected.
 - [`ScientFactory/ScientFactory-website`](https://github.com/ScientFactory/ScientFactory-website) -
   the public website, download experience, and Cloudflare Pages deployment.
 

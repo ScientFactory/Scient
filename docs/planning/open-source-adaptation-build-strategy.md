@@ -3,8 +3,8 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-07-07
-Last updated: 2026-08-02
-Purpose: Defines the evergreen source-ownership, adaptation, upstream-update, and divergence strategy for T3, Synara, OpenCode, and other open-source inputs used by Scient.
+Last updated: 2026-08-06
+Purpose: Defines the evergreen source-ownership, adaptation, upstream-update, and divergence strategy for T3, Synara, the still-open Scient-agent foundation, and other open-source inputs used by Scient.
 Doc type: Planning note
 
 ## Document Rules
@@ -65,14 +65,27 @@ Current implementation and forward source roles are:
   shell: Zotero-family components for source/PDF work, Zettlr/Overleaf/Quarto
   for writing/export expectations, Jupyter-style tools for analysis
   compatibility, and ELN/RDM tools for protocol/lab/repository references;
-- use `ScientFactory/scient-agent`, the owned OpenCode-derived source, as the
-  source foundation for the product's first-party **Scient agent**;
+- preserve `ScientFactory/scient-agent` as the owned repository and historical
+  OpenCode-derived source evidence for the planned first-party **Scient agent**;
+- select the refreshed native-agent foundation only through the future gate in
+  the [Scient and external agents implementation plan](scient-and-external-agents-implementation-plan.md),
+  using then-current Pi, OpenCode, and any equivalently qualified evidence;
 - preserve external OpenCode and the other inherited external-agent paths as
   separate choices rather than aliases for Scient;
-- evaluate Goose later as a source of capabilities and architecture lessons for
-  Scient, or through a separately reviewed external-agent path;
+- use Pi, OpenCode, Hermes, Codex, Goose, OpenHands, Aider, and later sources as
+  capability or architecture inputs according to the
+  [2026-08-06 foundation investigation](../research/source-evaluations/scient-agent-foundation-and-capability-strategy-2026-08-06.md),
+  without treating an analytical recommendation as an owner decision;
 - build any later Scient-agent gateway as new Scient and Scient Agent work
   after the desktop foundation, not as migration parity.
+
+Scient's long-term target is one owned first-party agent whose essential
+capabilities may be derived from several sources. Early specialist workers are
+bounded acceleration or fallback paths, not permanent owners of native Scient
+semantics. A capability may move from worker to native Scient through a
+maintained package, bounded adaptation, or reimplementation when recurring
+product value, quality, privacy, reliability, offline use, or coherence
+justifies the ownership cost.
 
 ## Migration And First-Scientific-Slice Constraints
 
@@ -129,9 +142,12 @@ The actual monitoring, review, and intake workflow lives in
 ### Owned-Source Remote Topology
 
 Scient owns standalone writable desktop and agent-source repositories derived
-from the original projects. Any later Goose adaptation must first receive an
-explicit owned-repository and upstream-authority decision. This is an ownership
-and safety rule; it does not require immediate source divergence.
+from original projects. The current agent repository is OpenCode-derived, but
+its future refreshed foundation and any rebootstrap method remain unselected.
+Any selected foundation, retained fork, or separately maintained worker must
+receive an explicit owned-repository, provenance, license, and upstream-authority
+decision. This is an ownership and safety rule; it does not require immediate
+source divergence.
 
 Each active source checkout should use:
 
@@ -140,7 +156,7 @@ origin   -> ScientFactory-owned standalone repository; writable
 upstream -> original project; fetch-only, push disabled
 ```
 
-Before the first Scient source change:
+Before the first source change against a newly selected foundation:
 
 1. create the owned repository and preserve source lineage and notices;
 2. attach it as `origin`;
@@ -162,14 +178,14 @@ Keep change lanes separable where practical:
 The T3-derived candidate is expected to carry visible Scient identity and
 domain UI after its safety envelope is proven. The Synara-derived app retains
 its current identity and continuity role rather than receiving new scientific
-features. OpenCode is
-Scient's inherited source foundation, not a separately branded engine beneath
-Scient. Scient therefore needs its own product, binary, configuration, session,
-release, and update identity while inherited OpenCode core remains traceable for
-upstream maintenance and attribution. The external OpenCode option retains
-OpenCode identity and remains independently configured. If Scient later adopts
-Goose-derived capabilities, they become part of Scient unless Scient separately
-decides to offer an external Goose agent.
+features. The native-agent foundation, once selected, becomes inherited source
+inside one Scient agent rather than a separately branded engine beneath it.
+Scient therefore needs its own product, configuration, session, release, and
+update identity while all retained source remains traceable for maintenance and
+attribution. External OpenCode and other external agents remain independently
+configured. A capability absorbed from Pi, OpenCode, Hermes, Codex, Goose,
+OpenHands, or another source becomes part of Scient unless a separate decision
+keeps it as a worker or external-agent option.
 
 Upstream awareness and code intake are different operations. Detect and review
 official movement first. When a selected change has bounded value, use the
@@ -221,22 +237,36 @@ verifiers. ADR-0002 later superseded the fork topology with standalone owned
 repositories. Runtime homes and smoke artifacts are evidence, not product
 architecture.
 
-## Deferred Goose Evaluation
+## Scient-Agent Foundation And Capability Evaluation
 
-All Goose execution work is deferred until after the first Scient gateway works
-through Scient, including:
+The native-agent foundation must be selected from freshly fetched official
+sources when the implementation lane opens. The current finalists are Pi and
+OpenCode; the evidence and proof matrix live in the
+[2026-08-06 investigation](../research/source-evaluations/scient-agent-foundation-and-capability-strategy-2026-08-06.md).
+Neither the current OpenCode-derived checkout nor the report's provisional Pi
+preference is an accepted future baseline.
 
-- creating and attaching the owned Goose repository;
-- building and releasing any owned Goose-derived binary;
-- implementing the ACP-over-stdio adapter spike;
-- testing approval, cancellation, tool-event, and session behavior;
-- enforcing and proving outside-project path denial;
-- deciding Goose runtime-state and credential isolation; and
-- deciding whether particular Goose capabilities or architecture patterns add
-  enough value to Scient, or whether a distinct external Goose path is useful.
+Foundation selection and worker selection are separate decisions. A smaller
+native foundation may justify a bounded OpenCode coding worker or Hermes
+research worker; an OpenCode-derived native agent may make a second OpenCode
+worker redundant. Codex, Goose, OpenHands, and future candidates remain
+available for focused proofs rather than automatic integration.
 
-The completed source-depth inspection remains research input, not a current
-implementation commitment.
+All worker execution work is deferred until the native Scient path and gateway
+work without it, including:
+
+- bundling or maintaining a worker runtime;
+- implementing worker transport or ACP/MCP adapters;
+- testing approval, cancellation, tool-event, session, and recovery behavior;
+- enforcing and proving project, filesystem, process, network, credential, and
+  recursive-delegation boundaries;
+- deciding worker runtime-state, update, distribution, and credential isolation;
+  and
+- deciding whether a capability should remain delegated, become native, or be
+  rejected.
+
+The completed source inspections remain research input, not implementation
+commitments.
 
 Stop relying on a forked workbench if it forces Scient to model research projects
 as coding sessions, Git worktrees, provider chats, or engine-owned artifacts.
@@ -247,8 +277,11 @@ as coding sessions, Git worktrees, provider chats, or engine-owned artifacts.
   bundled dependency.
 - Source-depth review of the exact selected T3 baseline and its Scient
   integration seams. Historical Synara evidence remains relevant to continuity
-  and capability comparison. OpenCode baseline refresh and Goose integration
-  review belong to the later Scient-agent work.
+  and capability comparison. Fresh Pi/OpenCode foundation comparison and any
+  selected worker review belong to the later Scient-agent work.
+- Same-model and deterministic comparison of native-foundation finalists,
+  including safety, cancellation, recovery, event fidelity, desktop/remote
+  clients, packaging, and a rehearsed upstream update.
 - Source-depth and license review of the science-app components that may become
   more than references, especially Zotero Reader, Zotero Document Worker,
   Paperlib, Tropy, Zettlr, Overleaf, JupyterLab Desktop, Stencila, and the ELN
@@ -267,8 +300,15 @@ as coding sessions, Git worktrees, provider chats, or engine-owned artifacts.
 - Can a fresh T3-derived candidate host the first science-facing slice without
   leaking coding-product assumptions into the Scient project kernel, and can it
   still absorb bounded current T3 ranges at an acceptable cost?
-- Which OpenCode-derived modules can remain close to upstream inside Scient,
-  and which Scient-owned capabilities require deliberate divergence?
+- Which freshly inspected native-agent foundation best balances coding quality,
+  ownership, safety, remote clients, provider neutrality, and update cost?
+- Which inherited foundation modules can remain close to upstream, and which
+  Scient-owned capabilities require deliberate divergence?
+- Which specialist-worker capability, if any, is valuable enough to justify an
+  early bounded dependency after the native path works?
+- When should a recurring delegated capability become an integrated native
+  Scient capability, and should that use a package, adaptation, or
+  reimplementation?
 - Should Zotero Reader or Zotero Document Worker be embedded as components, or
   should Scient build/choose simpler PDF and extraction components while using
   Zotero as a reference and compatibility target?

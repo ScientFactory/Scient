@@ -3,26 +3,34 @@
 Status: Proposed
 Owner: Yaacov
 Created: 2026-07-17
-Last updated: 2026-08-03
-Purpose: Defines the end-to-end implementation plan for the Scient agent and for preserving independently connected external agents.
+Last updated: 2026-08-06
+Purpose: Defines the end-to-end implementation plan for one owned Scient agent, its still-open native-foundation selection, transitional specialist workers, and independently connected external agents.
 Doc type: Planning note
 
 ## Goal
 
-Build the **Scient agent** as the native first-party research agent of the
-Scient app while preserving every external-agent connection inherited from the
-Synara application foundation.
+Build the **Scient agent** as one owned native first-party research agent of the
+Scient app while preserving independently connected external agents.
 
-Scient is the owned OpenCode-derived agent itself. It is one product, codebase,
-runtime identity, process lifecycle, configuration, session system, release,
-and update channel. Scient must not be implemented or described as a Scient
-agent shell that launches a separately identified OpenCode engine.
+Scient is one product, runtime identity, configuration and authority boundary,
+release, and update responsibility. Its native source foundation remains
+unselected between the refreshed candidates evaluated in
+[`scient-agent-foundation-and-capability-strategy-2026-08-06.md`](../research/source-evaluations/scient-agent-foundation-and-capability-strategy-2026-08-06.md).
+OpenCode is the historical incumbent; Pi is a serious challenger. Neither this
+plan nor that research report selects the future foundation.
 
-Inside Scient's source, inherited OpenCode core and Scient-owned capabilities,
-integrations, identity, and product behavior should remain distinguishable where
-practical. That separation exists only to support ownership, review, selective
-upstream updates, and deliberate divergence. It is not a separate user-visible
-agent, engine choice, configuration, process, or product.
+Scient's long-term target is one first-party agent that owns its essential
+scientific, research, coding, browser, analysis, memory, skill, safety, and
+recovery behavior. Scient may derive that agent from several open-source
+systems and selectively internalize useful capabilities over time. Source
+lineage and internal modules do not create separate user-visible agents or
+separately authoritative engines.
+
+Early versions may delegate bounded work to specialist workers such as
+OpenCode, Hermes, Codex, or another qualified runtime. Workers are optional
+acceleration, fallback, and comparison mechanisms. They must not own Scient's
+scientific semantics, become required hidden product centers, or prevent the
+native agent from remaining useful on its own.
 
 External OpenCode remains an independent external agent. It must never be
 removed, renamed into Scient, silently redirected to Scient, or used as
@@ -31,9 +39,10 @@ external OpenCode on the same machine and in the same Scient installation
 without either one reading, overwriting, updating, or impersonating the other.
 
 Codex, Claude, Droid, Cursor, Antigravity, Grok, Kilo, Pi, and other supported
-external agents remain separate choices as well. Their account, subscription,
-API, binary, endpoint, configuration, and session paths remain owned by those
-connections.
+external agents remain separate user choices as well. A separately connected
+external agent is distinct from a bounded worker that Scient may invoke behind
+its own operation boundary. Their account, subscription, API, binary, endpoint,
+configuration, and session paths remain owned by those connections.
 
 For scientific project work, the product-owned project layer—not the Scient
 agent, external OpenCode, or another agent—owns the task intent, selected
@@ -65,22 +74,25 @@ Until clearance is complete:
 
 Review this plan against these questions:
 
-1. Is Scient consistently represented as the owned OpenCode-derived agent
-   itself, never as a wrapper around a separate OpenCode engine?
-2. Can Scient's inherited OpenCode core still accept selected upstream changes
-   without constraining Scient's product direction?
+1. Is Scient consistently represented as one owned first-party agent rather
+   than a thin shell over separately authoritative engines?
+2. Does the implementation-time gate compare fresh official candidate sources
+   instead of replaying the preserved OpenCode checkout by default?
 3. Do Scient and external OpenCode remain separate in identity, credentials,
    processes, storage, sessions, settings, updates, and user experience?
 4. Are all inherited external agents preserved without falsely claiming that
    every CLI, subscription, or version is already certified?
 5. Does Scient own scientific meaning and durable project records above every
    agent session?
-6. Can Goose-derived capabilities later improve Scient without turning Scient
-   into an engine-switching shell?
+6. Can Pi-, OpenCode-, Hermes-, Codex-, Goose-, OpenHands-, or other-derived
+   capabilities improve one Scient agent without turning it into an
+   engine-switching shell?
 7. Does settings and thread migration preserve existing users' defaults,
    hidden-agent preferences, paths, endpoints, credentials, and history?
-8. Does the sequence keep the first vertical slice bounded rather than blocking
-   it on certification of every external agent?
+8. Do transitional workers remain bounded, replaceable, non-canonical, and
+   unnecessary for basic native-agent usefulness?
+9. Does the sequence keep the first vertical slice bounded rather than blocking
+   it on certification of every candidate or external agent?
 
 ## Authority And Scope
 
@@ -98,9 +110,11 @@ It does not replace:
   `t3-foundation-migration-plan.md`.
 
 This plan remains proposed and the native Scient agent remains unimplemented.
-Refresh the OpenCode foundation and reconcile the desktop-agent contract only
-when the post-foundation agent lane opens. Later phases expand and certify
-external-agent paths after Scient completes the first bounded Scient workflow.
+Refresh all serious native-foundation candidates and reconcile the
+desktop-agent contract only when the post-desktop-foundation agent lane opens.
+The foundation gate must complete before native-runtime implementation. Later
+phases may add bounded workers and certify external-agent paths without making
+them prerequisites for the first useful Scient workflow.
 Promote stable runtime contracts into
 `../architecture/agent-runtime.md` only after running implementation evidence
 exists.
@@ -109,20 +123,25 @@ exists.
 
 The Scient app supports two product-level agent categories:
 
-1. **Scient**: the product's first-party research agent, owned and evolved from the
-   OpenCode fork.
+1. **Scient**: the product's one owned first-party research agent, built from a
+   freshly selected source foundation and Scient-owned capabilities.
 2. **External agents**: external agent products that users connect through
    their own installation, account, subscription, API, endpoint, or local
    configuration.
 
 Source lineage does not merge product identities:
 
-- Scient is OpenCode-derived but is not external OpenCode.
+- The current `scient-agent` history is OpenCode-derived evidence; the future
+  refreshed native foundation remains unselected.
 - External OpenCode is not a mode, account, or engine inside Scient.
-- Scient releases update Scient, including its inherited core and owned
-  additions, as one agent.
+- Scient releases update the selected inherited core, absorbed capabilities,
+  and owned additions as one agent.
 - External OpenCode updates through its own installation and connection path.
-- Goose-derived capabilities may later become part of Scient after review.
+- Capabilities derived from Pi, OpenCode, Hermes, Codex, Goose, OpenHands, or
+  another source may become part of Scient after source, license, safety, and
+  product review.
+- Specialist workers may temporarily or optionally execute bounded tasks, but
+  their state and identity do not become Scient's product center.
 - A future external Goose option would remain separate from Scient.
 
 ## Current Implementation Truth
@@ -160,12 +179,14 @@ endpoint, model, or provider-specific feature currently works. Preserve the
 paths first, then certify compatibility honestly per agent.
 
 The owned OpenCode-derived checkout in the workspace sibling
-`../scient-agent/` (relative to the Scient repository root), maintained on
-`dev` at `67e7f3f0341c7a5bad8d68e0a29f113b450eb02a`, is the accepted
-source foundation for the Scient agent. Its repository and
-maintenance-verifier identity are Scient-owned while its current runtime
-remains upstream-aligned OpenCode source. Scient-agent packaging, private state
-isolation, and owned scientific capabilities have not been implemented.
+`../scient-agent/` is historical incumbent source evidence. Its repository and
+maintenance-verifier identity are Scient-owned, but it is not current
+capability evidence or an automatic future bootstrap base. The 2026-08-06
+foundation investigation found that its Scient-specific history is primarily
+governance, identity, CI, release-lane, and small inherited-product work rather
+than an implemented native scientific agent. Scient-agent packaging, private
+state isolation, scientific capabilities, and the future refreshed foundation
+remain unimplemented and unselected.
 
 The following are also not yet implemented:
 
@@ -183,11 +204,13 @@ Scient product.
 | Term | Meaning |
 |---|---|
 | Agent | A user-visible worker such as Scient, Codex, Claude, Droid, or OpenCode. |
-| Scient | The product's first-party, owned OpenCode-derived research agent. |
+| Scient | The product's one owned first-party research agent. Its refreshed native source foundation remains unselected. |
 | External agent | An external agent product connected through a user-owned installation, account, subscription, API, or endpoint. |
+| Specialist worker | A bounded runtime Scient may invoke for a particular capability. It is not a second product center and does not own scientific truth. |
 | Agent connection | One configured instance of an agent, including stable identity, health, capabilities, and non-secret configuration references. |
 | Execution target | The Scient profile or external-agent connection selected for a task. |
-| Inherited Scient core | OpenCode-derived source retained inside Scient and kept traceable for selective upstream updates. It is not a separate engine or product. |
+| Native source foundation | The official source lineage selected through the future foundation gate and then owned and evolved as part of Scient. |
+| Inherited Scient core | Source retained from the selected foundation and kept traceable for attribution and deliberate upstream updates. It is not a separate engine or product. |
 | Scient-owned additions | Scientific capabilities, tools, policies, identity, integration, and product behavior owned directly by Scient inside Scient. |
 | Access source | How model or service access is funded and authenticated: external subscription/account, bring-your-own key, or Scient-managed access. |
 | Model | The selected inference model, distinct from agent and access source. |
@@ -210,13 +233,13 @@ boundary. Use “portable project agent guidance” for `AGENTS.md` content.
 | Product identity | Scient | OpenCode |
 | Durable internal identity | Brand-neutral Scient first-party-agent ID | Existing external `opencode` identity |
 | User choice | “Scient” with a Scient first-party explanation | “OpenCode” under external agents |
-| Source/runtime | One Scient-owned OpenCode-derived agent build | User-selected or externally installed OpenCode binary/server |
+| Source/runtime | One Scient-owned agent build from the selected native foundation and absorbed capabilities | User-selected or externally installed OpenCode binary/server |
 | Process lifecycle | Started and supervised as Scient | Existing OpenCode adapter lifecycle |
 | Home/config directory | Dedicated Scient location | Existing external OpenCode location and Scient connection settings |
 | Endpoint/password | Scient-owned internal endpoint and secret handling if needed | Existing `openCodeServerUrl` and `openCodeServerPassword` path |
 | Credentials | Scient-specific access configuration | User's external OpenCode/provider credentials |
 | Sessions/transcripts | Scient execution state, non-canonical | External OpenCode execution state, non-canonical |
-| Skills/plugins/tools | Scient-owned catalog and policy over its inherited core | External OpenCode-discovered catalog and policy |
+| Skills/plugins/tools | Scient-owned catalog and policy over its selected core and native capabilities | External OpenCode-discovered catalog and policy |
 | Logs/cache | Scient namespace | External OpenCode namespace |
 | Updates | One deliberate Scient release process | External OpenCode installation/update process |
 | Canonical scientific record | Scient project records only | Scient project records only when invoked for a Scient task |
@@ -229,8 +252,10 @@ Additional rules:
 - Never silently migrate an existing thread from external OpenCode to Scient.
 - Never let either runtime's database or transcript become canonical Scient
   scientific state.
-- Never expose a second OpenCode-branded runtime as though it were a component
-  users configure underneath Scient.
+- Never expose a second OpenCode-branded runtime as though it owns or configures
+  the native Scient agent. A bounded OpenCode worker, if selected, remains an
+  implementation adapter under Scient authority rather than Scient's identity
+  or state store.
 - Keep license notices, attribution, and source lineage even when Scient's
   product identity diverges.
 
@@ -248,20 +273,21 @@ Scient-owned scientific agent gateway
   - proposed change and review decision
   - provenance and recovery
             |
-            +-------------------------------+
-            |                               |
-            v                               v
-Scient                                      External-agent bridge
-one owned OpenCode-derived agent              inherited adapter registry
-  - one identity/runtime/release               +--> OpenCode
-  - inherited core kept traceable               +--> Codex
-  - Scient-owned capabilities                   +--> Claude
-  - Scient-owned policy and tools                +--> Droid / others
+            +-----------------------+--------------------------+
+            |                       |                          |
+            v                       v                          v
+Scient native agent          Specialist-worker bridge   External-agent bridge
+  - one identity/release       bounded optional jobs       user-selected products
+  - selected foundation         +--> coding worker          +--> OpenCode
+  - absorbed capabilities       +--> research worker        +--> Codex / Claude
+  - Scient policy/tools         +--> sandbox/remote         +--> Droid / others
 ```
 
 The inherited generic chat host may continue to call provider services directly
 during migration. The Scient gateway becomes mandatory for operations that
-read or propose changes to canonical Scient project state.
+read or propose changes to canonical Scient project state. The native agent
+owns task planning and final synthesis even when a worker executes a bounded
+subtask.
 
 ## Working Contracts To Introduce
 
@@ -308,13 +334,29 @@ invent the complete scientific object model in this work.
 
 ### Scient internal source boundary
 
-Keeps inherited OpenCode-derived modules and Scient-owned modules identifiable
-where practical. Scient-specific scientific capabilities should live in
-Scient-owned modules or stable seams first. Core changes are allowed when a
-demonstrated product, safety, or reliability requirement demands them.
+Keeps inherited foundation modules, directly adapted source, and Scient-owned
+modules identifiable where practical. Scient-specific capabilities should live
+in Scient-owned modules or stable seams first. Core changes are allowed when a
+demonstrated product, safety, quality, or reliability requirement demands them.
+Direct adaptations retain provenance, license, notice, tests, and an explicit
+update strategy.
 
 This boundary must not create two launchers, two settings surfaces, two session
 systems, or an engine selector inside Scient.
+
+### Specialist-worker task envelope
+
+Provides an exact objective, selected context receipt, project and workspace
+scope, capability grant, credential audience, time/cost/concurrency limits,
+cancellation and revocation state, parent-run lineage, and required output
+contract. A worker returns typed outcomes, evidence, artifacts, patches, logs,
+and uncertainty. It cannot accept scientific state, widen its authority, or
+turn its memory/session database into Scient history.
+
+The worker bridge should allow different qualified coding, research, browser,
+or remote-execution workers without exposing an engine selector as the native
+Scient product. Recursive delegation is denied by default and requires an
+explicit bounded capability.
 
 ### Credential reference boundary
 
@@ -355,19 +397,51 @@ The migration must:
 1. Name Scient in the PRD and distinguish it from external agents.
 2. Preserve the one-agent/one-runtime ownership decision now carried forward
    by ADR-0005 from superseded ADR-0001.
-3. Update technology and adaptation docs to describe OpenCode as Scient's source
-   lineage rather than a separate engine beneath Scient.
+3. Record OpenCode as historical incumbent source evidence while keeping the
+   refreshed native-foundation decision open.
 4. Update the first vertical-slice plan to use Scient.
 5. Separate agent selection from access-source and model selection.
 6. Keep `agent-runtime.md` a placeholder until implementation validates the
    runtime contract.
+7. Record the owner-approved long-term target of one native Scient agent that
+   may absorb capabilities from multiple sources, with specialist workers only
+   as bounded transitional, fallback, or optional paths.
 
 Exit evidence: active product, architecture, planning, and source-research docs
 use one coherent meaning for Scient.
 
+### Foundation Gate — Select The Native Source Before Runtime Work
+
+This gate runs when the post-desktop-foundation Scient-agent lane opens and
+must complete before Phase 4 begins. Its evidence process is defined in the
+[2026-08-06 foundation investigation](../research/source-evaluations/scient-agent-foundation-and-capability-strategy-2026-08-06.md).
+
+1. Fetch the latest official stable Pi and OpenCode sources; admit another
+   candidate only with equivalent source-depth evidence.
+2. Recheck license, notices, security, release cadence, protocol stability,
+   provider support, and breaking changes. Do not use today's revisions or the
+   preserved local OpenCode fork as automatic pins.
+3. Implement the same minimal Scient-operation adapter in each finalist through
+   supported SDK or extension seams before broad core changes.
+4. Run deterministic lifecycle, permission, cancellation, revocation, recovery,
+   and uncertain-effect tests plus same-model real coding and scientific tasks.
+5. Prove desktop embedding and a simulated remote client without making native
+   session state canonical.
+6. Measure core changes, coupling, packaging, resource cost, event fidelity,
+   provider behavior, and the amount of generic infrastructure Scient must own.
+7. Rehearse a real upstream update after the adapter exists.
+8. Select the native foundation and initial specialist workers as separate
+   decisions. Record a material foundation change through an ADR or amendment
+   before implementation.
+
+Exit evidence: one explicitly accepted source foundation, exact fresh baseline,
+proven update path, bounded Scient adapter, and separately dispositioned worker
+candidates. Zero selected workers is valid.
+
 ### Phase 1 — Trace And Freeze The Existing Host Baseline
 
-1. Record exact parent, desktop-fork, and OpenCode-source-fork revisions.
+1. Record exact parent, desktop-fork, historical agent-source, and freshly
+   inspected foundation-candidate revisions.
 2. Trace selection from UI/settings through server configuration, discovery,
    adapter registry, session directory, runtime events, approvals, and
    persistence.
@@ -419,24 +493,26 @@ round-trips unchanged.
 
 1. Add Scient as a new first-party execution target, never as an alias for
    `opencode`.
-2. Build and package one Scient binary/runtime from the owned OpenCode-derived
-   codebase. Internal inherited names may remain temporarily where changing them
-   would create needless upstream conflict, but no second OpenCode product is
-   exposed underneath Scient.
+2. Build and package one Scient binary/runtime from the source foundation
+   accepted by the Foundation Gate. Internal inherited names may remain
+   temporarily where changing them would create needless upstream conflict, but
+   no separately authoritative foundation product is exposed underneath Scient.
 3. Create dedicated Scient configuration, home, logs, cache, sessions,
    endpoint/IPC, secrets, and process supervision.
-4. Record the inherited OpenCode baseline and all Scient-owned source changes.
+4. Record the inherited foundation baseline, every directly adapted source,
+   and all Scient-owned source changes.
 5. Prevent Scient from discovering or inheriting external OpenCode settings or
    credentials.
-6. Report Scient product version and inherited-source revision diagnostically
-   without presenting OpenCode as a user-configurable engine.
+6. Report Scient product version and inherited-source revisions diagnostically
+   without presenting the foundation as a user-configurable engine.
 7. Put scientific tools and capabilities in Scient-owned modules or seams first;
    patch inherited core only for demonstrated gaps.
 8. Release and update Scient as one agent. Do not independently update an
    internal “engine.”
 
-Exit evidence: Scient and external OpenCode run concurrently with isolated
-identity and state on clean-install and upgraded machines.
+Exit evidence: Scient runs as one owned agent and coexists with external
+OpenCode with isolated identity and state on clean-install and upgraded
+machines.
 
 ### Phase 5 — Put The Scientific Gateway In Front Of Project Work
 
@@ -489,21 +565,30 @@ agents coexist independently.
 Exit evidence: a maintained compatibility matrix with repeatable contract tests
 and dated live-smoke evidence where credentials are required.
 
-### Phase 8 — Evaluate Goose For Scient
+### Phase 8 — Add Bounded Workers And Internalize Capabilities Deliberately
 
-1. Begin only after the gateway and Scient path work.
-2. Compare Goose capabilities, event fidelity, approval semantics, recovery,
-   performance, and maintenance cost through a bounded experiment.
-3. Identify capabilities or patterns worth implementing in Scient.
-4. Integrate selected behavior through Scient-owned modules or deliberate core
-   changes after license and security review.
-5. Do not introduce an engine selector or a second hidden Goose runtime as
-   Scient's product architecture merely to complete the comparison.
-6. If users need external Goose, design it as a separately named connection
-   with separate state and certification.
+1. Begin only after the native Scient path and gateway work without a worker.
+2. Evaluate the highest-value bounded worker need rather than integrating every
+   candidate: for example OpenCode or Codex for substantial coding, Hermes for
+   broad research, Goose for ACP/MCP comparison, or OpenHands-style execution
+   for remote workspaces.
+3. Prove the specialist-worker task envelope, authority, cancellation,
+   isolation, event fidelity, recovery, performance, and maintenance cost.
+4. Keep each worker optional, replaceable, separately versioned, and unable to
+   define canonical Scient state.
+5. Identify recurring capabilities worth implementing in the native Scient
+   agent. Internalize them through maintained packages, bounded adaptations,
+   reimplementation, or deliberate core changes after product, license,
+   security, provenance, and update review.
+6. Do not introduce an engine selector or a hidden multi-agent product center
+   merely to complete a comparison.
+7. A user-selected external connection remains separately named, configured,
+   updated, and certified even if the same upstream also supplies a bounded
+   internal worker or an absorbed capability.
 
-Exit evidence: a keep/adopt/reject decision for each evaluated capability,
-without changing Scient's identity or canonical Scient records.
+Exit evidence: explicit keep/adopt/reimplement/defer/reject decisions for each
+evaluated worker and capability, with no change to Scient's identity or
+canonical records.
 
 ### Phase 9 — Complete The User Experience
 
@@ -530,27 +615,29 @@ Keep these lanes reviewable:
 2. Scient desktop/domain modules;
 3. narrow desktop integration seams;
 4. unavoidable inherited Synara core patches;
-5. Scient's inherited OpenCode core;
-6. Scient-owned capabilities, identity, and policy; and
-7. Scient packaging, release, and updates.
+5. Scient's inherited native-foundation core;
+6. directly adapted capability-source modules and worker adapters;
+7. Scient-owned capabilities, identity, and policy; and
+8. Scient packaging, release, and updates.
 
-Every upstream sync must run the external-registry invariant, settings
-migrations, Scient/external-OpenCode isolation suite, gateway contracts, and
-installed-app smoke. A Scient update and an external OpenCode update remain
-independent events.
+Every native-foundation or adapted-source update must run the relevant source
+lineage checks, external-registry invariant, settings migrations,
+Scient/external-OpenCode isolation suite, gateway and worker contracts, and
+installed-app smoke. A Scient update, worker update, and external-agent update
+remain independent events.
 
 Exit evidence: a repeatable sync/release report with exact revisions,
 divergence, tests, migrations, and deliberately retained patches.
 
 ## Verification Matrix
 
-| Verification | Scient | External OpenCode | Priority external agents | Remaining external agents |
+| Verification | Scient | Selected workers | External OpenCode | Other external agents |
 |---|---:|---:|---:|---:|
 | Target/registry presence | Required | Required | Required | Required |
 | Settings round trip | Required | Required | Required | Required |
 | Identity and state isolation | Required | Required | Required | Required |
 | Hermetic executor contract | Required | Required | Required | Required |
-| Live install/detection | Required | Required | Required | Before certification |
+| Live install/detection | Required | Required before use | Required | Before certification |
 | Account/auth status | As applicable | As applicable | As applicable | Before certification |
 | Model/capability discovery | Required | Required | Required | Before certification |
 | Approval and confinement | Required | Required | Required | Before certification |
@@ -570,6 +657,8 @@ Required test layers:
 - approval, interruption, cancellation, and orphan-process cleanup;
 - filesystem/project-root confinement;
 - credential non-leakage;
+- native-agent/worker identity, process, path, credential, session, and state
+  isolation;
 - Scient/external-OpenCode process, path, environment, endpoint, and state
   isolation;
 - project-record reconstruction and recovery;
@@ -581,8 +670,8 @@ Required test layers:
 
 - External authentication remains owned by the external product unless an
   explicit Scient-managed path is implemented.
-- Scient and Scient must not scrape, duplicate, or migrate external
-  subscription tokens.
+- The native Scient agent and selected workers must not scrape, duplicate, or
+  migrate external-agent subscription tokens.
 - Project records may retain non-secret agent identity, model, access-source
   label, version, capability snapshot, timing, and outcome metadata.
 - Redact tokens, passwords, authorization headers, and sensitive environment
@@ -602,7 +691,10 @@ reproduce behavior:
 
 - target category and stable connection/profile ID;
 - user-visible agent identity;
-- Scient version and inherited OpenCode source revision, when applicable;
+- Scient version, selected foundation revision, and directly adapted source
+  revisions, when applicable;
+- worker identity, version, capability grant, and parent-run lineage, when
+  applicable;
 - external-agent adapter and detected external version, when applicable;
 - selected model and access-source label when known;
 - capability snapshot and effective permissions;
@@ -619,17 +711,20 @@ failed, or recovered without requiring raw native logs.
    work.
 2. Enable owner/developer use after deterministic and installed-app checks pass.
 3. Offer Scient explicitly while preserving each user's existing default.
-4. Certify external agents one at a time.
-5. Make Scient the default only after onboarding, recovery, update, and failure
+4. Add a specialist worker only after the native path works and that worker's
+   bounded contract is certified.
+5. Certify external agents one at a time.
+6. Make Scient the default only after onboarding, recovery, update, and failure
    behavior are proven and the owner approves that separate product decision.
-6. Never hide or delete external agents to promote Scient adoption.
+7. Never hide or delete external agents to promote Scient adoption.
 
 ## Stop And Reconsider Conditions
 
 Pause if implementation appears to require:
 
 - reusing external `opencode` identity for Scient;
-- representing OpenCode as a separately configured engine beneath Scient;
+- representing any foundation or worker as a separately authoritative engine
+  beneath Scient;
 - sharing credentials, homes, endpoints, sessions, or updates between Scient
   and external OpenCode;
 - treating an agent transcript/database as canonical Scient state;
@@ -637,7 +732,9 @@ Pause if implementation appears to require:
 - modifying every external-agent adapter before the Scient path works;
 - certifying every agent before the first scientific slice;
 - allowing an agent to define scientific objects or permission scope;
-- changing canonical records to accommodate Goose; or
+- changing canonical records to accommodate a foundation or worker;
+- making an essential first Scient workflow depend on a worker before the
+  native path is useful and recoverable; or
 - silently changing existing defaults, settings, threads, or handoffs.
 
 ## Pull Request And Review Lanes
@@ -645,15 +742,17 @@ Pause if implementation appears to require:
 Prefer narrow changes in this order:
 
 1. Canonical documentation reconciliation.
-2. Existing-host trace, compatibility inventory, and characterization tests.
-3. Execution-target/executor contracts with deterministic fake.
-4. External-registry preservation and settings migrations.
-5. Scient identity, owned runtime packaging, and isolated state.
-6. Scientific gateway and first bounded Scient workflow.
-7. Scient/external-OpenCode coexistence proof.
-8. Settings, selection, status, and handoff UI.
-9. Per-agent compatibility certification.
-10. Goose capability/architecture evaluation.
+2. Fresh native-foundation comparison and accepted selection record.
+3. Existing-host trace, compatibility inventory, and characterization tests.
+4. Execution-target/executor contracts with deterministic fake.
+5. External-registry preservation and settings migrations.
+6. Scient identity, owned runtime packaging, and isolated state.
+7. Scientific gateway and first bounded native Scient workflow.
+8. Scient/external-OpenCode coexistence proof.
+9. One bounded specialist-worker proof when justified.
+10. Settings, selection, status, and handoff UI.
+11. Per-agent compatibility certification.
+12. Capability internalization work, one coherent capability at a time.
 
 Do not mix upstream synchronization, broad inherited refactors, Scient domain
 behavior, Scient core changes, and UI redesign in one review lane.
@@ -665,8 +764,10 @@ This program is complete only when:
 - all inherited external adapters remain present unless a separate explicit
   product decision removes one;
 - Scient is a first-class option distinct from every external agent;
-- Scient is implemented and released as one owned OpenCode-derived agent, not a
-  shell plus a separately identified engine;
+- the native foundation was selected from fresh evidence and its exact lineage,
+  license, update path, and deliberate divergences remain auditable;
+- Scient is implemented and released as one owned agent, not a shell plus a
+  separately authoritative foundation or worker;
 - external OpenCode remains independently selectable and configurable;
 - Scient and external OpenCode have separate IDs, credentials, configuration,
   processes, homes, endpoints, sessions, logs, and updates;
@@ -676,13 +777,15 @@ This program is complete only when:
 - project operations pass through Scient-owned context, permission, proposal,
   review, provenance, and recovery boundaries;
 - project truth is reconstructable without any agent's session database;
+- the native Scient path remains useful and recoverable without an optional
+  worker, and any selected worker is bounded, replaceable, and non-canonical;
 - agent, access source, provider, and model are visible and not conflated;
 - compatibility claims are backed by the verification matrix;
 - no secrets appear in project records or ordinary diagnostics;
-- Scient and inherited desktop upstream updates are separately controlled and
-  regression-tested; and
-- useful future Goose capabilities can be added without changing Scient's
-  identity or canonical Scient records.
+- Scient, native-foundation, adapted-source, worker, external-agent, and desktop
+  updates are separately controlled and regression-tested; and
+- useful capabilities from multiple sources can be internalized over time
+  without changing Scient's identity or canonical Scient records.
 
 ## Explicit Exclusions
 
@@ -692,13 +795,17 @@ This plan does not authorize:
 - replacing external OpenCode with Scient;
 - copying external credentials or subscriptions into Scient;
 - promising compatibility before verification;
+- selecting Pi, OpenCode, Hermes, or another foundation from this plan alone;
+- bundling OpenCode, Hermes, Codex, Goose, OpenHands, or another worker without
+  its own bounded proof and distribution decision;
 - implementing the complete scientific schema;
 - building cloud sync, collaboration, billing, or mobile execution;
 - building a full automatic model router;
 - mass-renaming inherited provider internals;
-- deeply changing inherited OpenCode core without a demonstrated Scient need;
+- deeply changing inherited foundation core without a demonstrated Scient need;
 - implementing Scient as a generic engine-switching shell; or
-- placing Goose on the first workflow's critical path.
+- placing any optional specialist worker on the first native workflow's
+  critical path.
 
 ## Documentation Follow-Through After Validation
 

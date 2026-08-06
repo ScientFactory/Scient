@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-08-01
-Last updated: 2026-08-03
+Last updated: 2026-08-06
 Purpose: Governs the proof-gated migration from the current Synara-derived Scient app to one fully ScientFactory-owned application with fresh official T3 ancestry.
 Doc type: Planning note
 
@@ -137,10 +137,10 @@ silently amend the accepted PRD or claim implementation:
   connection experience without making a new provider driver a cutover
   requirement;
 - treat `scient-agent` as an independent source foundation whose native Scient
-  product, scientific workflow, and release are not implemented yet. Refresh
-  its OpenCode lineage before feature development and evaluate Hermes, Goose,
-  and other agent sources deliberately rather than treating today's fork as a
-  finished or current agent product; and
+  product, scientific workflow, and release are not implemented yet. Run the
+  current Foundation Gate before feature development and evaluate Pi, OpenCode,
+  Hermes, Goose, and other agent sources deliberately rather than treating
+  today's fork as a finished product or automatic future baseline; and
 - discuss external MCP clients in P2.
 
 ADR-0005 now replaces the forward desktop-foundation decision in ADR-0001.
@@ -429,12 +429,13 @@ an OpenCode-derived source foundation with an active repository and upstream
 maintenance boundary; the native Scient agent product identity, scientific
 workflow layer, and release are still planned rather than implemented.
 
-Before product feature work begins, its OpenCode base must be refreshed and
-revalidated against the then-current official source. Hermes, Goose, and other
-agent systems may supply capabilities, architecture lessons, or bounded source
+Before product feature work begins, the native foundation must be selected
+through current source, license, quality, lifecycle, and implementation proof.
+The current OpenCode-derived history is incumbent evidence, not an automatic
+future baseline. Pi, OpenCode, Hermes, Goose, and other agent systems may supply
+foundations, capabilities, architecture lessons, workers, or bounded source
 adaptations, but none becomes product authority merely by being evaluated.
-Their exact roles require separate source, license, quality, and integration
-decisions under Scient's agent plan.
+Their exact roles require separate decisions under Scient's agent plan.
 
 When implemented, `scient-agent` should own:
 
@@ -1154,8 +1155,9 @@ what the capability actually needs. Examples include:
 8. later Studio, annotation, generated-image, activity, browser-awareness,
    conversation-control, subagent, Antigravity, Factory Droid, automation, and
    other P1/P2 capabilities when their lanes open; and
-9. the refreshed `scient-agent` source choice, OpenCode update, Hermes, Goose,
-   other source roles, and desktop-agent contract in the separate agent track.
+9. the refreshed `scient-agent` foundation choice, current Pi/OpenCode proof,
+   Hermes, Goose, other source roles, and desktop-agent contract in the separate
+   agent track.
 
 Every focused plan should state the user outcome, current-source evidence,
 owner, alternatives, data and failure behavior, affected T3 and Scient seams,
@@ -2769,7 +2771,7 @@ The default transition for each existing documentation surface is:
 | Scient README, onboarding, `AGENTS.md`, and repository map | Current three-core-repository workspace | Do not list an uncreated candidate as current | Add the candidate at repository bootstrap; change primary/legacy labels only at the corresponding real transition |
 | Current `scient-desktop` README, `UPSTREAM.md`, and release docs | Current supported Synara-derived product and operational truth | Remain current while that product is the continuity application | Add a migration-role notice after the candidate exists and its safety envelope is proven; mark legacy/deprecated only at cutover; retain updater/support truth through the support window |
 | New T3-derived repository docs | Do not exist | No placeholder pretending the repository exists | Create at bootstrap as **candidate**, with exact ancestry, identity, upstream, security, divergence, testing, release, and preserved cloud/mobile build and service boundaries; mark desktop primary only at cutover |
-| `scient-agent` README, protocol, and upstream docs | Current OpenCode-derived source foundation; native product, scientific workflow, and release still planned | Preserve that truthful status and do not claim T3 integration from an architecture decision alone | Refresh the official OpenCode baseline before agent feature work; record explicit Hermes, Goose, and other source decisions; document a desktop-agent contract and supported host only after a tested contract actually lands |
+| `scient-agent` README, protocol, and upstream docs | Current OpenCode-derived historical incumbent; native product, scientific workflow, and release still planned | Preserve that truthful status and do not claim T3 integration or a refreshed foundation choice from an architecture decision alone | Run the current foundation gate before agent feature work; record the selected foundation, capability sources, and any workers; document a desktop-agent contract and supported host only after a tested contract actually lands |
 | Website and download documentation | Current public Scient distribution | No public migration announcement required by the architecture decision | Add candidate/beta distribution only after Proof 5; switch primary downloads only through Proof 6 release authority |
 
 This matrix is a transition contract, not permission to edit every row in one

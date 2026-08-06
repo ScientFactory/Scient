@@ -3,7 +3,7 @@
 Status: Placeholder
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-08-02
+Last updated: 2026-08-06
 Purpose: Defines what should be documented about Scient-agent and external-agent execution once implementation begins.
 Doc type: Future home
 
@@ -14,7 +14,10 @@ The accepted high-level foundation and ownership boundary lives in
 Scient-agent and external-agent decisions established by superseded
 `decisions/ADR-0001-synara-opencode-foundation-and-scient-ownership-boundary.md`.
 The proposed implementation sequence and identity-isolation requirements live
-in `../planning/scient-and-external-agents-implementation-plan.md`.
+in `../planning/scient-and-external-agents-implementation-plan.md`. The current
+Pi/OpenCode foundation comparison, other capability-source findings, and
+unselected worker options live in
+`../research/source-evaluations/scient-agent-foundation-and-capability-strategy-2026-08-06.md`.
 This file remains a placeholder until the first vertical slice validates a
 defensible runtime contract.
 
@@ -28,6 +31,8 @@ Document here:
 - audit logs
 - checkpoints and rollback behavior
 - safety constraints for scientific changes
+- selected native-foundation and capability-internalization boundaries
+- bounded specialist-worker contracts, if any workers are selected
 
 Do not use as:
 
