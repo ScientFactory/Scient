@@ -62,15 +62,17 @@ Current inputs:
   accepted, deferred, and rejected dispositions recorded in
   [`t3-code-targeted-review-2026-07-18.md`](../../../lab/notes/t3-code-targeted-review-2026-07-18.md).
 - Operator decision effective 2026-07-31: inspect T3's complete newly observed
-  main range daily as a research donor. Before the candidate exists, this
-  remains a research-review lane and does not create an owned integration base.
+  main range daily as a research donor. Before candidate bootstrap this was
+  only a research-review lane; observed tips still do not advance the
+  candidate's owned integration base without literal ancestry and verification.
 - Yaacov's 2026-08-02 acceptance of
   [ADR-0005](../../architecture/decisions/ADR-0005-t3-derived-desktop-foundation.md)
   and promotion of the
   [T3 foundation migration plan](../../planning/t3-foundation-migration-plan.md).
-  T3 is now the selected successor foundation, but it is not yet an owned
-  application upstream and no candidate repository exists. The current
-  Synara-derived app remains the continuity implementation.
+  T3 is now the selected successor foundation and official upstream of the
+  private candidate. The reviewed D4 safety-envelope pull request is not
+  integrated or released, and the current Synara-derived app remains the
+  continuity implementation.
 - Focused Scient-agent foundation and capability investigation on 2026-08-06,
   recorded in
   [`scient-agent-foundation-and-capability-strategy-2026-08-06.md`](scient-agent-foundation-and-capability-strategy-2026-08-06.md).

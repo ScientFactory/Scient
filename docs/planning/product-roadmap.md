@@ -28,13 +28,14 @@ accepts a fresh T3-derived successor application, and the active
 [T3 foundation migration plan](t3-foundation-migration-plan.md) defines the
 proof-gated execution sequence. The Synara-derived app remains the supported
 current application, the earlier Synara-specific first-slice plan is preserved
-as superseded planning, and no candidate repository exists yet.
+as superseded planning. The private T3-derived candidate and its reviewed D4
+draft now exist, but neither is integrated, released, or the current app.
 
-The next authorized work is D4 candidate bootstrap: create the provisional
-owned repository from the exact accepted T3 base, prove the pristine baseline,
-and establish the identity, privacy, state, update, and boundary safety
-envelope. Feature migration, user-data conversion, cloud enablement, release,
-and cutover remain behind their own plan gates. The migration will then
+The immediate gate is acceptance or revision of the D4 candidate and its
+separate Scient evidence update. Proof 2 and feature migration do not begin
+merely because the draft exists. User-data conversion, cloud enablement,
+release, and cutover remain behind their own plan gates. After explicit
+next-gate authorization, the migration will
 re-establish the selected project, source/PDF, provider-onboarding, voice,
 mathematical/bidirectional, and What's New outcomes before new Scient-agent and
 researcher-review work resumes.

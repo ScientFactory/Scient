@@ -27,12 +27,12 @@ baseline, contract, divergence, persistence, continuity, update, and cutover
 rules that govern execution. Part IV defines how accepted
 decisions, plans, current-state documentation, evidence, operations, and
 cutover records must change without pretending future work is already real.
-The candidate repository does not yet exist. This plan authorizes only the
-bounded D4 bootstrap recorded in Part III: create the provisional repository
-from the exact selected T3 base, prove the pristine baseline, and establish the
-first identity, privacy, state, update, and boundary-isolation change. It does
-not authorize feature migration, legacy-data conversion, cloud enablement,
-distribution, release, cutover, or retirement of the current application.
+The private candidate and its bounded D4/Proof 1 safety-envelope draft now
+exist at the exact base and head recorded in the dated D4 evidence. The current
+gate is acceptance or revision of that draft and this separate evidence update.
+Their existence does not authorize Proof 2, feature migration, legacy-data
+conversion, cloud enablement, distribution, release, cutover, or retirement of
+the current application.
 
 This plan records accepted direction and owns migration sequencing,
 boundaries, and proof gates. It deliberately does not pre-write the
@@ -145,9 +145,11 @@ silently amend the accepted PRD or claim implementation:
 
 ADR-0005 now replaces the forward desktop-foundation decision in ADR-0001.
 The current Synara-derived Scient app remains the supported continuity product,
-no T3-derived candidate repository exists yet, and no user data, cloud service,
-release channel, or website surface has changed. The only next authorized
-implementation is D4 candidate bootstrap under Part III.
+while the private T3-derived candidate has a reviewed D4 draft. The draft is
+not integrated, released, or the current product, and no user data, cloud
+service, release channel, or website surface has changed. Acceptance or
+revision of D4 and its evidence is the current gate; later proof and feature
+lanes still require explicit authorization under Part III.
 
 ## Authority And Reconciliation State
 
@@ -162,10 +164,11 @@ the [first vertical-slice plan](first-scient-vertical-slice-implementation-plan.
 the [open-source adaptation strategy](open-source-adaptation-build-strategy.md),
 the [technology stack](../architecture/technology-stack.md), and the
 [open-source adaptation map](../research/source-evaluations/open-source-adaptation-map.md)
-are reconciled by the D3 change that promoted this plan. Current-implementation
-documents continue to describe the Synara-derived app until D4 creates a real
-candidate and later gates produce stronger evidence. The source lock and
-upstream-intake manifest must not invent the candidate before then.
+were reconciled by the D3 change that promoted this plan. The D4 candidate now
+exists, so this separate evidence update records its exact observed base,
+reviewed draft head, remotes, and non-integrated state without changing which
+application is current. Later gates must update current-implementation records
+only when stronger integration, release, or cutover evidence exists.
 
 The accepted [PRD](../product/PRD.md), the product principles in
 [product philosophy](../product/product-philosophy.md), and the host-independent
@@ -2575,8 +2578,10 @@ work becomes trapped inside it.
 ## 14. Current Authorized Next Work
 
 D0-D3 are the reviewed planning, decision, evidence, and promotion sequence.
-ADR-0005 is accepted, this plan is active, and D4 candidate bootstrap is the
-only authorized next implementation.
+ADR-0005 is accepted, this plan is active, and the private D4 candidate plus
+its bounded Proof 1 safety envelope now exist as a reviewed draft. The current
+authorized work is to accept or revise that exact D4 draft and its separate
+Scient evidence update. Their existence alone does not open Proof 2 or D5.
 
 Repository creation needs the exact base, provenance, owned/fetch-only remotes,
 clean baseline, and provisional collision-safe identity and state directory.
@@ -2585,11 +2590,11 @@ service design, mobile UI, signing identity, public updater, or release plan.
 Those remain focused decisions before their corresponding implementation or
 distribution gates.
 
-The first code milestone is Proof 0 followed by the bounded Proof 1 safety
-envelope, not provider parity, UI polish, or a release. Proofs 2 and 3 require
-their later gate authorization. This sequence tells us early whether Scient can obtain T3's
-maintenance advantages while keeping scientific authority, user continuity,
-and conscious product divergence under our control.
+The completed draft covers Proof 0 and the bounded Proof 1 safety envelope, not
+provider parity, UI polish, or a release. Proofs 2 and 3 require their later
+gate authorization. This sequence tells us early whether Scient can obtain
+T3's maintenance advantages while keeping scientific authority, user
+continuity, and conscious product divergence under our control.
 
 # Part IV: Decision And Documentation Transition
 
@@ -2759,18 +2764,18 @@ The default transition for each existing documentation surface is:
 | ADR-0003 | Accepted built-in skills ownership, identity, project activation, and delivery boundary | Preserve its accepted constraints; do not pretend the old minimal implementation is the target skills product | Amend explicitly if user-selectable scope eligibility or the released-portfolio location changes; update from real skills-product decisions and implementation evidence |
 | ADR-0004 | Accepted host-independent operation boundary | No status change; cite it as a migration constraint | Update only for a real operation-boundary decision, not host plumbing |
 | [Skills system](../product/skills-system.md) | Draft product home combining accepted constraints, accepted directions, and proposed skill candidates | Reconcile the serious library, scope-control, local-import, and project-adaptation direction only after explicit product review | Keep proposed, accepted, deferred, and implemented states distinct as the new product is designed and built |
-| [Technology stack](../architecture/technology-stack.md) | Proposed stack direction with current and target roles separated | Link accepted ADR-0005 and keep the nonexistent candidate out of current implementation | Replace current-state claims only when exact candidate or cutover evidence exists |
+| [Technology stack](../architecture/technology-stack.md) | Proposed stack direction with current and target roles separated | Link accepted ADR-0005 and keep the draft candidate distinct from current implementation | Replace current-state claims only when exact candidate or cutover evidence exists |
 | [Product roadmap](product-roadmap.md) | Active researcher-outcome sequence with migration as the current enabling track | Preserve the scientific outcome and link this active plan | Change outcome order only for a product reason, not generic parity work |
 | First vertical-slice plan | Superseded Synara-specific execution plan | Preserve as historical planning context and route current execution here | Reopen its scientific outcome only through the post-foundation roadmap |
 | Open-source adaptation strategy | Active evergreen T3/Synara/OpenCode relationship | Apply accepted ADR-0005 and ADR-0002 without duplicating this finite migration | Update from measured merge cost or an explicit source-authority decision |
 | [Open-source adaptation map](../research/source-evaluations/open-source-adaptation-map.md) | Research synthesis with T3 as selected target evidence and Synara as continuity evidence | Link accepted ADR-0005 without making research implementation truth | Continue to record external-source learning without becoming implementation truth |
 | [Capability catalog](../research/source-evaluations/t3-migration-capability-catalog.md) | Draft research index linked to this active plan | Keep as research, not a backlog | Correct entries only from verified source evidence; do not use it as a task tracker |
-| [Sources lock](../../lab/external/sources.lock.md) | Active evidence for repositories and exact reviewed/tested states that exist now | Do not predeclare a repository, remote, base, or test result | Add the candidate only after creation and exact baseline verification; update later states from accepted evidence |
-| [Upstream intake procedure](../operations/upstream-intake.md) | Active operations for the current desktop and agent relationships | Do not add a nonexistent T3 application lane | Add the new repo after bootstrap; preserve Synara monitoring while the continuity app remains supported; retire lanes only by explicit decision |
+| [Sources lock](../../lab/external/sources.lock.md) | Active accepted-default-branch evidence for repositories and exact reviewed/tested states | Keep the unintegrated candidate draft in dated D4 evidence rather than inventing a maintained default-branch checkpoint | Add the candidate after its safety envelope and repo-local state are integrated; update later states only from accepted evidence |
+| [Upstream intake procedure](../operations/upstream-intake.md) | Active operations for the current desktop, candidate, and agent relationships | Keep observed T3 tips distinct from candidate ancestry and integration state | Preserve Synara monitoring while the continuity app remains supported; retire lanes only by explicit decision |
 | Dated review and spike records | Point-in-time evidence | Never rewrite them into the new decision | Add new dated evidence and link from the active plan |
-| Scient README, onboarding, `AGENTS.md`, and repository map | Current three-core-repository workspace | Do not list an uncreated candidate as current | Add the candidate at repository bootstrap; change primary/legacy labels only at the corresponding real transition |
+| Scient README, onboarding, `AGENTS.md`, and repository map | Current four-core migration workspace | List the candidate with explicit private-draft status | Change primary/legacy labels only at the corresponding real transition |
 | Current `scient-desktop` README, `UPSTREAM.md`, and release docs | Current supported Synara-derived product and operational truth | Remain current while that product is the continuity application | Add a migration-role notice after the candidate exists and its safety envelope is proven; mark legacy/deprecated only at cutover; retain updater/support truth through the support window |
-| New T3-derived repository docs | Do not exist | No placeholder pretending the repository exists | Create at bootstrap as **candidate**, with exact ancestry, identity, upstream, security, divergence, testing, release, and preserved cloud/mobile build and service boundaries; mark desktop primary only at cutover |
+| New T3-derived repository docs | Exist in the reviewed D4 draft | Keep exact ancestry, identity, upstream, security, divergence, testing, release, and preserved cloud/mobile build and service boundaries truthful | Mark desktop primary only at cutover |
 | `scient-agent` README, protocol, and upstream docs | Current OpenCode-derived historical incumbent; native product, scientific workflow, and release still planned | Preserve that truthful status and do not claim T3 integration or a refreshed foundation choice from an architecture decision alone | Run the current foundation gate before agent feature work; record the selected foundation, capability sources, and any workers; document a desktop-agent contract and supported host only after a tested contract actually lands |
 | Website and download documentation | Current public Scient distribution | No public migration announcement required by the architecture decision | Add candidate/beta distribution only after Proof 5; switch primary downloads only through Proof 6 release authority |
 
@@ -2823,10 +2828,12 @@ Record current evidence without claiming a product exists:
 - the selected repository name and bootstrap authorization; and
 - unresolved risks and stop conditions.
 
-After the candidate repository is actually created, update the source lock and
-workspace orientation with the exact owned path, origin, fetch-only T3 remote,
-selected ancestry base, and verified baseline. Never record the observed T3 tip
-as the integration base unless that exact ancestry is present.
+This separate D4 evidence change updates workspace orientation and dated
+evidence with the exact owned path, origin, fetch-only T3 remote, selected
+ancestry base, and reviewed draft head. The accepted-default-branch source lock
+and machine maintained-source manifest must add the candidate only after its
+safety envelope and repo-local state are integrated. Never record an observed
+T3 tip as the integration base unless that exact ancestry is present.
 
 ### Proof 1
 
@@ -2983,7 +2990,7 @@ is valid when the change truly has no durable documentation effect.
 | **D1: Proposed foundation decision and first reconciliation** | Separate Scient documentation pull request | A narrow successor ADR is `Proposed`; directly affected documents distinguish the proposed target from current implementation | Authorizes the read-only Phase Zero evidence pass, not repository bootstrap or product code |
 | **D2: Phase Zero evidence** | Scient research/evidence pull request | The exact current baselines, risks, names, licenses, bootstrap isolation choices, and unresolved questions are reviewed; see [`t3-foundation-phase-zero-2026-08-02.md`](../research/spike-reports/t3-foundation-phase-zero-2026-08-02.md) | Supplies evidence for accepting or revising the ADR; still no repository or product code |
 | **D3: Foundation acceptance and planning promotion** | Dependent Scient architecture and planning pull request or reviewed stack | ADR-0005 is accepted, ADR-0001 is superseded without losing preserved decisions, this plan is active, and technology, roadmap, source strategy, first-slice, and research roles no longer contradict the accepted target | Authorizes only D4 candidate bootstrap under the accepted dossier; no feature migration or legacy-data conversion |
-| **D4: Candidate bootstrap** | New repository pull request, followed by separate Scient evidence update | The candidate repository, T3 ancestry, bootstrap documentation, and pristine baseline actually exist | Enables Proof 1 work under the recorded base |
+| **D4: Candidate bootstrap** | New repository pull request, followed by separate Scient evidence update | The private candidate, literal T3 ancestry, bootstrap documentation, pristine baseline, and bounded Proof 1 safety envelope exist as reviewed drafts | Current gate is acceptance or revision of D4; does not automatically authorize Proof 2 or D5 |
 | **D5: Proof and feature lanes** | Independent owning-repository code/documentation pull requests plus evidence follow-ups | The identity/safety envelope, scientific behavior, production-dark cloud path, selected-user cloud release when authorized, and mobile foundation become implemented and verified only through their applicable gates | Limited to the accepted next gate; no implied desktop cutover, broad cloud availability, or mobile product release |
 | **D6: Cutover bundle** | Coordinated, dependency-labeled pull requests in Scient, both desktop roles, agent when affected, and website | The new release becomes the primary Scient application and the old application becomes the legacy rollback path | Release authority only after every required proof and explicit cutover acceptance |
 | **D7: Retirement** | Post-support-window documentation and operations changes | The old application and its donor-monitoring lane are retired while history and recovery evidence remain available | No deletion or history rewrite implied |

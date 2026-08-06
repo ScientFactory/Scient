@@ -16,13 +16,13 @@ planned; its owned source repository is
 [ADR-0005](docs/architecture/decisions/ADR-0005-t3-derived-desktop-foundation.md)
 selects a fresh T3-derived successor desktop, and the active
 [migration plan](docs/planning/t3-foundation-migration-plan.md) authorizes its
-bounded bootstrap. No candidate repository exists yet, so the repository list
-and workspace layout below continue to describe current implementation rather
-than the accepted target.
+bounded bootstrap. The private candidate repository now exists with a reviewed
+draft D4 pull request; it is not integrated, released, or the current product.
+The Synara-derived application remains the supported continuity implementation.
 
 ## Related Repositories And Local Workspace
 
-ScientFactory owns four independently versioned repositories:
+ScientFactory owns five independently versioned repositories during migration:
 
 - [`ScientFactory/Scient`](https://github.com/ScientFactory/Scient) - product
   direction, architecture, planning, cross-repository source pins, and the
@@ -30,6 +30,9 @@ ScientFactory owns four independently versioned repositories:
 - [`ScientFactory/scient-desktop`](https://github.com/ScientFactory/scient-desktop) -
   the standalone desktop source repository and current product implementation
   home.
+- [`ScientFactory/scient-desktop-next`](https://github.com/ScientFactory/scient-desktop-next) -
+  the private T3-derived successor candidate. Its D4 safety envelope remains a
+  draft and does not authorize release or cutover.
 - [`ScientFactory/scient-agent`](https://github.com/ScientFactory/scient-agent) -
   the owned source repository and historical OpenCode-derived incumbent for the
   planned native Scient agent; its refreshed implementation foundation remains
@@ -41,7 +44,7 @@ For internal team repository work, each contributor must create a local
 workspace root that they control. The folder name is arbitrary;
 `scient-workspace/` is only an example, not a required name or a company
 repository. The root must remain a
-plain, non-Git directory containing the three core product repositories as
+plain, non-Git directory containing the four core migration repositories as
 sibling checkouts. Clone the website alongside them only when the work needs
 website or download-surface context.
 
@@ -49,6 +52,7 @@ website or download-surface context.
 <scient-workspace>/
 ├── Scient/
 ├── scient-desktop/
+├── scient-desktop-next/
 ├── scient-agent/
 └── website/          # optional
 ```

@@ -163,6 +163,7 @@ $expected_repo: $destination"
 repositories=(
   "Scient|ScientFactory/Scient"
   "scient-desktop|ScientFactory/scient-desktop"
+  "scient-desktop-next|ScientFactory/scient-desktop-next"
   "scient-agent|ScientFactory/scient-agent"
 )
 

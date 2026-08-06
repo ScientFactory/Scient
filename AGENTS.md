@@ -49,26 +49,29 @@ The current repo contents are working documents. They are expected to change as 
 
 ADR-0005 now accepts a fresh T3-derived successor desktop, while the current
 Synara-derived `scient-desktop` remains the supported continuity application.
-The successor candidate repository does not exist yet. Until D4 creates and
-verifies it, keep the three-core-repository workspace map below truthful and do
-not describe the target as current implementation.
+The private `scient-desktop-next` candidate now exists and has a reviewed D4
+draft pull request. It is not integrated, released, or the current
+implementation; do not describe draft candidate behavior as shipped behavior.
 
 ## Internal Team Workspace
 
 Internal contributors should open a contributor-owned parent directory as the
 editor or agent workspace. Its name is arbitrary, and it must remain a plain,
-non-Git container with the three core repositories as sibling checkouts:
+non-Git container with the four core migration repositories as sibling
+checkouts:
 
 ```text
 <scient-workspace>/
 ├── Scient/
 ├── scient-desktop/
+├── scient-desktop-next/
 ├── scient-agent/
 └── website/          # optional
 ```
 
 `Scient/` owns product and project knowledge, cross-repository planning, and
-source pins. `scient-desktop/` owns the application implementation.
+source pins. `scient-desktop/` owns the supported continuity application.
+`scient-desktop-next/` owns the private T3-derived successor candidate.
 `scient-agent/` owns the historical OpenCode-derived agent source and is the
 planned home for the one native Scient agent; its refreshed foundation remains
 subject to the documented Foundation Gate. Add
