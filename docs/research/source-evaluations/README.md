@@ -3,7 +3,7 @@
 Status: Active
 Owner: Scient 001
 Created: 2026-06-27
-Last updated: 2026-08-02
+Last updated: 2026-08-06
 Purpose: Maps evaluations of external sources and tools that may inform Scient product and architecture decisions.
 Doc type: Repo orientation
 
@@ -11,6 +11,10 @@ Use this folder for structured evaluations of external products, repositories, p
 
 Current files:
 
+- `anydoc-source-evaluation-2026-08-06.md` - frozen source and code evaluation
+  of AnyDoc as a lightweight local extraction candidate, including fidelity
+  limits, security boundaries, competing engine roles, and proof gates before
+  adoption.
 - `competitive-landscape.md` - current direct competitors, substitute workflows, specialized alternatives, and integration candidates.
 - `model-benchmark-map.md` - external benchmark coverage, meaning, limitations, and relevance across the candidate model portfolio.
 - `model-portfolio-and-provider-routing.md` - current candidate model portfolio, distinct model roles, and the evidence needed before selection.

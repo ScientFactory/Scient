@@ -96,6 +96,14 @@ Current inputs:
   packages were excluded. This was source, architecture, license, repository,
   and test-inventory research, not a visual or Microsoft Office/LibreOffice
   fidelity exercise.
+- Focused [AnyDoc source evaluation](anydoc-source-evaluation-2026-08-06.md) on
+  2026-08-06 at revision
+  `8eecca5aa22cef0a196ebee482f5961c114e886d`. The review covered the complete
+  public history, shared model, format implementations, bindings, safety
+  limits, tests, releases, benchmark method, and real generated DOCX fixtures.
+  AnyDoc is a promising lightweight extraction candidate, but its successful
+  results do not expose structured omissions and its current spreadsheet path
+  can silently change displayed quantitative meaning.
 
 Remaining source-research gaps:
 
@@ -299,6 +307,7 @@ forward desktop decision.
 | CSL | Citation rendering and styles. | Upstream-trackable integration, embedded library, adapter. | `version-bump` |
 | GROBID | Scholarly PDF structure, citations, coordinates. | Embedded engine and adapter. | `adapter-maintained` |
 | Docling | General document conversion and provenance. | Embedded engine and adapter. | `adapter-maintained` |
+| AnyDoc | Fast local first-pass extraction from mixed Office, OpenDocument, RTF, EPUB, CSV, and uncomplicated text PDFs. | Experimental embedded-engine and adapter candidate; never canonical document or evidence state. | `reference-only` until the common corpus and structured-loss gates pass; then consider `adapter-maintained` |
 | Marker | PDF-to-Markdown benchmark or fallback. | Deferred shelf and reference. | `reference-only` |
 | PaperQA | Grounded scientific QA over sources. | Embedded engine and adapter. | `adapter-maintained` |
 | Lacuna | Paper-grounded research map, concept elements, research directions, cleaned `/md` pages, MCP-facing schema, and evaluated literature-search/deep-research workflow. | Reference / cherry-pick source; possible search-map prototype input. | `reference-only` first |
@@ -628,12 +637,17 @@ and Tropy as pressure tests for modern source-library and source-detail UX.
 |---|---|---|---|---|
 | GROBID | Scholarly PDF extraction, TEI output, references, citation contexts, figures, tables, affiliations, PDF coordinates. | Leading scholarly parser candidate. Coordinates are critical for evidence traceability. | Do not make TEI the whole Scient object model. | Sidecar candidate. |
 | Docling | Multi-format conversion result boundary: PDF, Word, PowerPoint, HTML, image, LaTeX, Markdown, JATS, XML, tables, page/item provenance, confidence/errors/timings, document pipelines. | Scient will ingest more than scholarly PDFs, and ingestion must expose what was converted, where it came from, how confident it is, and what failed. | Do not rely on it alone for scholarly references until benchmarked, and do not let Docling's internal result format become canonical Scient state. | Sidecar candidate. |
+| [AnyDoc](anydoc-source-evaluation-2026-08-06.md) | Fast, fully local first-pass extraction from Office, OpenDocument, RTF, EPUB, CSV, and uncomplicated text PDFs into basic structured content and Markdown. | Its small Rust runtime, broad legacy-format coverage, native Node binding, and very fast conversion could make ordinary attachment ingestion and agent context substantially cheaper than sending every file through a heavyweight parser. | Do not make its model or Markdown canonical, use its current spreadsheet output as quantitative evidence, rely on it for equations/citations/provenance, or treat conversion success as proof that nothing was omitted. | Experimental embedded-engine and common-corpus benchmark candidate; `adapter-maintained` only if selected after the structured-loss and format-specific gates. |
 | Marker | PDF-to-Markdown benchmark. | Useful for readable agent input and fallback extraction. | Do not choose it without corpus benchmark. | Side benchmark. |
 | Earlier PapiLab extraction work | Existing PDF/metadata processing, artifact review, extraction confidence/failure handling. | There is previous product flow worth preserving. | Do not assume previous extraction quality is good enough for the next architecture. | Keep the flow, benchmark the engine. |
 
-Recommendation: use GROBID and Docling together. GROBID for scholarly structure;
-Docling for general document conversion. Scient should own the evidence graph
-above both.
+Recommendation: preserve GROBID as the leading scholarly-structure candidate
+and compare Docling, AnyDoc, Kreuzberg, and specialized parsers through one
+Scient-owned ingestion contract and fixed scientific corpus. The likely result
+is a tiered router: a lightweight local path, a provenance-rich general path,
+a scholarly path, OCR, and qualified format-specific paths rather than one
+universal engine. Scient should own source identity, extraction receipts,
+evidence, and review state above every engine.
 
 ### Scientific QA, RAG, And Evidence Answers
 
@@ -931,10 +945,13 @@ to the earlier synthesis. The active sequence lives in
    approvals/diffs/provenance through the Scient object and event contract.
 
 2. Evidence pipeline.
-   Import from Zotero/JabRef, parse with GROBID and Docling, answer with PaperQA,
-   and screen with ASReview. The pass condition is exact source traceability for
-   every extracted value and answer, while keeping Scient's Paper, SourceChunk,
-   EvidenceLink, and ScreeningDecision objects as the canonical state.
+   Import from Zotero/JabRef; compare AnyDoc, Docling, Kreuzberg, GROBID where
+   applicable, and qualified format-specific parsers through one ingestion
+   contract; answer with PaperQA; and screen with ASReview. The pass condition
+   is exact source traceability for every extracted value and answer, visible
+   conversion loss, and a justified per-format engine role, while keeping
+   Scient's Paper, SourceChunk, EvidenceLink, and ScreeningDecision objects as
+   the canonical state.
 
 3. Scientific editor shootout.
    Build the same manuscript slice in Tiptap, Plate, and Lexical. Include
@@ -995,7 +1012,9 @@ a fresh T3-derived successor after Phase Zero proof; Scient as the owned OpenCod
 first-party agent; external OpenCode and other external agents as separate
 choices; Codex as the safety/sandboxing reference; Goose as a later capability
 and architecture source for Scient; Tiptap/ProseMirror-family writing;
-GROBID/Docling/PaperQA/ASReview-powered evidence workflows; Lacuna-inspired
+GROBID for scholarly structure plus a common-corpus comparison of Docling,
+AnyDoc, Kreuzberg, and specialized parsers for tiered general ingestion;
+PaperQA/ASReview-powered evidence workflows; Lacuna-inspired
 research-map patterns for paper-grounded search and synthesis;
 Quarto/Pandoc-first export with MyST as challenger;
 GenOffice as the current baseline and primary multi-format Office-fidelity
