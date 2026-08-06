@@ -29,17 +29,21 @@ accepts a fresh T3-derived successor application, and the active
 proof-gated execution sequence. The Synara-derived app remains the supported
 current application, and the earlier Synara-specific first-slice plan is
 preserved as superseded planning. The private T3-derived candidate now has its
-D4 safety envelope and managed local development app integrated, but it is not
-released or the current app.
+D4 safety envelope, managed local development app, and bounded Scient product
+rebrand integrated. The rebrand was accepted and merged through
+[`scient-desktop-next` PR #5](https://github.com/ScientFactory/scient-desktop-next/pull/5),
+but the candidate is not released or the current app.
 
-The immediate next slice is a bounded rebranding and product-identity pass that
-preserves the T3 merge relationship and the D4 isolation boundaries. It must be
-planned and verified as its own candidate change; D4 completion does not
-authorize feature migration, user-data conversion, cloud enablement, release,
-or cutover. After their explicit gates, the migration will
-re-establish the selected project, source/PDF, provider-onboarding, voice,
-mathematical/bidirectional, and What's New outcomes before new Scient-agent and
-researcher-review work resumes.
+The immediate next slice is Proof 2's representative M1 integration workflow.
+It must span project initialization, one supported source or PDF path, and at
+least one selected host-native adaptation such as provider onboarding, voice,
+or mathematical and bidirectional text correctness. This is a focused product
+and architecture proof, not authorization for broad feature migration,
+user-data conversion, cloud enablement, release, or cutover. After Proof 2 and
+their explicit gates, the migration will re-establish the remaining selected
+project, source/PDF, provider-onboarding, voice, mathematical/bidirectional,
+and What's New outcomes before new Scient-agent and researcher-review work
+resumes.
 
 ## After The Foundation: First Scient Scientific Project Slice
 

@@ -30,10 +30,14 @@ cutover records must change without pretending future work is already real.
 The private candidate, bounded D4/Proof 1 safety envelope, GitHub-hosted CI
 configuration, Blacksmith removal, and managed local development app are now
 integrated at the exact base and heads recorded in the dated D4 evidence. D4 is
-complete. The next bounded slice is product rebranding and identity cleanup;
-that work still requires its own plan and proof. D4 completion does not
-authorize feature migration, legacy-data conversion, cloud enablement,
-distribution, release, cutover, or retirement of the current application.
+complete. The bounded product rebrand is accepted and integrated through
+candidate [`scient-desktop-next` PR #5](https://github.com/ScientFactory/scient-desktop-next/pull/5).
+The candidate presents `Scient` and `Scient (Dev)` while deliberately
+preserving the D4 `scient-next` runtime, state, protocol, and disabled-authority
+boundaries. The next bounded slice is Proof 2's representative M1 integration
+workflow. Neither D4 nor the integrated rebrand authorizes broad feature
+migration, legacy-data conversion, cloud enablement, distribution, release,
+cutover, or retirement of the current application.
 
 This plan records accepted direction and owns migration sequencing,
 boundaries, and proof gates. It deliberately does not pre-write the
@@ -149,8 +153,10 @@ The current Synara-derived Scient app remains the supported continuity product,
 while the private T3-derived candidate has its D4 safety envelope and local
 development path integrated. The candidate is not released or the current
 product, and no user data, cloud service, release channel, or website surface
-has changed. D4 is complete; later proof and feature lanes still require
-explicit authorization under Part III.
+has changed. The bounded Scient rebrand is accepted and integrated in the
+candidate, but it does not change the candidate's private migration status. D4
+is complete; later proof and feature lanes still require explicit
+authorization under Part III.
 
 ## Authority And Reconciliation State
 
@@ -2582,10 +2588,15 @@ work becomes trapped inside it.
 D0-D3 are the reviewed planning, decision, evidence, and promotion sequence.
 ADR-0005 is accepted, this plan is active, and the private D4 candidate plus
 its bounded Proof 1 safety envelope and managed local development path are
-integrated. D4 is complete. The next authorized planning slice is a bounded
-rebranding and product-identity pass; it must preserve upstream ancestry and
-the D4 isolation boundaries and does not open unrelated Proof 2 or feature
-work.
+integrated. D4 is complete, and the bounded Scient product rebrand is accepted
+and integrated through candidate PR #5. The next authorized work is the focused
+definition and implementation of Proof 2's representative M1 integration
+slice: project initialization, one supported source or PDF path, and at least
+one selected host-native adaptation such as provider onboarding, voice, or
+mathematical and bidirectional text correctness. The slice requires its own
+focused plan and evidence, must preserve upstream ancestry and the D4 isolation
+boundaries, and does not open unrelated Proof 4, Scient-agent, cloud, release,
+or cutover work.
 
 Repository creation needs the exact base, provenance, owned/fetch-only remotes,
 clean baseline, and provisional collision-safe identity and state directory.
