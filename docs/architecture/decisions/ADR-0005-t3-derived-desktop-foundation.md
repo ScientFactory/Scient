@@ -48,9 +48,9 @@ ADR point by point, and accepted this exact post-evidence decision on
 [Phase Zero dossier](../../research/spike-reports/t3-foundation-phase-zero-2026-08-02.md)
 verified the official T3 baseline and did not trigger a stop condition. The
 candidate repository did not yet exist when this decision was accepted. It now
-exists as a private D4 candidate with a reviewed draft pull request; the active
-migration plan and dated D4 evidence govern that progress. This does not amend
-the decision or imply integration, release, or cutover.
+exists as a private candidate with the D4 safety envelope integrated on its
+owned default branch; the active migration plan and dated D4 evidence govern
+that progress. This does not amend the decision or imply release or cutover.
 
 ## Decision
 

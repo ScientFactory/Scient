@@ -156,12 +156,13 @@ The owned topology is:
 |---|---|
 | GitHub organization | `ScientFactory` |
 | Parent product and documentation repository | `ScientFactory/Scient` |
-| Standalone desktop source repository | `ScientFactory/scient-desktop` |
+| Supported continuity desktop repository | `ScientFactory/scient-desktop` |
+| Private T3-derived successor candidate | `ScientFactory/scient-desktop-next` |
 | Owned first-party agent source repository | `ScientFactory/scient-agent` |
 | Public website repository | `ScientFactory/ScientFactory-website` |
 
 The `ScientFactory` GitHub organization was created on 2026-07-17 and owns all
-four repositories. The agent source repository is named `scient-agent` now by
+five repositories. The agent source repository is named `scient-agent` now by
 explicit owner decision, even though the native agent product is not yet
 implemented. Its current history preserves official OpenCode as fetch-only
 upstream, Git ancestry, licenses, attribution, inherited-core traceability, and
@@ -174,8 +175,8 @@ a distinct external agent regardless of repository topology.
 After the verified rename:
 
 - Scient is the active parent repository and implemented desktop identity.
-- `ScientFactory` owns `Scient`, `scient-desktop`, `scient-agent`, and
-  `ScientFactory-website`.
+- `ScientFactory` owns `Scient`, `scient-desktop`, `scient-desktop-next`,
+  `scient-agent`, and `ScientFactory-website`.
 - `@scientfactory/project-init` and `.scient/` are the implemented first-party
   project-initiation names; PapiLab inputs are accepted only by the documented
   migration path.

@@ -41,7 +41,7 @@ Start here:
 - [Product roadmap](planning/product-roadmap.md) - current sequence of coherent product outcomes.
 - [T3 foundation migration plan](planning/t3-foundation-migration-plan.md) -
   active proof-gated transition to the accepted successor foundation and the
-  exact D4 bootstrap authorization.
+  exact D4 completion evidence and later migration gates.
 - [First vertical-slice implementation plan](planning/first-scient-vertical-slice-implementation-plan.md) -
   superseded Synara-specific plan preserved for historical reasoning and
   completed project-initiation evidence.

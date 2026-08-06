@@ -49,9 +49,10 @@ The current repo contents are working documents. They are expected to change as 
 
 ADR-0005 now accepts a fresh T3-derived successor desktop, while the current
 Synara-derived `scient-desktop` remains the supported continuity application.
-The private `scient-desktop-next` candidate now exists and has a reviewed D4
-draft pull request. It is not integrated, released, or the current
-implementation; do not describe draft candidate behavior as shipped behavior.
+The private `scient-desktop-next` candidate now exists with its D4 safety
+envelope and managed local development app integrated on candidate `main`. It
+is not released or the current supported implementation; do not describe
+private candidate behavior as shipped behavior.
 
 ## Internal Team Workspace
 
@@ -135,7 +136,7 @@ Current important documents:
   ScientFactory repositories.
 - `docs/planning/product-roadmap.md` - active sequence of coherent product outcomes.
 - `docs/planning/t3-foundation-migration-plan.md` - active proof-gated
-  migration sequence and current D4 bootstrap authorization.
+  migration sequence; D4 is complete and later slices retain their own gates.
 - `docs/planning/first-scient-vertical-slice-implementation-plan.md` -
   superseded Synara-specific plan preserved as historical planning evidence.
 - `docs/planning/scient-and-external-agents-implementation-plan.md` - proposed implementation plan for the Scient agent, external-agent preservation, and Scient-versus-external-agent identity isolation.

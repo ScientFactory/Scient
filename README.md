@@ -15,10 +15,11 @@ planned; its owned source repository is
 
 [ADR-0005](docs/architecture/decisions/ADR-0005-t3-derived-desktop-foundation.md)
 selects a fresh T3-derived successor desktop, and the active
-[migration plan](docs/planning/t3-foundation-migration-plan.md) authorizes its
-bounded bootstrap. The private candidate repository now exists with a reviewed
-draft D4 pull request; it is not integrated, released, or the current product.
-The Synara-derived application remains the supported continuity implementation.
+[migration plan](docs/planning/t3-foundation-migration-plan.md) governs its
+proof-gated transition. The private candidate repository now exists with its D4
+safety envelope and managed local development app integrated on candidate
+`main`; it is not released or the current product. The Synara-derived
+application remains the supported continuity implementation.
 
 ## Related Repositories And Local Workspace
 
@@ -31,8 +32,8 @@ ScientFactory owns five independently versioned repositories during migration:
   the standalone desktop source repository and current product implementation
   home.
 - [`ScientFactory/scient-desktop-next`](https://github.com/ScientFactory/scient-desktop-next) -
-  the private T3-derived successor candidate. Its D4 safety envelope remains a
-  draft and does not authorize release or cutover.
+  the private T3-derived successor candidate. Its integrated D4 safety envelope
+  does not authorize release or cutover.
 - [`ScientFactory/scient-agent`](https://github.com/ScientFactory/scient-agent) -
   the owned source repository and historical OpenCode-derived incumbent for the
   planned native Scient agent; its refreshed implementation foundation remains
@@ -97,7 +98,7 @@ Start here:
 - [PapiLab-to-Scient rename record](docs/planning/papilab-to-scient-rename-execution-plan.md) - historical migration, compatibility, rollback, and deferred-public-cutover record.
 - [Technology stack](docs/architecture/technology-stack.md) - proposed architecture and stack direction.
 - [T3 foundation migration plan](docs/planning/t3-foundation-migration-plan.md) -
-  active proof-gated transition and current D4 bootstrap authority.
+  active proof-gated transition; D4 is complete and later slices remain gated.
 - [Agent guidance](AGENTS.md) - protocol for agents working in this repository.
 - [Team contribution protocol](docs/operations/team-contribution-protocol.md) -
   shared verification, review, human UI, and integration-readiness workflow.

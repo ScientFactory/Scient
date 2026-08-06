@@ -70,9 +70,9 @@ Current inputs:
   and promotion of the
   [T3 foundation migration plan](../../planning/t3-foundation-migration-plan.md).
   T3 is now the selected successor foundation and official upstream of the
-  private candidate. The reviewed D4 safety-envelope pull request is not
-  integrated or released, and the current Synara-derived app remains the
-  continuity implementation.
+  private candidate. The D4 safety envelope is integrated on candidate `main`,
+  but the candidate is not released and the current Synara-derived app remains
+  the continuity implementation.
 - Focused Scient-agent foundation and capability investigation on 2026-08-06,
   recorded in
   [`scient-agent-foundation-and-capability-strategy-2026-08-06.md`](scient-agent-foundation-and-capability-strategy-2026-08-06.md).
@@ -303,7 +303,7 @@ forward desktop decision.
 | Goose | ACP/MCP, permission interaction, custom distributions, providers, recipes, scheduling, and general-agent patterns. | Capability, architecture, possible worker, or external-agent candidate; not selected. | `reference-only` until a bounded source or integration decision |
 | OpenHands SDK | Remote workspaces, agent server, confirmations, resource locks, secrets, and managed execution patterns. | Later cloud-execution candidate and reference; not selected. | `reference-only` until a remote-execution proof |
 | Codex app-server | Sandbox, approvals, diffs, rollback, interrupt/resume ideas. | Reference / cherry-pick source. | `reference-only` |
-| T3 Code | Successor desktop platform: lifecycle, provider sessions, chat, browser/preview, files, terminals, Git, packaging, updater, cloud/web/mobile foundations. | Accepted literal-ancestry application foundation under ADR-0005; no owned candidate exists yet, so the current code relationship remains research-only until D4. | Initial `thin-fork-merge` after bootstrap, with reviewed bounded merges and explicit Scient divergence |
+| T3 Code | Successor desktop platform: lifecycle, provider sessions, chat, browser/preview, files, terminals, Git, packaging, updater, cloud/web/mobile foundations. | Accepted literal-ancestry application foundation under ADR-0005; the private owned candidate has completed D4 but is not released or cut over. | `thin-fork-merge`, with reviewed bounded merges and explicit Scient divergence |
 | Aider | Git/edit discipline, repo-map and patch workflow lessons. | Reference benchmark. | `reference-only` |
 | Vercel AI SDK | Typed model/tool streams and model/tool UI event flow. | Upstream-trackable integration, adapter. | `version-bump` or `adapter-maintained` |
 | Vercel AI Elements | Agent UI cards and inspection patterns. | Add-on layer or reference. | `version-bump` if used |
@@ -411,16 +411,17 @@ finding and proof gate live in
 
 | Source | Adaptation target | Why it matters | Do not adopt | Depth status |
 |---|---|---|---|---|
-| T3 Code | Selected successor application foundation plus continuing complete-range review. | Supplies maintained generic platform infrastructure while Scient concentrates on the scientific workspace. | Do not let coding-product assumptions, T3 identity, service authority, telemetry, or host state define Scient. | ADR-0005 selects literal ancestry; D2 verified `e60821f0...`; no owned candidate or integration base exists until D4. |
+| T3 Code | Selected successor application foundation plus continuing complete-range review. | Supplies maintained generic platform infrastructure while Scient concentrates on the scientific workspace. | Do not let coding-product assumptions, T3 identity, service authority, telemetry, or host state define Scient. | ADR-0005 selects literal ancestry; D4 integrated base `a2ca89aa...` and candidate head `bc22a67f...`; release and cutover remain later gates. |
 | Synara | Current continuity application plus orchestration, UI/provider, failure, test, and migration evidence. | Keeps current users supported and preserves hard-won behavior for deliberate reimplementation. | Do not copy its UI shape blindly or continue new scientific features there. | ADR-0001 records initial adoption; ADR-0005 makes it the continuity host until cutover. |
 | Vercel AI SDK | Model/provider abstraction, typed stream parts, tool-call state, approval status, UI message events, mock providers, and model I/O tests. | Useful for model plumbing and chat/event surfaces around Scient-owned actions. | Do not use it as the abstraction over local executors like OpenCode or Codex. Executor actions need a Scient-owned contract. | Candidate model I/O layer; needs a narrow harness prototype. |
 | Vercel AI Elements | Tool cards, source citations, confirmations, terminal output, file trees, artifacts, plans, queue state. | Useful UI pieces for agent work inspection. | Do not let it make Scient a generic chat surface. | Side UI pattern source. |
 
 ADR-0005 selects literal T3 ancestry for the successor while the
-Synara-derived app remains the supported continuity implementation. Until D4
-creates the owned candidate, daily T3 review remains research evidence and
-creates no integration base. After bootstrap, the candidate's repo-local
-upstream lane will own merge and integration state. In both applications,
+Synara-derived app remains the supported continuity implementation. D4 created
+the owned candidate and established its literal integration base; later
+observed T3 movement remains research evidence until an owned merge actually
+advances that base. The candidate's repo-local upstream lane owns merge and
+integration state. In both applications,
 scientific navigation, canonical state, provenance, review, and recovery remain
 Scient-owned.
 

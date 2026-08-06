@@ -37,6 +37,7 @@ behind count is not.
 | Owned repository | Official source | Owned branch | Official branch |
 |---|---|---|---|
 | `ScientFactory/scient-desktop` | `Emanuele-web04/synara` | `main` | `main` |
+| `ScientFactory/scient-desktop-next` | `pingdotgg/t3code` | `main` | `main` |
 | `ScientFactory/scient-agent` | `anomalyco/opencode` | `dev` | `dev` |
 
 Every checkout used for maintained upstream intake must have a writable
@@ -47,14 +48,20 @@ under the owning repository's `UPSTREAM.md`. The owned repositories remain
 standalone; the upstream remote records lineage and provides review input.
 
 ADR-0005 selects official T3 as the upstream for the successor desktop. The
-private repository now exists with literal T3 ancestry and a reviewed D4 draft,
-but its safety-envelope pull request and repo-local checkpoint are not
-integrated. It is therefore a provisional `thin-fork-merge` lane, not yet a
-maintained source in the table or machine verifier above. After integration,
-add it through a separate exact-state evidence change. Observed T3 movement
-never advances its literal `integrationBase` without owned ancestry and
-verification. The current Synara lane remains active for the supported
-continuity application until an explicit retirement decision.
+private repository now exists with literal T3 ancestry and its D4 safety
+envelope integrated. It is therefore a maintained `thin-fork-merge` lane.
+Observed T3 movement never advances its literal `integrationBase` without owned
+ancestry and verification. The current Synara lane remains active for the
+supported continuity application until an explicit retirement decision.
+
+The parent machine verifier currently checks public maintained repositories by
+unauthenticated raw GitHub requests. Because `scient-desktop-next` is private,
+its exact D4 state remains in the dated evidence report rather than the parent
+source lock or `owned-sources.json`. Changing either snapshot also activates a
+strict current-head gate for every recorded public source. A later focused
+operations change must reconcile those snapshots and add a least-privilege
+private-repository evidence path before parent machine evidence can cover this
+lane.
 
 ## State Model
 

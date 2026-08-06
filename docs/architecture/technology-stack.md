@@ -36,16 +36,18 @@ not automatically accepted Scient architecture.
 [ADR-0005](decisions/ADR-0005-t3-derived-desktop-foundation.md) accepts a
 fresh, literal-ancestry T3-derived successor application. The reviewed
 [migration plan](../planning/t3-foundation-migration-plan.md) owns the
-proof-gated transition sequence. The private candidate repository and reviewed
-D4 draft now exist, while the current Synara-derived app remains the supported
-application. Draft candidate code is not an integrated or released product.
+proof-gated transition sequence. The private candidate repository has its D4
+safety envelope integrated, while the current Synara-derived app remains the
+supported application. Integrated candidate code is not thereby a released or
+supported product.
 
-The D4 draft preserves literal ancestry from exact official T3 commit
-`a2ca89aa10f13a2222e08afd98c66285121d5ba2` and adds the bounded identity and
-safety envelope at reviewed head
-`ae4c1aba522ea5b1aad94754b42f10a39f888574`. Feature migration and release are
-not authorized. Current implementation, accepted target, verified candidate,
-published release, and cutover remain separate states.
+The candidate preserves literal ancestry from exact official T3 commit
+`a2ca89aa10f13a2222e08afd98c66285121d5ba2`. The bounded identity and safety
+envelope reviewed at `ae4c1aba522ea5b1aad94754b42f10a39f888574` was integrated
+through candidate PR #1; D4 closeout reaches candidate `main`
+`bc22a67f4051965d13f35ab75cfa50464c5a65cd`. Feature migration and release are
+not authorized by that fact. Current implementation, accepted target, verified
+candidate, published release, and cutover remain separate states.
 
 ## Product Constraints
 
@@ -85,7 +87,7 @@ Scient app from the planned Scient agent where needed.
 | Large file storage | Object storage | Proposed; not scaffolded |
 | Sync | Local-first project-state-to-cloud sync | Under evaluation; storage and sync engines not selected or scaffolded |
 | Current application foundation | Standalone Scient-owned, Synara-derived source | Implemented continuity foundation; remains supported until explicit cutover |
-| Accepted successor application foundation | Fresh, literal-ancestry T3-derived Scient-owned source | Private candidate and reviewed D4 draft exist at the exact recorded base/head; not integrated or released |
+| Accepted successor application foundation | Fresh, literal-ancestry T3-derived Scient-owned source | Private candidate and D4 safety envelope are integrated at the exact recorded base/head; not released or cut over |
 | External-agent layer | Synara provider contracts and service | Inherited machinery for external agents; preservation required, project-task compatibility not yet certified |
 | First-party agent | One owned Scient agent; refreshed native foundation still under evaluation between Pi, OpenCode, and any equivalently qualified candidate | ADR-0005 preserves the one-agent ownership boundary but does not select the refreshed baseline; Scient product/runtime not yet implemented |
 | Historical agent source | Standalone Scient-owned, OpenCode-derived `scient-agent` repository | Incumbent source evidence and governance history; not an automatic future implementation baseline |
@@ -506,7 +508,7 @@ Completed historical experiments remain evidence, not the roadmap.
 | Area | Proven | Not Yet Proven | Evidence Or Owner |
 |---|---|---|---|
 | Synara-derived application | Standalone owned source, build, isolated Scient identity and state, reviewed upstream process | Continuity support, current-user census, import/archive path, rollback window, and later retirement | Gate 1 and Gate 1.5 lab reports; superseded ADR-0001 records initial adoption; ADR-0002 owns repository authority |
-| Accepted T3-derived successor | Exact official base selected; untouched baseline and the draft D4 identity/privacy/state envelope passed the recorded Node 24 checks | Integration of the draft, sustainable Scient seams, hostile-update cost, user continuity, and cutover safety | Accepted ADR-0005, active migration plan, Phase Zero dossier, and D4 bootstrap evidence |
+| Accepted T3-derived successor | Exact official base selected; untouched baseline and integrated D4 identity/privacy/state envelope passed the recorded Node 24 checks | Sustainable Scient seams, hostile-update cost, user continuity, and cutover safety | Accepted ADR-0005, active migration plan, Phase Zero dossier, and D4 bootstrap evidence |
 | Scient source foundation | Historical owned OpenCode build, Synara compatibility, project-root fidelity, transcript fidelity, and approval flow for a constrained action; current Pi/OpenCode/Hermes/Goose/OpenHands/Codex source investigation | Fresh native-foundation selection, Scient identity and packaging, owned capabilities, isolated state, durable task behavior, worker need, and justified inherited-core changes | [2026-08-06 foundation investigation](../research/source-evaluations/scient-agent-foundation-and-capability-strategy-2026-08-06.md) and future Foundation Gate; no refreshed foundation selected |
 | External agents | Nine inherited adapters and external OpenCode settings/adapter paths are present in source | Per-agent live compatibility, subscription/auth behavior, project-task certification, and migration protection | [Scient and external agents implementation plan](../planning/scient-and-external-agents-implementation-plan.md) |
 | Scient project state and memory | Product responsibilities, high-level memory principles, approved non-Git recovery requirement, and trust boundary are documented | Memory scopes, canonical representation, conversation relationship, package seam, portability, recovery, cloud sync, and first real scientific object relationship | PRD, [Memory Architecture Discovery](../planning/memory-architecture-discovery.md), and future focused architecture work |

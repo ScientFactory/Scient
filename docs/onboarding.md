@@ -48,11 +48,12 @@ package, but it does not yet contain the complete scientific application or
 vertical slice, and many anticipated development and operational workflows
 remain incomplete.
 
-For internal local work, `Scient`, `scient-desktop`, and `scient-agent` are the
-core independent sibling repositories; `website` is optional when its surface
-is relevant. Their parent workspace is not a Git repository. The root [Scient
-README](../README.md) owns the repository roles and workspace layout;
-contributors must make each change in the repository that owns it.
+For internal local work, `Scient`, `scient-desktop`, `scient-desktop-next`, and
+`scient-agent` are the core independent migration sibling repositories;
+`website` is optional when its surface is relevant. Their parent workspace is
+not a Git repository. The root [Scient README](../README.md) owns the repository
+roles and workspace layout; contributors must make each change in the
+repository that owns it.
 
 ScientFactory is the company identity. **Scient** is the public name for both
 the implemented app and its planned native first-party research agent. The

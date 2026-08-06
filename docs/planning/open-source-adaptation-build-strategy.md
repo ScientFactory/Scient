@@ -34,8 +34,8 @@ strategy, and stop conditions.
 
 This accepted target does not change current implementation truth.
 `scient-desktop` remains the supported Synara-derived continuity application,
-while the private T3-derived candidate now exists with a reviewed D4 draft. The
-candidate safety envelope is not integrated, released, or the current product.
+while the private T3-derived candidate now has its D4 safety envelope
+integrated. The candidate is not released or the current product.
 ADR-0001 is superseded as the forward desktop-foundation decision but preserved
 as history; ADR-0002 continues to govern standalone ownership and fetch-only
 source authority.
