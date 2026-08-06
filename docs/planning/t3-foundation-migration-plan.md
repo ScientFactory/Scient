@@ -31,9 +31,16 @@ The private candidate, bounded D4/Proof 1 safety envelope, GitHub-hosted CI
 configuration, Blacksmith removal, and managed local development app are now
 integrated at the exact base and heads recorded in the dated D4 evidence. D4 is
 complete. The next bounded slice is product rebranding and identity cleanup;
-that work still requires its own plan and proof. D4 completion does not
-authorize feature migration, legacy-data conversion, cloud enablement,
-distribution, release, cutover, or retirement of the current application.
+its implementation is now published for review as candidate
+[`scient-desktop-next` draft PR #5](https://github.com/ScientFactory/scient-desktop-next/pull/5).
+The branch presents `Scient` and `Scient (Dev)` while deliberately preserving
+the D4 `scient-next` runtime, state, protocol, and disabled-authority
+boundaries. Automated verification and the isolated local development launch
+have passed, but Yaacov's visual review and integration decision remain
+pending. This is implemented and published candidate work, not integrated
+candidate-main state. D4 completion and the draft rebrand do not authorize
+feature migration, legacy-data conversion, cloud enablement, distribution,
+release, cutover, or retirement of the current application.
 
 This plan records accepted direction and owns migration sequencing,
 boundaries, and proof gates. It deliberately does not pre-write the
@@ -149,8 +156,9 @@ The current Synara-derived Scient app remains the supported continuity product,
 while the private T3-derived candidate has its D4 safety envelope and local
 development path integrated. The candidate is not released or the current
 product, and no user data, cloud service, release channel, or website surface
-has changed. D4 is complete; later proof and feature lanes still require
-explicit authorization under Part III.
+has changed. The rebrand is published only as draft PR #5 and remains pending
+visual review and integration. D4 is complete; later proof and feature lanes
+still require explicit authorization under Part III.
 
 ## Authority And Reconciliation State
 

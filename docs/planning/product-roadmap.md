@@ -32,11 +32,15 @@ preserved as superseded planning. The private T3-derived candidate now has its
 D4 safety envelope and managed local development app integrated, but it is not
 released or the current app.
 
-The immediate next slice is a bounded rebranding and product-identity pass that
-preserves the T3 merge relationship and the D4 isolation boundaries. It must be
-planned and verified as its own candidate change; D4 completion does not
-authorize feature migration, user-data conversion, cloud enablement, release,
-or cutover. After their explicit gates, the migration will
+The immediate slice is a bounded rebranding and product-identity pass that
+preserves the T3 merge relationship and the D4 isolation boundaries. Its
+implementation is published as
+[`scient-desktop-next` draft PR #5](https://github.com/ScientFactory/scient-desktop-next/pull/5):
+automated checks and an isolated `Scient (Dev)` launch have passed, while
+Yaacov's visual review and the integration decision remain pending. The draft
+does not change candidate `main` and does not authorize feature migration,
+user-data conversion, cloud enablement, release, or cutover. After the rebrand
+and their explicit gates, the migration will
 re-establish the selected project, source/PDF, provider-onboarding, voice,
 mathematical/bidirectional, and What's New outcomes before new Scient-agent and
 researcher-review work resumes.
