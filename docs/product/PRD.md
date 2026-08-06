@@ -4,7 +4,7 @@ Status: Accepted
 Version: v1
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-07-23
+Last updated: 2026-08-06
 Purpose: Defines Scient's product direction, core capabilities, user experience principles, and product constraints.
 Doc type: Product truth
 
@@ -49,9 +49,11 @@ completed migration and compatibility record lives in
 Repository names are technical ownership labels, not additional product
 brands: `ScientFactory/Scient` owns product truth and the scientific boundary,
 `ScientFactory/scient-desktop` owns the implemented desktop application, and
-`ScientFactory/scient-agent` is the maintained source foundation for the
-planned native Scient agent. The repository name does not imply that the
-native agent runtime is already implemented.
+`ScientFactory/scient-agent` is the owned source repository for the planned
+native Scient agent. Its current OpenCode-derived history is incumbent source
+evidence; it does not preselect the refreshed implementation foundation. The
+repository name does not imply that the native agent runtime is already
+implemented.
 
 ## Product Overview
 

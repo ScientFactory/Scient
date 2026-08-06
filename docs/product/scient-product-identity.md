@@ -3,7 +3,7 @@
 Status: Accepted
 Owner: Yaacov
 Created: 2026-07-17
-Last updated: 2026-08-03
+Last updated: 2026-08-06
 Purpose: Defines the accepted company, product, agent, and external-agent naming system for Scient.
 Doc type: Product truth
 
@@ -32,7 +32,7 @@ Yaacov selected the following forward product identity on 2026-07-17:
 |---|---|---|
 | Company and product umbrella | **ScientFactory** | The company, website owner, and future umbrella for Scient and possible later products |
 | Scientific workspace application | **Scient** | The local-first scientific workspace researchers open and use |
-| Native first-party research agent | **Scient** | The owned OpenCode-derived agent that works inside the Scient app |
+| Native first-party research agent | **Scient** | The owned first-party agent that works inside the Scient app; its refreshed implementation foundation remains unselected |
 | Independently connected products | **External agents** | OpenCode, Codex, Claude, Droid, and other agents that retain their own identity and access paths |
 | Primary website | **scientfactory.com** | The company and product website; deployment cutover is separate execution work |
 
@@ -66,7 +66,7 @@ be confused.
 | Term | Meaning |
 |---|---|
 | **Scient app** / `ScientApp` | The scientific workspace application and product shell |
-| **Scient agent** / **Scient Agent** / `ScientAgent` | The native first-party OpenCode-derived research agent; capitalization and the compound code form may vary with context |
+| **Scient agent** / **Scient Agent** / `ScientAgent` | The native first-party research agent; capitalization and the compound code form may vary with context |
 | **Scient project** / `ScientProject` | A project owned by the Scient app and usable independently of any one agent runtime |
 | **External agent** / `ExternalAgent` | An independently identified agent product such as OpenCode, Codex, Claude, or Droid |
 | **External-agent connection** / `ExternalAgentConnection` | One configured installation, endpoint, account, or connection for an external agent |
@@ -163,10 +163,11 @@ The owned topology is:
 The `ScientFactory` GitHub organization was created on 2026-07-17 and owns all
 four repositories. The agent source repository is named `scient-agent` now by
 explicit owner decision, even though the native agent product is not yet
-implemented. It preserves official OpenCode as fetch-only upstream, Git
-ancestry, licenses, attribution, inherited-core traceability, and reviewed
-update history. External OpenCode remains a distinct external agent regardless
-of repository topology.
+implemented. Its current history preserves official OpenCode as fetch-only
+upstream, Git ancestry, licenses, attribution, inherited-core traceability, and
+reviewed update history. That preserved history is evidence rather than an
+automatic selection of the future native foundation. External OpenCode remains
+a distinct external agent regardless of repository topology.
 
 ## Current State
 

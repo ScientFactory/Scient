@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-08-02
+Last updated: 2026-08-06
 Purpose: Defines where Scient planning documents live and how they relate to product truth, architecture, design, quality, and research documents.
 Doc type: Repo orientation
 
@@ -32,7 +32,7 @@ Current planning docs:
 - `first-scient-vertical-slice-implementation-plan.md` - superseded
   Synara-specific source-tracing and implementation plan, preserved for its
   reasoning and completed project-initiation evidence.
-- `scient-and-external-agents-implementation-plan.md` - proposed end-to-end plan for building the Scient agent as the owned OpenCode-derived first-party agent while preserving external agents independently.
+- `scient-and-external-agents-implementation-plan.md` - proposed end-to-end plan for selecting a refreshed native foundation, building one owned Scient agent, using bounded specialist workers when justified, internalizing essential capabilities over time, and preserving external agents independently.
 - `t3-foundation-migration-plan.md` - active destination, capability
   dispositions, proof gates, D4 bootstrap authorization, and documentation
   transition system for replacing the Synara-derived desktop foundation with
@@ -42,7 +42,8 @@ Current planning docs:
 - `gate-1-5-execution-plan.md` - historical execution plan for owned source repositories, upstream synchronization, and Synara identity isolation.
 - `model-access-and-routing-evolution.md` - priorities and open choices for provider-connected, bring-your-own-key, Scient-managed, and automatically routed model access.
 - `open-source-adaptation-build-strategy.md` - active evergreen ownership,
-  fork/adapter, upstream-update, and divergence strategy across T3, Synara,
-  OpenCode, and other sources.
+  fork/adapter, upstream-update, capability-internalization, and divergence
+  strategy across T3, Synara, the still-open Scient-agent foundation, and other
+  sources.
 - `product-planning.md` - draft product planning after PRD acceptance, including candidate features, open product questions, and cross-document handoffs.
 - `repository-scope-and-company-memory.md` - proposed boundary between this Scient product repository and a future connected company memory.

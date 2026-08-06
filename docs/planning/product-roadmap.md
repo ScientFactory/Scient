@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-07-16
-Last updated: 2026-08-02
+Last updated: 2026-08-06
 Purpose: Defines the current sequence of coherent Scient product outcomes without turning technology experiments into the product roadmap.
 Doc type: Planning note
 
@@ -44,15 +44,19 @@ researcher-review work resumes.
 A researcher can open a small local scientific project, add source material
 manually, delegate one bounded task to **Scient**, inspect the context and
 proposed result, accept or reject it, and reopen the project without losing its
-scientific meaning or history. The Scient agent is the owned OpenCode-derived
-first-party agent; it is not a separate shell over an OpenCode engine.
+scientific meaning or history. The Scient agent is one owned first-party agent;
+it is not a thin shell over separately authoritative engines. Its refreshed
+native source foundation remains unselected until the implementation-time gate
+in the
+[Scient and external agents implementation plan](scient-and-external-agents-implementation-plan.md).
 
 The slice combines:
 
 - a durable local project identity;
 - one manually captured source excerpt;
 - one bounded scientific task and visible context receipt;
-- one Scient action using its inherited OpenCode-derived capabilities;
+- one Scient action using the selected native foundation and Scient-owned
+  capabilities;
 - one proposed evidence-linked note;
 - inspect, edit, accept, and reject behavior;
 - a recovery point; and
@@ -61,6 +65,8 @@ The slice combines:
 The slice is desktop-first. It does not include mobile, cloud sync,
 collaboration, full PDF parsing, full citation management, a complete manuscript
 editor, a complete scientific schema, a notebook system, or Goose integration.
+It must not depend on an optional specialist worker before the native Scient
+path is useful and recoverable.
 
 The earlier Synara-specific implementation plan is preserved as
 [`first-scient-vertical-slice-implementation-plan.md`](first-scient-vertical-slice-implementation-plan.md).
@@ -113,10 +119,11 @@ not replace deterministic component checks or comparable agent measurements.
   non-blocking for, the rich-project sequence.
 - Add scientific capabilities through the Scient-owned layer as real needs
   appear.
-- Make isolated changes to Scient's inherited OpenCode core only for
+- Make isolated changes to Scient's selected inherited foundation only for
   demonstrated runtime gaps.
-- Evaluate Goose as a later source of capabilities and architecture lessons for
-  Scient, without turning Scient into an engine-switching shell.
+- Evaluate bounded coding, research, and remote-execution workers only after
+  the native path works. Internalize recurring essential capabilities into one
+  Scient agent when that improves product quality and ownership.
 
 ## Later
 

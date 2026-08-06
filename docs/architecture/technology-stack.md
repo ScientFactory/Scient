@@ -3,7 +3,7 @@
 Status: Proposed
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-08-02
+Last updated: 2026-08-06
 Purpose: Records Scient's current technology stack direction and open implementation decisions.
 Doc type: Architecture direction
 
@@ -84,8 +84,9 @@ Scient app from the planned Scient agent where needed.
 | Current application foundation | Standalone Scient-owned, Synara-derived source | Implemented continuity foundation; remains supported until explicit cutover |
 | Accepted successor application foundation | Fresh, literal-ancestry T3-derived Scient-owned source | Accepted by ADR-0005; exact D4 base selected and baseline verified in Phase Zero; candidate repository not yet created |
 | External-agent layer | Synara provider contracts and service | Inherited machinery for external agents; preservation required, project-task compatibility not yet certified |
-| First-party agent | Scient, derived from standalone Scient-owned, OpenCode-derived source | ADR-0005 preserves ADR-0001's accepted identity and source boundary; ownership authority through ADR-0002; Scient product/runtime not yet implemented |
-| Later Scient source | Goose | Source-depth candidate for capabilities and architecture lessons; deferred until after the first Scient gateway |
+| First-party agent | One owned Scient agent; refreshed native foundation still under evaluation between Pi, OpenCode, and any equivalently qualified candidate | ADR-0005 preserves the one-agent ownership boundary but does not select the refreshed baseline; Scient product/runtime not yet implemented |
+| Historical agent source | Standalone Scient-owned, OpenCode-derived `scient-agent` repository | Incumbent source evidence and governance history; not an automatic future implementation baseline |
+| Agent capability sources | Pi, OpenCode, Hermes, Codex, Goose, OpenHands SDK, Aider, and later qualified sources | Research, selective adaptation, or bounded-worker candidates; no worker selected |
 | Executor safety reference | Codex | Evaluation/reference |
 | Scientific runtime | Python via uv | Proposed |
 | Native services | Rust selectively | Deferred until needed |
@@ -107,10 +108,13 @@ reviewed UI and project-init status follow-ups advanced maintained `main` to
 `2ecfbe19`. Standalone ownership and upstream-maintenance follow-ups then
 advanced maintained `main` to `bd2a6eed`; exact provenance is recorded in
 `lab/external/sources.lock.md`.
-The owned OpenCode-derived repository—the current source foundation for the Scient
-agent—is in the workspace sibling `../scient-agent/` on `dev` at `67e7f3f0`,
-after a reviewed sync through source version 1.18.3 at official upstream
-`69a80663` and the standalone upstream-maintenance rollout. Historical
+The owned OpenCode-derived repository—the historical incumbent source evidence
+for the Scient agent—is in the workspace sibling `../scient-agent/`. Its
+governance, identity, CI, release-lane, and upstream-maintenance work remain
+valuable. The native scientific agent is not implemented, and the future
+refreshed source foundation must be selected through the gate in the
+[Scient and external agents implementation plan](../planning/scient-and-external-agents-implementation-plan.md).
+Historical
 Gate 1 and Gate 1.5 commits, tags, and ignored runtime evidence remain
 historical records; they are not the active Scient implementation baseline.
 
@@ -362,25 +366,32 @@ accepted write-back path.
 
 Current posture:
 
-- Build the first Scient workflow through the **Scient agent**, the product's
-  first-party research agent derived from the owned OpenCode source foundation.
+- Build the first agent-enabled Scient workflow through the **Scient agent**,
+  the product's one owned first-party research agent, after a fresh
+  implementation-time foundation comparison.
 - Treat Scient as one agent product, codebase, runtime identity, configuration,
-  release, and update channel. Do not model it as a Scient shell that launches
-  a separately identified OpenCode engine.
-- Keep inherited OpenCode core and Scient-owned capabilities and integrations
-  identifiable inside Scient's source where practical. This is a maintenance
-  boundary for selective upstream updates, not a product or process boundary.
+  authority, release, and update responsibility. Do not model it as a thin
+  Scient shell over separately authoritative branded engines.
+- Keep inherited foundation core, directly adapted source, and Scient-owned
+  capabilities identifiable inside Scient's source where practical. This is a
+  maintenance and provenance boundary, not a product-identity boundary.
 - Preserve the inherited external-agent layer. External OpenCode remains a
   distinct external agent with its own binary or endpoint, configuration,
   credentials, sessions, and updates.
-- Codex is the execution-safety and sandboxing reference.
-- Evaluate Goose later as a source of capabilities and architecture lessons for
-  Scient. ACP may remain useful for a bounded comparison or for a future
-  separately offered external Goose agent, but Scient must not become a shell that
-  silently switches between branded engines.
-- Treat any Goose permissions, sessions, recipes, and tool events as research or
-  external-runtime inputs to normalize. They do not provide the Scient project
-  boundary or canonical run ledger by themselves.
+- Pi and OpenCode are the current native-foundation finalists; neither is
+  selected for refreshed implementation.
+- Hermes is a leading research-worker and capability-source candidate;
+  OpenCode or Codex may be coding-worker candidates when they add distinct
+  value; Goose, OpenHands, Aider, and future sources remain focused references
+  or candidates.
+- A specialist worker is optional and bounded. Scient owns the task, selected
+  context, capabilities, final synthesis, provenance, proposal, review, and
+  recovery. Worker sessions and memories are non-canonical.
+- Over time, recurring essential capabilities should move into the native
+  Scient agent when integration improves quality, privacy, offline use,
+  reliability, coherence, or long-term ownership.
+- The detailed evidence and selection proof live in the
+  [2026-08-06 foundation investigation](../research/source-evaluations/scient-agent-foundation-and-capability-strategy-2026-08-06.md).
 
 Scient should not commit to any agent's internal data model as the canonical project model.
 
@@ -493,11 +504,11 @@ Completed historical experiments remain evidence, not the roadmap.
 |---|---|---|---|
 | Synara-derived application | Standalone owned source, build, isolated Scient identity and state, reviewed upstream process | Continuity support, current-user census, import/archive path, rollback window, and later retirement | Gate 1 and Gate 1.5 lab reports; superseded ADR-0001 records initial adoption; ADR-0002 owns repository authority |
 | Accepted T3-derived successor | Exact official base selected; untouched Node 24 build, test, check, typecheck, mobile-lint, and release-smoke passed in Phase Zero | Candidate repository, identity/privacy/state envelope, sustainable Scient seams, hostile-update cost, user continuity, and cutover safety | Accepted ADR-0005, active T3 foundation migration plan, and Phase Zero dossier; no candidate repository exists |
-| Scient source foundation | Owned OpenCode build, Synara compatibility, project-root fidelity, transcript fidelity, and approval flow for a constrained action | Scient identity and packaging, owned capabilities, isolated Scient state, durable task behavior, and justified inherited-core changes | Gate 1.5 report proves the source baseline; ADR-0005 preserves ADR-0001's Scient-agent decision |
+| Scient source foundation | Historical owned OpenCode build, Synara compatibility, project-root fidelity, transcript fidelity, and approval flow for a constrained action; current Pi/OpenCode/Hermes/Goose/OpenHands/Codex source investigation | Fresh native-foundation selection, Scient identity and packaging, owned capabilities, isolated state, durable task behavior, worker need, and justified inherited-core changes | [2026-08-06 foundation investigation](../research/source-evaluations/scient-agent-foundation-and-capability-strategy-2026-08-06.md) and future Foundation Gate; no refreshed foundation selected |
 | External agents | Nine inherited adapters and external OpenCode settings/adapter paths are present in source | Per-agent live compatibility, subscription/auth behavior, project-task certification, and migration protection | [Scient and external agents implementation plan](../planning/scient-and-external-agents-implementation-plan.md) |
 | Scient project state and memory | Product responsibilities, high-level memory principles, approved non-Git recovery requirement, and trust boundary are documented | Memory scopes, canonical representation, conversation relationship, package seam, portability, recovery, cloud sync, and first real scientific object relationship | PRD, [Memory Architecture Discovery](../planning/memory-architecture-discovery.md), and future focused architecture work |
 | Scient-agent and Scient-app boundary | Scient-agent identity plus context, proposal, review, provenance, and permission responsibilities are documented | Actual contract, code placement, event mapping, isolated Scient-agent state, and accepted write-back path | ADR-0005 preserves the ADR-0001 agent boundary; linked implementation plans; `agent-runtime.md` remains a future home |
-| Goose | Source seams, ACP path, and safety risks inspected | Incremental capabilities or architecture lessons for Scient; any future external Goose path is a separate decision | Goose source-depth inspection |
+| Specialist workers and capability sources | Pi, OpenCode, Hermes, Goose, OpenHands, Codex, and Aider roles inspected at different depths | Whether any worker is needed, its bounded contract, distribution, safety, update path, and which capabilities should become native | 2026-08-06 foundation investigation; zero selected workers |
 | Cloud sync | Postgres, object storage, and local-first sync are proposed directions | Authority, offline behavior, conflicts, revocation, and recovery | Later roadmap and focused architecture work |
 
 Gate 1 and Gate 1.5 are retained only as historical names for completed work.
@@ -520,10 +531,11 @@ Postgres
 Supabase as initial cloud platform candidate
 object storage
 local-first sync under evaluation
-Scient as the owned OpenCode-derived first-party agent
+one owned Scient first-party agent; refreshed foundation unselected
 inherited Synara adapters for independently connected external agents
-Codex safety reference
-Goose later capability and architecture source for Scient
+Pi/OpenCode native-foundation finalists
+Hermes/OpenCode/Codex possible bounded workers
+Codex/Goose/OpenHands/Aider capability and architecture references
 Python via uv for scientific computation
 selective Rust services later
 ProseMirror/Tiptap-family editor

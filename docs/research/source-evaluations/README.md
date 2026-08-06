@@ -19,6 +19,10 @@ Current files:
 - `model-benchmark-map.md` - external benchmark coverage, meaning, limitations, and relevance across the candidate model portfolio.
 - `model-portfolio-and-provider-routing.md` - current candidate model portfolio, distinct model roles, and the evidence needed before selection.
 - `open-source-adaptation-map.md` - cross-source synthesis of open-source systems Scient should study, prototype, adapt, or avoid.
+- `scient-agent-foundation-and-capability-strategy-2026-08-06.md` - current
+  source-backed Pi/OpenCode foundation comparison, Hermes/Goose/OpenHands/Codex/Aider
+  role analysis, long-term one-agent direction, transitional-worker options,
+  implementation-time proof gate, and explicit non-decisions.
 - `scientific-project-fixture-selection.md` - accepted three-track scientific validation strategy: four rich projects, narrow capability fixtures, agent-evaluation benchmarks, reserves, source evidence, and activation conditions.
 - `source-evaluation-template.md` - future home for the source evaluation template.
 - `t3-migration-capability-catalog.md` - compact research index of the 159

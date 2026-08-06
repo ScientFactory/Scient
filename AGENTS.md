@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-08-03
+Last updated: 2026-08-06
 Purpose: Defines how agents should work in this early Scient repository.
 Doc type: Agent protocol
 
@@ -27,12 +27,23 @@ the public name for both the implemented application and its planned native
 first-party research agent. In technical contexts, use **Scient app** and
 **Scient agent** whenever the meaning could be ambiguous.
 
-The Scient agent is planned but not yet implemented. Architecturally, it is the
-owned OpenCode-derived agent itself—not an app shell around a separate OpenCode
-engine. External OpenCode and the other inherited external-agent paths remain
-separate choices with separate identity, configuration, credentials, sessions,
-and updates. Public brand and trademark clearance remains outstanding and must
-be completed before public release.
+The Scient agent is planned but not yet implemented. It will be one owned
+first-party agent—not a thin shell around separately authoritative engines.
+The current `scient-agent` repository is OpenCode-derived historical incumbent
+source evidence; ADR-0005 does not select its future refreshed baseline. Before
+native-runtime implementation, follow the Foundation Gate in the proposed
+Scient-and-external-agents plan and compare freshly fetched official candidates.
+Pi and OpenCode are current finalists; neither is selected. External OpenCode
+and the other inherited external-agent paths remain separate choices with
+separate identity, configuration, credentials, sessions, and updates. Public
+brand and trademark clearance remains outstanding and must be completed before
+public release.
+
+The long-term target is one Scient agent whose essential capabilities may be
+derived from multiple reviewed sources and integrated under Scient ownership.
+Bounded specialist workers may accelerate early coding, research, or remote
+execution, but they remain optional, replaceable, non-canonical, and subordinate
+to Scient operations, permissions, provenance, review, and recovery.
 
 The current repo contents are working documents. They are expected to change as the product, architecture, and implementation plan become clearer.
 
@@ -58,7 +69,9 @@ non-Git container with the three core repositories as sibling checkouts:
 
 `Scient/` owns product and project knowledge, cross-repository planning, and
 source pins. `scient-desktop/` owns the application implementation.
-`scient-agent/` owns the OpenCode-derived native-agent source foundation. Add
+`scient-agent/` owns the historical OpenCode-derived agent source and is the
+planned home for the one native Scient agent; its refreshed foundation remains
+subject to the documented Foundation Gate. Add
 `website/` only when website or download-surface work needs it.
 
 Use the [local workspace setup](docs/development/local-workspace-setup.md) to

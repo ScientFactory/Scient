@@ -71,6 +71,15 @@ Current inputs:
   T3 is now the selected successor foundation, but it is not yet an owned
   application upstream and no candidate repository exists. The current
   Synara-derived app remains the continuity implementation.
+- Focused Scient-agent foundation and capability investigation on 2026-08-06,
+  recorded in
+  [`scient-agent-foundation-and-capability-strategy-2026-08-06.md`](scient-agent-foundation-and-capability-strategy-2026-08-06.md).
+  Pi and OpenCode are the current native-foundation finalists; neither is
+  selected. Hermes, Goose, OpenHands, Codex, Aider, and later qualified sources
+  remain capability, worker, comparison, or external-agent candidates. The
+  accepted long-term direction is one owned first-party Scient agent, with any
+  early specialist workers treated as bounded transitional or optional
+  mechanisms rather than separate product authority.
 - Focused collaboration and organization scan on 2026-07-23, covering
   scientific project and review systems, local-first and real-time engines,
   relationship-based authorization, research identity and affiliation,
@@ -190,11 +199,13 @@ only", but still Scient-boundary-first:
    tools for sources and PDFs, Zettlr/Overleaf/Quarto/MyST for writing/export
    expectations, Jupyter-style tools for analysis compatibility, and ELN/RDM
    tools for protocol/lab/repository references.
-4. Use the owned OpenCode-derived source as the foundation for Scient, Scient's
-   first-party agent. Scient is the resulting owned agent, not a shell over a
-   separate OpenCode engine. Preserve external OpenCode as an independent
-   external agent. Keep Goose as a deferred source of capabilities and
-   architecture lessons after the first Scient gateway exists.
+4. Build one owned first-party Scient agent from the strongest foundation proven
+   at implementation time. Preserve the current OpenCode-derived repository as
+   historical incumbent evidence without treating it as an automatic future
+   baseline. Keep Pi and OpenCode as current foundation finalists; treat
+   Hermes, Codex, Goose, OpenHands, Aider, and later qualified systems as
+   capability, benchmark, worker, or external-agent candidates until separately
+   selected. Preserve external OpenCode as an independent external agent.
 5. Use standalone Scient-owned repositories as the writable source remotes. In
    the initial T3-aligned phase, normally merge reviewed T3 ranges with literal
    ancestry and minimal avoidable rewriting. Prefer upstream binaries, SDKs,
@@ -259,7 +270,7 @@ identified so far. It is a working recommendation, not a final dependency list.
 | PRD surface | Best source candidates so far | Current borrow mode | Scient-owned boundary |
 |---|---|---|---|
 | Project Home | Synara and T3 Code for workbench status, sessions, terminals, branches, diffs, previews, and provider activity; Vercel AI Elements for inspectable agent UI patterns. | Forked workbench prototype and reference. | Project status, stale-output signals, review needs, blocked work, collaborator activity, and next actions belong to Scient project state. |
-| Scient And Connected-Agent Chat | Synara-derived source for the multi-agent workspace shell; the owned OpenCode-derived source as Scient's agent foundation; external OpenCode and other inherited adapters as separate external choices; Goose for later capability and architecture study; Codex for safety and approval reference; Vercel AI SDK for typed model/tool streams. | Inherited workbench, owned OpenCode-derived agent, external-agent adapters, and references. | Scient identity, context receipts, permissions, tool scope, proposed changes, durable AgentRun records, checkpoints, and accepted write-back belong to Scient. |
+| Scient And Connected-Agent Chat | T3/Synara evidence for the workspace shell; Pi and OpenCode as unselected native-foundation finalists; Hermes, Codex, Goose, OpenHands, Aider, and later qualified systems as capability, worker, benchmark, or external-agent candidates; Vercel AI SDK for typed model/tool streams. | Inherited workbench evidence, future selected owned foundation, bounded capability adaptations, optional workers, external-agent adapters, and references. | Scient identity, context receipts, permissions, tool scope, proposed changes, durable AgentRun records, checkpoints, and accepted write-back belong to Scient. |
 | Project Direction And Protocol | protocols.io, SciNote, RSpace, eLabFTW, Chemotion, Kadi4Mat, and openBIS as protocol, ELN, lab workflow, and research-data-management references. | Reference and later adapter candidates. | The project direction, protocol fields, eligibility criteria, analysis plan, and decision log are Scient objects. |
 | Source Library And Reader | Zotero, Zotero Reader, Zotero Document Worker, Paperlib, Tropy, JabRef, CSL, GROBID, Docling, and local-first note/PDF references such as Logseq and SiYuan. | Adapter, component spike, embedded parser, compatibility target, and reference. | Source identity, duplicate confidence, source-region links, parser state, annotations, backlinks, and citation intent belong to Scient. |
 | Evidence Ledger And Claims | ASReview for screening mechanics; GROBID and Docling for extraction; PaperQA for cited scientific QA; Lacuna for paper-grounded research-map patterns; Elicit, Rayyan, Covidence, scite, Consensus, and SciSpace as workflow references. | Embedded engines, adapters, and references. | Evidence records, claims, support links, extraction review state, uncertainty, contradictions, and unsupported-claim diagnostics belong to Scient. |
@@ -267,7 +278,7 @@ identified so far. It is a working recommendation, not a final dependency list.
 | Draft And Manuscript Workspace | Tiptap/ProseMirror first; Plate and Lexical as challengers; GenOffice as a source candidate for byte-preserving DOCX compatibility; Zettlr, Overleaf, Word, and Google Docs as academic writing and collaboration references; Quarto/Pandoc/MyST/Manubot for export and publishing paths. | Projection, challenger prototype, Office compatibility adapter candidate, reference, and export adapter. | Manuscript structure, citations, evidence links, comments, suggestions, reconciliation state, fidelity receipts, and publication metadata belong to Scient. |
 | Data And Analysis Workbench | Python through uv; marimo as reactive-notebook reference; Jupyter/JupyterLab Desktop, RStudio/Positron, and CoCalc as analysis-workbench references; DuckDB, pandas, Polars, Arrow/Parquet, SciPy, statsmodels, scikit-learn, and later R/tidyverse. | Embedded runtime, projection, compatibility target, and reference. | Dataset, Analysis, AnalysisRun, parameters, method notes, outputs, dependency state, staleness, and provenance belong to Scient. |
 | Figures, Tables, And Artifacts | Matplotlib/seaborn, Plotly, Altair/Vega-Lite, Great Tables/gt, Mermaid, Graphviz, Cytoscape.js, tldraw, Excalidraw, xyflow, Inkscape, diagrams.net, and BioIcons; GenOffice as a later XLSX/PPTX compatibility and editable-artifact candidate. | Runtime projection, artifact generator, compatibility adapter candidate, and reference. | Figure, Table, Artifact, caption, data/code linkage, manuscript usage, review state, fidelity receipts, and stale-output state belong to Scient. |
-| Agent Runs And Review | Scient's OpenCode-derived source foundation, external OpenCode and other agents, Goose, Codex, Synara, T3 Code, and Vercel AI SDK/Elements. | Owned agent source, external-agent adapters, forked workbench prototype, and references. | AgentRun lifecycle, approvals, diffs, logs, artifacts, failures, retries, cancellation, checkpoints, and recovery belong to Scient. |
+| Agent Runs And Review | Pi and OpenCode foundation finalists; Hermes, Codex, Goose, OpenHands, Aider, and other capability or worker candidates; external agents; T3/Synara workbench evidence; and Vercel AI SDK/Elements. | Future selected owned foundation, bounded capability adaptations, optional workers, external-agent adapters, inherited workbench, and references. | AgentRun lifecycle, approvals, diffs, logs, artifacts, failures, retries, cancellation, checkpoints, and recovery belong to Scient. |
 | Memory, History, And Decisions | Earlier PapiLab prototype patterns, Stencila provenance ideas, Goose/Codex/OpenCode runtime logs, AFFiNE/Logseq/SiYuan knowledge-workspace patterns, and targeted Hermes ideas. | Reference and normalized runtime evidence. | Scientific memory, decision history, trust metadata, provenance, snapshots, rollback, and auditability belong to Scient. |
 | Collaboration And Mobile Continuation | Yjs/Hocuspocus for document collaboration; Automerge, ShareDB, and Yorkie as bounded challengers; a server-authoritative operation log and narrowly scoped database replication as separate structured-state approaches; Electric as a read-path candidate; PowerSync only after service-license and operations review; OSF, Dataverse, GitHub, and GitLab for sharing/deposit expectations. | Candidate engine, adapter, and reference. | Membership, roles, permissions, attribution, conflict state, accepted scientific operations, cloud mirror authority, mobile action scope, and recovery belong to Scient. |
 | Settings, Integrations, And Export | Zotero/JabRef/CSL, Quarto/Pandoc/MyST, Typst/LaTeX/Overleaf, OSF, Dataverse, GitHub, GitLab, object storage, and cloud-drive style integrations. | Adapter and export target. | Project configuration, integration state, export/deposit records, portability receipts, and fidelity reports belong to Scient. |
@@ -284,8 +295,11 @@ forward desktop decision.
 | Scient scientific project graph | Projects, sources, evidence, claims, datasets, runs, figures, manuscripts, memory, provenance. | Scient-owned core | `no-upstream` |
 | Scient agent contract | Permissions, context receipts, proposed changes, review, recovery. | Scient-owned core | `no-upstream` |
 | Synara | Current desktop workbench behavior, failures, tests, migration evidence, and continuity implementation. | Supported continuity application through cutover; not the target for new scientific features. ADR-0001 records its initial selection. | Current `divergent-cherry-pick` maintenance while supported; retire only by explicit cutover/support decision |
-| OpenCode source fork | Local file read/write, shell, code edits, patches, sessions, and possibly subagents as the inherited source foundation for Scient. | ADR-0005 preserves ADR-0001's source foundation for the planned Scient agent. Inherited core remains internally traceable, but Scient is the owned agent product. External OpenCode remains a separate external adapter path. | `adapter-maintained` initially; allow narrow, identifiable core changes and deliberate divergence for proven Scient needs |
-| Goose | Broader local automation, ACP agent/server, recipes, MCP extensions, scheduling, and subagents. | Deferred capability and architecture source for Scient after the first Scient gateway. A future external Goose agent would require a separate decision. | `deferred`; later `reference-only`, `adapter-maintained`, or selective adaptation based on evidence |
+| Pi | Small TypeScript agent core, embedding SDK, extensions, protocol/client work, session lifecycle, and transport-neutral remote patterns. | Unselected native-foundation finalist and capability source. | `reference-only` until the Foundation Gate; then record the selected source relationship explicitly |
+| OpenCode source fork | Coding tools, permissions, sessions, server/client, provider, MCP, subagent, terminal, diff, and recovery machinery. | Historical incumbent and unselected native-foundation finalist. External OpenCode remains a separate external adapter path. | Preserve current evidence; choose `adapter-maintained`, selective adaptation, worker, or `reference-only` only after the Foundation Gate |
+| Hermes | Broad research, browser, media, skills, memory, scheduling, delegation, LSP, gateway, and tool patterns. | Leading research-worker and capability-source candidate; not selected. | `reference-only` until a bounded capability or worker decision |
+| Goose | ACP/MCP, permission interaction, custom distributions, providers, recipes, scheduling, and general-agent patterns. | Capability, architecture, possible worker, or external-agent candidate; not selected. | `reference-only` until a bounded source or integration decision |
+| OpenHands SDK | Remote workspaces, agent server, confirmations, resource locks, secrets, and managed execution patterns. | Later cloud-execution candidate and reference; not selected. | `reference-only` until a remote-execution proof |
 | Codex app-server | Sandbox, approvals, diffs, rollback, interrupt/resume ideas. | Reference / cherry-pick source. | `reference-only` |
 | T3 Code | Successor desktop platform: lifecycle, provider sessions, chat, browser/preview, files, terminals, Git, packaging, updater, cloud/web/mobile foundations. | Accepted literal-ancestry application foundation under ADR-0005; no owned candidate exists yet, so the current code relationship remains research-only until D4. | Initial `thin-fork-merge` after bootstrap, with reviewed bounded merges and explicit Scient divergence |
 | Aider | Git/edit discipline, repo-map and patch workflow lessons. | Reference benchmark. | `reference-only` |
@@ -373,17 +387,23 @@ does not set their implementation order; the active sequence lives in
 
 | Source | Adaptation target | Why it matters | Do not adopt | Depth status |
 |---|---|---|---|---|
-| Goose | ACP over stdio or authenticated HTTP/WebSocket, persistent sessions, recipes, scheduling, MCP extensions, provider registry, safety inspectors, hooks, and subagents. | Goose is a strong source of broader-agent capabilities and architecture lessons that may later improve Scient. Current ACP supports streaming, permission requests, cancellation, client-provided file/terminal capabilities, and session lifecycle. | Do not make Goose the product center, turn Scient into an engine-switching shell, or make Goose session state canonical. Do not rely on its working directory as a filesystem sandbox: built-in developer tools accept absolute paths, and autonomous mode is the default. | Source-depth review completed at `3c1fdd692`; implementation work is deferred until after the first Scient gateway works through Scient. |
-| OpenCode | File/shell/edit agent behavior, LSP/code-project operations, snapshots, session protocol, CLI/TUI/server/client split, and plugin/tool architecture. | The standalone owned source is Scient's agent foundation. Scient needs these capabilities and intends to own and evolve the resulting agent. | Do not expose Scient as “OpenCode for science,” treat OpenCode as a second engine underneath Scient, or let agent state define the scientific object graph. External OpenCode remains a separate external agent. | Owned-source build and Synara compatibility smoke completed in historical Gate 1.5 work. ADR-0001 accepts Scient as the owned OpenCode-derived first-party agent; ADR-0002 owns repository authority; the first vertical slice must implement and validate that identity and boundary. |
-| Codex app-server | Approval protocol, sandbox model, diff flow, interrupt/rollback/session protocol, file API, skills/MCP, Rust daemon boundary. | Useful comparator for what a trusted local executor and approval model can feel like. | Do not depend on Codex-specific assumptions as the only runtime path. | Needs direct harness comparison against OpenCode. |
+| Pi | Agent core, SDK, extensions, protocol/client work, sessions, compaction, model switching, steering, and tool interception. | Strongest inspected small, ownable TypeScript native-foundation candidate. | Do not assume its small core supplies permissions, OS sandboxing, MCP, workers, or production remote service; prove those boundaries. | Current source-depth review completed on 2026-08-06; unselected Foundation Gate finalist. |
+| OpenCode | File/shell/edit behavior, LSP/code-project operations, permissions, snapshots, sessions, server/client, provider, MCP, subagent, terminal, and plugin architecture. | Strongest inspected complete TypeScript coding-platform candidate and historical incumbent. | Do not expose Scient as “OpenCode for science,” let runtime state define the scientific object graph, or accept broad upstream coupling without proof. External OpenCode remains a separate external agent. | Historical Gate 1.5 evidence plus current source-depth review on 2026-08-06; unselected Foundation Gate finalist. |
+| Hermes | Research, browser, media, skills, memory, scheduling, delegation, LSP, gateway, and broad tool patterns. | Leading inspected research-worker and native-capability source. | Do not make its broad assistant state canonical or bundle it without a bounded contract, security proof, and product need. | Current source-depth review completed on 2026-08-06; unselected worker/capability candidate. |
+| Goose | ACP, MCP, custom distributions, persistent sessions, providers, recipes, scheduling, permissions, and subagent patterns. | Strong broader-agent, distribution, and interoperability reference. | Do not make Goose the product center, turn Scient into an engine-switching shell, or make Goose session state canonical. | Historical review refreshed on 2026-08-06; unselected reference, worker, or external-agent candidate. |
+| OpenHands SDK | Remote workspaces, agent server, tools, confirmations, resource locks, secrets, and managed execution. | Strong later reference for cloud execution and isolated workspaces. | Do not adopt its Python service and workspace assumptions before a real remote-execution need. | Current source review completed on 2026-08-06; later candidate/reference. |
+| Codex app-server | Approval protocol, OS sandbox, diff flow, interrupt/recovery, thread/turn/item protocol, skills, MCP, and multi-agent patterns. | Strongest inspected safety/protocol source and a possible external coding/review worker. | Do not depend on Codex-specific product assumptions as the only runtime path. | Current source-depth review completed on 2026-08-06; unselected worker/reference. |
 | Aider | Git-centered edit discipline, repo maps, patch workflow, simple terminal ergonomics. | Useful as a benchmark for file changes and rollback, even if not the main architecture. | Do not make the app Python-first or terminal-first because Aider is good. | Side benchmark, not primary source. |
 
-Recommendation: build Scient from the owned OpenCode source foundation and
-defer Goose work until the Scient gateway works through Scient. Use a bounded
-`goose acp` comparison later when it helps evaluate capabilities or architecture;
-do not use that experiment to redefine Scient as an engine-switching shell. The
-old `goosed` REST surface was removed upstream, and authenticated `goose serve`
-is relevant only to a separately reviewed process or external-agent path.
+Recommendation: keep Pi and OpenCode as the native-foundation finalists and run
+the same implementation-time proof against their latest official versions.
+Select the native foundation separately from any initial worker. Use Hermes,
+Codex, Goose, OpenHands, Aider, and later qualified systems as bounded sources,
+benchmarks, workers, or external-agent candidates only when their role improves
+the owned Scient agent. Do not redefine Scient as an engine-switching shell or
+let any delegated runtime become scientific authority. The complete current
+finding and proof gate live in
+[`scient-agent-foundation-and-capability-strategy-2026-08-06.md`](scient-agent-foundation-and-capability-strategy-2026-08-06.md).
 
 ### Desktop Shell, Backend Lifecycle, And Provider Abstraction
 
@@ -475,8 +495,8 @@ Source and reference links checked for this scan:
 
 | Source | Adaptation target | Why it matters | Do not adopt | Depth status |
 |---|---|---|---|---|
-| Hermes | Checkpointing ideas, relay-auth patterns to verify, slash-command authorization ideas, and context-compression patterns. | Useful as a side-bench for selected safety and continuity mechanics. | Do not let Hermes materially shape the scientific memory/provenance architecture, and do not use it as the primary file-writing executor. | Targeted side review only. |
-| Goose | Safety inspectors, provider registry, recipe/session boundaries. | Useful for local agent safety and repeatable task recipes. | Do not make recipes replace scientific skills/protocols. | Needs deeper review. |
+| Hermes | Checkpointing, context compression, memory, skills, delegation, scheduling, gateway, browser, research, and broad tool patterns. | Useful as a leading research-worker and capability-source candidate. | Do not let Hermes state define scientific memory/provenance or bundle it as an authoritative second agent. | Source-depth review completed on 2026-08-06; role remains unselected. |
+| Goose | Safety inspectors, provider registry, recipe/session boundaries, ACP/MCP, permissions, and custom-distribution patterns. | Useful for local-agent safety, interoperability, and repeatable task patterns. | Do not make recipes replace scientific skills/protocols or make Goose state canonical. | Historical review refreshed on 2026-08-06; role remains unselected. |
 | OpenClaw | Gateway, channels, diagnostics, onboarding, app/device continuation, plugin distribution, safe media store ideas, SSRF guards, prompt-injection-safe file context. | Useful when Scient grows beyond desktop into cloud/mobile/channel continuity and needs hardened external input handling. | Do not make Scient a personal messaging assistant or center the product on chat/voice sessions. | Side-to-core later; security-specific ideas deserve targeted review. |
 | AFFiNE | Local-first docs/canvas/table workspace, block composition, whiteboard/document fusion, collaboration posture. | Useful as a reference for manual planning, visual thinking, and mixed document/canvas work inside a project. | Do not make Scient a generic Notion/Miro alternative. | Reference only. |
 | Logseq | Local-first knowledge graph, Markdown/Org storage, backlinks, PDF annotation, task and note workflows. | Useful for backlinking, annotation-to-note behavior, and researcher-owned local knowledge. | Do not make Scient a generic PKM graph. | Reference only. |
@@ -1008,13 +1028,15 @@ workspace with a Scient-owned project graph; TypeScript/React product logic;
 Electron-first desktop delivery unless a real limitation appears; a candidate
 local structured store with a separately validated cloud mirror; the owned
 Synara-derived source as the supported continuity host, with ADR-0005 selecting
-a fresh T3-derived successor after Phase Zero proof; Scient as the owned OpenCode-derived
-first-party agent; external OpenCode and other external agents as separate
-choices; Codex as the safety/sandboxing reference; Goose as a later capability
-and architecture source for Scient; Tiptap/ProseMirror-family writing;
-GROBID for scholarly structure plus a common-corpus comparison of Docling,
-AnyDoc, Kreuzberg, and specialized parsers for tiered general ingestion;
-PaperQA/ASReview-powered evidence workflows; Lacuna-inspired
+a fresh T3-derived successor after Phase Zero proof; one owned first-party
+Scient agent whose refreshed foundation remains to be selected through the
+Pi/OpenCode Foundation Gate; external OpenCode and other external agents as
+separate choices; Hermes, Codex, Goose, OpenHands, Aider, and later qualified
+systems as unselected capability, benchmark, worker, or external-agent
+candidates; Tiptap/ProseMirror-family writing; GROBID for scholarly structure
+plus a common-corpus comparison of Docling, AnyDoc, Kreuzberg, and specialized
+parsers for tiered general ingestion; PaperQA/ASReview-powered evidence
+workflows; Lacuna-inspired
 research-map patterns for paper-grounded search and synthesis;
 Quarto/Pandoc-first export with MyST as challenger;
 GenOffice as the current baseline and primary multi-format Office-fidelity

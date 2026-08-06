@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-07-12
-Last updated: 2026-08-02
+Last updated: 2026-08-06
 Purpose: Gives new Scient collaborators a deliberate reading journey through the project, its repository, and its sources of truth before task-specific work begins.
 Doc type: Repo orientation
 
@@ -60,10 +60,13 @@ LitRev-to-PapiLab-to-Scient rename of the active product identity is complete.
 Historical LitRev and PapiLab evidence remains exact, and supported PapiLab
 inputs remain only as documented migration compatibility. That closeout does
 not imply that inherited Synara or OpenCode implementation identifiers have
-been renamed. The Scient agent will be one owned OpenCode-derived agent, not an
-app shell around a separately exposed OpenCode engine. External OpenCode and
-the other external-agent choices remain independent. The Scient agent has not
-been implemented yet; the accepted identity, ownership decision, and proposed
+been renamed. The Scient agent will be one owned first-party agent, not an app
+shell around a separately authoritative engine. Its refreshed native
+foundation remains an implementation-time decision; the current
+OpenCode-derived repository is historical incumbent evidence, not an automatic
+future baseline. External OpenCode and the other external-agent choices remain
+independent. The Scient agent has not been implemented yet; the accepted
+identity, ownership decision, current foundation investigation, and proposed
 implementation plans are linked below. The public website is now independently
 owned by `ScientFactory/ScientFactory-website` and deployed from its protected
 `main` branch.
