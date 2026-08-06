@@ -3,7 +3,7 @@
 Status: Proposed
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-08-03
+Last updated: 2026-08-06
 Purpose: Maps which open-source systems Scient should study, prototype, adapt, or integrate, and which product boundaries Scient must keep owned.
 Doc type: Research evidence
 
@@ -82,6 +82,20 @@ Current inputs:
   provider packages, project storage, Electron security, CI, and local
   non-visual verification. The source is promising but its public maintenance
   history is only days old and mostly opaque snapshot commits.
+- Focused open Office-engine alternative scan on 2026-08-06. The scan
+  re-inspected GenOffice at `d1de6ac44b6f49b91c19f414c3750bb58faae307`
+  and inspected EigenPal/docx-editor at
+  `d56b1a5a55fcbabeb1a3b91ae624485cf7ec7886`, Sobree at
+  `094865ac48782b986bb214164c705e64c7df30ba`, OpenOOXML/BetterOffice at
+  `dcdf31145c20a9b4571e0d23ee44f50818b4da3c`, Casual Office Docs at
+  `d11605185698cfc4b16a83a975cfecc8056ac348`, Casual Office Sheets at
+  `bda552eb763ff71421f335f5c010887b81a23855`, and Univer at
+  `83e48d927330405b7b518bbf6321d371f541c507`. Selection was limited to
+  open, inspectable, modifiable source that Scient can integrate inside its
+  products; closed-source commercial engines and commercially licensed feature
+  packages were excluded. This was source, architecture, license, repository,
+  and test-inventory research, not a visual or Microsoft Office/LibreOffice
+  fidelity exercise.
 
 Remaining source-research gaps:
 
@@ -475,12 +489,13 @@ source review.
 | Overleaf | Academic writing workflow, LaTeX project model, compile logs, templates, collaboration expectations. | Scientists know it; it teaches submission and LaTeX workflows. | Do not fork Overleaf or become LaTeX-first. | Reference only unless export integration. |
 | Word / Google Docs | Track changes, comments, collaborative writing expectations, non-technical manuscript UX. | Many scientists live here. Export/import must respect their workflows. | Do not make Scient generic office software. | Product reference. |
 | GenOffice DOCX path | Original-OOXML anchors, unsupported-content passthrough, surgical paragraph/run patches, byte-preserving untouched ZIP entries, tracked revisions, comments, equations, citations/sources, notes, tables, headers/footers, charts, CJK, and RTL. | It provides a concrete open-source route to honest Word import, reconciliation, and re-export without regenerating every structure the editor does not understand. | Do not make the DOCX block tree or original Office file the canonical Scient manuscript. The Tiptap conversion and app UI are much more coupled than the pure engine. | Highest-value GenOffice prototype candidate; source quality 4/5, public maturity not yet proven. |
+| EigenPal open DOCX core and Sobree | Embeddable DOCX parsing, layout, editing, OOXML-preserving serialization, framework adapters, and headless or plugin-driven operations. | They are the strongest open DOCX-specific challengers found after the GenOffice review and may offer a cleaner integration boundary than extracting an application-owned editor. | EigenPal's `packages/pro/` and `packages/editor-api/` are commercially licensed and excluded. Do not infer production fidelity or maturity from either project's feature claims or test volume. | Add both to the same scientific-DOCX fidelity harness as GenOffice; no winner selected. |
 
 Recommendation: use Tiptap first, prototype Plate and Lexical against the same
-scientific document, and add GenOffice's DOCX engine to that harness as a
-compatibility adapter candidate. Keep Overleaf/Word/Google Docs as UX and export
-benchmarks; do not confuse a high-fidelity Office projection with Scient's
-manuscript model.
+scientific document, and compare the GenOffice DOCX path, EigenPal's
+Apache-2.0 core, and Sobree in one compatibility-adapter harness. Keep
+Overleaf/Word/Google Docs as UX and export benchmarks; do not confuse a
+high-fidelity Office projection with Scient's manuscript model.
 
 ### Office-Format Fidelity And Editable Artifact Sources
 
@@ -490,6 +505,11 @@ distinctive mechanism is not the suite UI: it keeps the original Office package,
 anchors modeled content to original OOXML, passes unsupported structures through,
 and rewrites only dirty regions. That is directly relevant to Scient's requirement
 to report what import, reconciliation, and export preserved or lost.
+
+The current selection requirement is open, inspectable, modifiable source that
+Scient can integrate inside its products. A commercial product may remain a UX
+or compatibility benchmark, but closed-source SDKs and commercially licensed
+feature packages are not implementation candidates in this lane.
 
 | GenOffice lane | Quality and evidence | Scient value | Reuse posture |
 |---|---|---|---|
@@ -518,12 +538,72 @@ fidelity scripts are not part of CI, so real scientific-document fidelity remain
 a prototype question rather than a proven claim.
 
 The largest reservation is maturity and maintainability. The public repository
-was created on 2026-07-31 and has only seven commits: one approximately
-349,000-line public snapshot, several opaque sync snapshots, and two dependency
-action bumps. Several central files exceed 3,000 lines, the generated Sheets
-renderer bundle is large, and some design documents lag the implementation.
-This is substantial source, but not yet evidence of a healthy long-term upstream,
-review culture, or reliable release cadence.
+was created on 2026-07-31 and had only 15 public `main` commits when re-inspected
+on 2026-08-06. Its large initial publication and subsequent opaque sync
+snapshots do not expose the development history needed to evaluate ordinary
+incremental review culture. Several central files exceed 3,000 lines, the
+generated Sheets renderer bundle is large, and some design documents lag the
+implementation. This is substantial source, but not yet evidence of a healthy
+long-term upstream, review culture, or reliable release cadence. The 2026-08-06
+head was eight commits ahead of the deeply verified 2026-08-03 revision with no
+divergence; those newer commits were inspected but the complete verification
+suite was not rerun.
+
+#### Open Office-engine alternative scan
+
+No inspected open project is an obvious overall improvement over GenOffice for
+Scient today. Some are better shaped for one role, but none currently combines
+GenOffice's three-format preservation direction, inspected implementation
+depth, and fit with Scient's projection boundary while also providing a mature,
+transparent upstream. The correct next decision is therefore a fixed-corpus
+prototype, not whole-suite adoption or a winner chosen from repository claims.
+
+| Candidate | Inspected evidence and license | What may be better than GenOffice | Material limits | Current Scient disposition |
+|---|---|---|---|---|
+| [GenOffice](https://github.com/genspark-ai/genoffice) | `d1de6ac4...`; Apache-2.0 core, separately licensed `ee/` excluded. The earlier deep review passed 3,218 tests, typecheck, builds, license checks, lint without errors, and hosted CI at `0127f628...`; the newer head was not reverified to that depth. | Strongest combined open donor for byte-preserving DOCX plus later XLSX/PPTX editing. Its narrow dirty-region patch model is especially valuable when the editor does not understand every OOXML construct. | Application layers are large and coupled; public history is only days old and dominated by snapshot commits. | Primary multi-format reference and baseline; never adopt the whole suite. Prototype bounded engines or concepts behind Scient-owned adapters. |
+| [EigenPal/docx-editor](https://github.com/eigenpal/docx-editor) | `d56b1a5a...`; 11 public commits since 2026-07-20. The Apache-2.0 `core` contains about 231,000 TypeScript lines across implementation and tests, including 307 test files, with separate React/Vue adapters. `packages/pro/` and `packages/editor-api/` use the EigenPal Pro Evaluation License and are excluded. | Most naturally packaged embeddable open DOCX core found. Its canonical tree retains generic unsupported elements, and its adapters are thinner than GenOffice's full Docs application. | Very young public history. The closed feature boundary covers tracked changes, comments, custom nodes, and automation APIs that overlap important Scient needs. Test inventory is not proof of real scientific-document or Word fidelity. | Serious DOCX challenger using Apache-2.0 packages only. Compare its exact no-op and narrow-edit package diffs with GenOffice rather than selecting it from API convenience. |
+| [Sobree](https://github.com/khayll/sobree) | `094865ac...`; MIT; 314 commits since 2026-05-28. Its core contains roughly 65,000 TypeScript lines across implementation and tests, including 146 test files; optional MIT packages cover review, collaboration providers, headless/MCP use, keyboard, block tools, and zoom. Current packages remain `0.1.x`. | Cleanest fully permissive and modular DOCX challenger. It keeps review and headless operations open instead of placing them behind a commercial package. | Minimal adoption and short operating history. Version, community, and independently proven fidelity are not foundation-grade yet. | Serious experimental challenger. Include in the DOCX harness, but do not make it a dependency before fixed-corpus and maintenance proofs. |
+| [Univer](https://github.com/dream-num/univer) | `83e48d92...`; Apache-2.0 open core with a long, active public history. Official Office import/export clients and server capabilities are in Univer Pro. | Strongest inspected open embedded spreadsheet UI/runtime and formula ecosystem. GenOffice already uses Univer in this role. | The open core does not itself provide the XLSX/DOCX preservation path Scient needs; Pro exchange packages and its server are excluded from this open-only lane. Slides are less mature than Sheets. | Preferred spreadsheet-surface candidate after the Scient table/artifact contract, paired with an independently owned or open preservation gateway; not the Office-file authority. |
+| [OpenOOXML/BetterOffice](https://github.com/openooxml/betteroffice) | `dcdf3114...`; Apache-2.0; 138 commits since 2026-07-11. Rust/Wasm packages cover shared OPC/DrawingML/text foundations and early DOCX/XLSX/PPTX engines; published format packages are still `0.0.x`. | Attractive long-term shared native engine architecture, headless use, and one cross-format Rust/Wasm foundation. | Extremely new. Public product prose and package descriptions are more ambitious than demonstrated maturity, and the project site still describes XLSX/PPTX as coming. Preliminary self-published benchmarks are not selection proof. | Watch closely and reuse no code yet. Revisit when releases, corpus results, API stability, and independent adoption exist. |
+| [Casual Office Docs](https://github.com/CasualOffice/docs), [Sheets](https://github.com/CasualOffice/sheets), and [Slides](https://github.com/CasualOffice/slides) | Docs `d1160518...`; Sheets `bda552eb...`; permissive repository licenses, but exact inherited notices must be audited before reuse. Docs identifies itself as an EigenPal fork; Sheets is Univer-derived; Slides is a paused Univer fork. | Useful public experiments in self-hosting, collaboration, Office round trips, and fork-based packaging. | Adds another young intermediary and patch stack rather than a clearly stronger engine lineage. Its website fidelity counts are project claims, not Scient verification. | Research and regression-fixture evidence only. Prefer evaluating the originating engine unless a specific Casual Office patch solves a proven gap. |
+| [Flyfish Viewer](https://github.com/flyfish-dev/file-viewer) and docMentis | Flyfish is Apache-2.0 and explicitly preview-oriented. docMentis exposes an MIT viewer wrapper around a non-open Wasm engine. | Fast client-side multi-format preview may be useful before editing exists. | Flyfish does not promise professional editing or native Office fidelity. docMentis fails the open-engine requirement. | Flyfish may enter a separate view-only proof; docMentis is excluded from implementation selection. |
+| ONLYOFFICE, Collabora, and LibreOffice | Mature open full-suite or document-server sources with copyleft and mixed-component obligations. | Much broader compatibility history and complete office workflows. | Their suite/server/runtime shape is not a narrow embedded engine, and would import substantial deployment, product, integration, and licensing cost. | Compatibility and reopen/conversion oracles; optional future isolated service only after a separate product, operations, and license decision. |
+
+Tiptap's commercial Conversion service and similar HTML-to-DOCX bridges are
+also excluded as preservation engines. Tiptap remains an editor-projection
+candidate, but its own documentation says export writes what the editor
+currently contains rather than the original source, and its current feature
+matrix exposes losses across revisions, fields, floating content, sections,
+notes, equations on import, and DOCX bidirectional direction. Those limits make
+it unsuitable as the only round-trip authority.
+
+#### Required selection proof
+
+The first implementation decision should compare GenOffice, EigenPal's open
+core, and Sobree against one frozen scientific DOCX corpus. Use the same host
+contract and measure:
+
+- exact no-op package identity and an allowlisted package/XML diff after one
+  word, paragraph, table, comment, and figure edit;
+- survival of unsupported parts, custom XML, embedded objects, styles,
+  metadata, macros/signatures where safe to retain, and external-tool state;
+- equations, citations, cross-references, fields, tables, figures, footnotes,
+  endnotes, headers/footers, comments, and tracked revisions;
+- Hebrew and Arabic, mixed RTL/LTR text, bidirectional punctuation, math, CJK,
+  IME, keyboard, and accessibility behavior;
+- conditional writes, stale external changes, cancellation, crash-safe save,
+  reopen recovery, and hostile or malformed package handling;
+- long-document memory, startup, pagination, narrow-edit, and save performance;
+- offline operation, absence of required telemetry/services, package size,
+  license/notice completeness, API replaceability, and update strategy;
+- a machine- and human-readable fidelity receipt, stable Scient anchor mapping,
+  and successful reopen in current Microsoft Word and LibreOffice.
+
+Until that proof exists, **Observed**, **shortlisted**, **prototyped**, and
+**selected** must remain distinct. The present recommendation is to keep
+GenOffice as the baseline and primary multi-format donor while treating
+EigenPal and Sobree as genuine DOCX challengers. It is not a dependency or fork
+decision.
 
 ### Citations, Reference Library, And PDF Reading
 
@@ -864,13 +944,16 @@ to the earlier synthesis. The active sequence lives in
 4. Publishing export prototype.
    Map Scient manuscript/evidence objects to Quarto/Pandoc first and MyST as a
    challenger. Export to Word/PDF/HTML/LaTeX or Typst where feasible. Treat each
-   export as an artifact DAG generated from Scient state. Add a bounded
-   GenOffice fidelity lane using real scientific DOCX, PPTX, and XLSX files:
-   test no-op byte preservation, narrow edits, unsupported-content survival,
+   export as an artifact DAG generated from Scient state. For DOCX, compare the
+   GenOffice path, EigenPal's open core, and Sobree in the frozen scientific
+   fidelity harness defined above; do not select from feature lists. Test no-op
+   byte preservation, narrow edits, unsupported-content survival,
    comments/revisions, citations, equations, tables, figures/charts, stale-file
-   handling, crash-safe save, and opening in Word/PowerPoint/Excel and
-   LibreOffice. Require a fidelity receipt and prove that Office state remains a
-   projection/artifact rather than canonical Scient state.
+   handling, crash-safe save, and reopening in Word and LibreOffice. After the
+   `Table` and `Artifact` contracts exist, evaluate a Univer-based spreadsheet
+   surface with an open preservation gateway and revisit GenOffice and mature
+   challengers for XLSX/PPTX. Require fidelity receipts and prove that Office
+   state remains a projection/artifact rather than canonical Scient state.
 
 5. Scientific schema and provenance prototype.
    Compare Scient manuscript/evidence objects against Stencila-style semantic
@@ -915,8 +998,11 @@ and architecture source for Scient; Tiptap/ProseMirror-family writing;
 GROBID/Docling/PaperQA/ASReview-powered evidence workflows; Lacuna-inspired
 research-map patterns for paper-grounded search and synthesis;
 Quarto/Pandoc-first export with MyST as challenger;
-GenOffice as a source-depth Office-fidelity candidate, beginning with DOCX and
-deferring PPTX/XLSX until their scientific artifact seams are defined;
+GenOffice as the current baseline and primary multi-format Office-fidelity
+donor; EigenPal's open core and Sobree as genuine DOCX challengers in one
+fixed-corpus proof; Univer as a likely later spreadsheet surface rather than an
+OOXML authority; deferring PPTX/XLSX selection until their scientific artifact
+seams are defined;
 Stencila as a scientific schema/provenance reference; marimo-inspired analysis
 with Jupyter compatibility; DuckDB, pandas/Polars, and Arrow/Parquet for local
 tabular work; Matplotlib, Plotly, Altair/Vega-Lite, and table-generation tools
