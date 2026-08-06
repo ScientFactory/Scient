@@ -19,8 +19,8 @@ architecture.
 ## Boundaries
 
 - `external/` holds source provenance, pointer notes, and optional temporary
-  reference checkouts. The maintained Scient desktop and agent repositories
-  are workspace siblings outside `lab/`.
+  reference checkouts. The maintained continuity desktop, successor desktop,
+  and agent repositories are workspace siblings outside `lab/`.
 - `scient-bridge/` holds Scient-owned adapter and integration experiments.
 - `notes/` holds lab inspection notes and temporary decisions.
 - `scripts/` holds repeatable lab-level verification that coordinates more than
@@ -36,8 +36,8 @@ architecture.
 Any temporary upstream source trees under `external/` are intentionally
 ignored by the parent Scient repository. Track their URLs, commits, roles, and
 update strategy in `external/sources.lock.md` instead of committing their source
-code here. Do not duplicate the maintained `scient-desktop` or `scient-agent`
-workspace siblings inside the lab.
+code here. Do not duplicate the maintained `scient-desktop`,
+`scient-desktop-next`, or `scient-agent` workspace siblings inside the lab.
 
 ## Promotion Rule
 

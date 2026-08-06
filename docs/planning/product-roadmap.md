@@ -27,14 +27,16 @@ not why Scient is building it.
 accepts a fresh T3-derived successor application, and the active
 [T3 foundation migration plan](t3-foundation-migration-plan.md) defines the
 proof-gated execution sequence. The Synara-derived app remains the supported
-current application, the earlier Synara-specific first-slice plan is preserved
-as superseded planning, and no candidate repository exists yet.
+current application, and the earlier Synara-specific first-slice plan is
+preserved as superseded planning. The private T3-derived candidate now has its
+D4 safety envelope and managed local development app integrated, but it is not
+released or the current app.
 
-The next authorized work is D4 candidate bootstrap: create the provisional
-owned repository from the exact accepted T3 base, prove the pristine baseline,
-and establish the identity, privacy, state, update, and boundary safety
-envelope. Feature migration, user-data conversion, cloud enablement, release,
-and cutover remain behind their own plan gates. The migration will then
+The immediate next slice is a bounded rebranding and product-identity pass that
+preserves the T3 merge relationship and the D4 isolation boundaries. It must be
+planned and verified as its own candidate change; D4 completion does not
+authorize feature migration, user-data conversion, cloud enablement, release,
+or cutover. After their explicit gates, the migration will
 re-establish the selected project, source/PDF, provider-onboarding, voice,
 mathematical/bidirectional, and What's New outcomes before new Scient-agent and
 researcher-review work resumes.

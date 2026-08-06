@@ -3,7 +3,7 @@
 Status: Draft
 Owner: Scient 001
 Created: 2026-07-08
-Last updated: 2026-07-18
+Last updated: 2026-08-06
 Purpose: Organizes upstream desktop and workbench apps used in the Scient lab.
 Doc type: Planning note
 
@@ -16,9 +16,11 @@ may help Scient move faster.
 Current owned source and deferred references:
 
 - `ScientFactory/scient-desktop` - the owned Synara-derived Scient application
-  foundation. It is a workspace sibling, not a checkout inside this directory.
-- T3 Code - deferred desktop/runtime/provider/process lifecycle reference; no
-  local checkout is retained currently.
+  continuity application. It is a workspace sibling, not a checkout inside
+  this directory.
+- `ScientFactory/scient-desktop-next` - the private owned T3-derived successor
+  candidate. It is also a workspace sibling; official T3 is its fetch-only
+  upstream rather than a checkout inside this directory.
 - `goose-desktop.md` - pointer to the Goose checkout because Goose spans agent
   and desktop roles.
 

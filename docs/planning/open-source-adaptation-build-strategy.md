@@ -34,9 +34,11 @@ strategy, and stop conditions.
 
 This accepted target does not change current implementation truth.
 `scient-desktop` remains the supported Synara-derived continuity application,
-and no T3-derived candidate repository exists. ADR-0001 is superseded as the
-forward desktop-foundation decision but preserved as history; ADR-0002
-continues to govern standalone ownership and fetch-only source authority.
+while the private T3-derived candidate now has its D4 safety envelope
+integrated. The candidate is not released or the current product.
+ADR-0001 is superseded as the forward desktop-foundation decision but preserved
+as history; ADR-0002 continues to govern standalone ownership and fetch-only
+source authority.
 
 For the future candidate, qualified reviewed T3 ranges normally enter through
 bounded ancestry-preserving merges during the initial aligned phase. T3 does
@@ -58,9 +60,9 @@ Current implementation and forward source roles are:
 
 - keep the owned Synara-derived desktop as the supported continuity
   application and source of behavior, failure, migration, and design evidence;
-- create the successor from the exact official T3 base authorized by the
-  migration plan, with owned `origin`, fetch-only T3 `upstream`, literal
-  ancestry, and explicit divergence;
+- continue the successor candidate created from the exact official T3 base
+  recorded by the migration plan, with owned `origin`, fetch-only T3
+  `upstream`, literal ancestry, and explicit divergence;
 - use science apps from the 2026-07-07 scan as specialized sources around the
   shell: Zotero-family components for source/PDF work, Zettlr/Overleaf/Quarto
   for writing/export expectations, Jupyter-style tools for analysis

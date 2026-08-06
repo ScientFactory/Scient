@@ -127,9 +127,10 @@ workspace="$TEST_ROOT/workspace"
 "$BOOTSTRAP" --workspace "$workspace" >"$TEST_ROOT/first.out"
 assert_directory "$workspace/Scient/.git"
 assert_directory "$workspace/scient-desktop/.git"
+assert_directory "$workspace/scient-desktop-next/.git"
 assert_directory "$workspace/scient-agent/.git"
 assert_missing "$workspace/website"
-[[ "$(wc -l <"$GH_TEST_LOG" | tr -d ' ')" == 3 ]] || fail "expected three clone calls"
+[[ "$(wc -l <"$GH_TEST_LOG" | tr -d ' ')" == 4 ]] || fail "expected four clone calls"
 
 git -C "$workspace/scient-desktop" checkout -q -b local-work
 printf 'preserve me\n' >"$workspace/scient-desktop/local.txt"
@@ -140,12 +141,12 @@ git -C "$workspace/scient-desktop" remote set-url --push origin \
 [[ "$(git -C "$workspace/scient-desktop" branch --show-current)" == "local-work" ]] ||
   fail "existing branch changed"
 [[ -f "$workspace/scient-desktop/local.txt" ]] || fail "existing untracked file changed"
-[[ "$(wc -l <"$GH_TEST_LOG" | tr -d ' ')" == 3 ]] || fail "rerun cloned repositories"
+[[ "$(wc -l <"$GH_TEST_LOG" | tr -d ' ')" == 4 ]] || fail "rerun cloned repositories"
 assert_contains "$TEST_ROOT/second.out" "existing checkouts were left untouched"
 
 "$BOOTSTRAP" --workspace "$workspace" --with-website >"$TEST_ROOT/website.out"
 assert_directory "$workspace/website/.git"
-[[ "$(wc -l <"$GH_TEST_LOG" | tr -d ' ')" == 4 ]] || fail "website was not cloned once"
+[[ "$(wc -l <"$GH_TEST_LOG" | tr -d ' ')" == 5 ]] || fail "website was not cloned once"
 
 conflict_workspace="$TEST_ROOT/conflict-workspace"
 mkdir -p "$conflict_workspace/scient-agent"

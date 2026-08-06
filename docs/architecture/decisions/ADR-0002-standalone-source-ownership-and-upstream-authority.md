@@ -3,7 +3,7 @@
 Status: Accepted
 Owner: Yaacov
 Created: 2026-07-18
-Last updated: 2026-08-02
+Last updated: 2026-08-06
 Purpose: Records ScientFactory's decision to own standalone desktop and agent repositories while treating original projects as read-only, selectively reviewed sources.
 Doc type: Architecture decision
 
@@ -62,7 +62,7 @@ matrix live in [`../../operations/upstream-intake.md`](../../operations/upstream
 ## Relationship To ADR-0005
 
 [ADR-0005](ADR-0005-t3-derived-desktop-foundation.md) applies this ownership
-model to the selected T3-derived successor: the future candidate is a
+model to the selected T3-derived successor: the private candidate is a
 standalone ScientFactory-owned product repository, official T3 is fetch-only,
 and review state remains distinct from integration state. During the initial
 aligned phase, qualified reviewed T3 ranges will normally enter through

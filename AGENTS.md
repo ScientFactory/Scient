@@ -49,26 +49,30 @@ The current repo contents are working documents. They are expected to change as 
 
 ADR-0005 now accepts a fresh T3-derived successor desktop, while the current
 Synara-derived `scient-desktop` remains the supported continuity application.
-The successor candidate repository does not exist yet. Until D4 creates and
-verifies it, keep the three-core-repository workspace map below truthful and do
-not describe the target as current implementation.
+The private `scient-desktop-next` candidate now exists with its D4 safety
+envelope and managed local development app integrated on candidate `main`. It
+is not released or the current supported implementation; do not describe
+private candidate behavior as shipped behavior.
 
 ## Internal Team Workspace
 
 Internal contributors should open a contributor-owned parent directory as the
 editor or agent workspace. Its name is arbitrary, and it must remain a plain,
-non-Git container with the three core repositories as sibling checkouts:
+non-Git container with the four core migration repositories as sibling
+checkouts:
 
 ```text
 <scient-workspace>/
 ├── Scient/
 ├── scient-desktop/
+├── scient-desktop-next/
 ├── scient-agent/
 └── website/          # optional
 ```
 
 `Scient/` owns product and project knowledge, cross-repository planning, and
-source pins. `scient-desktop/` owns the application implementation.
+source pins. `scient-desktop/` owns the supported continuity application.
+`scient-desktop-next/` owns the private T3-derived successor candidate.
 `scient-agent/` owns the historical OpenCode-derived agent source and is the
 planned home for the one native Scient agent; its refreshed foundation remains
 subject to the documented Foundation Gate. Add
@@ -132,7 +136,7 @@ Current important documents:
   ScientFactory repositories.
 - `docs/planning/product-roadmap.md` - active sequence of coherent product outcomes.
 - `docs/planning/t3-foundation-migration-plan.md` - active proof-gated
-  migration sequence and current D4 bootstrap authorization.
+  migration sequence; D4 is complete and later slices retain their own gates.
 - `docs/planning/first-scient-vertical-slice-implementation-plan.md` -
   superseded Synara-specific plan preserved as historical planning evidence.
 - `docs/planning/scient-and-external-agents-implementation-plan.md` - proposed implementation plan for the Scient agent, external-agent preservation, and Scient-versus-external-agent identity isolation.

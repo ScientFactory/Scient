@@ -34,9 +34,9 @@ Current planning docs:
   reasoning and completed project-initiation evidence.
 - `scient-and-external-agents-implementation-plan.md` - proposed end-to-end plan for selecting a refreshed native foundation, building one owned Scient agent, using bounded specialist workers when justified, internalizing essential capabilities over time, and preserving external agents independently.
 - `t3-foundation-migration-plan.md` - active destination, capability
-  dispositions, proof gates, D4 bootstrap authorization, and documentation
-  transition system for replacing the Synara-derived desktop foundation with
-  a fresh, ancestry-preserving T3-derived application.
+  dispositions, proof gates, D4 completion state, later gate boundaries, and
+  documentation transition system for replacing the Synara-derived desktop
+  foundation with a fresh, ancestry-preserving T3-derived application.
 - `papilab-to-scient-rename-execution-plan.md` - historical PapiLab-to-Scient migration, compatibility, rollback, and deferred-public-cutover record.
 - `litrev-to-papilab-rename-execution-plan.md` - historical intermediate product-identity migration, verification, and rollback record for renaming LitRev to PapiLab.
 - `gate-1-5-execution-plan.md` - historical execution plan for owned source repositories, upstream synchronization, and Synara identity isolation.

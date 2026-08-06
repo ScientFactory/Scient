@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-07-31
-Last updated: 2026-07-31
+Last updated: 2026-08-06
 Purpose: Provides the repeatable setup procedure for an internal contributor's local multi-repository ScientFactory workspace.
 Doc type: Operational procedure
 
@@ -43,14 +43,18 @@ cd Scient
 ```
 
 The default command validates the existing `Scient` checkout and clones the
-two missing core siblings:
+three missing core migration siblings:
 
 ```text
 ScientFactory/
 ├── Scient/
 ├── scient-desktop/
+├── scient-desktop-next/
 └── scient-agent/
 ```
+
+`scient-desktop-next` is the private T3-derived candidate. Its presence in the
+workspace does not make it integrated, released, or the current application.
 
 Include the public website only when website or download-surface work needs it:
 
@@ -107,6 +111,11 @@ agent workspace. Before changing anything:
 Dependency installation is repository-specific and intentionally excluded from
 the bootstrap. Follow the current instructions in each repository rather than
 assuming one workspace-wide package command.
+
+The workspace bootstrap clones and validates only each ScientFactory-owned
+`origin`. It does not create donor remotes. Before performing upstream intake,
+follow the owning repository's `UPSTREAM.md` and verify that its official
+`upstream` fetch URL is correct and its push URL is `DISABLED`.
 
 ## Troubleshooting
 

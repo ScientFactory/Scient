@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-07-20
-Last updated: 2026-07-27
+Last updated: 2026-08-06
 Purpose: Defines how ScientFactory repositories, branches, pull requests, releases, deployments, permissions, and local worktrees are operated.
 Doc type: Operational procedure
 
@@ -78,7 +78,7 @@ branch.
 ## Local Worktrees
 
 The [Scient README](../../README.md#related-repositories-and-local-workspace)
-owns the recommended internal workspace layout. Keep the three core primary
+owns the recommended internal workspace layout. Keep the four core migration
 checkouts as siblings there, with the website checkout optional. Keep temporary
 task worktrees outside that workspace under a separate location chosen by the
 contributor, for example:
