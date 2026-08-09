@@ -403,10 +403,12 @@ authorizing production desktop collection:
   but remains fully Off unless both `SCIENT_ANALYTICS_ENABLED` and a sufficient
   `SCIENT_ANALYTICS_CONSENT` are deliberately configured.
 
-These changes are draft branches until their separate repository pull requests
-are reviewed and integrated. The strict Worker is not deployed, desktop
-analytics is not production-enabled, the privacy UI is not implemented, and
-the retention/deletion gates remain open.
+These changes remain draft in [Scient PR #90](https://github.com/ScientFactory/Scient/pull/90),
+[website PR #19](https://github.com/ScientFactory/ScientFactory-website/pull/19),
+and [desktop PR #21](https://github.com/ScientFactory/scient-desktop-next/pull/21)
+until independently reviewed and integrated. The strict Worker is not
+deployed, desktop analytics is not production-enabled, the privacy UI is not
+implemented, and the retention/deletion gates remain open.
 
 ## Activation Gates
 
