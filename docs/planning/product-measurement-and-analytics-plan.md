@@ -419,9 +419,14 @@ before each activation or release gate.
 ## Draft Implementation Progress
 
 Work on 2026-08-09 advances the safe, inactive foundation without authorizing
-production desktop collection. The earlier foundation PRs are integrated; the
-current hardening and coverage branches remain unpublished drafts at this
-document revision:
+production desktop collection. The earlier foundation PRs are integrated. The
+current work is published for review as the `scient-desktop-next` draft stack
+[#22](https://github.com/ScientFactory/scient-desktop-next/pull/22),
+[#23](https://github.com/ScientFactory/scient-desktop-next/pull/23), and
+[#24](https://github.com/ScientFactory/scient-desktop-next/pull/24), plus the
+website gateway draft
+[#20](https://github.com/ScientFactory/ScientFactory-website/pull/20). Published
+still does not mean merged, enabled, deployed, or release-proven:
 
 - the website foundation and current hardening provide a 33-event
   schema-version-1
