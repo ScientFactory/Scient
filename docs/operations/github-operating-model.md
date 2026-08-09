@@ -128,6 +128,8 @@ For the T3-derived successor:
 5. Publish only after explicit approval. Publication additionally requires the
    protected production environment and the repository release-enable
    variable, and must fail closed when mandatory signing evidence is absent.
+   The publisher stages a draft, verifies the uploaded bytes, and only then
+   makes the release public; it never overwrites an existing tag or release.
 6. Verify the public release, fresh downloads, signatures, updater metadata,
    and an installed successor-to-successor update before calling it live.
 
@@ -138,6 +140,14 @@ verifies their release handoff and hashes, and creates only byte-identical
 legacy-channel manifest aliases. Publishing that mirror is a second explicit
 gate. Prove an installed legacy-to-successor update before enabling it for
 current users.
+
+The website cutover remains a separate website-owned pull request and
+deployment. Its release resolver prefers the successor repository and falls
+back to the continuity repository only while the successor has no public
+release; a successor-feed outage must fail closed instead of silently serving
+an old build. Do not merge that cutover before the successor release and exact
+download behavior are verified, and do not deploy it without the required
+Cloudflare preview acceptance.
 
 The first intended successor version is `v0.6.0`. This is a release-system
 decision, not evidence that the release or cutover has occurred. Semantic

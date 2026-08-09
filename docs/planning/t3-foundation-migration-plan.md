@@ -2599,7 +2599,7 @@ Yaacov has selected `v0.6.0` as the first intended successor release and
 authorized implementation of the release system without authorizing a release.
 The release-system lane therefore owns:
 
-1. exact-tree promotion from green `scient-desktop-next/main` to
+1. exact-commit promotion from green `scient-desktop-next/main` to
    `release/stable` without creating a release commit;
 2. manual build-only and explicitly gated publication modes for native
    successor artifacts, signing evidence, updater manifests, checksums, the
@@ -2607,7 +2607,10 @@ The release-system lane therefore owns:
 3. a manual compatibility mirror in the continuity repository that verifies
    and republishes those exact artifacts for installed legacy clients without
    rebuilding the successor; and
-4. integration with the established Scient What's New catalog rather than a
+4. a website-owned release-source cutover that prefers verified successor
+   releases, falls back only while no successor release exists, and fails
+   closed on successor-feed outages; and
+5. integration with the established Scient What's New catalog rather than a
    parallel release-note model.
 
 Implementation is not activation. Publication remains fail-closed until the

@@ -40,7 +40,8 @@ The immediate work combines completion of the remaining selected M1 outcomes
 with release-readiness proof. Yaacov has selected `v0.6.0` as the first intended
 successor version and authorized release-system implementation, not a release.
 The machinery must preserve exact green-source provenance, fail-closed signing
-and publication, the legacy updater handoff, and rollback. The product gate
+and publication, the legacy updater handoff, the website release-source
+cutover, and rollback. The product gate
 still has to decide and prove the remaining source/PDF,
 mathematical/bidirectional, What's New, migration/data, claimed-platform, and
 packaged-update requirements before publication and cutover. A workflow, build,
