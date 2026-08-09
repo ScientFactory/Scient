@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-08-06
+Last updated: 2026-08-09
 Purpose: Defines how agents should work in this early Scient repository.
 Doc type: Agent protocol
 
@@ -49,10 +49,10 @@ The current repo contents are working documents. They are expected to change as 
 
 ADR-0005 now accepts a fresh T3-derived successor desktop, while the current
 Synara-derived `scient-desktop` remains the supported continuity application.
-The private `scient-desktop-next` candidate now exists with its D4 safety
-envelope and managed local development app integrated on candidate `main`. It
-is not released or the current supported implementation; do not describe
-private candidate behavior as shipped behavior.
+The public-source `scient-desktop-next` candidate exists with its safety
+envelope, managed local development app, and bounded M1 work integrated on
+candidate `main`. It is not released or the current supported implementation;
+do not describe candidate behavior or release machinery as shipped behavior.
 
 ## Internal Team Workspace
 
@@ -72,7 +72,7 @@ checkouts:
 
 `Scient/` owns product and project knowledge, cross-repository planning, and
 source pins. `scient-desktop/` owns the supported continuity application.
-`scient-desktop-next/` owns the private T3-derived successor candidate.
+`scient-desktop-next/` owns the public-source, unreleased T3-derived successor.
 `scient-agent/` owns the historical OpenCode-derived agent source and is the
 planned home for the one native Scient agent; its refreshed foundation remains
 subject to the documented Foundation Gate. Add
@@ -129,6 +129,8 @@ Current important documents:
   superseded historical initial-foundation decision whose agent and scientific
   ownership boundaries are preserved by ADR-0005.
 - `docs/architecture/decisions/ADR-0002-standalone-source-ownership-and-upstream-authority.md` - accepted standalone source-repository ownership and selective upstream authority.
+- `docs/architecture/decisions/ADR-0005-t3-derived-desktop-foundation.md` - accepted successor desktop foundation and T3 relationship.
+- `docs/planning/t3-foundation-migration-plan.md` - active migration sequence, proof gates, continuity boundary, and cutover state.
 - `docs/operations/upstream-intake.md` - active monitoring, review, and selective intake procedure for original source changes.
 - `docs/operations/team-contribution-protocol.md` - active minimum branch,
   verification, Quality Review, Integration Readiness Review, human UI review,

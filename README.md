@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-08-06
+Last updated: 2026-08-09
 Purpose: Entry point for the Scient product and project repository.
 Doc type: Repo orientation
 
@@ -16,10 +16,10 @@ planned; its owned source repository is
 [ADR-0005](docs/architecture/decisions/ADR-0005-t3-derived-desktop-foundation.md)
 selects a fresh T3-derived successor desktop, and the active
 [migration plan](docs/planning/t3-foundation-migration-plan.md) governs its
-proof-gated transition. The private candidate repository now exists with its D4
-safety envelope and managed local development app integrated on candidate
-`main`; it is not released or the current product. The Synara-derived
-application remains the supported continuity implementation.
+proof-gated transition. The public-source candidate repository now exists with
+its safety envelope, managed local development app, and bounded M1 work
+integrated on candidate `main`; it is not released or the current product. The
+Synara-derived application remains the supported continuity implementation.
 
 ## Related Repositories And Local Workspace
 
@@ -29,11 +29,10 @@ ScientFactory owns five independently versioned repositories during migration:
   direction, architecture, planning, cross-repository source pins, and the
   Scient-owned scientific boundary.
 - [`ScientFactory/scient-desktop`](https://github.com/ScientFactory/scient-desktop) -
-  the standalone desktop source repository and current product implementation
-  home.
+  the continuity application and legacy updater authority during migration.
 - [`ScientFactory/scient-desktop-next`](https://github.com/ScientFactory/scient-desktop-next) -
-  the private T3-derived successor candidate. Its integrated D4 safety envelope
-  does not authorize release or cutover.
+  the public-source T3-derived successor candidate. Implemented release
+  machinery does not authorize publication or cutover.
 - [`ScientFactory/scient-agent`](https://github.com/ScientFactory/scient-agent) -
   the owned source repository and historical OpenCode-derived incumbent for the
   planned native Scient agent; its refreshed implementation foundation remains

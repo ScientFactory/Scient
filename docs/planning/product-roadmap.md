@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-07-16
-Last updated: 2026-08-06
+Last updated: 2026-08-09
 Purpose: Defines the current sequence of coherent Scient product outcomes without turning technology experiments into the product roadmap.
 Doc type: Planning note
 
@@ -28,22 +28,24 @@ accepts a fresh T3-derived successor application, and the active
 [T3 foundation migration plan](t3-foundation-migration-plan.md) defines the
 proof-gated execution sequence. The Synara-derived app remains the supported
 current application, and the earlier Synara-specific first-slice plan is
-preserved as superseded planning. The private T3-derived candidate now has its
-D4 safety envelope, managed local development app, and bounded Scient product
-rebrand integrated. The rebrand was accepted and merged through
+preserved as superseded planning. The public-source T3-derived candidate now
+has its safety envelope, managed local development app, product identity,
+project initialization, local voice dictation, conversation forking, and the
+first assisted provider-lifecycle work integrated or in focused completion.
+The rebrand was accepted and merged through
 [`scient-desktop-next` PR #5](https://github.com/ScientFactory/scient-desktop-next/pull/5),
 but the candidate is not released or the current app.
 
-The immediate next slice is Proof 2's representative M1 integration workflow.
-It must span project initialization, one supported source or PDF path, and at
-least one selected host-native adaptation such as provider onboarding, voice,
-or mathematical and bidirectional text correctness. This is a focused product
-and architecture proof, not authorization for broad feature migration,
-user-data conversion, cloud enablement, release, or cutover. After Proof 2 and
-their explicit gates, the migration will re-establish the remaining selected
-project, source/PDF, provider-onboarding, voice, mathematical/bidirectional,
-and What's New outcomes before new Scient-agent and researcher-review work
-resumes.
+The immediate work combines completion of the remaining selected M1 outcomes
+with release-readiness proof. Yaacov has selected `v0.6.0` as the first intended
+successor version and authorized release-system implementation, not a release.
+The machinery must preserve exact green-source provenance, fail-closed signing
+and publication, the legacy updater handoff, the website release-source
+cutover, and rollback. The product gate
+still has to decide and prove the remaining source/PDF,
+mathematical/bidirectional, What's New, migration/data, claimed-platform, and
+packaged-update requirements before publication and cutover. A workflow, build,
+or selected version is not acceptance evidence by itself.
 
 ## After The Foundation: First Scient Scientific Project Slice
 

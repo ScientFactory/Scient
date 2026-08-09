@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-07-07
-Last updated: 2026-08-06
+Last updated: 2026-08-09
 Purpose: Defines the evergreen source-ownership, adaptation, upstream-update, and divergence strategy for T3, Synara, the still-open Scient-agent foundation, and other open-source inputs used by Scient.
 Doc type: Planning note
 
@@ -34,8 +34,9 @@ strategy, and stop conditions.
 
 This accepted target does not change current implementation truth.
 `scient-desktop` remains the supported Synara-derived continuity application,
-while the private T3-derived candidate now has its D4 safety envelope
-integrated. The candidate is not released or the current product.
+while the public-source T3-derived candidate now has its safety envelope and
+bounded M1 work integrated. The candidate is not released or the current
+product.
 ADR-0001 is superseded as the forward desktop-foundation decision but preserved
 as history; ADR-0002 continues to govern standalone ownership and fetch-only
 source authority.

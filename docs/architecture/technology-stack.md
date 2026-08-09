@@ -3,7 +3,7 @@
 Status: Proposed
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-08-06
+Last updated: 2026-08-09
 Purpose: Records Scient's current technology stack direction and open implementation decisions.
 Doc type: Architecture direction
 
@@ -36,10 +36,10 @@ not automatically accepted Scient architecture.
 [ADR-0005](decisions/ADR-0005-t3-derived-desktop-foundation.md) accepts a
 fresh, literal-ancestry T3-derived successor application. The reviewed
 [migration plan](../planning/t3-foundation-migration-plan.md) owns the
-proof-gated transition sequence. The private candidate repository has its D4
-safety envelope integrated, while the current Synara-derived app remains the
-supported application. Integrated candidate code is not thereby a released or
-supported product.
+proof-gated transition sequence. The public-source candidate repository has its
+safety envelope and bounded M1 work integrated, while the current
+Synara-derived app remains the supported application. Integrated candidate code
+and release machinery do not thereby make it a released or supported product.
 
 The candidate preserves literal ancestry from exact official T3 commit
 `a2ca89aa10f13a2222e08afd98c66285121d5ba2`. The bounded identity and safety
@@ -87,7 +87,7 @@ Scient app from the planned Scient agent where needed.
 | Large file storage | Object storage | Proposed; not scaffolded |
 | Sync | Local-first project-state-to-cloud sync | Under evaluation; storage and sync engines not selected or scaffolded |
 | Current application foundation | Standalone Scient-owned, Synara-derived source | Implemented continuity foundation; remains supported until explicit cutover |
-| Accepted successor application foundation | Fresh, literal-ancestry T3-derived Scient-owned source | Private candidate and D4 safety envelope are integrated at the exact recorded base/head; not released or cut over |
+| Accepted successor application foundation | Fresh, literal-ancestry T3-derived Scient-owned source | Public-source candidate with the safety envelope and bounded M1 work integrated; release machinery does not mean released or cut over |
 | External-agent layer | Synara provider contracts and service | Inherited machinery for external agents; preservation required, project-task compatibility not yet certified |
 | First-party agent | One owned Scient agent; refreshed native foundation still under evaluation between Pi, OpenCode, and any equivalently qualified candidate | ADR-0005 preserves the one-agent ownership boundary but does not select the refreshed baseline; Scient product/runtime not yet implemented |
 | Historical agent source | Standalone Scient-owned, OpenCode-derived `scient-agent` repository | Incumbent source evidence and governance history; not an automatic future implementation baseline |

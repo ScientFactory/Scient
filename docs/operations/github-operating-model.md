@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-07-20
-Last updated: 2026-08-06
+Last updated: 2026-08-09
 Purpose: Defines how ScientFactory repositories, branches, pull requests, releases, deployments, permissions, and local worktrees are operated.
 Doc type: Operational procedure
 
@@ -26,7 +26,8 @@ exactly one child repository.
 | Repository | Local folder | Visibility | Integration branch | Release or deployment authority |
 | --- | --- | --- | --- | --- |
 | `ScientFactory/Scient` | `Scient/` | Private | `main` | No release branch. Product truth, architecture, plans, cross-repository pins, and operating procedures live here. |
-| `ScientFactory/scient-desktop` | `scient-desktop/` | Public | `main` | `release/stable` is the only desktop release source. A merge to `main` does not release the app. |
+| `ScientFactory/scient-desktop-next` | `scient-desktop-next/` | Public | `main` | The T3-derived successor. Its exact `release/stable` head is the only source for successor artifacts. Publication remains an explicit gated action. |
+| `ScientFactory/scient-desktop` | `scient-desktop/` | Public | `main` | The continuity application and legacy updater authority during cutover. Its `release/stable` branch remains the source for old-code releases; a separate compatibility workflow may mirror an already-published successor release without rebuilding it. |
 | `ScientFactory/scient-agent` | `scient-agent/` | Public | `dev` | `release/stable` is the agent promotion boundary. Agent artifact publication remains disabled until an owned artifact contract exists. |
 | `ScientFactory/ScientFactory-website` | `website/` | Public | `main` | `main` is the Cloudflare Pages production source. Pull requests receive preview deployments. |
 
@@ -42,8 +43,10 @@ Push a change to the repository that owns its implementation or authority:
 - Product requirements, architecture decisions, company-to-product boundaries,
   cross-repository source pins, operating procedures, and accepted planning go
   to `Scient`.
-- Desktop UI, desktop runtime, packaging, updater behavior, signing, and desktop
-  release workflows go to `scient-desktop`.
+- Successor desktop UI, runtime, packaging, updater behavior, signing, and
+  release workflows go to `scient-desktop-next`. Continuity fixes and the
+  legacy updater compatibility mirror remain in `scient-desktop` until the
+  accepted support window ends.
 - First-party agent source, inherited OpenCode review state, agent build logic,
   and agent release validation go to `scient-agent`.
 - Marketing pages, download-page behavior, release-download metadata adapters,
@@ -105,23 +108,56 @@ Never use blanket cleanup across the sibling repositories.
 
 ## Desktop Release Promotion
 
-`scient-desktop/main` is the integration branch. It may continue moving without
-changing the version installed by users.
+Both desktop repositories use `main` for integration. Neither a merge to
+`main` nor a green build publishes an application.
 
-To ship a desktop release:
+For the T3-derived successor:
 
-1. Select and record the exact tested commit on `main`.
-2. Open a promotion pull request from `main` to `release/stable`.
-3. Require desktop quality, browser, build, and release-smoke checks on the
-   promotion pull request.
-4. Merge only after deciding that this exact commit should ship.
-5. Run the release workflow from the resulting `release/stable` head.
-6. Create an immutable version tag and GitHub Release from that exact head.
-7. Verify the published artifacts, website download metadata, and an installed
-   application before declaring the release live.
+1. Select the exact current `scient-desktop-next/main` commit after its normal
+   CI workflow succeeds.
+2. Run the repository's manual promotion workflow with that full commit SHA.
+   It verifies current-main and CI provenance, then fast-forwards
+   `release/stable` to the identical commit. Promotion creates no commit and
+   changes no tree.
+3. Run the manual release workflow from that exact `release/stable` head in
+   build-only mode first. Release work reuses exact green source evidence and
+   adds native packaging, signing, updater-manifest, checksum, and handoff
+   proof; it does not rerun the full source suite merely to duplicate CI.
+4. Inspect the native artifacts and complete the applicable signing, updater,
+   migration, website, rollback, and human acceptance gates.
+5. Publish only after explicit approval. Publication additionally requires the
+   protected production environment and the repository release-enable
+   variable, and must fail closed when mandatory signing evidence is absent.
+   The publisher stages a draft, verifies the uploaded bytes, and only then
+   makes the release public. Its public notes are rendered from the same
+   approved Scient What's New entry used in the app, not generated from
+   inherited T3 history. It never overwrites an existing tag or release.
+6. Verify the public release, fresh downloads, signatures, updater metadata,
+   and an installed successor-to-successor update before calling it live.
 
-A green build on `main`, a draft release, or an artifact produced from another
-commit is not a public release.
+During the first cutover, the continuity repository does not rebuild the
+successor. After the successor release is independently published and verified,
+its manual compatibility workflow downloads the exact successor assets,
+verifies their release handoff and hashes, and creates only byte-identical
+legacy-channel manifest aliases. Publishing that mirror is a second explicit
+gate. Prove an installed legacy-to-successor update before enabling it for
+current users.
+
+The website cutover remains a separate website-owned pull request and
+deployment. Its release resolver prefers the successor repository and falls
+back to the continuity repository only while the successor has no public
+release; a successor-feed outage must fail closed instead of silently serving
+an old build. Do not merge that cutover before the successor release and exact
+download behavior are verified, and do not deploy it without the required
+Cloudflare preview acceptance.
+
+The first intended successor version is `v0.6.0`. This is a release-system
+decision, not evidence that the release or cutover has occurred. Semantic
+versioning permits any number of `0.6.x` releases before Scient earns a
+`1.0.0` stability contract.
+
+A promoted commit, green build-only workflow, draft release, compatibility
+artifact, or artifact produced from another commit is not a public release.
 
 ## Agent Release Promotion
 
