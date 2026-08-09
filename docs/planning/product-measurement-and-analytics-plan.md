@@ -185,6 +185,10 @@ Every accepted desktop event uses schema version 1 and includes:
 | `consent_level` | User's effective level when recorded |
 | `properties` | Registered, typed, bounded allowlist only |
 
+Every desktop event also carries the bounded application version and build
+channel. This permits release-regression analysis without adding a device,
+project, thread, or provider-account identifier.
+
 The gateway must reject an event when its declared privacy level does not match
 the registry, its consent is insufficient, its property set is not exact, or a
 value is outside its defined enum or range.
@@ -201,6 +205,7 @@ Scient currently sends the event.
 | `app.session.ended` | Essential | duration bucket, shutdown class | server lifecycle | Add in core |
 | `server.boot.heartbeat` | Essential | app version, build channel | existing startup seam | Keep, remove project/thread counts at Essential |
 | `project.added` | Product | method: picker/drag-drop/recent | project registration | Instrument after core |
+| `project.add.failed` | Essential | bounded stage: validation/inspection/registration/navigation | project registration | Instrument after core |
 | `project.opened` | Product | existing/new, initialization state | project open | Instrument after core |
 | `project.initialization.completed` | Product | outcome, files-created count bucket | Scient project init | Instrument after core |
 | `project.initialization.failed` | Essential | bounded failure class | Scient project init | Instrument after core |
@@ -302,6 +307,36 @@ in version control and applied idempotently through the PostHog API. Personal
 API keys remain in the operator's keychain and never enter Git or CI logs.
 Dashboards must not be shared publicly by default.
 
+## Performance, Volume, And Cost Budget
+
+Analytics is subordinate to product work. The renderer may normalize a small
+bounded event in memory and send a fire-and-forget request to the local Scient
+server, but it must never wait for local persistence, gateway delivery, or
+PostHog. SQLite and network work belong in the dedicated analytics worker.
+Events are persisted in batches, sent in batches, and retried with bounded
+backoff. Shutdown receives only a short local-persistence budget and never
+waits for the network.
+
+The initial operating budget is:
+
+- no autocapture, session replay, pointer stream, keystroke stream, or generic
+  click event;
+- meaningful outcomes and failures are retained; low-value surface signals are
+  coalesced to at most once per renderer session;
+- the in-memory queue is capped at 1,000 events and the durable outbox at
+  10,000, trimming summary events before core or critical events;
+- desktop ingress is limited per random installation and remains behind an
+  immediate Cloudflare kill switch;
+- the pipeline dashboard reports rolling 30-day event volume against the
+  current PostHog allowance; and
+- operators review volume at 50%, 75%, and 90% of the chosen monthly budget
+  before widening a cohort.
+
+The current PostHog Product Analytics free allowance is one million events per
+month. This is an operational planning input, not permission to collect weak
+signals. If volume becomes material, reduce or coalesce summary events before
+sampling failures or meaningful product outcomes.
+
 ## Implementation Sequence
 
 ### Phase 0 — Measurement constitution
@@ -383,32 +418,55 @@ before each activation or release gate.
 
 ## Draft Implementation Progress
 
-Work begun on 2026-08-09 advances the safe, inactive foundation without
-authorizing production desktop collection:
+Work on 2026-08-09 advances the safe, inactive foundation without authorizing
+production desktop collection. The earlier foundation PRs are integrated. The
+current work is published for review as the `scient-desktop-next` draft stack
+[#22](https://github.com/ScientFactory/scient-desktop-next/pull/22),
+[#23](https://github.com/ScientFactory/scient-desktop-next/pull/23), and
+[#24](https://github.com/ScientFactory/scient-desktop-next/pull/24), plus the
+website gateway draft
+[#20](https://github.com/ScientFactory/ScientFactory-website/pull/20). Published
+still does not mean merged, enabled, deployed, or release-proven:
 
-- the website analytics branch replaces arbitrary desktop event acceptance
-  with a 32-event schema-version-1 registry, exact property validation,
-  privacy/consent enforcement, and focused rejection tests;
-- the website branch adds an aggregate D1/PostHog reconciliation command and
-  an idempotent dashboard manager backed by a version-controlled manifest;
+- the website foundation and current hardening provide a 33-event
+  schema-version-1
+  registry, aggregate D1/PostHog reconciliation, and an idempotent dashboard
+  manager;
+- the current website hardening adds an explicit production ingress kill
+  switch, per-installation rate limiting without IP storage, installation-owned
+  deletion credentials, bounded retries through PostHog's supported
+  distinct-ID person/event deletion API, a 180-day D1 retention job, one
+  identity write per batch, and prepared source queries for dashboards `00`
+  through `07`;
 - the EU PostHog project now has the source-backed `90 — Scient analytics
   pipeline and data quality` dashboard with four current-coverage insights;
-- the eight product dashboards remain definitions rather than empty live
-  dashboards, with their missing source events reported by the manager;
-- the desktop branch adds a Scient-owned package with a separate SQLite
-  outbox, random installation/session/event identifiers, a local normalizer
-  for the ten inherited event seams, consent filtering, downgrade purge,
-  idempotency, bounded retry, restart recovery, and shutdown delivery; and
-- the desktop server adapter is wired at the inherited analytics service seam
-  but remains fully Off unless both `SCIENT_ANALYTICS_ENABLED` and a sufficient
-  `SCIENT_ANALYTICS_CONSENT` are deliberately configured.
+- dashboards `00` through `07` remain version-controlled prepared definitions,
+  not misleading empty live dashboards; the manager will apply them only after
+  their required events are observed and reconciled;
+- the desktop SQLite outbox and all network delivery now run in a dedicated
+  worker thread, with bounded memory and disk queues, batched persistence,
+  priority-aware trimming, retry/backoff, corrupt-row quarantine, and a
+  300-millisecond local-only shutdown budget;
+- canonical provider and orchestration streams supply bounded provider, public
+  model-key, completion, failure, duration, tool, attachment, fork, revert, and
+  project-initialization outcomes;
+- narrow Scient-owned UI adapters add project, new-thread, voice, selected
+  surface, and direction-setting events without generic click tracking;
+- a user privacy control can change consent dynamically, purge ineligible local
+  events, request deletion, and rotate the anonymous installation identity; and
+- the desktop server remains fully Off unless the master build gate is
+  deliberately enabled. Development and worktree builds therefore remain Off.
 
-These changes remain draft in [Scient PR #90](https://github.com/ScientFactory/Scient/pull/90),
-[website PR #19](https://github.com/ScientFactory/ScientFactory-website/pull/19),
-and [desktop PR #21](https://github.com/ScientFactory/scient-desktop-next/pull/21)
-until independently reviewed and integrated. The strict Worker is not
-deployed, desktop analytics is not production-enabled, the privacy UI is not
-implemented, and the retention/deletion gates remain open.
+Remote deletion is deliberately conservative. D1 deletion and local identity
+rotation are implemented. Forwarded desktop events create only a pseudonymous
+PostHog person record, without person properties, so the scheduled gateway can
+submit the opaque distinct ID to PostHog's supported person/event deletion API.
+Failed submissions remain visible as pending and become blocked after ten
+attempts for operator review. This is implemented but not deployed or
+release-proven; production activation still requires a narrow `person:write`
+secret, a configured project ID, and an end-to-end selected-user proof. The UI
+describes an accepted deletion request and does not claim immediate remote
+erasure.
 
 ## Activation Gates
 
@@ -418,7 +476,8 @@ Desktop production collection remains prohibited until all are true:
 2. no T3 PostHog key, host, identity path, or direct SDK is reachable;
 3. development and disposable worktree builds are Off by default;
 4. consent is applied before enqueue and downgrade purges are proven;
-5. deletion and retention are implemented across D1 and PostHog;
+5. deletion and retention are implemented and proven across D1 and PostHog,
+   including successful submission and observable handling of blocked retries;
 6. startup and user actions never wait for analytics delivery;
 7. offline, retry, duplicate, shutdown, and corrupt-outbox cases pass focused
    tests;
