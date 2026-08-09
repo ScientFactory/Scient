@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-07-31
-Last updated: 2026-08-06
+Last updated: 2026-08-09
 Purpose: Provides the repeatable setup procedure for an internal contributor's local multi-repository ScientFactory workspace.
 Doc type: Operational procedure
 
@@ -53,8 +53,9 @@ ScientFactory/
 └── scient-agent/
 ```
 
-`scient-desktop-next` is the private T3-derived candidate. Its presence in the
-workspace does not make it integrated, released, or the current application.
+`scient-desktop-next` is the public-source, unreleased T3-derived successor.
+Its presence in the workspace does not make a local branch integrated,
+released, or the current application.
 
 Include the public website only when website or download-surface work needs it:
 

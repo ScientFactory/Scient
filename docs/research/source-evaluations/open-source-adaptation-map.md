@@ -3,7 +3,7 @@
 Status: Proposed
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-08-06
+Last updated: 2026-08-09
 Purpose: Maps which open-source systems Scient should study, prototype, adapt, or integrate, and which product boundaries Scient must keep owned.
 Doc type: Research evidence
 
@@ -70,9 +70,9 @@ Current inputs:
   and promotion of the
   [T3 foundation migration plan](../../planning/t3-foundation-migration-plan.md).
   T3 is now the selected successor foundation and official upstream of the
-  private candidate. The D4 safety envelope is integrated on candidate `main`,
-  but the candidate is not released and the current Synara-derived app remains
-  the continuity implementation.
+  public-source candidate. Its safety envelope and bounded M1 work are
+  integrated on candidate `main`, but it is not released and the current
+  Synara-derived app remains the continuity implementation.
 - Focused Scient-agent foundation and capability investigation on 2026-08-06,
   recorded in
   [`scient-agent-foundation-and-capability-strategy-2026-08-06.md`](scient-agent-foundation-and-capability-strategy-2026-08-06.md).
@@ -303,7 +303,7 @@ forward desktop decision.
 | Goose | ACP/MCP, permission interaction, custom distributions, providers, recipes, scheduling, and general-agent patterns. | Capability, architecture, possible worker, or external-agent candidate; not selected. | `reference-only` until a bounded source or integration decision |
 | OpenHands SDK | Remote workspaces, agent server, confirmations, resource locks, secrets, and managed execution patterns. | Later cloud-execution candidate and reference; not selected. | `reference-only` until a remote-execution proof |
 | Codex app-server | Sandbox, approvals, diffs, rollback, interrupt/resume ideas. | Reference / cherry-pick source. | `reference-only` |
-| T3 Code | Successor desktop platform: lifecycle, provider sessions, chat, browser/preview, files, terminals, Git, packaging, updater, cloud/web/mobile foundations. | Accepted literal-ancestry application foundation under ADR-0005; the private owned candidate has completed D4 but is not released or cut over. | `thin-fork-merge`, with reviewed bounded merges and explicit Scient divergence |
+| T3 Code | Successor desktop platform: lifecycle, provider sessions, chat, browser/preview, files, terminals, Git, packaging, updater, cloud/web/mobile foundations. | Accepted literal-ancestry application foundation under ADR-0005; the public-source owned candidate has completed D4 and bounded M1 work but is not released or cut over. | `thin-fork-merge`, with reviewed bounded merges and explicit Scient divergence |
 | Aider | Git/edit discipline, repo-map and patch workflow lessons. | Reference benchmark. | `reference-only` |
 | Vercel AI SDK | Typed model/tool streams and model/tool UI event flow. | Upstream-trackable integration, adapter. | `version-bump` or `adapter-maintained` |
 | Vercel AI Elements | Agent UI cards and inspection patterns. | Add-on layer or reference. | `version-bump` if used |

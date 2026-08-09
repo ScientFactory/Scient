@@ -3,7 +3,7 @@
 Status: Accepted
 Owner: Yaacov
 Created: 2026-08-02
-Last updated: 2026-08-06
+Last updated: 2026-08-09
 Purpose: Selects a fresh T3-derived foundation for the successor Scient app while preserving Scient ownership, scientific authority, current-user continuity, and the independent Scient agent boundary.
 Doc type: Architecture decision
 
@@ -48,9 +48,11 @@ ADR point by point, and accepted this exact post-evidence decision on
 [Phase Zero dossier](../../research/spike-reports/t3-foundation-phase-zero-2026-08-02.md)
 verified the official T3 baseline and did not trigger a stop condition. The
 candidate repository did not yet exist when this decision was accepted. It now
-exists as a private candidate with the D4 safety envelope integrated on its
-owned default branch; the active migration plan and dated D4 evidence govern
-that progress. This does not amend the decision or imply release or cutover.
+exists as the public-source `ScientFactory/scient-desktop-next` candidate,
+with the D4 safety envelope and subsequent bounded M1 work integrated on its
+owned default branch. The active migration plan and repository-local evidence
+govern that progress. Public source, implemented release machinery, and local
+or packaged testing do not by themselves imply publication or cutover.
 
 ## Decision
 
