@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-08-06
+Last updated: 2026-08-09
 Purpose: Defines where Scient planning documents live and how they relate to product truth, architecture, design, quality, and research documents.
 Doc type: Repo orientation
 
@@ -15,6 +15,9 @@ Do not use planning docs as product truth, accepted architecture, or current imp
 
 Current planning docs:
 
+- `product-measurement-and-analytics-plan.md` - proposed product-measurement
+  contract, privacy boundary, event catalog, KPI model, dashboard portfolio,
+  cross-repository implementation sequence, and activation gates.
 - `desktop-fix-inbox.md` - temporary intake for observed Scient desktop
   problems that need diagnosis or a bounded fix but are not being implemented
   immediately.
