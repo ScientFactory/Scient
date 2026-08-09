@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-08-06
+Last updated: 2026-08-09
 Purpose: Maps the Scient documentation structure and where each kind of information belongs.
 Doc type: Repo orientation
 
@@ -39,6 +39,7 @@ Start here:
   draft candidate scopes, questions, scenarios, and discovery sequence; no
   memory architecture or storage technology is selected.
 - [Product roadmap](planning/product-roadmap.md) - current sequence of coherent product outcomes.
+- [Product measurement and analytics plan](planning/product-measurement-and-analytics-plan.md) - proposed privacy-preserving measurement contract, event catalog, KPI definitions, dashboard portfolio, implementation sequence, and production activation gates.
 - [T3 foundation migration plan](planning/t3-foundation-migration-plan.md) -
   active proof-gated transition to the accepted successor foundation and the
   exact D4 completion evidence and later migration gates.
