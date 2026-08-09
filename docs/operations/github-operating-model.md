@@ -129,7 +129,9 @@ For the T3-derived successor:
    protected production environment and the repository release-enable
    variable, and must fail closed when mandatory signing evidence is absent.
    The publisher stages a draft, verifies the uploaded bytes, and only then
-   makes the release public; it never overwrites an existing tag or release.
+   makes the release public. Its public notes are rendered from the same
+   approved Scient What's New entry used in the app, not generated from
+   inherited T3 history. It never overwrites an existing tag or release.
 6. Verify the public release, fresh downloads, signatures, updater metadata,
    and an installed successor-to-successor update before calling it live.
 
