@@ -192,6 +192,7 @@ chosen editor or collaboration engine.
 |---|---|---|
 | Resolve a chat link, Files-tree entry, search result, or arbitrary supported local path | Universal file-opening work | Produces one bounded openable resource. This platform must consume it rather than add competing click handlers or path rules. |
 | File/document viewing, editing, builds, Office compatibility, manuscripts, review, and publishing | This roadmap | Owns the document lifecycle after resource resolution. |
+| Visual PDF production from browser surfaces and controlled Scient content | Dedicated PDF production/export implementation in `scient-desktop-next` | Owns rendering a selected visual surface to a PDF artifact. It consumes the shared PDF reader, generic artifact references, build/conversion receipts, and source-revision contracts rather than creating a second document or PDF model. |
 | Python, R, MATLAB, notebooks, datasets, variables, analysis runs, and computational provenance | [Scientific Computing And Data Analysis](scientific-computing-and-data-analysis-roadmap.md) | Shares editors, project resolution, execution events, diagnostics, and artifacts while preserving analysis-specific semantics. |
 | Sources, reading, extraction, evidence, claims, and citation meaning | PRD source/evidence areas and future focused plans | Supplies structured references, evidence links, source regions, and claim relationships to manuscripts. |
 | Figures and tables | Computing/artifact and manuscript areas jointly | A figure/table may be an analysis artifact, editable document object, and manuscript projection without becoming three unrelated copies. |
@@ -230,8 +231,14 @@ not a promise that every installed or future release has the same state.
   Files-panel kind.
 - Binary Office formats and other unsupported binary files fall into the text
   path and are rejected rather than routed through a capability registry.
-- Text reads are capped at 1 MiB and report truncation; saving or editing a
-  partial read must never overwrite the complete file.
+- Text reads are capped at 1 MiB and report truncation. At this inspected
+  baseline, ordinary truncated text is displayed read-only, but the
+  rendered-Markdown branch is selected before the general truncated-file
+  branch and still exposes task-list mutation. That path can send the partial
+  buffer through the unconditional whole-file writer. This baseline defect
+  requires a separate immediate `scient-desktop-next` fix before or together
+  with this follow-up; it is not work to defer until the broader platform
+  exists or a substitute for Stage 0's conditional-write contract.
 - File writes replace text without an expected-revision/conditional-write
   contract, leaving external-edit and concurrent-save behavior incomplete for
   serious document editing.
@@ -576,6 +583,7 @@ in the [focused source map](../research/source-evaluations/scientific-document-p
 |---|---|---|
 | T3-derived Scient Desktop Next | Host shell, right-panel/file workflow, typed RPC, assets, process substrate | Preserve and extend through narrow Scient-owned seams. |
 | Scient PDF reader / PDF.js | Shared PDF and generated-artifact preview | Adopted current implementation; generalize its source boundary. |
+| Electron/Chromium `printToPDF` | Visual PDF production for browser surfaces and controlled Scient content | First planned proof route; return shared PDF artifacts and rendering receipts rather than create a separate export model. |
 | `remark-math` + KaTeX | Chat and Markdown inline/display math | First bounded dependency proof. |
 | LaTeX Workshop | Root discovery, recipes, dependency watching, build and SyncTeX workflow reference | Adapt algorithms and UX behind Scient contracts; do not embed the VS Code extension. |
 | Tectonic | Managed local typesetting-engine candidate | Prototype; not approved for bundling. |
@@ -611,7 +619,25 @@ the earlier contract is proven.
 - Introduce the format/surface registry seam.
 - Add conditional writes, external-change conflicts, and truncated-file save
   protection before serious editing expands.
-- Generalize asset/PDF sources for generated artifacts.
+- Generalize asset/PDF sources for generated artifacts. The planned PDF
+  production/export lane should prove the first generic generated-PDF source;
+  the LaTeX stage consumes that contract rather than re-deriving it.
+
+**Complete when:**
+
+- existing Markdown, image, SVG, PDF, browser, diff, and external-open fixtures
+  pass through their current entry points without a behavior regression;
+- every truncated read is non-mutating across source and rendered surfaces,
+  including rendered Markdown task controls, and a greater-than-1-MiB
+  regression fixture proves the complete source remains byte-identical;
+- supported text saves carry an expected source revision, use atomic
+  replacement, and enter an explicit recoverable conflict state after an
+  external change rather than overwriting it;
+- format/surface selection is deterministic and observable, and binary,
+  unknown, malformed, missing, and unsupported resources reach a useful
+  fallback rather than the text reader or a blank panel; and
+- the existing PDF reader can consume both an ordinary workspace-file source
+  and a generated PDF artifact through the shared source boundary.
 
 ### Stage 1 — Chat And Markdown Math
 
@@ -620,6 +646,25 @@ the earlier contract is proven.
 - Complete streaming, malformed-input, copy, accessibility, theme, and RTL
   fixtures.
 - Keep code and literal-dollar behavior stable.
+- Bundle or self-host parser, renderer, CSS, fonts, and other required assets;
+  normal math rendering must not depend on a runtime CDN.
+- Keep a partially streamed inline or display expression as ordinary visible
+  source text. Promote it to rendered math only after its delimiters and parse
+  are complete; never flash a broken-math state merely because tokens are
+  still arriving.
+
+**Complete when:**
+
+- inline and display math render in both chat and Markdown file preview without
+  invoking a document compiler;
+- the frozen fixture corpus passes delimiter, escaping, literal-dollar, code,
+  malformed-input, unsupported-command, copy, selection, accessibility,
+  theme, bidi, and RTL checks;
+- streaming fixtures preserve incomplete expressions as stable plain text and
+  transition once to rendered output only when complete;
+- all required runtime assets work offline from the packaged application; and
+- existing GFM, sanitized raw HTML, syntax highlighting, task lists, clipboard,
+  and non-math streaming behavior remain unchanged.
 
 ### Stage 2 — First Universal LaTeX Build Loop
 
@@ -630,12 +675,43 @@ the earlier contract is proven.
 - Reuse the generalized Scient PDF reader.
 - Add platform fixtures and missing-engine/package recovery.
 
+**Complete when:**
+
+- selecting any file in the frozen single-file and multi-file LaTeX corpus
+  opens that source immediately while root discovery continues independently;
+- root selection is deterministic when evidence is sufficient and asks the
+  researcher when multiple credible roots remain;
+- Tectonic and at least one discovered installed-TeX/`latexmk` route run behind
+  the same typesetting adapter and produce identified PDF artifacts;
+- source, preview, problems, and complete log surfaces share one document/build
+  identity, and diagnostics navigate to the applicable source location;
+- cancel and supersede terminate the complete process tree, and a stale build
+  can never replace the result of a newer build; and
+- missing engines, packages, files, bibliography inputs, permissions, or build
+  failures retain editable source and the marked last-success preview with an
+  actionable recovery state.
+
 ### Stage 3 — Broad View-Only Coverage
 
 - Establish the binary-document gateway.
 - Run Flyfish and any alternatives against one frozen viewer corpus.
 - Add honest fallbacks for Office and other common formats.
 - Keep extraction/search separate from the visual result.
+
+**Complete when:**
+
+- the frozen viewer corpus exercises every proposed adapter with ordinary,
+  malformed, encrypted, unsupported-feature, oversized, RTL, accessibility,
+  cancellation, crash, and missing-runtime cases;
+- selected adapters meet declared visual and interaction thresholds inside the
+  actual Scient viewer shell rather than only in donor demos;
+- adapter absence or failure produces metadata, reason, retry, source or
+  derived-text inspection where honest, external continuation, and download or
+  reveal actions as applicable, never a blank or false-success state;
+- extraction and search derivatives are visibly separate from the visual and
+  round-trip authority; and
+- optional adapters clean up resources and preserve existing viewer behavior
+  across supported desktop and remote connection modes.
 
 ### Stage 4 — Document Kernel And DOCX Preservation Proof
 
@@ -776,6 +852,35 @@ run where the file exists. Remote/relay/tunnel use must preserve typed contracts
 and capability-aware UI rather than copying local filesystem assumptions into
 the browser.
 
+### Build Execution, Trust, And Control
+
+Scient should support powerful real projects without turning ordinary viewing
+into an execution gate. Opening, reading, searching, previewing an existing
+artifact, and editing source must not require build execution or a project
+trust decision. Missing or declined execution permission must leave those
+non-executing capabilities fully useful.
+
+The first request to execute a document build in a project should present a
+concise project-scoped trust choice that explains which engine or toolchain
+will run and where. The choice should be remembered, visible, and revocable.
+Normal LaTeX compilation starts with shell escape disabled. A researcher may
+deliberately enable it for a project that needs it; that capability must not be
+silently inferred from a file, recipe, imported configuration, or prior trust
+in another project.
+
+Quarto and knitr cells, Pandoc filters, bibliography/index helpers, custom
+build recipes, and similar hooks may execute project-controlled code. Adapters
+must declare those capabilities before execution rather than disguise them as
+rendering. Cancel, supersede, timeout, application shutdown, and connection
+loss must have defined process ownership and complete process-tree cleanup.
+Build receipts should record the selected engine/toolchain and relevant
+execution capabilities without capturing secrets.
+
+This is a proposed product and architecture posture, not a claim that the
+current process runner enforces it. If accepted, the durable trust model,
+capability boundary, and local/remote execution ownership require an ADR before
+compiler or executable-publishing implementation is treated as complete.
+
 ### macOS
 
 Test sandboxed packaged-app behavior, MacTeX/BasicTeX and user-installed
@@ -826,31 +931,52 @@ redistributable.
 ## Open Decisions And Gates
 
 The following remain unresolved and require focused evidence or architecture
-decisions:
+decisions. Stable gate IDs keep references greppable across future issues,
+spikes, ADRs, and implementation pull requests. Create a tracking issue when a
+gate gains a concrete owner and scheduled evidence or implementation work; do
+not create dormant placeholder issues merely to duplicate this proposed
+roadmap. Once a document-platform label and active issue set exist, this section
+should link the corresponding repository query.
 
-- exact conceptual/API names and package boundaries for resources, sessions,
-  surfaces, artifacts, builds, revisions, and fidelity receipts;
-- the universal-opener handoff for external absolute files and sibling assets;
-- the conditional-write, recovery-draft, merge, and external-change contract;
-- `DocumentBuild` and `AnalysisRun` shared base without semantic collapse;
-- Tectonic bundling versus discovery-only and the installed-TeX support matrix;
-- root-choice persistence/invalidation and output-directory defaults;
-- TexLab lifecycle, GPL boundary, and platform distribution;
-- the first SyncTeX milestone;
-- KaTeX acceptance or evidence for a MathJax fallback;
-- the broad viewer selected after fixture comparison;
-- the DOCX engine selected after the GenOffice/EigenPal/Sobree corpus;
-- the rich editor selected after the Tiptap/Plate/Lexical corpus;
-- exact structured-native manuscript representation and citation/evidence
-  contracts;
-- the fidelity receipt and authority-conversion UX;
-- the history/review operation model and collaboration-engine winner;
-- the first XLSX and PPTX edit milestones;
-- the publication profile, template, submission, and deposit model;
-- whether any future Overleaf, ONLYOFFICE, or Collabora integration or service
-  materially beats independent implementation behind Scient contracts; and
-- where organization, institution, policy, and mobile depth enters actual
-  product sequencing.
+- **SDP-G01 — Platform contracts:** exact conceptual/API names and package
+  boundaries for resources, sessions, surfaces, artifacts, builds, revisions,
+  and fidelity receipts;
+- **SDP-G02 — Opener handoff:** the universal-opener handoff for external
+  absolute files and sibling assets;
+- **SDP-G03 — Revision and recovery:** the conditional-write, recovery-draft,
+  merge, atomic-replacement, and external-change contract;
+- **SDP-G04 — Shared execution envelope:** `DocumentBuild` and `AnalysisRun`
+  shared base without semantic collapse;
+- **SDP-G05 — Typesetting distribution:** Tectonic bundling versus
+  discovery-only and the installed-TeX support matrix;
+- **SDP-G06 — LaTeX project resolution:** root-choice
+  persistence/invalidation and output-directory defaults;
+- **SDP-G07 — Language services:** TexLab lifecycle, GPL boundary, and platform
+  distribution;
+- **SDP-G08 — Source/PDF navigation:** the first SyncTeX milestone;
+- **SDP-G09 — Mathematics renderer:** KaTeX acceptance or evidence for a
+  MathJax fallback;
+- **SDP-G10 — Broad viewer:** the broad viewer selected after fixture
+  comparison;
+- **SDP-G11 — DOCX preservation:** the DOCX engine selected after the
+  GenOffice/EigenPal/Sobree corpus;
+- **SDP-G12 — Rich editor:** the rich editor selected after the
+  Tiptap/Plate/Lexical corpus;
+- **SDP-G13 — Native manuscript model:** exact structured-native manuscript
+  representation and citation/evidence contracts;
+- **SDP-G14 — Reconciliation:** the fidelity receipt and authority-conversion
+  UX;
+- **SDP-G15 — Review and collaboration:** the history/review operation model
+  and collaboration-engine winner;
+- **SDP-G16 — Spreadsheet and presentation depth:** the first XLSX and PPTX
+  edit milestones;
+- **SDP-G17 — Publication:** the publication profile, template, submission,
+  and deposit model;
+- **SDP-G18 — External suites and services:** whether any future Overleaf,
+  ONLYOFFICE, or Collabora integration or service materially beats independent
+  implementation behind Scient contracts; and
+- **SDP-G19 — Institution and mobile:** where organization, institution,
+  policy, and mobile depth enters actual product sequencing.
 
 ## Approval Proposal
 
