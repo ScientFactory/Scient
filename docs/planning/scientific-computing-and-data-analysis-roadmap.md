@@ -3,8 +3,8 @@
 Status: Proposed
 Owner: Yaacov
 Created: 2026-07-24
-Last updated: 2026-07-25
-Purpose: Proposes the product boundary, architecture direction, source-adaptation strategy, and ordered implementation path for manual code editing, Python, R, MATLAB, notebooks, compiled scientific documents, datasets, tables, figures, analysis runs, reproducible computational work, and the shared foundations required by Scient's future full manuscript platform.
+Last updated: 2026-08-12
+Purpose: Proposes the product boundary, architecture direction, source-adaptation strategy, and ordered implementation path for manual code editing, Python, R, MATLAB, notebooks, executable documents, datasets, tables, figures, analysis runs, reproducible computational work, and the shared foundations it coordinates with Scient's document platform.
 Doc type: Planning note
 
 ## Decision Summary
@@ -25,17 +25,12 @@ LaTeX, Typst, tables, and figures can then attach through adapters without
 forcing Scient to become a fork of VS Code, RStudio, Positron, JupyterLab,
 MATLAB, or Overleaf.
 
-The foundation is not complete merely because it can compile a `.tex` file.
-It must be able to grow into a capability-complete scientific authoring and
-publishing platform: file-native LaTeX/Typst/Quarto projects, rich visual
-authoring, citations and evidence, comments and tracked changes, history,
-real-time collaboration, templates, integrations, submission, institutional
-administration, and agent assistance. “Everything Overleaf has” is therefore a
-long-term capability envelope, not an instruction to make Overleaf's code,
-service topology, or LaTeX-only model Scient's foundation. The broader
-open-source adaptation inventory adds requirements from Tiptap/Plate/Lexical,
-Zotero/JabRef/CSL, Zettlr, Quarto/Pandoc/MyST, Stencila, Word/Google Docs,
-Yjs/Automerge/ShareDB, OSF/Dataverse/OpenReview, and scientific analysis tools.
+The sibling [Scientific Document Platform Roadmap](scientific-document-platform-roadmap.md)
+now owns universal document viewing, inline mathematics, LaTeX and peer
+typesetting projects, Office compatibility, structured manuscript authoring,
+review, collaboration, and publishing. This computing roadmap must preserve
+the shared document, project-resolution, execution, diagnostics, and artifact
+seams while keeping `AnalysisRun` and `DocumentBuild` semantically distinct.
 
 The recommended direction is:
 
@@ -136,17 +131,18 @@ It also depends on, but does not replace:
   for the fork-versus-adapter boundary;
 - [Open-Source Adaptation Map](../research/source-evaluations/open-source-adaptation-map.md)
   for the broader donor inventory;
+- [Scientific Document Platform Roadmap](scientific-document-platform-roadmap.md)
+  for universal viewing, mathematics, typesetting, Office interoperability,
+  manuscript authoring, review, collaboration, and publishing;
+- [Scientific Document Platform Source Map](../research/source-evaluations/scientific-document-platform-source-map.md)
+  for focused document-platform donor evidence, pins, exclusions, and gates;
 - the generic “open any file from chat” plan for one consistent file-opening
   path, exact-file resolution, and recoverable viewer states;
 - future architecture decisions for execution, artifacts, reproducibility,
   project format, permissions, and collaboration;
-- the emerging manuscript/LaTeX plan for a first universal typesetting opener
-  and, later, capability-complete scholarly authoring that meets or exceeds the
-  useful Overleaf-class workflow while integrating Scient's evidence,
-  analysis, figure, agent, and local-first strengths. Its engine choice, first
-  vertical slice, canonical manuscript representation, collaboration model,
-  and donor-adaptation depth remain proposal inputs rather than decisions made
-  by this roadmap.
+- future accepted document-platform architecture and implementation plans. The
+  engine choice, first typesetting slice, manuscript representation,
+  collaboration model, and donor-adaptation depth remain outside this roadmap.
 
 ## Current Product Truth: What Scient Can Do Today
 
@@ -1183,10 +1179,22 @@ The active Scient roadmap already names OpenNeuro/BIDS fixtures. This domain
 pack should validate that the generic workbench serves a real neuroscientist,
 not redefine the generic workbench around one field.
 
-## LaTeX And The Long-Term Overleaf Direction
+## Document-Platform Handoff: LaTeX And The Long-Term Overleaf Direction
 
-The current LaTeX discussion is an input to this roadmap, not an accepted
-engine or product decision. Its central architectural claim is sound: the
+The [Scientific Document Platform Roadmap](scientific-document-platform-roadmap.md)
+now owns the integrated proposal, stages, current Scient Desktop Next baseline,
+viewer UX, Office/manuscript relationships, approval boundary, and complete
+quality plan. The focused
+[source map](../research/source-evaluations/scientific-document-platform-source-map.md)
+owns current upstream pins and source dispositions. This section is retained
+only as the computing workbench's shared-contract rationale; where planning
+details diverge, the focused document-platform roadmap governs this proposed
+product area.
+
+The retained LaTeX discussion records shared-contract rationale; the focused
+document-platform roadmap now owns its product proposal, and no engine or
+product decision is accepted here. Its central architectural claim remains
+sound: the
 first universal typesetting opener should be a thin, durable layer of the later
 manuscript workbench, not a disposable `LatexFilePreview` component.
 
