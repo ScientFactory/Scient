@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-08-09
+Last updated: 2026-08-12
 Purpose: Defines where Scient planning documents live and how they relate to product truth, architecture, design, quality, and research documents.
 Doc type: Repo orientation
 
@@ -32,6 +32,11 @@ Current planning docs:
   T3 foundation migration as the current enabling track before the first full
   Scient scientific project slice.
 - `scientific-computing-and-data-analysis-roadmap.md` - proposed product boundary, source strategy, architecture direction, and ordered implementation path for manual code editing, Python, R, MATLAB, notebooks, datasets, figures, and reproducible analysis artifacts.
+- `scientific-document-platform-roadmap.md` - proposed integrated product
+  boundary, architecture direction, source strategy, quality gates, and ordered
+  implementation path for universal document viewing, mathematics,
+  LaTeX/typesetting, Office interoperability, manuscript authoring, review,
+  collaboration, and publishing.
 - `first-scient-vertical-slice-implementation-plan.md` - superseded
   Synara-specific source-tracing and implementation plan, preserved for its
   reasoning and completed project-initiation evidence.

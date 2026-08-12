@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-07-16
-Last updated: 2026-08-09
+Last updated: 2026-08-12
 Purpose: Defines the current sequence of coherent Scient product outcomes without turning technology experiments into the product roadmap.
 Doc type: Planning note
 
@@ -149,6 +149,10 @@ not replace deterministic component checks or comparable agent measurements.
   suite.
 - ERP CORE and ATLAS Higgs remain reserve capability candidates; ManyBabies 4
   remains the designated first-project fallback.
-- Manuscript, analysis, figure, publishing, and open-science expansion.
+- Manuscript, analysis, figure, publishing, and open-science expansion. The
+  proposed [Scientific Document Platform roadmap](scientific-document-platform-roadmap.md)
+  owns the integrated document/viewing/mathematics/typesetting/Office/manuscript
+  direction; its stages are not inserted into the active sequence until the
+  relevant product gate advances.
 
 These later items remain sequencing direction, not implementation commitments.

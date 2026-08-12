@@ -3,7 +3,7 @@
 Status: Active
 Owner: Scient 001
 Created: 2026-06-27
-Last updated: 2026-08-06
+Last updated: 2026-08-12
 Purpose: Maps evaluations of external sources and tools that may inform Scient product and architecture decisions.
 Doc type: Repo orientation
 
@@ -24,6 +24,10 @@ Current files:
   role analysis, long-term one-agent direction, transitional-worker options,
   implementation-time proof gate, and explicit non-decisions.
 - `scientific-project-fixture-selection.md` - accepted three-track scientific validation strategy: four rich projects, narrow capability fixtures, agent-evaluation benchmarks, reserves, source evidence, and activation conditions.
+- `scientific-document-platform-source-map.md` - focused external-source
+  evidence, current pins, candidate roles, exclusions, and acceptance gates for
+  document viewing, mathematics, typesetting, Office interoperability,
+  manuscript authoring, publishing, and document collaboration.
 - `source-evaluation-template.md` - future home for the source evaluation template.
 - `t3-migration-capability-catalog.md` - compact research index of the 159
   Synara, Scient, and branch-derived capabilities dispositioned by the active

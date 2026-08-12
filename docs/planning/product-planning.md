@@ -3,7 +3,7 @@
 Status: Draft
 Owner: Yaacov
 Created: 2026-06-28
-Last updated: 2026-07-25
+Last updated: 2026-08-12
 Purpose: Tracks current product planning after the accepted PRD, including candidate features, open product questions, and cross-document handoffs.
 Doc type: Planning note
 
@@ -96,7 +96,7 @@ This is the active feature inventory. It should stay compact. Add detail only wh
 | Source discovery, import, and reading | Database/API connectors, real project library, duplicate-safe source identity, metadata repair, reference-manager import/export, PDF/document parsing, reader and annotations. | Core | Early validation | Read/review later | Architecture handoffs: project format, source parsing, external adapters. |
 | Screening, extraction, and evidence | Screening decisions, evidence records, extraction schemas, extraction tables, claim links, quality/risk judgments, PRISMA-style accounting where needed, study detail backlinks. | Core | Early validation to early expansion | Approval later | Depth depends on first workflow; do not become an enterprise review platform first. |
 | Evidence-grounded synthesis | Ask from project evidence, cited answers, gap/conflict/uncertainty flags, answer-to-note/evidence/draft capture. | Important | Early expansion | Read/review later | Architecture handoff: retrieval and evidence context should not become canonical state. |
-| Manuscript, citations, and publishing | Section/full-draft writing, evidence rail, citation diagnostics, evidence-linked vs auxiliary citations, metadata, journal adaptation, import/export/reconciliation, publication artifacts. | Core | Early validation to early expansion | Read/review and light edit later | Design handoff: serious editor UX. Architecture handoff: citation/export model. |
+| Manuscript, citations, and publishing | Section/full-draft writing, evidence rail, citation diagnostics, evidence-linked vs auxiliary citations, metadata, journal adaptation, import/export/reconciliation, publication artifacts. | Core | Early validation to early expansion | Read/review and light edit later | Proposed integrated direction: [`scientific-document-platform-roadmap.md`](scientific-document-platform-roadmap.md). Design handoff: serious editor UX. Architecture handoff: document authority plus citation/export models. |
 | Data, code, analysis, figures, and artifacts | Script or notebook-compatible work, approved execution, run records, datasets, outputs, stale-output detection, tables, figures, visual planning, artifact manager. | Core | Early validation to early expansion | Desktop first; review later | Proposed ordered direction: [`scientific-computing-and-data-analysis-roadmap.md`](scientific-computing-and-data-analysis-roadmap.md). Architecture handoffs: execution, artifacts, reproducibility, project format. |
 | Agent delegation and safe automation | Object-scoped tasks, context receipts, project-aware tools, proposed artifacts, task queue, durable runs, approvals, retries, cancellation, recovery. | Core | Foundation to early validation | Approval later | Architecture handoffs: `docs/architecture/agent-runtime.md` and `docs/architecture/security-and-permissions.md`. |
 | Model access and routing | Provider-connected subscriptions, bring-your-own API keys, Scient-managed access, manual model choice, and later task-aware routing. | Core | Foundation to early expansion | None first | Sequencing and commercial options: `model-access-and-routing-evolution.md`. Candidate portfolio: `../research/source-evaluations/model-portfolio-and-provider-routing.md`. |

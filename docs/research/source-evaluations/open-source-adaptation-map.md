@@ -3,7 +3,7 @@
 Status: Proposed
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-08-09
+Last updated: 2026-08-12
 Purpose: Maps which open-source systems Scient should study, prototype, adapt, or integrate, and which product boundaries Scient must keep owned.
 Doc type: Research evidence
 
@@ -18,6 +18,14 @@ implementation, package boundaries, or final dependency choices. Product truth
 belongs in `docs/product/`. Accepted stack direction belongs in
 `docs/architecture/`. Hard-to-reverse decisions belong in
 `docs/architecture/decisions/`.
+
+The focused
+[Scientific Document Platform Source Map](scientific-document-platform-source-map.md)
+owns current pins, license boundaries, source roles, exclusions, and acceptance
+gates for viewing, mathematics, typesetting, Office interoperability,
+manuscript authoring, publishing, and document collaboration. This broader map
+retains the cross-portfolio synthesis and should link rather than compete when
+those details change.
 
 ### Update Policy
 
@@ -531,6 +539,13 @@ high-fidelity Office projection with Scient's manuscript model.
 
 ### Office-Format Fidelity And Editable Artifact Sources
 
+The evidence below records the 2026-08-03 through 2026-08-06 deep review and
+alternative scan. The focused
+[Scientific Document Platform Source Map](scientific-document-platform-source-map.md)
+records the refreshed 2026-08-12 upstream heads and is the current owner for
+document-platform pins and selection gates. Older verification results below
+apply only to the stated revisions; they must not be imputed to current heads.
+
 GenOffice is an AI-native Electron office suite with separate Docs, Sheets,
 Slides, PDF, and shell applications plus private workspace packages. Its most
 distinctive mechanism is not the suite UI: it keeps the original Office package,
@@ -705,6 +720,12 @@ ASReview is the main open-source source; Rayyan/Covidence/etc. are UX and
 workflow references.
 
 ### Scientific Publishing, Export, And Submission
+
+The focused
+[Scientific Document Platform Source Map](scientific-document-platform-source-map.md)
+owns current typesetting, authoring, Office, and publishing source pins and
+acceptance gates. This section retains their role in Scient's wider
+open-source portfolio.
 
 | Source | Adaptation target | Why it matters | Do not adopt | Depth status |
 |---|---|---|---|---|
@@ -1042,7 +1063,9 @@ parsers for tiered general ingestion; PaperQA/ASReview-powered evidence
 workflows; Lacuna-inspired
 research-map patterns for paper-grounded search and synthesis;
 Quarto/Pandoc-first export with MyST as challenger;
-GenOffice as the current baseline and primary multi-format Office-fidelity
+the focused [Scientific Document Platform Source Map](scientific-document-platform-source-map.md)
+as the owner of current document-source pins and gates; GenOffice as the
+current baseline and primary multi-format Office-fidelity
 donor; EigenPal's open core and Sobree as genuine DOCX challengers in one
 fixed-corpus proof; Univer as a likely later spreadsheet surface rather than an
 OOXML authority; deferring PPTX/XLSX selection until their scientific artifact
