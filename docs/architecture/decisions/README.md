@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-08-02
+Last updated: 2026-08-13
 Purpose: Indexes Scient's accepted and serious proposed architecture decision records and the rules for using them.
 Doc type: Repo orientation
 
@@ -27,6 +27,10 @@ Current decisions:
   Synara-derived app as the supported continuity product until explicit
   cutover. Candidate bootstrap is authorized only through the active migration
   plan and its evidence gates.
+- `ADR-0006-project-owned-scient-state-and-source-store.md` - proposes
+  `.scient/` as the project-owned Scient state boundary, documents the
+  implemented Sources store, and keeps Zotero behind a local read-only
+  adapter. It remains Proposed pending explicit architecture acceptance.
 
 Superseded decisions:
 
