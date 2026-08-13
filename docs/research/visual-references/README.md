@@ -3,7 +3,7 @@
 Status: Active
 Owner: Scient 001
 Created: 2026-07-12
-Last updated: 2026-07-18
+Last updated: 2026-07-25
 Purpose: Maps external and historical internal UI screenshots into retrieval-friendly categories for later product-design research.
 Doc type: Repo orientation
 
@@ -20,6 +20,7 @@ These references are research evidence kept for later comparison and inspiration
 | Dashboards and settings | Administrative dashboards, configuration views, status communication, hierarchy, spacing, surfaces, and visual tone | [Browse dashboard and settings references](dashboard-and-settings/README.md) |
 | Dialogs and overlays | Important prompts, blocking modals, confirmations, warnings, interruptions, and other layered interactions | [Browse dialog and overlay references](dialogs-and-overlays/README.md) |
 | Identity | Historical LitRev symbol sources, adopted scaffold identity, and unselected visual alternatives | Not yet indexed |
+| Marketing and website | Public marketing and product-website surfaces: landing heroes, download and distribution flows, pricing, FAQ, and other acquisition-facing pages | [Browse marketing and website references](marketing-and-website/README.md) |
 | Motion and interaction | Hover responses, transitions, animated previews, state changes, and other time-dependent interface behavior | [Browse motion and interaction references](motion-and-interaction/README.md) |
 
 Future references should be indexed by the product surface or interaction they primarily illustrate. Visual qualities such as color may be noted inside a reference without making that image a selected Scient palette.

@@ -18,9 +18,12 @@ Current planning docs:
 - `product-measurement-and-analytics-plan.md` - proposed product-measurement
   contract, privacy boundary, event catalog, KPI model, dashboard portfolio,
   cross-repository implementation sequence, and activation gates.
-- `desktop-fix-inbox.md` - temporary intake for observed Scient desktop
-  problems that need diagnosis or a bounded fix but are not being implemented
-  immediately.
+- `desktop-fix-inbox.md` - current intake for observed problems in the
+  T3-derived Scient desktop that need diagnosis or a bounded fix but are not
+  being implemented immediately.
+- `desktop-fix-inbox-legacy.md` - historical unresolved observations from the
+  retired Synara-derived desktop; reproduce them in the current app before
+  reopening work.
 - `idea-inbox.md` - temporary intake for raw, unprocessed ideas before evaluation and routing.
 - `linux-distribution-hardening.md` - proposed cross-repository migration from
   an insecure Ubuntu AppImage fallback to an installed, sandbox-preserving
@@ -49,6 +52,9 @@ Current planning docs:
 - `litrev-to-papilab-rename-execution-plan.md` - historical intermediate product-identity migration, verification, and rollback record for renaming LitRev to PapiLab.
 - `gate-1-5-execution-plan.md` - historical execution plan for owned source repositories, upstream synchronization, and Synara identity isolation.
 - `model-access-and-routing-evolution.md` - priorities and open choices for provider-connected, bring-your-own-key, Scient-managed, and automatically routed model access.
+- `provider-connection-and-lifecycle-experience.md` - proposed M1 product and
+  architecture plan for provider setup, authentication, verification,
+  selection, maintenance, recovery, composer actions, and Settings clarity.
 - `open-source-adaptation-build-strategy.md` - active evergreen ownership,
   fork/adapter, upstream-update, capability-internalization, and divergence
   strategy across T3, Synara, the still-open Scient-agent foundation, and other

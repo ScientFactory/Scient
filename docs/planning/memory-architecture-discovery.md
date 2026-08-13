@@ -3,7 +3,7 @@
 Status: Draft
 Owner: Yaacov
 Created: 2026-07-18
-Last updated: 2026-07-18
+Last updated: 2026-07-23
 Purpose: Preserves the candidate scopes, vocabulary, product questions, trust boundaries, and investigation sequence required before Scient proposes or implements a memory architecture.
 Doc type: Planning note
 
@@ -180,6 +180,90 @@ Possible purpose:
 
 Open distinction: raw history can support memory without being injected into
 future context or treated as current guidance.
+
+## Skill-Assisted Repository Knowledge As A Bootstrap
+
+One candidate near-term path is to use a repository skill to help agents and
+researchers recognize when consequential project knowledge should become an
+ordinary durable document. This could improve continuity before the real
+project-memory system is designed and implemented.
+
+This is not an either-or choice between a skill and project memory. The current
+recommendation for evaluation is:
+
+1. use governed documentation assistance now as a transparent bootstrap;
+2. begin the real project-memory discovery now at the product and behavior
+   level; and
+3. implement the memory system only after scope, authority, lifecycle,
+   provenance, correction, access, and portability requirements are settled.
+
+Scient already has a repository-local [Documentation Stewardship
+skill](../../skills/documentation/scient-documentation-stewardship/SKILL.md)
+that governs documentation placement, promotion, reconciliation, and evidence
+boundaries. The first experiment should use or narrowly extend that workflow
+rather than creating a competing memory skill immediately. A distinct project
+knowledge skill should be created only if real use exposes responsibilities
+that do not belong in documentation stewardship.
+
+### What The Bootstrap May Do
+
+- identify explicit candidates for durable project knowledge, such as project
+  direction, decisions, methods, unresolved questions, repeated explanations,
+  and project-specific working or writing preferences;
+- propose an update to the existing owning document rather than creating a
+  hidden memory store or duplicate file;
+- preserve source, human ownership, uncertainty, date, status, and links to the
+  underlying project record where appropriate;
+- let the researcher inspect and correct the proposed documentation change;
+- distinguish a preference that belongs to this project from a private user
+  preference that should not be copied into the repository; and
+- make durable knowledge available through normal readable project files while
+  the full memory model remains unresolved.
+
+### What The Bootstrap Must Not Do
+
+- silently infer, accumulate, or publish personal preferences;
+- treat every chat statement, transcript, event, file, or generated summary as
+  memory;
+- place cross-project user memory into a project repository by default;
+- let a user preference override project rules, evidence, collaborator
+  decisions, institutional policy, or explicit current instructions;
+- inject every repository document into every agent context;
+- claim to solve promotion, precedence, conflict, forgetting, privacy,
+  collaboration, retrieval, synchronization, or recovery; or
+- become an accidental storage architecture that the later memory system must
+  preserve forever.
+
+Project-specific preferences may be candidates for project memory. Personal
+preferences intended to follow one person across projects remain a separate
+user-memory question, even when a documentation skill helps identify the
+distinction.
+
+### Relationship To The Future Memory System
+
+The skill is best understood as a capture and maintenance interface, not the
+memory system itself. When real project memory exists, the skill may continue
+to propose promotions, corrections, or durable document updates through the
+memory system's accepted authority and provenance rules.
+
+Existing readable project documents should remain understandable project
+material. A later memory system may reference or index them, but it should not
+silently reinterpret every bootstrap document as trusted memory. Any import or
+promotion path needs explicit review, provenance, and a reversible migration
+boundary.
+
+Open evaluation questions include:
+
+- Which knowledge candidates can the skill document without a separate
+  confirmation step, and which always require explicit approval?
+- Where should project-specific preferences live before structured project
+  memory exists?
+- How should an agent show why it believes a fact or preference deserves
+  durable documentation?
+- Which gaps in the existing documentation-stewardship skill would justify a
+  distinct project-knowledge skill?
+- How will bootstrap documents be reviewed, referenced, or migrated after the
+  real project-memory system exists?
 
 ## Candidate Scope Matrix
 
@@ -373,6 +457,10 @@ The discussion should distinguish:
 9. A researcher exports or leaves Scient and can retain understandable project
    files, relevant memory, decisions, and provenance without requiring the
    original provider transcript.
+10. Before structured project memory exists, a documentation skill proposes a
+    project-specific preference or decision for a readable repository document.
+    The researcher can inspect and correct the proposal, and the information
+    does not become cross-project user memory or opaque agent authority.
 
 ## Historical Reference: LitRev 2026
 
