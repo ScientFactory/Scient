@@ -3,17 +3,16 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-08-10
-Last updated: 2026-08-13
+Last updated: 2026-08-18
 Purpose: Captures observed problems in the current T3-derived Scient desktop app that need a bounded diagnosis or fix but are not being implemented immediately.
 Doc type: Planning note
 
 ## Document Rules
 
 This is the one current intake file for concrete desktop problems in the
-T3-derived Scient app. The [Legacy Desktop Fix
-Inbox](desktop-fix-inbox-legacy.md) is historical evidence from the retired
-Synara-derived application and must not guide new fixes without fresh
-reproduction in the current app.
+T3-derived Scient app. Historical observations from the retired Synara-derived
+application remain available in Git history, but must not guide new fixes
+without fresh reproduction in the current app.
 
 Use this file for concrete desktop problems whose current behavior has been
 observed and whose desired behavior is understood well enough to investigate.

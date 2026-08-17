@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-08-12
+Last updated: 2026-08-18
 Purpose: Defines where Scient planning documents live and how they relate to product truth, architecture, design, quality, and research documents.
 Doc type: Repo orientation
 
@@ -21,9 +21,6 @@ Current planning docs:
 - `desktop-fix-inbox.md` - current intake for observed problems in the
   T3-derived Scient desktop that need diagnosis or a bounded fix but are not
   being implemented immediately.
-- `desktop-fix-inbox-legacy.md` - historical unresolved observations from the
-  retired Synara-derived desktop; reproduce them in the current app before
-  reopening work.
 - `idea-inbox.md` - temporary intake for raw, unprocessed ideas before evaluation and routing.
 - `linux-distribution-hardening.md` - proposed cross-repository migration from
   an insecure Ubuntu AppImage fallback to an installed, sandbox-preserving
