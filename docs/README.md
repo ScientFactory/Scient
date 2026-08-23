@@ -3,19 +3,20 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-08-12
+Last updated: 2026-08-23
 Purpose: Maps the Scient documentation structure and where each kind of information belongs.
 Doc type: Repo orientation
 
-This parent repository remains documentation-first. The standalone desktop
-source repository contains the first narrow Scient-owned
-project-initiation package, while the scientific application architecture and
-vertical slice remain unbuilt. This structure gives product, architecture,
-planning, research, development, and operations material clear homes without
-presenting planned behavior as current implementation. It is not currently the
-unrestricted memory of the whole company; the proposed connected-company
-boundary lives in [Repository Scope And Company
-Memory](planning/repository-scope-and-company-memory.md).
+This parent repository remains documentation-first. Implementation lives in
+separate source repositories. The T3-derived `scient-desktop-next` candidate now
+contains several Scient-owned capabilities and draft
+[scientific-compute PR #129](https://github.com/ScientFactory/scient-desktop-next/pull/129),
+but it is not released or the current supported application. This
+structure gives product, architecture, planning, research, development, and
+operations material clear homes without presenting proposed or draft behavior
+as shipped product truth. It is not currently the unrestricted memory of the
+whole company; the proposed connected-company boundary lives in [Repository
+Scope And Company Memory](planning/repository-scope-and-company-memory.md).
 
 The root [Scient README](../README.md) owns the internal workspace map: four
 core migration repositories, with the website optional when relevant. This
@@ -39,6 +40,8 @@ Start here:
   draft candidate scopes, questions, scenarios, and discovery sequence; no
   memory architecture or storage technology is selected.
 - [Product roadmap](planning/product-roadmap.md) - current sequence of coherent product outcomes.
+- [Scientific Computing and Data Analysis roadmap](planning/scientific-computing-and-data-analysis-roadmap.md) - proposed cross-language capability catalog and source research; its original staged sequence is not the active `scient-desktop-next` compute plan.
+- [Scientific Python Environment roadmap](planning/scientific-python-environment-roadmap.md) - proposed Python use-case catalog, explicitly subordinate to the accepted compute ADR for implementation and sequencing.
 - [Scientific Document Platform roadmap](planning/scientific-document-platform-roadmap.md) - proposed integrated direction for universal document viewing, mathematics, LaTeX/typesetting, Office interoperability, manuscript authoring, review, collaboration, and publishing.
 - [Scientific Document Platform source map](research/source-evaluations/scientific-document-platform-source-map.md) - focused source evidence, pins, roles, exclusions, and acceptance gates for the proposed document platform.
 - [Product measurement and analytics plan](planning/product-measurement-and-analytics-plan.md) - proposed privacy-preserving measurement contract, event catalog, KPI definitions, dashboard portfolio, implementation sequence, and production activation gates.

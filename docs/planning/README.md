@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-08-18
+Last updated: 2026-08-23
 Purpose: Defines where Scient planning documents live and how they relate to product truth, architecture, design, quality, and research documents.
 Doc type: Repo orientation
 
@@ -31,7 +31,15 @@ Current planning docs:
 - `product-roadmap.md` - active sequence of coherent product outcomes, with the
   T3 foundation migration as the current enabling track before the first full
   Scient scientific project slice.
-- `scientific-computing-and-data-analysis-roadmap.md` - proposed product boundary, source strategy, architecture direction, and ordered implementation path for manual code editing, Python, R, MATLAB, notebooks, datasets, figures, and reproducible analysis artifacts.
+- `scientific-computing-and-data-analysis-roadmap.md` - proposed cross-language
+  product boundary, capability catalog, and source research for scientific
+  computing. Its original staged order is superseded for
+  `scient-desktop-next` compute by the accepted implementation ADR linked from
+  the document.
+- `scientific-python-environment-roadmap.md` - proposed Python use-case catalog
+  covering execution, inspectable data, statistics, representations,
+  reproducibility, notebooks, pipelines, domain adapters, agent affordances,
+  and provenance. It does not own current implementation state or sequencing.
 - `scientific-document-platform-roadmap.md` - proposed integrated product
   boundary, architecture direction, source strategy, quality gates, and ordered
   implementation path for universal document viewing, mathematics,

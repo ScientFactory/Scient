@@ -3,9 +3,33 @@
 Status: Proposed
 Owner: Yaacov
 Created: 2026-07-24
-Last updated: 2026-08-12
-Purpose: Proposes the product boundary, architecture direction, source-adaptation strategy, and ordered implementation path for manual code editing, Python, R, MATLAB, notebooks, executable documents, datasets, tables, figures, analysis runs, reproducible computational work, and the shared foundations it coordinates with Scient's document platform.
+Last updated: 2026-08-23
+Purpose: Preserves the proposed product boundary, long-range capability catalog, and source-adaptation research for scientific computing and data analysis; current `scient-desktop-next` compute architecture and sequencing live in the accepted implementation ADR.
 Doc type: Planning note
+
+## Document Rules
+
+This document remains a **Proposed** cross-language product and capability
+catalog subordinate to the accepted [PRD](../product/PRD.md). Its original
+Stage 0-10 order is no longer the implementation sequence for
+`scient-desktop-next` scientific compute.
+
+The accepted
+[Stateful Scientific Compute Foundation](https://github.com/ScientFactory/scient-desktop-next/blob/codex/scient-compute-figure-follow-20260821/docs/internals/scient-compute-session-foundation.md),
+currently reviewed in draft
+[`scient-desktop-next` PR #129](https://github.com/ScientFactory/scient-desktop-next/pull/129),
+owns the implemented `ComputeSession` architecture, delivered Phase 0-4
+sequence, qualification ledger, and post-baseline dependency gates. The
+[Scientific Python Environment Roadmap](scientific-python-environment-roadmap.md)
+owns proposed Python use-case depth. Neither planning note may override the
+accepted ADR or present proposed behavior as implemented.
+
+### Update Policy
+
+Update this document when its cross-language product scope, source evidence, or
+capability inventory changes. Update implementation state and sequencing in the
+owning `scient-desktop-next` ADR first, then reconcile only the affected summary
+here. Do not restore this document as an active serial implementation plan.
 
 ## Decision Summary
 
@@ -13,17 +37,23 @@ Scient should build one first-class **Scientific Computing and Data Analysis**
 workbench, not a collection of unrelated Python, R, MATLAB, notebook, table,
 and chart features.
 
-The first product gap is more basic than a language integration: the current
-Scient desktop app can read and diff code, but it does not provide a normal
-manual code editor. The workbench should therefore begin with a durable,
-project-aware editable document surface, followed by shared project-resolution,
-execution, diagnostics, and artifact foundations. Scientific analysis and
-compiled documents should specialize those foundations through distinct
-contracts such as `AnalysisRun` and `DocumentBuild`; they should not be forced
-into one oversized runtime abstraction. Python, R, MATLAB, Jupyter, Quarto,
-LaTeX, Typst, tables, and figures can then attach through adapters without
-forcing Scient to become a fork of VS Code, RStudio, Positron, JupyterLab,
-MATLAB, or Overleaf.
+The original proposal treated a manual editor as the first implementation gate.
+That sequence is superseded. The T3-derived `scient-desktop-next` candidate now
+has an ordinary editable file surface, and draft PR #129 implements the first
+stateful Python loop through a separate `ComputeSession` domain. It includes
+runtime settings and verification, file/selection/explicit-cell execution,
+bounded variables, text and traceback output, static PNG/SVG figures, durable
+history, interrupt/restart/stop, and file-first Code/Split/Results viewing.
+This candidate is owner-accepted locally on macOS but is not merged, released,
+or cross-platform qualified.
+
+The remaining product direction still matters: scientific analysis and
+compiled documents should specialize shared foundations through distinct
+contracts such as `ComputeSession`, `AnalysisRun`, and `DocumentBuild`; they
+must not be forced into one oversized runtime or artifact abstraction. Python,
+R, MATLAB, Jupyter, Quarto, LaTeX, Typst, tables, and figures should compose
+through explicit adapters and shared viewers without turning Scient into a fork
+of another IDE or notebook product.
 
 The sibling [Scientific Document Platform Roadmap](scientific-document-platform-roadmap.md)
 now owns universal document viewing, inline mathematics, LaTeX and peer
@@ -32,40 +62,33 @@ review, collaboration, and publishing. This computing roadmap must preserve
 the shared document, project-resolution, execution, diagnostics, and artifact
 seams while keeping `AnalysisRun` and `DocumentBuild` semantically distinct.
 
-The recommended direction is:
+The retained capability direction is:
 
-1. Correct current file classification and unsupported-state bugs.
-2. Add first-class manual editing with explicit save, conflict, and recovery
-   behavior.
-3. Add a shared execution coordinator, project/dependency resolver, event
-   vocabulary, diagnostics model, and artifact contract, while preserving
-   specialized analysis-run and document-build semantics.
-4. Prove the shared foundation with one bounded vertical slice. Python remains
-   the first analysis adapter; whether a LaTeX build or Python run is the first
-   overall proof remains an explicit sequencing decision rather than an
-   architecture constraint.
-5. Turn execution outputs into inspectable project artifacts: logs, tables, images,
-   SVG, PDF, HTML, and generated files.
-6. Add Jupyter-compatible notebooks and executable documents without embedding
-   all of JupyterLab.
-7. Add data exploration, variable inspection, figure workflows, language
-   services, debugging, and remote compute in that order.
-8. Add domain packs such as neuroscience/BIDS after the generic workbench can
-   already open, edit, run, inspect, compare, and recover ordinary analysis.
-9. Gate every shared document decision against the complete manuscript
-   capability envelope so the first opener, editor, build, history, and
-   collaboration work remains usable rather than becoming migration debt.
+1. Preserve the accepted stateful execution, source-authority, provenance,
+   persistence, and process-lifecycle foundation already delivered by PR #129.
+2. Make optional runtime acquisition and repair understandable without silently
+   mutating user-owned environments or installing languages a user did not
+   choose.
+3. Add bounded structured-data inspection and a neutral scientific
+   representation registry so tables, interactive figures, safe HTML, and
+   future notebook outputs share one viewing contract.
+4. Begin notebook document/trust work and a real second-language adapter early
+   enough to prevent Python/file-view assumptions from becoming permanent.
+5. Keep portable project-result publication, multi-session depth, richer
+   language intelligence, remote execution, and agent operation behind their
+   explicit authority, provenance, and reliability gates.
+6. Add domain packs such as neuroscience/BIDS only after the generic workbench
+   can open, run, inspect, compare, and recover ordinary scientific work.
 
-The recommended editor substrate is **CodeMirror 6**, subject to a bounded
-capability proof. Keep the existing `@pierre/diffs` integration for diff
-rendering. Adapt T3's useful interaction patterns—editable file review, pending
-save state, line-linked comments, and source/rendered modes—but do not make its
-currently patched beta `@pierre/diffs/editor` package Scient's permanent editor
-foundation.
+The historical CodeMirror recommendation below remains dependency research, not
+a gate for compute. The implemented candidate uses the ordinary inherited file
+surface and keeps Scient-owned compute UI behind narrow mounts. Any later
+editor change must be decided on editor requirements rather than reopening the
+compute architecture.
 
 This is a proposed direction, not accepted product truth or accepted
-architecture. Approval should authorize focused design and architecture work,
-not a wholesale IDE build.
+architecture. It is not an implementation checklist and does not authorize a
+wholesale IDE build.
 
 ## Why This Is A Separate Product Category
 
@@ -127,6 +150,11 @@ sequenced in the active [Product Roadmap](product-roadmap.md).
 
 It also depends on, but does not replace:
 
+- the accepted
+  [Stateful Scientific Compute Foundation](https://github.com/ScientFactory/scient-desktop-next/blob/codex/scient-compute-figure-follow-20260821/docs/internals/scient-compute-session-foundation.md)
+  for implemented compute architecture, delivered phases, qualification, and
+  post-baseline dependency gates;
+
 - [Open-Source Adaptation Build Strategy](open-source-adaptation-build-strategy.md)
   for the fork-versus-adapter boundary;
 - [Open-Source Adaptation Map](../research/source-evaluations/open-source-adaptation-map.md)
@@ -144,11 +172,14 @@ It also depends on, but does not replace:
   engine choice, first typesetting slice, manuscript representation,
   collaboration model, and donor-adaptation depth remain outside this roadmap.
 
-## Current Product Truth: What Scient Can Do Today
+## Historical Installed-Baseline Audit
 
 This section distinguishes the installed release from proposed or in-progress
 viewer work. It was checked against the installed macOS app version `0.5.12`,
 the `release/stable` desktop source, and the current local source on 2026-07-24.
+It is preserved as historical input and must not be used as current
+`scient-desktop-next` implementation truth; the accepted compute ADR and its
+qualification ledger own that state.
 
 | Capability | Current state | Consequence |
 |---|---|---|
@@ -744,10 +775,13 @@ coordination, and tests—while proving CodeMirror against the scientific cases.
 If the CodeMirror proof fails a critical capability, re-evaluate Monaco and the
 newer `@pierre/diffs/editor`; do not commit to the beta dependency by default.
 
-## Ordered Roadmap
+## Capability Catalog From The Original Staged Proposal
 
-The sequence below intentionally uses dependency and user value rather than
-calendar estimates.
+The stage order below records the original proposal and remains useful as a
+long-range capability decomposition. It is superseded as an implementation
+sequence by the accepted compute ADR's delivered Phase 0-4 baseline and
+post-baseline capability tracks. Stage numbers do not determine current
+priority, and completed work is not re-opened merely because it appears below.
 
 ## Stage 0 — Make Current File Truth Accurate
 
@@ -1640,9 +1674,11 @@ validator before attempting heavy imaging visualization.
 - Do not delay useful viewing because a perfect typed editor is unavailable;
   show the file and provide honest capabilities and continuations.
 
-## Approval Proposal
+## Retained Proposal Boundaries
 
-Approve the following direction:
+The original proposal asked reviewers to evaluate the following boundaries.
+They remain proposed unless accepted in an owning product or architecture
+document; this list no longer proposes an active implementation order:
 
 1. **Category:** establish Scientific Computing and Data Analysis as the owner
    of manual scientific source editing, runtimes, notebooks, data exploration,
@@ -1708,10 +1744,11 @@ Reject for now:
 - an unqualified promise of full IDE, Overleaf, MATLAB, or RStudio parity in
   the first implementation.
 
-## First Implementation Planning Handoffs After Approval
+## Historical Planning Handoffs
 
-Approval of this roadmap should create separate bounded documents rather than
-turning this planning note into implementation architecture:
+This original handoff list is retained as historical planning context. It does
+not create current tasks or require separate documents where the accepted
+compute ADR or an implemented subsystem already owns the decision:
 
 1. editable workspace document and conditional-write architecture;
 2. universal surface registry and file capability design;
@@ -1738,7 +1775,7 @@ turning this planning note into implementation architecture:
     license, operations, local-first, and structured-manuscript decision record;
 18. notebook protocol/rendering spike after the script-run gate passes.
 
-## Roadmap Completion Criteria
+## Capability-Catalog Review Criteria
 
 This proposal is ready for an approval decision when reviewers agree that it:
 
