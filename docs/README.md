@@ -3,22 +3,22 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-08-12
+Last updated: 2026-08-28
 Purpose: Maps the Scient documentation structure and where each kind of information belongs.
 Doc type: Repo orientation
 
-This parent repository remains documentation-first. The standalone desktop
-source repository contains the first narrow Scient-owned
-project-initiation package, while the scientific application architecture and
-vertical slice remain unbuilt. This structure gives product, architecture,
-planning, research, development, and operations material clear homes without
-presenting planned behavior as current implementation. It is not currently the
+This repository remains documentation-first. The active T3-derived desktop is
+implemented and released independently from `ScientFactory/scient-desktop`;
+proposed scientific-platform direction remains here until accepted architecture
+or implementation receives its proper owner. This structure gives product,
+architecture, planning, research, development, and operations material clear
+homes without presenting planned behavior as current implementation. It is not currently the
 unrestricted memory of the whole company; the proposed connected-company
 boundary lives in [Repository Scope And Company
 Memory](planning/repository-scope-and-company-memory.md).
 
-The root [Scient README](../README.md) owns the internal workspace map: four
-core migration repositories, with the website optional when relevant. This
+The root [Scient README](../README.md) owns the internal workspace map: three
+active product repositories, with the website optional when relevant. This
 index owns the documentation map inside the `Scient` repository and does not
 turn the sibling repositories into a monorepo.
 
@@ -39,12 +39,15 @@ Start here:
   draft candidate scopes, questions, scenarios, and discovery sequence; no
   memory architecture or storage technology is selected.
 - [Product roadmap](planning/product-roadmap.md) - current sequence of coherent product outcomes.
+- [File, Resource, And Presentation Foundation](planning/file-resource-and-presentation-foundation.md) - proposed horizontal direction for file identity, relocation recovery, shared presentation selection, viewer states, and broad view-only coverage.
 - [Scientific Document Platform roadmap](planning/scientific-document-platform-roadmap.md) - proposed integrated direction for universal document viewing, mathematics, LaTeX/typesetting, Office interoperability, manuscript authoring, review, collaboration, and publishing.
+- [Scientific Computing and Data Analysis roadmap](planning/scientific-computing-and-data-analysis-roadmap.md) - proposed runtime, notebook, data, analysis, and computational-artifact direction.
+- [Scientific Python Environment roadmap](planning/scientific-python-environment-roadmap.md) - proposed Python-specific execution, data, statistics, visualization, notebook, reproducibility, and domain scope.
+- [Scientific Artifact Studio](planning/scientific-artifact-studio.md) - proposed artifact inspection, visual composition, provenance, revision, and publication workspace.
 - [Scientific Document Platform source map](research/source-evaluations/scientific-document-platform-source-map.md) - focused source evidence, pins, roles, exclusions, and acceptance gates for the proposed document platform.
 - [Product measurement and analytics plan](planning/product-measurement-and-analytics-plan.md) - proposed privacy-preserving measurement contract, event catalog, KPI definitions, dashboard portfolio, implementation sequence, and production activation gates.
 - [T3 foundation migration plan](planning/t3-foundation-migration-plan.md) -
-  active proof-gated transition to the accepted successor foundation and the
-  exact D4 completion evidence and later migration gates.
+  historical proof-gated transition, completed cutover, and predecessor-retirement record.
 - [First vertical-slice implementation plan](planning/first-scient-vertical-slice-implementation-plan.md) -
   superseded Synara-specific plan preserved for historical reasoning and
   completed project-initiation evidence.

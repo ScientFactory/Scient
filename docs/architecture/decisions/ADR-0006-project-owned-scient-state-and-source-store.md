@@ -3,7 +3,7 @@
 Status: Proposed
 Owner: Yaacov
 Created: 2026-08-12
-Last updated: 2026-08-13
+Last updated: 2026-08-28
 Purpose: Proposes `.scient/` as the durable project-owned Scient state boundary and documents the implemented source-store and Zotero-adapter contract inside it.
 Doc type: Architecture decision
 
@@ -32,7 +32,7 @@ second identity file or redefine project initialization.
 The Sources store described below is implemented in the T3-derived desktop,
 but its use in code does not by itself make this broader architecture decision
 accepted. Current implementation truth lives in
-`scient-desktop-next/docs/internals/scient-sources.md` and
+`scient-desktop/docs/internals/scient-sources.md` and
 `packages/scient-sources`; explicit human acceptance is still required before
 this ADR becomes architecture authority for future Scient namespaces.
 
@@ -81,6 +81,17 @@ writing and records the project UUID in every durable source and import record.
 An application version is not stored as project identity. File-format versions
 and explicit migrations, rather than whichever desktop build last touched a
 project, determine compatibility.
+
+### Ordinary files and artifacts remain separate authorities
+
+The proposed file/resource foundation may persist stable references and
+observed aliases for mutable ordinary files, but that does not change the
+identity of a source record or its immutable content-addressed attachment.
+Generated document revisions, analysis artifacts, and future Studio or
+manuscript records likewise retain their own lifecycle and retention rules.
+Any future `.scient/` namespace for those records requires its own accepted
+contract; this Sources decision does not pre-authorize a universal file or
+artifact store.
 
 ### Scient owns source meaning
 

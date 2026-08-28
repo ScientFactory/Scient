@@ -3,7 +3,7 @@
 Status: Proposed
 Owner: Yaacov
 Created: 2026-08-12
-Last updated: 2026-08-12
+Last updated: 2026-08-28
 Purpose: Proposes Scient's integrated product boundary, architecture direction, source-adaptation strategy, quality gates, and ordered implementation path for universal document viewing, scientific mathematics, source and visual authoring, typesetting, Office interoperability, review, collaboration, and publishing.
 Doc type: Planning note
 
@@ -21,13 +21,17 @@ own detailed external-source evidence. The focused
 [Scientific Document Platform Source Map](../research/source-evaluations/scientific-document-platform-source-map.md)
 owns that evidence. Accepted hard-to-reverse decisions belong in
 `docs/architecture/decisions/`; implemented desktop behavior belongs beside the
-code in `ScientFactory/scient-desktop-next`.
+code in `ScientFactory/scient-desktop`.
 
-The [Scientific Computing And Data Analysis Roadmap](scientific-computing-and-data-analysis-roadmap.md)
-is a sibling plan. It owns analysis runtimes, notebooks, datasets, variables,
-analysis runs, and computational figures. The two plans must share document,
-project-resolution, execution, diagnostics, and artifact foundations without
-merging `DocumentBuild` and `AnalysisRun` into one ambiguous record.
+The [File, Resource, And Presentation Foundation](file-resource-and-presentation-foundation.md)
+owns horizontal file identity, relocation, presentation selection, viewer
+states, and broad read-only coverage. The
+[Scientific Computing And Data Analysis Roadmap](scientific-computing-and-data-analysis-roadmap.md)
+owns analysis runtimes, notebooks, datasets, variables, analysis runs, and
+computational figures. [Scientific Artifact Studio](scientific-artifact-studio.md)
+owns artifact inspection and structured visual composition. These plans share
+small contracts without merging `DocumentBuild`, `AnalysisRun`, ordinary
+files, generated documents, and Studio compositions into one ambiguous record.
 
 ### Update Policy
 
@@ -52,18 +56,17 @@ not an empty, black, or permanently loading panel.
 
 The recommended direction is:
 
-1. Preserve one universal resource-opening path. The separate universal-opener
-   work resolves a click or path into an openable resource; this platform owns
-   what happens after resolution.
-2. Replace format-specific preview branching with a document-session and
-   surface-adapter boundary that can grow across formats.
-3. Add inline and display mathematics to chat and Markdown independently from
+1. Consume the shared file foundation instead of owning a second opener,
+   relocation resolver, presentation registry, or viewer shell.
+2. Coordinate document sessions and format adapters above that horizontal
+   foundation.
+3. Preserve the implemented inline/display mathematics path independently from
    full document compilation.
-4. Use a universal LaTeX opener as the first complete build-oriented vertical
-   slice: immediate source, root discovery, compilation, diagnostics, log, and
-   retained PDF preview.
-5. Reuse and generalize Scient's existing PDF reader for generated artifacts
-   rather than creating a LaTeX-specific PDF surface.
+4. Preserve and extend the implemented LaTeX build loop: immediate source,
+   root discovery, compilation, diagnostics, log, last-success PDF, and
+   source/PDF synchronization.
+5. Reuse the current producer-neutral generated-document and PDF-reader
+   boundary rather than creating format-specific readers.
 6. Add broad view-only coverage before editing every binary format. A file
    should remain openable even when rich editing or perfect fidelity is not
    available.
@@ -75,7 +78,7 @@ The recommended direction is:
 9. Keep editor, compiler, collaboration, import/export, and viewing engines
    replaceable behind Scient-owned identities, revisions, receipts, and
    operations.
-10. Grow the first LaTeX work into serious authoring, citations and evidence,
+10. Grow the landed LaTeX foundation into serious authoring, citations and evidence,
     review, history, collaboration, templates, publishing, submission, and
     institutional operation without replacing its foundational document and
     artifact contracts.
@@ -190,72 +193,86 @@ chosen editor or collaboration engine.
 
 | Area | Owning plan or product area | Scientific Document Platform relationship |
 |---|---|---|
-| Resolve a chat link, Files-tree entry, search result, or arbitrary supported local path | Universal file-opening work | Produces one bounded openable resource. This platform must consume it rather than add competing click handlers or path rules. |
-| File/document viewing, editing, builds, Office compatibility, manuscripts, review, and publishing | This roadmap | Owns the document lifecycle after resource resolution. |
+| File identity, relocation, preparation, presentation selection, viewer shell, and broad read-only coverage | [File, Resource, And Presentation Foundation](file-resource-and-presentation-foundation.md) | Produces one resolved, authorized resource and selected presentation. This platform must consume it rather than add competing click handlers, path rules, or generic viewer states. |
+| Document editing, builds, Office compatibility, manuscripts, review, and publishing | This roadmap | Owns document-specific lifecycle above the horizontal file/presentation foundation. |
 | Python, R, MATLAB, notebooks, datasets, variables, analysis runs, and computational provenance | [Scientific Computing And Data Analysis](scientific-computing-and-data-analysis-roadmap.md) | Shares editors, project resolution, execution events, diagnostics, and artifacts while preserving analysis-specific semantics. |
 | Sources, reading, extraction, evidence, claims, and citation meaning | PRD source/evidence areas and future focused plans | Supplies structured references, evidence links, source regions, and claim relationships to manuscripts. |
-| Figures and tables | Computing/artifact and manuscript areas jointly | A figure/table may be an analysis artifact, editable document object, and manuscript projection without becoming three unrelated copies. |
+| Artifact inspection, figures, visual composition, and publication export | [Scientific Artifact Studio](scientific-artifact-studio.md) | Documents reference stable artifact revisions and projections; the manuscript editor does not become the figure runtime or canvas. |
 | Project identity, storage, sync, authorization, and recovery | Future focused architecture and accepted project/collaboration decisions | The document platform consumes these contracts and must not invent a private project or permission model. |
 | Domain data such as DICOM, NIfTI, NWB, microscopy, molecules, and very large scientific arrays | Domain interoperability packs | May use the universal viewer shell and artifact identities but should not be forced into a manuscript representation. |
 
-## Current Scient Desktop Next Baseline
+## Current Scient Desktop Baseline
 
-This snapshot was inspected on 2026-08-12 at
-`ScientFactory/scient-desktop-next` `origin/main`
-`cf4cfdab38289968336c147e7226eb2838519c77`. It is implementation evidence,
-not a promise that every installed or future release has the same state.
+This snapshot was checked on 2026-08-28 against
+`ScientFactory/scient-desktop` `origin/main`
+`aa23f1d3b96f6904dcc1a114cc33415fa267315a`. It is current-source
+evidence, not a promise that every installed release or platform has identical
+behavior.
 
-### Foundations To Preserve
+### Implemented Foundations To Preserve
 
-- The thread-scoped right panel already owns ordered file, browser, terminal,
-  diff, and related surface descriptors. File surfaces have stable identities
-  based on their relative paths.
-- The Files panel already edits ordinary text through the inherited
-  `@pierre/diffs/editor` integration and renders Markdown through the shared
-  chat Markdown component.
-- Image extensions include SVG and use exact workspace-file asset URLs with
-  explicit loading and failure states.
-- Scient owns a PDF.js reader with search, outline, thumbnails, passwords,
-  exact short-lived asset capabilities, byte ranges, and revision-aware
-  renewal.
-- The server has typed contracts, workspace-root file services, signed asset
-  transport, and a bounded generic process runner.
-- Existing file-opening paths converge substantially on the Files/right-panel
-  surface, giving the platform a useful host seam.
+- Workspace text/source uses the inherited `@pierre/diffs/editor` with content
+  revisions, conditional saves, atomic replacement, permission preservation,
+  truncated-save refusal, dirty-buffer conflict choices, and exact-file
+  freshness.
+- Direct arbitrary-file opening classifies and presents image/SVG, PDF, HTML,
+  Markdown, text, audio, video, and unknown binary. It respects environment
+  authority and keeps renewable asset URLs out of logical identity.
+- Local HTML opens in the integrated Browser with normal JavaScript and bounded
+  relative local assets. Browser HTML-to-PDF publishes immutable generated
+  revisions, preserves last success, and reuses the Scient PDF reader.
+- The PDF reader accepts workspace, direct-environment, and generated sources;
+  preserves page/zoom/sidebar/position across remount and URL renewal; and
+  supports search, outline, thumbnails, password handling, ranges, native save
+  copy, and direction-aware titles.
+- Chat and Markdown render scoped inline/display math through KaTeX while
+  retaining source and malformed-input fallback.
+- LaTeX source has root discovery, local/managed toolchains, build lifecycle,
+  diagnostics, logs, cancellation/supersession, last-success PDF, missing-
+  package recovery, and SyncTeX.
+- Mermaid, Vega-Lite, and Plotly share one lazy rich-fence registry in chat.
+- The MATLAB runtime provides revision-safe run-file execution, runtime
+  discovery/verification, queues, cancellation, diagnostics, history, and
+  bounded figure artifacts.
 
-### Gaps The Platform Must Address
+### Remaining Horizontal Gaps
 
-- File-preview dispatch is a closed `empty | image | pdf | text` union. HTML
-  is known to the shared preview-extension helper but is not a first-class
-  Files-panel kind.
-- Binary Office formats and other unsupported binary files fall into the text
-  path and are rejected rather than routed through a capability registry.
-- Text reads are capped at 1 MiB and report truncation; saving or editing a
-  partial read must never overwrite the complete file.
-- File writes replace text without an expected-revision/conditional-write
-  contract, leaving external-edit and concurrent-save behavior incomplete for
-  serious document editing.
-- Chat Markdown uses GFM, raw HTML, sanitization, syntax highlighting, and bidi
-  handling, but no math parser or renderer is configured.
-- The PDF reader requests a workspace-file asset by path. Generated build
-  output needs a generic PDF/artifact source instead of pretending to be an
-  ordinary source file.
-- The process runner supplies useful timeout and output-bound mechanics but is
-  not a document-build manager with streaming events, cancellation,
-  supersession, dependency tracking, diagnostics, and last-success semantics.
-- There is no LaTeX root resolver, typesetting engine adapter, language-service
-  lifecycle, SyncTeX support, Office engine, rich manuscript model, or
-  document collaboration/history model.
+The shared [file foundation](file-resource-and-presentation-foundation.md) owns
+these cross-format gaps:
 
-Relevant pinned implementation evidence:
+- file surfaces still use current absolute or relative paths as durable
+  identity, so rename/move recovery is absent;
+- workspace preview still has a separate closed
+  `empty | image | pdf | text` dispatch while the direct opener has eight
+  presentation kinds;
+- exact-file freshness follows a known path but cannot relocate it; and
+- no common presenter registry and shell yet owns all moved, unsupported,
+  malformed, encrypted, derivative, and adapter-failure states.
 
-- [file preview dispatch](https://github.com/ScientFactory/scient-desktop-next/blob/cf4cfdab38289968336c147e7226eb2838519c77/apps/web/src/components/files/filePreviewMode.ts)
-- [Files-panel host](https://github.com/ScientFactory/scient-desktop-next/blob/cf4cfdab38289968336c147e7226eb2838519c77/apps/web/src/components/files/FilePreviewPanel.tsx)
-- [right-panel surfaces](https://github.com/ScientFactory/scient-desktop-next/blob/cf4cfdab38289968336c147e7226eb2838519c77/apps/web/src/rightPanelStore.ts)
-- [chat Markdown](https://github.com/ScientFactory/scient-desktop-next/blob/cf4cfdab38289968336c147e7226eb2838519c77/apps/web/src/components/ChatMarkdown.tsx)
-- [workspace file service](https://github.com/ScientFactory/scient-desktop-next/blob/cf4cfdab38289968336c147e7226eb2838519c77/apps/server/src/workspace/WorkspaceFileSystem.ts)
-- [process runner](https://github.com/ScientFactory/scient-desktop-next/blob/cf4cfdab38289968336c147e7226eb2838519c77/apps/server/src/processRunner.ts)
-- [Scient PDF reader boundary](https://github.com/ScientFactory/scient-desktop-next/blob/cf4cfdab38289968336c147e7226eb2838519c77/docs/internals/scient-pdf-reader.md)
+### Remaining Document-Platform Gaps
+
+- No qualified broad Office view/preservation/editing engine or fidelity
+  receipt exists.
+- No Scient-native structured manuscript representation, semantic anchor model,
+  or source/visual reconciliation contract is accepted.
+- Typst and Quarto do not yet consume a generalized document-build provider
+  boundary.
+- Citation/evidence authoring, comments, suggestions, durable document history,
+  realtime collaboration, publication profiles, and institutional document
+  operation remain future work.
+- Controlled Scient-document PDF export and semantic extraction remain separate
+  future adapters; Browser live-page export is implemented but is not those
+  capabilities.
+
+Relevant implementation evidence:
+
+- [universal file-opening contract](https://github.com/ScientFactory/scient-desktop/blob/aa23f1d3b96f6904dcc1a114cc33415fa267315a/docs/internals/scient-universal-file-opening.md)
+- [workspace file panel](https://github.com/ScientFactory/scient-desktop/blob/aa23f1d3b96f6904dcc1a114cc33415fa267315a/apps/web/src/components/files/FilePreviewPanel.tsx)
+- [generated-document contracts](https://github.com/ScientFactory/scient-desktop/blob/aa23f1d3b96f6904dcc1a114cc33415fa267315a/packages/scient-document-artifacts/src/contracts.ts)
+- [PDF reader](https://github.com/ScientFactory/scient-desktop/blob/aa23f1d3b96f6904dcc1a114cc33415fa267315a/docs/internals/scient-pdf-reader.md)
+- [browser PDF export](https://github.com/ScientFactory/scient-desktop/blob/aa23f1d3b96f6904dcc1a114cc33415fa267315a/docs/internals/scient-browser-pdf-export.md)
+- [LaTeX implementation](https://github.com/ScientFactory/scient-desktop/blob/aa23f1d3b96f6904dcc1a114cc33415fa267315a/docs/internals/scient-latex.md)
+- [analysis runtime](https://github.com/ScientFactory/scient-desktop/blob/aa23f1d3b96f6904dcc1a114cc33415fa267315a/docs/internals/scient-analysis-runtime-foundation.md)
 
 ## Proposed Platform Model
 
@@ -415,8 +432,9 @@ fidelity.
 
 ### 1. Universal Opening And Viewer Experience
 
-This platform consumes the universal opener's resource and owns a coherent
-viewer shell with:
+This platform consumes the universal opener's resolved resource and the shared
+presentation shell. It contributes document-specific surfaces and actions,
+including:
 
 - immediate identity/title and loading feedback;
 - deterministic format/capability resolution;
@@ -434,10 +452,10 @@ not be presented as fidelity-complete.
 
 ### 2. Chat And Markdown Mathematics
 
-Add a Markdown math syntax plugin and a bundled/self-hosted renderer. The first
-candidate is `remark-math` plus KaTeX; MathJax is a fallback candidate only if
-the fixture corpus demonstrates required TeX or MathML coverage that KaTeX
-cannot provide acceptably.
+Scient now uses `remark-math` and bundled KaTeX for scoped inline and display
+math in chat and Markdown. MathJax remains only a fallback candidate if a
+maintained fixture corpus demonstrates required TeX or MathML coverage that
+KaTeX cannot provide acceptably.
 
 Required behavior includes inline and display math, streaming stability,
 copyable raw TeX, code/dollar disambiguation, malformed expressions, unsupported
@@ -446,7 +464,7 @@ RTL/LTR content. This work does not require or substitute for a PDF compiler.
 
 ### 3. Universal Typesetting Opener
 
-The first LaTeX slice should:
+The implemented LaTeX foundation now:
 
 1. Open selected source immediately.
 2. Discover the credible root in a documented order while preserving the
@@ -462,18 +480,19 @@ The first LaTeX slice should:
 8. Retain and mark the last successful PDF stale when a later build fails.
 9. Keep temporary/auxiliary output away from source files by default, subject
    to deliberate project configuration.
-10. Add forward/inverse source-PDF navigation later through reviewed SyncTeX
-    support and durable anchors.
+10. Supports reviewed SyncTeX forward/inverse source-PDF navigation.
 
 Root evidence should consider a prior explicit project choice, root magic
 comments, project configuration, document-root markers, bounded reverse
 dependency discovery, and an explicit chooser when ambiguity remains.
 
-Tectonic is the leading managed low-setup candidate. Installed `latexmk`, TeX
-Live, MacTeX, BasicTeX, MiKTeX, XeLaTeX, and LuaLaTeX paths remain important for
-real project compatibility. Typst is a peer adapter. Quarto/Pandoc builds
-compose with analysis receipts but must not become the only route to every
-typesetting engine.
+Scient currently discovers installed tools and can provision a managed TinyTeX
+toolchain. Tectonic remains a separately qualified low-setup candidate, not the
+assumed implementation. Installed `latexmk`, TeX Live, MacTeX, BasicTeX,
+MiKTeX, XeLaTeX, and LuaLaTeX paths remain important for real project
+compatibility. Typst is a peer adapter. Quarto/Pandoc builds compose with
+analysis receipts but must not become the only route to every typesetting
+engine.
 
 ### 4. Broad View-Only Document Coverage
 
@@ -488,10 +507,10 @@ must remain useful when an optional viewer is absent or fails.
 
 ### 5. DOCX Compatibility Editing
 
-Run GenOffice's DOCX engine path, EigenPal's open core, and Sobree through one
-frozen scientific-DOCX harness. The provisional preference is GenOffice's
-original-package preservation and dirty-region patching approach, but no
-engine is selected.
+Run GenOffice's DOCX engine path, EigenPal's open core, Sobree, and Docxodus
+through one frozen scientific-DOCX harness. GenOffice's original-package
+preservation and dirty-region patching approach is the strongest architectural
+idea in the current evidence, but no engine or integration depth is selected.
 
 The chosen adapter must preserve the original OOXML package, pass unsupported
 parts through, modify only understood dirty regions, and produce a fidelity
@@ -510,7 +529,7 @@ equations, figures, tables, cross-references, comments/suggestions,
 accessibility, long-document performance, collaboration binding, and
 import/export.
 
-Tiptap/ProseMirror is the default candidate because it aligns with the
+Tiptap/ProseMirror is the leading prototype candidate because it aligns with the
 strongest current DOCX preservation donor and has mature extension and
 collaboration paths. Its document JSON must remain a projection/interaction
 model unless a later architecture decision explicitly selects otherwise.
@@ -574,21 +593,26 @@ in the [focused source map](../research/source-evaluations/scientific-document-p
 
 | Source | Proposed Scient role | Present disposition |
 |---|---|---|
-| T3-derived Scient Desktop Next | Host shell, right-panel/file workflow, typed RPC, assets, process substrate | Preserve and extend through narrow Scient-owned seams. |
-| Scient PDF reader / PDF.js | Shared PDF and generated-artifact preview | Adopted current implementation; generalize its source boundary. |
-| `remark-math` + KaTeX | Chat and Markdown inline/display math | First bounded dependency proof. |
+| T3-derived Scient Desktop | Current host shell, right-panel/file workflow, typed RPC, assets, and process substrate | Current implementation host; preserve through narrow Scient-owned seams. |
+| Scient file/resource foundation | Relocation, presenter selection, common shell, and broad read-only coverage | Proposed horizontal owner; this roadmap consumes it. |
+| Scient PDF reader / PDF.js | Shared PDF and generated-artifact preview | Adopted current implementation with producer-neutral workspace, environment, and generated sources. |
+| `remark-math` + KaTeX | Chat and Markdown inline/display math | Adopted current implementation; keep corpus and fallback gate. |
 | LaTeX Workshop | Root discovery, recipes, dependency watching, build and SyncTeX workflow reference | Adapt algorithms and UX behind Scient contracts; do not embed the VS Code extension. |
-| Tectonic | Managed local typesetting-engine candidate | Prototype; not approved for bundling. |
-| installed TeX / `latexmk` | Existing-project compatibility | Required adapter family; platform discovery matrix remains open. |
+| managed TinyTeX and installed TeX / `latexmk` | Current LaTeX toolchain family | Adopted current implementation; keep discovery, diagnostics, and recovery replaceable. |
+| Tectonic | Alternative managed local typesetting engine | Watch/qualify; not approved for bundling. |
 | TexLab | LaTeX language-service candidate | External process candidate subject to GPL/distribution/lifecycle review. |
 | Overleaf | Full product capability and service-separation reference | Reference/compatibility first; deeper integration requires a separate ADR. |
-| Tiptap/ProseMirror | Structured manuscript visual projection | Default prototype candidate, not manuscript truth. |
+| Tiptap/ProseMirror | Structured manuscript visual projection | Leading prototype candidate, not manuscript truth. |
 | Plate and Lexical | Rich-editor challengers and UX/performance sources | Same-fixture prototype before selection. |
-| GenOffice | Original-OOXML preservation and DOCX/XLSX/PPTX engine concepts | Primary Office-format donor/baseline; never adopt the whole suite. |
+| GenOffice | Original-OOXML preservation and DOCX/XLSX/PPTX engine concepts | Deep donor and corpus baseline; never adopt the whole suite. |
 | EigenPal open core / Sobree | DOCX engine challengers | Same-corpus comparison; commercial EigenPal packages excluded. |
+| Docxodus | Focused DOCX renderer/editor and OOXML implementation evidence | Serious bounded candidate; no fidelity claim until the Scient corpus passes. |
+| `docx-preview` / Mammoth | Browser rendering and semantic extraction fallbacks | Derived/inspect candidates, never round-trip authority. |
 | BetterOffice | Shared Rust/Wasm OOXML engine direction | Watch/revisit; too early for foundation selection. |
 | Univer | Embedded spreadsheet surface/formula ecosystem | Later prototype; open core is not XLSX preservation authority. |
 | Flyfish | Broad browser-native view-only coverage | Fixture-gated viewer candidate. |
+| JupyterLab | Registry, context, factory, and explicit `Open With` patterns | Architecture and UX reference; not the application base. |
+| H5Web / OHIF / VolView | HDF5, medical imaging, and volumetric domain viewers | Later domain adapters, not the universal core. |
 | ONLYOFFICE / Collabora / LibreOffice / Microsoft Office | Mature suite behavior and compatibility | Reopen/visual/conversion oracles; optional isolated service only after separate decision. |
 | Quarto/Pandoc | Multi-format publishing and executable-document adapter | Primary export prototype, not the canonical Scient model. |
 | MyST / Stencila | Publishing challenger and semantic/provenance references | Compare against owned contracts; do not adopt as core prematurely. |
@@ -601,53 +625,48 @@ These are dependency stages, not release dates. A later stage may be
 researched in parallel, but it must not freeze a conflicting foundation before
 the earlier contract is proven.
 
-### Stage 0 — Correct And Generalize Current File Handling
+### Landed Foundation — Preserve And Extend
 
-- Preserve existing Markdown, image, SVG, PDF, browser, diff, and external-open
-  behavior with regression tests.
-- Ensure binary/unsupported files route to a useful state rather than the text
-  reader failure path.
-- Separate resource resolution from document-surface selection.
-- Introduce the format/surface registry seam.
-- Add conditional writes, external-change conflicts, and truncated-file save
-  protection before serious editing expands.
-- Generalize asset/PDF sources for generated artifacts.
+- Safe conditional workspace text editing, external-change conflicts,
+  truncated-save refusal, and exact-file freshness.
+- Direct opening for image/SVG, PDF, Markdown, text/source, HTML, audio, video,
+  and unknown binary.
+- Producer-neutral generated-document artifacts and PDF reader sources.
+- Chat and Markdown math through KaTeX.
+- LaTeX root discovery, build lifecycle, diagnostics, last-success PDF,
+  toolchain recovery, and SyncTeX.
 
-### Stage 1 — Chat And Markdown Math
+These are current implementation, not future stages. Their contracts and
+regression fixtures remain mandatory inputs to later work.
 
-- Integrate the selected math syntax/renderer through the existing Markdown and
-  bidi pipeline.
-- Complete streaming, malformed-input, copy, accessibility, theme, and RTL
-  fixtures.
-- Keep code and literal-dollar behavior stable.
+### Stage 1 — Consume The File And Presentation Foundation
 
-### Stage 2 — First Universal LaTeX Build Loop
+- Introduce stable `FileReference` identity without weakening current authority
+  or replacing lower path-based I/O contracts.
+- Add deterministic relocation and explicit ambiguity recovery.
+- Replace parallel closed dispatchers with a static presenter registry and
+  common shell while preserving current presenter behavior.
+- Make `DocumentSession` consume the resolved resource and presentation rather
+  than becoming another file opener.
 
-- Add root/project resolver and typesetting adapter contracts.
-- Prove Tectonic and at least one installed-TeX/`latexmk` route.
-- Implement source, preview, problems, log, cancel/supersede, and last-success
-  behavior.
-- Reuse the generalized Scient PDF reader.
-- Add platform fixtures and missing-engine/package recovery.
-
-### Stage 3 — Broad View-Only Coverage
+### Stage 2 — Broad View-Only Coverage
 
 - Establish the binary-document gateway.
 - Run Flyfish and any alternatives against one frozen viewer corpus.
 - Add honest fallbacks for Office and other common formats.
 - Keep extraction/search separate from the visual result.
 
-### Stage 4 — Document Kernel And DOCX Preservation Proof
+### Stage 3 — Document Kernel And DOCX Preservation Proof
 
 - Formalize document identity, authority, revisions, anchors, projections,
-  conversions, artifacts, and fidelity receipts based on evidence from Stages
-  0-3.
-- Benchmark GenOffice, EigenPal open core, and Sobree in the same host and
-  corpus.
+  conversions, artifacts, and fidelity receipts based on evidence from the
+  landed foundation and Stages 1-2.
+- Benchmark GenOffice, EigenPal open core, Sobree, and Docxodus in the same host
+  and corpus.
 - Select or reject an engine only after Word/LibreOffice and loss-accounting
   gates pass.
 
-### Stage 5 — Serious Structured Manuscript Authoring
+### Stage 4 — Serious Structured Manuscript Authoring
 
 - Run the Tiptap/Plate/Lexical common fixture.
 - Establish stable scientific nodes and source/projection mapping.
@@ -655,14 +674,14 @@ the earlier contract is proven.
   metadata, manual edits, and reviewable agent proposals.
 - Prove deterministic export through at least one source/publishing adapter.
 
-### Stage 6 — Review, Durable History, And Recovery
+### Stage 5 — Review, Durable History, And Recovery
 
 - Add anchored comments, suggestions, tracked changes, mentions, assignments,
   comparisons, milestones, snapshots, deleted-file recovery, and restore.
 - Use the same proposal lifecycle for humans and agents.
 - Keep history portable and independent from an editor engine.
 
-### Stage 7 — Realtime And Local-First Collaboration
+### Stage 6 — Realtime And Local-First Collaboration
 
 - Prototype Yjs/Hocuspocus and challengers behind one collaboration adapter.
 - Test offline edits, reconnect, attribution, conflicts, migration, revocation,
@@ -670,7 +689,7 @@ the earlier contract is proven.
 - Connect to project identity and authorization rather than embedding policy in
   the collaboration document.
 
-### Stage 8 — Publishing And Ecosystem
+### Stage 7 — Publishing And Ecosystem
 
 - Add publication profiles/templates, metadata/style checks, richer
   Quarto/Pandoc/MyST/LaTeX/Typst/DOCX/JATS exports, submission/deposit packages,
@@ -678,7 +697,7 @@ the earlier contract is proven.
 - Decide any deeper Overleaf relationship only after a dedicated product,
   source, license, operations, migration, and local-first comparison.
 
-### Stage 9 — Spreadsheet And Presentation Depth
+### Stage 8 — Spreadsheet And Presentation Depth
 
 - Begin only after shared `Dataset`, `Table`, `Figure`, `Artifact`, and
   publication contracts are stable enough to prevent Office formats from
@@ -686,7 +705,7 @@ the earlier contract is proven.
 - Prove view, no-op preservation, narrow edits, recalculation/layout behavior,
   external reopen, and platform performance separately for XLSX and PPTX.
 
-### Stage 10 — Institution And Integrated Scientific Intelligence
+### Stage 9 — Institution And Integrated Scientific Intelligence
 
 - Add guest/group/institution roles, managed identities, SSO/provisioning,
   retention/offboarding, policy, audit, and accessible mobile review.
@@ -830,16 +849,18 @@ decisions:
 
 - exact conceptual/API names and package boundaries for resources, sessions,
   surfaces, artifacts, builds, revisions, and fidelity receipts;
-- the universal-opener handoff for external absolute files and sibling assets;
-- the conditional-write, recovery-draft, merge, and external-change contract;
+- the exact `FileReference` persistence boundary and relocation evidence ladder;
+- recovery drafts and merge UX above the implemented conditional-write and
+  external-change contract;
 - `DocumentBuild` and `AnalysisRun` shared base without semantic collapse;
-- Tectonic bundling versus discovery-only and the installed-TeX support matrix;
+- whether Tectonic adds enough value beside managed TinyTeX and installed TeX;
 - root-choice persistence/invalidation and output-directory defaults;
 - TexLab lifecycle, GPL boundary, and platform distribution;
-- the first SyncTeX milestone;
-- KaTeX acceptance or evidence for a MathJax fallback;
+- later SyncTeX semantic-anchor depth beyond the implemented navigation;
+- evidence that would justify a MathJax fallback beside the implemented KaTeX
+  path;
 - the broad viewer selected after fixture comparison;
-- the DOCX engine selected after the GenOffice/EigenPal/Sobree corpus;
+- the DOCX engine selected after the GenOffice/EigenPal/Sobree/Docxodus corpus;
 - the rich editor selected after the Tiptap/Plate/Lexical corpus;
 - exact structured-native manuscript representation and citation/evidence
   contracts;
@@ -860,17 +881,21 @@ Approve for focused architecture and implementation planning:
 2. **Boundary:** one document lifecycle spanning viewing, source and visual
    editing, builds, compatibility formats, review, collaboration, and
    publishing, subordinate to the accepted PRD.
-3. **First implementation order:** current file truth and registry, chat math,
-   then the universal LaTeX build loop using the existing PDF reader.
+3. **Next implementation order:** stable file identity and relocation, one
+   presenter registry/shell, broad read-only format coverage, then the document
+   kernel and DOCX preservation proof. Preserve the landed math, LaTeX, PDF,
+   HTML, and text-editor foundations throughout.
 4. **Durable foundation:** resource/session identity, explicit authority,
    revisions and conditional saves, registered surfaces/adapters, generic
    artifacts, specialized document builds, and fidelity receipts.
-5. **Office posture:** GenOffice as the provisional primary donor/baseline;
-   EigenPal open core and Sobree as genuine DOCX challengers; no dependency
-   selection before the frozen compatibility corpus passes.
-6. **Manuscript posture:** Tiptap/ProseMirror as the default visual-editor
-   candidate, Plate and Lexical as required challengers, and a Scient-owned
-   structured manuscript model rather than editor state as accidental truth.
+5. **Office posture:** GenOffice as a deep donor/corpus baseline; EigenPal open
+   core, Sobree, and Docxodus as genuine DOCX challengers; `docx-preview` and
+   Mammoth only as derived-view candidates; no dependency selection before the
+   frozen compatibility corpus passes.
+6. **Manuscript posture:** Tiptap/ProseMirror as the leading visual-editor
+   prototype candidate, Plate and Lexical as required challengers, and a
+   Scient-owned structured manuscript model rather than editor state as
+   accidental truth.
 7. **Overleaf posture:** capability and systems reference first; leave deeper
    integration, isolated services, or a maintained fork open only after a
    separate decision proves product, license, operational, local-first, and
@@ -900,8 +925,8 @@ After human review and acceptance:
    revision/artifact identity, or a selected preservation engine.
 3. Keep detailed source pins and evidence in the focused source map.
 4. Keep implementation architecture and contributor guidance in
-   `scient-desktop-next/docs/internals/` once real code exists.
-5. Add shipped behavior to `scient-desktop-next/docs/user/` only after the
+   `scient-desktop/docs/internals/` once real code exists.
+5. Add shipped behavior to `scient-desktop/docs/user/` only after the
    corresponding user-visible capability is implemented and verified.
 6. Keep the product roadmap concise: it should sequence outcomes and link here,
    not duplicate this capability inventory.
@@ -913,7 +938,8 @@ This proposal is ready for an acceptance decision when reviewers agree that:
 - the name and product boundary are correct;
 - universal opening, computing, evidence/citation, project, and document owners
   are separated clearly;
-- the first LaTeX work is a durable platform consumer rather than throwaway UI;
+- the landed LaTeX foundation remains a durable platform consumer rather than
+  being replaced by a second build or PDF path;
 - file-native and structured-native authority modes cover the intended
   workflows honestly;
 - source roles and exclusions are reviewable in the focused source map;

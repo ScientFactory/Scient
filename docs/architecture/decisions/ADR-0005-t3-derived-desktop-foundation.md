@@ -3,17 +3,18 @@
 Status: Accepted
 Owner: Yaacov
 Created: 2026-08-02
-Last updated: 2026-08-09
-Purpose: Selects a fresh T3-derived foundation for the successor Scient app while preserving Scient ownership, scientific authority, current-user continuity, and the independent Scient agent boundary.
+Last updated: 2026-08-28
+Purpose: Selects the T3-derived foundation for Scient Desktop while preserving Scient ownership, scientific authority, user continuity, and the independent Scient agent boundary; records the completed repository cutover and predecessor retirement.
 Doc type: Architecture decision
 
 ## Document Rules
 
 This ADR owns the durable desktop-foundation and upstream relationship. The
-active migration plan may authorize a bounded candidate bootstrap under the
-accepted Phase Zero evidence. This ADR does not authorize feature migration,
-cloud enablement, user-data conversion, release, cutover, or retirement of the
-current application.
+original decision authorized only a bounded candidate bootstrap under the
+accepted Phase Zero evidence; it did not by itself authorize feature migration,
+cloud enablement, user-data conversion, release, cutover, or predecessor
+retirement. The dated amendment below records the later evidence-backed
+cutover without retroactively changing what the original decision authorized.
 
 The living
 [T3 foundation migration plan](../../planning/t3-foundation-migration-plan.md)
@@ -21,6 +22,26 @@ owns capability sequencing, proof gates, open implementation choices, and the
 documentation transition. Ordinary implementation learning belongs in that
 plan or dated evidence; a material decision change requires an explicit
 amendment or successor.
+
+## 2026-08-23 Cutover Amendment
+
+The evidence-backed transition governed by this ADR is complete. The
+T3-derived application is the released, supported Scient Desktop in the public
+`ScientFactory/scient-desktop` repository and is the sole desktop release,
+support, and maintained-upstream authority. The Synara-derived predecessor is
+retired and accepts no new product work.
+
+The repository-name cutover did not change installed product identity, updater
+channel continuity, or persisted compatibility addresses. Existing
+`.scient-next`, `scient-next`, development protocol, partition, storage-key,
+and service values remain intentionally unchanged. Retiring those values would
+require a separate versioned data-migration decision and proof.
+
+The original context and numbered decision below remain the point-in-time
+foundation decision. References there to a candidate, successor, continuity
+application, or future cutover describe the state in which this ADR was
+accepted; this amendment records the later gate completion without rewriting
+that history.
 
 ## Context
 
@@ -47,12 +68,13 @@ ADR point by point, and accepted this exact post-evidence decision on
 2026-08-02. The
 [Phase Zero dossier](../../research/spike-reports/t3-foundation-phase-zero-2026-08-02.md)
 verified the official T3 baseline and did not trigger a stop condition. The
-candidate repository did not yet exist when this decision was accepted. It now
-exists as the public-source `ScientFactory/scient-desktop-next` candidate,
-with the D4 safety envelope and subsequent bounded M1 work integrated on its
-owned default branch. The active migration plan and repository-local evidence
-govern that progress. Public source, implemented release machinery, and local
-or packaged testing do not by themselves imply publication or cutover.
+candidate repository did not yet exist when this decision was accepted. It
+later existed as the public-source, then-named
+`ScientFactory/scient-desktop-next` candidate, with the D4 safety envelope and
+subsequent bounded M1 work integrated on its owned default branch. The
+migration plan and repository-local evidence governed that progress. Public
+source, implemented release machinery, and local or packaged testing did not
+by themselves imply publication or cutover.
 
 ## Decision
 
@@ -237,7 +259,7 @@ legacy-fallback controls; it found no reason to reject the foundation.
 
 Yaacov explicitly authorized D3 end to end on 2026-08-02. Repository bootstrap
 is authorized only through the narrower scope, risk dispositions, and stop
-conditions in the active migration plan.
+conditions in the then-active migration plan.
 
 ## Revisit And Stop Triggers
 

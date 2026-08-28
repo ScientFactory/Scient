@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-08-09
+Last updated: 2026-08-28
 Purpose: Defines how agents should work in this early Scient repository.
 Doc type: Agent protocol
 
@@ -15,12 +15,15 @@ Scient is a local-first, cloud-mirrored scientific workspace where researchers a
 
 ## Current State
 
-This parent repo remains documentation-first. The standalone desktop source
-repository now contains the first permanent Scient-owned package,
-`@scientfactory/project-init`,
-but the broader application architecture and first scientific vertical slice
-have not been built. Do not infer scientific-state, gateway, sync, cloud, or
-production boundaries from that narrow package.
+This parent repo remains documentation-first. The standalone desktop now
+contains permanent Scient-owned project initiation, Sources, PDF, safe text
+editing, universal direct file opening, freshness, rich chat math/diagrams/
+charts, interactive HTML, browser PDF export, LaTeX, generated documents,
+MATLAB analysis, and selected Skills foundations. It still does not establish
+the complete scientific project/memory model, cloud sync plane, manuscript
+platform, Artifact Studio, native Scient agent, or first complete scientific
+vertical slice. Do not infer those boundaries from the capabilities that have
+landed.
 
 ScientFactory is the company and GitHub organization identity. **Scient** is
 the public name for both the implemented application and its planned native
@@ -47,39 +50,38 @@ to Scient operations, permissions, provenance, review, and recovery.
 
 The current repo contents are working documents. They are expected to change as the product, architecture, and implementation plan become clearer.
 
-ADR-0005 now accepts a fresh T3-derived successor desktop, while the current
-Synara-derived `scient-desktop` remains the supported continuity application.
-The public-source `scient-desktop-next` candidate exists with its safety
-envelope, managed local development app, and bounded M1 work integrated on
-candidate `main`. It is not released or the current supported implementation;
-do not describe candidate behavior or release machinery as shipped behavior.
+ADR-0005 selected the T3-derived desktop now released from
+`ScientFactory/scient-desktop`. The former `scient-desktop-next` repository
+name redirects to that active repository. The Synara-derived predecessor is
+retired in the private `ScientFactory/scient-desktop-legacy` repository. Do not
+route new product, maintenance, upstream-intake, issue, or release work to the
+legacy repository.
 
 ## Internal Team Workspace
 
 Internal contributors should open a contributor-owned parent directory as the
 editor or agent workspace. Its name is arbitrary, and it must remain a plain,
-non-Git container with the four core migration repositories as sibling
+non-Git container with the three active product repositories as sibling
 checkouts:
 
 ```text
 <scient-workspace>/
 ├── Scient/
 ├── scient-desktop/
-├── scient-desktop-next/
 ├── scient-agent/
 └── website/          # optional
 ```
 
 `Scient/` owns product and project knowledge, cross-repository planning, and
-source pins. `scient-desktop/` owns the supported continuity application.
-`scient-desktop-next/` owns the public-source, unreleased T3-derived successor.
+source pins. `scient-desktop/` owns the public T3-derived current application.
 `scient-agent/` owns the historical OpenCode-derived agent source and is the
 planned home for the one native Scient agent; its refreshed foundation remains
 subject to the documented Foundation Gate. Add
 `website/` only when website or download-surface work needs it.
 
-Use the [local workspace setup](docs/development/local-workspace-setup.md) to
-create or validate this layout without modifying correct existing checkouts.
+Use the [local workspace setup](docs/development/local-workspace-setup.md) for
+the current layout. Its explicit clone procedure is authoritative until the
+older bootstrap script receives its documented executable alignment.
 
 Starting an agent from the parent workspace gives it cross-repository read
 context; it does not give every task cross-repository write scope. Identify the
@@ -123,30 +125,31 @@ Current important documents:
 - `docs/product/product-philosophy.md` - durable product principles that guide product, architecture, design, quality, and implementation.
 - `docs/architecture/technology-stack.md` - current technology stack direction and open implementation decisions.
 - `docs/architecture/decisions/ADR-0005-t3-derived-desktop-foundation.md` -
-  accepted successor desktop foundation, Scient ownership boundary, and
-  current-application continuity role.
+  accepted current desktop foundation, Scient ownership boundary, completed
+  cutover, and compatibility-identity preservation.
 - `docs/architecture/decisions/ADR-0001-synara-opencode-foundation-and-scient-ownership-boundary.md` -
   superseded historical initial-foundation decision whose agent and scientific
   ownership boundaries are preserved by ADR-0005.
 - `docs/architecture/decisions/ADR-0002-standalone-source-ownership-and-upstream-authority.md` - accepted standalone source-repository ownership and selective upstream authority.
-- `docs/architecture/decisions/ADR-0005-t3-derived-desktop-foundation.md` - accepted successor desktop foundation and T3 relationship.
-- `docs/planning/t3-foundation-migration-plan.md` - active migration sequence, proof gates, continuity boundary, and cutover state.
+- `docs/planning/t3-foundation-migration-plan.md` - historical migration
+  sequence, proof gates, cutover, and predecessor-retirement record.
 - `docs/operations/upstream-intake.md` - active monitoring, review, and selective intake procedure for original source changes.
 - `docs/operations/team-contribution-protocol.md` - active minimum branch,
   verification, Quality Review, Integration Readiness Review, human UI review,
   peer-review guidance, and contribution-evidence workflow across maintained
   ScientFactory repositories.
 - `docs/planning/product-roadmap.md` - active sequence of coherent product outcomes.
-- `docs/planning/t3-foundation-migration-plan.md` - active proof-gated
-  migration sequence; D4 is complete and later slices retain their own gates.
+- `docs/planning/file-resource-and-presentation-foundation.md` - proposed
+  horizontal file identity, relocation, presentation, recovery, and broad-viewing
+  direction.
 - `docs/planning/first-scient-vertical-slice-implementation-plan.md` -
   superseded Synara-specific plan preserved as historical planning evidence.
 - `docs/planning/scient-and-external-agents-implementation-plan.md` - proposed implementation plan for the Scient agent, external-agent preservation, and Scient-versus-external-agent identity isolation.
 - `docs/planning/papilab-to-scient-rename-execution-plan.md` - historical execution and rollback record for the PapiLab-to-Scient migration.
 
 Use each document according to its metadata. The PRD and ADR-0005 are accepted
-direction; ADR-0001 is superseded history; the roadmap and migration plan are
-active planning; the product philosophy, technology
+direction; ADR-0001 and the completed migration plan are historical evidence;
+the product roadmap is active planning; the product philosophy, technology
 stack, and implementation plan retain their stated draft or proposed limits.
 
 Follow `docs/documentation-policy.md` when adding or changing durable documentation.

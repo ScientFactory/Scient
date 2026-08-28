@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-08-13
+Last updated: 2026-08-28
 Purpose: Indexes Scient's accepted and serious proposed architecture decision records and the rules for using them.
 Doc type: Repo orientation
 
@@ -22,11 +22,11 @@ Current decisions:
   host-independent Scient operation, capability, and provenance boundary for
   manual actions, agents, external MCP clients, automations, visible-browser
   work, and project-owned scientific evidence.
-- `ADR-0005-t3-derived-desktop-foundation.md` - accepts a fresh,
-  ancestry-preserving T3-derived successor desktop while keeping the current
-  Synara-derived app as the supported continuity product until explicit
-  cutover. Candidate bootstrap is authorized only through the active migration
-  plan and its evidence gates.
+- `ADR-0005-t3-derived-desktop-foundation.md` - accepts an
+  ancestry-preserving T3-derived desktop foundation. Its 2026-08-23 amendment
+  records the completed cutover to `ScientFactory/scient-desktop`,
+  compatibility identity preservation, and retirement of the Synara-derived
+  predecessor.
 - `ADR-0006-project-owned-scient-state-and-source-store.md` - proposes
   `.scient/` as the project-owned Scient state boundary, documents the
   implemented Sources store, and keeps Zotero behind a local read-only
