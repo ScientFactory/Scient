@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-07-20
-Last updated: 2026-08-09
+Last updated: 2026-08-28
 Purpose: Defines how ScientFactory repositories, branches, pull requests, releases, deployments, permissions, and local worktrees are operated.
 Doc type: Operational procedure
 
@@ -25,9 +25,8 @@ exactly one child repository.
 
 | Repository | Local folder | Visibility | Integration branch | Release or deployment authority |
 | --- | --- | --- | --- | --- |
-| `ScientFactory/Scient` | `Scient/` | Private | `main` | No release branch. Product truth, architecture, plans, cross-repository pins, and operating procedures live here. |
-| `ScientFactory/scient-desktop-next` | `scient-desktop-next/` | Public | `main` | The T3-derived successor. Its exact `release/stable` head is the only source for successor artifacts. Publication remains an explicit gated action. |
-| `ScientFactory/scient-desktop` | `scient-desktop/` | Public | `main` | The continuity application and legacy updater authority during cutover. Its `release/stable` branch remains the source for old-code releases; a separate compatibility workflow may mirror an already-published successor release without rebuilding it. |
+| `ScientFactory/Scient` | `Scient/` | Public | `main` | No release branch. Product truth, architecture, plans, cross-repository pins, and operating procedures live here. |
+| `ScientFactory/scient-desktop` | `scient-desktop/` | Public | `main` | The current T3-derived application. Its exact `release/stable` head is the only source for desktop artifacts. Publication remains an explicit gated action. |
 | `ScientFactory/scient-agent` | `scient-agent/` | Public | `dev` | `release/stable` is the agent promotion boundary. Agent artifact publication remains disabled until an owned artifact contract exists. |
 | `ScientFactory/ScientFactory-website` | `website/` | Public | `main` | `main` is the Cloudflare Pages production source. Pull requests receive preview deployments. |
 
@@ -43,10 +42,9 @@ Push a change to the repository that owns its implementation or authority:
 - Product requirements, architecture decisions, company-to-product boundaries,
   cross-repository source pins, operating procedures, and accepted planning go
   to `Scient`.
-- Successor desktop UI, runtime, packaging, updater behavior, signing, and
-  release workflows go to `scient-desktop-next`. Continuity fixes and the
-  legacy updater compatibility mirror remain in `scient-desktop` until the
-  accepted support window ends.
+- Desktop UI, runtime, packaging, updater behavior, signing, and release
+  workflows go to `scient-desktop`. The retired predecessor has no product,
+  support, intake, or release authority.
 - First-party agent source, inherited OpenCode review state, agent build logic,
   and agent release validation go to `scient-agent`.
 - Marketing pages, download-page behavior, release-download metadata adapters,
@@ -70,7 +68,9 @@ claim authority over its release.
 7. Once required checks and evidence are current, complete Integration Readiness
    Review against the exact final head, resolve conversations, and include human
    review of the rendered candidate for UI changes.
-8. Squash-merge and delete the remote task branch.
+8. Squash-merge ordinary work and delete the remote task branch. A bounded,
+   reviewed upstream range may use a merge commit when literal T3 ancestry is
+   part of the accepted intake evidence.
 9. Remove the task worktree and local task branch only after confirming the pull
    request is merged and the worktree is inactive and clean.
 
@@ -81,7 +81,7 @@ branch.
 ## Local Worktrees
 
 The [Scient README](../../README.md#related-repositories-and-local-workspace)
-owns the recommended internal workspace layout. Keep the four core migration
+owns the recommended internal workspace layout. Keep the three active product
 checkouts as siblings there, with the website checkout optional. Keep temporary
 task worktrees outside that workspace under a separate location chosen by the
 contributor, for example:
@@ -108,12 +108,10 @@ Never use blanket cleanup across the sibling repositories.
 
 ## Desktop Release Promotion
 
-Both desktop repositories use `main` for integration. Neither a merge to
+The current desktop repository uses `main` for integration. Neither a merge to
 `main` nor a green build publishes an application.
 
-For the T3-derived successor:
-
-1. Select the exact current `scient-desktop-next/main` commit after its normal
+1. Select the exact current `scient-desktop/main` commit after its normal
    CI workflow succeeds.
 2. Run the repository's manual promotion workflow with that full commit SHA.
    It verifies current-main and CI provenance, then fast-forwards
@@ -133,28 +131,13 @@ For the T3-derived successor:
    approved Scient What's New entry used in the app, not generated from
    inherited T3 history. It never overwrites an existing tag or release.
 6. Verify the public release, fresh downloads, signatures, updater metadata,
-   and an installed successor-to-successor update before calling it live.
+   an installed current-to-new update, and a clean install before calling it
+   live.
 
-During the first cutover, the continuity repository does not rebuild the
-successor. After the successor release is independently published and verified,
-its manual compatibility workflow downloads the exact successor assets,
-verifies their release handoff and hashes, and creates only byte-identical
-legacy-channel manifest aliases. Publishing that mirror is a second explicit
-gate. Prove an installed legacy-to-successor update before enabling it for
-current users.
-
-The website cutover remains a separate website-owned pull request and
-deployment. Its release resolver prefers the successor repository and falls
-back to the continuity repository only while the successor has no public
-release; a successor-feed outage must fail closed instead of silently serving
-an old build. Do not merge that cutover before the successor release and exact
-download behavior are verified, and do not deploy it without the required
-Cloudflare preview acceptance.
-
-The first intended successor version is `v0.6.0`. This is a release-system
-decision, not evidence that the release or cutover has occurred. Semantic
-versioning permits any number of `0.6.x` releases before Scient earns a
-`1.0.0` stability contract.
+The website consumes releases only from `ScientFactory/scient-desktop` and
+must fail closed when that feed or a trusted asset is unavailable. Website
+changes remain separate website-owned pull requests with Cloudflare preview
+and production-deployment evidence.
 
 A promoted commit, green build-only workflow, draft release, compatibility
 artifact, or artifact produced from another commit is not a public release.
@@ -231,8 +214,11 @@ settings; it does not replace organization-owner authority or bypass repository
 rules by itself.
 
 Public code repositories require pull requests, current required checks,
-resolved conversations, linear history, and no force-push or branch deletion
-on protected branches. They do not require an approving review. Authors must
+resolved conversations, and no force-push or branch deletion on protected
+branches. Ordinary work uses squash merges. The desktop branch deliberately
+permits bounded T3 intake merge commits to preserve literal ancestry; the agent
+integration branch requires linear history. They do not require an approving
+review. Authors must
 complete the relevant automated and manual verification, Quality Review, and
 Integration Readiness Review. User-visible UI changes also require human review
 of the rendered candidate. Peer review may be requested when it adds useful
@@ -244,13 +230,13 @@ solely to make a pull request mergeable unless Yaacov explicitly changes this
 policy. Repository administrators retain recovery authority, but normal work
 still follows the pull-request and required-check path.
 
-`Scient` is private. On the organization's current GitHub Free plan, GitHub does
-not enforce branch protection for that private repository. Treat `main` as
-process-protected: use pull requests, scoped checks, Quality Review, Integration
-Readiness Review, and squash merges even though the platform cannot enforce
-every rule. Re-evaluate native protection if the repository becomes public or
-the organization plan changes, without adding a required-approval gate unless
-Yaacov explicitly requests one.
+`Scient` became public on 2026-08-28. Its `main` branch requires pull requests,
+an up-to-date `evidence-manifest` check, resolved conversations, and linear
+history; force-push and branch deletion are disabled. It does not require an
+approving review, and repository administrators retain recovery authority.
+Keep Quality Review, Integration Readiness Review, and squash merges as the
+operating path rather than treating public visibility as permission to bypass
+the repository process.
 
 ## Definition Of Done
 

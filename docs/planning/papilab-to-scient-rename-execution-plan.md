@@ -3,8 +3,8 @@
 Status: Historical
 Owner: Yaacov
 Created: 2026-07-17
-Last updated: 2026-07-18
-Purpose: Preserves the executed PapiLab-to-Scient migration, compatibility contract, verification requirements, and deferred public cutover.
+Last updated: 2026-08-28
+Purpose: Preserves the executed PapiLab-to-Scient migration, compatibility contract, verification requirements, and later public-visibility follow-up.
 Doc type: Planning note
 
 ## Goal
@@ -58,6 +58,14 @@ The `scient-agent` repository name establishes the owned source boundary now.
 It does not claim that the native Scient agent runtime is implemented. That
 future product work remains governed by
 `scient-and-external-agents-implementation-plan.md`.
+
+On 2026-08-28, Yaacov explicitly approved the separate visibility change that
+Phase 0 had left gated. `ScientFactory/Scient` became public after a disclosure
+audit, and `main` received native protection requiring pull requests, the
+up-to-date `evidence-manifest` check, resolved conversations, and linear
+history while retaining zero mandatory approvals and administrator recovery.
+The original private-parent steps below remain historical execution gates, not
+the current repository state.
 
 ## Authorities
 

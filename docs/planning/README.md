@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-08-18
+Last updated: 2026-08-28
 Purpose: Defines where Scient planning documents live and how they relate to product truth, architecture, design, quality, and research documents.
 Doc type: Repo orientation
 
@@ -29,22 +29,31 @@ Current planning docs:
   scopes, authority, lifecycle, agent access, local/cloud boundaries, and the
   questions to resolve before architecture or storage selection.
 - `product-roadmap.md` - active sequence of coherent product outcomes, with the
-  T3 foundation migration as the current enabling track before the first full
-  Scient scientific project slice.
+  completed T3 foundation transition treated as history and the next scientific
+  platform foundations linked to their focused owners.
+- `file-resource-and-presentation-foundation.md` - proposed horizontal file
+  identity, relocation, presentation-registry, shared-viewer, recovery, and
+  broad read-only coverage direction.
 - `scientific-computing-and-data-analysis-roadmap.md` - proposed product boundary, source strategy, architecture direction, and ordered implementation path for manual code editing, Python, R, MATLAB, notebooks, datasets, figures, and reproducible analysis artifacts.
 - `scientific-document-platform-roadmap.md` - proposed integrated product
   boundary, architecture direction, source strategy, quality gates, and ordered
   implementation path for universal document viewing, mathematics,
   LaTeX/typesetting, Office interoperability, manuscript authoring, review,
   collaboration, and publishing.
+- `scientific-python-environment-roadmap.md` - proposed Python-specific scope
+  for execution, datasets, statistics, visualization, notebooks,
+  reproducibility, pipelines, machine learning, and domain adapters.
+- `scientific-artifact-studio.md` - proposed product boundary, object model,
+  source strategy, quality gates, and staged direction for artifact inspection,
+  multi-representation figures, visual composition, provenance, and export.
 - `first-scient-vertical-slice-implementation-plan.md` - superseded
   Synara-specific source-tracing and implementation plan, preserved for its
   reasoning and completed project-initiation evidence.
 - `scient-and-external-agents-implementation-plan.md` - proposed end-to-end plan for selecting a refreshed native foundation, building one owned Scient agent, using bounded specialist workers when justified, internalizing essential capabilities over time, and preserving external agents independently.
-- `t3-foundation-migration-plan.md` - active destination, capability
-  dispositions, proof gates, D4 completion state, later gate boundaries, and
-  documentation transition system for replacing the Synara-derived desktop
-  foundation with a fresh, ancestry-preserving T3-derived application.
+- `t3-foundation-migration-plan.md` - historical destination, capability
+  dispositions, proof gates, cutover, and documentation-transition record for
+  replacing the Synara-derived desktop with the current ancestry-preserving
+  T3-derived application.
 - `papilab-to-scient-rename-execution-plan.md` - historical PapiLab-to-Scient migration, compatibility, rollback, and deferred-public-cutover record.
 - `litrev-to-papilab-rename-execution-plan.md` - historical intermediate product-identity migration, verification, and rollback record for renaming LitRev to PapiLab.
 - `gate-1-5-execution-plan.md` - historical execution plan for owned source repositories, upstream synchronization, and Synara identity isolation.

@@ -1,10 +1,10 @@
 # T3 Foundation Migration Plan
 
-Status: Active
+Status: Historical
 Owner: Yaacov
 Created: 2026-08-01
-Last updated: 2026-08-09
-Purpose: Governs the proof-gated migration from the current Synara-derived Scient app to one fully ScientFactory-owned application with fresh official T3 ancestry.
+Last updated: 2026-08-28
+Purpose: Preserves the proof-gated migration, cutover, compatibility, and predecessor-retirement record that produced the current T3-derived Scient Desktop.
 Doc type: Planning note
 
 ## Document Rules
@@ -15,8 +15,7 @@ and promoted this plan on 2026-08-02 after reviewing the
 [Phase Zero dossier](../research/spike-reports/t3-foundation-phase-zero-2026-08-02.md).
 ADR-0005 owns the durable desktop-foundation decision. This plan owns migration
 sequencing, capability dispositions, proof gates, bootstrap scope, stop
-conditions, documentation transitions, and the currently authorized next
-gate.
+conditions, and documentation transitions as a historical execution record.
 
 Part I defines the accepted destination: what ScientFactory will own, how the
 repositories would relate, and how Scient could continue receiving T3
@@ -48,6 +47,27 @@ when its implementation lane is opened, using the then-current T3 source and
 the evidence relevant to that feature. The legacy-data transition plan must be
 accepted before old user data is converted or cutover is attempted, but it is
 not a prerequisite for beginning the clean candidate foundation.
+
+## Completion Record
+
+The migration and repository cutover are complete. The T3-derived application
+is the active public `ScientFactory/scient-desktop` repository and the source
+of current desktop releases. GitHub redirects the former
+`ScientFactory/scient-desktop-next` name to that repository. The
+Synara-derived predecessor is retired in the private
+`ScientFactory/scient-desktop-legacy` repository and has no new product,
+maintenance, upstream-intake, issue, or release authority.
+
+The repository transition deliberately preserved installed compatibility
+identities such as `.scient-next`, `scient-next`, protocol, partition, and
+storage keys. Retiring those values is separate data-migration work, not
+repository-name cleanup.
+
+The remainder of this document preserves the point-in-time gates and language
+under which the transition was executed. References below to a candidate,
+continuity app, future cutover, or then-current repository name are historical
+stage descriptions, not current product state. Current product sequencing now
+lives in the [Product Roadmap](product-roadmap.md).
 
 ### Update Policy
 
@@ -149,14 +169,14 @@ silently amend the accepted PRD or claim implementation:
 - discuss external MCP clients in P2.
 
 ADR-0005 now replaces the forward desktop-foundation decision in ADR-0001.
-The current Synara-derived Scient app remains the supported continuity product,
-while the public-source T3-derived candidate has its D4 safety envelope and local
-development path integrated. The candidate is not released or the current
-product, and no user data, cloud service, release channel, or website surface
-has changed. The bounded Scient rebrand is accepted and integrated in the
-candidate, but it does not change the candidate's unreleased migration status. D4
-is complete; later proof and feature lanes still require explicit
-authorization under Part III.
+At this point in the historical sequence, the Synara-derived Scient app remained
+the supported continuity product while the public-source T3-derived candidate
+had its D4 safety envelope and local development path integrated. The candidate
+was not yet released, and no user data, cloud service, release channel, or
+website surface had changed. The bounded Scient rebrand was accepted and
+integrated, but did not change that then-unreleased migration status. D4 was
+complete; later proof and feature lanes still required explicit authorization
+under Part III. The completion record above owns the current disposition.
 
 ## Authority And Reconciliation State
 

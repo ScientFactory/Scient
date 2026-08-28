@@ -3,7 +3,7 @@
 Status: Proposed
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-08-13
+Last updated: 2026-08-28
 Purpose: Maps the implemented minimum Scient project identity and source-store shape while keeping broader project-format choices explicit and unaccepted.
 Doc type: Architecture direction
 
@@ -82,9 +82,25 @@ The current Sources implementation uses:
 - rebuildable views rather than a second canonical manifest.
 
 Current implementation detail lives in
-`scient-desktop-next/docs/internals/scient-sources.md` and
+`scient-desktop/docs/internals/scient-sources.md` and
 `packages/scient-sources`. Source records and PDFs belong to the active project
 workspace, not the host application's session database.
+
+## Ordinary Files And Generated Artifacts
+
+The proposed [File, Resource, And Presentation
+Foundation](../planning/file-resource-and-presentation-foundation.md) adds a
+stable `FileReference` above mutable ordinary-file paths. That reference must
+remain scoped to the owning project/environment and must not become another
+project identity, a replacement for source-record identity, or a generic
+artifact union. Its exact persisted shape and relationship to `.scient/` remain
+unaccepted.
+
+Immutable source attachments, mutable ordinary files, generated document
+revisions, analysis artifacts, Studio compositions, and future structured
+manuscripts have different authority and retention semantics. They may share
+project identity, revision vocabulary, and references, but the project format
+must not collapse them into one record type merely because all can be opened.
 
 ## Still Undecided
 
@@ -94,7 +110,9 @@ The implemented minimum does not settle:
 - cloud mirroring, mobile projections, collaboration, and conflict resolution;
 - backup, restore, archive, and legacy-project import policy;
 - Git defaults for large project PDFs;
-- derived search-index technology and rebuild protocol; or
+- derived search-index technology and rebuild protocol;
+- where stable ordinary-file references and observed relocation aliases live;
+  or
 - whether future analysis artifacts are canonical files, records, or both.
 
 These questions require their own product evidence and accepted decisions.

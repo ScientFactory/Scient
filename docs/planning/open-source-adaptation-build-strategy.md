@@ -3,8 +3,8 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-07-07
-Last updated: 2026-08-09
-Purpose: Defines the evergreen source-ownership, adaptation, upstream-update, and divergence strategy for T3, Synara, the still-open Scient-agent foundation, and other open-source inputs used by Scient.
+Last updated: 2026-08-28
+Purpose: Defines the evergreen source-ownership, adaptation, upstream-update, and divergence strategy for the current T3-derived desktop, the still-open Scient-agent foundation, historical Synara evidence, and other open-source inputs used by Scient.
 Doc type: Planning note
 
 ## Document Rules
@@ -26,44 +26,44 @@ validated.
 ## Accepted T3 Relationship
 
 [ADR-0005](../architecture/decisions/ADR-0005-t3-derived-desktop-foundation.md)
-accepts replacing the long-term Synara-derived desktop target with a fresh,
-literal-ancestry T3-derived Scient application. The reviewed
-[migration plan](t3-foundation-migration-plan.md) owns its
-capability dispositions, proof gates, initial ancestry-preserving update
-strategy, and stop conditions.
+accepted the literal-ancestry T3-derived Scient application. The completed
+[migration plan](t3-foundation-migration-plan.md) preserves its capability
+dispositions, proof gates, transition, and cutover evidence.
 
-This accepted target does not change current implementation truth.
-`scient-desktop` remains the supported Synara-derived continuity application,
-while the public-source T3-derived candidate now has its safety envelope and
-bounded M1 work integrated. The candidate is not released or the current
-product.
+`ScientFactory/scient-desktop` is now the active released T3-derived
+application. The Synara-derived predecessor is a retired private repository and
+historical behavior/migration source, not a maintained continuity product.
 ADR-0001 is superseded as the forward desktop-foundation decision but preserved
 as history; ADR-0002 continues to govern standalone ownership and fetch-only
 source authority.
 
-For the future candidate, qualified reviewed T3 ranges normally enter through
+Qualified reviewed T3 ranges normally enter through
 bounded ancestry-preserving merges during the initial aligned phase. T3 does
 not become product authority, and an observed tip does not become an
 integration base until its ancestry is literally present. Scient may carry
 explicit direct divergences when product quality, scientific ownership,
 identity, privacy, security, accessibility, reliability, or release safety
-requires them. The active migration plan owns the finite move and the later
-evidence-based decision about when broad alignment should become selective.
+requires them. The completed migration plan preserves the finite transition;
+the current upstream-intake procedure and this strategy govern ongoing
+alignment and selective divergence.
 
-## Current Implementation And Accepted Target
+## Current Implementation And Source Roles
 
-The parent repository remains documentation-first. The maintained desktop source
-contains the dependency-light `@scientfactory/project-init` package, but there is no
-implemented scientific application, canonical project-state kernel, agent
-gateway, sync layer, editor, analysis runtime, or Scient production pipeline.
+The parent repository remains documentation-first. The maintained desktop now
+contains significant Scient-owned scientific implementation: project
+initiation, Sources, PDF, safe text editing, universal file opening,
+freshness, rich chat math/diagrams/charts, interactive HTML, browser PDF export,
+LaTeX, generated documents, MATLAB analysis, and selected skills. It still does
+not establish the complete canonical scientific project/memory model, cloud
+sync plane, manuscript platform, Artifact Studio, or native Scient agent.
 
 Current implementation and forward source roles are:
 
-- keep the owned Synara-derived desktop as the supported continuity
-  application and source of behavior, failure, migration, and design evidence;
-- continue the successor candidate created from the exact official T3 base
-  recorded by the migration plan, with owned `origin`, fetch-only T3
-  `upstream`, literal ancestry, and explicit divergence;
+- maintain the active T3-derived desktop with owned `origin`, fetch-only T3
+  `upstream`, literal ancestry, reviewed bounded merges, and explicit Scient
+  divergence;
+- keep the retired Synara source only as bounded behavior, failure, migration,
+  and design evidence;
 - use science apps from the 2026-07-07 scan as specialized sources around the
   shell: Zotero-family components for source/PDF work, Zettlr/Overleaf/Quarto
   for writing/export expectations, Jupyter-style tools for analysis
@@ -90,18 +90,18 @@ maintained package, bounded adaptation, or reimplementation when recurring
 product value, quality, privacy, reliability, offline use, or coherence
 justifies the ownership cost.
 
-## Migration And First-Scientific-Slice Constraints
+## Current Foundation And First-Scientific-Slice Constraints
 
-The active product sequence lives in `product-roadmap.md`, and the executable
-foundation sequence lives in `t3-foundation-migration-plan.md`. The superseded
-Synara-specific first-slice plan remains historical evidence. This strategy
+The active product sequence lives in `product-roadmap.md`; the completed
+`t3-foundation-migration-plan.md` and superseded Synara-specific first-slice
+plan remain historical evidence. This strategy
 constrains current and future source work without duplicating those plans:
 
-1. Use the selected migration and scientific workflows to pressure-test the
-   T3 foundation while keeping the current app as continuity evidence.
+1. Use scientific workflows and hostile upstream refreshes to pressure-test the
+   current T3-derived foundation while keeping historical migration evidence.
 2. Keep scientific operations available to manual UI and agents through a
    Scient-owned layer where practical.
-3. Preserve project meaning independently of Synara, Scient, and external-agent
+3. Preserve project meaning independently of T3 host state, Scient UI state, and external-agent
    session state.
 4. Prefer extension seams when they are equally strong, but make explicit core
    changes when they are the better durable product design.
@@ -178,10 +178,10 @@ Keep change lanes separable where practical:
 - unavoidable upstream-core patches; and
 - release or updater configuration.
 
-The T3-derived candidate is expected to carry visible Scient identity and
-domain UI after its safety envelope is proven. The Synara-derived app retains
-its current identity and continuity role rather than receiving new scientific
-features. The native-agent foundation, once selected, becomes inherited source
+The active T3-derived application carries Scient identity and domain UI while
+preserving explicit compatibility values and upstream lineage. The retired
+Synara-derived app receives no new scientific features. The native-agent
+foundation, once selected, becomes inherited source
 inside one Scient agent rather than a separately branded engine beneath it.
 Scient therefore needs its own product, configuration, session, release, and
 update identity while all retained source remains traceable for maintenance and
@@ -300,9 +300,9 @@ as coding sessions, Git worktrees, provider chats, or engine-owned artifacts.
 
 - Which T3 seams can remain upstream-aligned, and which product-quality needs
   justify deliberate, documented Scient ownership and divergence?
-- Can a fresh T3-derived candidate host the first science-facing slice without
-  leaking coding-product assumptions into the Scient project kernel, and can it
-  still absorb bounded current T3 ranges at an acceptable cost?
+- Can the active T3-derived application host successive science-facing slices
+  without leaking coding-product assumptions into the Scient project kernel,
+  and can it keep absorbing bounded current T3 ranges at an acceptable cost?
 - Which freshly inspected native-agent foundation best balances coding quality,
   ownership, safety, remote clients, provider neutrality, and update cost?
 - Which inherited foundation modules can remain close to upstream, and which

@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-07-16
-Last updated: 2026-08-12
+Last updated: 2026-08-28
 Purpose: Defines the current sequence of coherent Scient product outcomes without turning technology experiments into the product roadmap.
 Doc type: Planning note
 
@@ -17,35 +17,45 @@ own documents.
 Update this roadmap when the active product slice changes, when evidence changes
 its order, or when a slice is accepted, deferred, or rejected.
 
-## Now: T3 Foundation Migration
-
-The researcher outcome below remains the product destination. The accepted
-foundation transition changes where its remaining implementation will continue,
-not why Scient is building it.
+## Now: Build Scientific Work On The Current Desktop Foundation
 
 [ADR-0005](../architecture/decisions/ADR-0005-t3-derived-desktop-foundation.md)
-accepts a fresh T3-derived successor application, and the active
-[T3 foundation migration plan](t3-foundation-migration-plan.md) defines the
-proof-gated execution sequence. The Synara-derived app remains the supported
-current application, and the earlier Synara-specific first-slice plan is
-preserved as superseded planning. The public-source T3-derived candidate now
-has its safety envelope, managed local development app, product identity,
-project initialization, local voice dictation, conversation forking, and the
-first assisted provider-lifecycle work integrated or in focused completion.
-The rebrand was accepted and merged through
-[`scient-desktop-next` PR #5](https://github.com/ScientFactory/scient-desktop-next/pull/5),
-but the candidate is not released or the current app.
+selected the literal-ancestry T3-derived application. That application is now
+the active `ScientFactory/scient-desktop` repository and release source; the
+Synara-derived predecessor is retired. The
+[T3 foundation migration plan](t3-foundation-migration-plan.md) is therefore a
+historical transition record, not the current product track.
 
-The immediate work combines completion of the remaining selected M1 outcomes
-with release-readiness proof. Yaacov has selected `v0.6.0` as the first intended
-successor version and authorized release-system implementation, not a release.
-The machinery must preserve exact green-source provenance, fail-closed signing
-and publication, the legacy updater handoff, the website release-source
-cutover, and rollback. The product gate
-still has to decide and prove the remaining source/PDF,
-mathematical/bidirectional, What's New, migration/data, claimed-platform, and
-packaged-update requirements before publication and cutover. A workflow, build,
-or selected version is not acceptance evidence by itself.
+The active desktop already contains materially more scientific foundation than
+the pre-cutover plans recorded: universal direct file opening; safe editable
+workspace text; exact-file freshness; a full PDF reader; interactive HTML and
+HTML-to-PDF export; inline and Markdown mathematics; local LaTeX builds with
+diagnostics, last-success PDF, and SyncTeX; rich Mermaid, Vega-Lite, and Plotly
+chat presentations; and the first MATLAB analysis runtime and artifact path.
+These are implementation facts at the current desktop source, not acceptance
+of every larger platform proposal or a claim of complete cross-platform
+parity.
+
+The immediate product work should consolidate that progress into foundations
+the first coherent scientific-project experience can depend on:
+
+1. make ordinary file identity survive rename and relocation, then unify
+   workspace/direct presentation and broad read-only coverage through the
+   proposed [File, Resource, And Presentation Foundation](file-resource-and-presentation-foundation.md);
+2. keep document, computing, and artifact work on their distinct proposed
+   owners while sharing file, revision, presentation, execution, and artifact
+   seams;
+3. review, realign, and qualify the stateful Python/compute candidate in draft
+   [desktop PR #129](https://github.com/ScientFactory/scient-desktop/pull/129),
+   then add the missing data path and durable artifact-to-chat continuity
+   without rebuilding its accepted foundations; and
+4. use these capabilities in the first end-to-end scientific project slice
+   rather than accumulating unrelated format demos.
+
+Detailed dependency, schema, Office-engine, rich-editor, kernel, data-viewer,
+canvas, and collaboration choices remain proposed and evidence-gated. The
+product roadmap sequences outcomes; it does not approve those architecture
+decisions.
 
 ## After The Foundation: First Scient Scientific Project Slice
 
@@ -79,7 +89,7 @@ path is useful and recoverable.
 The earlier Synara-specific implementation plan is preserved as
 [`first-scient-vertical-slice-implementation-plan.md`](first-scient-vertical-slice-implementation-plan.md).
 Its product outcome remains important, but its implementation sequence is
-superseded by the active migration plan and later focused Scient-agent work.
+superseded by the current product roadmap and later focused Scient-agent work.
 
 ### Controlled Validation Project
 
@@ -150,9 +160,12 @@ not replace deterministic component checks or comparable agent measurements.
 - ERP CORE and ATLAS Higgs remain reserve capability candidates; ManyBabies 4
   remains the designated first-project fallback.
 - Manuscript, analysis, figure, publishing, and open-science expansion. The
-  proposed [Scientific Document Platform roadmap](scientific-document-platform-roadmap.md)
-  owns the integrated document/viewing/mathematics/typesetting/Office/manuscript
-  direction; its stages are not inserted into the active sequence until the
-  relevant product gate advances.
+  proposed [File foundation](file-resource-and-presentation-foundation.md),
+  [Scientific Document Platform](scientific-document-platform-roadmap.md),
+  [Scientific Computing And Data Analysis](scientific-computing-and-data-analysis-roadmap.md),
+  [Scientific Python Environment](scientific-python-environment-roadmap.md),
+  and [Scientific Artifact Studio](scientific-artifact-studio.md) own distinct
+  layers of that direction. Their stages are not automatically inserted into
+  the active product sequence merely because the proposals are detailed.
 
 These later items remain sequencing direction, not implementation commitments.

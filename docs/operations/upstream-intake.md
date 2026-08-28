@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-07-18
-Last updated: 2026-08-09
+Last updated: 2026-08-28
 Purpose: Defines the repeatable process for detecting, reviewing, and selectively inheriting changes from Scient's original desktop and agent sources.
 Doc type: Operational procedure
 
@@ -36,8 +36,7 @@ behind count is not.
 
 | Owned repository | Official source | Owned branch | Official branch |
 |---|---|---|---|
-| `ScientFactory/scient-desktop` | `Emanuele-web04/synara` | `main` | `main` |
-| `ScientFactory/scient-desktop-next` | `pingdotgg/t3code` | `main` | `main` |
+| `ScientFactory/scient-desktop` | `pingdotgg/t3code` | `main` | `main` |
 | `ScientFactory/scient-agent` | `anomalyco/opencode` | `dev` | `dev` |
 
 Every checkout used for maintained upstream intake must have a writable
@@ -47,19 +46,17 @@ create donor remotes. Before intake, configure and verify the official remote
 under the owning repository's `UPSTREAM.md`. The owned repositories remain
 standalone; the upstream remote records lineage and provides review input.
 
-ADR-0005 selects official T3 as the upstream for the successor desktop. The
-public-source repository exists with literal T3 ancestry and its D4 safety
-envelope integrated. It is therefore a maintained `thin-fork-merge` lane.
-Observed T3 movement never advances its literal `integrationBase` without owned
-ancestry and verification. The current Synara lane remains active for the
-supported continuity application until an explicit retirement decision.
+ADR-0005 selects official T3 as the upstream for the current desktop. The
+public repository retains literal T3 ancestry and its Scient safety envelope.
+It is therefore a maintained `thin-fork-merge` lane. Observed T3 movement never
+advances its literal `integrationBase` without owned ancestry and verification.
+The retired Synara-derived repository has no monitoring or intake lane.
 
 The parent machine verifier checks public maintained repositories by
-unauthenticated raw GitHub requests. `scient-desktop-next` is now public, but
-its parent source-lock entry must still be added only through a coherent
-snapshot and verifier update. Changing either snapshot activates a strict
-current-head gate for every recorded public source; repository visibility alone
-does not authorize a partial checkpoint rewrite.
+unauthenticated raw GitHub requests. A source-lock entry may be updated only
+through a coherent snapshot and verifier change. Changing either snapshot
+activates a strict current-head gate for every recorded public source;
+repository visibility alone does not authorize a partial checkpoint rewrite.
 
 ## State Model
 

@@ -3,7 +3,7 @@
 Status: Proposed
 Owner: Yaacov
 Created: 2026-07-24
-Last updated: 2026-08-12
+Last updated: 2026-08-28
 Purpose: Proposes the product boundary, architecture direction, source-adaptation strategy, and ordered implementation path for manual code editing, Python, R, MATLAB, notebooks, executable documents, datasets, tables, figures, analysis runs, reproducible computational work, and the shared foundations it coordinates with Scient's document platform.
 Doc type: Planning note
 
@@ -13,17 +13,19 @@ Scient should build one first-class **Scientific Computing and Data Analysis**
 workbench, not a collection of unrelated Python, R, MATLAB, notebook, table,
 and chart features.
 
-The first product gap is more basic than a language integration: the current
-Scient desktop app can read and diff code, but it does not provide a normal
-manual code editor. The workbench should therefore begin with a durable,
-project-aware editable document surface, followed by shared project-resolution,
-execution, diagnostics, and artifact foundations. Scientific analysis and
-compiled documents should specialize those foundations through distinct
-contracts such as `AnalysisRun` and `DocumentBuild`; they should not be forced
-into one oversized runtime abstraction. Python, R, MATLAB, Jupyter, Quarto,
-LaTeX, Typst, tables, and figures can then attach through adapters without
-forcing Scient to become a fork of VS Code, RStudio, Positron, JupyterLab,
-MATLAB, or Overleaf.
+Scient now has a safe project-aware text/source editor, a bounded MATLAB
+execution foundation, rich chart fences, generated analysis artifacts, and
+implemented math, LaTeX, HTML, and PDF paths. Draft desktop
+[PR #129](https://github.com/ScientFactory/scient-desktop/pull/129) also
+contains a substantial, separately gated stateful-compute integration
+candidate. The next work must qualify and consume that candidate where it wins
+rather than repeat either the older editor-first sequence or its compute-session
+foundation. Scientific analysis and compiled documents should continue to
+specialize shared lifecycle vocabulary through distinct records such as
+`ComputeSession`, `AnalysisRun`, and `DocumentBuild`; they should not be forced
+into one oversized runtime abstraction. Python, R, Jupyter, Quarto, Typst,
+tables, and figures can attach through adapters without forcing Scient to
+become a fork of VS Code, RStudio, Positron, JupyterLab, MATLAB, or Overleaf.
 
 The sibling [Scientific Document Platform Roadmap](scientific-document-platform-roadmap.md)
 now owns universal document viewing, inline mathematics, LaTeX and peer
@@ -34,34 +36,37 @@ seams while keeping `AnalysisRun` and `DocumentBuild` semantically distinct.
 
 The recommended direction is:
 
-1. Correct current file classification and unsupported-state bugs.
-2. Add first-class manual editing with explicit save, conflict, and recovery
-   behavior.
-3. Add a shared execution coordinator, project/dependency resolver, event
-   vocabulary, diagnostics model, and artifact contract, while preserving
-   specialized analysis-run and document-build semantics.
-4. Prove the shared foundation with one bounded vertical slice. Python remains
-   the first analysis adapter; whether a LaTeX build or Python run is the first
-   overall proof remains an explicit sequencing decision rather than an
-   architecture constraint.
-5. Turn execution outputs into inspectable project artifacts: logs, tables, images,
-   SVG, PDF, HTML, and generated files.
+1. Consume the shared
+   [File, Resource, And Presentation Foundation](file-resource-and-presentation-foundation.md)
+   for identity, relocation, viewer selection, and common recovery states.
+2. Preserve the implemented conditional editor, MATLAB run lifecycle,
+   `AnalysisArtifact`, and chart-renderer contracts as the current foundation.
+3. Review, realign, and qualify PR #129's language-neutral `ComputeSession`,
+   Python, provenance, and retained-representation foundations before creating
+   another execution coordinator or Python session path. Keep `AnalysisRun`
+   for isolated execution and `DocumentBuild` for typesetting.
+4. If PR #129 is accepted, continue the Python lane from that implementation
+   under the
+   [Scientific Python Environment Roadmap](scientific-python-environment-roadmap.md),
+   with runtime acquisition, datasets, tables, richer representations, and
+   notebooks as independently gated continuations; keep R as the next parity
+   challenger.
+5. Turn more outputs into inspectable, revisioned artifacts and let the
+   [Scientific Artifact Studio](scientific-artifact-studio.md) own inspection,
+   comparison, composition, and publication-facing operations.
 6. Add Jupyter-compatible notebooks and executable documents without embedding
    all of JupyterLab.
 7. Add data exploration, variable inspection, figure workflows, language
-   services, debugging, and remote compute in that order.
-8. Add domain packs such as neuroscience/BIDS after the generic workbench can
-   already open, edit, run, inspect, compare, and recover ordinary analysis.
-9. Gate every shared document decision against the complete manuscript
-   capability envelope so the first opener, editor, build, history, and
-   collaboration work remains usable rather than becoming migration debt.
+   services, debugging, and remote compute in evidence-driven order.
+8. Add domain packs such as neuroscience/BIDS only after the generic workbench
+   can open, edit, run, inspect, compare, and recover ordinary analysis.
 
-The recommended editor substrate is **CodeMirror 6**, subject to a bounded
-capability proof. Keep the existing `@pierre/diffs` integration for diff
-rendering. Adapt T3's useful interaction patterns—editable file review, pending
-save state, line-linked comments, and source/rendered modes—but do not make its
-currently patched beta `@pierre/diffs/editor` package Scient's permanent editor
-foundation.
+The current editor substrate is the inherited `@pierre/diffs/editor`, wrapped
+by Scient-owned revision, save, conflict, truncation, and freshness contracts.
+Preserve that working boundary. CodeMirror 6 and Monaco remain replacement
+candidates only if a concrete scientific editing requirement cannot be met
+cleanly; do not schedule a migration merely because the older plan preferred a
+different editor.
 
 This is a proposed direction, not accepted product truth or accepted
 architecture. Approval should authorize focused design and architecture work,
@@ -134,6 +139,13 @@ It also depends on, but does not replace:
 - [Scientific Document Platform Roadmap](scientific-document-platform-roadmap.md)
   for universal viewing, mathematics, typesetting, Office interoperability,
   manuscript authoring, review, collaboration, and publishing;
+- [File, Resource, And Presentation Foundation](file-resource-and-presentation-foundation.md)
+  for stable file identity, relocation, resolution, presentation selection,
+  shared viewer states, and broad view-only coverage;
+- [Scientific Python Environment Roadmap](scientific-python-environment-roadmap.md)
+  for the next Python-specific environment and execution lane;
+- [Scientific Artifact Studio](scientific-artifact-studio.md) for artifact
+  inspection, representation, comparison, composition, and publication export;
 - [Scientific Document Platform Source Map](../research/source-evaluations/scientific-document-platform-source-map.md)
   for focused document-platform donor evidence, pins, exclusions, and gates;
 - the generic “open any file from chat” plan for one consistent file-opening
@@ -146,51 +158,75 @@ It also depends on, but does not replace:
 
 ## Current Product Truth: What Scient Can Do Today
 
-This section distinguishes the installed release from proposed or in-progress
-viewer work. It was checked against the installed macOS app version `0.5.12`,
-the `release/stable` desktop source, and the current local source on 2026-07-24.
+This snapshot was checked on 2026-08-28 against
+`ScientFactory/scient-desktop` `origin/main`
+`aa23f1d3b96f6904dcc1a114cc33415fa267315a`. It describes source truth, not
+guaranteed parity across every installed release and operating system.
 
-| Capability | Current state | Consequence |
+| Capability | Current source state | Remaining gap |
 |---|---|---|
-| Open project source files | Yes. The workspace file preview can read and syntax-highlight ordinary text source. | Researchers can inspect code. |
-| Manually edit ordinary code | No. Source is rendered in read-only `<pre>` surfaces. | The area called an editor is not yet a manual editor. |
-| Save from the preview | Only the narrow Markdown task-checkbox interaction writes a file. | This does not constitute general source editing. |
-| View Git/session diffs | Yes. Scient already has diff and changed-file surfaces. | Review exists, but correction still requires an agent, terminal editor, or external app. |
-| Run commands | Yes, through the generic terminal when the executable exists. | Running is possible as shell work, not as an integrated analysis action. |
-| Run Python/R/MATLAB through a workbench | No. There is no first-party runtime picker, Run action, output panel, variable inspector, or analysis run record. | Results are not automatically connected to project provenance. |
-| Python availability on the inspected Mac | `python3` and `uv` were discoverable. | Python is the cheapest adapter with which to prove the common execution contract. |
-| R availability on the inspected Mac | `R` and `Rscript` were not discoverable. | Scient needs excellent missing-runtime and setup UX; it must not assume R is bundled. |
-| MATLAB availability on the inspected Mac | No MATLAB executable or application was found. | Scient must integrate a user-installed, licensed MATLAB; it cannot bundle MATLAB. |
-| Jupyter/Quarto availability on the inspected Mac | Neither command was discoverable. | Notebook/document support needs environment discovery and setup, not silent failure. |
-| Markdown preview | Yes for `.md`, `.mdx`, and `.markdown`. | `.Rmd` and `.qmd` currently fall back to plain source and have no executable preview. |
-| Images and PDF | The shipped shared preview supports common images and PDF. | These should become shared artifact renderers, not be rebuilt inside the workbench. |
-| HTML | Separate viewer work is in progress and is not yet proof of a shipped analysis-output contract. | Interactive analysis HTML should consume the universal viewer once its behavior is accepted. |
-| Large text | Reads default to 1,000,000 bytes and report truncation. | Editing must refuse or explicitly reopen truncated content; it must never save a partial file. |
-| Binary files | NUL-like content is rejected by the text reader. | `.mlx`, `.mat`, `.rds`, `.RData`, HDF5, NIfTI, and similar formats need typed viewers/adapters. |
-| Concurrent/external edits | The current write API accepts full replacement text without an expected revision. | A real editor would risk silent overwrite unless the write contract changes first. |
+| Project text/source editing | Implemented through `@pierre/diffs/editor` with revision-aware reads, expected-revision saves, atomic replacement, permission preservation, truncated-save refusal, dirty-buffer conflict choices, and exact-file freshness. | No stable relocation after rename/move, no universal editor session spanning every entry point, and no notebook cell model. |
+| Direct file viewing | Image/SVG, PDF, Markdown, text/source, HTML, audio, video, and unknown-binary fallback are classified and opened. | Workspace preview still uses a separate narrower dispatcher; broad Office/scientific formats need adapters. |
+| HTML, PDF, math, and LaTeX | Interactive local HTML, HTML-to-PDF, producer-neutral PDF sources, durable PDF reader state, KaTeX, and a LaTeX build/diagnostics/SyncTeX loop are implemented. | Controlled document publishing, Typst/Quarto providers, and semantic PDF/extraction remain future work. |
+| MATLAB | A bounded first-party run-file foundation is implemented with discovery/verification, revision-safe execution, queueing, cancellation, diagnostics, history, and PNG/FIG artifact capture. | Interactive sessions, variables, debugging, broad figure/data formats, and full cross-platform qualification remain future work. |
+| Python and R | Source can be edited; generic terminal execution remains available. | No equivalent first-party run adapter, environment picker, structured run record, variables, or setup flow yet. |
+| Rich output in chat | Mermaid, Vega-Lite, and Plotly use one lazy rich-fence registry. | This is not yet a general runtime MIME registry or Artifact Studio. |
+| Analysis artifacts | Current MATLAB outputs use revisioned analysis-artifact contracts and bounded representations. | Broader producers, provenance graph, comparison, composition, and publication export remain proposed. |
+| Notebooks and executable documents | Standard files remain openable as source or fallback. | No Jupyter-compatible cell runtime, kernel lifecycle, executable-document session, or clean-run reproducibility flow. |
+| Data inspection | Ordinary text/JSON/CSV may be viewed as files. | No scalable typed dataset explorer, variable inspector, DuckDB query lane, or HDF5/domain adapter is implemented. |
 
-Relevant implementation evidence:
+Relevant current implementation evidence:
 
-- the shipped [workspace preview](https://github.com/ScientFactory/scient-desktop/blob/release/stable/apps/web/src/components/WorkspaceFilePreview.tsx)
-  explicitly marks ordinary source as read-only and contains the narrow Markdown
-  checkbox write path;
-- the server `WorkspaceFileSystem` defaults to a 1,000,000-byte read, rejects
-  binary-like data, and writes full replacement content without a compare token;
-- the current filename highlighter resolves `.R` as R and `.py` as Python, but
-  resolves `.m` as Wolfram and treats `.Rmd`, `.qmd`, `.ipynb`, and `.mlx` as
-  plain text;
-- Scient already depends on `@pierre/diffs` for readable source/diff surfaces,
-  but its current stable package does not expose the beta editor used by T3.
+- [workspace file panel](https://github.com/ScientFactory/scient-desktop/blob/aa23f1d3b96f6904dcc1a114cc33415fa267315a/apps/web/src/components/files/FilePreviewPanel.tsx);
+- [universal file-opening contract](https://github.com/ScientFactory/scient-desktop/blob/aa23f1d3b96f6904dcc1a114cc33415fa267315a/docs/internals/scient-universal-file-opening.md);
+- [analysis runtime foundation](https://github.com/ScientFactory/scient-desktop/blob/aa23f1d3b96f6904dcc1a114cc33415fa267315a/docs/internals/scient-analysis-runtime-foundation.md);
+- [analysis artifact contracts](https://github.com/ScientFactory/scient-desktop/tree/aa23f1d3b96f6904dcc1a114cc33415fa267315a/packages/scient-analysis-artifacts);
+- [LaTeX implementation](https://github.com/ScientFactory/scient-desktop/blob/aa23f1d3b96f6904dcc1a114cc33415fa267315a/docs/internals/scient-latex.md); and
+- [rich fence registry](https://github.com/ScientFactory/scient-desktop/blob/aa23f1d3b96f6904dcc1a114cc33415fa267315a/apps/web/src/components/Chat/RichFenceRegistry.ts).
 
-### Direct Answer To The Original Question
+The material gap is now a coherent multi-language computing workbench above
+these landed foundations—not basic source editing or a first MATLAB proof.
 
-Today, a researcher can open and review Python, R, or MATLAB-looking files and
-can inspect diffs. They can use the terminal to invoke a runtime that they have
-installed. They cannot yet comfortably write those files manually in Scient,
-run them through a first-class R/MATLAB/Python workbench, inspect structured
-variables and outputs, or connect the run to durable project artifacts.
+## In-Flight Implementation Evidence: Not Product Truth
 
-That is a material product gap, not a small polish issue.
+Draft desktop [PR #129](https://github.com/ScientFactory/scient-desktop/pull/129)
+was inspected at remote head
+`4955966dc6731a262d839a13ced8faf40390384c` on 2026-08-28. It is already
+pushed to its integration branch but is not merged into `main`, released, or a
+substitute for the current-product table above.
+
+The candidate materially implements work that older versions of this roadmap
+described as future:
+
+- a language-neutral `@scientfactory/compute` domain in which
+  `ComputeSession` remains a sibling of one-shot `AnalysisRun`;
+- durable session generations, exact submitted-source provenance, FIFO
+  execution, interrupt/restart/stop/loss semantics, bounded history, signed
+  retained resources, and snapshot-plus-delta client recovery;
+- a supervised Jupyter bridge and bring-your-own Python adapter with explicit
+  runtime discovery and verification rather than implicit installation;
+- a file-first Python Code/Split/Results workflow for file, selection, and
+  explicit `# %%` cell execution, bounded live variables, diagnostics, figures,
+  generated project images, and producer-neutral full/floating viewers; and
+- a first neutral MIME-representation foundation with durable display facts,
+  clear/update projection, content hashes, lazy authorized resources, and
+  truthful unsupported fallbacks.
+
+The matching local integration worktree is clean at the same remote head. The
+PR remains deliberately draft; Windows real-kernel/process evidence, installed
+packaged-app qualification, current-main realignment, cumulative review, and
+explicit release approval remain open. Separate unpublished local MATLAB and
+notebook candidates are useful implementation evidence but are not durable
+repository truth and are not planning dependencies until preserved, realigned,
+reviewed, and qualified.
+
+Planning consequence: retain the older detailed requirements below as product
+and regression envelopes, but do not implement a second stateful-Python domain,
+Jupyter bridge, compute store, Results surface, figure-following system, or MIME
+bundle solely because those items are still worded prospectively. First compare
+the accepted requirement with PR #129, keep or repair the existing candidate,
+and build only the missing slice. If the PR is rejected, record the reasons and
+the reusable/rejected portions before replacing it.
 
 ## Target Researcher Experience
 
@@ -358,6 +394,12 @@ names.
 
 ### 1. Editable Workspace Document
 
+Current disposition: the safety-critical workspace text lifecycle is
+implemented. The remaining work is broader session identity, relocation,
+recovery drafts, encoding/line-ending depth, and future editor capabilities;
+do not replace the current editor without a failing requirement and migration
+proof.
+
 Create one document lifecycle shared by ordinary source, Markdown/Quarto/LaTeX
 source, notebook text representations, and configuration files.
 
@@ -382,6 +424,11 @@ that matches the just-confirmed save should be distinguishable from a genuine
 external edit.
 
 ### 2. Surface Registry
+
+Current disposition: direct file opening has a typed presentation union, but
+workspace preview and other entry points still dispatch separately. The
+[file foundation](file-resource-and-presentation-foundation.md) owns the
+convergence into one registry and shell.
 
 The universal opener and workbench should share a registry resembling:
 
@@ -427,6 +474,12 @@ not a blank viewer.
 
 ### 4. Execution Coordinator And Specialized Adapters
 
+Current disposition: LaTeX `DocumentBuild` and MATLAB `AnalysisRun` now prove
+separate specialized lifecycles with shared concepts, while PR #129 is the
+in-flight proof of a third sibling, stateful `ComputeSession`. Generalize only
+the event, cancellation, diagnostic, process, and artifact seams that real
+implementations demonstrably share.
+
 Define one coordinator for lifecycle mechanics shared by analysis and document
 builds:
 
@@ -440,9 +493,12 @@ builds:
 
 Keep specialized adapter contracts above that coordinator:
 
-- `AnalysisRuntimeAdapter` supports run file/selection/cell/task, short-lived
-  processes or stateful sessions, variables/workspace objects, environment and
-  package/toolbox identity, tests, and runtime diagnostics;
+- `AnalysisRuntimeAdapter` supports isolated run file/selection/task actions,
+  short-lived processes, environment and package/toolbox identity, tests, and
+  runtime diagnostics;
+- `ComputeLanguageAdapter` and `ComputeSession` support persistent state,
+  run-cell/run-selection semantics, variables, retained rich output, interrupt,
+  and session recovery without pretending to be an `AnalysisRun`;
 - `TypesettingEngineAdapter` supports root document, build recipe/engine,
   bibliography passes, output and auxiliary directories, rebuild/watch,
   structured compile diagnostics, produced PDF/HTML, and later source-output
@@ -505,6 +561,11 @@ distinguish ephemeral console activity from preserved scientific evidence and
 an unsuccessful build attempt from its last successful preview.
 
 ### 7. Artifact Registry And Staleness Graph
+
+Current disposition: the generated-document and MATLAB analysis-artifact
+families are implemented first consumers. The Scientific Artifact Studio owns
+future inspection/composition UX; this roadmap owns computational producers,
+runs, environments, and staleness evidence.
 
 An artifact is more than a filesystem path. Register datasets, tables, figures,
 models, reports, exports, and other durable outputs with:
@@ -681,15 +742,15 @@ become Scient's product model.
 
 | Source | Proposed relationship | Reuse or adapt | Do not take |
 |---|---|---|---|
-| [T3](https://github.com/pingdotgg/t3code) (MIT) | UX and implementation reference | Editable file review, source/rendered modes, line comments, optimistic pending state, save coordination, tests around latest-write behavior. | Do not copy the whole file panel or inherit its product model. Do not adopt its patched beta editor without a capability/license/maintenance proof. |
-| [CodeMirror 6](https://codemirror.net/) (MIT) | Preferred editor dependency after spike | Modular editor, language packages, search, lint, merge, collaboration primitives, and its current LSP client. | Do not treat editor state as canonical project state or let extensions write outside the document contract. |
+| [T3](https://github.com/pingdotgg/t3code) (MIT) | Current upstream lineage plus UX and implementation reference | Preserve inherited editable file review, source/rendered modes, line comments, pending state, save coordination, and tests through narrow Scient seams. | Do not let the file panel or editor define scientific authority, relocation, analysis, or document semantics. |
+| [CodeMirror 6](https://codemirror.net/) (MIT) | Replacement challenger when a concrete unmet requirement exists | Modular editor, language packages, search, lint, merge, collaboration primitives, and its LSP ecosystem. | Do not migrate from the working editor without fixture evidence and state/upstream-cost proof; editor state is never canonical project state. |
 | [Monaco Editor](https://github.com/microsoft/monaco-editor) (MIT) | Challenger/reference | Use as the capability benchmark for desktop IDE expectations. | Do not assume VS Code extensions work in Monaco; the official project says they do not. Its web workers, bundle weight, and lack of mobile-browser support make it a weaker default for Scient. |
-| Existing `@pierre/diffs` | Retain for diffs and review | Current high-quality diff rendering and selection model. | Do not force one library to own both diff rendering and the long-term scientific editor merely to reduce package count. |
+| Existing `@pierre/diffs/editor` | Current editor, diff, and review substrate | Preserve its working interaction seam behind Scient-owned revisions, conditional saves, conflicts, truncation, and freshness. | Do not make it irreplaceable or allow library state to become document authority. |
 | [Tiptap/ProseMirror](https://github.com/ueberdosis/tiptap), [Plate](https://github.com/udecode/plate), and [Lexical](https://github.com/facebook/lexical) | Scientific rich-editor projection candidates and UX sources | Prototype the same long manuscript with stable semantic nodes, citations/evidence, equations, figures/tables, comments, suggestions, accessibility, performance, collaboration, and import/export. | Do not let an editor's JSON/operation format become manuscript truth or select a winner before the common fixture passes. |
 | [Zotero](https://github.com/zotero/zotero), [JabRef](https://github.com/JabRef/jabref), and [CSL](https://citationstyles.org/) | Required citation/reference compatibility and selected component candidates | Adapt import/export, structured references, citation keys, styles, locators, refresh, metadata repair, group-library expectations, and citation round trips. | Do not rebuild or fork a full reference manager first, copy copyleft code without review, or reduce evidence-linked citations to bibliography strings. |
 | [Zettlr](https://github.com/Zettlr/Zettlr) | Local academic-writing and submission-workflow reference | Study file-oriented writing, citations, math/Mermaid, Pandoc profiles, templates, and journal/conference export while preserving external-editor continuity. | Do not make Markdown the only authoring model or inherit a whole desktop application. |
 | [LaTeX Workshop](https://github.com/James-Yu/LaTeX-Workshop) (MIT) | Strongest bounded LaTeX workflow reference | Study its documented root discovery, recipes/toolchains, cancellation, dependency tracking, output/auxiliary directories, PDF refresh, and SyncTeX behavior; adapt algorithms and UX behind Scient contracts with attribution where code is reused. | Do not embed a VS Code extension or inherit VS Code's workspace, settings, and process model. |
-| [Tectonic](https://tectonic-typesetting.github.io/) | Leading managed-engine candidate | Evaluate reproducible bundles, automatic multi-pass typesetting/bibliography behavior, Unicode/OpenType support, local CLI operation, and cross-platform packaging through `TypesettingEngineAdapter`. | Do not make Tectonic the architecture or promise universal package compatibility before fixture and licensing/distribution review. |
+| [Tectonic](https://tectonic-typesetting.github.io/) | Alternative managed-engine candidate | Compare reproducible bundles, automatic multi-pass behavior, Unicode/OpenType support, and cross-platform packaging with current TinyTeX and installed-TeX paths. | Do not add a second managed engine without material fixture-proven value and licensing/distribution review. |
 | [TexLab](https://github.com/latex-lsp/texlab) (GPL-3.0) | External LaTeX language-server candidate already used by `scient-agent` | Reuse the standard LSP boundary for cross-file diagnostics, completion, navigation, symbols, and forward-search capabilities after desktop lifecycle and redistribution review. | Do not copy GPL implementation into Scient or make a TeX distribution/compiler a prerequisite for opening and editing source. |
 | [Overleaf product/docs](https://docs.overleaf.com/) and [Community Edition](https://github.com/overleaf/overleaf) (AGPL-3.0 repository) | Comprehensive capability baseline, systems reference, compatibility target, and possible future integration subject to a separate decision | Track the full hosted workflow—code/visual editing, project/files, compilation, diagnostics, comments, tracked changes, history, collaboration, templates, citations, Git/GitHub, submission, AI assistance, groups, SSO, managed users, metrics, and offboarding—and study the repository's separation of editor/update/storage, real-time, history, compilation, Git, chat, notifications, and web concerns. | Do not assume Community Edition contains every hosted/professional feature, make its service topology Scient's architecture, or copy/link AGPL components without explicit license/product/operations acceptance. A future isolated integration, maintained fork, or self-hosted path is not permanently prohibited, but it requires its own source-depth review and ADR. |
 | [Typst](https://github.com/typst/typst) (Apache-2.0) | First-class future typesetting adapter | Preserve `.typ` as editable portable source and evaluate its incremental compiler, diagnostics, bibliography, PDF output, and watch behavior through the same document-build contract. | Do not design the contract around TeX-only pass mechanics or make Typst a hidden conversion layer for LaTeX projects. |
@@ -697,7 +758,7 @@ become Scient's product model.
 | [Yjs/Hocuspocus](https://github.com/yjs/yjs), [Automerge](https://github.com/automerge/automerge), and [ShareDB](https://github.com/share/sharedb) | Bounded collaboration-engine prototype set | Test real-time editing, awareness, offline changes, attribution, reconnect, schema migration, persistence, export, and recovery through one collaboration harness. | Do not use CRDT/OT state as project authorization, accepted scientific state, or the only history; do not put large assets inside a text collaboration document. |
 | Word and Google Docs | Manuscript exchange and review-quality compatibility baseline | Match understandable comments, suggestions/track changes, roles, presence, version restoration, and `.docx` import/export expectations through Scient-owned semantics. | Do not make Scient generic office software or rely on closed implementation details. |
 | [OSF](https://github.com/CenterForOpenScience/osf.io), [Dataverse](https://github.com/IQSS/dataverse), and [OpenReview](https://github.com/openreview/openreview) | Sharing, deposit, review, role, and publication reference/adapter set | Study project/repository handoff, draft-review-publish, persistent identifiers/citations, external collaborators, assignments, decisions, and immutable releases. | Do not make a repository or conference-review system the working manuscript truth or copy its domain hierarchy wholesale. |
-| [JupyterLab services](https://jupyterlab.readthedocs.io/en/stable/api/modules/services.html) and [rendermime](https://jupyterlab.readthedocs.io/en/stable/api/modules/rendermime.html) (BSD-3-Clause project) | Selected protocol/rendering dependencies or references | Kernel/server communication, MIME compatibility, and proven output renderers where dependency review supports it. | Do not embed or fork the full JupyterLab application and duplicate Scient's shell, project model, file explorer, and chat. |
+| [JupyterLab](https://github.com/jupyterlab/jupyterlab), [services](https://jupyterlab.readthedocs.io/en/stable/api/modules/services.html), and [rendermime](https://jupyterlab.readthedocs.io/en/stable/api/modules/rendermime.html) (BSD-3-Clause project) | Registry/context/`Open With` reference plus selected protocol/rendering candidates | Adapt document registry, model/context, factory, kernel/server, MIME, and explicit `Open With` patterns where dependency review supports it. | Do not embed or fork the full application or duplicate Scient's shell, project model, file explorer, and chat. |
 | [marimo](https://github.com/marimo-team/marimo) (Apache-2.0) | Adapter and reproducibility reference | Pure-Python notebook storage, reactive dependency/staleness ideas, disabled expensive cells, SQL/dataframe UX, optional external “Open in marimo.” | Do not make a Python-specific reactive model Scient's cross-language canonical notebook format. |
 | [RStudio](https://github.com/rstudio/rstudio) (AGPL-3.0) | UX reference | Source/console/environment/history/plots/help layout and R researcher workflows. | Do not fork or embed the IDE. Keep license and architecture boundaries explicit. |
 | [Positron](https://github.com/posit-dev/positron) (Elastic License 2.0) | Source-available UX reference only | Study data explorer, variables, plots, sessions, and multi-language data-science ergonomics. | Do not copy/fork product code as though it were ordinary permissive open source. |
@@ -708,7 +769,7 @@ become Scient's product model.
 | [MATLAB extension for VS Code](https://github.com/mathworks/MATLAB-extension-for-vscode) (MIT) | Official architecture/UX reference | Installation discovery, run/debug/workspace behavior, project handling, and compatibility expectations. | A VS Code extension is not directly embeddable in Scient; do not pretend it installs MATLAB or grants a license. |
 | [MATLAB MCP Core Server](https://github.com/matlab/matlab-mcp-core-server) | Official agent adapter candidate | First-party MCP setup for agent-assisted MATLAB actions, session attach/start, and official extensibility after license/telemetry review. | MCP must not replace the manual editor, Run action, output, or project run record. Do not enable telemetry or mutations without explicit product choices. |
 | [MATLAB Integration for Jupyter](https://github.com/mathworks/jupyter-matlab-proxy) | Optional notebook/full-MATLAB continuation | MATLAB kernel access in Jupyter and an external browser-based MATLAB continuation for installed, licensed MATLAB. | Do not embed the full MATLAB desktop/browser UI as Scient's workbench or imply the package installs MATLAB. |
-| [DuckDB](https://github.com/duckdb/duckdb) (MIT) | Preferred data-query dependency candidate | In-process, read-oriented exploration of CSV/Parquet/Arrow and scalable preview queries. | Do not silently rewrite source datasets or make a DuckDB catalog the only project truth. |
+| [DuckDB](https://github.com/duckdb/duckdb) (MIT) | Leading data-query prototype candidate | In-process, read-oriented exploration of CSV/Parquet/Arrow and scalable preview queries. | Do not silently rewrite source datasets or make a DuckDB catalog the only project truth. |
 | [Apache Arrow](https://arrow.apache.org/) (Apache-2.0) | Interchange layer | Columnar interchange among runtimes, viewers, and streamed tables where it reduces copying. | Do not require every runtime or small table to serialize through Arrow. |
 | [Perspective](https://github.com/perspective-dev/perspective) (Apache-2.0) | Table/grid/chart prototype candidate | Virtualized grid, large/streaming data, Arrow integration, and composable web component. | Do not accept bundle size, accessibility, keyboard, theme, or export behavior without a Scient-specific proof. |
 | [Vega-Lite](https://github.com/vega/vega-lite) (BSD-3-Clause) | Declarative figure specification candidate | Portable chart definitions, inspectable encodings, and renderer-independent saved specifications. | Do not replace native Python/R/MATLAB plotting libraries or force every figure into Vega-Lite. |
@@ -726,9 +787,10 @@ comments with chat context, updates an optimistic file cache, and debounces
 writes through a tested
 [`FileSaveCoordinator`](https://github.com/pingdotgg/t3code/blob/202e5609ffb294bc0aa86c08ce1d3751de567226/apps/web/src/components/files/fileSaveCoordinator.ts).
 
-This is useful and materially better than Scient's current read-only source
-surface. It proves that the existing diff-oriented interaction can support a
-fast editing loop. It is not a complete foundation for Scient's target:
+This behavior has since become part of Scient's current editable source
+surface, with stronger Scient-owned save/conflict/freshness contracts. The T3
+implementation remains upstream lineage and interaction evidence, not a
+complete scientific workbench:
 
 - T3 currently uses a `1.3.0-beta` `@pierre/diffs` editor plus a local patch;
 - the inspected save path sends full file contents and does not demonstrate the
@@ -738,20 +800,37 @@ fast editing loop. It is not a complete foundation for Scient's target:
 - its file panel is designed for an agent coding product, not for long-lived
   research data and analysis state.
 
-Recommendation: reproduce the *behavioral contract* in Scient—editable
-project-owned source, line review, truthful pending state, latest-write
-coordination, and tests—while proving CodeMirror against the scientific cases.
-If the CodeMirror proof fails a critical capability, re-evaluate Monaco and the
-newer `@pierre/diffs/editor`; do not commit to the beta dependency by default.
+Recommendation: preserve the inherited interaction seam and Scient-owned
+correctness wrapper. Evaluate CodeMirror or Monaco only against a concrete,
+unmet requirement and include migration cost, upstream-conflict risk, input
+method, accessibility, long-file, review-comment, and state-preservation tests.
 
 ## Ordered Roadmap
 
 The sequence below intentionally uses dependency and user value rather than
 calendar estimates.
 
-## Stage 0 — Make Current File Truth Accurate
+Status reconciliation on 2026-08-28:
 
-Fix small but important defects before adding a runtime:
+- Stages 0 and 1 are substantially landed for current workspace text and direct
+  opening; unresolved identity, relocation, and registry work moves to the file
+  foundation.
+- Stage 2 has landed first proofs in MATLAB and LaTeX. PR #129 additionally
+  contains the in-flight stateful Python and shared compute candidate described
+  above; qualify or reject it before scheduling another Python foundation. R
+  remains the next real language-parity challenger.
+- Stage 3 has landed generated-document and MATLAB artifact contracts. PR #129
+  adds an in-flight retained-representation foundation, but not the complete
+  typed dataset, cross-producer artifact registry, or staleness graph.
+- Stages 4-10 remain capability envelopes. Their detailed requirements are
+  retained below, but they are not all approved dependencies or release scope.
+
+## Stage 0 — Landed In Part: Make File Truth Accurate
+
+These requirements remain the regression and consolidation envelope. Correct
+MATLAB `.m` source classification and several known scientific source types are
+already implemented; unified unsupported states and entry-point routing remain
+owned by the file foundation.
 
 1. Correct `.m` classification from Wolfram to MATLAB in Scient's own file
    classification layer rather than waiting on a transitive package.
@@ -774,10 +853,11 @@ Exit gate: the fixture inventory opens into an accurate surface or a useful
 recovery state; no recognized scientific type produces a blank panel or is
 mislabelled as another language.
 
-## Stage 1 — First-Class Manual Source Editing
+## Stage 1 — Landed Foundation: First-Class Manual Source Editing
 
-This is the highest-ROI product slice because every later language and document
-benefits from it.
+The safety-critical core of this slice is current implementation. The
+requirements below remain its regression and extension envelope; the editor
+dependency proof is reopened only for a concrete unmet capability.
 
 ### Required behavior
 
@@ -788,9 +868,9 @@ benefits from it.
 - undo/redo, indentation, bracket behavior, line numbers, wrapping, find,
   replace, goto line, keyboard navigation, and accessible selection;
 - syntax support for Python, R, MATLAB, Markdown, Quarto, LaTeX, YAML, JSON,
-  shell, SQL, and the app's existing general languages, using reviewed
-  CodeMirror language packages where available and a tested fallback where an
-  official package does not exist;
+  shell, SQL, and the app's existing general languages, using the current
+  editor seam where it meets the fixture contract and a tested replacement only
+  where a concrete requirement proves it cannot;
 - explicit dirty/saving/saved/failed/conflicted indicators;
 - auto-save only after its recovery and conflict semantics are proven; a manual
   Save action and standard shortcut remain available;
@@ -816,10 +896,10 @@ benefits from it.
 - file watching and editor saves reconcile without loops;
 - recovery drafts live outside the canonical project file until restored.
 
-### Editor dependency proof
+### Editor capability and replacement gate
 
-Build one bounded proof comparing CodeMirror 6 with the current T3-inspired
-option. Test `.py`, `.R`, `.m`, `.qmd`, `.tex`, `.bib`, and `.typ` plus:
+Keep one bounded fixture suite for the current editor seam. Test `.py`, `.R`,
+`.m`, `.qmd`, `.tex`, `.bib`, and `.typ` plus:
 
 - a large file and a pathological long line;
 - RTL/bidirectional text inside comments and strings;
@@ -831,18 +911,23 @@ option. Test `.py`, `.R`, `.m`, `.qmd`, `.tex`, `.bib`, and `.typ` plus:
 - file conflict/reload without lost edits;
 - theme, accessibility, memory, and bundle behavior.
 
-Approve CodeMirror if it passes. Use Monaco only if a concrete, necessary
-desktop capability cannot be delivered reasonably with CodeMirror. Treat the
-T3 beta editor as a challenger, not the default.
+Do not schedule a replacement while the current editor passes. If it fails a
+necessary capability that cannot be repaired cleanly, compare CodeMirror 6 and
+Monaco against the same suite, including migration and upstream-conflict cost,
+and select only the smallest candidate that closes the proven gap.
 
 Exit gate: a researcher can manually open, edit, save, diff, recover, and ask an
 agent about the same `.py`, `.R`, `.m`, `.qmd`, or `.tex` file without silent
 data loss.
 
-## Stage 2 — Shared Execution Coordinator And First Adapter Proof
+## Stage 2 — Landed First Proofs; Qualify The In-Flight Compute Candidate
 
-Prove lifecycle, cancellation, diagnostics, receipts, artifacts, and recovery
-before building notebooks or a full manuscript environment.
+MATLAB and LaTeX now prove lifecycle, cancellation/supersession, diagnostics,
+receipts/artifacts, and recovery in their own domains. PR #129 implements a
+stateful Python candidate above a separate `ComputeSession` domain. The next
+step is to review and qualify that candidate against this stage—not to create a
+second Python adapter—and to preserve the distinct `AnalysisRun` and
+`DocumentBuild` records.
 
 The foundation must pass a small cross-domain contract fixture before either
 domain builds deeply: one analysis action and one document build should be able
@@ -865,32 +950,30 @@ both user-facing integrations in the same release.
 
 ### Adapter sequencing decision
 
-Python with `uv` remains the recommended first **analysis** adapter because it
-is already present on the inspected development machine and aligns with the
-current source-adaptation plan. A bounded LaTeX `DocumentBuild` may instead be
-the first overall execution proof if its typesetting plan is approved and ready
-first. The choice must be made from implementation readiness and researcher
-value; it must not create two coordinators or make one domain impersonate the
-other.
+MATLAB became the first implemented **isolated analysis** adapter and LaTeX
+became the first implemented document-build adapter. PR #129 is the current
+stateful Python candidate because of Python's scientific reach and the dedicated
+environment roadmap. This historical sequencing outcome must not create two
+stateful coordinators or make `ComputeSession`, `AnalysisRun`, or
+`DocumentBuild` impersonate one another.
 
-Before either implementation begins, approve the shared coordinator boundary,
-base receipt, cancellation/supersession semantics, diagnostic envelope,
-artifact registration, project-context handoff, and contract simulators. Then
-implement the selected thin vertical slice and exercise the other domain
-through a contract test double or spike.
+Before extending the candidate, review its coordinator boundary, exact-source
+receipt, cancellation/interrupt semantics, diagnostic envelope, retained-output
+registration, project-context handoff, and simulators. Promote shared concepts
+only where real consumers agree; do not retroactively force the established
+isolated-analysis and document-build domains through the stateful-session API.
 
-For the analysis lane, validate the same contract with minimal R and MATLAB
-adapters immediately after the Python proof:
+After PR #129 is aligned and accepted, validate which stateful concepts really
+generalize with an R adapter and the preserved MATLAB session candidate. Keep
+one-shot execution (`Rscript`, `matlab -batch`) in `AnalysisRun`; do not use it
+as evidence that persistent sessions are equivalent.
 
-- Python: `python`/`python3`, `uv run`, selected virtual environment;
-- R: `Rscript` for file/selection execution, selected R home/library;
-- MATLAB: `matlab -batch` or the supported installed-runtime invocation for
-  file execution, with release/license discovery.
-
-Do not add language-specific custom panels before all three can at least report
-`available`, `missing`, `misconfigured`, run, stream, stop, and preserve an
-`AnalysisRun` receipt through the common UI. Do not delay a useful LaTeX opener
-until R and MATLAB ship; its `DocumentBuild` lane has its own acceptance gate.
+Do not add language-specific custom panels before the shared UI can report the
+provider's truthful capability state (`available`, `missing`, or
+`misconfigured`) and the relevant record can run, stream, stop, and recover.
+Do not require every language to expose every stateful action, and do not delay
+a useful LaTeX opener until R and MATLAB ship; its `DocumentBuild` lane has its
+own acceptance gate.
 
 ### Process correctness
 
@@ -1182,7 +1265,7 @@ not redefine the generic workbench around one field.
 ## Document-Platform Handoff: LaTeX And The Long-Term Overleaf Direction
 
 The [Scientific Document Platform Roadmap](scientific-document-platform-roadmap.md)
-now owns the integrated proposal, stages, current Scient Desktop Next baseline,
+now owns the integrated proposal, stages, current Scient Desktop baseline,
 viewer UX, Office/manuscript relationships, approval boundary, and complete
 quality plan. The focused
 [source map](../research/source-evaluations/scientific-document-platform-source-map.md)
@@ -1191,12 +1274,11 @@ only as the computing workbench's shared-contract rationale; where planning
 details diverge, the focused document-platform roadmap governs this proposed
 product area.
 
-The retained LaTeX discussion records shared-contract rationale; the focused
-document-platform roadmap now owns its product proposal, and no engine or
-product decision is accepted here. Its central architectural claim remains
-sound: the
-first universal typesetting opener should be a thin, durable layer of the later
-manuscript workbench, not a disposable `LatexFilePreview` component.
+The retained LaTeX discussion records shared-contract rationale. The first
+universal typesetting opener is now implemented as a durable source/build/
+diagnostics/PDF/SyncTeX foundation rather than a disposable
+`LatexFilePreview`. The focused document-platform roadmap owns its future
+product growth and unresolved engine/provider decisions.
 
 ### Durable shared contract
 
@@ -1226,9 +1308,9 @@ tests, and data outputs. A document build cares about its root, dependency
 graph, engine passes, bibliography/index work, log, and last successful render.
 They should share mechanics and vocabulary while retaining those semantics.
 
-### First universal typesetting opener
+### Landed universal typesetting foundation
 
-The first useful slice should:
+The implemented slice establishes the following regression contract:
 
 1. Open source immediately from the project explorer, chat, scratch space, or
    an arbitrary absolute local path, even when no compiler or project root is
@@ -1250,8 +1332,7 @@ The first useful slice should:
 8. Keep auxiliary and temporary files outside source directories by default,
    unless a project configuration deliberately specifies otherwise.
 9. Reuse the existing PDF viewer instead of building a private typesetting PDF
-   surface; add forward/inverse source synchronization later through durable
-   anchors and reviewed SyncTeX support.
+   surface, with reviewed SyncTeX forward/inverse navigation.
 
 This is intentionally a complete local viewing/build loop, not yet full
 Overleaf. Smooth opening and useful output are the default. Normal execution
@@ -1278,11 +1359,12 @@ context. Cache only choices whose scope and invalidation are understood.
 
 ### Engine and language-service strategy
 
-No engine is approved by this roadmap. Build the adapter contract first, then
-compare candidates against the fixture pack and platform/distribution review:
+Scient currently supports discovered local toolchains and managed TinyTeX
+behind its typesetting boundary. Future changes should compare candidates
+against the fixture pack and platform/distribution review:
 
-- Tectonic is the leading managed, lower-setup local engine candidate;
-- an installed `latexmk`/TeX Live/MiKTeX path preserves compatibility with
+- Tectonic is an alternative managed, lower-setup local engine candidate;
+- installed `latexmk`/TeX Live/MiKTeX paths preserve compatibility with
   existing projects, including explicit XeLaTeX/LuaLaTeX choices;
 - Typst should be a peer adapter, not a LaTeX conversion hack;
 - Quarto/Pandoc should compose analysis and document-build receipts;
@@ -1392,19 +1474,19 @@ topology prescription. Likewise, Community Edition availability is neither
 proof that all hosted features can be adopted nor a reason to reject a future
 fork that later proves legally, operationally, and strategically superior.
 
-### Open decisions for the typesetting plan
+### Open decisions for document-platform growth
 
-Resolve these in the separate LaTeX architecture and implementation proposal:
+Resolve these in the focused document-platform architecture and implementation
+work:
 
-- whether `DocumentBuild` or Python `AnalysisRun` is the first shared execution
-  proof;
-- whether and how Scient distributes a managed Tectonic binary/bundle;
-- the first installed-TeX discovery matrix and engine override UX;
+- whether Tectonic adds enough compatibility or setup value beside managed
+  TinyTeX and installed toolchains;
+- additional installed-TeX discovery and engine-override depth;
 - how external absolute files receive bounded neighboring-directory context;
 - auxiliary/output directory defaults and project overrides;
 - TexLab distribution/update ownership and license obligations;
-- root-choice persistence, invalidation, and multi-root behavior;
-- the first source/PDF synchronization milestone;
+- later root-choice persistence, invalidation, and multi-root behavior;
+- semantic anchors beyond current SyncTeX source/PDF navigation;
 - the exact file-native and structured-native manuscript representations and
   the UX for deliberate conversion or authority changes;
 - the stable semantic identity, anchor, source-map, and orphan/re-anchor model;
@@ -1647,27 +1729,23 @@ Approve the following direction:
 1. **Category:** establish Scientific Computing and Data Analysis as the owner
    of manual scientific source editing, runtimes, notebooks, data exploration,
    figures, runs, and analysis artifacts.
-2. **Foundation:** make a conditional, recoverable editable document and surface
-   registry shared with the universal file opener; add explicit file-native and
-   structured-native authority modes, stable identities/anchors, projection and
-   reconciliation adapters, and an optional bounded project/dependency resolver
-   for formats that need more than one pathname.
-3. **Editor:** run a bounded CodeMirror 6 proof and use it by default if it
-   passes; retain `@pierre/diffs` for diff/review; adapt T3 behaviors but not its
-   patched beta foundation wholesale.
-4. **Execution:** define one execution coordinator, normalized event and
-   diagnostic envelope, base receipt, and artifact/staleness contract, with
-   specialized `AnalysisRuntimeAdapter`/`AnalysisRun` and
-   `TypesettingEngineAdapter`/`DocumentBuild` contracts.
-5. **Proof order:** keep Python/`uv` as the first analysis adapter; choose the
-   first overall proof between a thin Python run and thin LaTeX build only after
-   both use the approved shared boundary. Then validate R and MATLAB parity
-   immediately in the analysis lane.
+2. **Foundation:** consume the file/resource foundation for identity,
+   relocation, presentation selection, and common viewer recovery; preserve the
+   implemented conditional editor and add document/analysis semantics above it.
+3. **Editor:** retain the current `@pierre/diffs/editor` seam and Scient-owned
+   correctness wrapper. Evaluate CodeMirror or Monaco only for a proven unmet
+   requirement.
+4. **Execution:** extend common event, diagnostic, cancellation, process, and
+   artifact vocabulary from the landed MATLAB and LaTeX proofs while preserving
+   specialized `AnalysisRun` and `DocumentBuild` records.
+5. **Proof order:** review and qualify PR #129 as the current stateful Python
+   candidate under the dedicated Python environment roadmap, then validate R
+   parity without replacing the current isolated MATLAB lane.
 6. **R:** use official R, `renv`, R `languageserver`, and IRkernel as the first
    compatibility path; treat Ark as a later challenger.
-7. **MATLAB:** integrate user-installed licensed MATLAB; use official MathWorks
-   sources as adapters/references; add the official MATLAB MCP Core Server as an
-   optional agent lane, not the manual workbench.
+7. **MATLAB:** preserve and extend the implemented user-installed MATLAB
+   integration; use official MathWorks sources for compatibility and consider
+   the official MATLAB MCP server only as an optional agent lane.
 8. **Notebooks:** implement selected Jupyter protocol/MIME compatibility after
    script execution; do not embed all of JupyterLab; keep marimo as an adapter
    and design reference.
@@ -1677,11 +1755,9 @@ Approve the following direction:
 10. **Figures:** capture native language outputs first, preserve interactive and
     declarative specifications where available, and connect figures to source
     runs and manuscripts.
-11. **LaTeX:** build the first universal typesetting opener as a durable
-    `TypesetProject` specialization with immediate source, bounded root and
-    dependency resolution, `Preview | Source | Log`, cancellable builds,
-    diagnostics, and a retained last successful PDF. Select engines only after
-    an adapter/fixture/platform proof.
+11. **LaTeX:** preserve the landed typesetting opener and grow it through the
+    document platform; do not create a second source, build, diagnostics, PDF,
+    toolchain, or SyncTeX lane.
 12. **Manuscripts:** evolve that opener through the complete capability
     envelope: serious source/visual authoring, citations/evidence, review,
     durable history, realtime/local-first collaboration, templates,
@@ -1708,35 +1784,33 @@ Reject for now:
 - an unqualified promise of full IDE, Overleaf, MATLAB, or RStudio parity in
   the first implementation.
 
-## First Implementation Planning Handoffs After Approval
+## Next Planning Handoffs After Approval
 
 Approval of this roadmap should create separate bounded documents rather than
 turning this planning note into implementation architecture:
 
-1. editable workspace document and conditional-write architecture;
-2. universal surface registry and file capability design;
-3. bounded project/dependency resolver architecture;
-4. editor dependency spike report;
-5. shared execution/event/diagnostic/base-receipt architecture with explicit
-   `AnalysisRun` and `DocumentBuild` specializations;
-6. artifact, last-success, and staleness architecture;
-7. Python/R/MATLAB parity fixture and quality plan;
-8. first workbench interaction design;
-9. dependency/license review for selected packages;
-10. MATLAB integration and licensing/telemetry decision record;
-11. universal typesetting opener architecture, interaction design, and
-    engine/LSP/license/platform fixture spike;
-12. manuscript authority, semantic identity, anchor, projection, fidelity, and
+1. file/resource/presentation foundation implementation slices;
+2. PR #129 current-main realignment, qualification, and disposition, followed
+   by bounded Python environment/runtime continuations rather than a replacement
+   foundation;
+3. cross-language execution/event/diagnostic compatibility review based on the
+   existing MATLAB and LaTeX contracts;
+4. artifact/staleness integration with the Scientific Artifact Studio;
+5. Python/R/MATLAB parity fixture and quality plan;
+6. first multi-language workbench interaction design;
+7. dependency/license review for selected Python, notebook, and data packages;
+8. manuscript authority, semantic identity, anchor, projection, fidelity, and
     reconciliation architecture decision;
-13. scientific rich-editor shootout using one source/visual/citation/evidence/
+9. scientific rich-editor shootout using one source/visual/citation/evidence/
     figure/review/import-export fixture;
-14. citation/reference/evidence architecture and Zotero/JabRef/CSL adapter plan;
-15. review, attributed history, restore, and replaceable collaboration-engine
+10. citation/reference/evidence architecture and Zotero/JabRef/CSL adapter plan;
+11. review, attributed history, restore, and replaceable collaboration-engine
     architecture plus offline/conflict/revocation fixture;
-16. template/profile/publication/submission architecture and first adapter plan;
-17. Overleaf hosted/professional/Community Edition source-depth, feature-gap,
+12. template/profile/publication/submission architecture and first adapter plan;
+13. Overleaf hosted/professional/Community Edition source-depth, feature-gap,
     license, operations, local-first, and structured-manuscript decision record;
-18. notebook protocol/rendering spike after the script-run gate passes.
+14. notebook contract and rendering continuation after the PR #129 foundation
+    and any preserved notebook proof are reconciled.
 
 ## Roadmap Completion Criteria
 

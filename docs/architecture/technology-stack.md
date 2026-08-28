@@ -3,7 +3,7 @@
 Status: Proposed
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-08-09
+Last updated: 2026-08-28
 Purpose: Records Scient's current technology stack direction and open implementation decisions.
 Doc type: Architecture direction
 
@@ -24,30 +24,30 @@ material unresolved risk changes. Put product sequencing in
 `../planning/product-roadmap.md`, implementation work in the relevant planning
 document, and exact run evidence under `lab/`.
 
-The owned Synara checkout in the workspace sibling `../scient-desktop/`
-(relative to the Scient repository root) remains the maintained current
-application and continuity foundation. ADR-0001 records why it was selected;
-ADR-0005 now owns the forward target. Its inherited package layout,
-dependencies, state model, and provider model remain implementation evidence,
-not automatically accepted Scient architecture.
+The owned T3-derived checkout in the workspace sibling `../scient-desktop/`
+(relative to the Scient repository root) is the maintained current
+application. ADR-0005 records the selected foundation and completed cutover.
+The retired Synara-derived source is historical evidence only. Inherited
+package layouts, dependencies, state models, and provider models remain
+implementation evidence, not automatically accepted Scient architecture.
 
 ## Accepted Foundation Target
 
-[ADR-0005](decisions/ADR-0005-t3-derived-desktop-foundation.md) accepts a
-fresh, literal-ancestry T3-derived successor application. The reviewed
-[migration plan](../planning/t3-foundation-migration-plan.md) owns the
-proof-gated transition sequence. The public-source candidate repository has its
-safety envelope and bounded M1 work integrated, while the current
-Synara-derived app remains the supported application. Integrated candidate code
-and release machinery do not thereby make it a released or supported product.
+[ADR-0005](decisions/ADR-0005-t3-derived-desktop-foundation.md) accepted a
+fresh, literal-ancestry T3-derived application. The
+[migration plan](../planning/t3-foundation-migration-plan.md) preserves the
+proof-gated transition and cutover record. The public T3-derived repository is
+now the released and supported Scient Desktop; the Synara-derived predecessor
+is retired.
 
-The candidate preserves literal ancestry from exact official T3 commit
+The application preserves literal ancestry from exact official T3 commit
 `a2ca89aa10f13a2222e08afd98c66285121d5ba2`. The bounded identity and safety
 envelope reviewed at `ae4c1aba522ea5b1aad94754b42f10a39f888574` was integrated
-through candidate PR #1; D4 closeout reaches candidate `main`
-`bc22a67f4051965d13f35ab75cfa50464c5a65cd`. Feature migration and release are
-not authorized by that fact. Current implementation, accepted target, verified
-candidate, published release, and cutover remain separate states.
+through then-candidate PR #1; D4 closeout reached then-candidate `main`
+`bc22a67f4051965d13f35ab75cfa50464c5a65cd`. Those facts were historical gate
+evidence, not release authority by themselves; later release and cutover gates
+completed. Current implementation remains distinct from proposed scientific
+platform architecture.
 
 ## Product Constraints
 
@@ -75,20 +75,20 @@ Scient app from the planned Scient agent where needed.
 
 | Layer | Current Direction | Status |
 |---|---|---|
-| Product language | TypeScript | Proposed; inherited scaffold currently uses TypeScript 5.7 |
-| UI framework | React | Proposed; inherited scaffold uses React with Vite |
-| Desktop shell | Electron | Proposed first choice; present in inherited scaffold |
-| Local coordinator | Bun/Node.js WebSocket server | Inherited scaffold candidate; not yet a Scient decision |
-| Workspace tooling | Bun workspaces, Turborepo, Vite | Inherited scaffold candidate; not yet a Scient decision |
+| Product language | TypeScript | Implemented current desktop foundation; future scientific-domain boundaries remain deliberate decisions |
+| UI framework | React | Implemented current desktop foundation with Vite |
+| Desktop shell | Electron | Implemented current desktop foundation |
+| Local coordinator | Node.js WebSocket server with Effect-based typed contracts | Implemented current desktop foundation |
+| Workspace tooling | pnpm workspaces, Turbo, Vite | Implemented current desktop tooling |
 | Cloud web app | React, with Next.js as a later candidate | Not scaffolded |
 | Local application state | SQLite for inherited app/session projections; future memory and project-state storage undecided | App SQLite implemented; memory architecture not yet designed |
 | Cloud database | Postgres | Proposed; not scaffolded |
 | Cloud platform | Supabase | Initial default candidate; not scaffolded |
 | Large file storage | Object storage | Proposed; not scaffolded |
 | Sync | Local-first project-state-to-cloud sync | Under evaluation; storage and sync engines not selected or scaffolded |
-| Current application foundation | Standalone Scient-owned, Synara-derived source | Implemented continuity foundation; remains supported until explicit cutover |
-| Accepted successor application foundation | Fresh, literal-ancestry T3-derived Scient-owned source | Public-source candidate with the safety envelope and bounded M1 work integrated; release machinery does not mean released or cut over |
-| External-agent layer | Synara provider contracts and service | Inherited machinery for external agents; preservation required, project-task compatibility not yet certified |
+| Current application foundation | Standalone Scient-owned, literal-ancestry T3-derived source | Implemented, released, and maintained through reviewed upstream intake plus explicit Scient divergence |
+| Historical predecessor | Synara-derived source | Retired private repository; evidence only, no new-work or release authority |
+| External-agent layer | Current T3-derived provider contracts and adapters | Implemented host machinery; external agents remain distinct from the planned Scient agent |
 | First-party agent | One owned Scient agent; refreshed native foundation still under evaluation between Pi, OpenCode, and any equivalently qualified candidate | ADR-0005 preserves the one-agent ownership boundary but does not select the refreshed baseline; Scient product/runtime not yet implemented |
 | Historical agent source | Standalone Scient-owned, OpenCode-derived `scient-agent` repository | Incumbent source evidence and governance history; not an automatic future implementation baseline |
 | Agent capability sources | Pi, OpenCode, Hermes, Codex, Goose, OpenHands SDK, Aider, and later qualified sources | Research, selective adaptation, or bounded-worker candidates; no worker selected |
@@ -99,76 +99,33 @@ Scient app from the planned Scient agent where needed.
 | Collaborative text | Yjs or equivalent CRDT layer | Candidate |
 | Versioning | Domain history, snapshots, Git for artifacts | Proposed direction |
 
-## Actual Scaffold State
+## Current Application State
 
-As of 2026-07-18, the executable application scaffold is the owned Synara
-checkout in the workspace sibling `../scient-desktop/`. Its Scient identity and project-init
-lane passed hosted CI at `2ecdbb5e` and was merged as `50294e64`. The subsequent
-application-foundation follow-up passed hosted CI at `f7760e97` and advanced
-the owned application baseline. A later maintained sync through official Synara
-v0.5.5 passed hosted CI at `d4b10c27` and advanced owned `main` to
-`fd37cdcd`. The Scient rename then passed hosted CI at `179fa01e` and merged to
-owned `main` as `d9d8992a`, based on tested upstream `9be46c3c`. Subsequent
-reviewed UI and project-init status follow-ups advanced maintained `main` to
-`2ecfbe19`. Standalone ownership and upstream-maintenance follow-ups then
-advanced maintained `main` to `bd2a6eed`; exact provenance is recorded in
-`lab/external/sources.lock.md`.
-The owned OpenCode-derived repository—the historical incumbent source evidence
-for the Scient agent—is in the workspace sibling `../scient-agent/`. Its
-governance, identity, CI, release-lane, and upstream-maintenance work remain
-valuable. The native scientific agent is not implemented, and the future
-refreshed source foundation must be selected through the gate in the
-[Scient and external agents implementation plan](../planning/scient-and-external-agents-implementation-plan.md).
-Historical
-Gate 1 and Gate 1.5 commits, tags, and ignored runtime evidence remain
-historical records; they are not the active Scient implementation baseline.
+The executable application is the owned T3-derived checkout in the workspace
+sibling `../scient-desktop/`. Current source facts should be read from that
+repository at an exact revision; on 2026-08-28 its `origin/main` was
+`aa23f1d3b96f6904dcc1a114cc33415fa267315a`. The repository owns Electron,
+React/Vite, Node WebSocket services, typed Effect contracts, SQLite
+projections, provider adapters, browser/preview, files, terminals, Git, release
+machinery, and current Scient-specific scientific packages.
 
-The scaffold currently provides:
+Scient-specific mainline capabilities now include project initiation, Sources,
+PDF reading, safe text editing, universal direct file opening, exact-file
+freshness, rich chat diagrams/charts/math, interactive HTML, HTML-to-PDF,
+LaTeX builds, generated-document artifacts, MATLAB analysis, and selected
+scientific skills. Their repo-local implementation documentation is current
+behavior authority. They do not by themselves define the future canonical
+scientific project graph, manuscript model, memory, cloud mirror, or native
+Scient agent.
 
-| Scaffold area | Inspected reality | Scient boundary |
-|---|---|---|
-| Desktop | Electron app under `apps/desktop` | Candidate shell machinery, not accepted Scient product architecture |
-| Local UI | React 19 and Vite under `apps/web` | Local workbench UI; not the future cloud web client |
-| Local coordinator | Bun during development, Node-compatible build, WebSocket RPC, provider routing, terminal/filesystem/Git/browser services under `apps/server` | Runtime machinery Scient may wrap or borrow; not the scientific project kernel |
-| Local state | SQLite through Effect SQL | Synara session/orchestration projection state; not canonical Scient scientific state |
-| Shared contracts | Effect schemas in `packages/contracts` plus runtime helpers in `packages/shared` | Candidate provider/runtime boundary; Scient domain contracts do not exist yet |
-| Agent integration | Existing provider adapters, including external OpenCode, plus compatibility evidence from the owned OpenCode build | Reusable external-agent machinery; Scient, its isolated identity, and the Scient gateway do not exist yet |
-| Tooling | Bun workspaces, Turborepo, Vite, Vitest, TypeScript 5.7 | Inherited compatibility baseline, not an automatic long-term commitment |
+The owned OpenCode-derived `scient-agent` repository remains historical
+incumbent source evidence for the planned native Scient agent. Its refreshed
+foundation still follows the separate Foundation Gate. The retired
+Synara-derived desktop is evidence and rollback history only.
 
-`lab/scient-bridge/` currently contains planning documentation only. The owned
-desktop checkout now contains the dependency-light `@scientfactory/project-init`
-package, but there are still no Scient-owned scientific domain contracts,
-Scient implementation, agent gateway, cloud client, sync implementation, or
-production build pipeline.
-
-### Scaffold Use Rule
-
-The inherited scaffold pass and owned-source identity pass are complete. Review
-official Synara changes deliberately through the upstream-intake process, preserve the isolated Scient state
-and updater boundary, and promote only the parts that prove useful behind a
-Scient-owned project and agent contract. Do not restructure inherited packages
-or add scientific truth to Synara state merely because the shell now carries
-Scient identity.
-
-### TypeScript Version Baseline
-
-Use the current stable TypeScript release for new Scient-owned packages when
-their selected dependencies support it. As of 2026-07-09, that means TypeScript
-7.x, the native TypeScript compiler line announced by the TypeScript team on
-2026-07-08
-([official announcement](https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/),
-inspected 2026-07-09).
-
-The inherited Synara scaffold is pinned to TypeScript 5.7.3. Boot and verify it
-without a compiler upgrade first. A later TypeScript 7 compatibility spike must
-check the actual Effect language service, Electron, React, Vite, test, lint, and
-build paths before changing the inherited baseline.
-
-TypeScript 5.7 is therefore a scaffold compatibility fact, not a Scient product
-commitment. TypeScript 7 is a target baseline for new Scient-owned code, not a
-prerequisite for the first Synara health check. Record any durable exception in
-`docs/development/typescript.md` or the relevant implementation document once
-Scient-owned code exists.
+Current desktop toolchain requirements live in its root instructions and
+tracked package metadata. Do not copy the retired Synara Node, pnpm, Electron,
+or build assumptions into new work.
 
 ## Application Architecture
 
@@ -176,7 +133,7 @@ Scient should be built as a desktop-first product with a cloud collaboration pla
 
 The local app must remain useful without network access. The cloud layer provides account identity, backup, cross-device access, project sharing, collaboration, background jobs, and web access.
 
-The current lab scaffold has this upstream shape:
+The current application has this inherited host shape:
 
 ```text
 ../scient-desktop/
@@ -188,11 +145,10 @@ The current lab scaffold has this upstream shape:
   packages/shared
 ```
 
-That tree remains foreign source and should not become the Scient package map by
-accident. Source-tracing notes and disposable adapter experiments may use
-`lab/scient-bridge/`. The first vertical-slice implementation belongs in a
-permanent location to be selected from source evidence and later focused
-product/architecture work; do not treat the lab as its default code home.
+That tree is maintained T3-derived host code. It should not become the
+scientific domain model by accident. Current Scient-specific implementations
+belong in owned packages and `apps/*/src/scient` seams in the desktop
+repository; research notes and source evidence remain in this repository.
 
 Possible later Scient-owned package areas include:
 
@@ -207,9 +163,9 @@ packages/agent
 packages/science
 ```
 
-This is a target decomposition to validate, not a scaffold that exists today.
+This is a possible future decomposition to validate, not a required refactor.
 Final package boundaries should emerge from the local project, agent gateway,
-scientific workflow, and later sync pressure rather than from renaming Synara
+scientific workflow, and later sync pressure rather than from renaming T3
 packages in place.
 
 When both clients exist, the desktop and web apps should share domain types,
@@ -218,8 +174,7 @@ where practical.
 
 ## Desktop
 
-Use Electron for the first desktop experiment. The inherited Synara scaffold
-already provides the Electron shell.
+Electron is the implemented desktop shell.
 
 Electron is the pragmatic first choice because Scient needs React, local files,
 embedded structured storage, subprocesses, agent CLIs, and local background
@@ -227,13 +182,10 @@ services. These are all easier to integrate in Electron than in a stricter
 native shell during the first product build. This shell choice does not select
 the canonical project-storage technology.
 
-Under the initial ADR-0001 foundation, the validation question was whether the
-Synara-derived shell could host a Scient-owned project mode without forcing
-scientific work into coding projects, Git worktrees, provider threads, or
-engine-owned artifacts. ADR-0005 answers the forward-looking host selection
-and requires the remaining fit question to be proven through the first
-scientific workflow in the candidate, while keeping the same scientific-
-authority constraint.
+ADR-0005 answers the host-selection question. The remaining constraint is
+unchanged: scientific work must not be forced into coding projects, Git
+worktrees, provider threads, or engine-owned artifacts merely because those
+concepts exist in the host.
 
 Tauri is not rejected. It is deferred.
 
@@ -241,7 +193,7 @@ Tauri should be reconsidered if Electron becomes a proven blocker for memory use
 
 ## Web
 
-The scaffold's `apps/web` is a React/Vite local workbench UI used by the local
+The current `apps/web` is a React/Vite workbench UI used by the local
 server and Electron app. It is not a scaffold for Scient's future cloud web
 client.
 
@@ -253,11 +205,7 @@ cloud/project model, not a separate product with separate semantics.
 
 ## Local Data
 
-Use the inherited SQLite boundary for current global app, session,
-orchestration, and projection state. Do not infer from that implementation that
-SQLite is selected for canonical Scient project records.
-
-The inherited scaffold already uses SQLite for Synara app, session,
+The current application uses SQLite for host app, session,
 orchestration, and projection state. That database must not be relabeled as the
 Scient scientific project database. Scient-owned project persistence has not
 been selected, designed, or implemented. The future memory-architecture project
@@ -276,7 +224,7 @@ history, and ordinary files remains an open product and architecture question.
 Do not turn one candidate representation into architecture before that broader
 memory discovery.
 
-The inherited scaffold uses Effect SQL with SQLite through Bun. Do not replace
+The application uses Effect SQL with SQLite. Do not replace
 that layer merely to satisfy a candidate target stack. Whether any part of a
 future memory architecture reuses it is explicitly undecided.
 
@@ -442,7 +390,10 @@ Rust services should sit behind stable TypeScript-facing interfaces.
 
 Use a structured rich-text editor for scientific writing.
 
-The ProseMirror/Tiptap family is the current default candidate because it supports structured editing, extensibility, citations, comments, and collaboration through Yjs-style integrations.
+The ProseMirror/Tiptap family is the leading prototype candidate because it
+supports structured editing, extensibility, citations, comments, and
+collaboration through Yjs-style integrations. Plate and Lexical must be tested
+against the same scientific manuscript fixture before selection.
 
 The editor must support source-grounded writing and citation traceability.
 
@@ -507,8 +458,8 @@ Completed historical experiments remain evidence, not the roadmap.
 
 | Area | Proven | Not Yet Proven | Evidence Or Owner |
 |---|---|---|---|
-| Synara-derived application | Standalone owned source, build, isolated Scient identity and state, reviewed upstream process | Continuity support, current-user census, import/archive path, rollback window, and later retirement | Gate 1 and Gate 1.5 lab reports; superseded ADR-0001 records initial adoption; ADR-0002 owns repository authority |
-| Accepted T3-derived successor | Exact official base selected; untouched baseline and integrated D4 identity/privacy/state envelope passed the recorded Node 24 checks | Sustainable Scient seams, hostile-update cost, user continuity, and cutover safety | Accepted ADR-0005, active migration plan, Phase Zero dossier, and D4 bootstrap evidence |
+| Retired Synara-derived application | Standalone owned source, historical build and migration evidence | No current product work; archive/rollback evidence only | Gate 1 and Gate 1.5 reports and superseded ADR-0001 |
+| Current T3-derived application | Exact official ancestry, released desktop, current upstream-intake path, and multiple Scient-owned scientific feature seams | Long-term upstream cost, future scientific-project authority, cloud continuation, and platform-specific depth | Accepted ADR-0005, historical migration plan, current desktop source and operations docs |
 | Scient source foundation | Historical owned OpenCode build, Synara compatibility, project-root fidelity, transcript fidelity, and approval flow for a constrained action; current Pi/OpenCode/Hermes/Goose/OpenHands/Codex source investigation | Fresh native-foundation selection, Scient identity and packaging, owned capabilities, isolated state, durable task behavior, worker need, and justified inherited-core changes | [2026-08-06 foundation investigation](../research/source-evaluations/scient-agent-foundation-and-capability-strategy-2026-08-06.md) and future Foundation Gate; no refreshed foundation selected |
 | External agents | Nine inherited adapters and external OpenCode settings/adapter paths are present in source | Per-agent live compatibility, subscription/auth behavior, project-task certification, and migration protection | [Scient and external agents implementation plan](../planning/scient-and-external-agents-implementation-plan.md) |
 | Scient project state and memory | Product responsibilities, high-level memory principles, approved non-Git recovery requirement, and trust boundary are documented | Memory scopes, canonical representation, conversation relationship, package seam, portability, recovery, cloud sync, and first real scientific object relationship | PRD, [Memory Architecture Discovery](../planning/memory-architecture-discovery.md), and future focused architecture work |
@@ -520,12 +471,11 @@ Gate 1 and Gate 1.5 are retained only as historical names for completed work.
 Future product and implementation sequencing lives in
 `../planning/product-roadmap.md` and the linked implementation plan.
 
-## Current And Accepted-Target Stack Direction
+## Current And Proposed Stack Direction
 
-The stack below combines current implementation roles, the accepted T3 target,
-and still-proposed technology choices. The current desktop remains
-Synara-derived; ADR-0005 selects a fresh T3-derived successor after Phase Zero
-review and explicit acceptance.
+The stack below combines current implementation roles and still-proposed
+scientific, cloud, and agent choices. The T3-derived desktop foundation is
+current; that does not make every future technology below accepted.
 
 ```text
 TypeScript
@@ -537,7 +487,7 @@ Supabase as initial cloud platform candidate
 object storage
 local-first sync under evaluation
 one owned Scient first-party agent; refreshed foundation unselected
-inherited Synara adapters for independently connected external agents
+current T3-derived adapters for independently connected external agents
 Pi/OpenCode native-foundation finalists
 Hermes/OpenCode/Codex possible bounded workers
 Codex/Goose/OpenHands/Aider capability and architecture references
@@ -548,9 +498,9 @@ CRDTs only for collaborative text
 Git for human-readable artifacts, not required sharing
 ```
 
-The inherited-adapter line describes the current application only. Under the
-proposed successor, external-agent delivery would begin from the selected T3
-provider architecture and be extended only through accepted Scient behavior.
+The external-agent line describes host delivery only. It does not select the
+native Scient agent foundation or make external-agent sessions canonical
+scientific state.
 
 Update this document when a technology role, foundation status, or validation
 state changes. The overall target stack remains proposed until the first

@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-07-31
-Last updated: 2026-08-09
+Last updated: 2026-08-28
 Purpose: Provides the repeatable setup procedure for an internal contributor's local multi-repository ScientFactory workspace.
 Doc type: Operational procedure
 
@@ -37,45 +37,45 @@ example, not a required path or repository name.
 mkdir -p ~/REPOs/ScientFactory
 cd ~/REPOs/ScientFactory
 gh repo clone ScientFactory/Scient Scient
-cd Scient
-./scripts/bootstrap-workspace.sh --dry-run
-./scripts/bootstrap-workspace.sh
+gh repo clone ScientFactory/scient-desktop scient-desktop
+gh repo clone ScientFactory/scient-agent scient-agent
 ```
 
-The default command validates the existing `Scient` checkout and clones the
-three missing core migration siblings:
+The intended active workspace contains:
 
 ```text
 ScientFactory/
 ├── Scient/
 ├── scient-desktop/
-├── scient-desktop-next/
 └── scient-agent/
 ```
 
-`scient-desktop-next` is the public-source, unreleased T3-derived successor.
-Its presence in the workspace does not make a local branch integrated,
-released, or the current application.
+`scient-desktop` is the public T3-derived current application. The retired
+Synara-derived repository is intentionally excluded from new workspaces. A
+historical checkout may be retained separately for an explicitly authorized
+recovery audit.
+
+### Bootstrap-script alignment
+
+`scripts/bootstrap-workspace.sh` still contains the former
+`scient-desktop-next` checkout in its executable repository list. GitHub now
+redirects that name to `scient-desktop`, so running the script against a fresh
+workspace would create two local checkouts of the same active repository. Until
+that script and its tests receive a separate code change, use the explicit
+`gh repo clone` commands above and do not treat the script as current
+workspace authority.
 
 Include the public website only when website or download-surface work needs it:
 
 ```sh
-./scripts/bootstrap-workspace.sh --with-website
+gh repo clone ScientFactory/ScientFactory-website website
 ```
-
-To create or validate a different workspace root, pass an explicit path:
-
-```sh
-./scripts/bootstrap-workspace.sh --workspace ~/work/scient --with-website
-```
-
-An option-looking relative name is rejected before any directory is created.
-Prefix an intentional name beginning with `-` with `./`, for example
-`--workspace ./-scient-workspace`.
 
 ## Safety And Idempotency
 
-The bootstrap command:
+The current bootstrap implementation is fail-closed for the operations below,
+but its repository inventory is stale as described above. Its retained safety
+properties are:
 
 - clones only missing repositories;
 - validates every origin fetch URL and every effective push URL as HTTPS or SSH
@@ -92,8 +92,8 @@ The bootstrap command:
 - never fetches, pulls, switches, cleans, resets, installs dependencies, creates
   branches, or initializes Git in the workspace root.
 
-If cloning is interrupted, run the same command again. Completed repositories
-are retained and validated; only missing repositories are retried.
+If an explicit clone is interrupted, inspect the destination before retrying;
+`gh repo clone` does not replace a valid existing checkout automatically.
 
 ## Start Working
 
@@ -113,10 +113,10 @@ Dependency installation is repository-specific and intentionally excluded from
 the bootstrap. Follow the current instructions in each repository rather than
 assuming one workspace-wide package command.
 
-The workspace bootstrap clones and validates only each ScientFactory-owned
-`origin`. It does not create donor remotes. Before performing upstream intake,
-follow the owning repository's `UPSTREAM.md` and verify that its official
-`upstream` fetch URL is correct and its push URL is `DISABLED`.
+The setup commands create only each ScientFactory-owned `origin`. They do not
+create donor remotes. Before performing upstream intake, follow the owning
+repository's `UPSTREAM.md` and verify that its official `upstream` fetch URL
+is correct and its push URL is `DISABLED`.
 
 ## Troubleshooting
 

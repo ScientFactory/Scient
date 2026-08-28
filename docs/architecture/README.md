@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-08-13
+Last updated: 2026-08-28
 Purpose: Defines where Scient architecture direction, future architecture homes, and decisions belong.
 Doc type: Repo orientation
 
@@ -25,6 +25,6 @@ Current documents:
   foundations, Scient-owned scientific boundary, standalone source-repository
   ownership, selective upstream authority, built-in skills activation, and the
   shared operation/capability/provenance boundary, plus the accepted T3-derived
-  successor-foundation decision. The serious proposed project-owned
+  current-foundation and completed-cutover decision. The serious proposed project-owned
   state/source-store boundary is also indexed there. ADR-0001 remains as the
   superseded historical initial-foundation record.

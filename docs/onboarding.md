@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-07-12
-Last updated: 2026-08-06
+Last updated: 2026-08-28
 Purpose: Gives new Scient collaborators a deliberate reading journey through the project, its repository, and its sources of truth before task-specific work begins.
 Doc type: Repo orientation
 
@@ -25,16 +25,16 @@ Before starting internal repository work, team contributors must complete the
 [local workspace setup](development/local-workspace-setup.md). The root
 [Scient README](../README.md#related-repositories-and-local-workspace) owns the
 repository roles and workspace shape. Open that plain parent directory as the
-editor or agent workspace so the private product documentation, desktop source,
+editor or agent workspace so the public product documentation, desktop source,
 and agent source are available in one context. Follow the [GitHub operating
 model](operations/github-operating-model.md#local-worktrees) for worktree
 placement and repository boundaries.
 
-This setup is an internal team workflow. It does not require an external
-contributor to obtain the private `Scient` repository before contributing to a
-public repository. Access to the shared workspace also does not authorize an
-agent or contributor to change every repository; each task retains its stated
-scope and must be implemented in the repository that owns it.
+This setup is an internal team workflow. An external contributor may begin from
+the public repository that owns their task without cloning the complete sibling
+workspace. Access to the shared workspace also does not authorize an agent or
+contributor to change every repository; each task retains its stated scope and
+must be implemented in the repository that owns it.
 
 ## Current Project State
 
@@ -43,17 +43,18 @@ Scient is a local-first, cloud-mirrored scientific workspace where researchers, 
 This parent repository remains documentation-first. It contains accepted
 product direction, evolving architecture and planning, source-backed research,
 quality principles, and controlled lab experiments. The standalone desktop
-source repository contains the first narrow Scient-owned project-initiation
-package, but it does not yet contain the complete scientific application or
-vertical slice, and many anticipated development and operational workflows
-remain incomplete.
+source repository contains the released T3-derived application plus permanent
+Scient-owned project, Sources, file, PDF, HTML, math, LaTeX, analysis, artifact,
+and Skills foundations. It does not yet contain the complete scientific project
+experience, cloud plane, manuscript platform, Artifact Studio, or native Scient
+agent, and many anticipated workflows remain proposed.
 
-For internal local work, `Scient`, `scient-desktop`, `scient-desktop-next`, and
-`scient-agent` are the core independent migration sibling repositories;
-`website` is optional when its surface is relevant. Their parent workspace is
-not a Git repository. The root [Scient README](../README.md) owns the repository
-roles and workspace layout; contributors must make each change in the
-repository that owns it.
+For internal local work, `Scient`, `scient-desktop`, and `scient-agent` are
+the active independent sibling repositories; `website` is optional when its
+surface is relevant. The retired Synara-derived desktop is not part of a new
+workspace. Their parent workspace is not a Git repository. The root [Scient
+README](../README.md) owns the repository roles and workspace layout;
+contributors must make each change in the repository that owns it.
 
 ScientFactory is the company identity. **Scient** is the public name for both
 the implemented app and its planned native first-party research agent. The
@@ -171,9 +172,8 @@ Do not infer implemented interfaces from design notes, screenshots, or placehold
 
 1. [Architecture Documentation](architecture/README.md) to learn the architecture area's authority and current map.
 2. [ADR-0005](architecture/decisions/ADR-0005-t3-derived-desktop-foundation.md)
-   for the accepted successor desktop foundation, the preserved Scient-agent
-   and scientific ownership boundaries, and the current application's
-   continuity role.
+   for the accepted current desktop foundation, completed cutover, preserved
+   compatibility identities, and Scient-agent/scientific ownership boundaries.
 3. [ADR-0001](architecture/decisions/ADR-0001-synara-opencode-foundation-and-scient-ownership-boundary.md)
    when historical context for the initial Synara/OpenCode decision is needed;
    it is superseded, not current forward authority.
@@ -192,10 +192,10 @@ Complete the architecture route first when the work may influence implementation
 3. [Scient Open-Source Adaptation Map](research/source-evaluations/open-source-adaptation-map.md) for the current cross-source synthesis, candidate roles, Scient-owned boundaries, and research prototype backlog.
 4. [Open-Source Adaptation Build Strategy](planning/open-source-adaptation-build-strategy.md) for the active evergreen T3, Synara, OpenCode, and donor relationship.
 5. [T3 Foundation Migration Plan](planning/t3-foundation-migration-plan.md) when
-   the work touches the successor candidate, proof gates, capability
-   dispositions, or documentation transition.
+   the work needs the completed foundation transition, proof gates, capability
+   dispositions, cutover evidence, or predecessor-retirement history.
 6. [Scient And External Agents Implementation Plan](planning/scient-and-external-agents-implementation-plan.md) when the work touches Scient-agent identity, external-agent preservation, or agent/runtime isolation.
-7. [First Vertical-Slice Implementation Plan](planning/first-scient-vertical-slice-implementation-plan.md) only for superseded Synara-specific reasoning or completed project-init evidence; new execution follows the active migration plan.
+7. [First Vertical-Slice Implementation Plan](planning/first-scient-vertical-slice-implementation-plan.md) only for superseded Synara-specific reasoning or completed project-init evidence; new execution follows the active product roadmap and its focused plans.
 8. [Scient Lab](../lab/README.md) for the experimental layout, promotion rule, current evidence map, and lab guardrails.
 9. Read only the spike report, lab note, or source material named by the task handoff; do not read raw research chronologically and assume the newest or most detailed file is authoritative.
 

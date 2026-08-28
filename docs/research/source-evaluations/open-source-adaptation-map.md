@@ -3,7 +3,7 @@
 Status: Proposed
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-08-12
+Last updated: 2026-08-28
 Purpose: Maps which open-source systems Scient should study, prototype, adapt, or integrate, and which product boundaries Scient must keep owned.
 Doc type: Research evidence
 
@@ -41,6 +41,15 @@ the canonical decision record.
 
 This is a synthesis document, not a finished per-source evaluation.
 
+Current-state reconciliation: the T3-derived
+[`ScientFactory/scient-desktop`](https://github.com/ScientFactory/scient-desktop)
+is now the active application repository and the former
+`scient-desktop-next` name redirects to it. The Synara-derived legacy app is
+retired as a product host and remains historical evidence only. Dated scan
+passages below preserve the evidence available at their inspection time; they
+do not override this current disposition or the
+[historical migration plan](../../planning/t3-foundation-migration-plan.md).
+
 Current inputs:
 
 - Yaacov's product notes and collected model-answer research.
@@ -77,10 +86,10 @@ Current inputs:
   [ADR-0005](../../architecture/decisions/ADR-0005-t3-derived-desktop-foundation.md)
   and promotion of the
   [T3 foundation migration plan](../../planning/t3-foundation-migration-plan.md).
-  T3 is now the selected successor foundation and official upstream of the
-  public-source candidate. Its safety envelope and bounded M1 work are
-  integrated on candidate `main`, but it is not released and the current
-  Synara-derived app remains the continuity implementation.
+  That decision selected T3 as the successor foundation and official upstream
+  of the public-source candidate. The migration has since completed: the
+  T3-derived application is the active `ScientFactory/scient-desktop`, and the
+  Synara-derived application is retired in the private legacy repository.
 - Focused Scient-agent foundation and capability investigation on 2026-08-06,
   recorded in
   [`scient-agent-foundation-and-capability-strategy-2026-08-06.md`](scient-agent-foundation-and-capability-strategy-2026-08-06.md).
@@ -199,12 +208,11 @@ Use these labels with source rows when the update path matters:
 The current accepted foundation direction is more aggressive than "study
 only", but still Scient-boundary-first:
 
-1. Use a fresh official T3 ancestry as the successor application foundation,
-   while keeping the owned Synara-derived app as the supported continuity
-   implementation until explicit cutover.
-2. Pressure-test T3 through the migration proofs and first science-facing
-   slices while keeping Scient's project state, source/evidence meaning, and
-   later agent-review model outside inherited coding assumptions.
+1. Maintain the active Scient Desktop as a narrow, reviewable T3-derived fork
+   with literal upstream ancestry and explicit Scient-owned seams.
+2. Preserve the completed cutover evidence and retired Synara implementation
+   only as historical behavior/failure evidence; do not build new product work
+   there.
 3. Treat science apps as specialized sources, not desktop bases: Zotero-family
    tools for sources and PDFs, Zettlr/Overleaf/Quarto/MyST for writing/export
    expectations, Jupyter-style tools for analysis compatibility, and ELN/RDM
@@ -279,15 +287,15 @@ identified so far. It is a working recommendation, not a final dependency list.
 
 | PRD surface | Best source candidates so far | Current borrow mode | Scient-owned boundary |
 |---|---|---|---|
-| Project Home | Synara and T3 Code for workbench status, sessions, terminals, branches, diffs, previews, and provider activity; Vercel AI Elements for inspectable agent UI patterns. | Forked workbench prototype and reference. | Project status, stale-output signals, review needs, blocked work, collaborator activity, and next actions belong to Scient project state. |
+| Project Home | Current T3-derived Scient Desktop for workbench status, sessions, terminals, branches, diffs, previews, and provider activity; Vercel AI Elements for inspectable agent UI patterns. | Active thin fork plus reference components. | Project status, stale-output signals, review needs, blocked work, collaborator activity, and next actions belong to Scient project state. |
 | Scient And Connected-Agent Chat | T3/Synara evidence for the workspace shell; Pi and OpenCode as unselected native-foundation finalists; Hermes, Codex, Goose, OpenHands, Aider, and later qualified systems as capability, worker, benchmark, or external-agent candidates; Vercel AI SDK for typed model/tool streams. | Inherited workbench evidence, future selected owned foundation, bounded capability adaptations, optional workers, external-agent adapters, and references. | Scient identity, context receipts, permissions, tool scope, proposed changes, durable AgentRun records, checkpoints, and accepted write-back belong to Scient. |
 | Project Direction And Protocol | protocols.io, SciNote, RSpace, eLabFTW, Chemotion, Kadi4Mat, and openBIS as protocol, ELN, lab workflow, and research-data-management references. | Reference and later adapter candidates. | The project direction, protocol fields, eligibility criteria, analysis plan, and decision log are Scient objects. |
 | Source Library And Reader | Zotero, Zotero Reader, Zotero Document Worker, Paperlib, Tropy, JabRef, CSL, GROBID, Docling, and local-first note/PDF references such as Logseq and SiYuan. | Adapter, component spike, embedded parser, compatibility target, and reference. | Source identity, duplicate confidence, source-region links, parser state, annotations, backlinks, and citation intent belong to Scient. |
 | Evidence Ledger And Claims | ASReview for screening mechanics; GROBID and Docling for extraction; PaperQA for cited scientific QA; Lacuna for paper-grounded research-map patterns; Elicit, Rayyan, Covidence, scite, Consensus, and SciSpace as workflow references. | Embedded engines, adapters, and references. | Evidence records, claims, support links, extraction review state, uncertainty, contradictions, and unsupported-claim diagnostics belong to Scient. |
 | Synthesis Surface | PaperQA for grounded answer mechanics; Lacuna for map-grounded literature search and survey synthesis; Elicit, Consensus, SciSpace, and scite for answer and evidence UX references. | Embedded engine and reference. | Synthesis becomes durable only when saved into Scient notes, evidence, claims, decisions, or draft material. |
-| Draft And Manuscript Workspace | Tiptap/ProseMirror first; Plate and Lexical as challengers; GenOffice as a source candidate for byte-preserving DOCX compatibility; Zettlr, Overleaf, Word, and Google Docs as academic writing and collaboration references; Quarto/Pandoc/MyST/Manubot for export and publishing paths. | Projection, challenger prototype, Office compatibility adapter candidate, reference, and export adapter. | Manuscript structure, citations, evidence links, comments, suggestions, reconciliation state, fidelity receipts, and publication metadata belong to Scient. |
+| Draft And Manuscript Workspace | Tiptap/ProseMirror as the leading prototype; Plate and Lexical as challengers; GenOffice as a source candidate for byte-preserving DOCX compatibility; Zettlr, Overleaf, Word, and Google Docs as academic writing and collaboration references; Quarto/Pandoc/MyST/Manubot for export and publishing paths. | Projection, challenger prototype, Office compatibility adapter candidate, reference, and export adapter. | Manuscript structure, citations, evidence links, comments, suggestions, reconciliation state, fidelity receipts, and publication metadata belong to Scient. |
 | Data And Analysis Workbench | Python through uv; marimo as reactive-notebook reference; Jupyter/JupyterLab Desktop, RStudio/Positron, and CoCalc as analysis-workbench references; DuckDB, pandas, Polars, Arrow/Parquet, SciPy, statsmodels, scikit-learn, and later R/tidyverse. | Embedded runtime, projection, compatibility target, and reference. | Dataset, Analysis, AnalysisRun, parameters, method notes, outputs, dependency state, staleness, and provenance belong to Scient. |
-| Figures, Tables, And Artifacts | Matplotlib/seaborn, Plotly, Altair/Vega-Lite, Great Tables/gt, Mermaid, Graphviz, Cytoscape.js, tldraw, Excalidraw, xyflow, Inkscape, diagrams.net, and BioIcons; GenOffice as a later XLSX/PPTX compatibility and editable-artifact candidate. | Runtime projection, artifact generator, compatibility adapter candidate, and reference. | Figure, Table, Artifact, caption, data/code linkage, manuscript usage, review state, fidelity receipts, and stale-output state belong to Scient. |
+| Figures, Tables, And Artifacts | Current Mermaid/Vega-Lite/Plotly fences and MATLAB artifact producers; Matplotlib/seaborn, Altair, Great Tables/gt, Graphviz, Cytoscape.js, tldraw, Excalidraw, xyflow, Inkscape, diagrams.net, BioIcons, and GenOffice as future sources. | Current renderers/producers plus runtime projection, artifact generator, compatibility candidate, and reference. | Figure, Table, Artifact, caption, data/code linkage, manuscript usage, review state, fidelity receipts, and stale-output state belong to Scient; the [Scientific Artifact Studio](../../planning/scientific-artifact-studio.md) owns future inspection/composition UX. |
 | Agent Runs And Review | Pi and OpenCode foundation finalists; Hermes, Codex, Goose, OpenHands, Aider, and other capability or worker candidates; external agents; T3/Synara workbench evidence; and Vercel AI SDK/Elements. | Future selected owned foundation, bounded capability adaptations, optional workers, external-agent adapters, inherited workbench, and references. | AgentRun lifecycle, approvals, diffs, logs, artifacts, failures, retries, cancellation, checkpoints, and recovery belong to Scient. |
 | Memory, History, And Decisions | Earlier PapiLab prototype patterns, Stencila provenance ideas, Goose/Codex/OpenCode runtime logs, AFFiNE/Logseq/SiYuan knowledge-workspace patterns, and targeted Hermes ideas. | Reference and normalized runtime evidence. | Scientific memory, decision history, trust metadata, provenance, snapshots, rollback, and auditability belong to Scient. |
 | Collaboration And Mobile Continuation | Yjs/Hocuspocus for document collaboration; Automerge, ShareDB, and Yorkie as bounded challengers; a server-authoritative operation log and narrowly scoped database replication as separate structured-state approaches; Electric as a read-path candidate; PowerSync only after service-license and operations review; OSF, Dataverse, GitHub, and GitLab for sharing/deposit expectations. | Candidate engine, adapter, and reference. | Membership, roles, permissions, attribution, conflict state, accepted scientific operations, cloud mirror authority, mobile action scope, and recovery belong to Scient. |
@@ -304,14 +312,14 @@ forward desktop decision.
 |---|---|---|---|
 | Scient scientific project graph | Projects, sources, evidence, claims, datasets, runs, figures, manuscripts, memory, provenance. | Scient-owned core | `no-upstream` |
 | Scient agent contract | Permissions, context receipts, proposed changes, review, recovery. | Scient-owned core | `no-upstream` |
-| Synara | Current desktop workbench behavior, failures, tests, migration evidence, and continuity implementation. | Supported continuity application through cutover; not the target for new scientific features. ADR-0001 records its initial selection. | Current `divergent-cherry-pick` maintenance while supported; retire only by explicit cutover/support decision |
+| Synara | Historical desktop behavior, failures, tests, and migration evidence. | Retired legacy implementation; ADR-0001 records its initial selection. | `reference-only`; no product development |
 | Pi | Small TypeScript agent core, embedding SDK, extensions, protocol/client work, session lifecycle, and transport-neutral remote patterns. | Unselected native-foundation finalist and capability source. | `reference-only` until the Foundation Gate; then record the selected source relationship explicitly |
 | OpenCode source fork | Coding tools, permissions, sessions, server/client, provider, MCP, subagent, terminal, diff, and recovery machinery. | Historical incumbent and unselected native-foundation finalist. External OpenCode remains a separate external adapter path. | Preserve current evidence; choose `adapter-maintained`, selective adaptation, worker, or `reference-only` only after the Foundation Gate |
 | Hermes | Broad research, browser, media, skills, memory, scheduling, delegation, LSP, gateway, and tool patterns. | Leading research-worker and capability-source candidate; not selected. | `reference-only` until a bounded capability or worker decision |
 | Goose | ACP/MCP, permission interaction, custom distributions, providers, recipes, scheduling, and general-agent patterns. | Capability, architecture, possible worker, or external-agent candidate; not selected. | `reference-only` until a bounded source or integration decision |
 | OpenHands SDK | Remote workspaces, agent server, confirmations, resource locks, secrets, and managed execution patterns. | Later cloud-execution candidate and reference; not selected. | `reference-only` until a remote-execution proof |
 | Codex app-server | Sandbox, approvals, diffs, rollback, interrupt/resume ideas. | Reference / cherry-pick source. | `reference-only` |
-| T3 Code | Successor desktop platform: lifecycle, provider sessions, chat, browser/preview, files, terminals, Git, packaging, updater, cloud/web/mobile foundations. | Accepted literal-ancestry application foundation under ADR-0005; the public-source owned candidate has completed D4 and bounded M1 work but is not released or cut over. | `thin-fork-merge`, with reviewed bounded merges and explicit Scient divergence |
+| T3 Code | Upstream platform lineage: lifecycle, provider sessions, chat, browser/preview, files, terminals, Git, packaging, updater, cloud/web/mobile foundations. | Official upstream of the active Scient Desktop under ADR-0005 and the completed cutover. | `thin-fork-merge`, with reviewed bounded merges and explicit Scient divergence |
 | Aider | Git/edit discipline, repo-map and patch workflow lessons. | Reference benchmark. | `reference-only` |
 | Vercel AI SDK | Typed model/tool streams and model/tool UI event flow. | Upstream-trackable integration, adapter. | `version-bump` or `adapter-maintained` |
 | Vercel AI Elements | Agent UI cards and inspection patterns. | Add-on layer or reference. | `version-bump` if used |
@@ -419,17 +427,15 @@ finding and proof gate live in
 
 | Source | Adaptation target | Why it matters | Do not adopt | Depth status |
 |---|---|---|---|---|
-| T3 Code | Selected successor application foundation plus continuing complete-range review. | Supplies maintained generic platform infrastructure while Scient concentrates on the scientific workspace. | Do not let coding-product assumptions, T3 identity, service authority, telemetry, or host state define Scient. | ADR-0005 selects literal ancestry; D4 integrated base `a2ca89aa...` and candidate head `bc22a67f...`; release and cutover remain later gates. |
-| Synara | Current continuity application plus orchestration, UI/provider, failure, test, and migration evidence. | Keeps current users supported and preserves hard-won behavior for deliberate reimplementation. | Do not copy its UI shape blindly or continue new scientific features there. | ADR-0001 records initial adoption; ADR-0005 makes it the continuity host until cutover. |
+| T3 Code | Official upstream of the active Scient Desktop plus continuing reviewed intake. | Supplies maintained generic platform infrastructure while Scient concentrates on the scientific workspace. | Do not let coding-product assumptions, T3 identity, service authority, telemetry, or host state define Scient. | ADR-0005 selects literal ancestry; cutover is complete and the active owned host is `ScientFactory/scient-desktop`. |
+| Synara | Historical orchestration, UI/provider, failure, test, and migration evidence. | Preserves hard-won evidence for deliberate comparison. | Do not copy its UI shape blindly or continue product development there. | Retired legacy implementation; `reference-only`. |
 | Vercel AI SDK | Model/provider abstraction, typed stream parts, tool-call state, approval status, UI message events, mock providers, and model I/O tests. | Useful for model plumbing and chat/event surfaces around Scient-owned actions. | Do not use it as the abstraction over local executors like OpenCode or Codex. Executor actions need a Scient-owned contract. | Candidate model I/O layer; needs a narrow harness prototype. |
 | Vercel AI Elements | Tool cards, source citations, confirmations, terminal output, file trees, artifacts, plans, queue state. | Useful UI pieces for agent work inspection. | Do not let it make Scient a generic chat surface. | Side UI pattern source. |
 
-ADR-0005 selects literal T3 ancestry for the successor while the
-Synara-derived app remains the supported continuity implementation. D4 created
-the owned candidate and established its literal integration base; later
+ADR-0005 selected literal T3 ancestry and the cutover is complete. The active
+Scient Desktop repo-local upstream lane owns merge and integration state;
 observed T3 movement remains research evidence until an owned merge actually
-advances that base. The candidate's repo-local upstream lane owns merge and
-integration state. In both applications,
+advances that base. In the active application,
 scientific navigation, canonical state, provenance, review, and recovery remain
 Scient-owned.
 
@@ -442,7 +448,7 @@ references around a Scient-owned project kernel.
 
 | Source | Adaptation target | Why it matters | Do not adopt | Current use |
 |---|---|---|---|---|
-| Synara | Current continuity desktop: chat, provider sessions, terminals, previews, diffs, local process/workspace flow. | It keeps current users supported and supplies migration behavior and failure evidence. | Do not let Synara's coding sessions, Git worktrees, or provider chats become the Scient project model. | ADR-0001 records initial adoption; ADR-0005 directs new scientific work to the T3-derived candidate. |
+| Synara | Historical desktop: chat, provider sessions, terminals, previews, diffs, local process/workspace flow. | Supplies migration behavior and failure evidence. | Do not let Synara's coding sessions, Git worktrees, or provider chats become the Scient project model. | Retired; reference only. |
 | Zotero | Reference manager compatibility, library import/export, source identity, citations, PDF/annotation expectations. | Researchers already trust Zotero, and Scient cannot treat source/citation work as an afterthought. | Do not fork the full Zotero desktop app or rebuild Zotero first. | Adapter and compatibility target. |
 | Zotero Reader / Zotero Document Worker | PDF/EPUB/HTML reading, annotations, source-region navigation, annotation processing, text extraction and rendering. | Source-region fidelity is central to Scient's evidence model; these components are closer to the needed reader/parser behavior than generic PDF viewers. | Do not make Zotero's reader or worker state canonical Scient state. | Component spike and reference after source-depth/license review. |
 | Paperlib | Modern paper-library UI, metadata scraping, full-text search, paper notes, LLM paper features, writing integration. | It is a good challenge to older reference-manager UX and is close to "paper library for active writing." | Do not make Scient only a paper manager or copy GPL code without review. | Reference and possible adapter ideas. |
@@ -523,7 +529,7 @@ source review.
 
 | Source | Adaptation target | Why it matters | Do not adopt | Depth status |
 |---|---|---|---|---|
-| Tiptap / ProseMirror | Schema-controlled rich text, custom nodes, NodeViews, stable block IDs, collaboration path, Markdown/HTML/static rendering, citations and evidence nodes. | Current default candidate for a Google Docs-like scientific editor with custom semantics. Earlier PapiLab prototype work also makes it a familiar candidate. | Do not accept a generic Notion-like block editor as enough, and do not treat Tiptap JSON as canonical manuscript truth. It is an editor projection. | Default candidate; needs long-document prototype. |
+| Tiptap / ProseMirror | Schema-controlled rich text, custom nodes, NodeViews, stable block IDs, collaboration path, Markdown/HTML/static rendering, citations and evidence nodes. | Leading prototype candidate for a Google Docs-like scientific editor with custom semantics. Earlier PapiLab prototype work also makes it a familiar candidate. | Do not accept a generic Notion-like block editor as enough, and do not treat Tiptap JSON as canonical manuscript truth. It is an editor projection. | Leading prototype; needs the shared long-document fixture. |
 | Plate | AI-rich editor patterns, comments, diff/suggestion UX, docx import/export, polished component patterns. | It may be an important source for the writing experience, even if not the final editor base. | Do not assume Slate/Plate wins without long-manuscript and collaboration tests. | Must prototype against Tiptap. |
 | Lexical | Performance, accessibility, headless editor architecture, Word/HTML import lessons. | Serious fallback if Tiptap/Plate struggle with long scientific documents. | More DIY for scientific features. | Challenger prototype. |
 | Overleaf | Academic writing workflow, LaTeX project model, compile logs, templates, collaboration expectations. | Scientists know it; it teaches submission and LaTeX workflows. | Do not fork Overleaf or become LaTeX-first. | Reference only unless export integration. |
@@ -531,8 +537,9 @@ source review.
 | GenOffice DOCX path | Original-OOXML anchors, unsupported-content passthrough, surgical paragraph/run patches, byte-preserving untouched ZIP entries, tracked revisions, comments, equations, citations/sources, notes, tables, headers/footers, charts, CJK, and RTL. | It provides a concrete open-source route to honest Word import, reconciliation, and re-export without regenerating every structure the editor does not understand. | Do not make the DOCX block tree or original Office file the canonical Scient manuscript. The Tiptap conversion and app UI are much more coupled than the pure engine. | Highest-value GenOffice prototype candidate; source quality 4/5, public maturity not yet proven. |
 | EigenPal open DOCX core and Sobree | Embeddable DOCX parsing, layout, editing, OOXML-preserving serialization, framework adapters, and headless or plugin-driven operations. | They are the strongest open DOCX-specific challengers found after the GenOffice review and may offer a cleaner integration boundary than extracting an application-owned editor. | EigenPal's `packages/pro/` and `packages/editor-api/` are commercially licensed and excluded. Do not infer production fidelity or maturity from either project's feature claims or test volume. | Add both to the same scientific-DOCX fidelity harness as GenOffice; no winner selected. |
 
-Recommendation: use Tiptap first, prototype Plate and Lexical against the same
-scientific document, and compare the GenOffice DOCX path, EigenPal's
+Recommendation: prototype Tiptap, Plate, and Lexical against the same
+scientific document, using Tiptap as the leading starting candidate, and
+compare the GenOffice DOCX path, EigenPal's
 Apache-2.0 core, and Sobree in one compatibility-adapter harness. Keep
 Overleaf/Word/Google Docs as UX and export benchmarks; do not confuse a
 high-fidelity Office projection with Scient's manuscript model.
@@ -610,7 +617,7 @@ prototype, not whole-suite adoption or a winner chosen from repository claims.
 | [GenOffice](https://github.com/genspark-ai/genoffice) | `d1de6ac4...`; Apache-2.0 core, separately licensed `ee/` excluded. The earlier deep review passed 3,218 tests, typecheck, builds, license checks, lint without errors, and hosted CI at `0127f628...`; the newer head was not reverified to that depth. | Strongest combined open donor for byte-preserving DOCX plus later XLSX/PPTX editing. Its narrow dirty-region patch model is especially valuable when the editor does not understand every OOXML construct. | Application layers are large and coupled; public history is only days old and dominated by snapshot commits. | Primary multi-format reference and baseline; never adopt the whole suite. Prototype bounded engines or concepts behind Scient-owned adapters. |
 | [EigenPal/docx-editor](https://github.com/eigenpal/docx-editor) | `d56b1a5a...`; 11 public commits since 2026-07-20. The Apache-2.0 `core` contains about 231,000 TypeScript lines across implementation and tests, including 307 test files, with separate React/Vue adapters. `packages/pro/` and `packages/editor-api/` use the EigenPal Pro Evaluation License and are excluded. | Most naturally packaged embeddable open DOCX core found. Its canonical tree retains generic unsupported elements, and its adapters are thinner than GenOffice's full Docs application. | Very young public history. The closed feature boundary covers tracked changes, comments, custom nodes, and automation APIs that overlap important Scient needs. Test inventory is not proof of real scientific-document or Word fidelity. | Serious DOCX challenger using Apache-2.0 packages only. Compare its exact no-op and narrow-edit package diffs with GenOffice rather than selecting it from API convenience. |
 | [Sobree](https://github.com/khayll/sobree) | `094865ac...`; MIT; 314 commits since 2026-05-28. Its core contains roughly 65,000 TypeScript lines across implementation and tests, including 146 test files; optional MIT packages cover review, collaboration providers, headless/MCP use, keyboard, block tools, and zoom. Current packages remain `0.1.x`. | Cleanest fully permissive and modular DOCX challenger. It keeps review and headless operations open instead of placing them behind a commercial package. | Minimal adoption and short operating history. Version, community, and independently proven fidelity are not foundation-grade yet. | Serious experimental challenger. Include in the DOCX harness, but do not make it a dependency before fixed-corpus and maintenance proofs. |
-| [Univer](https://github.com/dream-num/univer) | `83e48d92...`; Apache-2.0 open core with a long, active public history. Official Office import/export clients and server capabilities are in Univer Pro. | Strongest inspected open embedded spreadsheet UI/runtime and formula ecosystem. GenOffice already uses Univer in this role. | The open core does not itself provide the XLSX/DOCX preservation path Scient needs; Pro exchange packages and its server are excluded from this open-only lane. Slides are less mature than Sheets. | Preferred spreadsheet-surface candidate after the Scient table/artifact contract, paired with an independently owned or open preservation gateway; not the Office-file authority. |
+| [Univer](https://github.com/dream-num/univer) | `83e48d92...`; Apache-2.0 open core with a long, active public history. Official Office import/export clients and server capabilities are in Univer Pro. | Strongest inspected open embedded spreadsheet UI/runtime and formula ecosystem. GenOffice already uses Univer in this role. | The open core does not itself provide the XLSX/DOCX preservation path Scient needs; Pro exchange packages and its server are excluded from this open-only lane. Slides are less mature than Sheets. | Leading spreadsheet-surface prototype candidate after the Scient table/artifact contract, paired with an independently owned or open preservation gateway; not the Office-file authority. |
 | [OpenOOXML/BetterOffice](https://github.com/openooxml/betteroffice) | `dcdf3114...`; Apache-2.0; 138 commits since 2026-07-11. Rust/Wasm packages cover shared OPC/DrawingML/text foundations and early DOCX/XLSX/PPTX engines; published format packages are still `0.0.x`. | Attractive long-term shared native engine architecture, headless use, and one cross-format Rust/Wasm foundation. | Extremely new. Public product prose and package descriptions are more ambitious than demonstrated maturity, and the project site still describes XLSX/PPTX as coming. Preliminary self-published benchmarks are not selection proof. | Watch closely and reuse no code yet. Revisit when releases, corpus results, API stability, and independent adoption exist. |
 | [Casual Office Docs](https://github.com/CasualOffice/docs), [Sheets](https://github.com/CasualOffice/sheets), and [Slides](https://github.com/CasualOffice/slides) | Docs `d1160518...`; Sheets `bda552eb...`; permissive repository licenses, but exact inherited notices must be audited before reuse. Docs identifies itself as an EigenPal fork; Sheets is Univer-derived; Slides is a paused Univer fork. | Useful public experiments in self-hosting, collaboration, Office round trips, and fork-based packaging. | Adds another young intermediary and patch stack rather than a clearly stronger engine lineage. Its website fidelity counts are project claims, not Scient verification. | Research and regression-fixture evidence only. Prefer evaluating the originating engine unless a specific Casual Office patch solves a proven gap. |
 | [Flyfish Viewer](https://github.com/flyfish-dev/file-viewer) and docMentis | Flyfish is Apache-2.0 and explicitly preview-oriented. docMentis exposes an MIT viewer wrapper around a non-open Wasm engine. | Fast client-side multi-format preview may be useful before editing exists. | Flyfish does not promise professional editing or native Office fidelity. docMentis fails the open-engine requirement. | Flyfish may enter a separate view-only proof; docMentis is excluded from implementation selection. |
@@ -752,6 +759,13 @@ Scient-owned objects before it can become project truth.
 
 ### Data, Code, Analysis, Figures, And Scientific Artifacts
 
+Broad tool surveys are useful intake, not dependency or architecture evidence.
+Popularity ratings, vendor comparisons, and "best tools" lists do not establish
+license boundaries, current maintenance, embeddability, fidelity, or a useful
+Scient seam. Decision-facing rows below therefore require official source,
+license, revision, fixture, and disposition evidence; a domain tool may remain
+an interoperability target without becoming a bundled dependency.
+
 | Source | Adaptation target | Why it matters | Do not adopt | Depth status |
 |---|---|---|---|---|
 | marimo | Reactive Python analysis objects, dependency DAG, stale propagation, SQL cells, app/script duality, Git-friendly notebooks, AI-native data work. | Best current analysis-workbench inspiration for Scient because an agent can write real Python while the UI can expose dependency state and stale outputs. | Do not make Scient a notebook app. Do not let marimo runtime state become the canonical `Analysis` object. | Primary analysis-workbench prototype candidate; official-doc scan done, code/license/prototype still needed. |
@@ -769,6 +783,8 @@ Scient-owned objects before it can become project truth.
 | Snakemake / Nextflow / Galaxy / Renku | Reproducible workflows, pipeline execution, non-coder workflow UI, cloud/HPC sessions. | Important for computational science and bioinformatics projects where analysis is a pipeline, not a single script. | Not the day-one product kernel, and not the default analysis UX for ordinary researchers. | Side shelf for workflow expansion. |
 | jamovi / JASP / GNU PSPP | Friendly statistical GUI, SPSS-like workflows, classical/Bayesian analysis expectations, reportable tables/plots. | Useful reminders that many researchers want guided statistics and readable outputs, not raw code. | Do not build a separate point-and-click statistics clone; Scient should keep code-backed reproducibility and agent-run provenance. | UX reference for method assistant and results tables. |
 | Orange Data Mining | Visual programming, data mining, ML workflow canvases, no-code exploration. | Useful for seeing how non-coders understand pipelines and model steps. | Do not make Scient a general visual ETL or no-code ML platform. | Side shelf only unless a visual analysis-plan workflow becomes central. |
+| fMRIPrep, Nipype, Nilearn, MNE-Python, FieldTrip, EEGLAB, and SpikeInterface | Neuroimaging, EEG/MEG, and electrophysiology workflow and format ecosystems. | They define important future project, environment, provenance, BIDS, diagnostic, and artifact compatibility fixtures. | Do not bundle a neuroscience stack or make one laboratory convention the generic compute model. Review official source, licensing, runtime, formats, and fixtures when a real domain slice begins. | Domain interoperability intake; not selected dependencies. |
+| Bioconductor, Seurat, Scanpy/scverse, DESeq2/edgeR, and related workflow tools | Genomics, transcriptomics, single-cell, and statistical-biology ecosystems across R and Python. | They supply representative large/sparse data, environment, pipeline, table, figure, metadata, and reproducibility requirements. | Do not claim interchangeability, market importance, or support from a package name. Qualify exact formats and workflows through a selected scientific project. | Domain interoperability intake; not selected dependencies. |
 
 Recommendation: Scient should own `Dataset`, `Analysis`, `AnalysisRun`, `Table`,
 `Figure`, `Artifact`, dependency/staleness state, method notes, and provenance.
@@ -1049,10 +1065,9 @@ to the earlier synthesis. The active sequence lives in
 
 Current research points toward Scient as a local-first, cloud-mirrored scientific
 workspace with a Scient-owned project graph; TypeScript/React product logic;
-Electron-first desktop delivery unless a real limitation appears; a candidate
-local structured store with a separately validated cloud mirror; the owned
-Synara-derived source as the supported continuity host, with ADR-0005 selecting
-a fresh T3-derived successor after Phase Zero proof; one owned first-party
+Electron-first desktop delivery unless a real limitation appears; the active
+T3-derived Scient Desktop as a thin, upstream-aware host; a candidate local
+structured store with a separately validated cloud mirror; one owned first-party
 Scient agent whose refreshed foundation remains to be selected through the
 Pi/OpenCode Foundation Gate; external OpenCode and other external agents as
 separate choices; Hermes, Codex, Goose, OpenHands, Aider, and later qualified
@@ -1065,13 +1080,15 @@ research-map patterns for paper-grounded search and synthesis;
 Quarto/Pandoc-first export with MyST as challenger;
 the focused [Scientific Document Platform Source Map](scientific-document-platform-source-map.md)
 as the owner of current document-source pins and gates; GenOffice as the
-current baseline and primary multi-format Office-fidelity
-donor; EigenPal's open core and Sobree as genuine DOCX challengers in one
-fixed-corpus proof; Univer as a likely later spreadsheet surface rather than an
+deep multi-format Office-fidelity donor and corpus baseline; EigenPal's open
+core, Sobree, and Docxodus as genuine DOCX challengers
+in one fixed-corpus proof; `docx-preview` and Mammoth as derived-view
+candidates; Univer as a likely later spreadsheet surface rather than an
 OOXML authority; deferring PPTX/XLSX selection until their scientific artifact
 seams are defined;
 Stencila as a scientific schema/provenance reference; marimo-inspired analysis
-with Jupyter compatibility; DuckDB, pandas/Polars, and Arrow/Parquet for local
+with Jupyter compatibility and JupyterLab's registry/context/`Open With`
+patterns as references; DuckDB, pandas/Polars, and Arrow/Parquet for local
 tabular work; Matplotlib, Plotly, Altair/Vega-Lite, and table-generation tools
 for figures and scientific artifacts; an asynchronous, reviewable shared-project
 slice before realtime collaboration; relationship-based authorization only
@@ -1079,12 +1096,22 @@ after Scient's roles and adversarial cases are modeled; CRDT or OT mechanisms
 for bounded collaborative surfaces rather than as the product's authority; and
 separately versioned storage for large scientific artifacts.
 
+The horizontal
+[File, Resource, And Presentation Foundation](../../planning/file-resource-and-presentation-foundation.md)
+owns stable file identity, relocation, authorized resolution, presenter
+selection, common viewer states, and broad read-only coverage. The
+[Scientific Document Platform](../../planning/scientific-document-platform-roadmap.md),
+[Scientific Computing](../../planning/scientific-computing-and-data-analysis-roadmap.md),
+and [Scientific Artifact Studio](../../planning/scientific-artifact-studio.md)
+consume that foundation without collapsing document, analysis, and composition
+semantics into one model.
+
 ## Non-Negotiables
 
-- Do not let a whole-product foundation become Scient's source of truth. The
-  current Synara-derived source or a future T3-derived successor is acceptable
-  only while Scient's scientific project state, agent gateway, provenance, and
-  review model stay outside inherited coding-product assumptions.
+- Do not let the active T3-derived application foundation become Scient's
+  scientific source of truth. Scient's project state, agent gateway,
+  provenance, and review model stay outside inherited coding-product
+  assumptions.
 - Do not let any source define the scientific object model.
 - Do not hide scientific work inside chat messages.
 - Do not accept agent changes without inspectable diffs and provenance.
