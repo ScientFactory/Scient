@@ -1534,6 +1534,98 @@ proof, remaining-corpus normalization, automation, and possible MCP follow the
 phase gates above. They should not be expanded into detailed pull-request lists
 until the preceding pilots reveal the real owners and update cost.
 
+## Implementation Progress And Remaining Gates
+
+The first implementation pass prepared the following isolated pull-request
+stacks on 2026-08-28. These are candidate changes under review, not merged
+repository truth, website deployment, or app release:
+
+| Work area                               | Candidate evidence                                                                                                                                                                                                                                                                                                                                        | Current result                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| --------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Accepted package and Scient truth       | [Scient #101](https://github.com/ScientFactory/Scient/pull/101) and [#102](https://github.com/ScientFactory/Scient/pull/102)                                                                                                                                                                                                                              | Preserves the accepted package and dated audits, then repairs the three scoped metadata anomalies without changing their evidence.                                                                                                                                                                                                                                                                                                                                           |
+| Durable Scient governance               | [Scient #103](https://github.com/ScientFactory/Scient/pull/103)                                                                                                                                                                                                                                                                                           | Promotes repository-family authority, logical roles, gradual-feature ownership, the concise documentation-impact declaration, and reading routes into the policy, shared contribution protocol, agent guidance, and index.                                                                                                                                                                                                                                                   |
+| Generated inventory and routing         | [Scient #104](https://github.com/ScientFactory/Scient/pull/104)                                                                                                                                                                                                                                                                                           | Generates an exact 1,204-file inventory across Scient, desktop, and website; structurally excludes 928 vendored donor files; records the scient-agent exclusion without inspection; adds the compact capability map and temporary disposition ledger.                                                                                                                                                                                                                        |
+| Desktop baseline, truth, and governance | [Desktop #188](https://github.com/ScientFactory/scient-desktop/pull/188), then [#191](https://github.com/ScientFactory/scient-desktop/pull/191), [#193](https://github.com/ScientFactory/scient-desktop/pull/193), [#192](https://github.com/ScientFactory/scient-desktop/pull/192), and [#194](https://github.com/ScientFactory/scient-desktop/pull/194) | Rebases the independent file/document alignment candidate, preserves the forensic reports, completes missing index routes, corrects voice/provider/contributor truth, and promotes self-contained desktop governance. The #188 draft still requires its normal human disposition and review.                                                                                                                                                                                 |
+| Help qualification and three pilots     | [Desktop #195](https://github.com/ScientFactory/scient-desktop/pull/195) and [#196](https://github.com/ScientFactory/scient-desktop/pull/196)                                                                                                                                                                                                             | Generates the temporary 33-page Help queue and verifies 12 pages spanning Getting Started/Projects, files/PDF/LaTeX, and providers. Existing capability and architecture owners are reused; the provider pages and capability record are corrected for merged PR #190 rather than creating a new feature file.                                                                                                                                                               |
+| Website ownership and publishing proof  | [Website #28](https://github.com/ScientFactory/ScientFactory-website/pull/28), [#29](https://github.com/ScientFactory/ScientFactory-website/pull/29), and draft [#30](https://github.com/ScientFactory/ScientFactory-website/pull/30)                                                                                                                     | Corrects repository-family truth, promotes website Docs ownership, and builds a 12-page `/docs` preview from the exact desktop #196 commit. The preview supplies HTML, raw Markdown, a machine-readable index, search, source/version display, responsive navigation, immutable hashes, fail-closed generation, correction triggers, and rollback. It is not deployed or integration-ready until the exact Cloudflare preview receives required human desktop/mobile review. |
+
+### Pilot Decisions Supported By Evidence
+
+The pilots support the smallest version of the accepted model:
+
+- keep `scient-desktop/docs/user/` flat and canonical; do not create a second
+  Help tree or commit generated website prose;
+- use a reviewed website manifest pinned to a full desktop commit and per-page
+  hashes for the present transport, while retaining an explicit re-evaluation
+  condition if availability, scale, privacy, or release engineering changes;
+- keep public navigation metadata in the publishing manifest rather than add a
+  mandatory metadata block to every inherited Help page;
+- expose version-aware HTML, exact raw Markdown, and a JSON index before
+  considering an MCP;
+- retain the logical roles and current inherited physical paths; the pilots did
+  not reveal a clarity benefit large enough to justify broad file movement; and
+- keep the qualification queue and disposition ledger temporary. They remain
+  necessary while 21 Help pages and the remaining durable corpus still require
+  review, so neither is retired yet.
+
+The website browser review found and corrected two issues that static checks
+did not reveal: hidden search results still occupied layout space, and raw
+Markdown needed explicit UTF-8 response headers. A subsequent mobile review
+replaced the full pre-content table of contents with a compact disclosure while
+preserving the desktop sidebar. These findings justify retaining proportional
+rendered-preview review alongside deterministic source and build checks.
+
+### Maintenance-Loop Evidence
+
+Two real changes have exercised the update contract during this pass:
+
+1. Merged desktop [PR #190](https://github.com/ScientFactory/scient-desktop/pull/190)
+   changed provider and agent defaults across seven implementation files but
+   shipped without Markdown. Desktop #196 routes the consequence back into the
+   existing provider capability owner and the three Help owners whose visible
+   behavior changed, plus the temporary qualification queue. It creates no new
+   permanent feature document. The four durable authored updates are justified
+   by the change spanning shared, Codex, and Claude behavior; an ordinary
+   single-provider slice should normally touch fewer.
+2. Website #30 is an architecture-affecting change to the documentation system
+   itself. It adds one focused publishing-architecture owner, one reviewed
+   machine selection manifest, and one thin README route. Rendering, generated
+   pages, raw content, and the search index remain generated views rather than
+   additional authored authorities.
+
+The retirement and upstream portions of Phase 5 remain deliberately pending.
+The earlier Quick Chat retirement [desktop #146](https://github.com/ScientFactory/scient-desktop/pull/146)
+and T3 integration [desktop #189](https://github.com/ScientFactory/scient-desktop/pull/189)
+remain valid tabletop and baseline evidence, but both predate the live
+maintenance proof. No later real retirement or T3 intake occurred during this
+pass. The accepted rule forbids manufacturing either change to close the gate;
+the next real cases must use the durable update contract and record their
+actual authored-document fan-out.
+
+### Work That Can Continue Before Those Events
+
+The pending retirement and upstream cases do not invalidate the governance,
+inventory, capability routing, Help qualification, pilot corrections,
+publishing foundation, or proportionate automation already prepared. The
+inventory generator, website source/hash validation, generated navigation,
+raw/index outputs, UTF-8 contract, and repository checks are useful now and do
+not decide product truth automatically.
+
+Broad remaining-corpus migration, final capability schemas, full stable public
+publication, and retirement of the temporary ledgers remain gated by:
+
+1. review and integration of the dependency stacks above;
+2. human review of the exact website preview;
+3. release qualification for each remaining Help page and an exact stable app
+   version pin;
+4. the next real retirement and T3 integration maintenance cases; and
+5. a final fan-out review before any broad normalization.
+
+Do not add automatic enforcement for every possible documentation impact yet.
+The concise pull-request declaration is still a trial; add enforcement only if
+repeated omissions show that repository guidance and review are insufficient.
+The documentation MCP remains outside this pass.
+
 ## Completion Criteria For The Documentation Program
 
 The documentation program is complete when:
