@@ -17,7 +17,7 @@
   "repositories": [
     {
       "name": "Scient",
-      "revision": "1adbb050cbb102aad495577b3a46f402604fb38f",
+      "revision": "faf019a372bb3c2d3da86a24468b1b9645b455c5",
       "branch": "codex/documentation-program-progress-20260828",
       "remote": "https://github.com/ScientFactory/Scient.git",
       "worktreeClean": true,
@@ -580,7 +580,7 @@
           "path": "docs/planning/scient-documentation-system-and-publishing.md",
           "title": "Scient Documentation System And Publishing",
           "mode": "100644",
-          "blob": "90f24a1e0a8346ed99f4cbcf42f44d748a6902b1",
+          "blob": "8a68bbdb5ddc7c4e7361872883d67a841e35b805",
           "stage": 0,
           "documentKind": "durable-documentation",
           "logicalRole": "planning",
