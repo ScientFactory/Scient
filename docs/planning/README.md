@@ -15,6 +15,13 @@ Do not use planning docs as product truth, accepted architecture, or current imp
 
 Current planning docs:
 
+- `scient-documentation-system-and-publishing.md` - accepted cross-repository
+  documentation authority; docs/user/-backed, release-qualified public Scient
+  Docs publishing; internal capability and architecture structure;
+  feature-document lifecycle; minimal cross-repository governance promotion;
+  real-change maintenance tabletop; generated inventory and temporary
+  disposition/verification queues; first-principles architecture gates;
+  acceptance package; implementation start gate; and proof-first sequence.
 - `product-measurement-and-analytics-plan.md` - proposed product-measurement
   contract, privacy boundary, event catalog, KPI model, dashboard portfolio,
   cross-repository implementation sequence, and activation gates.
