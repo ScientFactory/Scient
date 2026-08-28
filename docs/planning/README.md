@@ -15,6 +15,9 @@ Do not use planning docs as product truth, accepted architecture, or current imp
 
 Current planning docs:
 
+- `documentation-disposition-ledger-2026-08-28.md` - temporary reviewed
+  migration disposition for every generated Markdown collection and named
+  exception, with preservation, pilot, deferment, and retirement gates.
 - `scient-documentation-system-and-publishing.md` - accepted cross-repository
   documentation authority; docs/user/-backed, release-qualified public Scient
   Docs publishing; internal capability and architecture structure;
