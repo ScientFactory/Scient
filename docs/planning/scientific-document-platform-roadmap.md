@@ -795,6 +795,22 @@ run where the file exists. Remote/relay/tunnel use must preserve typed contracts
 and capability-aware UI rather than copying local filesystem assumptions into
 the browser.
 
+### Build Execution And Project Trust
+
+Opening, reading, searching, previewing an existing artifact, and editing
+source must remain useful without granting build execution. Starting a build is
+a deliberate project-scoped action that identifies the selected engine or
+toolchain; the resulting choice must remain visible and revocable.
+
+Ordinary LaTeX compilation starts with shell escape disabled. Shell escape,
+Quarto or knitr cells, Pandoc filters, custom recipes, and comparable hooks must
+declare their execution capability instead of masquerading as rendering or
+silently inheriting trust from another project. Adapters must own complete
+process-tree cleanup across cancel, supersede, timeout, shutdown, and connection
+loss, and receipts should record the toolchain and enabled capabilities without
+capturing secrets. A durable cross-runtime trust model remains an architecture
+decision rather than an assumption inside an individual adapter.
+
 ### macOS
 
 Test sandboxed packaged-app behavior, MacTeX/BasicTeX and user-installed
