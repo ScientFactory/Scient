@@ -88,8 +88,8 @@ context; it does not give every task cross-repository write scope. Identify the
 owning repository before editing and keep unrelated sibling repositories
 read-only. Do not add unrelated private company repositories, credentials,
 personal files, or customer material to this workspace. External contributors
-working in a public repository are not required to have the private `Scient`
-checkout.
+may read the public `Scient` documentation but are not required to clone sibling
+repositories outside their task scope.
 
 Treat these as independent repositories, not a monorepo. Run Git commands from
 the intended repository, keep changes on repository-specific branches, and use

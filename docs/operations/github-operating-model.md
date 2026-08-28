@@ -25,7 +25,7 @@ exactly one child repository.
 
 | Repository | Local folder | Visibility | Integration branch | Release or deployment authority |
 | --- | --- | --- | --- | --- |
-| `ScientFactory/Scient` | `Scient/` | Private | `main` | No release branch. Product truth, architecture, plans, cross-repository pins, and operating procedures live here. |
+| `ScientFactory/Scient` | `Scient/` | Public | `main` | No release branch. Product truth, architecture, plans, cross-repository pins, and operating procedures live here. |
 | `ScientFactory/scient-desktop` | `scient-desktop/` | Public | `main` | The current T3-derived application. Its exact `release/stable` head is the only source for desktop artifacts. Publication remains an explicit gated action. |
 | `ScientFactory/scient-agent` | `scient-agent/` | Public | `dev` | `release/stable` is the agent promotion boundary. Agent artifact publication remains disabled until an owned artifact contract exists. |
 | `ScientFactory/ScientFactory-website` | `website/` | Public | `main` | `main` is the Cloudflare Pages production source. Pull requests receive preview deployments. |
@@ -230,13 +230,13 @@ solely to make a pull request mergeable unless Yaacov explicitly changes this
 policy. Repository administrators retain recovery authority, but normal work
 still follows the pull-request and required-check path.
 
-`Scient` is private. On the organization's current GitHub Free plan, GitHub does
-not enforce branch protection for that private repository. Treat `main` as
-process-protected: use pull requests, scoped checks, Quality Review, Integration
-Readiness Review, and squash merges even though the platform cannot enforce
-every rule. Re-evaluate native protection if the repository becomes public or
-the organization plan changes, without adding a required-approval gate unless
-Yaacov explicitly requests one.
+`Scient` became public on 2026-08-28. Its `main` branch requires pull requests,
+an up-to-date `evidence-manifest` check, resolved conversations, and linear
+history; force-push and branch deletion are disabled. It does not require an
+approving review, and repository administrators retain recovery authority.
+Keep Quality Review, Integration Readiness Review, and squash merges as the
+operating path rather than treating public visibility as permission to bypass
+the repository process.
 
 ## Definition Of Done
 
