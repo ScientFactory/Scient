@@ -25,16 +25,17 @@ Before starting internal repository work, team contributors must complete the
 [local workspace setup](development/local-workspace-setup.md). The root
 [Scient README](../README.md#related-repositories-and-local-workspace) owns the
 repository roles and workspace shape. Open that plain parent directory as the
-editor or agent workspace so the public product documentation, desktop source,
+editor or agent workspace so the private product documentation, desktop source,
 and agent source are available in one context. Follow the [GitHub operating
 model](operations/github-operating-model.md#local-worktrees) for worktree
 placement and repository boundaries.
 
 This setup is an internal team workflow. An external contributor may begin from
-the public repository that owns their task without cloning the complete sibling
-workspace. Access to the shared workspace also does not authorize an agent or
-contributor to change every repository; each task retains its stated scope and
-must be implemented in the repository that owns it.
+the public repository that owns their task without access to the private
+`Scient` parent or the complete sibling workspace. Access to the shared
+workspace also does not authorize an agent or contributor to change every
+repository; each task retains its stated scope and must be implemented in the
+repository that owns it.
 
 ## Current Project State
 
