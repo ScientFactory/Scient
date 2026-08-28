@@ -22,6 +22,15 @@ Until each rule is promoted into its durable owner, the current
 [Documentation Policy](../documentation-policy.md), repository AGENTS.md files,
 and area indexes remain operationally authoritative.
 
+Phase 1 promotes recurring rules into the [Documentation
+Policy](../documentation-policy.md), [Team Contribution
+Protocol](../operations/team-contribution-protocol.md), and repository-local
+agent, contributor, index, work-artifact, and pull-request surfaces. After those
+dependent changes land, use those owners for recurring decisions. This accepted
+planning note remains the implementation roadmap and decision record for the
+inventory, pilots, publishing proof, migration, and automation phases; it does
+not compete with the promoted policy.
+
 Current product behavior belongs beside the implementation that provides it.
 Product direction and cross-product planning belong in this Scient repository.
 Website deployment remains owned by the website repository.
