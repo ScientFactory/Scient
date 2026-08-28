@@ -70,12 +70,13 @@ that root, have it read `Scient/AGENTS.md` and the applicable `AGENTS.md` and
 task from the owning repository is also valid while sibling repositories remain
 available as read context.
 
-The `Scient` repository is public and may be read without organization access.
+The `Scient` repository is private and requires authorized organization access.
 Contributors should clone only the repositories their work requires and follow
-each owning repository's contributor guidance. Public product documentation
-does not grant access to retired private repositories or authorize unrelated
-private company repositories, credentials, personal files, or customer
-material in the product workspace.
+each owning repository's contributor guidance. An external contributor working
+in a public sibling repository does not need this private parent repository.
+Access to product documentation does not authorize retired private
+repositories, unrelated private company repositories, credentials, personal
+files, or customer material in the product workspace.
 
 The workspace root is local organization only; the ScientFactory GitHub
 organization is the remote grouping. Follow the

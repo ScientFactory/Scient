@@ -4,7 +4,7 @@ Status: Historical
 Owner: Yaacov
 Created: 2026-07-17
 Last updated: 2026-08-28
-Purpose: Preserves the executed PapiLab-to-Scient migration, compatibility contract, verification requirements, and later public-visibility follow-up.
+Purpose: Preserves the executed PapiLab-to-Scient migration, compatibility contract, verification requirements, and later repository-visibility follow-ups.
 Doc type: Planning note
 
 ## Goal
@@ -64,8 +64,14 @@ Phase 0 had left gated. `ScientFactory/Scient` became public after a disclosure
 audit, and `main` received native protection requiring pull requests, the
 up-to-date `evidence-manifest` check, resolved conversations, and linear
 history while retaining zero mandatory approvals and administrator recovery.
-The original private-parent steps below remain historical execution gates, not
-the current repository state.
+Later the same day, Yaacov explicitly restored private visibility. Anonymous
+repository and raw-file requests again returned `404`, and the GitHub network
+reported no forks at the time of restoration. That restoration cannot revoke
+copies made while the repository was public. On the current organization plan,
+GitHub does not expose or enforce native protection for the private repository,
+so the same pull-request, evidence, review, and squash-merge requirements remain
+process policy rather than a claimed platform guarantee. The original phases
+below remain historical execution gates.
 
 ## Authorities
 

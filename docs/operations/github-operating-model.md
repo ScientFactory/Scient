@@ -25,7 +25,7 @@ exactly one child repository.
 
 | Repository | Local folder | Visibility | Integration branch | Release or deployment authority |
 | --- | --- | --- | --- | --- |
-| `ScientFactory/Scient` | `Scient/` | Public | `main` | No release branch. Product truth, architecture, plans, cross-repository pins, and operating procedures live here. |
+| `ScientFactory/Scient` | `Scient/` | Private | `main` | No release branch. Product truth, architecture, plans, cross-repository pins, and operating procedures live here. |
 | `ScientFactory/scient-desktop` | `scient-desktop/` | Public | `main` | The current T3-derived application. Its exact `release/stable` head is the only source for desktop artifacts. Publication remains an explicit gated action. |
 | `ScientFactory/scient-agent` | `scient-agent/` | Public | `dev` | `release/stable` is the agent promotion boundary. Agent artifact publication remains disabled until an owned artifact contract exists. |
 | `ScientFactory/ScientFactory-website` | `website/` | Public | `main` | `main` is the Cloudflare Pages production source. Pull requests receive preview deployments. |
@@ -230,13 +230,15 @@ solely to make a pull request mergeable unless Yaacov explicitly changes this
 policy. Repository administrators retain recovery authority, but normal work
 still follows the pull-request and required-check path.
 
-`Scient` became public on 2026-08-28. Its `main` branch requires pull requests,
-an up-to-date `evidence-manifest` check, resolved conversations, and linear
-history; force-push and branch deletion are disabled. It does not require an
-approving review, and repository administrators retain recovery authority.
-Keep Quality Review, Integration Readiness Review, and squash merges as the
-operating path rather than treating public visibility as permission to bypass
-the repository process.
+`Scient` is private. On the current organization plan, GitHub does not expose or
+enforce native branch protection for this private repository. Treat `main` as
+process-protected: use pull requests, require a locally verified
+`evidence-manifest` result when hosted Actions cannot start, resolve
+conversations, preserve linear history, and use squash merges. Do not require an
+approving review unless Yaacov changes the policy; repository administrators
+retain recovery authority. Native protection was configured during a brief
+public interval on 2026-08-28, but it must not be described as active while the
+private-repository protection API is unavailable.
 
 ## Definition Of Done
 

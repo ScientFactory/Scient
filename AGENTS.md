@@ -87,9 +87,10 @@ Starting an agent from the parent workspace gives it cross-repository read
 context; it does not give every task cross-repository write scope. Identify the
 owning repository before editing and keep unrelated sibling repositories
 read-only. Do not add unrelated private company repositories, credentials,
-personal files, or customer material to this workspace. External contributors
-may read the public `Scient` documentation but are not required to clone sibling
-repositories outside their task scope.
+personal files, or customer material to this workspace. The `Scient` parent
+repository requires authorized organization access. External contributors may
+work from the public repository that owns their task and are not required to
+clone this private parent or other sibling repositories outside their scope.
 
 Treat these as independent repositories, not a monorepo. Run Git commands from
 the intended repository, keep changes on repository-specific branches, and use
