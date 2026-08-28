@@ -106,6 +106,13 @@ Optimize for long-term quality. Prefer the correct, maintainable solution even w
 
 Place documentation deliberately. Before creating a new document, decide where the information belongs in the existing documentation structure. Prefer updating the canonical existing document over creating a duplicate. If a new document is needed, give it the required metadata and link it from the relevant index.
 
+Use the nearest authoritative repository and classify the fact by the question
+it answers: Help, Capabilities, Architecture, Development, Operations,
+Upstream, Product/Planning/Research, or Records. These are logical roles, not a
+requirement to rename inherited folders. Current app Help belongs in
+`scient-desktop/docs/user/`; the website renders approved, version-aware Scient
+Docs from that source instead of owning a second prose copy.
+
 Capture durable future context, not documentation volume. Preserve consequential decisions, constraints, interfaces, evidence, hard-won lessons, and repeated explanations. Do not promote every chat, meeting, transcript, or generated summary into repository knowledge.
 
 AI may draft documentation, but it is not the accountable owner and cannot confer acceptance. Preserve uncertainty and specific reasoning for human review. When authoritative sources conflict, surface the contradiction and route it to the owning person or document instead of smoothing it into false agreement.
@@ -118,6 +125,10 @@ Current important documents:
 
 - `docs/README.md` - documentation map and current repo structure.
 - `docs/documentation-policy.md` - rules for creating, updating, and classifying documentation.
+- `docs/planning/scient-documentation-system-and-publishing.md` - accepted
+  documentation-system decisions, implementation sequence, pilot gates, and
+  deferred choices; durable recurring rules live in the policy and repository-
+  local guidance rather than in that plan.
 - `docs/product/PRD.md` - product direction, core capabilities, user experience principles, and technical requirements.
 - `docs/product/skills-system.md` - draft product model, trust boundaries,
   candidate catalog, and validation order for reusable scientific skills; the
@@ -166,6 +177,13 @@ review.
 Be honest about the repo's maturity. Do not describe planned architecture as implemented architecture.
 
 When adding documentation, prefer clear current-state wording over polished but vague language.
+
+For the same capability, update existing durable owners as implementation lands
+gradually. Keep scratch, transcripts, temporary checklists, and handoffs outside
+the worktree or in the owning GitHub item. Create a new durable file only when
+it answers a distinct lasting question with a clear owner, evidence boundary,
+update trigger, and index route. In every pull request, include the concise
+`Documentation impact` declaration defined by the team contribution protocol.
 
 If a document is useful now but does not yet have an obvious permanent home, it may be left in the repo temporarily. Later, as the repo architecture settles, documents should be moved into the right structure.
 

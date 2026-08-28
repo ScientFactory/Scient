@@ -118,6 +118,60 @@ A broader company memory may connect to Scient through links and shared conventi
 
 The current scope recommendation and unresolved structural choices live in `docs/planning/repository-scope-and-company-memory.md`.
 
+## Repository-Family Authority
+
+Scient documentation uses the nearest authoritative owner across independent
+repositories:
+
+- `Scient` owns product truth, philosophy, cross-product architecture and
+  decisions, roadmaps, cross-repository operations, research, and this family
+  policy;
+- `scient-desktop` owns current desktop Help, implementation capability and
+  architecture records, development guidance, runbooks, and T3 divergence;
+- the website owns Docs rendering, navigation, search, deployment, and the
+  exact source/version it publishes; and
+- `scient-agent` joins this model only when native Scient-agent implementation
+  begins. Its current inherited starting repository is outside the present
+  documentation migration.
+
+Repositories remain independent. A cross-repository consequence uses a
+separate, explicitly ordered dependent pull request; matching branch names do
+not establish dependency or authority. Each public repository must state the
+minimum local rule a contributor needs without requiring access to this
+repository or copying private planning authority.
+
+Current desktop product help is authored under `scient-desktop/docs/user/`.
+The public **Scient Docs** website at `/docs` publishes a reviewed,
+version-aware selection from that source; the website must not maintain a
+second prose copy. Website documentation can be corrected and deployed without
+an app release, but stable pages must remain truthful about the app versions
+and behavior they describe. A future documentation MCP, if justified, must
+retrieve this same corpus rather than become another authored authority.
+
+## Documentation Roles
+
+Classify durable knowledge by the question it answers, not by a vague audience
+label or a required folder name:
+
+- **Help** explains how people and support agents use released behavior.
+- **Capabilities** records what implementation exists, its limits, maturity,
+  source anchors, evolution, and related plans.
+- **Architecture** owns authorities, boundaries, invariants, dependencies, and
+  hard-to-reverse decisions.
+- **Development** owns build, test, configuration, contributor, and debugging
+  guidance.
+- **Operations** owns release, deployment, migration, monitoring, support, and
+  recovery procedures.
+- **Upstream** owns donor ancestry, protected divergences, conflicts, and
+  selective-intake decisions.
+- **Records** preserves useful historical evidence, superseded plans,
+  retirements, and delivery context without governing current behavior.
+
+These are logical roles. Repositories may retain inherited paths such as
+`docs/user/` and `docs/internals/` when moving files would add merge or link
+cost without improving authority. Repository indexes map the logical role to
+the real current path.
+
 ## Knowledge Selection Rules
 
 Create durable documentation when it will provide future context: an important decision and its reasoning, a durable principle or constraint, an owned interface or process, source-backed research, a hard-won lesson, a repeated explanation, or knowledge at real risk of disappearing.
@@ -125,6 +179,24 @@ Create durable documentation when it will provide future context: an important d
 Do not preserve every meeting, chat, transcript, task trace, or generated summary by default. Treat those as inputs. Promote only the parts that have a durable owner, purpose, evidence boundary, and correct home.
 
 Documentation volume is not a quality measure. Prefer a small coherent knowledge system over a large archive that obscures authority.
+
+Update an existing durable owner before creating a new file. Feature work often
+lands in slices; later slices update the same capability, Help, or architecture
+owner when its truth changes rather than creating one document per pull
+request, milestone, component, or implementation phase.
+
+Create a new durable document only when the knowledge remains useful after the
+pull request, no existing owner can hold it coherently, it answers a distinct
+durable question, its repository/status/evidence/update trigger are clear, and
+the appropriate index can route to it. Ordinary feature scratch, transcripts,
+session handoffs, temporary checklists, and active progress belong outside the
+worktree or in the owning GitHub work item. The merged pull request is the
+implementation record.
+
+An ordinary bounded change should normally update zero to two primary owners.
+More may be correct for privacy, architecture, retirement, upstream, or broad
+program changes, but should trigger an ownership review rather than automatic
+fan-out or omission.
 
 ## Evidence Rules
 
