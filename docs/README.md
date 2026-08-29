@@ -26,12 +26,15 @@ Start here:
 
 - [Collaborator onboarding](onboarding.md) - ordered project journey, repository tour, and contribution-area reading routes.
 - [Documentation policy](documentation-policy.md) - documentation rules, metadata, statuses, and placement policy.
-- [Scient documentation system and publishing](planning/scient-documentation-system-and-publishing.md) - accepted repository-family authority, public Docs direction, implementation sequence, pilot gates, and deferred choices; recurring rules are promoted into the documentation policy and repository-local guidance.
+- [Scient documentation system and publishing](planning/scient-documentation-system-and-publishing.md) - accepted repository-family authority, public Docs direction, implementation sequence, completed corpus decisions, remaining review gates, and deferred choices; recurring rules are promoted into the documentation policy and repository-local guidance.
 - [Product requirements](product/PRD.md) - canonical product direction.
 - [Scient skills system](product/skills-system.md) - draft product model, trust
   boundaries, candidate catalog, and validation order for reusable scientific
   skills; honor its Draft status, and use the accepted PRD to govern conflicts.
 - [Scient product identity](product/scient-product-identity.md) - accepted company, app, native-agent, external-agent, and naming vocabulary.
+- [Scient capability map](product/scient-capability-map.md) - compact routing
+  from stable cross-product capability families to current implementation,
+  Help, architecture, roadmap, and dependency owners.
 - [Product philosophy](product/product-philosophy.md) - draft durable product principles; the accepted PRD governs conflicts.
 - [Technology stack](architecture/technology-stack.md) - current proposed stack direction.
 - [Idea inbox](planning/idea-inbox.md) - lightweight intake for unresolved ideas
@@ -60,6 +63,7 @@ Start here:
 - [Design](design/README.md) - future home for product design principles and UI guidance.
 - [Quality](quality/README.md) - quality principles and testing philosophy.
 - [Planning](planning/README.md) - plans that guide upcoming work.
+- [Documentation disposition ledger](planning/documentation-disposition-ledger-2026-08-28.md) - temporary reviewed migration dispositions and pilot/retirement gates for the generated Markdown inventory.
 - [Research](research/README.md) - external source evaluations, spikes, visual references, and raw or synthesized research.
 - [Development](development/README.md) - implemented contributor setup and
   future code, command, testing, and configuration documentation.

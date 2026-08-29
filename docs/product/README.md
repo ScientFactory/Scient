@@ -12,6 +12,9 @@ Product truth belongs here.
 Current documents:
 
 - `PRD.md` - canonical product requirements and direction.
+- `scient-capability-map.md` - compact cross-product map from stable Scient
+  capability families to current implementation, Help, architecture, roadmap,
+  and dependency owners; detailed behavior remains in the nearest repository.
 - `skills-system.md` - draft product model, trust boundaries, candidate catalog,
   and validation order for reusable scientific skills; the accepted PRD governs
   conflicts.

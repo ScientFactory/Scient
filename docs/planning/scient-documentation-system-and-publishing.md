@@ -3,7 +3,7 @@
 Status: Accepted
 Owner: Yaacov
 Created: 2026-08-28
-Last updated: 2026-08-28
+Last updated: 2026-08-29
 Purpose: Defines the accepted sustainable cross-repository documentation system and staged implementation program for public Scient Docs, current capabilities, architecture, development, operations, upstream divergence, planning, research, and historical evidence.
 Doc type: Planning note
 
@@ -18,18 +18,19 @@ with the qualifications recorded in [Acceptance Record](#acceptance-record).
 Acceptance authorizes staged implementation of the documentation system; it
 does not authorize an indiscriminate file move, deploy an MCP server, change an
 app release, or promote proposed product architecture into accepted direction.
-Until each rule is promoted into its durable owner, the current
+The recurring rules are now promoted into their durable owners. The current
 [Documentation Policy](../documentation-policy.md), repository AGENTS.md files,
-and area indexes remain operationally authoritative.
+contribution guidance, area indexes, desktop Help, and website publishing
+architecture are operationally authoritative.
 
-Phase 1 promotes recurring rules into the [Documentation
+Phase 1 promoted recurring rules into the [Documentation
 Policy](../documentation-policy.md), [Team Contribution
 Protocol](../operations/team-contribution-protocol.md), and repository-local
-agent, contributor, index, work-artifact, and pull-request surfaces. After those
-dependent changes land, use those owners for recurring decisions. This accepted
-planning note remains the implementation roadmap and decision record for the
-inventory, pilots, publishing proof, migration, and automation phases; it does
-not compete with the promoted policy.
+agent, contributor, index, work-artifact, and pull-request surfaces. Use those
+owners for recurring decisions. This accepted planning note remains the
+decision record for the completed inventory, pilots, publishing proof, and
+migration, plus the limited remaining release, maintenance-evidence,
+automation, and MCP gates. It does not compete with the promoted policy.
 
 Current product behavior belongs beside the implementation that provides it.
 Product direction and cross-product planning belong in this Scient repository.
@@ -1175,9 +1176,13 @@ proof; those cases may remain pending while unrelated phases continue.
 
 ### Phase 6 — Migrate The Remaining Corpus
 
-After the pilots and maintenance proof:
+After the pilots and the maintenance proof available from real changes, proceed
+with safe normalization. The next real product retirement and T3 integration
+must still use the contract, but their absence does not justify retaining
+temporary ledgers or postponing unrelated corpus work:
 
-- write the complete public Scient Docs corpus;
+- write the complete release-qualified or explicitly labelled candidate
+  Scient Docs corpus;
 - normalize capability-family records;
 - consolidate shared architecture and ADRs;
 - preserve and clarify development and operations guidance;
@@ -1305,27 +1310,26 @@ The documentation-system design is supported by complementary evidence rather
 than one document that tries to own product history, current implementation,
 architecture, policy, and public help simultaneously.
 
-| Requested concern                                                                                                                                   | Evidence owner                                                                                                                                                                                      | Coverage at the observed baseline                                                                                                                                                                                                                                                             |
-| --------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Every Scient-specific capability, including small fixes, files, behavior, and why it exists                                                         | `scient-desktop/docs/reports/scient-specific-capabilities.md` plus the [capability-to-foundation audit](../research/spike-reports/scient-capability-to-foundation-architecture-audit-2026-08-28.md) | Complete dated inventory: 38 named capabilities plus the cross-cutting security/reliability family, reconciled to current desktop `d5ff08e7`.                                                                                                                                                 |
-| Every desktop pull request, integration chain, quick timeline, and feature evolution                                                                | `scient-desktop/docs/reports/scient-pr-and-evolution-ledger.md`                                                                                                                                     | All 183 live PR records through #189 are reconciled at the audit snapshot: 181 records through #187 plus the #188/#189 addendum. Later merged PR #190 is explicitly queued for P0-DESKTOP-FORENSICS before preservation. The six earlier absent numbers remain recorded rather than invented. |
-| T3 ancestry, integration, conflicts, protected divergences, and why each category remains                                                           | `scient-desktop/docs/reports/scient-t3-divergence-integration-and-retirements.md`, current `UPSTREAM.md`, machine state, and dated receipts                                                         | Complete dated divergence narrative through #187 with a current-main #189 addendum; live operational authority remains `UPSTREAM.md` and `upstream-state.json`.                                                                                                                               |
-| Features and implementation approaches built and later removed, replaced, renamed, rejected, superseded, or deferred                                | The divergence/retirement report and PR ledger                                                                                                                                                      | Twelve explicit retirement/replacement/defer cases plus current-versus-integration-only status. Capability records preserve evolution without making retired work current.                                                                                                                    |
-| First-principles architecture, accidental layering, shared foundations, simplification, unification, extraction, replacement, and rebuild questions | [Capability-to-foundation architecture audit](../research/spike-reports/scient-capability-to-foundation-architecture-audit-2026-08-28.md)                                                           | Complete initial 39-item map, ten foundation findings, disposition ledger, deliberate non-unifications, evidence gates, and review order. It recommends focused foundation work rather than a wholesale rewrite.                                                                              |
-| Open-source donors, external services, versions, licenses, adaptation boundaries, and what remains Scient-owned                                     | Forensic capability/divergence reports, architecture audit, and Scient source maps                                                                                                                  | Covered for T3, Effect, PDF.js, whisper.cpp, KaTeX, Mermaid, Vega, Plotly, Zotero and metadata APIs, citation tooling, MATLAB, TeX/TinyTeX/SyncTeX, Jupyter conventions, and Agent Skills. Source maps remain evidence, not automatic dependency selection.                                   |
-| Every existing Markdown file, what it currently does, authority, provenance, and preliminary disposition                                            | [File-by-file Markdown audit](../research/spike-reports/documentation-system-markdown-audit-2026-08-28.md)                                                                                          | Every tracked path at the exact Scient, desktop, and website heads is accounted for; every non-vendored file is individually classified; vendored boundaries, open-PR Markdown, and three untracked forensic reports are explicit. The current scient-agent checkout is excluded by decision. |
-| Where feature agents put plans, scratch notes, handoffs, research, current facts, and new durable Markdown                                          | Feature-document lifecycle in this proposal plus desktop work-artifacts guidance                                                                                                                    | Complete proposed rule: GitHub owns active work; temporary material stays outside the tree; merged PRs are implementation records; existing durable owners are updated first; new files must pass the admission test.                                                                         |
-| Complete public documentation for users and support agents, website publication, versioning, and a possible MCP                                     | Public publishing model and agent reading routes in this proposal                                                                                                                                   | Complete design, not implemented corpus: docs/user/ remains the durable desktop Help source; a reviewed manifest selects release- and surface-qualified pages; website renders exact released/candidate sources and supports corrections; raw/structured delivery precedes a thin MCP.        |
-| Clean internal capability, architecture, development, operations, upstream, roadmap, research, quality, and historical documentation                | Repository authority model, proposed desktop areas, Scient areas, and cross-product capability map                                                                                                  | Complete logical target. The areas are classification and ownership roles, not mandatory physical folders or one-file-per-feature requirements.                                                                                                                                               |
-| Cross-repository ownership, dependency order, agent instructions, contributor guidance, indexes, templates, and update triggers                     | Governance promotion map and documentation update contract                                                                                                                                          | Complete proposed contract with one concern per governance surface, public-repository self-sufficiency, separate dependent PRs only for genuine consequences, and a concise documentation-impact declaration.                                                                                 |
-| Preservation of useful philosophy, first principles, development, quality, planning, research, upstream, and historical records                     | Migration rules, history/successor rules, and overcomplication constraints                                                                                                                          | Explicitly protected. Logical classification precedes movement; inherited compatibility paths may remain; temporary migration ledgers disappear after use; useful history is not deleted for cosmetic consistency.                                                                            |
-| Proof that the system can remain understandable and inexpensive to update                                                                           | [Maintainability and reading-route audit](../research/spike-reports/documentation-system-maintainability-and-reading-route-audit-2026-08-28.md)                                                     | Six reading routes and seven representative update simulations pass the proposed target with bounded recurring fan-out and explicit unresolved publication transport.                                                                                                                         |
-| Concurrent upstream and documentation work                                                                                                          | Exact evidence identities and Phase 0                                                                                                                                                               | Merged upstream PR #189 is reconciled; draft documentation PR #188 remains candidate evidence; later merged PR #190 advances desktop main without Markdown and requires documentation-impact and forensic-ledger reconciliation in Phase 0B.                                                  |
-| Current `scient-agent` repository                                                                                                                   | Explicit exclusion throughout the proposal and audits                                                                                                                                               | Deferred exactly as requested. No inherited OpenCode Markdown or source was inspected or classified; repository-local governance begins only when native Scient-agent implementation starts.                                                                                                  |
+| Requested concern                                                                                                                                   | Evidence owner                                                                                                                                                                                      | Coverage at the observed baseline                                                                                                                                                                                                                                                                                                             |
+| --------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Every Scient-specific capability, including small fixes, files, behavior, and why it exists                                                         | `scient-desktop/docs/reports/scient-specific-capabilities.md` plus the [capability-to-foundation audit](../research/spike-reports/scient-capability-to-foundation-architecture-audit-2026-08-28.md) | Complete dated inventory: 38 named capabilities plus the cross-cutting security/reliability family, reconciled to current desktop `d5ff08e7`.                                                                                                                                                                                                 |
+| Every desktop pull request, integration chain, quick timeline, and feature evolution                                                                | `scient-desktop/docs/reports/scient-pr-and-evolution-ledger.md`                                                                                                                                     | All 184 live PR records through #190 are reconciled: 181 records through #187 plus the #188–#190 addendum. The six earlier absent numbers remain recorded rather than invented.                                                                                                                                                               |
+| T3 ancestry, integration, conflicts, protected divergences, and why each category remains                                                           | `scient-desktop/docs/reports/scient-t3-divergence-integration-and-retirements.md`, current `UPSTREAM.md`, machine state, and dated receipts                                                         | Complete dated divergence narrative through #187 with a current-main #189 addendum; live operational authority remains `UPSTREAM.md` and `upstream-state.json`.                                                                                                                                                                               |
+| Features and implementation approaches built and later removed, replaced, renamed, rejected, superseded, or deferred                                | The divergence/retirement report and PR ledger                                                                                                                                                      | Twelve explicit retirement/replacement/defer cases plus current-versus-integration-only status. Capability records preserve evolution without making retired work current.                                                                                                                                                                    |
+| First-principles architecture, accidental layering, shared foundations, simplification, unification, extraction, replacement, and rebuild questions | [Capability-to-foundation architecture audit](../research/spike-reports/scient-capability-to-foundation-architecture-audit-2026-08-28.md)                                                           | Complete initial 39-item map, ten foundation findings, disposition ledger, deliberate non-unifications, evidence gates, and review order. It recommends focused foundation work rather than a wholesale rewrite.                                                                                                                              |
+| Open-source donors, external services, versions, licenses, adaptation boundaries, and what remains Scient-owned                                     | Forensic capability/divergence reports, architecture audit, and Scient source maps                                                                                                                  | Covered for T3, Effect, PDF.js, whisper.cpp, KaTeX, Mermaid, Vega, Plotly, Zotero and metadata APIs, citation tooling, MATLAB, TeX/TinyTeX/SyncTeX, Jupyter conventions, and Agent Skills. Source maps remain evidence, not automatic dependency selection.                                                                                   |
+| Every existing Markdown file, what it currently does, authority, provenance, and preliminary disposition                                            | [File-by-file Markdown audit](../research/spike-reports/documentation-system-markdown-audit-2026-08-28.md)                                                                                          | Every tracked path at the exact Scient, desktop, and website heads is accounted for; every non-vendored file is individually classified; vendored boundaries, open-PR Markdown, and three untracked forensic reports are explicit. The current scient-agent checkout is excluded by decision.                                                 |
+| Where feature agents put plans, scratch notes, handoffs, research, current facts, and new durable Markdown                                          | Feature-document lifecycle in this proposal plus desktop work-artifacts guidance                                                                                                                    | Complete proposed rule: GitHub owns active work; temporary material stays outside the tree; merged PRs are implementation records; existing durable owners are updated first; new files must pass the admission test.                                                                                                                         |
+| Complete public documentation for users and support agents, website publication, versioning, and a possible MCP                                     | Public publishing model, desktop Help owners, and website publishing architecture                                                                                                                   | Complete merged preview corpus: 31 canonical Help pages render from exact desktop main commit `7d2187eb383505956e95c8ebcfcfe8006d6edba2` with HTML, UTF-8 raw Markdown, JSON index, search, source/version evidence, and explicit preview status. Unreleased mobile guidance is internal; stable-release publication and MCP remain deferred. |
+| Clean internal capability, architecture, development, operations, upstream, roadmap, research, quality, and historical documentation                | Repository authority model, proposed desktop areas, Scient areas, and cross-product capability map                                                                                                  | Complete logical target. The areas are classification and ownership roles, not mandatory physical folders or one-file-per-feature requirements.                                                                                                                                                                                               |
+| Cross-repository ownership, dependency order, agent instructions, contributor guidance, indexes, templates, and update triggers                     | Governance promotion map and documentation update contract                                                                                                                                          | Complete proposed contract with one concern per governance surface, public-repository self-sufficiency, separate dependent PRs only for genuine consequences, and a concise documentation-impact declaration.                                                                                                                                 |
+| Preservation of useful philosophy, first principles, development, quality, planning, research, upstream, and historical records                     | Migration rules, history/successor rules, and overcomplication constraints                                                                                                                          | Explicitly protected. Logical classification precedes movement; inherited compatibility paths may remain; temporary migration ledgers disappear after use; useful history is not deleted for cosmetic consistency.                                                                                                                            |
+| Proof that the system can remain understandable and inexpensive to update                                                                           | [Maintainability and reading-route audit](../research/spike-reports/documentation-system-maintainability-and-reading-route-audit-2026-08-28.md)                                                     | Six reading routes and seven representative update simulations pass the proposed target with bounded recurring fan-out and explicit unresolved publication transport.                                                                                                                                                                         |
+| Concurrent upstream and documentation work                                                                                                          | Exact evidence identities and Phase 0                                                                                                                                                               | Merged upstream PR #189 is reconciled. Documentation PR #188, its dependent governance consolidation in #194, and the final Help consolidation in #199 are merged. PR #190's provider-default consequence is reflected in the current implementation and Help owners.                                                                         |
+| Current `scient-agent` repository                                                                                                                   | Explicit exclusion throughout the proposal and audits                                                                                                                                               | Deferred exactly as requested. No inherited OpenCode Markdown or source was inspected or classified; repository-local governance begins only when native Scient-agent implementation starts.                                                                                                                                                  |
 
-This matrix proves coverage of the **design and audit objective**. It does not
-prove that the proposed documentation system has been accepted, migrated,
-published, or maintained through live pilots. Those are deliberately separate
+This matrix proves coverage of the **design and audit objective**. Acceptance,
+migration, publication, and maintenance proof are deliberately separate
 states:
 
 1. **Investigated and designed:** the proposal and dated evidence suite cover
@@ -1338,9 +1342,10 @@ states:
 4. **Proven at scale:** vertical authoring, website publishing, maintenance,
    migration, and automation phases pass their stated gates.
 
-The current evidence package has reached states 1 and 2. The implementation
-program is responsible for proving states 3 and 4; acceptance must not be
-misread as claiming that migration or publication is already complete.
+The evidence package and merged implementation have now reached states 1–4 for
+the candidate-preview corpus. Stable-release publication, the next real
+retirement and upstream-integration cases, additional automation, and a
+possible MCP remain separately gated below.
 
 ## Accepted Package
 
@@ -1383,6 +1388,14 @@ Acceptance should deliberately defer:
 - any MCP interface or deployment choice; and
 - any architecture simplification, extraction, replacement, or rebuild until
   the first-principles review produces evidence and a focused decision.
+
+These were the choices deliberately left open at acceptance. The completed
+pilots later selected an exact desktop-revision manifest with per-page hashes,
+manifest-owned navigation metadata, logical rather than broad physical
+classification, and the existing heterogeneous capability records plus a
+compact family map instead of a universal document schema. The source
+transport remains subject to the recorded re-evaluation conditions; MCP and
+product-architecture implementation remain deferred.
 
 ## Accepted Questions
 
@@ -1508,9 +1521,11 @@ The documentation program began after:
 7. scient-agent remains excluded until native Scient-agent implementation
    begins.
 
-The accepted goal authorizes the in-scope documentation work through focused
-repository-local branches and pull requests. It does not silently authorize
-merging, deploying, releasing, MCP work, or product-architecture changes.
+The initial accepted goal authorized the in-scope documentation work through
+focused repository-local branches and pull requests. Later explicit
+authorization covered review and integration of that implementation. Neither
+authorization included an app release, MCP work, or product-architecture
+changes.
 
 ### Prepared Initial Work Packages
 
@@ -1529,10 +1544,128 @@ checks immediately before creating branches.
 | P1-DESKTOP-GOVERNANCE | scient-desktop | Promote self-contained public rules through AGENTS.md, docs/README.md, work-artifacts, CONTRIBUTING.md, and the PR template.                                                                   | Accepted Scient contract and known PR #188 disposition; public-contributor route test.                                                     |
 | P1-WEBSITE-GOVERNANCE | Website        | Promote app-help ownership, website rendering/version ownership, dependency rules, and the concise PR field.                                                                                   | Accepted Scient contract; website remains transport-neutral until the pilot.                                                               |
 
-Phase 2 inventory, the three vertical pilots, website publication, maintenance
-proof, remaining-corpus normalization, automation, and possible MCP follow the
-phase gates above. They should not be expanded into detailed pull-request lists
-until the preceding pilots reveal the real owners and update cost.
+Phase 2 inventory, the three vertical pilots, website publication,
+remaining-corpus normalization, and the first maintenance proof are complete.
+The next real retirement and upstream-integration cases remain future
+maintenance evidence. Additional automation and a possible MCP remain separate
+gates and should be added only when demonstrated update or retrieval failures
+justify their cost.
+
+## Implementation Progress And Remaining Gates
+
+The first implementation pass is complete through the consolidated pull
+requests below. Superseded intermediate PRs remain available as review history,
+but only the durable net results were merged:
+
+| Work area                               | Durable evidence                                                                                                                                                                                                                                                         | Merged result                                                                                                                                                                                                                                                                                                                                                                                         |
+| --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Accepted package and Scient truth       | [Scient #101](https://github.com/ScientFactory/Scient/pull/101) and [#102](https://github.com/ScientFactory/Scient/pull/102)                                                                                                                                             | Preserves the accepted package and dated audits, then repairs the three scoped metadata anomalies without changing their evidence.                                                                                                                                                                                                                                                                    |
+| Durable Scient governance               | [Scient #103](https://github.com/ScientFactory/Scient/pull/103)                                                                                                                                                                                                          | Promotes repository-family authority, logical roles, gradual-feature ownership, the concise documentation-impact declaration, and reading routes into policy, contribution guidance, agent guidance, and indexes.                                                                                                                                                                                     |
+| Generated inventory and routing         | [Scient #107](https://github.com/ScientFactory/Scient/pull/107), consolidating historical candidates #104–#106                                                                                                                                                           | Regenerates the exhaustive inventory at the final merged product heads: 1,203 Markdown files across Scient, desktop, and website, including 31 canonical Help pages and 928 structurally excluded vendored donor files. Adds the compact capability map, reconciles capability boundaries, records the scient-agent exclusion without inspection, and closes the temporary disposition ledger.        |
+| Desktop baseline, truth, and governance | [Desktop #188](https://github.com/ScientFactory/scient-desktop/pull/188) and [#194](https://github.com/ScientFactory/scient-desktop/pull/194), consolidating historical candidates #191–#193                                                                             | Aligns file/document planning, preserves the forensic reports, completes index routes, corrects voice/provider/contributor truth, and promotes self-contained Desktop documentation governance.                                                                                                                                                                                                       |
+| Help qualification and user review      | [Desktop #199](https://github.com/ScientFactory/scient-desktop/pull/199), consolidating historical qualification candidates #195–#198                                                                                                                                    | Publishes 31 concise canonical Help pages after full content and rendered review. Forking is documented inside **Message Scient**; unreleased mobile guidance moved to an internal release hold; the temporary qualification queue is retired.                                                                                                                                                        |
+| Website ownership and publishing        | [Website #28](https://github.com/ScientFactory/ScientFactory-website/pull/28), [#29](https://github.com/ScientFactory/ScientFactory-website/pull/29), and [#31](https://github.com/ScientFactory/ScientFactory-website/pull/31), with #30 retained only as pilot history | Publishes all 31 pages from exact merged desktop commit `7d2187eb383505956e95c8ebcfcfe8006d6edba2`. HTML, UTF-8 raw Markdown, JSON index, search, six manifest-owned categories, collapsible navigation, direct downloads, source/version evidence, immutable hashes, independent scrolling, fail-closed generation, correction triggers, rollback, local browser review, and hosted checks all pass. |
+
+### Pilot Decisions Supported By Evidence
+
+The pilots support the smallest version of the accepted model:
+
+- keep `scient-desktop/docs/user/` flat and canonical; do not create a second
+  Help tree or commit generated website prose;
+- use a reviewed website manifest pinned to a full desktop commit and per-page
+  hashes for the present transport, while retaining an explicit re-evaluation
+  condition if availability, scale, privacy, or release engineering changes;
+- keep public navigation metadata in the publishing manifest rather than add a
+  mandatory metadata block to every inherited Help page;
+- expose version-aware HTML, exact raw Markdown, and a JSON index before
+  considering an MCP;
+- retain the logical roles and current inherited physical paths; the pilots did
+  not reveal a clarity benefit large enough to justify broad file movement; and
+- keep migration machinery temporary. The complete-corpus manifest now owns
+  publication selection, desktop #199 retires the Help queue, and the completed
+  disposition ledger is Historical rather than a second recurring registry.
+
+The website browser review found and corrected two issues that static checks
+did not reveal: hidden search results still occupied layout space, and raw
+Markdown needed explicit UTF-8 response headers. A subsequent mobile review
+replaced the full pre-content table of contents with a compact disclosure while
+preserving the desktop sidebar. These findings justify retaining proportional
+rendered-preview review alongside deterministic source and build checks.
+
+The complete-corpus pass then found one additional scale issue: 31 links could
+overwhelm both navigation surfaces. Website #31 uses six collapsible,
+manifest-owned categories, keeps less-used pages behind small More disclosures,
+and lets the desktop sidebar and article scroll independently. Its raw routes
+return `text/markdown; charset=utf-8`, and its index identifies all 31 pages.
+Automated, local browser, iterative human, hosted CI, and Cloudflare preview
+review all passed before integration.
+
+### Maintenance-Loop Evidence
+
+Three real changes have exercised the update contract during this pass:
+
+1. Merged desktop [PR #190](https://github.com/ScientFactory/scient-desktop/pull/190)
+   changed provider and agent defaults across seven implementation files but
+   shipped without Markdown. Desktop #196 routes the consequence back into the
+   existing provider capability owner and the three Help owners whose visible
+   behavior changed, plus the then-temporary qualification queue. It creates no
+   new permanent feature document. The four durable authored updates are
+   justified by the change spanning shared, Codex, and Claude behavior; an
+   ordinary single-provider slice should normally touch fewer. Consolidated
+   desktop #199 later removes the temporary row owner after its evidence is
+   consumed.
+2. Website #30 is an architecture-affecting change to the documentation system
+   itself. It adds one focused publishing-architecture owner, one reviewed
+   machine selection manifest, and one thin README route. Rendering, generated
+   pages, raw content, and the search index remain generated views rather than
+   additional authored authorities.
+3. Consolidated desktop #199 and the historical disposition ledger exercise
+   documentation retirement itself. One temporary file and one temporary index
+   route are removed only after the canonical Help pages, exact-source
+   manifest, mobile exclusion, Git history, and program record preserve every
+   lasting fact. No replacement prose registry is created.
+
+The product-feature retirement and upstream portions of Phase 5 remain
+deliberately pending.
+The earlier Quick Chat retirement [desktop #146](https://github.com/ScientFactory/scient-desktop/pull/146)
+and T3 integration [desktop #189](https://github.com/ScientFactory/scient-desktop/pull/189)
+remain valid tabletop and baseline evidence, but both predate the live
+maintenance proof. No later real retirement or T3 intake occurred during this
+pass. The accepted rule forbids manufacturing either change to close the gate;
+the next real cases must use the durable update contract and record their
+actual authored-document fan-out.
+
+### Completed Work And Remaining External Gates
+
+The pending live product retirement and upstream cases did not postpone work
+that could be completed safely. The migration program has now completed
+governance promotion, the exact inventory and final owner review, capability
+routing, all-page Help qualification, nearest-owner corrections, the complete
+desktop-first preview corpus, source/hash validation, generated navigation,
+UTF-8 raw and JSON delivery, rendered desktop/mobile checks, logical corpus
+normalization, and retirement of both temporary migration authorities.
+
+The pilots rejected a universal capability schema and broad physical moves as
+unnecessary maintenance cost. Existing detailed owners remain heterogeneous
+where their questions differ; the compact map supplies family-level routing.
+The proportional automation portfolio is the existing metadata and link
+checks, generated inventory, website exact-revision and hash rejection,
+generated navigation/indexes, reproducible builds, and rendered preview review.
+Automatic enforcement of every possible documentation impact remains
+unjustified unless repeated omissions appear.
+
+The remaining gates require release authority or a future real event:
+
+1. selection of an exact stable app release before public Docs can default to
+   stable rather than a clearly labelled candidate preview;
+2. the next real product-feature retirement and T3 integration maintenance
+   cases; and
+3. separately authorized MCP or product-architecture work, if later justified.
+
+Do not add automatic enforcement for every possible documentation impact yet.
+The concise pull-request declaration is still a trial; add enforcement only if
+repeated omissions show that repository guidance and review are insufficient.
+The documentation MCP remains outside this pass.
 
 ## Completion Criteria For The Documentation Program
 
