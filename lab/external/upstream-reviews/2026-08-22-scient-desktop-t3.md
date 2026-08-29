@@ -2,6 +2,10 @@
 
 Status: Accepted
 Owner: Yaacov
+Created: 2026-08-22
+Last updated: 2026-08-22
+Purpose: Records the accepted bounded T3 upstream review, exact integration range, owned merge, protected Scient seams, and qualification evidence through dedcd99a9d.
+Doc type: Research evidence
 Reviewed at: 2026-08-22
 Reviewed through: `dedcd99a9d16240327ce763b885b326aff607bdb`
 Integration base: `dedcd99a9d16240327ce763b885b326aff607bdb`
