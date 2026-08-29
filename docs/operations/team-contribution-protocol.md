@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-07-22
-Last updated: 2026-07-27
+Last updated: 2026-08-28
 Purpose: Defines the minimum shared workflow and verification evidence for contributions across maintained ScientFactory repositories.
 Doc type: Operational procedure
 
@@ -70,6 +70,22 @@ commands in the owning code repository instead of copying them here.
 Use separate pull requests for separate repositories. Cross-repository work
 must state its dependencies and landing order rather than relying on matching
 branch names.
+
+Every implementation or documentation pull request must make its documentation
+impact explicit in one concise declaration:
+
+```text
+Documentation impact: None — <reason>
+Documentation impact: Updated — <paths>
+Documentation impact: Dependent PR — <repository and link>
+```
+
+Use one line, choosing the applicable form. `None` requires a real reason, not
+silence. `Updated` points to the existing owners changed with the work. A
+genuine cross-repository consequence uses `Dependent PR` and states the landing
+order; do not copy the same prose into both repositories. This trial remains
+deliberately smaller than a taxonomy checklist and should grow only if repeated
+failures prove another field is needed.
 
 ## Verification Standard
 
@@ -222,7 +238,8 @@ should make these facts easy to find:
 - Quality Review findings and dispositions;
 - Integration Readiness Review verdict and remaining findings;
 - known limitations or deferrals; and
-- cross-repository, deployment, migration, or release impact.
+- cross-repository, deployment, migration, or release impact; and
+- the concise documentation-impact declaration above.
 
 Small changes may answer briefly. Evidence should be proportional, not omitted
 or padded with irrelevant ceremony.

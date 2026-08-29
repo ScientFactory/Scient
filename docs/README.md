@@ -26,6 +26,7 @@ Start here:
 
 - [Collaborator onboarding](onboarding.md) - ordered project journey, repository tour, and contribution-area reading routes.
 - [Documentation policy](documentation-policy.md) - documentation rules, metadata, statuses, and placement policy.
+- [Scient documentation system and publishing](planning/scient-documentation-system-and-publishing.md) - accepted repository-family authority, public Docs direction, implementation sequence, pilot gates, and deferred choices; recurring rules are promoted into the documentation policy and repository-local guidance.
 - [Product requirements](product/PRD.md) - canonical product direction.
 - [Scient skills system](product/skills-system.md) - draft product model, trust
   boundaries, candidate catalog, and validation order for reusable scientific
