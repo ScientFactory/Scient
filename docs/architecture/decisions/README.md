@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-08-28
+Last updated: 2026-08-29
 Purpose: Indexes Scient's accepted and serious proposed architecture decision records and the rules for using them.
 Doc type: Repo orientation
 
@@ -31,6 +31,15 @@ Current decisions:
   `.scient/` as the project-owned Scient state boundary, documents the
   implemented Sources store, and keeps Zotero behind a local read-only
   adapter. It remains Proposed pending explicit architecture acceptance.
+- `ADR-0007-logical-project-workspace-binding-and-operation-scope.md` -
+  proposes separate portable Scient project identity, app-private exact
+  workspace bindings, and server-resolved operation scope across worktrees and
+  environments. It remains Proposed pending explicit architecture acceptance.
+- `ADR-0008-agent-tool-registry-and-access-policy.md` - proposes one
+  provider-independent Scient operation registry, capability policy,
+  projection boundary, interim automatic built-in exposure, and future Agent
+  Tools settings model. It remains Proposed pending explicit architecture
+  acceptance.
 
 Superseded decisions:
 

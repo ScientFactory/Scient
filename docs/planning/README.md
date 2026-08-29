@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-08-28
+Last updated: 2026-08-29
 Purpose: Defines where Scient planning documents live and how they relate to product truth, architecture, design, quality, and research documents.
 Doc type: Repo orientation
 
@@ -15,6 +15,11 @@ Do not use planning docs as product truth, accepted architecture, or current imp
 
 Current planning docs:
 
+- `agent-tools-foundation-and-settings-implementation-plan.md` - proposed
+  decision, sequencing, migration, provider-certification, T3-seam,
+  documentation, proof-gate, and deferral plan for implementing exact
+  workspace scope, a provider-independent Scient operation registry, interim
+  automatic built-in exposure, and the future Agent Tools settings page.
 - `documentation-disposition-ledger-2026-08-28.md` - historical record of the
   completed one-time Markdown migration review, lasting dispositions, and
   temporary-ledger retirement evidence.

@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-08-28
+Last updated: 2026-08-29
 Purpose: Indexes dated reports from technical or product spikes.
 Doc type: Research index
 
@@ -11,6 +11,12 @@ Use this folder for short reports after a focused investigation or prototype.
 
 Current files:
 
+- `scient-agent-tools-and-project-scope-phase-zero-2026-08-29.md` - exact-head
+  current and in-flight Agent Tools inventory, provider-delivery matrix,
+  logical-project/workspace authority trace, current analysis/compute scope
+  defect, standards check, decision queue, and boundaries for the proposed
+  workspace-scope and tool-policy architecture; it excludes `scient-agent` and
+  remains decision-readiness evidence rather than implementation authority.
 - `documentation-system-maintainability-and-reading-route-audit-2026-08-28.md` -
   question-based contributor and agent route tests, representative update
   simulations, recurring fan-out analysis, overcomplication checks, and minimal
