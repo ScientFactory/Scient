@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-08-29
+Last updated: 2026-08-31
 Purpose: Indexes dated reports from technical or product spikes.
 Doc type: Research index
 
@@ -11,6 +11,11 @@ Use this folder for short reports after a focused investigation or prototype.
 
 Current files:
 
+- `scient-pdf-anchoring-phase-zero-2026-08-30.md` - synthetic PDF anchoring
+  experiments and integrated reader follow-ups covering material, extraction,
+  layout, OCR, RTL, version changes, and lifecycle recovery; records the local
+  desktop checkpoint and remaining QA. It supports continued review of ADR-0009
+  but does not freeze a Region schema or qualify the complete evidence path.
 - `scient-agent-tools-and-project-scope-phase-zero-2026-08-29.md` - exact-head
   current and in-flight Agent Tools inventory, provider-delivery matrix,
   logical-project/workspace authority trace, current analysis/compute scope
