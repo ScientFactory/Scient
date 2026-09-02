@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-08-31
+Last updated: 2026-09-02
 Purpose: Indexes dated reports from technical or product spikes.
 Doc type: Research index
 

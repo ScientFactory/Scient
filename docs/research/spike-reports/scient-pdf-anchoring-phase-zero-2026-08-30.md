@@ -3,7 +3,7 @@
 Status: Draft
 Owner: Yaacov
 Created: 2026-08-30
-Last updated: 2026-08-31
+Last updated: 2026-09-02
 Purpose: Records the isolated PDF anchoring experiment, its exact implementation and external-source boundaries, its deterministic exact/relocated/ambiguous/orphaned evidence, and the remaining gates before a durable Region contract may be proposed.
 Doc type: Research evidence
 
@@ -572,18 +572,22 @@ base `705df5785abcdaf13905100dfd81792c78d13d9e`; the concurrent upstream alignme
 was not imported. ADR-0009 remains Proposed, P0.3 remains partially proven, and
 no saved annotation namespace or product contract was accepted.
 
-### Local checkpoint for later QA — 2026-08-31
+### Realigned local checkpoint for later QA — 2026-09-02
 
-At the user's request, the desktop candidate is now preserved in local commit
-`f4df88c14c2cacfbeb8d7b19da6cf8c502101534` on
-`codex/sources-pdf-passage-proof-20260831`. Its worktree is clean. The final
-checkpoint rerun passed 206 tests across the PDF and desktop-launcher suites;
-the normal staged-format hook also passed. No push, merge, or release occurred.
-The candidate app, service, backend, and both listeners are stopped; existing
-synthetic fixtures and local evidence were retained for resumption.
+At the user's request, the desktop checkpoint was rebased onto the latest owned
+`origin/main`, `a3e625a47fdb0902baf740fee8855adbd28b6acc`, and is now local
+commit `5a9717945` on `codex/sources-pdf-passage-proof-20260831`. The earlier
+`f4df88c14` checkpoint was superseded by that rebase. Diff inspection found no
+overlap with the passage or reader source; the only conflicts were the workspace
+and lockfile. Their resolution preserves all latest-main dependency changes and
+adds the existing pinned PDF.js patch. Frozen installation, including the
+2,194-entry supply-chain check, and all 206 focused PDF and desktop-launcher
+tests passed. The full 27-task repository typecheck also passed, with only
+pre-existing suggestions. The worktree is clean. No push, merge, release, app
+launch, or human acceptance occurred. Existing synthetic fixtures and local
+evidence were retained for resumption.
 
 Resume with the remaining native rapid-switch/console, diagonal/OCR-refusal,
-and desktop-smoke checks above before claiming final QA. Reconcile then-current
-main and upstream changes separately before integration; this checkpoint keeps
-the reviewed base unchanged. The associated architecture proposals remain
-Proposed and are not accepted by saving this evidence.
+and desktop-smoke checks above before claiming final QA. Recheck `origin/main`
+again if it advances before integration. The associated architecture proposals
+remain Proposed and are not accepted by saving this evidence.
