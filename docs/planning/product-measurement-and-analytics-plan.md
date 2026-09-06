@@ -118,7 +118,7 @@ smuggled into analytics properties.
 
 ## Privacy And Consent Model
 
-The proposed ordered levels are:
+The internal ordered levels are (not separate choices in the current desktop UI):
 
 | Level        | Meaning                                    | Outbound behavior                                                                                                    |
 | ------------ | ------------------------------------------ | -------------------------------------------------------------------------------------------------------------------- |
@@ -144,10 +144,14 @@ review; it must not become a retained behavioral profile. The gateway's
 last-observed consent is not authoritative current consent: offline clients may
 deliver older observations later.
 
-The initial selected-user beta should present a clear choice before Product
-analytics begins. Essential collection should not be enabled by default until
-the exact first-run copy, legal notice, and operational need receive human
-review.
+The owner-approved desktop experience is one “Share usage and reliability”
+switch, on by default when the feature is available and no preference is saved.
+On selects Diagnostic; Off stops sharing. Existing narrower preferences and
+explicit Off choices are preserved. The prepared nonblocking notice offers the
+shared “What’s shared?” explanation and a direct settings link, but is disabled
+pending the owner's audience and timing decision. Disabling the notice does
+not change sharing or the settings. The privacy surface and eventual notice
+rollout still require human review before production rollout.
 
 ## Identity Model
 
@@ -563,8 +567,15 @@ document and website README. The recovery adds Pi to the bounded registry,
 suppresses inherited terminal-event double counting, fences lifecycle history
 and buffered events across consent/deletion, and forwards bounded renderer
 termination observations without raw crash details. Packaged release builds
-make settings available; consent remains Off by default and existing choices
-are preserved. This is not silent opt-in or a claim to measure all users.
+make settings available. The owner subsequently approved default-on sharing
+with a single switch and a one-time disclosure notice, replacing the former
+three-choice UI and proposed opt-in default. Missing preferences select
+Diagnostic; saved Off or narrower choices are preserved and invalid preferences
+fail closed. This decision does not expand the content allowlist or prove a
+production rollout. The desktop implementation document owns notice persistence
+and runtime behavior; the public privacy notice must match before release.
+The owner subsequently deferred notification activation only: its implementation
+is retained but disabled until the intended audience and timing are decided.
 
 Diagnostics are available centrally through the website's
 `bun run analytics:report`, including 30-day breakdowns and maintenance status.
@@ -886,7 +897,6 @@ Desktop production collection remains prohibited until all are true:
 
 ## Decisions Deferred Without Blocking Safe Implementation
 
-- the final Essential default for selected-user beta;
 - exact account-link activation and account-service authority;
 - final alert recipients and operating cadence;
 - whether aggregate metrics need retention beyond the proposed periods; and
