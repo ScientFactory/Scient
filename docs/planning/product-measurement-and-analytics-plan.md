@@ -99,7 +99,7 @@ Normal analytics must never contain:
   strings, terminal commands, Git diffs, branches, or commit messages;
 - screenshots, audio, transcription text, attachment names, MIME payloads, or
   clipboard contents;
-- credentials, tokens, provider account identifiers, email addresses, IP
+- credentials, authentication tokens, provider account identifiers, email addresses, IP
   addresses, device fingerprints, advertising identifiers, or operating-system
   usernames;
 - raw error messages, stack traces, process arguments, environment variables,
@@ -269,9 +269,51 @@ Scient currently sends the event.
 
 Model values must be normalized through a maintained registry. Unknown or
 custom model strings become `other`; raw model text is not transmitted.
-Durations and counts use documented buckets rather than unbounded exact values
-unless an exact value is necessary for a reliability metric and approved in
-the registry.
+Durations and counts use documented buckets rather than unbounded exact values.
+The owner-authorized product-insight extension permits bounded exact token
+counts from Scient's normalized live-turn usage: these are quantities, never
+token text or credentials. Each numeric field must have an explicit bound in
+both desktop and gateway validators.
+
+### Product insight extension
+
+This extension is authorized for implementation and PR review, not proof of
+deployment or permission to change collection gates. The desktop analytics
+document owns producers/coverage and the generated revision-3 registry. The
+website owns aggregate queries and their synthetic counterexamples.
+
+| Signal | Counting unit and purpose | Interpretation limit |
+| --- | --- | --- |
+| Panel view | One visible category entry; compare adoption and repeated use | Not a click, successful action or human attention; visible restored panels count |
+| Settings view | One visible fixed section entry | Not a preference; never record arbitrary routes or settings objects |
+| Feature view | Search, project picker or new-thread entry | Not search success; no search terms |
+| Usage view / refresh | Visible metric/range/breakdown; explicit refresh request | Not user spend or imported transcript totals; settled availability is separate |
+| Provider usage | One deduplicated live terminal report, by provider/public model | Failed/stopped turns can consume tokens; not a second terminal outcome |
+| Provider ready | Existing discovery/readiness snapshots | Observed ready in the window, not current account connection or actual use |
+
+Use reported input/output counts and expose complete/partial/unavailable
+coverage alongside sums. Optional cache and reasoning counts are subsets,
+not additive costs. Main-agent scope excludes unqualified subagent totals.
+Unknown/private/mixed model categories remain visible rather than silently
+assigning their usage to a public model. Do not upload broader local transcript
+history from the Usage page. Saved narrower consent is not expanded: token
+usage is Product-class even when the terminal outcome is a failure.
+
+Reports use deduplicated event IDs, occurrence time and the same Product
+population in numerators and denominators. For new insight comparisons,
+restrict to revision-3 observations and show the observed population. It is
+not all users or proof of feature eligibility. Repeat adoption means use on
+at least two distinct days within the reporting window, not runtime sessions.
+Use complete days; qualify one common timezone for D1/PostHog comparisons.
+Late deliveries can revise previous periods. Missing events, uninstrumented
+versions and unavailable counts must not be reported as zero use.
+
+Keep existing successful-work and reliability KPIs distinct from these
+diagnostic views. More tokens, Settings visits or panel activations are not
+necessarily improvements. Compare affected installation counts and outcomes
+by release/provider before prioritizing a fix; do not infer causation from
+adoption alone. Generic crash capture, eligibility funnels and satisfaction
+measurement require separately qualified sources.
 
 ## KPI Model
 
@@ -402,8 +444,9 @@ The initial operating budget is:
 
 - no autocapture, session replay, pointer stream, keystroke stream, or generic
   click event;
-- meaningful outcomes and failures are retained; low-value surface signals are
-  coalesced to at most once per renderer session;
+- meaningful outcomes and failures are prioritized; legacy surface signals are
+  coalesced per connection while revision-3 visible category transitions can
+  repeat, using the same bounded delivery pipeline without a clickstream;
 - the in-memory queue is capped at 1,000 events and the durable outbox at
   10,000, trimming summary events before core or critical events;
 - desktop ingress is limited per random installation and remains behind an
