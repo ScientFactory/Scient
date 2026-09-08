@@ -34,6 +34,33 @@ The proposed architecture owners are
 and
 [ADR-0008](../architecture/decisions/ADR-0008-agent-tool-registry-and-access-policy.md).
 
+### Current implementation update
+
+After the Phase Zero snapshot, desktop PR
+[#202](https://github.com/ScientFactory/scient-desktop/pull/202) merged as
+`1d28d6299878f145681755996c1015f135012f3a`. It shipped controlled Documents
+builds, provider tool-name projection, MCP catalog validation, the object-only
+Skills-list input correction, and the interim split in which Sources and
+Documents are baseline capabilities while the existing setting controls
+Browser only.
+
+A later same-day refresh verified desktop `main`, `origin/main`, and the public
+remote at `23d08e7a05669fed22a06d7716830e87b44386f9`. Desktop PR
+[#203](https://github.com/ScientFactory/scient-desktop/pull/203) integrated
+official T3 through `660cddd3bc9801e089afcabba11c62f41aeac5c3` with
+history-preserving merge `9b10fe5a9aad4bc69985d0910d723dbc0da5a2f9`.
+The range from PR #202 to that head does not change the Scient MCP catalog,
+Sources, Skills, analysis, compute, or their current implementation docs. It
+does change adjacent provider, Settings, environment, attachment, and
+orchestration seams, so production work must start from this aligned head or a
+newer freshly inspected desktop `main`, not replay the old candidate base.
+
+References below to the PDF candidate describe the predecessor evidence and
+must be interpreted through this update. The merged implementation remains a
+foundation to register and qualify; it is not the operation registry, exact
+workspace model, versioned policy, Agent Tools page, or complete provider
+certification proposed here.
+
 ## Outcome
 
 After the implementation program:
@@ -86,67 +113,35 @@ Review these as one coherent set:
 | P0-D2 | How project policy follows worktrees | Inherit only across verified trusted lineage; never inherit live execution state. |
 | P0-D3 | Canonical tool unit | Accept stable Scient operations/capabilities with MCP/provider projections. |
 | P0-D4 | Interim behavior before the settings page | Automatically expose qualified built-in families to supported sessions under an explicit internal default policy. |
-| P0-D5 | Legacy combined browser/Sources switch | Apply the recorded owner direction: an explicit legacy `false` turns Browser off while Sources remains at its reviewed automatic baseline. Document this deliberate cutover rather than claiming the old Sources behavior was preserved. |
+| P0-D5 | Browser/Sources policy split | Preserve the implemented direction: the current setting controls Browser only while Sources and Documents retain independently reviewed automatic baselines until their family profiles ship. |
 | P0-D6 | Settings information architecture | Dedicated Agent Tools page, family profiles, progressive detail, search, project override, and emergency disablement. |
 | P0-D7 | Skills relationship | Keep activation and trust in Skills; Agent Tools owns only operation availability. |
 | P0-D8 | Unsupported providers | Keep Antigravity explicitly unsupported until a real private tool-injection seam exists. |
 | P0-D9 | Deferred scope | Design the owned registration seam now; defer third-party install/marketplace/signing/public SDK, external MCP pairing, cross-device policy sync, and a universal user-configurable “Ask every time” mode. |
-| P0-D10 | Implementation start point | Begin foundation production work from fresh desktop main after PDF disposition and the next upstream alignment are exact. The independent empty-input-schema hotfix may land earlier. |
+| P0-D10 | Implementation start point | Begin foundation production work from freshly fetched desktop main containing PR #202 and the merged PR #203 alignment, at `23d08e7a05669fed22a06d7716830e87b44386f9` or a newer explicitly requalified head. |
 | P0-D11 | Automatic availability versus destructive approval | Keep qualified tools discoverable automatically, but require a host-issued one-shot receipt before a destructive registered operation commits. |
 
 ## Integration Preconditions
 
-### Independent MCP empty-input-schema hotfix
+### Merged Documents and MCP-catalog baseline
 
-The PDF branch identifies a current-main compatibility defect that does not
-belong to PDF or depend on this architecture: `scient_skills_list` currently
-uses `Schema.Struct({})`, whose generated schema is not guaranteed to advertise
-an object-only MCP input. A client may reject an invalid tool definition or
-discard more of the tool catalog.
+PR #202 closed the former candidate-disposition and empty-input-schema
+preconditions. Reuse its current foundations:
 
-Extract this as one focused desktop pull request before or alongside
-architecture acceptance:
+- `documents:build` and `scient_pdf_build`;
+- exact project-relative input and output containment;
+- canonical versus Claude-qualified tool-name projection;
+- object-shaped MCP input validation;
+- catalog uniqueness checks;
+- baseline Sources and Documents access independent of optional Browser
+  control; and
+- user and internal documentation shipped with the feature.
 
-- replace only the current empty Skills-list input with an object-only schema;
-- add a catalog test covering the toolkits shipped on current main, without
-  importing unmerged Documents code;
-- prove the generated input has `type: "object"` and rejects extra fields;
-- run a fresh Claude tool-discovery check as the real provider proof; and
-- rebase or replay the PDF candidate so it does not carry a duplicate fix.
-
-This hotfix is not the operation registry and must not grow into a partial
-registry, provider rewrite, or PDF integration.
-
-### PDF-authoring candidate
-
-Phase Zero did not need to wait for PDF work because it edits only Scient
-planning documents. At the 2026-08-29 refinement snapshot, the PDF branch is
-clean and committed at `522c7444a8b6dba0c75e242f3aad4ef7c7dd05d9`, two
-commits ahead of and zero commits behind desktop main, but it is not merged.
-Foundation implementation should wait for one of these explicit PDF
-dispositions:
-
-1. the candidate is committed, reviewed, rebased, and merged;
-2. it is intentionally abandoned; or
-3. its exact operation/capability slice is split into a reviewed dependency.
-
-The candidate is directionally compatible because it already introduces
-`documents:build`, `scient_pdf_build`, exact project-relative paths, and a
-provider tool-name projection. Its new MCP catalog test should be retained as
-the first uniqueness/input-schema check, then expanded rather than replaced;
-it does not yet own operation effects, scope, policy, or documentation. Before
-the candidate is treated as a registry consumer, verify:
-
-- exact replay and focused tests after any newer PDF or alignment head;
-- current compute and provider changes do not invalidate it;
-- Browser-off/Sources-baseline behavior matches the recorded owner decision;
-- all supported providers discover and invoke the tool on a fresh turn;
-- output containment, structural validation, immutable preview, and returned
-  artifact path remain correct; and
-- Antigravity remains an explicit deferral.
-
-This program does not modify the PDF worktree. Its owner remains responsible
-for review, merge, or an explicit extracted dependency.
+Before treating Documents as a qualified registry consumer, refresh focused
+tests and perform fresh provider discovery and invocation on the exact
+implementation branch. Expand the catalog test into the registry completeness
+contract rather than replacing it. The merged code does not yet own operation
+effects, exact binding scope, versioned policy, or full provider certification.
 
 Do not add `scient_latex_build` as another hand-wired MCP tool before the
 registry. After the registry foundation exists, add LaTeX compilation through
@@ -156,19 +151,28 @@ until the real compile effects and lifecycle are reviewed.
 
 ### T3 alignment
 
-The exact integrated T3 base is `c8aba2587d`; fetched `upstream/main` is
-`660cddd3bc9801e089afcabba11c62f41aeac5c3`, with 46 upstream-only commits,
-including changes in provider adapters, `ProviderService`, server Settings,
-and Settings UI—the same inherited seams this program will touch.
+Desktop PR #203 has now satisfied the pending alignment precondition. Current
+desktop `main` contains literal official T3 ancestry through
+`660cddd3bc9801e089afcabba11c62f41aeac5c3`; its owned integration head is
+`23d08e7a05669fed22a06d7716830e87b44386f9`. The alignment touched provider
+adapters, `ProviderService`, server and client Settings, environment behavior,
+generic attachments, and orchestration—the same inherited seams this program
+will later extend—but it did not change the Scient MCP, Sources, Skills,
+analysis, or compute foundations reviewed here.
 
-Therefore:
+Therefore implementation should:
 
-1. let the current alignment land or expose its exact final branch/head;
-2. fetch and record the new merge base;
-3. replay the proposed narrow mounts against that head;
-4. update `UPSTREAM.md` and divergence records for every retained core touch;
-   and
-5. preserve upstream structure where no Scient invariant requires divergence.
+1. fetch and verify the exact desktop `main` immediately before branching;
+2. start from `23d08e7a05669fed22a06d7716830e87b44386f9` or a newer head whose
+   relevant diff has been requalified;
+3. preserve PR #203's provider, Settings, orchestration, and compatibility-gate
+   composition rather than restoring pre-alignment shapes;
+4. treat `SCIENT_GENERIC_FILE_ATTACHMENTS_ENABLED = false` as a separate
+   cross-client chat compatibility boundary, not as Agent Tools policy or a
+   replacement for Sources/Documents operations;
+5. update `UPSTREAM.md` and divergence records for every new retained core
+   touch; and
+6. preserve upstream structure where no Scient invariant requires divergence.
 
 Do not mix a broad upstream merge into the first foundation PR. Alignment and
 feature work remain independently reviewable.
@@ -232,7 +236,7 @@ runtime code do not enter the pure operation package.
 | `@scientfactory/scient-sources` and Sources coordinators | Canonical record behavior, revisions, containment, idempotency, review, and recovery. | Route existing domain services through exact scope and finer capabilities. |
 | `@scientfactory/analysis` and `@scientfactory/compute` | Distinct AnalysisRun and ComputeSession domain contracts and current runtime adapters. | Add binding ownership and migrate app-private keys; do not merge their lifecycles. |
 | `@scientfactory/scient-skills` plus current release, activation, and trust services | Skill identity, immutable releases, project policy, lock trust, and progressive disclosure. | Register only the bounded loading operations and delivery status; do not move Skill activation into Agent Tools. |
-| PDF candidate's document build service, provider projection, and MCP catalog test | Retain after its own review/rebase if the candidate lands. | Register the build as a Documents operation and expand catalog validation into the full registry contract. |
+| Merged PR #202 document build service, provider projection, and MCP catalog test | Retain as current implementation foundation. | Register the build as a Documents operation and expand catalog validation into the full registry contract. |
 
 The program extracts shared infrastructure only where two real consumers need
 the same invariant. It does not rebuild domain services merely to make the
@@ -456,7 +460,7 @@ Scope:
 - introduce `packages/scient-operations/` for the pure operation-definition and
   capability/effect contracts, without host services or provider code;
 - implement server-owned registry composition, validator, and dispatcher;
-- generalize the PDF candidate's provider-name projection pattern;
+- generalize merged PR #202's provider-name projection pattern;
 - register current Browser, Sources, Skills-loading, and Documents definitions
   without changing their domain handlers;
 - require dispatcher-created `OperationScope` before any registered stateful
@@ -467,8 +471,8 @@ Scope:
 - add a complete provider projection/support matrix test.
 
 Keep the existing MCP server as an adapter. Do not build external pairing or a
-second server. The independent empty-input-schema hotfix must remain a focused
-predecessor, not be reimplemented as registry scaffolding here.
+second server. The merged object-only input correction and catalog checks are
+focused predecessors, not a partial registry to reimplement here.
 
 Required tests:
 
@@ -547,7 +551,8 @@ Scope:
 - implement environment policy, verified-project overrides, emergency deny,
   generation, and effective-policy diagnostics;
 - migrate missing, true, and explicit-false
-  `enableAgentBrowserAccess` values according to the accepted table;
+  `enableAgentBrowserAccess` values into the versioned Browser profile while
+  preserving independently reviewed Sources and Documents defaults;
 - refresh/revoke affected provider-session grants;
 - keep interim automatic family defaults; and
 - retain a bounded backward-compatibility read for older settings clients.

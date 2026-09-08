@@ -42,6 +42,14 @@ After compute PR #129 merged, a session started in one worktree can be found
 and commanded from another worktree carrying the same UUID even though the
 kernel's working directory and imported state belong to the first checkout.
 
+This evidence was rechecked after desktop PR #203 aligned official T3 through
+`660cddd3bc9801e089afcabba11c62f41aeac5c3`, at desktop head
+`23d08e7a05669fed22a06d7716830e87b44386f9`. That range changed adjacent
+environment, provider, attachment, and orchestration behavior but did not
+change the Scient Sources exact-root resolver, Skills trust seam, or the
+analysis/compute addressing that creates this defect. The proposed authority
+split therefore remains current.
+
 ADR-0004 already requires host-resolved exact project scope and rejects
 client-supplied authority. This decision defines the missing scope model.
 

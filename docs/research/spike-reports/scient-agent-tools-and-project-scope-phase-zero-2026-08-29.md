@@ -25,6 +25,35 @@ desktop main changes before the decisions are accepted. Do not maintain this
 dated inventory as a permanent second capability registry after the proposed
 runtime registry exists.
 
+## Post-Inspection Update
+
+Later on 2026-08-29, desktop PR
+[#202](https://github.com/ScientFactory/scient-desktop/pull/202) merged as
+`1d28d6299878f145681755996c1015f135012f3a`. It shipped the inspected PDF
+candidate's controlled Documents build, provider tool-name projection, MCP
+catalog checks, object-only Skills-list input, and the deliberate interim
+access split in which Sources and Documents are baseline capabilities while
+the existing setting controls Browser only.
+
+Desktop PR [#203](https://github.com/ScientFactory/scient-desktop/pull/203)
+subsequently merged the pending official T3 range through
+`660cddd3bc9801e089afcabba11c62f41aeac5c3`. A fresh fetch verified desktop
+`main`, `origin/main`, and the public remote at
+`23d08e7a05669fed22a06d7716830e87b44386f9`. The PR #202-to-#203 diff leaves
+the Scient MCP catalog, Sources, Skills, analysis, compute, and their current
+implementation documentation unchanged. It updates adjacent provider,
+Settings, environment, attachment, and orchestration seams and adds a disabled
+generic-file compatibility gate, so any implementation must branch from and
+requalify the newer head.
+
+The exact snapshot and body below remain the historical evidence inspected
+before that merge. Statements describing the PDF branch as unmerged or the old
+Browser/Sources bundle as current refer to
+`b9a880c94b7281100f09e402b412d5d01760cb99`; they must not be used as current
+desktop truth. Proposed ADR-0008 has been refreshed to classify the merged
+baseline, and current implementation remains owned by the exact desktop source
+and repository-local documentation.
+
 ## Executive Result
 
 Phase Zero supports building a unified Scient-owned agent-tool foundation, but
@@ -64,18 +93,20 @@ sessions, as directed for this interim period, but automatic exposure must not
 remove exact project scope, revision checks, destructive-action rules, or other
 operation-level authority.
 
-No production code should be started from the evidence snapshot itself. The two
-proposed ADRs should be reviewed first, and implementation should begin from a
-fresh desktop main after the PDF candidate and the next upstream-alignment
-result are reconciled.
+No production code should be started from the historical evidence snapshot
+itself. The two proposed ADRs should be reviewed first, and implementation
+should begin from freshly fetched desktop main at
+`23d08e7a05669fed22a06d7716830e87b44386f9` or a newer explicitly requalified
+head. The previously pending upstream-alignment result is now merged; only
+later overlapping work must still be reconciled.
 
 ## Exact Evidence Snapshot
 
 | Scope | Exact state inspected | Treatment |
 | --- | --- | --- |
 | Scient planning repository | `origin/main` `3689423e411cdf66b48a2ef86235319aa27dc060`; branch `codex/agent-tools-phase-zero-20260829` at that head with only four new package documents and three index edits | Product, planning, and architecture evidence plus this unaccepted package. |
-| Scient Desktop | `main` and `origin/main` `b9a880c94b7281100f09e402b412d5d01760cb99` | Current implementation truth. Includes merged compute PR #129, provider updates PR #200, Docs PR #199, settings PR #190, and T3 intake through `c8aba2587d`. |
-| Official T3 upstream | fetched `upstream/main` `660cddd3bc9801e089afcabba11c62f41aeac5c3`; merge base `c8aba2587d56edbf3b7872987719a12b42031f48`; current comparison `593` Scient-side and `46` upstream-side commits | Current donor delta, not Scient authority. The 46 fetched but unintegrated upstream commits include provider and Settings changes that a later implementation must replay against. |
+| Scient Desktop | `main` and `origin/main` `b9a880c94b7281100f09e402b412d5d01760cb99` | Historical implementation truth at the original inspection. It included merged compute PR #129, provider updates PR #200, Docs PR #199, settings PR #190, and T3 intake through `c8aba2587d`; see the post-inspection update for current head. |
+| Official T3 upstream | fetched `upstream/main` `660cddd3bc9801e089afcabba11c62f41aeac5c3`; merge base `c8aba2587d56edbf3b7872987719a12b42031f48`; original comparison `593` Scient-side and `46` upstream-side commits | Historical donor delta at inspection. Those 46 commits were subsequently integrated by desktop PR #203; they are no longer a pending implementation precondition. |
 | PDF-authoring candidate | clean local branch `codex/pdf-authoring-foundation-20260829` at `522c7444a8b6dba0c75e242f3aad4ef7c7dd05d9`, two commits ahead of and zero commits behind desktop main | Substantial committed but unmerged candidate. Used only to avoid designing a foundation that immediately conflicts with its intended tool and capability seams. |
 | Overleaf | desktop draft PR [#121](https://github.com/ScientFactory/scient-desktop/pull/121), `DIRTY`, last updated 2026-08-21 | In-flight and conflicting. It does not define current behavior or block Phase Zero documentation. |
 | Other open desktop PRs | None at inspection time | There was no additional open PR to treat as current or in-flight evidence. |
@@ -277,6 +308,10 @@ every operation has been manually acceptance-tested on every current provider
 release, nor that a provider can bypass Scient policy.
 
 ## Current Access Policy And Its Problem
+
+This section records the pre-PR-#202 baseline inspected at
+`b9a880c94b7281100f09e402b412d5d01760cb99`. See the post-inspection update
+above for current desktop behavior.
 
 Current main has one server-authoritative setting,
 `enableAgentBrowserAccess`, defaulting to `true`. When true, a provider session
@@ -561,8 +596,10 @@ The following choices need explicit review before code implementation:
 9. Design the owned registration seam now while deferring public plugin
    installation, third-party trust, external MCP pairing, cross-device policy
    sync, and a universal user-configurable “Ask every time” mode.
-10. Start production implementation from fresh desktop main after the PDF
-    disposition and next upstream alignment are exact.
+10. Start production implementation from freshly fetched desktop main at or
+    after `23d08e7a05669fed22a06d7716830e87b44386f9`; PR #202 and the pending T3
+    alignment are now merged, but later overlapping work must still be
+    reconciled explicitly.
 11. Keep automatic tool availability separate from approval to commit an effect;
    require a host-issued, one-shot receipt for destructive operations instead
    of relying on an instruction inside the tool description.
@@ -593,7 +630,10 @@ contract, but implementation must still prove it with runtime fixtures:
 - migration from missing, true, and explicit-false legacy settings into the
   deliberately split Browser and Sources policy;
 - destructive-operation approval, cancellation, expiry, and replay behavior;
-- the final PDF candidate replayed on the post-alignment desktop head.
+- the merged PR #202 behavior requalified against the exact desktop head used
+  to begin registry implementation—currently no older than
+  `23d08e7a05669fed22a06d7716830e87b44386f9`—including fresh provider discovery
+  and invocation rather than source inspection alone.
 
 These are implementation proof gates, not reasons to keep the architecture
 undefined.

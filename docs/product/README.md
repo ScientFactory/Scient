@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-07-18
+Last updated: 2026-08-29
 Purpose: Defines where Scient product documentation lives.
 Doc type: Repo orientation
 
@@ -15,6 +15,9 @@ Current documents:
 - `scient-capability-map.md` - compact cross-product map from stable Scient
   capability families to current implementation, Help, architecture, roadmap,
   and dependency owners; detailed behavior remains in the nearest repository.
+- `sources-and-evidence-experience.md` - proposed researcher and agent
+  experience for moving from Sources and exact passages to inspectable,
+  reviewable, reusable project evidence; the accepted PRD governs conflicts.
 - `skills-system.md` - draft product model, trust boundaries, candidate catalog,
   and validation order for reusable scientific skills; the accepted PRD governs
   conflicts.

@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-08-28
+Last updated: 2026-08-29
 Purpose: Maps the Scient documentation structure and where each kind of information belongs.
 Doc type: Repo orientation
 
@@ -35,6 +35,7 @@ Start here:
 - [Scient capability map](product/scient-capability-map.md) - compact routing
   from stable cross-product capability families to current implementation,
   Help, architecture, roadmap, and dependency owners.
+- [Sources and Evidence product experience](product/sources-and-evidence-experience.md) - proposed researcher and agent experience for preserving the path from exact source material to reviewable project evidence; its architecture and sequencing remain separately reviewable proposals.
 - [Product philosophy](product/product-philosophy.md) - draft durable product principles; the accepted PRD governs conflicts.
 - [Technology stack](architecture/technology-stack.md) - current proposed stack direction.
 - [Idea inbox](planning/idea-inbox.md) - lightweight intake for unresolved ideas

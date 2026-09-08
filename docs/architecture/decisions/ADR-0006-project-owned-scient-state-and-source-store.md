@@ -3,7 +3,7 @@
 Status: Proposed
 Owner: Yaacov
 Created: 2026-08-12
-Last updated: 2026-08-28
+Last updated: 2026-09-08
 Purpose: Proposes `.scient/` as the durable project-owned Scient state boundary and documents the implemented source-store and Zotero-adapter contract inside it.
 Doc type: Architecture decision
 
@@ -28,6 +28,22 @@ This decision extends that accepted project boundary; it does not create a
 second identity file or redefine project initialization.
 
 ## Proposed Decision
+
+### Library-Scope Direction And Proposed Contract
+
+The [2026-09-08 ownership investigation](../../research/source-evaluations/sources-and-document-processing-first-principles-2026-09-08.md#library-ownership-reconsideration)
+challenged permanent project-only reference ownership, not the validity of
+existing project data. The owner subsequently accepted reusable personal/team
+libraries and independently preserved project uses in the
+[PRD](../../product/PRD.md#research-library-and-project-preservation).
+[ADR-0010](ADR-0010-research-library-project-use-and-annotation-ownership.md)
+now proposes the detailed ownership, retention and cross-scope operation contract.
+The layout and database tradeoffs below describe the initial project-store
+boundary; they do not settle storage for an unimplemented lifetime library.
+Keep current IDs, records and bytes as the migration baseline. New non-project
+operation scope requires the explicit ADR-0004 amendment proposed in ADR-0010;
+this Proposed ADR cannot silently broaden that authority. No global namespace,
+cross-library deletion rule or two-way Zotero connector is selected here.
 
 The Sources store described below is implemented in the T3-derived desktop,
 but its use in code does not by itself make this broader architecture decision

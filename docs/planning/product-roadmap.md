@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-07-16
-Last updated: 2026-08-28
+Last updated: 2026-09-08
 Purpose: Defines the current sequence of coherent Scient product outcomes without turning technology experiments into the product roadmap.
 Doc type: Planning note
 
@@ -80,11 +80,13 @@ The slice combines:
 - a recovery point; and
 - close-and-reopen continuity from Scient-owned state.
 
-The slice is desktop-first. It does not include mobile, cloud sync,
-collaboration, full PDF parsing, full citation management, a complete manuscript
-editor, a complete scientific schema, a notebook system, or Goose integration.
-It must not depend on an optional specialist worker before the native Scient
-path is useful and recoverable.
+The slice is desktop-first. It does not attempt to implement mobile, cloud
+sync, collaboration, complete source and citation management, a complete
+manuscript editor, a complete scientific schema, a notebook system, or every
+specialist-agent integration in this first proof. These are retained product
+directions rather than rejected scope and are tracked below or in their focused
+owners. The slice must not depend on an optional specialist worker before the
+native Scient path is useful and recoverable.
 
 The earlier Synara-specific implementation plan is preserved as
 [`first-scient-vertical-slice-implementation-plan.md`](first-scient-vertical-slice-implementation-plan.md).
@@ -111,6 +113,17 @@ not replace deterministic component checks or comparable agent measurements.
 
 ## Next
 
+- Build toward the owner-accepted reusable personal/team library, independent
+  project preservation and context-owned annotation direction recorded in
+  [PRD](../product/PRD.md#research-library-and-project-preservation). First review
+  the detailed [Phase 1 ownership/authority
+  contract](../architecture/decisions/ADR-0010-research-library-project-use-and-annotation-ownership.md),
+  then run persistence, authority and document-fidelity proofs before the local
+  library-to-project slice. The [six-phase
+  plan](sources-and-evidence-implementation-plan.md#current-six-phase-delivery-sequence)
+  retains the existing passage candidate and later evidence ambitions without
+  entrenching Source-only annotation storage. Broader team delivery, taxonomy
+  and downstream evidence-link mechanics remain separately reviewable.
 - Strengthen the evidence-to-writing path based on the first slice.
 - Design the collaboration foundation alongside the scientific project model:
   individual identity and affiliation, ad hoc teams, nested institutions and
@@ -145,6 +158,17 @@ not replace deterministic component checks or comparable agent measurements.
 
 ## Later
 
+- Develop large-library organization and navigation, a mature Sources and
+  Evidence workspace, and durable evidence use across notes, claims, analyses,
+  extraction values, citations, figures, tables, and document passages. The
+  exact downstream-link model remains an open focused decision.
+- Expand source work into deeper reference management and Zotero continuity,
+  up to a complete Scient-owned replacement experience, without cloning
+  another product's assumptions.
+- Add complete PDF and material processing, reviewed OCR, non-PDF material
+  anchoring, broad grounded retrieval and synthesis, support and staleness
+  diagnostics, graph views where useful, and formal screening, extraction,
+  appraisal, and systematic-review workflows.
 - Broader cloud mirroring, offline multi-device synchronization, synchronized
   co-editing across scientific surfaces, institution administration, managed
   identity, and organization policy controls after the narrow shared-project
@@ -167,5 +191,10 @@ not replace deterministic component checks or comparable agent measurements.
   and [Scientific Artifact Studio](scientific-artifact-studio.md) own distinct
   layers of that direction. Their stages are not automatically inserted into
   the active product sequence merely because the proposals are detailed.
+- Public plugins, extension distribution, additional specialist integrations,
+  and the native Scient-agent evolution continue through their focused owners
+  and the shared Scient capability boundary.
 
-These later items remain sequencing direction, not implementation commitments.
+Scient intends to build these capability families and continue beyond this
+list. Their presence here preserves direction; it does not prematurely approve
+their exact product shape, architecture, dependencies, or order.

@@ -23,17 +23,27 @@ Exact project/workspace authority is proposed in
 
 ## Context
 
-Scient already gives eligible provider agents 26 Scient MCP tools for Browser,
-Sources, and Skills. An unmerged PDF-authoring candidate adds a Documents build
-capability and tool. More scientific operations are planned for
-analysis, compute, literature, evidence, manuscripts, artifacts, and
-integrations.
+Scient currently gives eligible provider agents 27 Scient MCP tools across
+Browser, Sources, Skills, and Documents. Desktop PR #202 merged the controlled
+Documents build operation and the deliberate interim access split: project
+Sources and document building are baseline Scient capabilities, while the
+existing browser setting controls preview-browser access only.
 
-Current access is not scalable. One setting named for browser access grants or
-withholds Browser plus Sources read and write. Browser observation, page
-actions, capture, Sources reads, additive mutations, and destructive mutations
-are not separate policy atoms. A future with dozens of tools cannot be managed
-as either one switch or one first-screen switch per MCP name.
+The proposal was rechecked at desktop head
+`23d08e7a05669fed22a06d7716830e87b44386f9` after PR #203 integrated official
+T3 through `660cddd3bc9801e089afcabba11c62f41aeac5c3`. That alignment updates
+adjacent provider, Settings, environment, generic-file, and orchestration
+seams, but it does not change the 27-tool Scient MCP catalog or the current
+Sources, Skills, Documents, analysis, and compute foundations. The registry
+decision remains necessary and must be implemented on the aligned shapes.
+
+Current access is still not scalable. Sources normal writes, agent-added review,
+and destructive removal share one broad capability. Browser observation,
+capture, and consequential control are represented by one preview capability.
+Document building is hand-assembled with the other provider-session grants
+rather than registered through a common operation and policy model. A future
+with dozens of tools cannot be managed as either one broad switch or one
+first-screen switch per MCP name.
 
 Providers also differ. Claude may expose a qualified MCP name, some providers
 can receive tools but not private Scient awareness or Skills, and Antigravity
@@ -303,32 +313,32 @@ This decision does not authorize:
 Those require concrete product and threat-model evidence after the core
 registry works for multiple Scient-owned families.
 
-### 11. Legacy setting migration records the deliberate product split
+### 11. The implemented Browser split becomes an explicit policy migration
 
-The current `enableAgentBrowserAccess` setting controls Browser plus Sources in
-merged main, despite its browser-oriented name. Migration to the versioned
-policy must distinguish:
+Desktop PR #202 implemented the owner direction recorded on 2026-08-29:
+`enableAgentBrowserAccess` is now a Browser preference, not a general Agent
+Tools or Sources deny. Project Sources and Documents remain at their reviewed
+automatic baselines when Browser is off. This is an interim implementation
+fact, not proof that the proposed registry, family profiles, or policy storage
+already exist.
 
-| Legacy value | Proposed migrated behavior |
+Migration to the versioned policy must preserve that deliberate split:
+
+| Current value | Proposed migrated behavior |
 | --- | --- |
-| Missing | Apply the current version's automatic built-in defaults. |
-| `true` | Browser Control and Sources Manage, matching the current grant; new families use their reviewed interim defaults. |
-| Explicit `false` | Browser Off. Sources remains at the reviewed automatic baseline, currently Sources Manage; new families use their reviewed interim defaults unless the emergency deny is set. |
+| Missing | Apply the current policy version's reviewed automatic family defaults. |
+| `true` | Browser Control; Sources, Documents, and new families use their independently reviewed defaults. |
+| Explicit `false` | Browser Off; Sources, Documents, and new families use their independently reviewed defaults unless the emergency deny is set. |
 
-Owner direction recorded on 2026-08-29 treats `enableAgentBrowserAccess` as a
-Browser preference at the cutover, not as a durable general Agent Tools or
-Sources deny. This knowingly supersedes merged main's bundled behavior and
-earlier copy. Sources is a core project operation family for eligible agents;
-its availability should not be governed accidentally by an optional Browser
-surface. The current unmerged PDF candidate already follows that interim
-direction by keeping Sources available when Browser access is off. A future
-Sources family profile provides the proper independent way to disable Sources.
+The future Sources family profile provides the proper independent way to
+disable or limit Sources. The future Documents family profile does the same for
+build operations. Neither profile is inferred from the old Browser value.
 
-After successful migration, the Integrations row and legacy key are retired
-through a compatibility window. The migration is idempotent, observable, and
-tested against old settings files. Release notes and the capability-retirement
-record must identify the deliberate split; implementation must not claim that
-an old explicit `false` was preserved for Sources.
+After successful versioned-policy migration, the Integrations row and legacy
+key are retired through a compatibility window. Migration is idempotent,
+observable, and tested against old settings files. The capability-retirement
+record identifies both the earlier combined behavior and the implemented
+interim split rather than claiming uninterrupted semantics.
 
 ### 12. Operation effects remain stricter than family availability
 
@@ -406,7 +416,9 @@ Rejected. Both are metadata/compatibility signals, not Scient authorization.
 - Current tools need reclassification and capability migration.
 - Running-session refresh/revocation and settings migration require deliberate
   lifecycle code.
-- Some users may see previously bundled behavior split into clearer controls.
+- The future page must preserve the already-implemented separation between
+  optional Browser control and baseline Sources/Documents access while adding
+  clear independent family controls.
 - Future plugin work has a safe extension target without prematurely freezing
   a public SDK.
 

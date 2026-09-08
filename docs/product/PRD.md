@@ -4,7 +4,7 @@ Status: Accepted
 Version: v1
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-08-06
+Last updated: 2026-09-08
 Purpose: Defines Scient's product direction, core capabilities, user experience principles, and product constraints.
 Doc type: Product truth
 
@@ -377,6 +377,26 @@ Source import should be duplicate-safe. Scient should distinguish new sources, s
 When sources are found through database search, API search, imported query results, or external search strategies, Scient should preserve enough search provenance for researchers to understand where the source set came from and how it could be reviewed or reproduced.
 
 When Scient parses PDFs, documents, tables, figures, citation contexts, or other source material, the result should remain connected to exact source regions where possible. Parser confidence, missing material, unsupported structure, and extraction failures should be visible enough for researchers and agents to avoid treating uncertain source material as settled fact.
+
+### Research Library And Project Preservation
+
+Owner-accepted direction, 2026-09-08: Scient should support reusable personal
+and team research libraries connected to projects. Projects must independently
+preserve the exact reference and material versions they use, where retention
+and redistribution are permitted, rather than depend only on a changing or
+privately accessible library link.
+
+Annotation ownership follows creation context: personal-library notes remain
+private; project-created notes belong to the project. Reusing a reference does
+not automatically share private annotations. Annotations have independent stable
+identities and lifecycles, with persistence outside Source record payloads.
+
+Build this broader foundation in coherent phases from the start, rather than
+entrench a Source-only annotation model and retrofit ownership later. This
+accepts the direction, not a particular storage, sync, UI or migration design.
+The detailed reviewable contract is
+[ADR-0010](../architecture/decisions/ADR-0010-research-library-project-use-and-annotation-ownership.md);
+its proposed extension of ADR-0004 requires separate architecture review.
 
 ### Source Detail And Backlinks
 

@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-08-29
+Last updated: 2026-09-08
 Purpose: Indexes Scient's accepted and serious proposed architecture decision records and the rules for using them.
 Doc type: Repo orientation
 
@@ -40,6 +40,18 @@ Current decisions:
   projection boundary, interim automatic built-in exposure, and future Agent
   Tools settings model. It remains Proposed pending explicit architecture
   acceptance.
+- `ADR-0009-evidence-continuity-and-durable-support.md` - proposes the minimal
+  durable Source, material, Region, Annotation, anchoring, review, provenance,
+  project-state, and agent-operation boundary for evidence continuity. It keeps
+  downstream evidence use required while leaving the exact shared or
+  target-owned relationship model open. It remains Proposed pending explicit
+  architecture acceptance.
+
+- [ADR-0010-research-library-project-use-and-annotation-ownership.md](ADR-0010-research-library-project-use-and-annotation-ownership.md)
+  - proposes the Phase 1 library/project authority, independent annotation,
+  retained contribution and project preservation contract. Its five product
+  directions are owner-accepted in PRD; detailed mechanisms and the explicit
+  ADR-0004 scope amendment remain Proposed.
 
 Superseded decisions:
 

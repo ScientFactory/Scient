@@ -3,7 +3,7 @@
 Status: Proposed
 Owner: Yaacov
 Created: 2026-08-27
-Last updated: 2026-08-28
+Last updated: 2026-09-08
 Purpose: Proposes the horizontal identity, resolution, revision, presentation, recovery, and broad-viewing foundation shared by Scient file, document, artifact, and scientific-data surfaces.
 Doc type: Planning note
 
@@ -210,6 +210,21 @@ the cross-platform model. Linux, remote environments, containers, network
 filesystems, copies, and cross-volume moves still require aliases, evidence,
 and the explicit `Locate…` recovery path.
 
+### Annotation And Retained-Use Boundary
+
+[ADR-0010](../architecture/decisions/ADR-0010-research-library-project-use-and-annotation-ownership.md)
+proposes the ownership contract following the accepted library/project and
+independent-annotation direction. Reuse this foundation's FileReference and
+authorized resolver; do not introduce a Sources-only file identity or require
+Source registration before annotation. The annotation owns its stable identity
+and content separately from the target resource and exact revision.
+
+Registering an already annotated resource as a Source adds a reference role;
+it must not recreate annotations or transfer private ownership. Relocation may
+repair live resolution, never rewrite the captured revision. Retained historical
+return needs authorized revision retention, not only a current path or hash.
+Exact annotation selectors remain ADR-0009's responsibility.
+
 ### `DocumentSession` And `EditableDocument`
 
 `DocumentSession` coordinates a logical resource across its presentations. It
@@ -288,7 +303,10 @@ and shell actions. They must not share one unstructured lifecycle union.
 Every surface should expose the active level. Extraction is valuable for
 search and agents, but extracted Markdown or text is not visual or round-trip
 truth. Derived content is cached outside source directories by default and is
-invalidated by source revision.
+invalidated by source revision. A processing result explicitly retained as a
+dependency of an annotation or project use is different: retain the relied-on
+output revision and provenance under its owner's policy. Cache invalidation
+must not erase historical evidence or silently replace it with a new extraction.
 
 ## Coverage Direction
 

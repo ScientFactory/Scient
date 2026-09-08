@@ -3,7 +3,7 @@
 Status: Active
 Owner: Scient 001
 Created: 2026-06-27
-Last updated: 2026-08-12
+Last updated: 2026-09-08
 Purpose: Maps evaluations of external sources and tools that may inform Scient product and architecture decisions.
 Doc type: Repo orientation
 
@@ -11,6 +11,14 @@ Use this folder for structured evaluations of external products, repositories, p
 
 Current files:
 
+- [Sources and document processing: first-principles review](sources-and-document-processing-first-principles-2026-09-08.md)
+  - Source versus resource meaning, reusable-library ownership alternatives,
+  project preservation, annotation scope, storage/sync questions, agent
+  workflows, verified OCR gaps, shared processing candidates and proof gates.
+- [Document annotations and SnapShots](document-annotations-and-snapshots-2026-09-08.md)
+  - dated comparison of annotation systems, incoming T3 screen capture,
+  existing Scient seams, and proposed PDF/general-document ownership,
+  interaction, compatibility and proof gates; not accepted architecture.
 - `anydoc-source-evaluation-2026-08-06.md` - frozen source and code evaluation
   of AnyDoc as a lightweight local extraction candidate, including fidelity
   limits, security boundaries, competing engine roles, and proof gates before
