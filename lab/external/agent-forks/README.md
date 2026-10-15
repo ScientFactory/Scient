@@ -3,7 +3,7 @@
 Status: Draft
 Owner: Scient 001
 Created: 2026-07-08
-Last updated: 2026-07-18
+Last updated: 2026-10-15
 Purpose: Organizes upstream agent engines and automation systems used in the Scient lab.
 Doc type: Planning note
 
@@ -15,9 +15,9 @@ support, or broader automation behavior.
 
 Current owned source and deferred references:
 
-- `ScientFactory/scient-agent` - the owned OpenCode-derived source foundation
-  for the planned native Scient agent. It is a workspace sibling, not a
-  checkout inside this directory.
+- `ScientFactory/scient-agent` - Scient Agent, the native Scient agent, built
+  from Oh My Pi. It is a workspace sibling, not a checkout inside this
+  directory.
 - Goose - deferred broader-agent, automation, desktop, and MCP/source research;
   no local checkout is retained currently.
 

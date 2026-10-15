@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-07-20
-Last updated: 2026-08-28
+Last updated: 2026-10-15
 Purpose: Defines how ScientFactory repositories, branches, pull requests, releases, deployments, permissions, and local worktrees are operated.
 Doc type: Operational procedure
 
@@ -27,7 +27,7 @@ exactly one child repository.
 | --- | --- | --- | --- | --- |
 | `ScientFactory/Scient` | `Scient/` | Private | `main` | No release branch. Product truth, architecture, plans, cross-repository pins, and operating procedures live here. |
 | `ScientFactory/scient-desktop` | `scient-desktop/` | Public | `main` | The current T3-derived application. Its exact `release/stable` head is the only source for desktop artifacts. Publication remains an explicit gated action. |
-| `ScientFactory/scient-agent` | `scient-agent/` | Public | `dev` | `release/stable` is the agent promotion boundary. Agent artifact publication remains disabled until an owned artifact contract exists. |
+| `ScientFactory/scient-agent` | `scient-agent/` | Public | `main` | A `v<version>` tag on `main` that matches `scient.json` drafts a GitHub release of every platform's binary. A person publishes the draft. |
 | `ScientFactory/ScientFactory-website` | `website/` | Public | `main` | `main` is the Cloudflare Pages production source. Pull requests receive preview deployments. |
 
 The website repository may use `website/` when cloned into the shared local
@@ -45,8 +45,8 @@ Push a change to the repository that owns its implementation or authority:
 - Desktop UI, runtime, packaging, updater behavior, signing, and release
   workflows go to `scient-desktop`. The retired predecessor has no product,
   support, intake, or release authority.
-- First-party agent source, inherited OpenCode review state, agent build logic,
-  and agent release validation go to `scient-agent`.
+- First-party agent source, its Oh My Pi alignments and divergence ledger, agent
+  build logic, and agent release validation go to `scient-agent`.
 - Marketing pages, download-page behavior, release-download metadata adapters,
   website redirects, edge functions, and website deployment configuration go
   to `ScientFactory-website`.
@@ -144,17 +144,14 @@ artifact, or artifact produced from another commit is not a public release.
 
 ## Agent Release Promotion
 
-`scient-agent/dev` is the integration branch. `release/stable` accepts promotion
-pull requests from `dev`, plus narrowly scoped `hotfix/*` pull requests during
-an emergency.
-
-The `Scient source quality` and `Scient release policy` checks protect the agent
-promotion boundary. The release-policy workflow validates branch provenance and
-records the exact source SHA. It intentionally does not publish an agent binary
-or package yet: the native Scient agent artifact, versioning, signing, and
-consumer contract are not implemented. Enabling publication requires a reviewed
-artifact contract and a separate workflow change; a branch promotion alone must
-never invent a release.
+`scient-agent/main` is the integration branch. Changes reach it through pull
+requests that keep their commits (rebase merge). Each pull request builds and
+checks the agent on six platforms. A `v<version>` tag on `main` that matches
+`scient.json` signs and notarizes the macOS builds and drafts a GitHub release
+with every binary and its SHA-256. A person publishes the draft; a tag alone
+never publishes. `scient-agent/SCIENT.md` owns the details. The reserved `dev`
+branch holds only a placeholder, and the former `release/stable` promotion
+boundary belonged to the retired OpenCode-derived source.
 
 ## Website Deployment
 

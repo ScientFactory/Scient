@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-07-27
+Last updated: 2026-10-15
 Purpose: Indexes Scient's real monitoring, release-adjacent, support, and maintenance procedures.
 Doc type: Repo orientation
 
@@ -23,8 +23,8 @@ Current procedures:
   worktrees, and emergency changes.
 
 - [Upstream intake](upstream-intake.md) - monitoring, reviewing, and selectively
-  inheriting useful Synara and OpenCode changes into the standalone Scient
-  desktop and agent repositories.
+  inheriting useful upstream changes into the standalone Scient desktop
+  repository. Scient Agent's Oh My Pi alignments follow `scient-agent/SCIENT.md`.
 
 Add deployment, release, backup, incident, support, or other maintenance
 procedures here only after the corresponding operational surface exists.
