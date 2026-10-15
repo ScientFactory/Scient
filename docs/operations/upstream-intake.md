@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-07-18
-Last updated: 2026-08-28
+Last updated: 2026-10-15
 Purpose: Defines the repeatable process for detecting, reviewing, and selectively inheriting changes from Scient's original desktop and agent sources.
 Doc type: Operational procedure
 
@@ -38,6 +38,15 @@ behind count is not.
 |---|---|---|---|
 | `ScientFactory/scient-desktop` | `pingdotgg/t3code` | `main` | `main` |
 | `ScientFactory/scient-agent` | `anomalyco/opencode` | `dev` | `dev` |
+
+The `scient-agent` row is the former OpenCode lane, which the parent source
+snapshot (`lab/external/owned-sources.json`, `lab/external/sources.lock.md`)
+and its verifier still pin. Scient Agent is now built from Oh My Pi
+(`can1357/oh-my-pi`) on `main`. Each alignment replays Scient's changes onto an
+exact Oh My Pi release and replaces `main`'s tree, as `scient-agent/SCIENT.md`
+describes, so it keeps no literal integration base. This procedure does not
+govern those alignments. Re-pinning this row, the snapshot and the verifier
+waits for the owner to record Oh My Pi as the agent's foundation.
 
 Every checkout used for maintained upstream intake must have a writable
 `origin` and fetch-only `upstream` with push URL `DISABLED`. An ordinary
