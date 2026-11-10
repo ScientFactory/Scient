@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-09-08
+Last updated: 2026-09-09
 Purpose: Defines where Scient planning documents live and how they relate to product truth, architecture, design, quality, and research documents.
 Doc type: Repo orientation
 
@@ -22,9 +22,13 @@ Current planning docs:
   automatic built-in exposure, and the future Agent Tools settings page.
 - `sources-and-evidence-implementation-plan.md` - current six-phase proposal
   for the accepted library/project-preservation direction: ownership contract,
-  persistence and fidelity proofs, local library/project foundation, reading
-  and agents, wider workflows, and release qualification. Preserves earlier
-  Sources work packages and QA as explicitly legacy numbering.
+  real local implementation with backend and visual tests, everyday library
+  use, deeper reading/agent work, wider workflows and per-increment release
+  qualification. A historical appendix routes earlier evidence without a
+  second live numbering system.
+- [Sources and Evidence historical checkpoint](sources-and-evidence-plan-history-2026-09-08.md)
+  - frozen predecessor body, including earlier evidence and retired review
+  questions. Historical context only; follow the current implementation plan.
 - `documentation-disposition-ledger-2026-08-28.md` - historical record of the
   completed one-time Markdown migration review, lasting dispositions, and
   temporary-ledger retirement evidence.

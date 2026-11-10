@@ -3,7 +3,7 @@
 Status: Proposed
 Owner: Yaacov
 Created: 2026-09-08
-Last updated: 2026-09-08
+Last updated: 2026-09-09
 Purpose: Defines the reviewable Phase 1 ownership, preservation, and authority contract for reusable research libraries, independent annotations, and project-owned uses.
 Doc type: Architecture decision
 
@@ -14,12 +14,16 @@ supports research across projects. Project Sources are a project's working
 reference set, not its only annotatable files and not a live window into
 someone's private library.
 
-The owner accepted five directions on 2026-09-08, now recorded in the
+The owner accepted five directions on 2026-09-08. Product outcomes are recorded in the
 [PRD](../../product/PRD.md#research-library-and-project-preservation): reusable
 personal/team libraries; independent project preservation where permitted;
 creation-context annotation ownership; independent annotation identities and
 persistence outside Source payloads; and a carefully phased broader foundation.
-Those choices are not being reopened here.
+Those choices are not being reopened here. **Accepted architecture constraint:**
+annotations have independent stable identities/lifecycles and persistence
+outside Source payloads. This sentence preserves the owner's explicit decision
+in its architecture home; the PRD now expresses the user-visible independence.
+It selects neither a database nor a directory layout.
 
 **This detailed contract remains Proposed.** Phase 1 produces a reviewed
 proposal, not deployed authority, a selected storage engine, or permission to
@@ -40,9 +44,12 @@ owns sequencing and qualification.
 Inspected desktop main and remote main were both `4d4d53d80595` on 2026-09-08.
 The local Sources candidate is checkpoint `200373d70e2d` plus uncommitted work;
 its saved-passage format is experimental, not a released general annotation
-contract. Planning worktree HEAD is `84401ed99502`; refreshed planning main is
-`1e974e79ec21`. Its PRD and existing ADR-0004/0006 baseline have not changed
-relative to that HEAD. This proposal does not merge either worktree.
+contract. The planning baseline before the local package was `84401ed99502`;
+the predecessor plan is preserved in a [historical record](../../planning/sources-and-evidence-plan-history-2026-09-08.md)
+independent of local commit retention. Refreshed planning main on that date was
+`1e974e79ec21`. At that inspection, its PRD and existing ADR-0004/0006 baseline
+were unchanged relative to the pre-package HEAD. These are dated observations;
+refresh main before implementation. This proposal does not merge either worktree.
 
 Reuse these inspected foundations rather than start another Sources system:
 
@@ -77,6 +84,7 @@ per row. Add representations only where a real lifecycle needs them.
 | Project reference | Project-owned working-set entry; preserve the existing Source ID | Automatic access to the originating library or its private annotations |
 | Resource and revision | Stable authorized resource identity plus exact revision/content identity; existing material IDs where applicable | A path or matching SHA-256 proves ownership or continuity by itself |
 | Annotation | Stable independent ID, owner scope, revisioned body, exact target and provenance | The target's owner owns every note about it, or notes live inside a Source payload |
+| Region / target locator | The bounded passage/page area within an exact resource revision described by ADR-0009 | A new ownership scope, annotation ID, or different concept from the reader's passage/region |
 | Pinned project use | Project-owned immutable selection of the revisions and dependencies actually used | Merely adding a reference constitutes scientific acceptance |
 | Processing result | Identified output tied to exact input, engine/profile, options, coverage and provenance | Extracted text is the original, or every derivative may be discarded |
 
@@ -107,7 +115,8 @@ Page/region marks need geometry and exact material, not OCR. Native text is used
 when trustworthy; text, location and reading-order confidence remain distinct.
 OCR is an optional processing adapter, not the universal annotation substrate.
 The shared processing contract must also support reading, extraction and agents,
-not only annotation. Engine and corpus qualification belong to Phase 2.
+not only annotation. Native-text/geometry qualification accompanies Phase 2
+implementation; a new OCR engine or wider format has its own later gate.
 
 ### 3. Annotation Ownership Follows The Selected Creation Context
 
@@ -191,6 +200,62 @@ The minimal domain scope is a discriminated project or library scope:
   The binding resolves the actual local/remote authority; no invented project or
   caller-supplied filesystem root stands in for a library.
 
+#### Local Personal-Library Authority
+
+The first implementation needs no Scient network account. Use a durable
+Scient-owned local-profile principal and library ID, bound server-side to the
+OS-user-owned configured state directory and current policy generation. A
+candidate canonical location is `stateDir/scient/libraries/<libraryId>`; record
+the final layout, private filesystem permissions and backup/export obligations
+with the code. This is durable Scient data, not a cache or T3 session table.
+
+The inspected configuration distinguishes development and production state
+directories, with explicit launch overrides. Fixing the location must therefore
+include documented and tested profile isolation, backup/restore and
+uninstall/data-removal semantics. Do not silently share a production library
+with a development build or infer library deletion policy from the lifetime of
+T3's sibling session database. The exact platform location remains a candidate
+until that implementation review.
+
+Authenticate the owner-facing request through the existing local desktop session,
+then resolve its local-profile principal. The current `desktop-bootstrap`
+subject is an authentication channel, not a durable person. Neither localhost,
+a caller's claimed desktop origin, nor a portable library ID establishes owner
+authority. Add library-specific grants: existing environment-wide orchestration
+scopes, paired clients and provider sessions confer no automatic library access.
+
+This proposal reuses the inspected main's
+[bootstrap grant](https://github.com/ScientFactory/scient-desktop/blob/4d4d53d80595de0f0da2308ce9b25259e094d0c8/apps/server/src/auth/PairingGrantStore.ts),
+[HTTP authentication](https://github.com/ScientFactory/scient-desktop/blob/4d4d53d80595de0f0da2308ce9b25259e094d0c8/apps/server/src/auth/http.ts),
+[configured state directory](https://github.com/ScientFactory/scient-desktop/blob/4d4d53d80595de0f0da2308ce9b25259e094d0c8/apps/server/src/config.ts)
+and [scope contracts](https://github.com/ScientFactory/scient-desktop/blob/4d4d53d80595de0f0da2308ce9b25259e094d0c8/packages/contracts/src/auth.ts),
+not an already implemented library principal. Profile/library restoration or
+transfer requires explicit rebinding; copied identifiers are not credentials.
+Multi-user identities, invitations and remote/team bindings are later gates.
+
+Library authority must also hold across other Scient-mediated access paths,
+including generic file reads, assets, search, exports and restored copies.
+The inspected [workspace reader](https://github.com/ScientFactory/scient-desktop/blob/4d4d53d80595de0f0da2308ce9b25259e094d0c8/apps/server/src/workspace/WorkspaceFileSystem.ts)
+allows absolute host-file reads. A library-specific operation grant alone
+therefore does not establish isolation. Before library activation, inventory
+these paths and enforce the same protected-resource policy at their shared
+access boundary, including canonical paths/aliases. Prove that a client lacking
+library authority cannot retrieve protected records or bytes through another
+Scient API; preserving legitimate authorized file workflows is also required.
+
+The protection here is through Scient operations. Same-OS-user processes with
+broad native shell/file permission may read app-data files independently; current
+provider full-access modes are not a library sandbox. Do not advertise operation
+filtering or private filesystem permissions as isolation from such an agent.
+Provider-native authority must be disclosed/enforced by its own permission owner.
+
+Reused metadata intake must respect disclosure as well as read authority.
+DOI/PMID lookup and enrichment can reveal reading interests to external services.
+Define permitted destinations and payloads under the applicable network policy;
+neither opening a library nor a metadata field authorizes unrelated uploads of
+notes or full text. Preserve useful offline operation and test no-egress mode.
+This does not require a new confirmation dialog for every permitted lookup.
+
 This extension does not replace other ADR-0008 environment/browser scopes.
 Ordinary uninitialized folder behavior stays zero-write on open; durable
 project annotations require explicit initialization or another genuinely
@@ -216,32 +281,19 @@ the destination to retain the agreed dependency set; revoking the live source
 grant does not recall an already authorized retained copy. Do not label these
 two promises with an ambiguous generic “share” operation.
 
-The proposed retained-contribution protocol is:
+The architectural invariants are source read/disclosure/retention authority,
+destination mutation authority, immutable selected revisions and dependency
+manifest, exact destination binding, commit-time fencing of every applicable
+authority, one complete visible contribution plus recoverable receipt, and
+currently authorized result disclosure. A private annotation's owner cannot
+grant redistribution of a separately governed target material.
 
-1. Resolve source and destination independently. Authorize source read **and
-   disclosure/retention**, plus destination creation. Owning a note does not
-   establish a right to redistribute its full target material.
-   Every independently governed dependency in the manifest needs this check:
-   for example a private note may target team-owned material. The first local
-   slice may restrict contribution to dependencies covered by one source
-   authority, but must reject or explicitly narrow the reviewed manifest when
-   that is not true; it cannot inherit material permission from note ownership.
-2. Bind an immutable contribution intent to actor, selected IDs/revisions and
-   digests, source provenance, destination identity/audience and allowed
-   dependency manifest. For a project destination, identity includes its exact
-   workspace binding, not just the portable UUID. Bind each execution envelope
-   to the exact source/dependency and destination authority bindings and every
-   applicable current generation. The user-visible effect matches that manifest.
-3. Stage selected permitted bytes and records privately. Changes to the source
-   cannot change this intent. A changed payload requires a new intent.
-4. At publication, fence all required authorities and validate destination preconditions.
-   Commit the complete destination contribution and its durable receipt as one
-   visible outcome. No partially published reference/annotation pair. A source
-   audit may follow, but source mutation is not needed to manufacture a second
-   canonical copy or a distributed transaction for this read-and-contribute case.
-5. Recover by the destination's durable intent/receipt, not by blindly repeating
-   effects. Identical retries reconcile the original outcome; changed payloads
-   conflict. Current authority is still required to disclose that outcome.
+The local implementation mechanism lives in
+[Phase 2C](../../planning/sources-and-evidence-implementation-plan.md#c-local-personal-library-and-explicit-project-contribution).
+It initially supports one local source authority and destination. Unsupported
+team, cross-host or mixed-authority contributions fail explicitly rather than
+silently reducing the checks. This ADR does not prescribe a distributed commit
+service before the local path exists.
 
 The contribution intent is a domain identity, not a reusable permission token
 or replacement for ADR-0004's generation-bound request idempotency key. An
@@ -273,7 +325,9 @@ ordering with revocation, not two unchecked preflight reads. A single local
 coordinator can be proved first. Cross-host publication must wait for a proven
 grant/lease or coordinated protocol with stated revocation semantics. Uncertain
 external completion is reconciled, not represented as a clean failure and retried.
-Phase 2 must select and fault-test this mechanism before code promises atomicity.
+Phase 2 implements and fault-tests local commit/recovery before enabling that
+operation. Cross-host coordination is a later delivery gate, not a prerequisite
+for building or releasing correctly scoped local behavior.
 
 ### 7. Deletion, Revocation, Retention And Offline Work
 
@@ -304,8 +358,10 @@ candidate passages into independent annotation persistence through a versioned,
 recoverable mapping; an annotation ID can remain stable when its owner is
 unchanged. Never silently label a migration as a personal-to-project transfer.
 
-Phase 2 compares the minimum state-plus-receipts, transactional changefeed or
-domain-event solution against these invariants. No universal append-only log,
+Phase 2 builds the actual persistence and operation path with regression and
+fault tests alongside it, beginning with existing bounded-record/receipt
+primitives. A named unresolved mechanism may justify a targeted experiment;
+there is no mandatory three-engine comparison or throwaway prototype. No universal append-only log,
 CRDT, shared blob service, new global namespace, database vendor or cloud
 service is selected. Project state remains portable and Scient-owned, not
 canonical T3 session/application data. Libraries also remain Scient-owned but
@@ -317,37 +373,60 @@ need a whole-owner compatibility gate, not only a decoder for the new record.
 The existing format-2 candidate's older-reader failure is a test case to resolve,
 not an acceptable silent loss of access to the entire library.
 
-## Phase 1 Scenario Review And Phase 2 Proof Obligations
+## Scenario Review And Delivery-Specific Qualification
 
-The following outcomes have been reasoned through and independently challenged;
-they have **not** been demonstrated by executing a new implementation.
+These are required outcomes, not claims that the implementation exists or that
+AI review proves runtime behavior. Backend, rendered-document and human checks
+are assigned in the implementation plan. Do not require team infrastructure
+before local implementation or use mocked team members as delivery proof.
 
-| Scenario | Contract outcome / next executable proof |
+### Before Enabling The Local Slice
+
+| Scenario | Required outcome and owner |
 | --- | --- |
-| Same paper in personal library and two projects | Independent notes and judgments; no private metadata/history leakage through UI, tools, search or exports |
-| Annotated ordinary draft later becomes a Source | Resource/annotation continuity; no Source gate, ownership transfer or path-only historical anchor |
-| Personal annotation contributed, then edited | Destination retains only the selected revision; no private history or later edits leak; explicit update is separate |
-| Both personal and contributed project copy edited | Expected-version conflict, explicit successor after review, unchanged historical uses |
-| Contribute, use, delete annotation, then erase permitted content | Active annotation disappears; historical use remains until applicable erasure removes its retained body and reports unavailability |
-| Contribute restricted material, then invite collaborator | New membership does not widen disclosure rights; enforce restriction or explicit unavailability |
-| Start note, lose membership, restart and recover | No personal fallback copy; draft recovery requires current permitted access |
-| Private annotation targets separately governed team material | All necessary dependency authorities are resolved and fenced, or the first slice rejects the unsupported transfer |
-| Library disappears; project is handed off offline | Permitted pinned dependency closure remains usable; unavailable/restricted material is honestly reported |
-| Source permission revoked during staging | Publication is fenced; no visible partial copy; recovery cleans only owned staging |
-| Crash immediately before/after commit or lost response | One complete effect and recoverable receipt, or no published effect; no duplicate on retry |
-| Two worktrees share UUID and intent | Exact bindings remain distinct; destination prevents duplicate intent effects without granting cross-worktree access |
-| Old client edits/deletes after annotation migration | Compatibility gate prevents byte loss; rollback preserves new data or refuses safely |
-| Native, scanned, mixed, RTL and changed documents | Independent mark capture without OCR; extraction fidelity and geometry tested separately; missing material stays explicit |
+| Multiple annotations on identical bytes | Independent IDs/owners; hash never collapses notes (Phase 2A) |
+| Ordinary PDF later registered as a Source | Preserve resource, annotation and capture identity without a registration gate (2A) |
+| Old writer after migration | No loss of retained bytes/annotations; explicit supported/refused compatibility and recoverable rollback (2A) |
+| Two worktrees share UUID | Exact bindings and authority stay separate; copied receipts do not establish local presence (2A/C) |
+| Native, scanned, mixed, RTL or changed PDF | Honest text fidelity and geometry, useful region fallback, no silent rebind (rendered checks in 2A) |
+| Agent reads/proposes/receives rejection | Bounded authorized projection, proposal/review provenance, no private/history leak (2B) |
+| Same reference in personal library and two projects | Independent notes and project uses; no unintended disclosure (2C) |
+| Client lacks library grant but uses another Scient API | Protected records/material remain inaccessible through generic file, asset, search and export paths, including path aliases (2C) |
+| Metadata enrichment enabled or network access denied | Only policy-permitted endpoint/payload is sent; no-egress mode makes no external request and retains local utility (2C) |
+| Contributed note and project copy both edited | Expected-version conflict; explicit successor, unchanged pinned uses (2C) |
+| Local grant revoked during staging or draft recovery | Commit fenced; access rechecked; no personal fallback copy of restricted draft (2A/C) |
+| Crash, lost response or copied contribution intent | Complete effect and receipt or no visible publication; deterministic authorized reconciliation (2A/C) |
+| Library removed; project reopened/exported offline | Authorized retained dependency closure survives; missing/restricted content explicit (2C) |
+| Annotation deleted, then retained use inspected or content erased | Active deletion differs from historical retention; erasure applies to retained bodies and reports unavailability (2A/C) |
+| Request needs team, mixed-authority or cross-host transfer | Unsupported operation rejected in the real local service; not simulated as a successful transfer (2C) |
+
+### Before Enabling Networked Team Delivery
+
+| Scenario | Required real-system proof |
+| --- | --- |
+| Invite collaborator after restricted contribution | Independent authenticated members; evolving membership does not widen material disclosure rights |
+| Lose team membership while editing, then reconnect/restart | Current membership fences commit and recovery; no stale resurrection or unauthorized disclosure |
+| Personal annotation targets team-owned material | Every dependency authority is checked and coordinated; authoring a note does not grant material rights |
+| Cross-host publication interrupted or revoked | Actual endpoints, durable intent, coordination, network partition and reconciliation behavior; no half-publication or blind retry |
+| Team owner leaves/transfers responsibility | Data continuity without the former owner's credentials; separately authorized ownership transfer |
+| Offline deletion/replay and history compaction | Real replicas reconcile deletions/revocations; bounded history does not permit stale resurrection |
+
+Later OCR, wider-format and cross-provider claims likewise require their
+specific qualification. Geometry-only capture does not qualify OCR, and one
+provider's success does not establish parity. These gates are retained work,
+not prerequisites to every local annotation.
 
 ## Implementation And Documentation Boundaries
 
 - **Keep:** existing project store, imports, stable material identities, local
   passage QA and useful user flows. Do not discard them because the final owner
   boundary is broader.
-- **Build after review and Phase 2 proof:** minimal shared scope resolver,
+- **Build and test in Phase 2 after applicable contract review:** minimal shared scope resolver,
   independent annotation persistence, pinned dependency retention and explicit
   contribution operations. Reuse ADR-0007/0008 work when qualified; no parallel
-  Sources registry. Phase 3 first proves personal-library to project locally.
+  Sources registry. Start with project annotation, then local personal-library
+  contribution; tests and visual review accompany the actual implementation.
+  Phase 3 improves everyday library use rather than starting another foundation.
 - **Design for now, implement later:** team membership/sync transport, ownership
   transfer UX, broad organization/navigation, bidirectional Zotero, OCR engines,
   wider formats, formal evidence workflows and plugin distribution. These remain
@@ -375,10 +454,11 @@ they have **not** been demonstrated by executing a new implementation.
 
 ## Review Disposition
 
-Phase 1 recommends accepting this contract subject to owner review, then doing
-the bounded Phase 2 persistence/authority and document-fidelity proofs. The
-remaining technical choices are engine/layout, enforceable cross-scope commit
-mechanism, compatibility window, identity/membership provisioning and retention
-limits. They are constrained here but must be chosen with executable evidence,
-not guessed in prose. No new product UI, storage migration or team service is
-authorized merely because this document exists.
+Phase 1 recommends accepting the applicable contract, then implementing the real
+local foundation with backend fault tests and rendered/manual review alongside
+it. Exact schema/layout, local commit/recovery mechanism, principal recovery,
+compatibility window and retention limits are bounded engineering decisions
+recorded with implementation. Team identity/sync mechanics belong to later team
+delivery; they do not block local work. Only a demonstrated unresolved question
+justifies a separate experiment. No product UI, live-data migration or team
+service is authorized merely because this document exists.

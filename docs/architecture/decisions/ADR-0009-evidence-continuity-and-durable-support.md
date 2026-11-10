@@ -67,9 +67,12 @@ revision history. The owner has since chosen independent annotation identities
 and persistence outside Source payloads. Retain this candidate as migration and
 QA evidence, not the target persistence model. Independent records do not
 require four databases or services. The candidate introduces no new `.scient/`
-namespace and no universal
-project-target or support-edge model. Source record format 2 protects new
-passage data from older writers that do not understand it.
+namespace and no universal project-target or support-edge model. Older builds
+reject Source format 2 and can fail to load the entire library on encountering
+one such record. That blocks accidental older writes but is a compatibility
+failure, not a satisfactory safety design. The embedded format-2 model must
+not ship as this program's annotation storage; preserve the candidate locally
+and port useful behavior through the implementation plan's migration path.
 
 Exact material identity is primary. A changed text extractor is not itself a
 lost material: saved geometry can still be shown if the original bytes and page
@@ -161,8 +164,8 @@ conceptual distinctions the mature product will need.
 A durable capture path connects:
 
 ```text
-Source
-  -> exact SourceMaterial version
+Authorized resource (optionally associated with a Source)
+  -> exact material/resource revision
   -> anchored Region
   -> optional Annotation or reviewed interpretation
 ```
@@ -173,8 +176,9 @@ passages. This proposal does not yet know whether those uses should share one
 generic relation record, use several target-owned records, or combine both.
 That choice requires a concrete stable target and its real lifecycle.
 
-The path is project-owned, inspectable without the originating chat, correctable,
-exportable, and recoverable. Agent sessions, retrieval indexes, rendered
+The path is owned by its creation context under ADR-0010; the initial project
+path remains project-owned. It is inspectable without the originating chat,
+correctable, exportable, and recoverable. Agent sessions, retrieval indexes, rendered
 citations, PDF-reader state, and chat messages may help create or display the
 path but are not its canonical authority.
 
@@ -182,7 +186,12 @@ The path may be incomplete. Scient must represent missing, ambiguous,
 conflicting, stale, or unresolved support honestly instead of manufacturing a
 complete-looking result.
 
-### 2. The initial durable capture kernel has four domain concepts
+### 2. Resource capture and the optional Source association
+
+An exact authorized resource revision is the common target. Source and
+SourceMaterial describe its reference role when present; Region and Annotation
+also work on ordinary project resources through the shared resource adapter.
+This distinction does not require separate services or duplicate material stores.
 
 #### Source
 
@@ -213,8 +222,10 @@ another version.
 
 #### Region
 
-A `Region` identifies a bounded part of one exact SourceMaterial. Initial
-regions target PDF text and page geometry. The model must be extensible to a
+A `Region` is the target/locator concept in ADR-0010: a bounded part of an exact
+authorized resource revision, including a SourceMaterial when a Source exists.
+It is not an annotation ID. Initial regions target PDF text and page geometry.
+The model must be extensible to a
 figure area, table cell or block, page, timestamped media range, or region in a
 future HTML or EPUB material without pretending those targets share one
 selector implementation.
@@ -225,8 +236,10 @@ new match appear original.
 
 #### Annotation
 
-An `Annotation` captures a human or agent interpretation associated with a
-Source or Region. Initial annotation kinds may include highlight, note,
+An `Annotation` has its own stable identity and captures a human or agent mark
+or interpretation associated with an authorized resource/Region; a Source
+association is optional. Source-level notes remain a separate existing feature.
+Initial annotation kinds may include highlight, note,
 question, and interpretation.
 
 Annotations are useful independently of formal evidence. A researcher may
@@ -292,7 +305,8 @@ are frozen.
 An initial PDF text Region records complementary selectors rather than trusting
 one coordinate system:
 
-- source ID, material/attachment ID, and exact material content hash;
+- stable resource/material ID and exact revision/content hash, plus Source ID
+  and attachment identity where the target has that reference role;
 - media type and material format version;
 - text extractor identity, version, and normalization profile;
 - original extracted quote plus bounded prefix and suffix context, preserved
@@ -383,19 +397,22 @@ foundations.
 
 ### 9. Canonical project state and derived retrieval remain separate
 
-If this ADR and ADR-0006 are accepted, canonical evidence records live in one
-project-owned `.scient/evidence/` namespace. The exact directory layout and
+If this ADR and ADR-0006 are accepted, the project-owned records may use the
+proposed `.scient/evidence/` namespace. This is not a global library location;
+ADR-0010 owns library authority and independent annotation persistence. The exact directory layout and
 record schemas remain implementation decisions, but they must preserve:
 
 - bounded versioned records with stable IDs;
 - atomic writes and expected-version conflict handling;
 - immutable or append-only acceptance/provenance history;
-- references to Sources and materials without copying PDF bytes;
+- references to resources and optional Sources, reusing bytes within the same
+  retention authority when safe; cross-owner preservation may require a copy;
 - deterministic recovery from partial operations;
 - migration and rollback evidence; and
 - inspection and export independent of a running provider or chat session.
 
-The existing `.scient/sources/` store remains the Source and material authority.
+The existing `.scient/sources/` store remains the authority for its Source
+records and attachments, not for every annotatable file or all retained bytes.
 Existing source notes remain valid source-level notes. They are not silently
 rewritten into anchored annotations.
 
@@ -511,16 +528,18 @@ thresholds were uncalibrated, only one actual PDF.js version was exercised,
 OCR quality was not measured, and the existing reader was not integrated. A
 licensed real-world corpus, extractor-version comparison, integrated reader
 capture, false-relocation measurement, and performance evidence remain stop
-gates before schema acceptance.
+gates for the corresponding implemented behaviors. They are exercised while
+building the real path, not a requirement to finish all OCR or relocation
+research before an exact-revision/geometry-only annotation can be implemented.
 
 ## Initial Trust Slice Authorized By This Model
 
 If accepted, this ADR supports one deliberately narrow first implementation:
 
-1. select text in one imported PDF;
+1. select text or a region in a Source PDF or ordinary project PDF;
 2. create and persist a Region plus user annotation;
 3. reopen and resolve the exact Region;
-4. let an eligible agent inspect only the explicitly scoped Source or Region;
+4. let an eligible agent inspect only the explicitly scoped resource or Region;
 5. let the agent propose a bounded interpretation or note attached to that
    exact Region;
 6. show the proposal beside its exact evidence and provenance;
@@ -585,8 +604,8 @@ without manually constructing or understanding graph structure.
 - Source material identity and anchor resolution become foundational work,
   requiring difficult fixtures and migration discipline before broad feature
   expansion.
-- The first capture kernel requires only Source, SourceMaterial, Region, and
-  Annotation; the downstream evidence-link contract remains open.
+- The first capture path uses resource/material identity, Region and Annotation,
+  optionally associated with a Source; downstream evidence-link shape remains open.
 - Project files remain inspectable and portable, while derived indexes can be
   replaced as scale and retrieval needs become measurable.
 - Agents can perform high-volume proposal work without silently becoming the
@@ -599,7 +618,10 @@ without manually constructing or understanding graph structure.
 ## Required Proof Before Acceptance As Implemented
 
 Architecture acceptance and implementation qualification are separate. Before
-the first implementation is described as qualified:
+an enabled slice is described as qualified, apply the relevant rows below.
+Project annotation need not wait for library/team delivery, broad OCR or agent
+features not yet enabled. The implementation plan's activation matrix owns the
+exact local, provider, visual and future-team gates:
 
 1. a Region resolves across close/reopen without text or coordinate drift;
 2. an identical reimport is recognized as the same material content;
@@ -616,10 +638,11 @@ the first implementation is described as qualified:
 9. two worktrees with one Scient project UUID cannot read or mutate each
    other's workspace-scoped evidence without an explicit cross-workspace
    operation;
-10. at least two qualified providers invoke the same proposal operation and
-    produce the same canonical record semantics;
+10. each advertised provider is qualified on the real proposal operation;
+    cross-provider claims require at least two, while a limited local preview
+    explicitly names its qualified provider and does not claim wider parity;
 11. a provider without delivery support cannot bypass the operation boundary;
-12. export preserves Source, material identity, locator, quote, annotation,
+12. export preserves known Source identity, material identity, locator, available quote or region, annotation,
     attribution, and review provenance without requiring Scient to interpret a
     proprietary database; and
 13. derived search/retrieval state can be deleted and rebuilt without losing
@@ -633,8 +656,8 @@ document only in general:
 1. Is evidence continuity the correct durable objective?
 2. Is SourceMaterial a required architecture concept even if the current code
    continues to call it an attachment initially?
-3. Is the four-concept capture kernel the right balance between premature
-   ontology and generic untyped records?
+3. Does the resource/Region/Annotation boundary, with optional Source
+   association, implement independent annotation without premature ontology?
 4. Are `exact`, `relocated`, `ambiguous`, and `orphaned` the correct canonical
    anchor states?
 5. Should `.scient/evidence/` become the project-owned namespace if ADR-0006 is

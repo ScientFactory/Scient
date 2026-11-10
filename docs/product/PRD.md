@@ -389,7 +389,10 @@ privately accessible library link.
 Annotation ownership follows creation context: personal-library notes remain
 private; project-created notes belong to the project. Reusing a reference does
 not automatically share private annotations. Annotations have independent stable
-identities and lifecycles, with persistence outside Source record payloads.
+identities and lifecycles. Registering or removing a reference must not silently
+recreate, transfer or destroy independently retained annotations; their access
+and retention rules still apply. The accepted persistence-separation constraint
+is recorded in ADR-0010 rather than prescribed as storage detail in this PRD.
 
 Build this broader foundation in coherent phases from the start, rather than
 entrench a Source-only annotation model and retrofit ownership later. This

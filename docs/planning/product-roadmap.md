@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-07-16
-Last updated: 2026-09-08
+Last updated: 2026-09-09
 Purpose: Defines the current sequence of coherent Scient product outcomes without turning technology experiments into the product roadmap.
 Doc type: Planning note
 
@@ -52,6 +52,15 @@ the first coherent scientific-project experience can depend on:
 4. use these capabilities in the first end-to-end scientific project slice
    rather than accumulating unrelated format demos.
 
+The Sources/annotation foundation is also current enabling work: implement and
+review independent project annotations, exact material retention and the bounded
+note/proposal path described in [Phase 2](sources-and-evidence-implementation-plan.md#phase-2-real-implementation-in-reviewable-slices).
+Then implement local personal-library reuse through the same ownership and
+operation contracts. Project capture does not wait for that library surface;
+the library is an accepted long-term direction, not a prerequisite to every
+scientific-project pilot. The [ownership contract](../architecture/decisions/ADR-0010-research-library-project-use-and-annotation-ownership.md)
+remains Proposed in its detailed mechanics.
+
 Detailed dependency, schema, Office-engine, rich-editor, kernel, data-viewer,
 canvas, and collaboration choices remain proposed and evidence-gated. The
 product roadmap sequences outcomes; it does not approve those architecture
@@ -67,6 +76,10 @@ it is not a thin shell over separately authoritative engines. Its refreshed
 native source foundation remains unselected until the implementation-time gate
 in the
 [Scient and external agents implementation plan](scient-and-external-agents-implementation-plan.md).
+
+The slice can consume the project annotation/proposal path as soon as its local
+gates pass; it does not wait for personal/team library navigation or Phase 4's
+expanded reading workflows. Its separate native-agent gate remains intact.
 
 The slice combines:
 
@@ -113,17 +126,11 @@ not replace deterministic component checks or comparable agent measurements.
 
 ## Next
 
-- Build toward the owner-accepted reusable personal/team library, independent
-  project preservation and context-owned annotation direction recorded in
-  [PRD](../product/PRD.md#research-library-and-project-preservation). First review
-  the detailed [Phase 1 ownership/authority
-  contract](../architecture/decisions/ADR-0010-research-library-project-use-and-annotation-ownership.md),
-  then run persistence, authority and document-fidelity proofs before the local
-  library-to-project slice. The [six-phase
-  plan](sources-and-evidence-implementation-plan.md#current-six-phase-delivery-sequence)
-  retains the existing passage candidate and later evidence ambitions without
-  entrenching Source-only annotation storage. Broader team delivery, taxonomy
-  and downstream evidence-link mechanics remain separately reviewable.
+- Expand the local library/project foundation into everyday library
+  use and deeper evidence workflows through the [current
+  plan](sources-and-evidence-implementation-plan.md#current-six-phase-delivery-sequence).
+  Team delivery, taxonomy and downstream evidence-link mechanics have their own
+  gates; they are not mandatory preconditions for the local annotation increment.
 - Strengthen the evidence-to-writing path based on the first slice.
 - Design the collaboration foundation alongside the scientific project model:
   individual identity and affiliation, ad hoc teams, nested institutions and
