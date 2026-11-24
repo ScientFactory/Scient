@@ -126,7 +126,7 @@ and [Remote Access Help](https://scientfactory.com/docs/remote-access/).
 ### PR #1082 candidate, 2026-11-24
 
 [PR #1082](https://github.com/ScientFactory/scient-desktop/pull/1082) is
-pending merge at `f59015da606`. The candidate extends the baseline as follows.
+pending merge at `bc1e3d8e069`. The candidate extends the baseline as follows.
 
 - **Linked result revisions and comparison.** Scripts and fresh notebooks can
   publish linked results with parameters, declared inputs, and available run
@@ -145,40 +145,35 @@ pending merge at `f59015da606`. The candidate extends the baseline as follows.
   them as run inputs.
 - **Notebook output and code navigation.** Inline text, plots, errors, and
   written-file links, plus failure summaries, heading navigation, and explicit
-  setup replay through a selected cell. The local integration commit
-  `7eba98c98c3` adds one-click code folding from the language row in the editor
-  and Reader and is pending inclusion in the PR.
+  setup replay through a selected cell, and one-click code folding from the
+  language row in the editor and Reader.
 
-[Candidate Compute Help](https://github.com/ScientFactory/scient-desktop/blob/f59015da6064528f26cba8be292bc94f28c5161d/docs/user/scientific-computing.md)
-· [Candidate file-preview Help](https://github.com/ScientFactory/scient-desktop/blob/f59015da6064528f26cba8be292bc94f28c5161d/docs/user/file-previews.md)
+[Candidate Compute Help](https://github.com/ScientFactory/scient-desktop/blob/bc1e3d8e069/docs/user/scientific-computing.md)
+· [Candidate file-preview Help](https://github.com/ScientFactory/scient-desktop/blob/bc1e3d8e069/docs/user/file-previews.md)
 
 ## Recommended Next Implementation
 
 Start notebook environment recovery alongside candidate qualification.
 
 1. **Linked revisions and comparison (Stages 3, 7, 9) — built-pending-merge.**
-   Carry notebook package evidence through to comparison and handoff. Record
-   failed and stopped fresh notebook attempts with the failing cell receipt.
-   Report notebook save and linked publication separately, and preserve the
-   previous result when no new outputs can be retained.
+   Notebook revisions carry package evidence, failed and stopped fresh runs
+   reach the paper's last-attempt row, and an empty publish keeps the previous
+   result. Remaining: qualify on Windows and Linux.
 2. **Notebook parameters, sweeps, Reader, inline output, replay, and folding
-   (Stage 5) — built-pending-merge.** Bind Reader and package export to the
-   exact source and ordered cell boundaries. Let Reader open saved alternatives
-   without a prior published run and open retained outputs beyond inline
-   preview limits. Allow explicit sweep values beyond the presets and give agents the
-   same sweep stop action. Check Help against the actual sweep and Reader
-   limits, and qualify folding and setup replay.
+   (Stage 5) — built-pending-merge.** Reader and export are bound to the exact
+   saved source and cell boundaries. Reader opens saved settings without a
+   published run and opens retained outputs it cannot preview. Sweeps take any
+   parameter, and agents can stop a sweep. Remaining: qualify on Windows and
+   Linux.
 3. **Result packages and verification (Stages 4, 9) — built-pending-merge.**
-   Preserve original input digests and coverage separately from export-time
-   copies. Make the verdict distinguish matching outputs from confirmed
-   original inputs. Reproduce default notebook parameters, including an empty
-   override object. Check cancellation and a single progress signal for long
-   verification runs.
-4. **Profiles and saved views (Stage 6) — built-pending-merge.** Pin paging,
-   copy, profile, and export to consistent source revisions. Make filtered
-   export scope explicit and qualify an equivalent agent operation for saving
-   a selection. Correct missing-code guidance and detect the notebook language
-   for analysis snippets.
+   Packages keep the original input digests apart from the export copies, and
+   the verdict says when outputs matched but the original inputs are
+   unconfirmed. Remaining: qualify cancellation of long verification runs on
+   Windows and Linux.
+4. **Profiles and saved views (Stage 6) — built-pending-merge.** Paging, copy,
+   profile and export are pinned to one view revision, and export follows the
+   grid's filters for people and agents. Remaining: volatile SQL expressions
+   can still change between evaluations.
 5. **Python notebook environment recovery (Stage 4) — open.** Start with
    [Use once, lockfile restore, and agent parity](#first-milestone-python-notebook-environment-recovery).
    Extend the same selection and recovery contract to other Compute entry
@@ -187,9 +182,6 @@ Start notebook environment recovery alongside candidate qualification.
    installed Quarto runtime. Preserve the build log and last good output, and
    link the build to the analysis result it used. Follow with R Markdown.
 
-Resolve the notebook source and original-input provenance issues before
-merging. Share notebook, result, and handoff services across UI and MCP,
-remove unused UI paths and strings, and restore paired T3 seam markers.
 Qualify packaged workflows on Windows and Linux, including native filesystem
 observation, file pickers, paths, runtime selection, cancellation, and reopen.
 Keep broader widgets, automatic kernel
