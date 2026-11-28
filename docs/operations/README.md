@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-10-15
+Last updated: 2026-11-28
 Purpose: Indexes Scient's real monitoring, release-adjacent, support, and maintenance procedures.
 Doc type: Repo orientation
 
@@ -24,7 +24,8 @@ Current procedures:
 
 - [Upstream intake](upstream-intake.md) - monitoring, reviewing, and selectively
   inheriting useful upstream changes into the standalone Scient desktop
-  repository. Scient Agent's Oh My Pi alignments follow `scient-agent/SCIENT.md`.
+  repository. Scient Agent's Oh My Pi alignments follow its
+  [maintainer guide](https://github.com/ScientFactory/scient-agent/blob/main/SCIENT.md).
 
 Add deployment, release, backup, incident, support, or other maintenance
 procedures here only after the corresponding operational surface exists.

@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-10-15
+Last updated: 2026-11-28
 Purpose: Entry point for the Scient product and project repository.
 Doc type: Repo orientation
 
@@ -29,10 +29,10 @@ ScientFactory owns four independently versioned active product repositories:
 - [`ScientFactory/scient-desktop`](https://github.com/ScientFactory/scient-desktop) -
   the active public T3-derived application and current desktop release source.
 - [`ScientFactory/scient-agent`](https://github.com/ScientFactory/scient-agent) -
-  Scient Agent, the native Scient agent, built from Oh My Pi
-  (`can1357/oh-my-pi`) and released from `main`. Its `SCIENT.md` owns how it
-  stays apart from and aligned with Oh My Pi. This repository has not yet
-  recorded that foundation choice; see [AGENTS.md](AGENTS.md).
+  Scient Agent, the native Scient agent, built from the selected Oh My Pi
+  foundation (`can1357/oh-my-pi`) and released from `main`. Its
+  [maintainer guide](https://github.com/ScientFactory/scient-agent/blob/main/SCIENT.md)
+  owns isolation, upstream alignments, and releases.
 - [`ScientFactory/ScientFactory-website`](https://github.com/ScientFactory/ScientFactory-website) -
   the public website, download experience, and Cloudflare Pages deployment.
 

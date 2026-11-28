@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-10-15
+Last updated: 2026-11-28
 Purpose: Defines how agents should work in this early Scient repository.
 Doc type: Agent protocol
 
@@ -21,24 +21,22 @@ editing, universal direct file opening, freshness, rich chat math/diagrams/
 charts, interactive HTML, browser PDF export, LaTeX, generated documents,
 MATLAB analysis, and selected Skills foundations. It still does not establish
 the complete scientific project/memory model, cloud sync plane, manuscript
-platform, Artifact Studio, native Scient agent, or first complete scientific
-vertical slice. Do not infer those boundaries from the capabilities that have
-landed.
+platform, Artifact Studio, or first complete scientific vertical slice. Do not
+infer those boundaries from the capabilities that have landed.
 
 ScientFactory is the company and GitHub organization identity. **Scient** is
 the public name for both the implemented application and its native
 first-party research agent. In technical contexts, use **Scient app** and
 **Scient agent** whenever the meaning could be ambiguous.
 
-The `scient-agent` repository builds Scient Agent from Oh My Pi
-(`can1357/oh-my-pi`). Scient Agent v0.1.0 is released on Oh My Pi 18.4.8, and
-the Scient app drives it, as it drives a stock Oh My Pi, through one adapter.
-Its maintainer guide, `scient-agent/SCIENT.md`, owns how it stays apart from
-and aligned with Oh My Pi. This repository has not yet recorded Oh My Pi as the
-agent's foundation: the Foundation Gate in the proposed Scient-and-external-agents
-plan still names Pi and OpenCode as finalists, and the parent source snapshot
-still pins the former OpenCode lane. Until the owner records that decision,
-those documents describe the earlier comparison, not the agent that exists.
+Oh My Pi (`can1357/oh-my-pi`) is the selected source foundation and primary
+upstream for the native Scient agent. `ScientFactory/scient-agent` owns its
+implementation; its [maintainer guide](https://github.com/ScientFactory/scient-agent/blob/main/SCIENT.md)
+owns isolation, upstream alignments, and releases. The earlier Pi/OpenCode
+comparison in the [implementation plan](docs/planning/scient-and-external-agents-implementation-plan.md)
+and the parent OpenCode [source snapshot](lab/external/owned-sources.json) are
+historical evidence, not current foundation selection or live native-agent
+provenance.
 The Scient agent stays one owned first-party agent—not a thin shell around
 separately authoritative engines. External OpenCode and the other inherited
 external-agent paths remain separate choices with separate identity,
