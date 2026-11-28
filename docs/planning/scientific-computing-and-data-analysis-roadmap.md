@@ -3,74 +3,28 @@
 Status: Proposed
 Owner: Yaacov
 Created: 2026-07-24
-Last updated: 2026-08-28
-Purpose: Proposes the product boundary, architecture direction, source-adaptation strategy, and ordered implementation path for manual code editing, Python, R, MATLAB, notebooks, executable documents, datasets, tables, figures, analysis runs, reproducible computational work, and the shared foundations it coordinates with Scient's document platform.
+Last updated: 2026-11-28
+Purpose: Proposes the scope, architecture, and implementation sequence for Scient's computing workbench and its shared document foundations.
 Doc type: Planning note
 
 ## Decision Summary
 
-Scient should build one first-class **Scientific Computing and Data Analysis**
-workbench, not a collection of unrelated Python, R, MATLAB, notebook, table,
-and chart features.
+Scient should develop one **Scientific Computing and Data Analysis** workbench
+for scripts, notebooks, datasets, figures, and results. Use the same project
+files, runs, and results for manual and agent work. The next priority is a
+result a researcher can inspect, compare, and hand off for a rerun with its
+original inputs. Apply that workflow to scripts and parameterized notebooks.
+[Recommended Next Implementation](#recommended-next-implementation)
 
-Scient now has a safe project-aware text/source editor, a bounded MATLAB
-execution foundation, rich chart fences, generated analysis artifacts, and
-implemented math, LaTeX, HTML, and PDF paths. Draft desktop
-[PR #129](https://github.com/ScientFactory/scient-desktop/pull/129) also
-contains a substantial, separately gated stateful-compute integration
-candidate. The next work must qualify and consume that candidate where it wins
-rather than repeat either the older editor-first sequence or its compute-session
-foundation. Scientific analysis and compiled documents should continue to
-specialize shared lifecycle vocabulary through distinct records such as
-`ComputeSession`, `AnalysisRun`, and `DocumentBuild`; they should not be forced
-into one oversized runtime abstraction. Python, R, Jupyter, Quarto, Typst,
-tables, and figures can attach through adapters without forcing Scient to
-become a fork of VS Code, RStudio, Positron, JupyterLab, MATLAB, or Overleaf.
+Reuse the file opener, conditional editor, dataset grid, and artifact viewers.
+Keep the current editor seam and evaluate a replacement only against a concrete
+unmet requirement. Share project resolution, execution mechanics, diagnostics,
+and artifacts across stateful `ComputeSession`, isolated `AnalysisRun`, and
+`DocumentBuild`. Each record keeps its own semantics.
 
-The sibling [Scientific Document Platform Roadmap](scientific-document-platform-roadmap.md)
-now owns universal document viewing, inline mathematics, LaTeX and peer
-typesetting projects, Office compatibility, structured manuscript authoring,
-review, collaboration, and publishing. This computing roadmap must preserve
-the shared document, project-resolution, execution, diagnostics, and artifact
-seams while keeping `AnalysisRun` and `DocumentBuild` semantically distinct.
-
-The recommended direction is:
-
-1. Consume the shared
-   [File, Resource, And Presentation Foundation](file-resource-and-presentation-foundation.md)
-   for identity, relocation, viewer selection, and common recovery states.
-2. Preserve the implemented conditional editor, MATLAB run lifecycle,
-   `AnalysisArtifact`, and chart-renderer contracts as the current foundation.
-3. Review, realign, and qualify PR #129's language-neutral `ComputeSession`,
-   Python, provenance, and retained-representation foundations before creating
-   another execution coordinator or Python session path. Keep `AnalysisRun`
-   for isolated execution and `DocumentBuild` for typesetting.
-4. If PR #129 is accepted, continue the Python lane from that implementation
-   under the
-   [Scientific Python Environment Roadmap](scientific-python-environment-roadmap.md),
-   with runtime acquisition, datasets, tables, richer representations, and
-   notebooks as independently gated continuations; keep R as the next parity
-   challenger.
-5. Turn more outputs into inspectable, revisioned artifacts and let the
-   [Scientific Artifact Studio](scientific-artifact-studio.md) own inspection,
-   comparison, composition, and publication-facing operations.
-6. Add Jupyter-compatible notebooks and executable documents without embedding
-   all of JupyterLab.
-7. Add data exploration, variable inspection, figure workflows, language
-   services, debugging, and remote compute in evidence-driven order.
-8. Add domain packs such as neuroscience/BIDS only after the generic workbench
-   can open, edit, run, inspect, compare, and recover ordinary analysis.
-
-The current editor substrate is the inherited `@pierre/diffs/editor`, wrapped
-by Scient-owned revision, save, conflict, truncation, and freshness contracts.
-Preserve that working boundary. CodeMirror 6 and Monaco remain replacement
-candidates only if a concrete scientific editing requirement cannot be met
-cleanly; do not schedule a migration merely because the older plan preferred a
-different editor.
-
-This is a proposed direction, not accepted product truth or accepted
-architecture. Approval should authorize focused design and architecture work,
-not a wholesale IDE build.
+This proposal guides bounded design and implementation planning. The related
+roadmaps below own Python-specific scope, document and file infrastructure,
+and artifact inspection, composition, and publication.
 
 ## Why This Is A Separate Product Category
 
@@ -109,18 +63,8 @@ It does **not** absorb every scientific tool into one feature:
   microscopy formats belong in domain interoperability packs built on top of
   the generic file, data, and artifact contracts.
 
-The earlier reference to “Beads” is ambiguous. If it meant **BIDS**, the Brain
-Imaging Data Structure, it belongs in the later neuroscience domain pack. If it
-meant the Beads issue-tracking system, it belongs in project/task and agent
-coordination, not in this roadmap. Neither interpretation should distort the
-first computing workbench.
-
-“Separate category” does not mean “design independently.” The computing
-workbench owns reusable execution and artifact mechanics; the manuscript area
-owns scholarly authoring, citation, review, publishing, and collaboration
-semantics. Both must agree on document identity, authority, provenance,
-projects, history, assets, projections, and agent actions before either freezes
-its foundation.
+The workbench and manuscript platform share document identity, provenance,
+history, assets, projections, and agent actions.
 
 ## Sources Of Authority And Related Plans
 
@@ -130,7 +74,7 @@ artifacts` area currently summarized in
 [Product Planning](product-planning.md) and fits after the coherent foundations
 sequenced in the active [Product Roadmap](product-roadmap.md).
 
-It also depends on, but does not replace:
+Related plans own the following dependencies.
 
 - [Open-Source Adaptation Build Strategy](open-source-adaptation-build-strategy.md)
   for the fork-versus-adapter boundary;
@@ -143,7 +87,7 @@ It also depends on, but does not replace:
   for stable file identity, relocation, resolution, presentation selection,
   shared viewer states, and broad view-only coverage;
 - [Scientific Python Environment Roadmap](scientific-python-environment-roadmap.md)
-  for the next Python-specific environment and execution lane;
+  for Python execution, environment recovery, and later analysis workflows;
 - [Scientific Artifact Studio](scientific-artifact-studio.md) for artifact
   inspection, representation, comparison, composition, and publication export;
 - [Scientific Document Platform Source Map](../research/source-evaluations/scientific-document-platform-source-map.md)
@@ -156,77 +100,110 @@ It also depends on, but does not replace:
   engine choice, first typesetting slice, manuscript representation,
   collaboration model, and donor-adaptation depth remain outside this roadmap.
 
-## Current Product Truth: What Scient Can Do Today
+## Desktop Baseline
 
-This snapshot was checked on 2026-08-28 against
-`ScientFactory/scient-desktop` `origin/main`
-`aa23f1d3b96f6904dcc1a114cc33415fa267315a`. It describes source truth, not
-guaranteed parity across every installed release and operating system.
+Desktop `main` was checked at
+[`4b50a4bd`](https://github.com/ScientFactory/scient-desktop/commit/4b50a4bd9473f1ef173911944ecc25e331248ec6).
+[PR #1082](https://github.com/ScientFactory/scient-desktop/pull/1082) merged as
+[`26237b7`](https://github.com/ScientFactory/scient-desktop/commit/26237b7d1991ee1af4a9044e0e8d9a45b6ea82d9),
+which is included in the [v0.6.34 release tag](https://github.com/ScientFactory/scient-desktop/releases/tag/v0.6.34).
+This baseline records source capabilities. See the
+[packaged workflow checks](#recommended-next-implementation) for remaining qualification.
 
-| Capability | Current source state | Remaining gap |
-|---|---|---|
-| Project text/source editing | Implemented through `@pierre/diffs/editor` with revision-aware reads, expected-revision saves, atomic replacement, permission preservation, truncated-save refusal, dirty-buffer conflict choices, and exact-file freshness. | No stable relocation after rename/move, no universal editor session spanning every entry point, and no notebook cell model. |
-| Direct file viewing | Image/SVG, PDF, Markdown, text/source, HTML, audio, video, and unknown-binary fallback are classified and opened. | Workspace preview still uses a separate narrower dispatcher; broad Office/scientific formats need adapters. |
-| HTML, PDF, math, and LaTeX | Interactive local HTML, HTML-to-PDF, producer-neutral PDF sources, durable PDF reader state, KaTeX, and a LaTeX build/diagnostics/SyncTeX loop are implemented. | Controlled document publishing, Typst/Quarto providers, and semantic PDF/extraction remain future work. |
-| MATLAB | A bounded first-party run-file foundation is implemented with discovery/verification, revision-safe execution, queueing, cancellation, diagnostics, history, and PNG/FIG artifact capture. | Interactive sessions, variables, debugging, broad figure/data formats, and full cross-platform qualification remain future work. |
-| Python and R | Source can be edited; generic terminal execution remains available. | No equivalent first-party run adapter, environment picker, structured run record, variables, or setup flow yet. |
-| Rich output in chat | Mermaid, Vega-Lite, and Plotly use one lazy rich-fence registry. | This is not yet a general runtime MIME registry or Artifact Studio. |
-| Analysis artifacts | Current MATLAB outputs use revisioned analysis-artifact contracts and bounded representations. | Broader producers, provenance graph, comparison, composition, and publication export remain proposed. |
-| Notebooks and executable documents | Standard files remain openable as source or fallback. | No Jupyter-compatible cell runtime, kernel lifecycle, executable-document session, or clean-run reproducibility flow. |
-| Data inspection | Ordinary text/JSON/CSV may be viewed as files. | No scalable typed dataset explorer, variable inspector, DuckDB query lane, or HDF5/domain adapter is implemented. |
+| Roadmap area | What Desktop main supports |
+|---|---|
+| 0–2. Open, edit, run | Project source editing, revision-aware saves, file/selection/cell runs, and retained run history for manual and agent Compute work. |
+| 3 and 7. Results and figures | Rich outputs, figure saving, batch exports, and linked results. Fresh whole-script runs can publish figures, tables, and values written to `SCIENT_RESULTS_DIR` for Markdown and LaTeX. Revisions retain script identity, runtime, outputs, and observed project-file reads where supported. |
+| 4. Language support | Python, R (IRkernel or Ark), Julia, DuckDB SQL, MATLAB, and installed Jupyter kernels. Scient-managed Python has its own runtime and toolkit recipes. |
+| 5. Notebooks | `.ipynb` code and Markdown editing, saved cell outputs, restart and run all, session variables where supported, heuristic staleness, and agent read/edit/run. |
+| 6. Datasets and variables | Paged CSV, TSV, Parquet, and workbook grids with search and sort. The grid also shows table-like kernel variables. |
+| 8. Diagnostics and IDE depth | Run errors and output locations guide researchers back to source or into chat. |
+| 9–10. Handoff, remote, and domains | Sessions run on the selected Scient server, including SSH. Run history, notebooks, and script result revisions provide handoff evidence. |
 
-Relevant current implementation evidence:
+Sources: [Compute Help](https://scientfactory.com/docs/scientific-computing/),
+[Compute internals](https://github.com/ScientFactory/scient-desktop/blob/4b50a4bd9473f1ef173911944ecc25e331248ec6/docs/internals/scient-compute.md),
+[linked result publication](https://github.com/ScientFactory/scient-desktop/blob/4b50a4bd9473f1ef173911944ecc25e331248ec6/apps/server/src/scient/results/ComputeResults.ts),
+[result revisions and staleness](https://github.com/ScientFactory/scient-desktop/blob/4b50a4bd9473f1ef173911944ecc25e331248ec6/apps/server/src/scient/results/resultRevisions.ts),
+and [Remote Access Help](https://scientfactory.com/docs/remote-access/).
 
-- [workspace file panel](https://github.com/ScientFactory/scient-desktop/blob/aa23f1d3b96f6904dcc1a114cc33415fa267315a/apps/web/src/components/files/FilePreviewPanel.tsx);
-- [universal file-opening contract](https://github.com/ScientFactory/scient-desktop/blob/aa23f1d3b96f6904dcc1a114cc33415fa267315a/docs/internals/scient-universal-file-opening.md);
-- [analysis runtime foundation](https://github.com/ScientFactory/scient-desktop/blob/aa23f1d3b96f6904dcc1a114cc33415fa267315a/docs/internals/scient-analysis-runtime-foundation.md);
-- [analysis artifact contracts](https://github.com/ScientFactory/scient-desktop/tree/aa23f1d3b96f6904dcc1a114cc33415fa267315a/packages/scient-analysis-artifacts);
-- [LaTeX implementation](https://github.com/ScientFactory/scient-desktop/blob/aa23f1d3b96f6904dcc1a114cc33415fa267315a/docs/internals/scient-latex.md); and
-- [rich fence registry](https://github.com/ScientFactory/scient-desktop/blob/aa23f1d3b96f6904dcc1a114cc33415fa267315a/apps/web/src/components/Chat/RichFenceRegistry.ts).
+### Compute Workbench
 
-The material gap is now a coherent multi-language computing workbench above
-these landed foundations—not basic source editing or a first MATLAB proof.
+- **Linked result revisions and comparison.** Scripts and fresh notebooks can
+  publish linked results with parameters, declared inputs, and available run
+  and environment evidence. Compare two revisions and inspect changed values,
+  tables, figures, and provenance. Publication requires writing linked outputs
+  to `SCIENT_RESULTS_DIR`.
+- **Notebook parameters, sweeps, and Reader view.** Tagged parameters drive
+  explicit fresh runs and bounded sweeps. Reader can switch between saved
+  settings and their results without starting a kernel.
+- **Result package export and verification.** Export a chosen revision with
+  source, outputs, a manifest, RO-Crate metadata, environment evidence, and
+  selected input files. Verification reruns supported analyses and reports
+  per-output differences.
+- **Dataset profiles and saved views.** Show column summaries with exact or
+  sampled scope. Save reusable DuckDB SQL views, materialize them, and declare
+  them as run inputs.
+- **Notebook output and code navigation.** Inline text, plots, errors, and
+  written-file links, plus failure summaries, heading navigation, and explicit
+  setup replay through a selected cell, and one-click code folding from the
+  language row in the editor and Reader.
 
-## In-Flight Implementation Evidence: Not Product Truth
+- **Missing Python packages.** For recognized missing libraries, eligible
+  Compute runs offer to add the package beside the session's Python and then
+  offer **Run again** where supported. Agents can request a named package for
+  a live Python session through `scient_compute_setup`. Fresh notebook
+  environment recovery is a separate milestone.
 
-Draft desktop [PR #129](https://github.com/ScientFactory/scient-desktop/pull/129)
-was inspected at remote head
-`4955966dc6731a262d839a13ced8faf40390384c` on 2026-08-28. It is already
-pushed to its integration branch but is not merged into `main`, released, or a
-substitute for the current-product table above.
+[Compute Help](https://github.com/ScientFactory/scient-desktop/blob/4b50a4bd9473f1ef173911944ecc25e331248ec6/docs/user/scientific-computing.md)
+· [File-preview Help](https://github.com/ScientFactory/scient-desktop/blob/4b50a4bd9473f1ef173911944ecc25e331248ec6/docs/user/file-previews.md)
+· [Package recovery UI](https://github.com/ScientFactory/scient-desktop/blob/4b50a4bd9473f1ef173911944ecc25e331248ec6/apps/web/src/scient/compute/ComputeDependencyRecoveryAction.tsx)
+· [Agent package setup](https://github.com/ScientFactory/scient-desktop/blob/4b50a4bd9473f1ef173911944ecc25e331248ec6/apps/server/src/mcp/toolkits/compute/handlers.ts)
 
-The candidate materially implements work that older versions of this roadmap
-described as future:
+## Recommended Next Implementation
 
-- a language-neutral `@scientfactory/compute` domain in which
-  `ComputeSession` remains a sibling of one-shot `AnalysisRun`;
-- durable session generations, exact submitted-source provenance, FIFO
-  execution, interrupt/restart/stop/loss semantics, bounded history, signed
-  retained resources, and snapshot-plus-delta client recovery;
-- a supervised Jupyter bridge and bring-your-own Python adapter with explicit
-  runtime discovery and verification rather than implicit installation;
-- a file-first Python Code/Split/Results workflow for file, selection, and
-  explicit `# %%` cell execution, bounded live variables, diagnostics, figures,
-  generated project images, and producer-neutral full/floating viewers; and
-- a first neutral MIME-representation foundation with durable display facts,
-  clear/update projection, content hashes, lazy authorized resources, and
-  truthful unsupported fallbacks.
+Start notebook environment recovery alongside packaged workbench qualification.
 
-The matching local integration worktree is clean at the same remote head. The
-PR remains deliberately draft; Windows real-kernel/process evidence, installed
-packaged-app qualification, current-main realignment, cumulative review, and
-explicit release approval remain open. Separate unpublished local MATLAB and
-notebook candidates are useful implementation evidence but are not durable
-repository truth and are not planning dependencies until preserved, realigned,
-reviewed, and qualified.
+1. **Linked revisions and comparison (Stages 3, 7, 9) — merged.**
+   Notebook revisions carry package evidence, failed and stopped fresh runs
+   reach the paper's last-attempt row, and an empty publish keeps the previous
+   result. Remaining: qualify on Windows and Linux.
+2. **Notebook parameters, sweeps, Reader, inline output, replay, and folding
+   (Stage 5) — merged.** Reader and export are bound to the exact
+   saved source and cell boundaries. Reader opens saved settings without a
+   published run and opens retained outputs it cannot preview. Sweeps take any
+   parameter, and agents can stop a sweep. Remaining: qualify on Windows and
+   Linux.
+3. **Result packages and verification (Stages 4, 9) — merged.**
+   Packages keep the original input digests apart from the export copies, and
+   the verdict says when outputs matched but the original inputs are
+   unconfirmed. Remaining: qualify cancellation of long verification runs on
+   Windows and Linux.
+4. **Profiles and saved views (Stage 6) — merged.** Paging, copy,
+   profile and export are pinned to one view revision, and export follows the
+   grid's filters for people and agents. Remaining: volatile SQL expressions
+   can still change between evaluations.
+5. **Python notebook environment recovery (Stage 4) — open.** Start with
+   [Use once, lockfile restore, and agent parity](#first-milestone-python-notebook-environment-recovery).
+   Extend the same selection and recovery contract to other Compute entry
+   points after this workflow passes.
+6. **Quarto publishing (Stages 5, 7) — open.** Render a saved `.qmd` through an
+   installed Quarto runtime. Preserve the build log and last good output, and
+   link the build to the analysis result it used. Follow with R Markdown.
 
-Planning consequence: retain the older detailed requirements below as product
-and regression envelopes, but do not implement a second stateful-Python domain,
-Jupyter bridge, compute store, Results surface, figure-following system, or MIME
-bundle solely because those items are still worded prospectively. First compare
-the accepted requirement with PR #129, keep or repair the existing candidate,
-and build only the missing slice. If the PR is rejected, record the reasons and
-the reusable/rejected portions before replacing it.
+The [Compute Languages workflow](https://github.com/ScientFactory/scient-desktop/actions/runs/45768552132)
+passed on Windows, Linux, and Apple silicon and Intel macOS. The packaged
+workbench still needs Windows and Linux fixtures for native filesystem
+observation, file pickers, paths, runtime selection, cancellation, and reopen.
+Keep broader widgets, automatic kernel reactivity, deeper debugging and
+profiling, scheduler reconnect and recovery, and domain packs as follow-on work.
+
+**Acceptance fixture.** Use a synthetic prediction dataset with known threshold
+counts. Publish metrics, a confusion matrix, and a figure from equivalent script
+and notebook runs. Compare thresholds, change a declared input, and interrupt a
+rerun. Confirm the prior result survives reopen and Reader switches among saved
+settings without a kernel. Export a selected revision and verify it in a clean
+environment with the original inputs. Verify that substituting changed data
+cannot produce an unqualified verification verdict.
 
 ## Target Researcher Experience
 
@@ -474,11 +451,9 @@ not a blank viewer.
 
 ### 4. Execution Coordinator And Specialized Adapters
 
-Current disposition: LaTeX `DocumentBuild` and MATLAB `AnalysisRun` now prove
-separate specialized lifecycles with shared concepts, while PR #129 is the
-in-flight proof of a third sibling, stateful `ComputeSession`. Generalize only
-the event, cancellation, diagnostic, process, and artifact seams that real
-implementations demonstrably share.
+LaTeX `DocumentBuild`, isolated `AnalysisRun`, and stateful `ComputeSession`
+use specialized lifecycles. Extend the event, cancellation, diagnostic,
+process, and artifact seams where the implementations share them.
 
 Define one coordinator for lifecycle mechanics shared by analysis and document
 builds:
@@ -605,134 +580,266 @@ explicit executable or installation:
 Discovery is read-only. Installing packages, changing environments, or
 downloading a runtime requires a clear action and visible destination.
 
+#### Runtime Selection And Dependency Recovery
+
+**Observed gap.** In the Document Lab dev app on 2026-11-23, a fixture's Python
+run used Homebrew Python 3.14.6 and raised `ModuleNotFoundError` for `pypdf`.
+The Document Lab runtime had a separate Python 3.14.7 that imported all five
+third-party modules the fixture imports. Its private environment was outside
+Compute's normal discovery locations. The recovery UI recognized `pypdf` and
+could only suggest an already verified Compute-managed Python or open Settings.
+The fixture also expects a tools directory as a positional argument. Runtime
+recovery and supplying the arguments are independent parts of this run.
+[Desktop discovery](https://github.com/ScientFactory/scient-desktop/blob/449442682a75a85102d762a4cb0601bbd61ba9a1/apps/server/src/scient/compute/RuntimeDiscovery.ts)
+· [Dependency recovery](https://github.com/ScientFactory/scient-desktop/blob/449442682a75a85102d762a4cb0601bbd61ba9a1/apps/web/src/scient/compute/computeDependencyRecovery.ts)
+
+**Researcher outcome.** Start in the intended project environment, see what
+actually ran, and recover a failed run from the file. A collaborator or agent
+should be able to inspect the same choice and the evidence for it. A Python
+environment includes the interpreter, its package search paths, and any
+manager-specific launch context. Two environments can share the same base
+interpreter and still produce different results.
+[Python virtual environments](https://docs.python.org/3/library/venv.html)
+
+| Approach | Evaluation |
+|---|---|
+| Scan the computer for every virtual environment or package | Finds some stray environments. Scan cost, inaccessible locations, duplicate caches and missing project intent make results unreliable. |
+| Require an interpreter path | Precise and broadly compatible. Keep it as an escape hatch and preserve the selected environment if its path stops working. |
+| Auto-select an environment by inspecting imports | Useful evidence for suggestions. Dynamic imports, project modules, editable installs, native dependencies and version constraints make this an unreliable execution default. |
+| Run a package manager by default | A manager can create a locked environment when asked. For example, ordinary `uv run` may synchronize the environment. Launching a file and preparing its environment need distinct actions. [uv run behavior](https://docs.astral.sh/uv/concepts/projects/run/) |
+| Resolve project intent, discover within supported scopes, and support registration | Recommended. It preserves the existing fast path and gives a supported route for environments anywhere on the execution host, including feature-owned environments. Use dependency evidence to offer recovery choices. |
+
+**Proposed design.**
+
+1. **One host-owned resolver for every Compute entry point.** Extend Desktop's
+   existing discovery, selection and verification, using the execution host
+   and authorized project as context. Keep environment identity separate from
+   the executable. A candidate has a logical identity, origin, scope, owner,
+   launch details and a resolved generation or fingerprint. Preserve a
+   Python virtual environment's launcher path and prefix even when the
+   executable points at the same base Python as another environment. For
+   owner-managed runtimes, resolve a stable name to the active verified
+   generation and pin that generation for the session. Document Lab can
+   publish such a candidate when its environment is intended for Compute use.
+   Its private tools and credentials remain subject to their existing access
+   rules.
+   [Desktop runtime contract](https://github.com/ScientFactory/scient-desktop/blob/449442682a75a85102d762a4cb0601bbd61ba9a1/packages/scient-compute/src/contract.ts)
+2. **Discover using project and manager conventions.** Cover standalone and
+   system Python, named and arbitrary-path virtual environments, existing uv
+   and Poetry or Pipenv environments, Conda/Mamba and Pixi, version-manager
+   installs, Scient-managed Python, registered feature environments, and
+   supported Jupyter kernel specifications. Extend manager coverage with
+   bounded inventory or project lookup on demand. Any environment with a
+   supported launch route can be added explicitly even when no manager
+   advertises it. On file open, show cached candidates and passive discovery.
+   Verify on demand with bounded, cancellable probes on the host. Resolve the
+   environment through its manager where activation affects native libraries
+   or environment variables. Use the normal execution permissions for any
+   launcher, hook or probe that runs code. A declaration or lockfile describes
+   intent. The live environment needs a separate check.
+   [uv project environments](https://docs.astral.sh/uv/concepts/projects/layout/)
+   · [Conda environment inventory](https://docs.conda.io/projects/conda/en/stable/commands/env/list.html)
+   · [Jupyter kernel specifications](https://jupyter-client.readthedocs.io/en/stable/kernels.html)
+3. **Select by explicit intent.** Honor a runtime chosen for this run, then a
+   saved project binding, a clear project environment, and the current
+   platform's automatic fallback. Surface an unavailable explicit or project
+   choice with a repair or rebind action. An environment explicitly declared by
+   the project can require setup before it can run. Show each ambiguous
+   alternative with its origin and the reason it qualifies. Do not replace the runtime
+   of a running session. A switch creates a new session, with the previous
+   run and outputs still available. Keep host-local paths in the host binding.
+   Share portable recipe and environment evidence when a project moves.
+4. **Recover from the file.** Show the selected environment and why it was
+   chosen. For a missing dependency, check eligible existing environments
+   using declared requirements and bounded package metadata where available.
+   A distribution name can differ from the import name. Distinguish declared,
+   installed, loadability verified, and unknown. User code, optional imports,
+   ambiguous namespace packages and native loading errors deserve their own
+   evidence. Recheck a proposed choice before starting it. In the run error,
+   show the failed environment and where a verified alternative was found.
+   Offer **Use once** and **Use for this project** alongside a separate
+   **Rerun** action. A combined switch and rerun is appropriate when the
+   researcher asks for both. The failed run may already have produced side
+   effects. If a usable environment is absent, offer **Restore project
+   environment** for a declared recipe or **Download** for a matching
+   Scient-managed runtime or toolkit. Offer a dependency addition to a
+   project-owned environment through its manager when that is the intended
+   repair. Show the target, planned manifest or lockfile changes, progress,
+   cancellation and the result of verification. Keep provisioning with its
+   owner and leave shared or system installations intact by default.
+   [Python package metadata](https://docs.python.org/3/library/importlib.metadata.html)
+   · [Python inline script metadata](https://packaging.python.org/en/latest/specifications/inline-script-metadata/)
+   · [Scientific Python Environment Roadmap](scientific-python-environment-roadmap.md#f-reproducibility-and-environment)
+5. **Keep run setup and evidence together.** File runs should be able to keep
+   a project-relative working directory and a structured argument list,
+   without shell interpolation. Sessions, fresh runs and verification should
+   record the environment actually launched, its host, language version,
+   generation or fingerprint, and available manifest or lockfile evidence.
+   Record source, declared inputs, parameters and arguments where appropriate.
+   Redact secrets and omit machine-local paths from portable evidence. Use
+   the same selection and diagnostics for people and agents, and make drift
+   and incomplete evidence visible in history and handoff.
+
+**Give agents the same recovery actions.** Compute tools can list runtimes,
+set up managed Python and toolkits, add a package for a live Python session,
+and run in a session or with the project default. Agents still need direct
+selection of a discovered environment for a fresh notebook run and the
+ability to save a project runtime binding.
+[Agent Compute tools](https://github.com/ScientFactory/scient-desktop/blob/4b50a4bd9473f1ef173911944ecc25e331248ec6/apps/server/src/mcp/toolkits/compute/tools.ts)
+· [Managed setup handler](https://github.com/ScientFactory/scient-desktop/blob/4b50a4bd9473f1ef173911944ecc25e331248ec6/apps/server/src/mcp/toolkits/compute/handlers.ts)
+
+Expose the same host-owned resolver and operations to the UI and the agent:
+
+- Inspect the project's effective environment and why it was selected. Return
+  stable candidate IDs, scope, readiness, and structured dependency evidence
+  from inventory, verification and run diagnostics. An agent can ask whether
+  an existing candidate meets a requirement and get the same answer as the UI.
+- Select an environment for a new run or session. Allow an explicit project
+  default change and surface it in Settings. Switching a live user session
+  requires authorization to end it and clear its variables. Otherwise, a new
+  session leaves it available. Run receipts show which choice the agent used.
+- Register an existing environment and manage installation, restore, updates,
+  repair and removal where the environment owner and the user's permissions
+  allow it. Use the existing operation authorization for each action. Keep
+  one-run selection, project preference changes, and host-wide management
+  distinct so a request to fix one script stays within that scope.
+- Return a durable operation handle with status, progress and cancellation for
+  long-running setup. Recheck the requested environment and dependency when it
+  settles. Rerun when asked and report whether the original failure is fixed.
+  The researcher can inspect the operation and take over through the UI.
+
+Extend the existing Compute tools where the action fits. Keep dependency
+recovery available through the first failure response and the ordinary
+file-run workflow, including for agents with a small tool budget. A successful
+repair should use supported Compute operations end to end, with its provenance
+visible alongside a manual run.
+
+**Apply the contract across languages.** Each adapter describes its own
+environment. R combines an R executable, library paths and a project such as
+`renv`, with restore explicit. Julia combines an executable with the active
+project, manifest and depot context. DuckDB needs its engine version,
+extensions and connection or database context. MATLAB needs the chosen
+installation, project or toolbox availability, and a license and connection
+check at the appropriate step. An installed Jupyter kernelspec describes a
+launch command and environment. Verify what it actually starts. Remote hosts
+resolve and verify their own candidates. This gives Settings, file runs, the
+Console, notebooks and agent tools one model for environment choice, setup,
+failure, and the receipt.
+[renv project environments](https://rstudio.github.io/renv/articles/renv.html)
+· [Julia Pkg environments](https://pkgdocs.julialang.org/v1/environments/)
+
+#### First Milestone: Python Notebook Environment Recovery
+
+A researcher should be able to recover from the first failed import in a
+fresh notebook run, see which Python produced the next result, and still
+open the previous result. Start with one saved Python `.ipynb` project on
+Desktop. The fresh-run path exercises a new session and already records
+runtime evidence when it publishes a result.
+
+**Build order**
+
+1. **Use an existing environment.** Start with the server path in
+   `notebookRuns.ts`. Carry the first failed cell ID, a reference to its
+   execution, its structured Compute diagnostic, and the runtime actually
+   used into the fresh-run outcome. Use live run evidence for recovery.
+   Imported notebook outputs remain readable as saved output. Extend
+   `ComputeRuntimeRegistry` and the existing runtime discovery and
+   verification to check the project's discovered and explicitly registered
+   Python environments. Start from the existing **Add a location** flow
+   and project runtime preference. Recheck the chosen candidate on the
+   execution host. Distinguish installed metadata from a successful
+   import probe, including when native loading fails. Use the existing
+   execution permissions for probes. Only claim a lockfile match when
+   the evidence supports it. In the failed-run panel, link to the cell and
+   offer **Use once** and **Use for this project** when an eligible
+   alternative is found. Pass that choice through the fresh-run request
+   into a new session. A one-run choice leaves the project default in place.
+   Keep **Run fresh** explicit after selection. Use the existing history and
+   result records for the failed and successful attempts.
+2. **Restore one declared environment.** Support a single project with
+   `pyproject.toml` and `uv.lock` at its root and compatible `uv` and Python
+   already on the execution host. Offer **Prepare environment** when the
+   declared environment is absent or needs repair. Show the project,
+   execution host, target environment and lockfile before setup. Use
+   `uv sync --locked` with the selected interpreter, automatic Python
+   downloads disabled, and an explicitly controlled, project-specific
+   destination owned by Scient. Prepare a fresh environment at its final
+   path and make it available only after verification. Keep an existing
+   working environment and its live sessions available throughout. Recheck
+   the manifest and lockfile identities before making the new environment
+   selectable. Serialize preparation for the same project, report
+   progress, and support cancellation and retry. If the lock is stale
+   or setup fails, show the reason and retain the previous result.
+   Record the runtime and the lockfile digest used for the next fresh run.
+   [uv locking and syncing](https://docs.astral.sh/uv/concepts/projects/sync/)
+   · [uv environment path](https://docs.astral.sh/uv/concepts/projects/config/#project-environment-path)
+3. **Give agents the same recovery path.** Extend the existing Compute
+   tools to return the failure, eligible environment choices and evidence,
+   accept a one-run choice or project binding, and request the same
+   permission-checked prepare operation. Reuse the server operation ID and
+   status for progress and cancellation. Agents rerun through the same
+   notebook entry point and history records as researchers. Keep the
+   operation contracts shared from step 1. The notebook UI and fixture
+   work can proceed in parallel once the diagnostic and selection shapes
+   are agreed.
+
+**Acceptance fixture**
+
+Use a synthetic notebook with a saved result, an early `pypdf` import and a
+later cell that writes a deterministic output. Run it against two virtual
+environments that share a base Python. The first lacks `pypdf`. Register
+the second outside the project and verify the import there.
+
+- The first run identifies the failing cell and the Python it used. Later
+  cells are skipped and the previous result stays available. After
+  **Use once** and **Run fresh**, the run succeeds in a new session, records
+  the environment in history and leaves the project preference intact.
+  A saved project choice survives reopening. If it disappears, the next
+  run reports that choice as unavailable and offers a way to recover.
+- Remove the eligible alternative, restore from the fixture's lockfile
+  and explicitly rerun with the prepared environment. Verify the locked
+  version and lockfile digest used, and confirm that both declaration files
+  retain their original bytes. Concurrent requests share one preparation.
+  Test a stale lock, a cancelled restore and an offline cache miss. Each
+  attempt leaves the last successful result accessible and any incomplete
+  environment unavailable for selection.
+- Opening Reader view, expanding code and browsing saved results starts
+  no installer or kernel. An unknown import offers diagnosis or an
+  environment choice without a guessed package download. A denied agent
+  preparation leaves the environment unchanged. With authorization, an
+  agent can prepare and rerun the same fixture with its own attributed run
+  record. A project choice saved by the agent is used by the next manual run.
+
+**Qualification.** Exercise resolution and preparation on the server, test
+selection and retry in the notebook UI, and run the complete fixture in a
+local macOS dev app. Qualify other hosts before enabling restore on them.
+
+**Follow-on work.** Apply the same recovery contract to interactive cells and
+scripts, then Console and independent verification. Add an explicit,
+reviewable dependency addition to a project-owned environment when the
+dependency is genuinely undeclared. Use Document Lab to prove registered
+generations and structured arguments. Wider manager discovery, remote-host
+restore and drift, and additional languages follow their own fixtures.
+
 ### 9. Document Authority, Projection, Collaboration, And Publication Contract
 
-The shared foundation needs an explicit contract for the future manuscript
-platform before the first typesetting implementation hardens. This is a set of
-responsibilities and validation requirements, not an accepted schema or package
-design.
+The [Scientific Document Platform Roadmap](scientific-document-platform-roadmap.md)
+owns the [platform model](scientific-document-platform-roadmap.md#proposed-platform-model)
+and [authority modes](scientific-document-platform-roadmap.md#authority-modes).
+Compute should preserve Scient's shared boundaries:
 
-#### Two authority modes, one project experience
-
-Scient must support both of these without treating one as a temporary import:
-
-- **file-native document projects** — existing LaTeX, Typst, Quarto, Markdown,
-  or other portable source files and their dependency graph remain canonical.
-  Semantic indexes, visual previews, comments, diagnostics, and collaboration
-  anchors are derived state. Accepted edits write back through revision-aware
-  file operations in a form the original toolchain can continue using;
-- **structured-native manuscripts** — Scient's scholarly document model is
-  canonical. Rich-text editors, source-like views, CRDT/OT documents, LaTeX,
-  Typst, Quarto, MyST, Word, JATS, HTML, and PDF are projections, interchange
-  forms, or artifacts unless an explicit conversion changes authority.
-
-One project may contain both kinds of document, but a single manuscript cannot
-silently have two canonical representations. Import, conversion, detachment,
-or a change of authority must create a reviewable reconciliation showing what
-was preserved, normalized, downgraded, unresolved, or lost. If round-trip
-editing cannot preserve a construct, Scient should keep source editing
-available and label the visual surface's limit instead of rewriting it.
-
-#### Stable identity and cross-projection anchors
-
-Path and character offsets are insufficient for full manuscript work. The
-foundation should preserve, where the authority mode permits:
-
-- stable document/project identity across rename, copy, import, and sync;
-- revisions and content identity for conditional writes and history;
-- logical identities for sections, paragraphs/blocks, citations, equations,
-  figures, tables, listings, footnotes, references, and publication metadata;
-- range/source maps among semantic objects, editor positions, source files,
-  compilation diagnostics, and rendered output;
-- resilient comment, suggestion, evidence, review, and agent anchors with
-  quoted/context fallback plus an explicit orphan/re-anchor state;
-- stable asset identity independent of a particular relative path when the
-  manuscript model, history, or collaboration requires it.
-
-The foundation does not need every semantic node in the first opener. It does
-need a versioned extension seam so early line anchors and file identities can
-be promoted without breaking comments, history, citations, or source/PDF
-navigation later.
-
-#### Projection and reconciliation adapters
-
-Use a common adapter shape for rich editors, portable source formats, imports,
-exports, and publishing providers. Each adapter should be able to declare:
-
-- supported input/output features and authority modes;
-- parse/import, render/export, and incremental-update capabilities;
-- stable-identity and source-map preservation;
-- fidelity limits and a machine- plus human-readable reconciliation report;
-- version/toolchain/template/profile dependencies;
-- deterministic fixture round trips and raw-source/output continuations;
-- whether the result is editable, reviewable, generated, or detached.
-
-This allows Tiptap/ProseMirror, Plate, or Lexical to compete as editor
-projections; LaTeX, Typst, Quarto/Pandoc, MyST, Word, JATS, Markdown, and HTML
-to compete or coexist as format adapters; and a later publishing/submission
-provider to change without redefining manuscript truth.
-
-#### Collaboration, review, and history
-
-Collaboration should operate on attributed document/project operations rather
-than on an editor engine's opaque state. The shared contract must support:
-
-- comment threads, mentions, assignments, suggestions, tracked changes,
-  accept/reject decisions, reviewer modes, and resolved/archived states;
-- the same proposal/review lifecycle for human and agent changes;
-- ephemeral presence, cursors, selections, and typing state that never become
-  scientific authority;
-- asynchronous/offline work, visible conflicts, reconnect, schema migration,
-  ownership transfer, revocation of future access, and recovery;
-- labelled milestones, attributed activity, version comparison, single-file
-  and whole-project restore, deleted-file recovery, and durable export;
-- separately versioned large/binary assets rather than embedding PDFs,
-  datasets, or figures inside a text CRDT.
-
-Yjs/Hocuspocus, Automerge, ShareDB, Yorkie, or a future engine may implement a
-bounded collaboration surface. None should own project membership,
-authorization, accepted scientific state, or the only readable history.
-
-#### Publication and institutional extension points
-
-The manuscript platform should be able to add without replacing the document
-foundation:
-
-- template records with origin, license, maintainer, version, update, and
-  project-copy semantics;
-- journal/conference/thesis/grant profiles, required metadata, reporting
-  guidelines, style/citation rules, and validation findings;
-- source packages, PDFs, supplementary files, data/code availability material,
-  cover letters, and other versioned submission artifacts;
-- direct publisher/repository/deposit adapters with submission receipts and a
-  manual download continuation;
-- Zotero/JabRef/CSL and other reference-manager adapters with citation-key and
-  refresh/reconciliation truth;
-- Git/GitHub/GitLab, local editor, drive, repository, and external-authoring
-  integrations without collapsing their histories into Scient history;
-- individual, guest, project, group, lab, and institution roles; SSO and later
-  provisioning; managed-account policy; ownership continuity; audit; retention;
-  metrics; feature/AI controls; and secure offboarding.
-
-Institution administration belongs to the identity/collaboration platform, not
-the typesetting engine. Submission belongs to publication adapters, not the
-editor. Keeping those boundaries explicit is what lets the first local opener
-scale to a full hosted, institutional, or hybrid experience.
-
-#### Service-separation lesson from Overleaf
-
-Overleaf's current repository separates real-time editing, document update and
-storage, project history, file storage, compilation, Git bridging, chat,
-notifications, and the web application. Scient should preserve comparable
-responsibility boundaries in contracts and tests, but it should not infer that
-it needs the same deployable services, databases, or network topology. Local
-desktop implementations may be in-process modules; cloud collaboration may
-later split them operationally.
-
-This separation provides a future scaling test: compilation can move from local
-to managed or remote execution; an editor or collaboration engine can change;
-history can grow from local snapshots to shared project history; and publishing
-integrations can expand without migrating the canonical scientific project.
+- Keep canonical file-native projects and structured-native manuscripts
+  identifiable across edits and exports. Authority changes require an explicit
+  conversion with a fidelity report and access to the original.
+- Give linked results and build receipts stable revision and artifact
+  identities so source maps, comments, review anchors, history, and restored
+  versions can still locate them after a move or edit.
+- Share attributed operations and permission checks across manual and agent
+  work. Version large assets independently from manuscript text and preserve
+  recoverable history across offline work and collaboration.
+- Keep build, editing, review, history, and publishing contracts independently
+  replaceable. Publication adapters should retain links to results and the
+  evidence supporting them.
 
 ## Source Strategy: What To Reuse, Adapt, Or Only Study
 
@@ -765,11 +872,11 @@ become Scient's product model.
 | [R `languageserver`](https://github.com/REditorSupport/languageserver) | R LSP adapter | Diagnostics, completion, hover, definition, references, symbols, formatting, and related standard LSP features. | Do not require it for basic editing or execution; degrade gracefully when absent. |
 | [IRkernel](https://github.com/IRkernel/IRkernel) | Initial R notebook adapter | Standard Jupyter kernelspec compatibility. | Do not make Jupyter the only way to run R scripts. |
 | [renv](https://github.com/rstudio/renv) | R environment adapter/reference | Detect lockfile/project library and preserve environment receipts. | Do not mutate or restore environments silently. |
-| [Ark](https://github.com/posit-dev/ark) (MIT) | Later R kernel/LSP/DAP challenger | Evaluate its R kernel and emerging language/debug protocol capabilities when they are independently usable. | Do not depend on Positron-only advanced behavior or unsigned/unpackaged components for the first R slice. |
+| [Ark](https://github.com/posit-dev/ark) (MIT) | Supported R kernel | Use the existing kernel integration. Evaluate language-server and debugging features separately. | Keep the integration usable independently of Positron. |
 | [MATLAB extension for VS Code](https://github.com/mathworks/MATLAB-extension-for-vscode) (MIT) | Official architecture/UX reference | Installation discovery, run/debug/workspace behavior, project handling, and compatibility expectations. | A VS Code extension is not directly embeddable in Scient; do not pretend it installs MATLAB or grants a license. |
 | [MATLAB MCP Core Server](https://github.com/matlab/matlab-mcp-core-server) | Official agent adapter candidate | First-party MCP setup for agent-assisted MATLAB actions, session attach/start, and official extensibility after license/telemetry review. | MCP must not replace the manual editor, Run action, output, or project run record. Do not enable telemetry or mutations without explicit product choices. |
 | [MATLAB Integration for Jupyter](https://github.com/mathworks/jupyter-matlab-proxy) | Optional notebook/full-MATLAB continuation | MATLAB kernel access in Jupyter and an external browser-based MATLAB continuation for installed, licensed MATLAB. | Do not embed the full MATLAB desktop/browser UI as Scient's workbench or imply the package installs MATLAB. |
-| [DuckDB](https://github.com/duckdb/duckdb) (MIT) | Leading data-query prototype candidate | In-process, read-oriented exploration of CSV/Parquet/Arrow and scalable preview queries. | Do not silently rewrite source datasets or make a DuckDB catalog the only project truth. |
+| [DuckDB](https://github.com/duckdb/duckdb) (MIT) | SQL runtime and saved-view engine | Use the Compute SQL path and qualify saved-view reads and materialization. | Preserve source files and portable SQL views. |
 | [Apache Arrow](https://arrow.apache.org/) (Apache-2.0) | Interchange layer | Columnar interchange among runtimes, viewers, and streamed tables where it reduces copying. | Do not require every runtime or small table to serialize through Arrow. |
 | [Perspective](https://github.com/perspective-dev/perspective) (Apache-2.0) | Table/grid/chart prototype candidate | Virtualized grid, large/streaming data, Arrow integration, and composable web component. | Do not accept bundle size, accessibility, keyboard, theme, or export behavior without a Scient-specific proof. |
 | [Vega-Lite](https://github.com/vega/vega-lite) (BSD-3-Clause) | Declarative figure specification candidate | Portable chart definitions, inspectable encodings, and renderer-independent saved specifications. | Do not replace native Python/R/MATLAB plotting libraries or force every figure into Vega-Lite. |
@@ -787,10 +894,8 @@ comments with chat context, updates an optimistic file cache, and debounces
 writes through a tested
 [`FileSaveCoordinator`](https://github.com/pingdotgg/t3code/blob/202e5609ffb294bc0aa86c08ce1d3751de567226/apps/web/src/components/files/fileSaveCoordinator.ts).
 
-This behavior has since become part of Scient's current editable source
-surface, with stronger Scient-owned save/conflict/freshness contracts. The T3
-implementation remains upstream lineage and interaction evidence, not a
-complete scientific workbench:
+Scient's editable source surface adds revision-aware saves, conflict handling,
+and freshness to the inherited T3 interactions.
 
 - T3 currently uses a `1.3.0-beta` `@pierre/diffs` editor plus a local patch;
 - the inspected save path sends full file contents and does not demonstrate the
@@ -807,23 +912,12 @@ method, accessibility, long-file, review-comment, and state-preservation tests.
 
 ## Ordered Roadmap
 
-The sequence below intentionally uses dependency and user value rather than
-calendar estimates.
+The stages below describe dependencies and target coverage. Use the
+[Desktop baseline](#desktop-baseline) to check implementation status
+and the [recommended sequence](#recommended-next-implementation) to pick up work.
 
-Status reconciliation on 2026-08-28:
-
-- Stages 0 and 1 are substantially landed for current workspace text and direct
-  opening; unresolved identity, relocation, and registry work moves to the file
-  foundation.
-- Stage 2 has landed first proofs in MATLAB and LaTeX. PR #129 additionally
-  contains the in-flight stateful Python and shared compute candidate described
-  above; qualify or reject it before scheduling another Python foundation. R
-  remains the next real language-parity challenger.
-- Stage 3 has landed generated-document and MATLAB artifact contracts. PR #129
-  adds an in-flight retained-representation foundation, but not the complete
-  typed dataset, cross-producer artifact registry, or staleness graph.
-- Stages 4-10 remain capability envelopes. Their detailed requirements are
-  retained below, but they are not all approved dependencies or release scope.
+Stages 0–3 retain regression requirements for the landed editing, execution,
+and artifact foundations. Stages 4–10 describe target coverage.
 
 ## Stage 0 — Landed In Part: Make File Truth Accurate
 
@@ -920,20 +1014,12 @@ Exit gate: a researcher can manually open, edit, save, diff, recover, and ask an
 agent about the same `.py`, `.R`, `.m`, `.qmd`, or `.tex` file without silent
 data loss.
 
-## Stage 2 — Landed First Proofs; Qualify The In-Flight Compute Candidate
+## Stage 2 — Shared Execution And Specialized Adapters
 
-MATLAB and LaTeX now prove lifecycle, cancellation/supersession, diagnostics,
-receipts/artifacts, and recovery in their own domains. PR #129 implements a
-stateful Python candidate above a separate `ComputeSession` domain. The next
-step is to review and qualify that candidate against this stage—not to create a
-second Python adapter—and to preserve the distinct `AnalysisRun` and
-`DocumentBuild` records.
-
-The foundation must pass a small cross-domain contract fixture before either
-domain builds deeply: one analysis action and one document build should be able
-to use the same coordinator and event envelope while producing different
-specialized receipts. This is an architecture gate, not a requirement to ship
-both user-facing integrations in the same release.
+Compute, isolated analysis, and document builds already establish their
+respective execution lifecycles. Use a cross-domain contract fixture to
+qualify common process, event, diagnostics, cancellation, and artifact
+mechanics with specialized receipts.
 
 ### User-facing slice
 
@@ -948,32 +1034,12 @@ both user-facing integrations in the same release.
   product policy requires it, without prompting on every ordinary run;
 - run initiated manually or by an agent appears in the same surface.
 
-### Adapter sequencing decision
+### Adapter compatibility
 
-MATLAB became the first implemented **isolated analysis** adapter and LaTeX
-became the first implemented document-build adapter. PR #129 is the current
-stateful Python candidate because of Python's scientific reach and the dedicated
-environment roadmap. This historical sequencing outcome must not create two
-stateful coordinators or make `ComputeSession`, `AnalysisRun`, or
-`DocumentBuild` impersonate one another.
-
-Before extending the candidate, review its coordinator boundary, exact-source
-receipt, cancellation/interrupt semantics, diagnostic envelope, retained-output
-registration, project-context handoff, and simulators. Promote shared concepts
-only where real consumers agree; do not retroactively force the established
-isolated-analysis and document-build domains through the stateful-session API.
-
-After PR #129 is aligned and accepted, validate which stateful concepts really
-generalize with an R adapter and the preserved MATLAB session candidate. Keep
-one-shot execution (`Rscript`, `matlab -batch`) in `AnalysisRun`; do not use it
-as evidence that persistent sessions are equivalent.
-
-Do not add language-specific custom panels before the shared UI can report the
-provider's truthful capability state (`available`, `missing`, or
-`misconfigured`) and the relevant record can run, stream, stop, and recover.
-Do not require every language to expose every stateful action, and do not delay
-a useful LaTeX opener until R and MATLAB ship; its `DocumentBuild` lane has its
-own acceptance gate.
+Preserve `ComputeSession` for stateful kernels, `AnalysisRun` for isolated work,
+and `DocumentBuild` for builds. Compare Python, R, and MATLAB using the same
+run, stop, diagnostic, source receipt, and recovery fixtures. Surface runtime
+capabilities and setup states through the shared UI.
 
 ### Process correctness
 
@@ -1034,6 +1100,9 @@ Add value behind one common product surface.
 
 ### R
 
+Desktop main already uses IRkernel and Ark. Extend that runtime path where a
+research workflow needs it, starting with environment evidence for handoff.
+
 - R installation and library discovery;
 - `renv` detection, status, restore/install actions with explicit confirmation,
   and lockfile receipt;
@@ -1044,7 +1113,8 @@ Add value behind one common product surface.
 - IRkernel for notebook compatibility;
 - Quarto/R Markdown execution and preview;
 - tidyverse/data.table/Arrow table handoff and ggplot2 figure capture;
-- Ark evaluated later as a kernel/LSP/debug challenger, not a prerequisite.
+- evaluate Ark's additional language-server and debugging capabilities separately
+  from its existing kernel role.
 
 ### MATLAB
 
@@ -1074,7 +1144,11 @@ without changing the common editor/run/artifact mental model.
 Notebook compatibility is important, but it should sit on the proven editor,
 runtime, renderer, and run-record layers.
 
-### First notebook slice
+### Notebook compatibility targets
+
+Desktop main already opens, edits, and runs `.ipynb` files and saves cell
+outputs. The checklist describes compatibility targets. See the
+[Compute workbench](#compute-workbench) for the merged baseline.
 
 - open and inspect `.ipynb` structure without dumping raw JSON by default;
 - edit code and Markdown cells;
@@ -1095,6 +1169,26 @@ runtime, renderer, and run-record layers.
 
 Use selected Jupyter client/protocol and MIME-rendering packages where they
 reduce protocol risk. Do not embed all of JupyterLab.
+
+### Notebook Cell Output And Recovery
+
+Qualify inline output, the first-failure summary, and setup replay with an
+offline notebook that fails in a setup cell, skips later cells, and renders an
+animation after repair. Check that replay through the selected cell recovers
+the expected output. Also exercise an imported notebook with a locked
+environment, native libraries, and an external data failure. Use the same
+execution and [environment recovery](#runtime-selection-and-dependency-recovery)
+rules for researchers and agents.
+
+### Notebook Parameters And Interactive Reader View
+
+Keep tagged parameters and saved outputs portable in Jupyter. Show effective
+settings separately from pending edits and make code and results keyboard
+accessible. Browsing precomputed settings starts no kernel. A new setting
+requires an explicit run, with the resulting revision linked to the settings
+it used. Portable Reader exports and broader live widgets remain follow-on work.
+[Papermill parameters](https://papermill.readthedocs.io/en/latest/usage-parameterize.html)
+· [Desmos interactive notebooks](https://help.desmos.com/hc/en-us/articles/48321123450765-Build-Interactive-Notebooks)
 
 ### Quarto And R Markdown
 
@@ -1128,12 +1222,13 @@ diff, and export without creating a second project shell.
 
 ### Dataset viewer
 
-Begin with CSV, TSV, Parquet, and Arrow. Add Excel through the existing document
-infrastructure when its fidelity and dependency boundary are ready. Then add
-typed adapters for JSON/JSONL, NumPy, R, MATLAB, HDF5, and domain formats.
+Build on the existing CSV, TSV, Parquet, and workbook grid. Qualify
+[profiles and reusable dataset inputs](#recommended-next-implementation), then
+add typed adapters for JSON/JSONL, NumPy, R, MATLAB, HDF5, and domain formats as
+research workflows require them.
 
-Prototype DuckDB plus Arrow for read-oriented queries and Perspective for the
-grid/chart surface. The proof must measure:
+Evaluate Arrow for interchange and Perspective for grid/chart work when the
+current viewer has a measured gap. For larger datasets, measure:
 
 - first render and memory on small, medium, and larger-than-memory files;
 - paging, sampling, cancellation, and progress;
@@ -1151,7 +1246,7 @@ not silently rewrite a research dataset.
 
 ### Runtime variables
 
-Add a Variables tab backed by adapter capabilities:
+Extend the Variables view using the available adapter capabilities:
 
 - name, type/class, dimensions/shape, compact value preview, and size;
 - expandable structures with paging;
@@ -1168,6 +1263,9 @@ state with saved data.
 ## Stage 7 — Figures, Graphs, And Visual Analysis
 
 The first job is faithful output capture, not a no-code chart builder.
+The [Scientific Artifact Studio](scientific-artifact-studio.md) owns the
+proposed inspection and composition experience above these producer outputs;
+this stage owns capture, run/data provenance, and computational regeneration.
 
 1. Render and preserve native static figures from Matplotlib/seaborn, ggplot2,
    and MATLAB.
@@ -1231,8 +1329,11 @@ protocols; Scient should implement only the client/product surface it needs.
 
 ### Remote and HPC
 
+Scient-managed SSH environments already run Compute on the selected host.
+Extend remote execution through the same result records once the local handoff
+has been verified.
+
 - attach to existing Jupyter servers;
-- SSH/remote execution adapter;
 - scheduler adapters such as Slurm after local run receipts are stable;
 - remote file/artifact synchronization with explicit authority;
 - reconnect, cancellation, queued/running/lost states;
@@ -1265,242 +1366,24 @@ not redefine the generic workbench around one field.
 ## Document-Platform Handoff: LaTeX And The Long-Term Overleaf Direction
 
 The [Scientific Document Platform Roadmap](scientific-document-platform-roadmap.md)
-now owns the integrated proposal, stages, current Scient Desktop baseline,
-viewer UX, Office/manuscript relationships, approval boundary, and complete
-quality plan. The focused
+owns build UX, root and engine choices, manuscript growth, and the Overleaf
+adaptation decision. Its
+[Staged implementation](scientific-document-platform-roadmap.md#ordered-implementation-roadmap)
+and
+[quality fixtures](scientific-document-platform-roadmap.md#quality-and-fixture-plan)
+govern that work. The
 [source map](../research/source-evaluations/scientific-document-platform-source-map.md)
-owns current upstream pins and source dispositions. This section is retained
-only as the computing workbench's shared-contract rationale; where planning
-details diverge, the focused document-platform roadmap governs this proposed
-product area.
+owns donor pins and dispositions.
 
-The retained LaTeX discussion records shared-contract rationale. The first
-universal typesetting opener is now implemented as a durable source/build/
-diagnostics/PDF/SyncTeX foundation rather than a disposable
-`LatexFilePreview`. The focused document-platform roadmap owns its future
-product growth and unresolved engine/provider decisions.
+Compute shares file resolution, lifecycle mechanics, diagnostics, and artifact
+viewers with the landed LaTeX source/build/log/PDF/SyncTeX loop. Keep source
+available during setup failures. Resolve bounded project context, preserve the
+last successful output, and anchor diagnostics and assets to their revisions.
 
-### Durable shared contract
-
-Define a `TypesetProject` as a domain specialization over shared Scient
-infrastructure:
-
-- `.tex`, `.ltx`, `.latex`, `.bib`, `.bibtex`, `.bst`, `.sty`, `.cls`, `.dtx`,
-  `.ins`, `.typ`, Quarto, and related portable text use `WorkspaceDocument`;
-- the universal opener and `SurfaceRegistry` provide `Preview`, `Source`,
-  `Log`, and optional split modes without creating a second tab identity;
-- `ProjectAndDependencyResolver` provides the root, sources, local styles,
-  classes, bibliography, figures, and generated-output context;
-- `ExecutionCoordinator` owns start, cancel, supersede, progress, recovery, and
-  process-tree lifecycle;
-- `TypesettingEngineAdapter` owns engine-specific preparation and parsing;
-- compile findings use the shared Problems model and durable source anchors;
-- PDF/HTML use the existing shared viewers and artifact registry;
-- a `DocumentBuild` receipt preserves root/source revisions, dependency graph,
-  engine/recipe, bibliography passes, environment, log, diagnostics, outputs,
-  and staleness inputs;
-- chat, agents, review comments, and later source-to-output navigation refer to
-  the same documents, source ranges, build, and output artifact.
-
-The shared execution layer must not flatten typesetting into an analysis run.
-An analysis result cares about runtime state, code selections, variables,
-tests, and data outputs. A document build cares about its root, dependency
-graph, engine passes, bibliography/index work, log, and last successful render.
-They should share mechanics and vocabulary while retaining those semantics.
-
-### Landed universal typesetting foundation
-
-The implemented slice establishes the following regression contract:
-
-1. Open source immediately from the project explorer, chat, scratch space, or
-   an arbitrary absolute local path, even when no compiler or project root is
-   available.
-2. Resolve the smallest bounded project context needed for local inputs,
-   images, styles/classes, bibliography, and compilation. Do not require import
-   into the current project merely to see a file.
-3. Offer `Preview`, `Source`, and `Log`, plus an optional split view; preserve
-   scroll/zoom and the selected source across rebuilds where practical.
-4. Build, rebuild, cancel, and supersede an obsolete build without leaving
-   orphan processes or letting late output replace a newer result.
-5. Parse errors and warnings into navigable diagnostics while retaining the
-   complete raw log.
-6. Keep the last successful PDF visible and explicitly stale when the next
-   build is running or fails.
-7. Show useful missing-engine, missing-package, ambiguous-root,
-   missing-resource, malformed-source, cancellation, and build-failure states;
-   source remains usable in every case.
-8. Keep auxiliary and temporary files outside source directories by default,
-   unless a project configuration deliberately specifies otherwise.
-9. Reuse the existing PDF viewer instead of building a private typesetting PDF
-   surface, with reviewed SyncTeX forward/inverse navigation.
-
-This is intentionally a complete local viewing/build loop, not yet full
-Overleaf. Smooth opening and useful output are the default. Normal execution
-boundaries—explicit provider discovery, owned process lifecycle, bounded file
-context, and truthful errors—should protect reliability without turning valid
-local documents into artificial read-only or blank states.
-
-### Root and project resolution
-
-The LaTeX resolver should evaluate evidence in a documented order and expose
-ambiguity rather than guessing invisibly:
-
-1. a prior explicit choice for the same project/context;
-2. a root magic comment such as `% !TEX root`;
-3. project configuration;
-4. the selected file if it contains document-root markers;
-5. bounded reverse dependency discovery through `input`, `include`, `import`,
-   and related relationships;
-6. a concise root chooser when more than one credible candidate remains.
-
-The selected source is not replaced by the root. A chapter opened from chat
-should remain the active source while its parent document supplies compilation
-context. Cache only choices whose scope and invalidation are understood.
-
-### Engine and language-service strategy
-
-Scient currently supports discovered local toolchains and managed TinyTeX
-behind its typesetting boundary. Future changes should compare candidates
-against the fixture pack and platform/distribution review:
-
-- Tectonic is an alternative managed, lower-setup local engine candidate;
-- installed `latexmk`/TeX Live/MiKTeX paths preserve compatibility with
-  existing projects, including explicit XeLaTeX/LuaLaTeX choices;
-- Typst should be a peer adapter, not a LaTeX conversion hack;
-- Quarto/Pandoc should compose analysis and document-build receipts;
-- a future remote build provider should implement the same contract without
-  making local files or artifacts opaque.
-
-LaTeX Workshop is the strongest bounded reference for root discovery, build
-recipes, cancellation, dependency/output directories, PDF refresh, and
-SyncTeX. TexLab is a plausible external LSP and is already integrated in
-`scient-agent`, but the desktop lifecycle, binary distribution, GPL boundary,
-and relationship to the editor need explicit review. Overleaf is a long-term
-workflow reference, not the local opener's codebase or service architecture.
-
-### Full manuscript capability envelope
-
-The long-term target is not merely an improved LaTeX preview. Scient should be
-able to cover the useful capabilities researchers expect from Overleaf and the
-broader scholarly-authoring ecosystem, then exceed them by connecting evidence,
-analysis, figures, provenance, and agents. The target envelope is:
-
-| Capability area | Durable target | Foundation that must exist early |
-|---|---|---|
-| Project and file lifecycle | Create, import/upload, copy, archive, tag, search, download, export, manage multi-file trees and assets, open arbitrary local sources, and preserve external-tool continuity. | Stable project/document/asset identity; file-native authority; conditional writes; bounded project resolution; import/export receipts. |
-| Source and visual authoring | First-class source and rich visual surfaces, long-document navigation/search, syntax and language assistance, math, tables, figures, cross-references, accessibility, and safe reconciliation with external edits. | Surface and projection registries; semantic identities and source maps; explicit authority; recoverable drafts and conflicts. |
-| Compilation and preview | Local, managed, or remote engines; versioned toolchains; automatic/manual/fast builds; cancellation; cache/output control; logs and output files; useful error modes; last-success preview; source/output synchronization. | Execution coordinator; project/dependency resolver; `DocumentBuild`; diagnostics; artifact registry; provider capability discovery. |
-| Citations and evidence | BibTeX/BibLaTeX, Zotero/JabRef/CSL interoperability, citation search/keys/locators/styles, metadata repair, refresh/reconciliation, unresolved states, and a distinction between evidence-linked and auxiliary references. | Structured reference and citation identities; adapter contract; provenance/evidence links; fidelity reporting. |
-| Review and discussion | Edit/review/view roles, link or invited access, comment threads, mentions, assignments, suggestions and tracked changes, accept/reject, reviewer modes, and later contextual project chat. | Durable attributed operations and anchors; permissions independent of the editor; one human/agent proposal lifecycle. |
-| History and recovery | Attributed activity, labelled milestones, comparisons, downloadable snapshots, file/project restore, deleted-file recovery, and intelligible relationships to Git/import/sync history. | Revision graph and immutable receipts independent of CRDT/OT state; asset versioning; migration and restore contracts. |
-| Realtime and local-first collaboration | Presence, cursors, concurrent edits, offline work, reconnect, visible conflict handling, ownership transfer, future-access revocation, and recovery without making a hosted service canonical for file-native projects. | Collaboration-engine boundary; identity/authorization; authority rules; portable history; separately versioned large assets. |
-| Templates and publication | Versioned template registry/gallery, origin and license, update/reconciliation, journal/conference/thesis/grant profiles, metadata and style validation, submission packages, direct adapters, receipts, repositories, deposits, and persistent identifiers. | Template/profile/publication adapter contracts; projection/fidelity reports; artifact packages; identity and audit. |
-| Integrations and portability | Git/GitHub/GitLab, local editors, Zotero, storage/drive providers, APIs and automation, source package import/export, and explicit history/conflict semantics at every boundary. | Provider adapters over owned document/project contracts; no external integration as sole project truth. |
-| Scientific and agent advantage | Evidence-linked claims, analysis-to-figure-to-manuscript provenance, executable documents, reproducibility checks, error assistance, language help, summaries/explanations, equation/table assistance, citation suggestions, and reviewable agent tasks. | Shared documents, runs, builds, artifacts, citations, evidence, permissions, and attributed proposal/approval records. |
-| Group and institution operation | Guests, groups/labs/institutions, roles, SSO and provisioning, managed accounts, ownership continuity, audit, retention/offboarding, metrics, and feature/AI policy. | Identity, authorization, audit, policy, export, and deletion contracts outside the editor/compiler. |
-| Accessibility, mobile, and international use | Keyboard/screen-reader quality, responsive review and approval, Unicode, multilingual/RTL content, and reliable behavior across desktop and browser continuations. | Semantic surfaces, command/action model, scoped bidi behavior, platform fixtures, and progressive rendering. |
-
-This is a capability inventory, not a promise that every item ships in one
-release or that Overleaf is the only benchmark. A capability may be delivered
-through owned implementation, a reviewed dependency, an adapter to an existing
-service, or a deliberately accepted donor integration. The permanent test is
-whether it composes with Scient's authority, identity, provenance, recovery,
-and portability contracts.
-
-### Capability growth ladder
-
-Use the following maturity ladder to prevent both throwaway first work and a
-premature attempt to build the whole platform. These are dependency layers,
-not accepted release dates:
-
-1. **M0 — universal file-native opener and build:** open any source, resolve
-   bounded project context, edit safely, compile through an adapter, inspect
-   diagnostics/log/output, and retain the last successful artifact.
-2. **M1 — manuscript kernel:** formalize authority modes, semantic identities,
-   anchors, projections, reconciliation reports, assets, revisions, and import/
-   export receipts before rich or collaborative state becomes entrenched.
-3. **M2 — serious individual authoring:** prove the scientific rich-editor
-   projection, source/visual round trips, structured citations/evidence,
-   figures/tables/equations, project search/navigation, templates, and
-   deterministic exports.
-4. **M3 — asynchronous review and durable history:** add comments, mentions,
-   assignments, suggestions/track changes, human and agent accept/reject,
-   milestones, comparison, restore, and deleted-file recovery.
-5. **M4 — realtime/local-first collaboration:** add a replaceable collaboration
-   engine, presence, offline/reconnect, conflicts, migration, revocation, and
-   multi-device recovery without moving scientific authority into engine state.
-6. **M5 — publication and ecosystem:** add template/profile registries,
-   validation, submission/deposit packages and providers, Git/reference-manager/
-   storage integrations, receipts, and reliable source/Word/JATS/HTML/PDF
-   interchange.
-7. **M6 — groups and institutions:** add guests, groups, roles, managed users,
-   SSO/provisioning, audit, retention/offboarding, metrics, policy controls,
-   accessible mobile review, and hybrid deployment choices.
-8. **M7 — integrated scientific intelligence:** connect literature evidence,
-   claims, datasets, analysis runs, figures, executable documents, peer review,
-   reproducibility checks, and governed agent assistance into one traceable
-   research lifecycle.
-
-Each maturity level must extend the same document/project identities and
-contracts. It may add schemas and services, but should not require replacing
-the opener, project resolver, editor boundary, history, build receipts, or
-artifact registry established below it.
-
-### Overleaf adaptation options and decision gate
-
-The present recommendation is to use Overleaf as a comprehensive product and
-systems reference while building Scient-owned contracts and selectively using
-permissive components or adapters. It is not a permanent ruling against every
-deeper relationship. Future options include:
-
-- compatibility and project-package exchange only;
-- an integration or synchronization adapter to an Overleaf deployment;
-- selected isolated services behind Scient contracts;
-- a maintained Community Edition fork or self-hosted offering;
-- an independently implemented Scient platform with equivalent capabilities.
-
-Before choosing anything deeper than reference, compatibility, or a bounded
-adapter, complete a dedicated source-depth, license, product, and operational
-decision. It must compare the actual hosted, professional, and Community
-Edition feature sets; identify per-component licensing and distribution
-obligations; measure how much relevant implementation is reusable; test fit
-with desktop/local-first and structured-native projects; define canonical data
-and history; price deployment, upgrades, observability, migration, security,
-and upstream maintenance; and show that the option accelerates the complete
-capability envelope rather than only reproducing a LaTeX collaboration silo.
-
-Overleaf's service separation is a valuable architectural lesson, not a
-topology prescription. Likewise, Community Edition availability is neither
-proof that all hosted features can be adopted nor a reason to reject a future
-fork that later proves legally, operationally, and strategically superior.
-
-### Open decisions for document-platform growth
-
-Resolve these in the focused document-platform architecture and implementation
-work:
-
-- whether Tectonic adds enough compatibility or setup value beside managed
-  TinyTeX and installed toolchains;
-- additional installed-TeX discovery and engine-override depth;
-- how external absolute files receive bounded neighboring-directory context;
-- auxiliary/output directory defaults and project overrides;
-- TexLab distribution/update ownership and license obligations;
-- later root-choice persistence, invalidation, and multi-root behavior;
-- semantic anchors beyond current SyncTeX source/PDF navigation;
-- the exact file-native and structured-native manuscript representations and
-  the UX for deliberate conversion or authority changes;
-- the stable semantic identity, anchor, source-map, and orphan/re-anchor model;
-- the rich-editor projection winner after one scientific manuscript fixture is
-  tested in Tiptap/ProseMirror, Plate, and Lexical;
-- the projection-adapter and fidelity/reconciliation report schema;
-- the review/history operation model and the bounded collaboration-engine
-  prototype winner;
-- the Overleaf relationship: compatibility, integration, isolated services,
-  fork/self-host, independent implementation, or a staged combination;
-- the template/profile/submission registry and first direct publishing or
-  repository adapters;
-- where individual, guest, group, institution, and mobile continuation scope
-  enters the delivery sequence.
+A `DocumentBuild` receipt owns the root, dependency and toolchain evidence,
+build passes, log, diagnostics, and output. Link executable documents to the
+`AnalysisRun` or result revision they used. Preserve source and artifact
+identity as engines, editor projections, and publication adapters evolve.
 
 ## Platform Implications
 
@@ -1724,93 +1607,14 @@ validator before attempting heavy imaging visualization.
 
 ## Approval Proposal
 
-Approve the following direction:
-
-1. **Category:** establish Scientific Computing and Data Analysis as the owner
-   of manual scientific source editing, runtimes, notebooks, data exploration,
-   figures, runs, and analysis artifacts.
-2. **Foundation:** consume the file/resource foundation for identity,
-   relocation, presentation selection, and common viewer recovery; preserve the
-   implemented conditional editor and add document/analysis semantics above it.
-3. **Editor:** retain the current `@pierre/diffs/editor` seam and Scient-owned
-   correctness wrapper. Evaluate CodeMirror or Monaco only for a proven unmet
-   requirement.
-4. **Execution:** extend common event, diagnostic, cancellation, process, and
-   artifact vocabulary from the landed MATLAB and LaTeX proofs while preserving
-   specialized `AnalysisRun` and `DocumentBuild` records.
-5. **Proof order:** review and qualify PR #129 as the current stateful Python
-   candidate under the dedicated Python environment roadmap, then validate R
-   parity without replacing the current isolated MATLAB lane.
-6. **R:** use official R, `renv`, R `languageserver`, and IRkernel as the first
-   compatibility path; treat Ark as a later challenger.
-7. **MATLAB:** preserve and extend the implemented user-installed MATLAB
-   integration; use official MathWorks sources for compatibility and consider
-   the official MATLAB MCP server only as an optional agent lane.
-8. **Notebooks:** implement selected Jupyter protocol/MIME compatibility after
-   script execution; do not embed all of JupyterLab; keep marimo as an adapter
-   and design reference.
-9. **Data:** prototype DuckDB + Arrow + Perspective behind Scient's own data
-   viewer contract and accept them only after performance/accessibility/fidelity
-   gates.
-10. **Figures:** capture native language outputs first, preserve interactive and
-    declarative specifications where available, and connect figures to source
-    runs and manuscripts.
-11. **LaTeX:** preserve the landed typesetting opener and grow it through the
-    document platform; do not create a second source, build, diagnostics, PDF,
-    toolchain, or SyncTeX lane.
-12. **Manuscripts:** evolve that opener through the complete capability
-    envelope: serious source/visual authoring, citations/evidence, review,
-    durable history, realtime/local-first collaboration, templates,
-    publishing, integrations, portability, institutions, accessibility/mobile,
-    and governed scientific agent assistance, without replacing the shared
-    document, execution, diagnostics, history, and artifact base.
-13. **Source posture:** keep Overleaf and every donor behind owned contracts.
-    Start with product reference, compatibility, and bounded adapters; leave a
-    future isolated integration, self-hosted deployment, or maintained fork
-    available only after a dedicated source-depth/license/product/operations
-    decision proves it superior for the complete target.
-14. **Domains:** add neuroscience/BIDS as a later adapter pack after the generic
-    workbench is useful.
-15. **Scope control:** preserve current Markdown, diff, terminal, PDF/image, and
-    browser behavior; integrate rather than duplicate the universal viewer.
-
-Reject for now:
-
-- an unreviewed wholesale donor fork;
-- a language-specific architecture;
-- notebook-first sequencing;
-- agent-only execution;
-- proprietary-runtime bundling;
-- an unqualified promise of full IDE, Overleaf, MATLAB, or RStudio parity in
-  the first implementation.
-
-## Next Planning Handoffs After Approval
-
-Approval of this roadmap should create separate bounded documents rather than
-turning this planning note into implementation architecture:
-
-1. file/resource/presentation foundation implementation slices;
-2. PR #129 current-main realignment, qualification, and disposition, followed
-   by bounded Python environment/runtime continuations rather than a replacement
-   foundation;
-3. cross-language execution/event/diagnostic compatibility review based on the
-   existing MATLAB and LaTeX contracts;
-4. artifact/staleness integration with the Scientific Artifact Studio;
-5. Python/R/MATLAB parity fixture and quality plan;
-6. first multi-language workbench interaction design;
-7. dependency/license review for selected Python, notebook, and data packages;
-8. manuscript authority, semantic identity, anchor, projection, fidelity, and
-    reconciliation architecture decision;
-9. scientific rich-editor shootout using one source/visual/citation/evidence/
-    figure/review/import-export fixture;
-10. citation/reference/evidence architecture and Zotero/JabRef/CSL adapter plan;
-11. review, attributed history, restore, and replaceable collaboration-engine
-    architecture plus offline/conflict/revocation fixture;
-12. template/profile/publication/submission architecture and first adapter plan;
-13. Overleaf hosted/professional/Community Edition source-depth, feature-gap,
-    license, operations, local-first, and structured-manuscript decision record;
-14. notebook contract and rendering continuation after the PR #129 foundation
-    and any preserved notebook proof are reconciled.
+Approve focused planning for one Compute workbench on the shared file and
+artifact foundations. Keep manual editing, stateful kernels, isolated runs,
+and document builds interoperable through shared mechanics and specialized
+records. Extend the existing language adapters, notebook surface, and dataset
+grid through the [recommended work](#recommended-next-implementation) and
+platform fixtures. Keep publication composition with the Scientific Artifact
+Studio and manuscript growth with the Scientific Document Platform. Add
+domain packs after the generic workbench handles ordinary analysis reliably.
 
 ## Roadmap Completion Criteria
 
