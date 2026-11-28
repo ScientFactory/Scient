@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-07-20
-Last updated: 2026-08-28
+Last updated: 2026-11-28
 Purpose: Defines how ScientFactory repositories, branches, pull requests, releases, deployments, permissions, and local worktrees are operated.
 Doc type: Operational procedure
 
@@ -27,7 +27,7 @@ exactly one child repository.
 | --- | --- | --- | --- | --- |
 | `ScientFactory/Scient` | `Scient/` | Private | `main` | No release branch. Product truth, architecture, plans, cross-repository pins, and operating procedures live here. |
 | `ScientFactory/scient-desktop` | `scient-desktop/` | Public | `main` | The current T3-derived application. Its exact `release/stable` head is the only source for desktop artifacts. Publication remains an explicit gated action. |
-| `ScientFactory/scient-agent` | `scient-agent/` | Public | `dev` | `release/stable` is the agent promotion boundary. Agent artifact publication remains disabled until an owned artifact contract exists. |
+| `ScientFactory/scient-agent` | `scient-agent/` | Public | `main` | A manual release workflow on `main` drafts the release. A person publishes it, creating the `v<version>` tag; see the [maintainer guide](https://github.com/ScientFactory/scient-agent/blob/main/SCIENT.md#release). |
 | `ScientFactory/ScientFactory-website` | `website/` | Public | `main` | `main` is the Cloudflare Pages production source. Pull requests receive preview deployments. |
 
 The website repository may use `website/` when cloned into the shared local
@@ -45,8 +45,8 @@ Push a change to the repository that owns its implementation or authority:
 - Desktop UI, runtime, packaging, updater behavior, signing, and release
   workflows go to `scient-desktop`. The retired predecessor has no product,
   support, intake, or release authority.
-- First-party agent source, inherited OpenCode review state, agent build logic,
-  and agent release validation go to `scient-agent`.
+- First-party agent source, its Oh My Pi alignments and divergence ledger, agent
+  build logic, and agent release validation go to `scient-agent`.
 - Marketing pages, download-page behavior, release-download metadata adapters,
   website redirects, edge functions, and website deployment configuration go
   to `ScientFactory-website`.
@@ -144,17 +144,18 @@ artifact, or artifact produced from another commit is not a public release.
 
 ## Agent Release Promotion
 
-`scient-agent/dev` is the integration branch. `release/stable` accepts promotion
-pull requests from `dev`, plus narrowly scoped `hotfix/*` pull requests during
-an emergency.
-
-The `Scient source quality` and `Scient release policy` checks protect the agent
-promotion boundary. The release-policy workflow validates branch provenance and
-records the exact source SHA. It intentionally does not publish an agent binary
-or package yet: the native Scient agent artifact, versioning, signing, and
-consumer contract are not implemented. Enabling publication requires a reviewed
-artifact contract and a separate workflow change; a branch promotion alone must
-never invent a release.
+`scient-agent/main` is the integration branch. Changes reach it through pull
+requests that keep their commits (rebase merge). Each pull request builds and
+checks the agent on six platforms. Run `scient.yml` manually on `main` with
+`release` enabled and a version input, or leave the version blank for the next
+patch after the latest published release. After its checks pass, the run drafts
+a release with the macOS binaries Developer ID signed and notarized, all
+platform binaries, and their SHA-256 checksums. A person publishes the draft,
+creating the `v<version>` tag on the built commit; the draft has no tag.
+The [maintainer guide](https://github.com/ScientFactory/scient-agent/blob/main/SCIENT.md#release)
+owns version validation, retries, signing, and publication. The former
+`release/stable` promotion boundary belonged to the retired OpenCode-derived
+source.
 
 ## Website Deployment
 
@@ -192,7 +193,7 @@ pull-request links.
 
 ## Hotfixes
 
-For an urgent released-product fix:
+For an urgent released-desktop fix:
 
 1. branch `hotfix/<description>` from the affected repository's
    `release/stable` head;
@@ -202,7 +203,8 @@ For an urgent released-product fix:
 5. immediately merge or reapply the hotfix into the integration branch so the
    fix cannot disappear from future releases.
 
-Website incidents use a normal fix or revert pull request against website
+Agent fixes use pull requests against agent `main` and the release procedure
+above. Website incidents use a normal fix or revert pull request against website
 `main`; there is no separate website release branch.
 
 ## Access And Review

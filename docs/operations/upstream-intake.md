@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-07-18
-Last updated: 2026-08-28
+Last updated: 2026-11-28
 Purpose: Defines the repeatable process for detecting, reviewing, and selectively inheriting changes from Scient's original desktop and agent sources.
 Doc type: Operational procedure
 
@@ -12,8 +12,10 @@ Doc type: Operational procedure
 This document owns the cross-repository upstream maintenance procedure. It does
 not decide repository authority, replace repo-local commands, or record current
 pins. ADR-0002 owns authority and topology. Each source repository's
-`UPSTREAM.md` owns its exact commands and protected invariants. Repo-local
-`upstream-state.json` files own machine review checkpoints. The parent
+`UPSTREAM.md` owns its exact commands and protected invariants for that lane;
+Scient Agent's OMP alignments follow its
+[maintainer guide](https://github.com/ScientFactory/scient-agent/blob/main/SCIENT.md).
+Repo-local `upstream-state.json` files own machine review checkpoints. The parent
 `lab/external/sources.lock.md` and dated review records preserve cross-repository
 evidence.
 
@@ -37,7 +39,20 @@ behind count is not.
 | Owned repository | Official source | Owned branch | Official branch |
 |---|---|---|---|
 | `ScientFactory/scient-desktop` | `pingdotgg/t3code` | `main` | `main` |
-| `ScientFactory/scient-agent` | `anomalyco/opencode` | `dev` | `dev` |
+
+Scient Agent uses the selected Oh My Pi (`can1357/oh-my-pi`) foundation on
+`main`. Its [maintainer guide](https://github.com/ScientFactory/scient-agent/blob/main/SCIENT.md)
+owns release alignments, divergence checks, and accepted checkpoints. The
+checkpoint procedure below does not govern those alignments.
+
+The parent [source snapshot](../../lab/external/owned-sources.json),
+[source lock](../../lab/external/sources.lock.md), and verifier still cover the
+former OpenCode lane. They preserve historical source verification, not live
+native-agent provenance. Migrating that machine-checked evidence is separate
+work; it does not reopen the foundation choice. Current native-agent provenance
+is recorded in the agent repository's
+[`scient.json`](https://github.com/ScientFactory/scient-agent/blob/main/scient.json)
+and alignment records described in its maintainer guide.
 
 Every checkout used for maintained upstream intake must have a writable
 `origin` and fetch-only `upstream` with push URL `DISABLED`. An ordinary

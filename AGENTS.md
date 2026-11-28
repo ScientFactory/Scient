@@ -3,7 +3,7 @@
 Status: Active
 Owner: Yaacov
 Created: 2026-06-27
-Last updated: 2026-08-28
+Last updated: 2026-11-28
 Purpose: Defines how agents should work in this early Scient repository.
 Doc type: Agent protocol
 
@@ -21,26 +21,27 @@ editing, universal direct file opening, freshness, rich chat math/diagrams/
 charts, interactive HTML, browser PDF export, LaTeX, generated documents,
 MATLAB analysis, and selected Skills foundations. It still does not establish
 the complete scientific project/memory model, cloud sync plane, manuscript
-platform, Artifact Studio, native Scient agent, or first complete scientific
-vertical slice. Do not infer those boundaries from the capabilities that have
-landed.
+platform, Artifact Studio, or first complete scientific vertical slice. Do not
+infer those boundaries from the capabilities that have landed.
 
 ScientFactory is the company and GitHub organization identity. **Scient** is
-the public name for both the implemented application and its planned native
+the public name for both the implemented application and its native
 first-party research agent. In technical contexts, use **Scient app** and
 **Scient agent** whenever the meaning could be ambiguous.
 
-The Scient agent is planned but not yet implemented. It will be one owned
-first-party agent—not a thin shell around separately authoritative engines.
-The current `scient-agent` repository is OpenCode-derived historical incumbent
-source evidence; ADR-0005 does not select its future refreshed baseline. Before
-native-runtime implementation, follow the Foundation Gate in the proposed
-Scient-and-external-agents plan and compare freshly fetched official candidates.
-Pi and OpenCode are current finalists; neither is selected. External OpenCode
-and the other inherited external-agent paths remain separate choices with
-separate identity, configuration, credentials, sessions, and updates. Public
-brand and trademark clearance remains outstanding and must be completed before
-public release.
+Oh My Pi (`can1357/oh-my-pi`) is the selected source foundation and primary
+upstream for the native Scient agent. `ScientFactory/scient-agent` owns its
+implementation; its [maintainer guide](https://github.com/ScientFactory/scient-agent/blob/main/SCIENT.md)
+owns isolation, upstream alignments, and releases. The earlier Pi/OpenCode
+comparison in the [implementation plan](docs/planning/scient-and-external-agents-implementation-plan.md)
+and the parent OpenCode [source snapshot](lab/external/owned-sources.json) are
+historical evidence, not current foundation selection or live native-agent
+provenance.
+The Scient agent stays one owned first-party agent—not a thin shell around
+separately authoritative engines. External OpenCode and the other inherited
+external-agent paths remain separate choices with separate identity,
+configuration, credentials, sessions, and updates. Public brand and trademark
+clearance remains outstanding and must be completed before public release.
 
 The long-term target is one Scient agent whose essential capabilities may be
 derived from multiple reviewed sources and integrated under Scient ownership.
@@ -74,9 +75,7 @@ checkouts:
 
 `Scient/` owns product and project knowledge, cross-repository planning, and
 source pins. `scient-desktop/` owns the public T3-derived current application.
-`scient-agent/` owns the historical OpenCode-derived agent source and is the
-planned home for the one native Scient agent; its refreshed foundation remains
-subject to the documented Foundation Gate. Add
+`scient-agent/` owns Scient Agent, the native agent built from Oh My Pi. Add
 `website/` only when website or download-surface work needs it.
 
 Use the [local workspace setup](docs/development/local-workspace-setup.md) for
