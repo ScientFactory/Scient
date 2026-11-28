@@ -3,7 +3,7 @@
 Status: Proposed
 Owner: Yaacov
 Created: 2026-08-17
-Last updated: 2026-11-24
+Last updated: 2026-11-28
 Purpose: Proposes Python workflows and sequencing for scientists and agents using Compute.
 Doc type: Planning note
 
@@ -31,14 +31,14 @@ and implementation contracts in
 
 ## Desktop Baseline
 
-Use the [Compute baseline](scientific-computing-and-data-analysis-roadmap.md#desktop-baseline-2026-11-23)
-and its [PR #1082 update](scientific-computing-and-data-analysis-roadmap.md#pr-1082-candidate-2026-11-24).
-Desktop main already has stateful Python, interpreter discovery and selection,
-optional managed Python and toolkits, editable notebooks, table inspection, and
-figure capture. The merge candidate adds declared inputs and comparison,
-parameterized notebook runs and Reader, richer data inspection, and result
-handoff with verification. Correctness and platform gates remain with the
-[Compute sequence](scientific-computing-and-data-analysis-roadmap.md#recommended-next-implementation).
+Use the [Compute baseline](scientific-computing-and-data-analysis-roadmap.md#desktop-baseline)
+and [merged workbench](scientific-computing-and-data-analysis-roadmap.md#compute-workbench).
+Desktop main supports stateful Python, interpreter selection, optional managed
+Python and toolkits, notebooks with parameters and Reader, dataset profiles,
+figure capture, and result comparison and handoff. Eligible runs can add a
+missing package and offer an explicit rerun. The
+[Compute sequence](scientific-computing-and-data-analysis-roadmap.md#recommended-next-implementation)
+tracks packaged qualification and fresh notebook environment recovery.
 
 ## Decision Summary
 
@@ -55,12 +55,13 @@ Extend the stateful Python kernel and its existing file, selection, cell, and
 notebook paths. Use the resolved runtime and its project or server context in
 run records. Improve dependency diagnostics, runtime recovery, and agent
 parity through the Compute environment contract. Preserve output streaming,
-cancellation, source-linked tracebacks, and the shared execution permissions.
-Quarto is a later document adapter.
+cancellation, and source-linked tracebacks. Apply the project's file-write
+and network permissions on the execution host. Quarto is a later document
+adapter.
 
 ### B. Data Layer — Datasets As First-Class Project Objects
 
-Build on the existing grid, variable inspection, and candidate profiles and
+Build on the existing grid, variable inspection, profiles, and
 saved views. Link reviewed data and transforms to the runs that used them.
 
 - Ingestion: CSV, TSV, Excel, Parquet, Arrow, JSON, HDF5, NetCDF, Stata, SAS,
@@ -131,11 +132,13 @@ Preserve figure provenance and reuse the same capture path for seaborn plots.
 - First deliver [Python notebook environment recovery](scientific-computing-and-data-analysis-roadmap.md#first-milestone-python-notebook-environment-recovery).
   Offer **Use once** with a verified interpreter, restore from `uv.lock`
   explicitly, and expose the same operations to people and agents.
-- Build on interpreter selection, managed toolkits, and the candidate result
+- Build on interpreter selection, managed toolkits, and the result
   manifest. Capture the runtime, package and lockfile evidence, parameters,
   seed where available, code, and input revisions. Report missing evidence.
 - Use native project recipes when available. Extend explicit restoration and
   approved dependency changes through the owning environment manager.
+- Plan an explicit export of a reviewed environment declaration from a verified
+  run, with unresolved dependencies visible.
 - Extend package verification after the input provenance and notebook recovery
   gates pass. Keep containers and wider environment managers for later.
 
@@ -222,7 +225,7 @@ Cross-cuts everything above and is the PRD's central trust requirement.
 
 ## Sequencing
 
-1. Qualify the candidate results, notebook, data, and handoff workflows. Build
+1. Qualify the merged results, notebook, data, and handoff workflows. Build
    notebook environment recovery on the existing Python execution foundation.
 2. Extend reviewable statistics and the visual edit/rerun loop on top of saved
    datasets, provenance, and figure capture.

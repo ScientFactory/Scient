@@ -3,7 +3,7 @@
 Status: Proposed
 Owner: Yaacov
 Created: 2026-07-24
-Last updated: 2026-11-24
+Last updated: 2026-11-28
 Purpose: Proposes the scope, architecture, and implementation sequence for Scient's computing workbench and its shared document foundations.
 Doc type: Planning note
 
@@ -100,12 +100,15 @@ Related plans own the following dependencies.
   engine choice, first typesetting slice, manuscript representation,
   collaboration model, and donor-adaptation depth remain outside this roadmap.
 
-## Desktop Baseline, 2026-11-23
+## Desktop Baseline
 
-Desktop `main` source and Help were reviewed at
-[`c7bbc046`](https://github.com/ScientFactory/scient-desktop/commit/c7bbc0469f37c421ed2fe86fd917a55c0f68341c).
-The table records source capabilities. Packaged and cross-platform qualification
-remain open.
+Desktop `main` was checked at
+[`4b50a4bd`](https://github.com/ScientFactory/scient-desktop/commit/4b50a4bd9473f1ef173911944ecc25e331248ec6).
+[PR #1082](https://github.com/ScientFactory/scient-desktop/pull/1082) merged as
+[`26237b7`](https://github.com/ScientFactory/scient-desktop/commit/26237b7d1991ee1af4a9044e0e8d9a45b6ea82d9),
+which is included in the [v0.6.34 release tag](https://github.com/ScientFactory/scient-desktop/releases/tag/v0.6.34).
+This baseline records source capabilities. See the
+[packaged workflow checks](#recommended-next-implementation) for remaining qualification.
 
 | Roadmap area | What Desktop main supports |
 |---|---|
@@ -118,15 +121,12 @@ remain open.
 | 9–10. Handoff, remote, and domains | Sessions run on the selected Scient server, including SSH. Run history, notebooks, and script result revisions provide handoff evidence. |
 
 Sources: [Compute Help](https://scientfactory.com/docs/scientific-computing/),
-[Compute internals](https://github.com/ScientFactory/scient-desktop/blob/c7bbc0469f37c421ed2fe86fd917a55c0f68341c/docs/internals/scient-compute.md),
-[linked result publication](https://github.com/ScientFactory/scient-desktop/blob/c7bbc0469f37c421ed2fe86fd917a55c0f68341c/apps/server/src/scient/results/ComputeResults.ts),
-[result revisions and staleness](https://github.com/ScientFactory/scient-desktop/blob/c7bbc0469f37c421ed2fe86fd917a55c0f68341c/apps/server/src/scient/results/resultRevisions.ts),
+[Compute internals](https://github.com/ScientFactory/scient-desktop/blob/4b50a4bd9473f1ef173911944ecc25e331248ec6/docs/internals/scient-compute.md),
+[linked result publication](https://github.com/ScientFactory/scient-desktop/blob/4b50a4bd9473f1ef173911944ecc25e331248ec6/apps/server/src/scient/results/ComputeResults.ts),
+[result revisions and staleness](https://github.com/ScientFactory/scient-desktop/blob/4b50a4bd9473f1ef173911944ecc25e331248ec6/apps/server/src/scient/results/resultRevisions.ts),
 and [Remote Access Help](https://scientfactory.com/docs/remote-access/).
 
-### PR #1082 candidate, 2026-11-24
-
-[PR #1082](https://github.com/ScientFactory/scient-desktop/pull/1082) is
-pending merge at `bc1e3d8e069`. The candidate extends the baseline as follows.
+### Compute Workbench
 
 - **Linked result revisions and comparison.** Scripts and fresh notebooks can
   publish linked results with parameters, declared inputs, and available run
@@ -148,29 +148,37 @@ pending merge at `bc1e3d8e069`. The candidate extends the baseline as follows.
   setup replay through a selected cell, and one-click code folding from the
   language row in the editor and Reader.
 
-[Candidate Compute Help](https://github.com/ScientFactory/scient-desktop/blob/bc1e3d8e069/docs/user/scientific-computing.md)
-· [Candidate file-preview Help](https://github.com/ScientFactory/scient-desktop/blob/bc1e3d8e069/docs/user/file-previews.md)
+- **Missing Python packages.** For recognized missing libraries, eligible
+  Compute runs offer to add the package beside the session's Python and then
+  offer **Run again** where supported. Agents can request a named package for
+  a live Python session through `scient_compute_setup`. Fresh notebook
+  environment recovery is a separate milestone.
+
+[Compute Help](https://github.com/ScientFactory/scient-desktop/blob/4b50a4bd9473f1ef173911944ecc25e331248ec6/docs/user/scientific-computing.md)
+· [File-preview Help](https://github.com/ScientFactory/scient-desktop/blob/4b50a4bd9473f1ef173911944ecc25e331248ec6/docs/user/file-previews.md)
+· [Package recovery UI](https://github.com/ScientFactory/scient-desktop/blob/4b50a4bd9473f1ef173911944ecc25e331248ec6/apps/web/src/scient/compute/ComputeDependencyRecoveryAction.tsx)
+· [Agent package setup](https://github.com/ScientFactory/scient-desktop/blob/4b50a4bd9473f1ef173911944ecc25e331248ec6/apps/server/src/mcp/toolkits/compute/handlers.ts)
 
 ## Recommended Next Implementation
 
-Start notebook environment recovery alongside candidate qualification.
+Start notebook environment recovery alongside packaged workbench qualification.
 
-1. **Linked revisions and comparison (Stages 3, 7, 9) — built-pending-merge.**
+1. **Linked revisions and comparison (Stages 3, 7, 9) — merged.**
    Notebook revisions carry package evidence, failed and stopped fresh runs
    reach the paper's last-attempt row, and an empty publish keeps the previous
    result. Remaining: qualify on Windows and Linux.
 2. **Notebook parameters, sweeps, Reader, inline output, replay, and folding
-   (Stage 5) — built-pending-merge.** Reader and export are bound to the exact
+   (Stage 5) — merged.** Reader and export are bound to the exact
    saved source and cell boundaries. Reader opens saved settings without a
    published run and opens retained outputs it cannot preview. Sweeps take any
    parameter, and agents can stop a sweep. Remaining: qualify on Windows and
    Linux.
-3. **Result packages and verification (Stages 4, 9) — built-pending-merge.**
+3. **Result packages and verification (Stages 4, 9) — merged.**
    Packages keep the original input digests apart from the export copies, and
    the verdict says when outputs matched but the original inputs are
    unconfirmed. Remaining: qualify cancellation of long verification runs on
    Windows and Linux.
-4. **Profiles and saved views (Stage 6) — built-pending-merge.** Paging, copy,
+4. **Profiles and saved views (Stage 6) — merged.** Paging, copy,
    profile and export are pinned to one view revision, and export follows the
    grid's filters for people and agents. Remaining: volatile SQL expressions
    can still change between evaluations.
@@ -182,11 +190,12 @@ Start notebook environment recovery alongside candidate qualification.
    installed Quarto runtime. Preserve the build log and last good output, and
    link the build to the analysis result it used. Follow with R Markdown.
 
-Qualify packaged workflows on Windows and Linux, including native filesystem
+The [Compute Languages workflow](https://github.com/ScientFactory/scient-desktop/actions/runs/45768552132)
+passed on Windows, Linux, and Apple silicon and Intel macOS. The packaged
+workbench still needs Windows and Linux fixtures for native filesystem
 observation, file pickers, paths, runtime selection, cancellation, and reopen.
-Keep broader widgets, automatic kernel
-reactivity, deeper debugging and profiling, scheduler reconnect and recovery,
-and domain packs as follow-on work.
+Keep broader widgets, automatic kernel reactivity, deeper debugging and
+profiling, scheduler reconnect and recovery, and domain packs as follow-on work.
 
 **Acceptance fixture.** Use a synthetic prediction dataset with known threshold
 counts. Publish metrics, a confusion matrix, and a figure from equivalent script
@@ -672,11 +681,12 @@ interpreter and still produce different results.
    and incomplete evidence visible in history and handoff.
 
 **Give agents the same recovery actions.** Compute tools can list runtimes,
-set up managed Python and toolkits, and run in a session or with the project
-default. Direct selection of a discovered environment for a fresh notebook
-run and project runtime binding remain open.
-[Agent Compute tools](https://github.com/ScientFactory/scient-desktop/blob/dd117a18603931ff0ecc9be279f99bf301587da1/apps/server/src/mcp/toolkits/compute/tools.ts)
-· [Managed setup handler](https://github.com/ScientFactory/scient-desktop/blob/dd117a18603931ff0ecc9be279f99bf301587da1/apps/server/src/mcp/toolkits/compute/handlers.ts)
+set up managed Python and toolkits, add a package for a live Python session,
+and run in a session or with the project default. Agents still need direct
+selection of a discovered environment for a fresh notebook run and the
+ability to save a project runtime binding.
+[Agent Compute tools](https://github.com/ScientFactory/scient-desktop/blob/4b50a4bd9473f1ef173911944ecc25e331248ec6/apps/server/src/mcp/toolkits/compute/tools.ts)
+· [Managed setup handler](https://github.com/ScientFactory/scient-desktop/blob/4b50a4bd9473f1ef173911944ecc25e331248ec6/apps/server/src/mcp/toolkits/compute/handlers.ts)
 
 Expose the same host-owned resolver and operations to the UI and the agent:
 
@@ -902,8 +912,8 @@ method, accessibility, long-file, review-comment, and state-preservation tests.
 
 ## Ordered Roadmap
 
-The stages below describe dependencies and target coverage. Use the dated
-[Desktop baseline](#desktop-baseline-2026-11-23) to check implementation status
+The stages below describe dependencies and target coverage. Use the
+[Desktop baseline](#desktop-baseline) to check implementation status
 and the [recommended sequence](#recommended-next-implementation) to pick up work.
 
 Stages 0–3 retain regression requirements for the landed editing, execution,
@@ -1138,8 +1148,7 @@ runtime, renderer, and run-record layers.
 
 Desktop main already opens, edits, and runs `.ipynb` files and saves cell
 outputs. The checklist describes compatibility targets. See the
-[PR #1082 candidate](#pr-1082-candidate-2026-11-24) for the next implementation
-baseline.
+[Compute workbench](#compute-workbench) for the merged baseline.
 
 - open and inspect `.ipynb` structure without dumping raw JSON by default;
 - edit code and Markdown cells;
